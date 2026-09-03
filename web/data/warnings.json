@@ -102,5 +102,31 @@
         "ts": "2026-09-03T10:20:47.9Z"
       }
     ]
+  },
+  {
+    "id": "om-mersinkörfezi-2026-09-03T23",
+    "headline": "Mersin Körfezi: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
+    "area": "Mersin Körfezi",
+    "severity": "minor",
+    "kind": "marine-weather",
+    "onset": null,
+    "expires": null,
+    "org": "Open-Meteo",
+    "url": "https://open-meteo.com/en/docs/marine-weather-api",
+    "issued": "2026-09-03T23:33:58Z",
+    "last_update": "2026-09-03T23:33:58Z",
+    "raw": "",
+    "lat": 36.55,
+    "lon": 34.4,
+    "value": 2.7,
+    "sources": [
+      {
+        "kind": "marine-weather",
+        "detail": "Mersin Körfezi: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
+        "org": "Open-Meteo",
+        "url": "https://open-meteo.com/en/docs/marine-weather-api",
+        "ts": "2026-09-03T23:33:58Z"
+      }
+    ]
   }
 ]
