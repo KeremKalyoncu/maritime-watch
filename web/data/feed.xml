@@ -3,7 +3,42 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Thu, 03 Sep 2026 23:12:25 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 03 Sep 2026 23:34:11 +0000</lastBuildDate>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-03-news-0d4047-38568-1</guid>
+      <pubDate>Thu, 03 Sep 2026 23:33:06 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/milliyet.com.tr: SON DAKİKA: Marmara'daki gemi faciasında 10 kayıp denizci aranıyor!</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.trthaber.com/haber/gundem/girnede-alabora-olan-gemiden-kurtulan-gencler-korku-dolu-anlari-anlatti-955831.html</link>
+      <guid isPermaLink="false">2026-09-03-news-0d4047-58015-1</guid>
+      <pubDate>Thu, 03 Sep 2026 23:33:05 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/trthaber.com: Girne'de alabora olan gemiden kurtulan gençler korku dolu anları anlattı</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.trthaber.com/haber/gundem/kktcdeki-gemi-kazasinda-can-kaybi-10a-cikti-955817.html</link>
+      <guid isPermaLink="false">2026-09-03-news-0d4047-68637-1</guid>
+      <pubDate>Thu, 03 Sep 2026 23:33:05 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/trthaber.com: KKTC'deki gemi kazasında can kaybı 10'a çıktı</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.cnnturk.com/turkiye/girnede-batan-yolcu-gemisinde-skandal-uzerine-skandal-kaptanlarin-konusmasi-ortaya-cikti-3462285</link>
+      <guid isPermaLink="false">2026-09-03-news-0d4047-70597-1</guid>
+      <pubDate>Thu, 03 Sep 2026 23:33:04 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/cnnturk.com: Girne'de batan yolcu gemisinde skandal Ã¼zerine skandal! KaptanlarÄ±n konuÅmasÄ± ortaya Ã§Ä±ktÄ±</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemiden-yeni-goruntuler-su-almaya-baslayinca-boyle-uyarmis-calistirilmamasi-gerekiyor-43294729</link>
+      <guid isPermaLink="false">2026-09-03-news-0d4047-91712-1</guid>
+      <pubDate>Thu, 03 Sep 2026 23:33:03 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/hurriyet.com.tr: Girne açıklarında batan gemiden yeni görüntüler! Su almaya başlayınca böyle uyarmış: 'Çalıştırılmaması gerekiyor'</description>
+    </item>
     <item>
       <title>[signal] unknown, Türk karasuları civarı</title>
       <link>https://www.aa.com.tr/tr/gundem/silivri-aciklarindaki-gemi-kazasina-iliskin-gozaltina-alinan-alsu-gemisinin-1-ve-3-kaptani-tutuklandi/4046904</link>

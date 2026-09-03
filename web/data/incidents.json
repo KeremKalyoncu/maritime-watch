@@ -419,5 +419,150 @@
       }
     ],
     "notes": []
+  },
+  {
+    "id": "2026-09-03-news-0d4047-91712",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-03T23:33:03Z",
+    "last_update": "2026-09-03T23:33:03Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne açıklarında batan gemiden yeni görüntüler! Su almaya başlayınca böyle uyarmış: 'Çalıştırılmaması gerekiyor'",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemiden-yeni-goruntuler-su-almaya-baslayinca-boyle-uyarmis-calistirilmamasi-gerekiyor-43294729",
+        "ts": "2026-09-03T23:33:03Z"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "id": "2026-09-03-news-0d4047-70597",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-03T23:33:04Z",
+    "last_update": "2026-09-03T23:33:04Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'de batan yolcu gemisinde skandal Ã¼zerine skandal! KaptanlarÄ±n konuÅmasÄ± ortaya Ã§Ä±ktÄ±",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/girnede-batan-yolcu-gemisinde-skandal-uzerine-skandal-kaptanlarin-konusmasi-ortaya-cikti-3462285",
+        "ts": "2026-09-03T23:33:04Z"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "id": "2026-09-03-news-0d4047-58015",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-03T23:33:05Z",
+    "last_update": "2026-09-03T23:33:05Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'de alabora olan gemiden kurtulan gençler korku dolu anları anlattı",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/gundem/girnede-alabora-olan-gemiden-kurtulan-gencler-korku-dolu-anlari-anlatti-955831.html",
+        "ts": "2026-09-03T23:33:05Z"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "id": "2026-09-03-news-0d4047-68637",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-03T23:33:05Z",
+    "last_update": "2026-09-03T23:33:05Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "KKTC'deki gemi kazasında can kaybı 10'a çıktı",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/gundem/kktcdeki-gemi-kazasinda-can-kaybi-10a-cikti-955817.html",
+        "ts": "2026-09-03T23:33:05Z"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "id": "2026-09-03-news-0d4047-38568",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-03T23:33:06Z",
+    "last_update": "2026-09-03T23:33:06Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "SON DAKİKA: Marmara'daki gemi faciasında 10 kayıp denizci aranıyor!",
+        "org": "milliyet.com.tr",
+        "url": "",
+        "ts": "2026-09-03T23:33:06Z"
+      }
+    ],
+    "notes": []
   }
 ]
