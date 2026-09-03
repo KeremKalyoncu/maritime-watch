@@ -1,0 +1,52 @@
+# Maritime Watch configuration. Safe to edit; no secrets here (see .env).
+
+region:
+  name: "Türkiye karasuları ve civarı"
+  # AIS subscription bounding box — [lat_min, lon_min] .. [lat_max, lon_max]
+  bbox: { lat_min: 35.0, lat_max: 43.5, lon_min: 25.0, lon_max: 42.5 }
+
+ais:
+  enabled: true
+  ws_url: "wss://stream.aisstream.io/v0/stream"
+  capture_seconds: 90        # how long to hold the socket open each cycle
+  vessel_history: 20         # positions kept per MMSI for track-based rules
+
+anomaly:
+  moving_speed_kn: 3.0       # above this = "under way"
+  stopped_speed_kn: 0.5      # below this = "stopped"
+  stop_minutes: 20
+  gap_minutes: 45            # AIS silence after which an under-way vessel is flagged
+  course_change_deg: 60      # sudden course change threshold
+
+scrape:
+  enabled: true
+  mgm: true
+  sahil_guvenlik: true
+  afad: true
+  keywords:
+    - "kaza"
+    - "batık"
+    - "batan"
+    - "battı"
+    - "alabora"
+    - "kurtar"
+    - "arama kurtarma"
+    - "mahsur"
+    - "yaralı"
+    - "kayıp"
+    - "denize düş"
+    - "can kaybı"
+    - "cansız"
+    - "imdat"
+    - "tekne"
+    - "sürüklen"
+
+alert:
+  telegram:
+    enabled: true
+    only_status: ["confirmed"]   # only push incidents at this status
+    prevention: true             # push official marine weather warnings
+  min_severity: "major"
+
+loop:
+  interval_seconds: 900          # --loop cadence

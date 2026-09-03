@@ -1,0 +1,27 @@
+[
+  {
+    "mmsi": 271000001, "lat": 40.9721, "lon": 28.8455,
+    "sog": 11.4, "cog": 243.0, "true_heading": 244, "nav_status": 0,
+    "ts": "2026-09-03T09:00:00Z", "name": "KARADENIZ EXPRESS"
+  },
+  {
+    "mmsi": 271000002, "lat": 41.1183, "lon": 29.0410,
+    "sog": 0.1, "cog": 0.0, "true_heading": 511, "nav_status": 2,
+    "ts": "2026-09-03T09:00:05Z", "name": "DENIZ YILDIZI"
+  },
+  {
+    "mmsi": 271000003, "lat": 36.7985, "lon": 28.2560,
+    "sog": 6.2, "cog": 90.0, "true_heading": 91, "nav_status": 0,
+    "ts": "2026-09-03T09:00:07Z", "name": "EGE BALIK 7"
+  },
+  {
+    "mmsi": 271000004, "lat": 41.0125, "lon": 39.7180,
+    "sog": 0.0, "cog": 0.0, "true_heading": 511, "nav_status": 6,
+    "ts": "2026-09-03T09:00:09Z", "name": "YALI 3"
+  },
+  {
+    "mmsi": 271000001, "lat": 40.9702, "lon": 28.8390,
+    "sog": 11.1, "cog": 244.0, "true_heading": 245, "nav_status": 0,
+    "ts": "2026-09-03T09:01:00Z", "name": "KARADENIZ EXPRESS"
+  }
+]

@@ -1,0 +1,16 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# runtime state (regenerated every cycle)
+data/vessels.json
+data/events.jsonl
+data/outbox.log
+data/sent.json
+
+# generated feed (rebuilt each run; keep the seeded *.json so the map loads on clone)
+web/data/feed.xml
+web/data/summary.json

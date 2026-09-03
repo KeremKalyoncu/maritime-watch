@@ -1,0 +1,32 @@
+Maritime Watch
+Copyright (c) 2026 Maritime Watch contributors
+Licensed under the MIT License (see LICENSE).
+
+This project is original code. It does not vendor third-party source, but it is
+designed to interoperate with / was informed by the following open-source work:
+
+Runtime dependencies (installed via pip, their own licenses apply):
+  requests              Apache-2.0
+  beautifulsoup4        MIT
+  websockets            BSD-3-Clause
+  PyYAML                MIT
+  python-dotenv         BSD-3-Clause
+  pytest (dev only)     MIT
+
+Data sources / services:
+  aisstream.io          free real-time AIS WebSocket API
+  Meteoroloji Genel Müdürlüğü (MGM)   marine forecasts / warnings
+  Sahil Güvenlik Komutanlığı          official announcements
+  AFAD                                official announcements
+  OpenStreetMap / OpenSeaMap          map tiles (ODbL)
+  Leaflet 1.9.4 (CDN)   BSD-2-Clause
+
+Referenced by src/sdr/ (integration guides only — not bundled):
+  MattCheramie/GopherTrunk            VHF Ch70 DSC decoder (MIT)
+  alemassimo/TAOSW.DSC_Decoder        DSC-from-audio decoder
+  kywalda/dsc_generator               DSC test-message generator
+  pd0wm/navtex                        NAVTEX decoder
+  Nite01007/RadioTranscriber          scanner audio -> Whisper
+  ggml-org/whisper.cpp                on-device speech-to-text (MIT)
+  sansastra/Anomaly-Detection         AIS anomaly heuristics (reference)
+  M0r13n/pyais                        AIS decoding (MIT)

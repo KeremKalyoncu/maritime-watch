@@ -1,0 +1,20 @@
+[
+  {
+    "bolge": "Marmara Denizi",
+    "ruzgarHiz": "Güney-güneybatı 5-7, yer yer 8 Bofor",
+    "uyari": "Fırtına bekleniyor; küçük deniz araçları dikkatli olmalı.",
+    "gecerlilik": "2026-09-03/2026-09-04"
+  },
+  {
+    "bolge": "Doğu Akdeniz",
+    "ruzgarHiz": "Batı-kuzeybatı 3-4 Bofor",
+    "uyari": "",
+    "gecerlilik": "2026-09-03"
+  },
+  {
+    "bolge": "Batı Karadeniz",
+    "ruzgarHiz": "Kuzeydoğu 4-5, akşam saatlerinde 6-7 Bofor",
+    "uyari": "Kuvvetli rüzgar ve yüksek dalga; liman çıkışları ertelenebilir.",
+    "gecerlilik": "2026-09-03/2026-09-05"
+  }
+]

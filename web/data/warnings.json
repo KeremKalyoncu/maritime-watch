@@ -1,0 +1,32 @@
+[
+  {
+    "id": "wx-marmaradenizi-seed",
+    "headline": "Marmara Denizi: Güney-güneybatı 5-7, yer yer 8 Bofor · Fırtına bekleniyor; küçük deniz araçları dikkatli olmalı.",
+    "area": "Marmara Denizi",
+    "severity": "major",
+    "kind": "marine-weather",
+    "onset": null,
+    "expires": null,
+    "org": "Meteoroloji Genel Müdürlüğü",
+    "url": "https://www.mgm.gov.tr/denizcilik/deniz-hava-tahmini.aspx",
+    "issued": "2026-09-03T06:00:00Z",
+    "raw": "",
+    "lat": 40.675,
+    "lon": 28.325
+  },
+  {
+    "id": "wx-batikaradeniz-seed",
+    "headline": "Batı Karadeniz: Kuzeydoğu 4-5, akşam saatlerinde 6-7 Bofor · Kuvvetli rüzgar ve yüksek dalga; liman çıkışları ertelenebilir.",
+    "area": "Batı Karadeniz",
+    "severity": "major",
+    "kind": "marine-weather",
+    "onset": null,
+    "expires": null,
+    "org": "Meteoroloji Genel Müdürlüğü",
+    "url": "https://www.mgm.gov.tr/denizcilik/deniz-hava-tahmini.aspx",
+    "issued": "2026-09-03T06:00:00Z",
+    "raw": "",
+    "lat": 42.35,
+    "lon": 31.2
+  }
+]

@@ -1,0 +1,61 @@
+name: update-and-publish
+
+# Free "no server" deployment: run the cycle on a schedule, commit the refreshed
+# web/data/*, and publish web/ to GitHub Pages. Latency is the cron granularity
+# (~15 min). For near-real-time or the SDR/DSC modules you need an always-on host.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: maritime-watch-update
+  cancel-in-progress: false
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+
+      - name: Run one cycle
+        env:
+          AISSTREAM_KEY: ${{ secrets.AISSTREAM_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -n "$TELEGRAM_BOT_TOKEN" ]; then SEND=--send; else SEND=; fi
+          python run.py --once $SEND
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name  "maritime-watch-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -f web/data/incidents.json web/data/warnings.json web/data/feed.xml web/data/summary.json
+          git commit -m "data: cycle $(date -u +%FT%TZ)" || echo "no changes"
+          git push
+
+  pages:
+    needs: cycle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+      - uses: actions/deploy-pages@v4

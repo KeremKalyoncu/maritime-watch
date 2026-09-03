@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maritime Watch — Türkiye deniz olayları</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Maritime&nbsp;Watch</h1>
+    <p class="tag">Türkiye karasuları — AIS anomalileri + resmi açıklamalar, tek yerde.
+      <strong>Sinyaller doğrulanana kadar “doğrulanmadı” etiketlidir.</strong></p>
+    <p class="meta" id="meta">yükleniyor…</p>
+  </header>
+
+  <main>
+    <div id="map"></div>
+    <aside id="side">
+      <div class="legend">
+        <span><i class="dot s-confirmed"></i>doğrulandı</span>
+        <span><i class="dot s-probable"></i>olası</span>
+        <span><i class="dot s-signal"></i>sinyal (doğrulanmadı)</span>
+        <span><i class="dot s-resolved"></i>kapandı</span>
+        <span><i class="dot s-warning"></i>hava uyarısı</span>
+      </div>
+      <h2>Zaman çizelgesi</h2>
+      <ol id="timeline"></ol>
+    </aside>
+  </main>
+
+  <footer>
+    <span>Açık kaynak · <a href="https://github.com/" id="repo-link">GitHub</a></span>
+    <span>Kaynaklar: aisstream.io · Meteoroloji Genel Müdürlüğü · Sahil Güvenlik · AFAD · OpenSeaMap</span>
+    <span>Bu bir kurtarma servisi değildir. Acil durumda <strong>158</strong> (Sahil Güvenlik) / <strong>112</strong>.</span>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script>
+    // fallback CDN if cdnjs is unreachable
+    if (typeof L === "undefined") {
+      document.write('<scr' + 'ipt src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></scr' + 'ipt>');
+    }
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+[
+  {
+    "id": "2026-09-03-seed-ais01",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 41.1183,
+    "lon": 29.041,
+    "area": "İstanbul Boğazı",
+    "vessel": { "name": "DENIZ YILDIZI", "mmsi": 271000002, "type": null, "callsign": null },
+    "casualties": null,
+    "first_seen": "2026-09-03T09:00:05Z",
+    "last_update": "2026-09-03T09:00:05Z",
+    "sources": [
+      { "kind": "ais-anomaly", "detail": "nav-status: kumanda dışı (not under command)", "org": "AIS", "url": null, "ts": "2026-09-03T09:00:05Z" }
+    ],
+    "notes": ["Örnek kayıt — ilk 'py run.py --once' çalıştırmasında gerçek veriyle değişir."]
+  },
+  {
+    "id": "2026-09-03-seed-ais02",
+    "type": "distress",
+    "status": "probable",
+    "confidence": 0.55,
+    "severity": "major",
+    "lat": 42.02,
+    "lon": 30.05,
+    "area": "Batı Karadeniz",
+    "vessel": { "name": "KIYI 12", "mmsi": 271000009, "type": null, "callsign": null },
+    "casualties": null,
+    "first_seen": "2026-09-03T08:10:00Z",
+    "last_update": "2026-09-03T08:55:00Z",
+    "sources": [
+      { "kind": "ais-anomaly", "detail": "ais-gap: seyir halindeyken AIS sinyali ~50 dk önce kesildi", "org": "AIS", "url": null, "ts": "2026-09-03T08:55:00Z" },
+      { "kind": "news", "detail": "Yerel haber: bölgede kötü hava, bir teknenin dönmediği bildirildi", "org": "yerel", "url": null, "ts": "2026-09-03T08:50:00Z" }
+    ],
+    "notes": []
+  },
+  {
+    "id": "2026-09-03-seed-off01",
+    "type": "unknown",
+    "status": "confirmed",
+    "confidence": 0.6,
+    "severity": "critical",
+    "lat": 38.32,
+    "lon": 26.3,
+    "area": "Güney Ege",
+    "vessel": { "name": null, "mmsi": null, "type": null, "callsign": null },
+    "casualties": 12,
+    "first_seen": "2026-09-03T07:40:00Z",
+    "last_update": "2026-09-03T07:40:00Z",
+    "sources": [
+      { "kind": "official", "detail": "Çeşme açıklarında lastik botta mahsur kalan 12 düzensiz göçmen kurtarıldı", "org": "Sahil Güvenlik Komutanlığı", "url": "https://www.sg.gov.tr/", "ts": "2026-09-03T07:40:00Z" }
+    ],
+    "notes": []
+  },
+  {
+    "id": "2026-09-02-seed-off02",
+    "type": "capsize",
+    "status": "confirmed",
+    "confidence": 0.6,
+    "severity": "critical",
+    "lat": 41.45,
+    "lon": 31.79,
+    "area": "Batı Karadeniz",
+    "vessel": { "name": null, "mmsi": null, "type": null, "callsign": null },
+    "casualties": 2,
+    "first_seen": "2026-09-02T18:20:00Z",
+    "last_update": "2026-09-02T18:20:00Z",
+    "sources": [
+      { "kind": "official", "detail": "Zonguldak açıklarında balıkçı teknesinin alabora olması sonucu 2 kişi kayıp", "org": "AFAD", "url": "https://www.afad.gov.tr/", "ts": "2026-09-02T18:20:00Z" }
+    ],
+    "notes": []
+  }
+]
