@@ -33,7 +33,7 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
     sub = {
         "APIKey": key,
         "BoundingBoxes": [[[bbox["lat_min"], bbox["lon_min"]], [bbox["lat_max"], bbox["lon_max"]]]],
-        "FilterMessageTypes": ["PositionReport", "ShipStaticData"],
+        "FilterMessageTypes": ["PositionReport", "ShipStaticData", "SafetyBroadcastMessage"],
     }
     positions: list[dict] = []
     static: dict = {}
@@ -72,6 +72,17 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
                     "cog": d.get("Cog"),
                     "true_heading": d.get("TrueHeading"),
                     "nav_status": d.get("NavigationalStatus"),
+                    "ts": meta.get("time_utc") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    "name": (meta.get("ShipName") or "").strip(),
+                })
+            elif mtype == "SafetyBroadcastMessage":
+                d = msg.get("Message", {}).get("SafetyBroadcastMessage", {})
+                positions.append({
+                    "msg_type": "safety",
+                    "mmsi": mmsi,
+                    "lat": meta.get("latitude"),
+                    "lon": meta.get("longitude"),
+                    "text": (d.get("Text") or "").strip(),
                     "ts": meta.get("time_utc") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                     "name": (meta.get("ShipName") or "").strip(),
                 })

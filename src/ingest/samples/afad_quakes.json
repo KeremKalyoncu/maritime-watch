@@ -1,0 +1,32 @@
+[
+  {
+    "eventID": "2026090400001",
+    "location": "Marmara Denizi - Silivri (İstanbul) açıkları",
+    "latitude": "40.9100",
+    "longitude": "28.2400",
+    "depth": "7.20",
+    "magnitude": "4.30",
+    "date": "2026-09-04T09:12:33",
+    "type": "ML"
+  },
+  {
+    "eventID": "2026090400002",
+    "location": "Ege Denizi - Bodrum (Muğla) açıkları",
+    "latitude": "36.9500",
+    "longitude": "27.1500",
+    "depth": "10.10",
+    "magnitude": "3.90",
+    "date": "2026-09-04T08:40:10",
+    "type": "ML"
+  },
+  {
+    "eventID": "2026090400003",
+    "location": "Elazığ - Sivrice (kara içi, alakasız)",
+    "latitude": "38.4600",
+    "longitude": "39.3100",
+    "depth": "6.00",
+    "magnitude": "4.10",
+    "date": "2026-09-04T07:05:00",
+    "type": "ML"
+  }
+]

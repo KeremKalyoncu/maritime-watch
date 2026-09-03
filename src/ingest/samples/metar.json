@@ -1,0 +1,35 @@
+[
+  {
+    "icaoId": "LTBA",
+    "name": "Istanbul Ataturk",
+    "reportTime": "2026-09-04 09:20:00",
+    "wspd": 22,
+    "wgst": 38,
+    "visib": "6",
+    "wxString": "",
+    "lat": 40.976,
+    "lon": 28.814
+  },
+  {
+    "icaoId": "LTFE",
+    "name": "Bodrum Milas",
+    "reportTime": "2026-09-04 09:20:00",
+    "wspd": 8,
+    "wgst": 12,
+    "visib": "0.5",
+    "wxString": "TSRA",
+    "lat": 37.25,
+    "lon": 27.664
+  },
+  {
+    "icaoId": "LTAI",
+    "name": "Antalya",
+    "reportTime": "2026-09-04 09:20:00",
+    "wspd": 6,
+    "wgst": 9,
+    "visib": "10+",
+    "wxString": "",
+    "lat": 36.898,
+    "lon": 30.8
+  }
+]

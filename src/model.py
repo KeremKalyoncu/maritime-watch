@@ -106,22 +106,49 @@ class Warning:
     headline: str
     area: str = ""
     severity: str = Severity.MINOR.value
-    kind: str = "marine-weather"    # marine-weather | navtex | nav-warning
+    kind: str = "marine-weather"    # marine-weather | metar | earthquake | gdacs | eonet | nav-warning | navtex
     onset: Optional[str] = None
     expires: Optional[str] = None
     org: str = ""
     url: Optional[str] = None
     issued: str = field(default_factory=now_iso)
+    last_update: str = field(default_factory=now_iso)
     raw: str = ""
-    lat: Optional[float] = None     # area centroid, for the map
+    lat: Optional[float] = None     # centroid / epicentre, for the map
     lon: Optional[float] = None
+    value: Optional[float] = None   # magnitude or wave height, used to match duplicates
+    sources: list[Source] = field(default_factory=list)
+
+    def __post_init__(self) -> None:
+        if not self.sources and self.org:
+            self.sources.append(Source(kind=self.kind, org=self.org,
+                                       detail=self.headline[:200], url=self.url, ts=self.issued))
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
     @staticmethod
     def from_dict(d: dict[str, Any]) -> "Warning":
+        d = dict(d)
+        d["sources"] = [Source(**s) for s in d.get("sources", [])]
         return Warning(**d)
+
+    def add_source(self, s: Source) -> bool:
+        if s.key() in {x.key() for x in self.sources}:
+            return False
+        self.sources.append(s)
+        self.last_update = now_iso()
+        return True
+
+    @property
+    def orgs(self) -> list[str]:
+        seen, out = set(), []
+        for s in self.sources:
+            o = s.org or s.kind
+            if o not in seen:
+                seen.add(o)
+                out.append(o)
+        return out
 
 
 def make_id(kind: str, lat: Optional[float], lon: Optional[float], ts: Optional[str] = None) -> str:

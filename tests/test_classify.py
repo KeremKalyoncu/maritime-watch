@@ -1,5 +1,5 @@
 from src.model import Incident, Source
-from src.process.classify import area_centroid, area_of, classify, place_hint
+from src.process.classify import area_centroid, area_of, classify, nearest_port, place_hint
 
 
 def test_area_of_bosphorus():
@@ -63,3 +63,22 @@ def test_resolved_is_sticky():
     inc.sources.append(Source(kind="official", org="SG", detail="x"))
     classify(inc)
     assert inc.status == "resolved"
+
+
+def test_ais_sart_is_probable():
+    inc = Incident(id="s", lat=40.8, lon=28.6)
+    inc.sources.append(Source(kind="ais-sart", org="AIS", detail="MOB"))
+    classify(inc)
+    assert inc.status == "probable"
+
+
+def test_nearest_port():
+    name, nm, direction = nearest_port(41.02, 28.30)   # off Silivri
+    assert name in ("Silivri", "İstanbul", "Tekirdağ")
+    assert nm < 40
+    assert direction in ("K", "KKD", "KD", "DKD", "D", "DGD", "GD", "GGD",
+                         "G", "GGB", "GB", "BGB", "B", "BKB", "KB", "KKB")
+
+
+def test_nearest_port_none_for_missing_coords():
+    assert nearest_port(None, 28.0) is None

@@ -1,0 +1,28 @@
+{
+  "navigational-warnings": [
+    {
+      "msgYear": 2026,
+      "msgNumber": 312,
+      "navArea": "III",
+      "subregion": "24",
+      "issueDate": "2026-09-03T00:00:00",
+      "text": "AEGEAN SEA. GUNNERY EXERCISES 04 THRU 06 SEP IN AREA BOUND BY 39-10N 025-40E, 39-05N 026-05E. WIDE BERTH REQUESTED. TURKISH WATERS."
+    },
+    {
+      "msgYear": 2026,
+      "msgNumber": 305,
+      "navArea": "III",
+      "subregion": "24",
+      "issueDate": "2026-09-02T00:00:00",
+      "text": "BLACK SEA. DERELICT VESSEL ADRIFT VICINITY 41-40N 029-10E. VESSELS TRANSITING BOSPHORUS APPROACHES ADVISED TO KEEP CLEAR."
+    },
+    {
+      "msgYear": 2026,
+      "msgNumber": 299,
+      "navArea": "III",
+      "subregion": "10",
+      "issueDate": "2026-09-01T00:00:00",
+      "text": "WESTERN MEDITERRANEAN. BUOY OFF STATION NEAR 41-20N 003-10E. SPANISH COAST, BARCELONA APPROACHES."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "data": [
+    {
+      "id": "12345",
+      "href": "https://api.reliefweb.int/v1/disasters/12345",
+      "fields": {
+        "name": "Türkiye: Severe storms and coastal flooding - Sep 2026",
+        "status": "current",
+        "date": { "created": "2026-09-04T00:00:00+00:00" }
+      }
+    }
+  ]
+}

@@ -1,28 +1,45 @@
 # Maritime Watch configuration. Safe to edit; no secrets here (see .env).
 
+site:
+  # used to build "open on the map" links in Telegram messages
+  url: "https://keremkalyoncu.github.io/maritime-watch"
+  repo: "https://github.com/KeremKalyoncu/maritime-watch"
+
 region:
   name: "Türkiye karasuları ve civarı"
-  # AIS subscription bounding box — [lat_min, lon_min] .. [lat_max, lon_max]
   bbox: { lat_min: 35.0, lat_max: 43.5, lon_min: 25.0, lon_max: 42.5 }
 
 ais:
   enabled: true
   ws_url: "wss://stream.aisstream.io/v0/stream"
-  capture_seconds: 90        # how long to hold the socket open each cycle
-  vessel_history: 20         # positions kept per MMSI for track-based rules
+  capture_seconds: 90
+  vessel_history: 20
+  # MMSI prefixes for AIS distress transmitters (ITU): SART 970, MOB 972, EPIRB-AIS 974
+  distress_mmsi_prefixes: ["970", "972", "974"]
 
 anomaly:
-  moving_speed_kn: 3.0       # above this = "under way"
-  stopped_speed_kn: 0.5      # below this = "stopped"
+  moving_speed_kn: 3.0
+  stopped_speed_kn: 0.5
   stop_minutes: 20
-  gap_minutes: 45            # AIS silence after which an under-way vessel is flagged
-  course_change_deg: 60      # sudden course change threshold
+  gap_minutes: 45
+  course_change_deg: 60
+
+# extra sources, each independently toggleable
+sources:
+  scrape: true          # Sahil Güvenlik announcements (see scrape: below)
+  openmeteo: true        # marine + wind forecast (no key) - replaces MGM
+  quakes: true           # AFAD + USGS + EMSC earthquakes (cross-confirmed)
+  navwarn: false         # NGA NAVAREA III - public endpoint currently 404s; enable when fixed
+  news: true             # Turkish + maritime news RSS, keyword filtered
+  gdacs: true            # global disaster alerts (RSS), filtered to the region
+  eonet: true            # NASA EONET natural events
+  reliefweb: false       # ReliefWeb API v1 retired (410); code kept for when v2 access is wired
+  metar: true            # coastal airport weather
 
 scrape:
-  enabled: true
-  mgm: true
+  mgm: false             # MGM has no stable public endpoint; Open-Meteo covers this
   sahil_guvenlik: true
-  afad: true
+  afad: false            # announcements page 404s; AFAD data comes via quakes: below
   keywords:
     - "kaza"
     - "batık"
@@ -41,12 +58,74 @@ scrape:
     - "tekne"
     - "sürüklen"
 
+openmeteo:
+  wave_m: 2.0            # significant wave height that triggers a warning
+  wind_gust_kn: 33.0     # ~7 Bft
+  hours_ahead: 36
+  points:
+    - { name: "Marmara Denizi", lat: 40.75, lon: 28.30 }
+    - { name: "İzmit Körfezi", lat: 40.72, lon: 29.55 }
+    - { name: "İstanbul Boğazı", lat: 41.15, lon: 29.10 }
+    - { name: "Çanakkale Boğazı", lat: 40.15, lon: 26.40 }
+    - { name: "Saroz Körfezi", lat: 40.50, lon: 26.40 }
+    - { name: "Kuzey Ege", lat: 39.20, lon: 26.30 }
+    - { name: "Güney Ege", lat: 37.00, lon: 27.10 }
+    - { name: "Antalya Körfezi", lat: 36.55, lon: 30.60 }
+    - { name: "Mersin Körfezi", lat: 36.55, lon: 34.40 }
+    - { name: "İskenderun Körfezi", lat: 36.60, lon: 35.90 }
+    - { name: "Batı Karadeniz", lat: 41.70, lon: 31.80 }
+    - { name: "Orta Karadeniz", lat: 42.10, lon: 35.10 }
+    - { name: "Doğu Karadeniz", lat: 41.30, lon: 39.70 }
+
+quakes:
+  min_mag: 3.8           # coastal quakes at/above this magnitude
+  hours_back: 24
+
+navwarn:
+  # keep warnings whose text mentions any of these (NAVAREA III is huge)
+  keep_terms: ["turkey", "turkish", "marmara", "aegean", "black sea", "bosphorus",
+               "bosporus", "dardanelles", "istanbul", "canakkale", "izmir", "mersin",
+               "iskenderun", "antalya", "samsun", "trabzon"]
+
+news:
+  max_items_per_feed: 40
+  hours_back: 36
+  feeds:
+    - "https://www.aa.com.tr/tr/rss/default?cat=guncel"
+    - "https://www.hurriyet.com.tr/rss/gundem"
+    - "https://www.ntv.com.tr/turkiye.rss"
+    - "https://www.sozcu.com.tr/feed/"
+    - "https://www.cnnturk.com/feed/rss/turkiye/news"
+    - "https://www.trthaber.com/sondakika.rss"
+    - "https://www.haberturk.com/rss"
+    - "https://www.milliyet.com.tr/rss/rssnew/gundemrss.xml"
+    - "https://www.denizhaber.com.tr/rss/"
+    - "https://gcaptain.com/feed/"
+  # a headline must contain one maritime word AND one incident word
+  maritime_words: ["deniz", "tekne", "gemi", "balıkçı", "sahil", "liman", "kıyı",
+                   "boğaz", "feribot", "yat", "sandal", "denizci", "açıklar"]
+  incident_words: ["battı", "battı", "batan", "alabora", "kurtar", "kayıp", "mahsur",
+                   "yaralı", "kaza", "arama kurtarma", "sürüklen", "can kaybı",
+                   "göçmen", "fırtına", "dalga", "mahsur", "boğul"]
+
+gdacs:
+  alert_levels: ["Orange", "Red"]
+  event_types: ["TC", "FL", "EQ", "WF"]   # cyclone, flood, quake, wildfire
+
+metar:
+  # coastal / near-coast airports
+  stations: ["LTBA", "LTFM", "LTFJ", "LTBU", "LTBS", "LTFE", "LTAI", "LTCG",
+             "LTFH", "LTCM", "LTCS", "LTAF"]
+  wind_gust_kn: 33.0
+  visibility_m: 2000
+
 alert:
   telegram:
     enabled: true
-    only_status: ["confirmed"]   # only push incidents at this status
-    prevention: true             # push official marine weather warnings
+    only_status: ["confirmed", "probable"]   # incident statuses that get pushed
+    prevention: true                          # push weather / quake / navwarn / gdacs
+    send_location_pin: true                   # also send a Telegram map pin
   min_severity: "major"
 
 loop:
-  interval_seconds: 900          # --loop cadence
+  interval_seconds: 900

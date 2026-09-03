@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 4.1,
+        "flynn_region": "SEA OF MARMARA, TURKEY",
+        "time": "2026-09-04T09:12:50.0Z"
+      },
+      "geometry": { "type": "Point", "coordinates": [28.24, 40.90, 8.0] }
+    }
+  ]
+}

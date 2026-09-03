@@ -8,6 +8,7 @@ import threading
 from pathlib import Path
 
 from .model import Incident, Warning, now_iso
+from .process.dedup import same_hazard
 
 
 class Store:
@@ -64,13 +65,28 @@ class Store:
                 self._event("incident_update", cur.to_dict())
             return cur
 
-    def upsert_warning(self, w: Warning) -> bool:
+    def upsert_warning(self, w: Warning) -> tuple[Warning, str]:
+        """Returns (warning, how) where how is 'new', 'merged' or 'dup'."""
         with self._lock:
             if w.id in self.warnings:
-                return False
+                return self.warnings[w.id], "dup"
+            for cur in self.warnings.values():
+                if same_hazard(cur, w):
+                    added = False
+                    for s in w.sources:
+                        added |= cur.add_source(s)
+                    if w.severity == "major" and cur.severity != "major":
+                        cur.severity = "major"
+                    if w.value is not None and cur.value is None:
+                        cur.value = w.value
+                    if added:
+                        cur.last_update = now_iso()
+                        self._event("warning_merge", cur.to_dict())
+                        return cur, "merged"
+                    return cur, "dup"
             self.warnings[w.id] = w
             self._event("warning_new", w.to_dict())
-            return True
+            return w, "new"
 
     def active_incidents(self) -> list[Incident]:
         return list(self.incidents.values())

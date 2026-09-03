@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Örnek Haber Akışı 2</title>
+    <link>https://example.org</link>
+    <item>
+      <title>Bodrum açıklarında göçmen teknesi battı, arama kurtarma sürüyor</title>
+      <link>https://example.org/haber/bodrum-gocmen-teknesi</link>
+    </item>
+    <item>
+      <title>Spor: haftanın maç sonuçları</title>
+      <link>https://example.org/haber/spor</link>
+    </item>
+  </channel>
+</rss>

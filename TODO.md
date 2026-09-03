@@ -1,21 +1,24 @@
 # TODO / Roadmap
 
-## Done (v1.0)
+## Done
 
 - [x] Repo skeleton, config (`config.yaml` + `.env`), CAP-like `Incident`/`Warning` model
 - [x] JSON store + append-only event log
-- [x] AIS ingest — aisstream.io burst capture, sample fallback, no hardware
-- [x] Rule-based AIS anomaly: nav-status, speed-drop, course-spike, ais-gap; persistent vessel tracks
+- [x] AIS ingest: aisstream.io burst capture, sample fallback, no hardware
+- [x] AIS-SART / MOB (MMSI 970/972/974) + AIS safety broadcast (msg 14)
+- [x] Rule-based AIS anomaly: nav-status, speed-drop, course-spike, ais-gap; persistent tracks
 - [x] Correlation/dedup by position + time window
 - [x] Classify: status ladder, confidence, severity, Turkish sea-area geocoding + place hints
-- [x] Official scrapers: MGM marine warnings, Sahil Güvenlik, AFAD — defensive + cached samples
-- [x] Telegram output: dry-run default, real send with `--send`, repeat-suppression
-- [x] Leaflet + OpenSeaMap map, timeline, "doğrulanmadı" labels, auto-refresh
+- [x] Sources: Open-Meteo marine+wind, AFAD earthquakes, Sahil Güvenlik, news RSS (5 feeds),
+      GDACS RSS, coastal METAR; NGA NAVAREA III (code ready, endpoint down)
+- [x] Rich Telegram messages: coordinates, nearest port + bearing, Google Maps link,
+      map deep-link, MarineTraffic link, `sendLocation` pin; sends confirmed + probable + SART
+- [x] Leaflet + OpenSeaMap map, timeline, `#id` deep-link, "doğrulanmadı" labels, auto-refresh
 - [x] RSS feed (`feed.xml`) + `summary.json`
 - [x] `src/sdr/` integration guide (DSC / NAVTEX / Whisper) + experimental stub
-- [x] Tests (33, offline) + `.github/workflows/tests.yml`
-- [x] `.github/workflows/update.yml` — free GitHub Actions + Pages deployment
-- [x] README with legal-design section, NOTICE, CONTRIBUTING
+- [x] Tests (48, offline) + `.github/workflows/tests.yml`
+- [x] `.github/workflows/update.yml`: free GitHub Actions + Pages deployment
+- [x] README with data-source table + legal-design section, NOTICE, CONTRIBUTING
 
 ## Your part (see README "Hızlı başlangıç")
 
@@ -28,10 +31,11 @@
 
 ## Next
 
+- [ ] Working NGA NAVAREA III endpoint (current one 404s) or Kıyı Emniyeti NAVTEX text feed
+- [ ] MGM marine endpoint if a stable one turns up
 - [ ] `data/dsc_alerts.jsonl` reader → wire the DSC module into `run.py`
-- [ ] NAVAREA III / Kıyı Emniyeti NAVTEX **text** feed (no radio) as `Warning(kind="navtex")`
 - [ ] Polygon sea areas (GeoJSON) instead of bounding boxes
-- [ ] Resolve/false-positive automation (match a later "kurtarıldı/sonuçlandı" official item to an open incident)
+- [ ] Resolve/false-positive automation (match a later "kurtarıldı/sonuçlandı" item to an open incident)
 - [ ] Per-region Telegram channels so a balıkçı only gets their sea
 - [ ] Map UI i18n (EN)
 - [ ] AIS anomaly eval harness + a labelled synthetic set; publish precision/recall

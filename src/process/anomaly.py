@@ -62,6 +62,8 @@ class VesselState:
 
     def update(self, positions: list[dict]) -> None:
         for p in positions:
+            if p.get("msg_type") == "safety":
+                continue
             if p.get("mmsi") is None or p.get("lat") is None or p.get("lon") is None:
                 continue
             key = str(p["mmsi"])
@@ -82,12 +84,24 @@ class VesselState:
 
 def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[str]) -> list[Anomaly]:
     a = cfg["anomaly"]
+    prefixes = tuple(cfg.get("ais", {}).get("distress_mmsi_prefixes", ("970", "972", "974")))
     out: list[Anomaly] = []
 
     latest: dict[str, dict] = {}
     for p in positions:
+        if p.get("msg_type") == "safety":
+            continue
         if p.get("mmsi") is not None:
             latest[str(p["mmsi"])] = p
+
+    # AIS distress transmitters (SART / MOB / EPIRB-AIS): the MMSI itself is the alert
+    for key, p in latest.items():
+        if key.startswith(prefixes) and p.get("lat") is not None:
+            kind = {"970": "AIS-SART", "972": "MOB (denize adam düştü)",
+                    "974": "EPIRB-AIS"}.get(key[:3], "AIS tehlike vericisi")
+            out.append(Anomaly(int(key), "ais-sart", f"{kind} sinyali alındı",
+                               p["lat"], p["lon"], "critical",
+                               p.get("name") or state.data.get(key, {}).get("name", "")))
 
     # rules driven by the current position plus the stored track
     for key, p in latest.items():

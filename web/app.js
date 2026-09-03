@@ -75,10 +75,22 @@ function incidentPopup(i) {
 }
 
 function warningPopup(w) {
+  const orgs = [];
+  (w.sources || []).forEach(s => {
+    const o = s.org || s.kind;
+    if (o && orgs.indexOf(o) === -1) orgs.push(o);
+  });
+  if (!orgs.length && w.org) orgs.push(w.org);
+  const multi = orgs.length >= 2
+    ? `<div class="badge-unverified">✅ ${orgs.length} bağımsız kaynak doğruluyor</div>` : "";
   return `
     <div class="popup-title">🌊 ${esc(w.headline)}</div>
-    <div class="popup-meta">${esc(w.area)} · ${esc(w.org)}<br>Yayın: ${fmtTime(w.issued)}</div>
-    ${w.url ? `<a href="${esc(w.url)}" target="_blank" rel="noopener">resmi uyarı</a>` : ""}`;
+    ${multi}
+    <div class="popup-meta">
+      ${esc(w.area)} · ${esc(orgs.join(", "))}<br>
+      Yayın: ${fmtTime(w.issued)}${w.last_update && w.last_update !== w.issued ? " · Güncelleme: " + fmtTime(w.last_update) : ""}
+    </div>
+    ${w.url ? `<a href="${esc(w.url)}" target="_blank" rel="noopener">kaynak</a>` : ""}`;
 }
 
 function addTimeline(items) {
@@ -170,5 +182,14 @@ async function load() {
   meta.textContent = `Son güncelleme: ${gen}  ·  ${incidents.length} olay${bs ? " (" + bs + ")" : ""}  ·  ${warnings.length} uyarı`;
 }
 
-load();
+// open the map focused on #<incident-id> when a deep link is used
+function focusHash() {
+  const id = decodeURIComponent((location.hash || "").slice(1));
+  if (!id || !map) return;
+  const m = markerById[id] || markerById["w:" + id];
+  if (m) { map.setView(m.getLatLng(), 10); m.openPopup(); }
+}
+window.addEventListener("hashchange", focusHash);
+
+load().then(focusHash);
 setInterval(load, 60000);

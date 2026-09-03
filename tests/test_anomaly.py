@@ -7,6 +7,26 @@ def _state(tmp_path, history=20):
     return VesselState(str(tmp_path / "vessels.json"), history)
 
 
+def test_ais_sart_flag(tmp_path, cfg):
+    vs = _state(tmp_path)
+    pos = [{"mmsi": 972000123, "lat": 40.8, "lon": 28.6, "sog": 0.0, "cog": 0.0,
+            "nav_status": 15, "ts": "2026-09-04T09:00:00Z", "name": ""}]
+    vs.update(pos)
+    out = detect(vs, pos, cfg, {"972000123"})
+    sart = [a for a in out if a.kind == "ais-sart"]
+    assert sart and sart[0].severity == "critical"
+    assert "MOB" in sart[0].detail
+
+
+def test_safety_message_ignored_by_tracker(tmp_path, cfg):
+    vs = _state(tmp_path)
+    pos = [{"msg_type": "safety", "mmsi": 271000001, "lat": 41.0, "lon": 29.0,
+            "text": "test", "ts": "2026-09-04T09:00:00Z"}]
+    vs.update(pos)
+    out = detect(vs, pos, cfg, set())
+    assert out == []
+
+
 def test_nav_status_flag(tmp_path, cfg):
     vs = _state(tmp_path)
     pos = [{"mmsi": 111, "lat": 41.1, "lon": 29.0, "sog": 0.1, "cog": 0.0,

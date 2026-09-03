@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Örnek Haber Akışı</title>
+    <link>https://example.com</link>
+    <item>
+      <title>Marmara'da fırtına: balıkçı teknesi alabora oldu, 2 kişi kayıp</title>
+      <link>https://example.com/haber/marmara-tekne-alabora</link>
+    </item>
+    <item>
+      <title>Çanakkale açıklarında sürüklenen tekne kurtarıldı</title>
+      <link>https://example.com/haber/canakkale-tekne-kurtarildi</link>
+    </item>
+    <item>
+      <title>Merkez Bankası faiz kararını açıkladı</title>
+      <link>https://example.com/haber/faiz-karari</link>
+    </item>
+    <item>
+      <title>Yerel seçim anketleri: son durum</title>
+      <link>https://example.com/haber/anket</link>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 4.2,
+        "place": "Sea of Marmara, Turkey",
+        "time": 1788513180000,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000abcd"
+      },
+      "geometry": { "type": "Point", "coordinates": [28.25, 40.91, 7.2] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.1,
+        "place": "off the coast of Honshu, Japan",
+        "time": 1788500000000,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000efgh"
+      },
+      "geometry": { "type": "Point", "coordinates": [142.3, 38.1, 30.0] }
+    }
+  ]
+}

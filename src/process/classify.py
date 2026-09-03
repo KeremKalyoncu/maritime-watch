@@ -2,11 +2,13 @@
 
 Status ladder:
   signal    - only weak sources (AIS anomaly, SDR keyword)
-  probable  - DSC distress, or an AIS anomaly corroborated by news
+  probable  - DSC / AIS-SART distress, or an AIS anomaly corroborated by news
   confirmed - an official body (Sahil Güvenlik / AFAD / Valilik) has stated it
 """
 
 from __future__ import annotations
+
+import math
 
 from .. import model
 
@@ -42,9 +44,60 @@ PLACE_HINTS = {
 }
 
 SOURCE_WEIGHT = {
-    "official": 0.60, "navtex": 0.45, "dsc": 0.50,
-    "news": 0.30, "ais-anomaly": 0.25, "sdr": 0.15,
+    "official": 0.60, "navtex": 0.45, "nav-warning": 0.40, "dsc": 0.55,
+    "ais-sart": 0.55, "ais-safety": 0.35, "news": 0.30,
+    "ais-anomaly": 0.25, "sdr": 0.15,
 }
+
+# major ports / harbours, used for the "nearest port" line in alerts
+PORTS = {
+    "İstanbul": (41.02, 28.97), "Kadıköy": (40.99, 29.02), "Tuzla": (40.82, 29.30),
+    "Gebze": (40.79, 29.43), "İzmit": (40.76, 29.92), "Yalova": (40.66, 29.28),
+    "Mudanya": (40.38, 28.88), "Gemlik": (40.43, 29.15), "Bandırma": (40.35, 27.97),
+    "Erdek": (40.40, 27.79), "Marmara Adası": (40.59, 27.56), "Tekirdağ": (40.98, 27.51),
+    "Silivri": (41.07, 28.25), "Şile": (41.18, 29.60), "Çanakkale": (40.15, 26.41),
+    "Gelibolu": (40.41, 26.67), "Bozcaada": (39.83, 26.06), "Ayvalık": (39.31, 26.69),
+    "İzmir": (38.43, 27.14), "Çeşme": (38.32, 26.30), "Kuşadası": (37.86, 27.26),
+    "Bodrum": (37.03, 27.43), "Marmaris": (36.85, 28.27), "Fethiye": (36.62, 29.11),
+    "Antalya": (36.83, 30.60), "Alanya": (36.54, 32.00), "Mersin": (36.80, 34.63),
+    "İskenderun": (36.58, 36.17), "Zonguldak": (41.45, 31.79), "Ereğli": (41.28, 31.42),
+    "Bartın": (41.63, 32.34), "Sinop": (42.03, 35.15), "Samsun": (41.29, 36.33),
+    "Ordu": (41.00, 37.87), "Giresun": (40.92, 38.39), "Trabzon": (41.00, 39.72),
+    "Rize": (41.02, 40.52), "Hopa": (41.42, 41.42),
+}
+
+_COMPASS = ["K", "KKD", "KD", "DKD", "D", "DGD", "GD", "GGD",
+            "G", "GGB", "GB", "BGB", "B", "BKB", "KB", "KKB"]
+
+
+def _haversine_nm(lat1, lon1, lat2, lon2) -> float:
+    r = 3440.065
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    dp = math.radians(lat2 - lat1)
+    dl = math.radians(lon2 - lon1)
+    h = math.sin(dp / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+    return 2 * r * math.asin(math.sqrt(h))
+
+
+def _bearing(lat1, lon1, lat2, lon2) -> str:
+    y = math.sin(math.radians(lon2 - lon1)) * math.cos(math.radians(lat2))
+    x = (math.cos(math.radians(lat1)) * math.sin(math.radians(lat2))
+         - math.sin(math.radians(lat1)) * math.cos(math.radians(lat2))
+         * math.cos(math.radians(lon2 - lon1)))
+    deg = (math.degrees(math.atan2(y, x)) + 360) % 360
+    return _COMPASS[round(deg / 22.5) % 16]
+
+
+def nearest_port(lat, lon):
+    """(name, distance_nm, compass_dir_from_port) of the closest listed port."""
+    if lat is None or lon is None:
+        return None
+    best = None
+    for name, (pla, plo) in PORTS.items():
+        d = _haversine_nm(lat, lon, pla, plo)
+        if best is None or d < best[1]:
+            best = (name, d, _bearing(pla, plo, lat, lon))
+    return best
 
 
 def area_of(lat, lon) -> str:
@@ -92,7 +145,7 @@ def classify(inc) -> "model.Incident":
         status = inc.status
     elif "official" in kinds:
         status = "confirmed"
-    elif "dsc" in kinds or ("ais-anomaly" in kinds and "news" in kinds):
+    elif kinds & {"dsc", "ais-sart"} or ("ais-anomaly" in kinds and "news" in kinds):
         status = "probable"
     else:
         status = "signal"

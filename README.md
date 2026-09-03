@@ -24,20 +24,43 @@ Ne sağlamaz: kurtarma yapmaz (o Sahil Güvenlik'in işi), AIS'i olmayan teknele
 
 ---
 
-## Mimari
+## Veri kaynakları
+
+| Kaynak | Ne getirir | Anahtar? | Durum |
+| :-- | :-- | :-- | :-- |
+| **aisstream.io** | Gemi konumu + AIS anomali + AIS-SART/MOB + güvenlik yayını (msg 14) | evet (bedava) | canlı |
+| **Open-Meteo** (marine + forecast) | Dalga yüksekliği + rüzgar hamlesi tahmini | hayır | canlı |
+| **AFAD + USGS + EMSC** | Kıyıya yakın depremler, üç kurum çapraz doğrulamalı | hayır | canlı |
+| **Sahil Güvenlik** | Resmi kurtarma açıklamaları | hayır | canlı (scrape) |
+| **Haber RSS** (AA, Hürriyet, NTV, Sözcü, CNN Türk, TRT, Habertürk, Milliyet, Denizhaber, gCaptain) | Kelime-sınırı filtreli denizcilik haberleri → teyit | hayır | canlı |
+| **GDACS** (RSS) | Bölgesel afet uyarıları (fırtına, sel, kasırga) | hayır | canlı |
+| **NASA EONET** | Doğa olayları (şiddetli fırtına, yangın, sel) | hayır | canlı |
+| **aviationweather.gov METAR** | Kıyı havaalanı rüzgar / görüş / fırtına | hayır | canlı |
+| **NGA NAVAREA III** | Seyir uyarıları | hayır | endpoint şu an 404, kod hazır |
+| **ReliefWeb** | Türkiye afet raporları | hayır | API v1 kapandı (410), kod hazır |
+| MGM deniz uyarısı | — | — | kararlı endpoint yok, Open-Meteo kapsıyor |
+| **SDR** (DSC / NAVTEX / Ch16) | yapısal tehlike / MSI / ses | — | opsiyonel modül, varsayılan kapalı |
+
+**Çift kayıt birleştirme:** Aynı tehlikeyi (deprem / hava / afet) birden çok
+kaynak verirse tek kayıtta toplanır; harita ve Telegram *"N bağımsız kaynak
+doğruluyor"* der (`src/process/dedup.py → same_hazard`). Konum + zaman + (deprem
+için) büyüklük yakınlığına bakar.
 
 ```mermaid
 flowchart LR
-    A1[aisstream.io\nWebSocket burst] --> P[process]
-    A2[MGM deniz uyarıları] --> P
-    A3[Sahil Güvenlik / AFAD\naçıklamaları] --> P
-    A4[(opsiyonel)\nSDR: DSC / NAVTEX / Ch16] -. belgelenmiş .-> P
+    A1[aisstream.io] --> P[process]
+    A2[Open-Meteo] --> P
+    A3[AFAD deprem] --> P
+    A4[Sahil Güvenlik] --> P
+    A5[Haber RSS] --> P
+    A6[GDACS / METAR] --> P
+    A7[(opsiyonel) SDR] -. belgelenmiş .-> P
     P --> N[normalize + dedup/correlate]
     N --> C[classify\nstatus · confidence · geocode]
     C --> S[(JSON store\nweb/data)]
     S --> M[web/ Leaflet haritası]
     S --> F[feed.xml RSS]
-    S --> T[Telegram\nönleme + doğrulanmış olay]
+    S --> T[Telegram: konum iğnesi + Maps/MarineTraffic linkleri]
 ```
 
 **Durum merdiveni** — çıktıyı bu yönetir:
@@ -124,7 +147,7 @@ dağıtmak değil.
 
 ## Depo yapısı
 
-```
+```text
 run.py                    orkestratör (--once / --loop / --serve)
 config.yaml               bölge, eşikler, anahtar kelimeler, aralıklar
 src/
@@ -133,12 +156,14 @@ src/
   store.py                web/data/*.json + events.jsonl
   ingest/
     ais_stream.py         aisstream.io burst capture (+ örnek fallback)
-    official.py           MGM / Sahil Güvenlik / AFAD (defensive + cached sample)
+    official.py           Sahil Güvenlik scrape (defensive + cached sample)
+    openmeteo.py quakes.py navwarn.py news.py gdacs.py eonet.py reliefweb.py metar.py
+    _net.py               ortak fetch + örnek fallback
     samples/              çevrimdışı test ve ilk çalıştırma için önbellek
   process/
-    anomaly.py            kural tabanlı AIS anomali + kalıcı gemi izi
-    dedup.py              konum+zaman korelasyonu
-    classify.py           status / confidence / severity / geocode
+    anomaly.py            kural tabanlı AIS anomali + SART/MOB + kalıcı gemi izi
+    dedup.py              olay korelasyonu + same_hazard (çift uyarı birleştirme)
+    classify.py           status / confidence / severity / geocode / en yakın liman
   render/
     feed.py               feed.xml (RSS)
     mapdata.py            summary.json

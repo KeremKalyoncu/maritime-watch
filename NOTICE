@@ -14,12 +14,21 @@ Runtime dependencies (installed via pip, their own licenses apply):
   pytest (dev only)     MIT
 
 Data sources / services:
-  aisstream.io          free real-time AIS WebSocket API
-  Meteoroloji Genel Müdürlüğü (MGM)   marine forecasts / warnings
+  aisstream.io                       free real-time AIS WebSocket API
+  Open-Meteo                          marine + weather forecast API (CC-BY 4.0)
+  AFAD deprem.afad.gov.tr             public earthquake event API
+  USGS earthquake.usgs.gov           earthquake GeoJSON feed (US Gov, public domain)
+  EMSC seismicportal.eu              earthquake FDSN event service
   Sahil Güvenlik Komutanlığı          official announcements
-  AFAD                                official announcements
+  GDACS (gdacs.org)                   global disaster alerts RSS
+  NASA EONET (eonet.gsfc.nasa.gov)   natural event tracking API (US Gov)
+  ReliefWeb (api.reliefweb.int)      OCHA humanitarian data API
+  aviationweather.gov (NOAA/AWC)      METAR API (US Gov, public domain)
+  NGA MSI (msi.nga.mil)              NAVAREA navigational warnings (US Gov)
+  AA / Hürriyet / NTV / Sözcü / CNN Türk / TRT / Habertürk / Milliyet /
+    Denizhaber / gCaptain             news RSS (headlines, keyword filtered)
   OpenStreetMap / OpenSeaMap          map tiles (ODbL)
-  Leaflet 1.9.4 (CDN)   BSD-2-Clause
+  Leaflet 1.9.4 (CDN)                BSD-2-Clause
 
 Referenced by src/sdr/ (integration guides only — not bundled):
   MattCheramie/GopherTrunk            VHF Ch70 DSC decoder (MIT)

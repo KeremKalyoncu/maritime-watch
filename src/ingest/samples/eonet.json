@@ -1,0 +1,24 @@
+{
+  "title": "EONET Events",
+  "events": [
+    {
+      "id": "EONET_6789",
+      "title": "Severe Storm BLASIOS - Black Sea",
+      "link": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_6789",
+      "categories": [{ "id": "severeStorms", "title": "Severe Storms" }],
+      "geometry": [
+        { "date": "2026-09-04T00:00:00Z", "type": "Point", "coordinates": [30.2, 41.4] },
+        { "date": "2026-09-04T06:00:00Z", "type": "Point", "coordinates": [30.6, 41.3] }
+      ]
+    },
+    {
+      "id": "EONET_6790",
+      "title": "Wildfire - central Canada",
+      "link": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_6790",
+      "categories": [{ "id": "wildfires", "title": "Wildfires" }],
+      "geometry": [
+        { "date": "2026-09-03T00:00:00Z", "type": "Point", "coordinates": [-105.0, 55.0] }
+      ]
+    }
+  ]
+}
