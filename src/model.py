@@ -44,6 +44,30 @@ class Severity(str, Enum):
     CRITICAL = "critical"
 
 
+# plain-Turkish labels for end users (Telegram + map)
+TYPE_TR = {
+    "grounding": "karaya oturma", "collision": "çatışma (çarpışma)",
+    "drift": "sürüklenme", "distress": "tehlike çağrısı", "capsize": "alabora",
+    "fire": "yangın", "sinking": "batma", "man-overboard": "denize adam düştü",
+    "unknown": "belirsiz",
+}
+STATUS_TR = {
+    "signal": "zayıf sinyal — teyit bekliyor",
+    "probable": "kuvvetli ihtimal — henüz resmi teyit yok",
+    "confirmed": "doğrulandı (resmi kaynak)",
+    "resolved": "kapandı",
+    "false-positive": "yanlış alarm",
+}
+
+
+def type_tr(t: str) -> str:
+    return TYPE_TR.get(t, t)
+
+
+def status_tr(s: str) -> str:
+    return STATUS_TR.get(s, s)
+
+
 @dataclass
 class Source:
     kind: str                       # ais-anomaly | official | news | dsc | sdr | navtex

@@ -12,6 +12,18 @@ const COLORS = {
   warning: "#3b82f6",
 };
 
+const TYPE_TR = {
+  grounding: "karaya oturma", collision: "çatışma", drift: "sürüklenme",
+  distress: "tehlike çağrısı", capsize: "alabora", fire: "yangın",
+  sinking: "batma", "man-overboard": "denize adam düştü", unknown: "belirsiz",
+};
+const STATUS_TR = {
+  signal: "zayıf sinyal (doğrulanmadı)", probable: "kuvvetli ihtimal",
+  confirmed: "doğrulandı", resolved: "kapandı", "false-positive": "yanlış alarm",
+};
+const trType = t => TYPE_TR[t] || t;
+const trStatus = s => STATUS_TR[s] || s;
+
 const MAP_OK = typeof L !== "undefined";
 let map = null;
 let layer = null;
@@ -57,18 +69,23 @@ function radiusFor(sev) {
 
 function incidentPopup(i) {
   const unverified = i.status === "signal"
-    ? `<div class="badge-unverified">⚠ DOĞRULANMADI — tek zayıf kaynak</div>` : "";
+    ? `<div class="badge-unverified">⚠ Doğrulanmadı — tek zayıf kaynak</div>` : "";
+  const orgs = [];
+  (i.sources || []).forEach(s => {
+    const o = s.org || s.kind;
+    if (o && orgs.indexOf(o) === -1) orgs.push(o);
+  });
   const srcs = (i.sources || []).map(s => {
-    const link = s.url ? ` — <a href="${esc(s.url)}" target="_blank" rel="noopener">kaynak</a>` : "";
-    return `<li>${esc(s.kind)}${s.org ? " / " + esc(s.org) : ""}: ${esc(s.detail)}${link}</li>`;
+    const link = s.url ? ` — <a href="${esc(s.url)}" target="_blank" rel="noopener">bağlantı</a>` : "";
+    return `<li>${esc(s.org || s.kind)}: ${esc(s.detail)}${link}</li>`;
   }).join("");
   return `
-    <div class="popup-title">${esc(i.type)} · ${esc(i.status)}</div>
+    <div class="popup-title">${esc(trType(i.type))} — ${esc(trStatus(i.status))}</div>
     ${unverified}
     <div class="popup-meta">
-      ${esc(i.area || "konum belirsiz")}<br>
-      Güven: ${i.confidence} · Önem: ${esc(i.severity)}
-      ${i.casualties ? " · Bildirilen kişi: " + i.casualties : ""}<br>
+      ${esc(i.area || "konum belirsiz")}
+      ${i.casualties ? " · " + i.casualties + " kişi bildirildi" : ""}<br>
+      Kaynak: ${esc(orgs.join(", "))}<br>
       İlk görülme: ${fmtTime(i.first_seen)} · Güncelleme: ${fmtTime(i.last_update)}
     </div>
     <ul style="margin:6px 0 0 16px;padding:0">${srcs}</ul>`;
@@ -100,8 +117,8 @@ function addTimeline(items) {
     const li = document.createElement("li");
     li.className = it._kind === "warning" ? "warning" : it.status;
     const when = fmtTime(it._kind === "warning" ? it.issued : it.last_update);
-    const title = it._kind === "warning" ? "Hava uyarısı" : `${it.type}`;
-    const badge = it._kind === "warning" ? esc(it.severity) : esc(it.status);
+    const title = it._kind === "warning" ? "Uyarı" : trType(it.type);
+    const badge = it._kind === "warning" ? "" : trStatus(it.status);
     const area = esc(it.area || "konum belirsiz");
     const src = (it.sources || [])[0];
     const srcHtml = it._kind === "warning"

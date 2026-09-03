@@ -68,7 +68,7 @@ main { flex: 1; display: flex; min-height: 0; }
   padding: 1px 6px; border-radius: 999px; background: #24313e; color: var(--muted); white-space: nowrap;
 }
 #timeline li.confirmed .t-badge { background: #3a1f21; color: #ff9a9d; }
-#timeline li.signal .t-badge::after { content: " · doğrulanmadı"; }
+#timeline .t-badge:empty { display: none; }
 #timeline .t-area { color: var(--muted); font-size: 12px; }
 #timeline .t-src { font-size: 12px; margin-top: 4px; }
 #timeline .t-src a { color: #8ab4f8; }

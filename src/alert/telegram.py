@@ -3,34 +3,50 @@
 Dry-run by default: messages go to the console and data/outbox.log and nothing is
 sent. Use --send with TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID set to actually post.
 Sent message keys are stored in data/sent.json to avoid duplicates.
+
+Messages are written in plain Turkish for a general audience: no English jargon,
+no numeric "confidence", one map link, wind in knots + Beaufort.
 """
 
 from __future__ import annotations
 
 import html
 import json
+import re
 import time
 from pathlib import Path
 
 import requests
 
+from ..model import status_tr, type_tr
 from ..process.classify import nearest_port
 
 BASE = "https://api.telegram.org/bot{token}/{method}"
 
 _WARN_KIND_TR = {
-    "marine-weather": "Denizcilik hava uyarısı",
-    "nav-warning": "Seyir uyarısı",
-    "navtex": "NAVTEX",
-    "earthquake": "Deprem",
-    "gdacs": "Afet uyarısı",
-    "eonet": "Afet uyarısı",
-    "metar": "Kıyı havası",
+    "marine-weather": "DENİZ HAVA UYARISI",
+    "metar": "KIYI HAVA UYARISI",
+    "nav-warning": "SEYİR UYARISI",
+    "navtex": "SEYİR UYARISI (NAVTEX)",
+    "earthquake": "DEPREM",
+    "gdacs": "AFET UYARISI",
+    "eonet": "AFET UYARISI",
 }
 _WARN_EMOJI = {
-    "marine-weather": "🌊", "nav-warning": "⚓", "navtex": "⚓",
-    "earthquake": "🌍", "gdacs": "🛑", "eonet": "🛑", "metar": "🌬️",
+    "marine-weather": "🌊", "metar": "🌬️", "nav-warning": "⚓", "navtex": "⚓",
+    "earthquake": "🌍", "gdacs": "🛑", "eonet": "🛑",
 }
+def _num(x) -> str:
+    """Turkish decimal comma, trimmed."""
+    s = f"{x:.1f}".rstrip("0").rstrip(".")
+    return s.replace(".", ",")
+
+
+def _beaufort(kn: float) -> int:
+    for b, top in enumerate([1, 3, 6, 10, 16, 21, 27, 33, 40, 47, 55, 63]):
+        if kn <= top:
+            return b
+    return 12
 
 
 class Notifier:
@@ -89,24 +105,20 @@ class Notifier:
             if self.pin and lat is not None and lon is not None:
                 self._post("sendLocation", {"chat_id": self.chat, "latitude": lat, "longitude": lon})
 
-    # ---- shared location block --------------------------------------------
-    def _location_lines(self, lat, lon, area, mmsi=None, anchor=None) -> list[str]:
-        out = []
-        if lat is not None and lon is not None:
-            out.append(f"📍 {html.escape(area or '')}  (<code>{lat:.4f}, {lon:.4f}</code>)")
-            np = nearest_port(lat, lon)
-            if np:
-                out.append(f"🧭 {html.escape(np[0])} limanının ~{np[1]:.0f} nM {np[2]}")
-            out.append(f"🗺️ https://www.google.com/maps?q={lat:.5f},{lon:.5f}")
-            if self.site and anchor:
-                out.append(f"🌐 {self.site}/#{anchor}")
-            if mmsi:
-                out.append(f"🚢 https://www.marinetraffic.com/en/ais/details/ships/mmsi:{mmsi}")
-        elif area:
-            out.append(f"📍 {html.escape(area)}")
-        return out
+    def _where(self, lat, lon, area) -> str:
+        """One plain-language 'where' line."""
+        if lat is None or lon is None:
+            return f"📍 Yer: {html.escape(area or 'belirtilmedi')}"
+        np = nearest_port(lat, lon)
+        near = ""
+        if np:
+            near = f" — en yakın kıyı: {html.escape(np[0])} (~{np[1]:.0f} deniz mili)"
+        return f"📍 Yer: {html.escape(area or '')}{near}"
 
-    # ---- incident -------------------------------------------------------
+    def _maplink(self, lat, lon) -> str:
+        return f"🗺️ Haritada gör: https://www.google.com/maps?q={lat:.5f},{lon:.5f}"
+
+    # ---- incident --------------------------------------------------------
     def incident(self, inc, dry: bool = True) -> None:
         if not self.enabled:
             return
@@ -114,63 +126,108 @@ class Notifier:
         if not is_sart and inc.status not in self.only_status:
             return
 
-        head = "🆘 <b>AIS TEHLİKE VERİCİSİ</b>" if is_sart else (
-            "🚨 <b>Denizde olay (doğrulandı)</b>" if inc.status == "confirmed"
-            else "⚠️ <b>Denizde olay (doğrulanmadı - olası)</b>")
-        lines = [head]
-        lines += self._location_lines(inc.lat, inc.lon, inc.area, inc.vessel.mmsi, inc.id)
-        lines.append(f"🔎 Tür: {html.escape(inc.type)} · Güven: {inc.confidence} · Önem: {html.escape(inc.severity)}")
+        if is_sart:
+            head = "🆘 <b>TEHLİKE İŞARETİ ALINDI</b>\nBir teknenin otomatik imdat vericisi sinyal veriyor."
+        elif inc.status == "confirmed":
+            head = "🚨 <b>DENİZDE OLAY — DOĞRULANDI</b>"
+        else:
+            head = "⚠️ <b>DENİZDE OLAY — henüz doğrulanmadı</b>"
+
+        lines = [head, ""]
+        lines.append(f"Ne oldu: {html.escape(type_tr(inc.type))}")
+        lines.append(self._where(inc.lat, inc.lon, inc.area))
         if inc.vessel.name:
-            lines.append(f"⛴️ Tekne: {html.escape(inc.vessel.name)}"
-                         + (f" (MMSI {inc.vessel.mmsi})" if inc.vessel.mmsi else ""))
+            lines.append(f"⛴️ Tekne: {html.escape(inc.vessel.name)}")
         if inc.casualties:
-            lines.append(f"🧍 Bildirilen kişi: {inc.casualties}")
+            lines.append(f"🧍 {inc.casualties} kişi bildirildi")
+        lines.append(f"Durum: {html.escape(status_tr(inc.status))}")
 
-        lines.append("📚 Kaynaklar:")
-        for s in inc.sources[:5]:
-            row = f"  • {html.escape(s.kind)}"
-            if s.org:
-                row += f" / {html.escape(s.org)}"
-            if s.detail:
-                row += f": {html.escape(s.detail[:200])}"
-            lines.append(row)
-            if s.url:
-                lines.append(f"    {s.url}")
+        orgs = []
+        for s in inc.sources:
+            o = s.org or s.kind
+            if o not in orgs:
+                orgs.append(o)
+        lines.append("")
+        lines.append(f"Kaynak: {html.escape(', '.join(orgs[:4]))}")
+        note = next((s.detail for s in inc.sources if s.detail and s.kind in ("official", "news")), "")
+        if note:
+            lines.append(f"“{html.escape(note[:220])}”")
+        link = next((s.url for s in inc.sources if s.url), "")
+        if link:
+            lines.append(f"🔗 {link}")
 
-        lines.append("\n<i>Otomatik derleme. Resmi açıklamayı esas alın. Acil: 158 / 112.</i>")
+        if inc.lat is not None and inc.lon is not None:
+            lines.append(self._maplink(inc.lat, inc.lon))
+
+        lines.append("")
+        lines.append("<i>Bu otomatik bir derlemedir; resmi açıklamayı esas alın.</i>")
+        lines.append("<b>Acil durumda: 158 Sahil Güvenlik  ·  112</b>")
         self._emit(f"inc:{inc.id}:{inc.status}:{len(inc.sources)}", "\n".join(lines), dry,
                    inc.lat, inc.lon)
 
-    # ---- warning ------------------------------------------------------------
+    # ---- warning -------------------------------------------------------------
+    def _weather_body(self, w) -> list[str]:
+        out = []
+        wave = None
+        if w.value:
+            wave = w.value
+            out.append(f"Dalga: {_num(wave)} metreye çıkıyor")
+        # pull a gust number out of the headline if present
+        m = re.search(r"(\d+)\s*kn", w.headline)
+        if m:
+            kn = float(m.group(1))
+            out.append(f"Rüzgar: {int(kn)} knota ({_beaufort(kn)} Bofor) çıkıyor")
+        if not out:
+            out.append(html.escape(w.headline[:200]))
+        return out
+
     def warning(self, w, dry: bool = True) -> None:
         if not self.enabled or not self.prevention:
             return
         emoji = _WARN_EMOJI.get(w.kind, "⚠️")
-        label = _WARN_KIND_TR.get(w.kind, "Uyarı")
+        label = _WARN_KIND_TR.get(w.kind, "UYARI")
         orgs = w.orgs
-        lines = [f"{emoji} <b>{label}</b>"]
-        lines += self._location_lines(w.lat, w.lon, w.area)
-        lines.append(html.escape(w.headline[:400]))
-        if len(orgs) >= 2:
-            lines.append(f"🏛️ {len(orgs)} kaynak: {html.escape(', '.join(orgs))} · {html.escape(w.severity)}")
+        lines = [f"{emoji} <b>{label}</b>", ""]
+        lines.append(f"Bölge: {html.escape(w.area or 'genel')}")
+
+        if w.kind in ("marine-weather", "metar"):
+            lines += self._weather_body(w)
+        elif w.kind == "earthquake":
+            lines.append(f"Büyüklük: {_num(w.value)}" if w.value else html.escape(w.headline[:200]))
         else:
-            lines.append(f"🏛️ {html.escape(orgs[0] if orgs else w.org)} · {html.escape(w.severity)}")
-        if w.url:
-            lines.append(w.url)
-        tail = ("Denize çıkmadan teyit edin." if w.kind in ("marine-weather", "metar")
-                else "Resmi kaynağı takip edin.")
-        lines.append(f"\n<i>{tail}</i>")
+            lines.append(html.escape(w.headline[:240]))
+
+        if len(orgs) >= 2:
+            lines.append(f"✅ {len(orgs)} kaynak doğruluyor: {html.escape(', '.join(orgs))}")
+        else:
+            lines.append(f"Kaynak: {html.escape(orgs[0] if orgs else w.org)}")
+
+        if w.lat is not None and w.lon is not None:
+            lines.append(self._maplink(w.lat, w.lon))
+
+        lines.append("")
+        if w.kind in ("marine-weather", "metar"):
+            lines.append("<b>Küçük tekneyle denize çıkmayın.</b> Çıkmadan önce liman "
+                         "başkanlığından / MGM'den teyit alın.")
+        elif w.kind == "earthquake":
+            lines.append("<i>Kıyıya yakın deprem. Deniz seviyesi değişimlerine dikkat.</i>")
+        else:
+            lines.append("<i>Resmi kaynağı takip edin.</i>")
         self._emit(f"wx:{w.id}", "\n".join(lines), dry, w.lat, w.lon)
 
     def warning_confirmed(self, w, dry: bool = True) -> None:
-        """A hazard already announced has just picked up an independent source."""
         if not self.enabled or not self.prevention:
             return
         orgs = w.orgs
-        emoji = _WARN_EMOJI.get(w.kind, "⚠️")
-        label = _WARN_KIND_TR.get(w.kind, "Uyarı")
-        lines = [f"✅ {emoji} <b>{label} — {len(orgs)} bağımsız kaynak doğruluyor</b>"]
-        lines += self._location_lines(w.lat, w.lon, w.area)
-        lines.append(html.escape(w.headline[:300]))
-        lines.append(f"🏛️ Kaynaklar: {html.escape(', '.join(orgs))}")
+        label = _WARN_KIND_TR.get(w.kind, "UYARI")
+        lines = [
+            f"✅ <b>DOĞRULANDI — {len(orgs)} ayrı kaynak aynı uyarıyı veriyor</b>",
+            "",
+            f"Konu: {label.capitalize()}",
+            f"Bölge: {html.escape(w.area or 'genel')}",
+            html.escape(w.headline[:220]),
+            f"Kaynaklar: {html.escape(', '.join(orgs))}",
+        ]
+        if w.lat is not None and w.lon is not None:
+            lines.append(self._maplink(w.lat, w.lon))
         self._emit(f"wxc:{w.id}:{len(orgs)}", "\n".join(lines), dry, w.lat, w.lon)
