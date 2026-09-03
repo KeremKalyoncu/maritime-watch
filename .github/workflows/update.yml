@@ -44,11 +44,17 @@ jobs:
           git config user.name  "maritime-watch-bot"
           git config user.email "actions@users.noreply.github.com"
           git add -f web/data/incidents.json web/data/warnings.json web/data/feed.xml web/data/summary.json
-          git commit -m "data: cycle $(date -u +%FT%TZ)" || echo "no changes"
-          git push
+          git commit -m "data: cycle $(date -u +%FT%TZ)" || { echo "no changes"; exit 0; }
+          for i in 1 2 3 4 5; do
+            # keep this run's freshly generated data on any web/data conflict
+            git pull --rebase -X theirs origin main && git push && exit 0
+            echo "push race, retry $i"; sleep $((RANDOM % 8 + 3))
+          done
+          echo "push still failing after retries"; exit 1
 
   pages:
     needs: cycle
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
