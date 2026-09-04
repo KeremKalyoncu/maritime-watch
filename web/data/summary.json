@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-04T01:04:45Z",
-  "incident_count": 24,
+  "generated": "2026-09-04T05:59:57Z",
+  "incident_count": 27,
   "by_status": {
-    "signal": 17,
+    "signal": 20,
     "probable": 1,
     "confirmed": 6
   },
