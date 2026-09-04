@@ -944,5 +944,127 @@
     ],
     "notes": [],
     "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-56781",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T11:09:12Z",
+    "last_update": "2026-09-04T11:09:12Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "AA, Girne açıklarında batan gemiye ilişkin arama kurtarma çalışmalarını TCG Alemdar'da görüntüledi",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/aa-girne-aciklarinda-batan-gemiye-iliskin-arama-kurtarma-calismalarini-tcg-alemdarda-goruntuledi/4047302",
+        "ts": "2026-09-04T11:09:12Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-01921",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T11:09:12Z",
+    "last_update": "2026-09-04T11:09:12Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'de batan gemiye binmeden 25 dakika önce çekildi! Demir kardeşlerin son görüntüsü ortaya çıktı",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girnede-batan-gemiye-binmeden-25-dakika-once-cekildi-demir-kardeslerin-son-goruntusu-ortaya-cikti-43295393",
+        "ts": "2026-09-04T11:09:12Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-81678",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T11:09:14Z",
+    "last_update": "2026-09-04T11:09:14Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'deki gemide can kaybı 12'ye yükseldi",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-12ye-yukseldi-955869.html",
+        "ts": "2026-09-04T11:09:14Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-096025-02810",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": 36.88,
+    "lon": 30.7,
+    "area": "Antalya Körfezi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T11:09:15Z",
+    "last_update": "2026-09-04T11:09:15Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Peş peşe deniz kazalarının ardından Antalya'da korkutan olay! Batma tehlikesi geçiren tekne kıyıya çekildi",
+        "org": "milliyet.com.tr",
+        "url": "",
+        "ts": "2026-09-04T11:09:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Antalya"
+    ]
   }
 ]

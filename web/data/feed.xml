@@ -3,7 +3,35 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Fri, 04 Sep 2026 10:10:33 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 04 Sep 2026 11:09:40 +0000</lastBuildDate>
+    <item>
+      <title>[signal] unknown, Antalya Körfezi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-04-news-096025-02810-1</guid>
+      <pubDate>Fri, 04 Sep 2026 11:09:15 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/milliyet.com.tr: Peş peşe deniz kazalarının ardından Antalya'da korkutan olay! Batma tehlikesi geçiren tekne kıyıya çekildi</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-12ye-yukseldi-955869.html</link>
+      <guid isPermaLink="false">2026-09-04-news-14ea44-81678-1</guid>
+      <pubDate>Fri, 04 Sep 2026 11:09:14 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/trthaber.com: Girne'deki gemide can kaybı 12'ye yükseldi</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.aa.com.tr/tr/gundem/aa-girne-aciklarinda-batan-gemiye-iliskin-arama-kurtarma-calismalarini-tcg-alemdarda-goruntuledi/4047302</link>
+      <guid isPermaLink="false">2026-09-04-news-14ea44-56781-1</guid>
+      <pubDate>Fri, 04 Sep 2026 11:09:12 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/aa.com.tr: AA, Girne açıklarında batan gemiye ilişkin arama kurtarma çalışmalarını TCG Alemdar'da görüntüledi</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.hurriyet.com.tr/gundem/girnede-batan-gemiye-binmeden-25-dakika-once-cekildi-demir-kardeslerin-son-goruntusu-ortaya-cikti-43295393</link>
+      <guid isPermaLink="false">2026-09-04-news-14ea44-01921-1</guid>
+      <pubDate>Fri, 04 Sep 2026 11:09:12 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/hurriyet.com.tr: Girne'de batan gemiye binmeden 25 dakika önce çekildi! Demir kardeşlerin son görüntüsü ortaya çıktı</description>
+    </item>
     <item>
       <title>[signal] unknown, konum belirsiz</title>
       <link>https://example.github.io/maritime-watch</link>
