@@ -137,8 +137,9 @@ def _scrape_links(cfg: dict, url: str, sample: str, org: str, base: str) -> list
         stable = hashlib.sha1(norm.encode("utf-8")).hexdigest()[:6]
         inc = Incident(
             id=make_id("rep", ex.lat, ex.lon) + "-" + stable,
-            type="unknown", lat=ex.lat, lon=ex.lon, area=ex.area,
+            type=ex.itype, lat=ex.lat, lon=ex.lon, area=ex.area,
             casualties=ex.casualties, places=ex.places,
+            coarse=not ex.precise,
             vessel=Vessel(name=ex.vessel) if ex.vessel else Vessel(),
         )
         inc.sources.append(Source(kind="official", org=org, detail=title, url=href))

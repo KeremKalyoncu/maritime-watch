@@ -14,6 +14,7 @@ ais:
   ws_url: "wss://stream.aisstream.io/v0/stream"
   capture_seconds: 90
   vessel_history: 20
+  vessel_ttl_hours: 12       # forget vessels not heard from for this long (keeps data/vessels.json small enough to commit)
   # MMSI prefixes for AIS distress transmitters (ITU): SART 970, MOB 972, EPIRB-AIS 974
   distress_mmsi_prefixes: ["970", "972", "974"]
 

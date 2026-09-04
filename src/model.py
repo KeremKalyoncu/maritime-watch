@@ -105,6 +105,7 @@ class Incident:
     sources: list[Source] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
     places: list[str] = field(default_factory=list)   # coastal names extracted from text
+    coarse: bool = False                             # position is a city centre, not a fix
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

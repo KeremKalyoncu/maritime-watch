@@ -25,8 +25,16 @@
 - [x] `feed.xml` RSS, `summary.json`, `health.json`
 - [x] Telegram: plain-Turkish messages, per-cycle digest (SART instant), `sendLocation`, operator health alert
 
+**Production fixes (found on the live channel)**
+- [x] Persist `sent.json` / `vessels.json` / `events.jsonl` across CI runs (alerts were repeating every cycle; AIS track rules could never fire)
+- [x] Incident type inferred from Turkish wording (was always "belirsiz")
+- [x] 77-place coastal gazetteer (Muğla and others were "Yer: belirtilmedi")
+- [x] City-centre geocodes reported as "X açıkları", not "~0 deniz mili"
+- [x] Separate official announcements about one city no longer fuse into one incident
+- [x] Every source quoted in the message, so a casualty count is traceable
+
 **Quality**
-- [x] Tests (69, offline) + eval harness (`eval/run_eval.py` → `REPORT.md`)
+- [x] Tests (78, offline) + eval harness (`eval/run_eval.py` → `REPORT.md`)
 - [x] CI: ruff + pytest matrix (3.11/3.12/3.13) + eval, free GitHub Actions/Pages deploy
 - [x] `ARCHITECTURE.md`, README, NOTICE, CONTRIBUTING
 

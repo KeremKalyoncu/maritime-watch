@@ -44,6 +44,7 @@ jobs:
           git config user.name  "maritime-watch-bot"
           git config user.email "actions@users.noreply.github.com"
           git add -f web/data/incidents.json web/data/warnings.json web/data/feed.xml web/data/summary.json web/data/health.json web/data/stats.json
+          git add -f data/vessels.json data/events.jsonl data/sent.json
           git commit -m "data: cycle $(date -u +%FT%TZ)" || { echo "no changes"; exit 0; }
           for i in 1 2 3 4 5; do
             # keep this run's freshly generated data on any web/data conflict

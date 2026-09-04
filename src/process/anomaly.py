@@ -83,6 +83,21 @@ class VesselState:
             v["track"] = v["track"][-self.history:]
             v["last_seen"] = p.get("ts")
 
+    def prune(self, ttl_hours: float = 12.0, max_vessels: int = 4000) -> int:
+        """Forget vessels not heard from in a while, so the persisted state stays
+        small enough to live in the repo between CI runs."""
+        now = time.time()
+        before = len(self.data)
+        for key, v in list(self.data.items()):
+            ts = _parse_ts(v.get("last_seen"))
+            if ts is not None and (now - ts) / 3600.0 > ttl_hours:
+                del self.data[key]
+        if len(self.data) > max_vessels:
+            ranked = sorted(self.data.items(),
+                            key=lambda kv: _parse_ts(kv[1].get("last_seen")) or 0, reverse=True)
+            self.data = dict(ranked[:max_vessels])
+        return before - len(self.data)
+
     def save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.path.write_text(json.dumps(self.data, ensure_ascii=False), encoding="utf-8")

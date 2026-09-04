@@ -42,6 +42,29 @@ _DEC_RE = re.compile(r"(-?\d{1,2}\.\d{2,6})\s*([KNkn])?\s*[,;\s]+\s*(-?\d{1,3}\.
 _TR_BBOX = (34.0, 44.0, 24.0, 43.0)  # lat_min, lat_max, lon_min, lon_max
 
 
+# incident type inferred from the wording, most specific first
+_TYPE_RULES = [
+    ("collision",     r"çarpış|çatış|çarptı"),
+    ("grounding",     r"karaya otur|karaya vur|sığlığa"),
+    ("capsize",       r"alabora|ters dön|yan yattı|devril"),
+    ("sinking",       r"batt[ıi]|batan|batık|bat[ıi]yor|su ald[ıi]|su al[ıi]yor"),
+    ("fire",          r"yangın|alev|yandı"),
+    ("man-overboard", r"denize düş|adam düş|denize atla"),
+    ("drift",         r"sürüklen|makine arıza|kumanda dışı|motor arıza"),
+    ("distress",      r"imdat|mayday|tehlike çağrısı|yardım çağrısı"),
+    ("distress",      r"kurtarıl|kurtarma|mahsur|tahliye|arama kurtarma|kayb?ol"),
+]
+
+
+def incident_type(text: str) -> str:
+    """Map Turkish incident wording to an IncidentType value."""
+    low = _norm(text)
+    for name, pattern in _TYPE_RULES:
+        if re.search(pattern, low):
+            return name
+    return "unknown"
+
+
 @dataclass
 class Extracted:
     vessel: str | None = None
@@ -50,6 +73,8 @@ class Extracted:
     area: str = ""
     casualties: int | None = None
     places: list[str] = field(default_factory=list)
+    itype: str = "unknown"
+    precise: bool = False        # True when real coordinates were parsed, not a city name
 
 
 def _in_tr(lat, lon) -> bool:
@@ -119,8 +144,9 @@ def extract(text: str) -> Extracted:
     pl = places(text)
     e.places = [p[0] for p in pl]
     if lat is not None:
-        e.lat, e.lon = lat, lon
+        e.lat, e.lon, e.precise = lat, lon, True
     elif pl:
         e.lat, e.lon = pl[0][1], pl[0][2]
     e.area = area_of(e.lat, e.lon)
+    e.itype = incident_type(text)
     return e

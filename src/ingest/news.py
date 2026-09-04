@@ -88,8 +88,9 @@ def fetch_news(cfg: dict) -> list[Incident]:
             ex = extract(title)
             inc = Incident(
                 id=make_id("news", ex.lat, ex.lon) + f"-{abs(hash(key)) % 100000:05d}",
-                type="unknown", lat=ex.lat, lon=ex.lon, area=ex.area,
+                type=ex.itype, lat=ex.lat, lon=ex.lon, area=ex.area,
                 casualties=ex.casualties, places=ex.places,
+                coarse=not ex.precise,
                 vessel=Vessel(name=ex.vessel) if ex.vessel else Vessel(),
             )
             inc.sources.append(Source(kind="news", org=_host(feed), detail=title, url=link))

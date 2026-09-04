@@ -15,20 +15,39 @@ from ..geo import area_centroid, area_of  # noqa: F401  polygon-based, re-export
 
 # coastal place -> approx (lat, lon), used to geocode scraped headlines
 PLACE_HINTS = {
-    "istanbul": (41.02, 28.97), "İstanbul": (41.02, 28.97),
-    "çanakkale": (40.15, 26.41), "gelibolu": (40.41, 26.67),
-    "izmir": (38.43, 27.14), "çeşme": (38.32, 26.30), "foça": (38.67, 26.75),
-    "ayvalık": (39.31, 26.69), "dikili": (39.07, 26.89), "kuşadası": (37.86, 27.26),
-    "didim": (37.38, 27.26), "bodrum": (37.03, 27.43), "datça": (36.73, 27.68),
-    "marmaris": (36.85, 28.27), "fethiye": (36.62, 29.11), "kaş": (36.20, 29.64),
-    "kalkan": (36.26, 29.41), "antalya": (36.88, 30.70), "alanya": (36.54, 32.00),
-    "mersin": (36.80, 34.63), "iskenderun": (36.58, 36.17), "hatay": (36.20, 35.95),
-    "samsun": (41.29, 36.33), "sinop": (42.03, 35.15), "zonguldak": (41.45, 31.79),
-    "trabzon": (41.00, 39.72), "rize": (41.02, 40.52), "ordu": (41.00, 37.87),
-    "giresun": (40.92, 38.39), "bartın": (41.63, 32.34), "kdz ereğli": (41.28, 31.42),
-    "şile": (41.18, 29.60), "mudanya": (40.37, 28.88), "bandırma": (40.35, 27.97),
-    "tekirdağ": (40.98, 27.51), "silivri": (41.07, 28.25), "yalova": (40.66, 29.28),
-    "gökçeada": (40.19, 25.90), "bozcaada": (39.83, 26.06),
+    # Marmara
+    "istanbul": (41.02, 28.97), "silivri": (41.07, 28.25), "büyükçekmece": (41.02, 28.58),
+    "şile": (41.18, 29.60), "adalar": (40.86, 29.09), "tuzla": (40.82, 29.30),
+    "yalova": (40.66, 29.28), "izmit": (40.76, 29.92), "kocaeli": (40.76, 29.92),
+    "gemlik": (40.43, 29.15), "mudanya": (40.37, 28.88), "bursa": (40.37, 28.88),
+    "bandırma": (40.35, 27.97), "erdek": (40.40, 27.79), "balıkesir": (40.35, 27.97),
+    "marmara adası": (40.59, 27.56), "tekirdağ": (40.98, 27.51), "marmaraereğli": (40.97, 27.95),
+    "şarköy": (40.61, 27.11), "gelibolu": (40.41, 26.67),
+    # Çanakkale / Kuzey Ege
+    "çanakkale": (40.15, 26.41), "gökçeada": (40.19, 25.90), "bozcaada": (39.83, 26.06),
+    "ayvacık": (39.60, 26.40), "edremit": (39.59, 26.94), "ayvalık": (39.31, 26.69),
+    "dikili": (39.07, 26.89), "foça": (38.67, 26.75),
+    # İzmir / Orta-Güney Ege
+    "izmir": (38.43, 27.14), "çeşme": (38.32, 26.30), "urla": (38.32, 26.76),
+    "seferihisar": (38.20, 26.84), "kuşadası": (37.86, 27.26), "aydın": (37.86, 27.26),
+    "didim": (37.38, 27.26), "bodrum": (37.03, 27.43), "muğla": (36.75, 27.90),
+    "datça": (36.73, 27.68), "marmaris": (36.85, 28.27), "göcek": (36.75, 28.94),
+    "fethiye": (36.62, 29.11), "kaş": (36.20, 29.64), "kalkan": (36.26, 29.41),
+    "gökova": (36.98, 28.00),
+    # Akdeniz
+    "antalya": (36.88, 30.70), "kemer": (36.60, 30.56), "finike": (36.30, 30.15),
+    "alanya": (36.54, 32.00), "anamur": (36.07, 32.84), "silifke": (36.38, 33.93),
+    "mersin": (36.80, 34.63), "adana": (36.78, 35.30), "karataş": (36.57, 35.38),
+    "iskenderun": (36.58, 36.17), "hatay": (36.20, 35.95), "samandağ": (36.08, 35.95),
+    # Karadeniz
+    "kıyıköy": (41.64, 28.10), "kırklareli": (41.64, 28.10), "karasu": (41.11, 30.68),
+    "kdz ereğli": (41.28, 31.42), "ereğli": (41.28, 31.42), "zonguldak": (41.45, 31.79),
+    "bartın": (41.63, 32.34), "amasra": (41.75, 32.39), "kastamonu": (41.92, 33.77),
+    "inebolu": (41.98, 33.76), "sinop": (42.03, 35.15), "samsun": (41.29, 36.33),
+    "ordu": (41.00, 37.87), "giresun": (40.92, 38.39), "trabzon": (41.00, 39.72),
+    "rize": (41.02, 40.52), "artvin": (41.42, 41.42), "hopa": (41.42, 41.42),
+    # yakın sular (haber metinlerinde sık geçer)
+    "girne": (35.34, 33.32), "gazimağusa": (35.12, 33.94), "lefkoşa": (35.19, 33.36),
 }
 
 SOURCE_WEIGHT = {
