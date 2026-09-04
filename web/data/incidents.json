@@ -78,7 +78,7 @@
     },
     "casualties": 20,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-03T23:11:08Z",
+    "last_update": "2026-09-04T18:20:48Z",
     "sources": [
       {
         "kind": "official",
@@ -93,6 +93,13 @@
         "org": "Sahil Güvenlik Komutanlığı",
         "url": "https://www.sg.gov.tr/izmir-aciklarinda-20-duzensiz-gocmen-kurtarilmistir-01-09-2026-",
         "ts": "2026-09-03T23:11:08Z"
+      },
+      {
+        "kind": "official",
+        "detail": "04.09.2026 İzmir Açıklarında 18 Düzensiz Göçmen (Beraberinde 8 Çocuk) Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/izmir-aciklarinda-18-duzensiz-gocmen-beraberinde-8-cocuk-kurtarilmistir-03-09-2026",
+        "ts": "2026-09-04T18:20:48Z"
       }
     ],
     "notes": [],
@@ -117,7 +124,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-03T23:11:12Z",
-    "last_update": "2026-09-04T15:01:06Z",
+    "last_update": "2026-09-04T18:21:11Z",
     "sources": [
       {
         "kind": "news",
@@ -216,6 +223,13 @@
         "org": "haberturk.com",
         "url": "https://www.haberturk.com/gundem/son-dakika-silivri-aciklarindaki-kazada-dumendeki-kaptanin-ifadesi-ortaya-cikti-3910308",
         "ts": "2026-09-04T15:00:55Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Silivri'deki gemi kazasına ilişkin kaptanların ifadelerine ulaşıldı",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/gundem/silivrideki-gemi-kazasina-iliskin-kaptanlarin-ifadelerine-ulasildi-955911.html",
+        "ts": "2026-09-04T18:20:59Z"
       }
     ],
     "notes": [],
@@ -248,96 +262,6 @@
         "org": "Sahil Güvenlik Komutanlığı",
         "url": "https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026",
         "ts": "2026-09-04T01:03:30Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-04-news-14ea44-12280",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T05:59:02Z",
-    "last_update": "2026-09-04T05:59:02Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de batan yolcu gemisinde skandal Ã¼zerine skandal! KaptanlarÄ±n konuÅmasÄ± ortaya Ã§Ä±ktÄ±",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/girnede-batan-yolcu-gemisinde-skandal-uzerine-skandal-kaptanlarin-konusmasi-ortaya-cikti-3462285",
-        "ts": "2026-09-04T05:59:02Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-04-news-14ea44-02004",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T05:59:03Z",
-    "last_update": "2026-09-04T05:59:03Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de alabora olan gemiden kurtulan gençler korku dolu anları anlattı",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/girnede-alabora-olan-gemiden-kurtulan-gencler-korku-dolu-anlari-anlatti-955831.html",
-        "ts": "2026-09-04T05:59:03Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-04-news-14ea44-52678",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T05:59:03Z",
-    "last_update": "2026-09-04T05:59:03Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "KKTC'deki gemi kazasında can kaybı 10'a çıktı",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/kktcdeki-gemi-kazasinda-can-kaybi-10a-cikti-955817.html",
-        "ts": "2026-09-04T05:59:03Z"
       }
     ],
     "notes": [],
@@ -822,6 +746,66 @@
         "org": "trthaber.com",
         "url": "https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-12ye-yukseldi-955869.html",
         "ts": "2026-09-04T15:00:54Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-01084",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T18:20:55Z",
+    "last_update": "2026-09-04T18:20:55Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne açıklarında batan gemiye ilişkin arama kurtarma faaliyeti yürüten komutanlardan açıklama",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemiye-iliskin-arama-kurtarma-faaliyeti-yuruten-komutanlardan-aciklama-43296234",
+        "ts": "2026-09-04T18:20:55Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-52761",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T18:20:58Z",
+    "last_update": "2026-09-04T18:20:58Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "SON DAKİKA... Marmara'da batan geminin yeri tespit edildi",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/son-dakika-marmarada-batan-geminin-yeri-tespit-edildi-3462771",
+        "ts": "2026-09-04T18:20:58Z"
       }
     ],
     "notes": [],
