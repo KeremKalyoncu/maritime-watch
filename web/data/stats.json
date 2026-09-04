@@ -1,11 +1,12 @@
 {
-  "generated": "2026-09-04T10:10:33Z",
+  "generated": "2026-09-04T11:09:40Z",
   "total_incidents": 4,
   "by_month": {
     "2026-09": 4
   },
   "by_area": {
-    "belirsiz": 4
+    "belirsiz": 3,
+    "Antalya Körfezi": 1
   },
   "by_type": {
     "unknown": 4
