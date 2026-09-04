@@ -36,3 +36,28 @@ def test_correlate_keeps_far_apart_separate(tmp_path):
     b = Incident(id="b", lat=36.8, lon=30.7)      # Antalya, far
     b.sources.append(Source(kind="official", org="SG", detail="y"))
     assert correlate(store, b).id == "b"
+
+
+def test_correlate_matches_by_vessel_name_without_coords(tmp_path):
+    from src.model import Vessel
+    store = Store(str(tmp_path / "web" / "data"), log_dir=str(tmp_path / "data"))
+    a = Incident(id="a", lat=41.07, lon=28.25, vessel=Vessel(name="ALSU"))
+    a.sources.append(Source(kind="news", org="aa", detail="ALSU gemisi kazası"))
+    store.upsert_incident(a)
+
+    b = Incident(id="b", vessel=Vessel(name="Alsu"))     # no coords, different case
+    b.sources.append(Source(kind="official", org="SG", detail="ALSU gemisi kaptanı tutuklandı"))
+    merged = correlate(store, b)
+    assert merged.id == "a"
+    assert {s.org for s in merged.sources} == {"aa", "SG"}
+
+
+def test_correlate_matches_by_shared_place(tmp_path):
+    store = Store(str(tmp_path / "web" / "data"), log_dir=str(tmp_path / "data"))
+    a = Incident(id="a", lat=41.07, lon=28.25, area="Marmara Denizi", places=["Silivri"])
+    a.sources.append(Source(kind="news", org="ntv", detail="Silivri gemi kazası"))
+    store.upsert_incident(a)
+
+    b = Incident(id="b", lat=41.09, lon=28.30, area="Marmara Denizi", places=["Silivri"])
+    b.sources.append(Source(kind="news", org="hurriyet", detail="Silivri'de kayıplar aranıyor"))
+    assert correlate(store, b).id == "a"

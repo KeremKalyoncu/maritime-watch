@@ -9,7 +9,7 @@ import requests
 
 UA = {"User-Agent": "maritime-watch/1.0 (open-source maritime safety aggregator)"}
 SAMPLES = Path(__file__).parent / "samples"
-TIMEOUT = 15
+TIMEOUT = 10
 
 
 def get_text(url: str, sample_name: str, headers: dict | None = None,

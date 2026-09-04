@@ -37,6 +37,28 @@ def test_old_confirmed_incident_auto_resolves(tmp_path):
     assert s.incidents["i1"].status == "resolved"
 
 
+def test_official_resolution_phrase_closes_incident(tmp_path):
+    s = _store(tmp_path)
+    inc = Incident(id="i9", status="confirmed", lat=41.0, lon=29.0)
+    inc.sources.append(Source(kind="official", org="SG",
+                              detail="Silivri açıklarında arama kurtarma operasyonu tamamlandı"))
+    inc.last_update = _ago(1)          # recent, would NOT time out
+    s.incidents["i9"] = inc
+    prune(s)
+    assert s.incidents["i9"].status == "resolved"
+
+
+def test_plain_rescue_report_stays_open(tmp_path):
+    s = _store(tmp_path)
+    inc = Incident(id="i10", status="confirmed", lat=41.0, lon=29.0)
+    inc.sources.append(Source(kind="official", org="SG",
+                              detail="Muğla açıklarında 2 şahıs kurtarıldı"))
+    inc.last_update = _ago(1)
+    s.incidents["i10"] = inc
+    prune(s)
+    assert s.incidents["i10"].status == "confirmed"   # "kurtarıldı" alone is not terminal
+
+
 def test_old_signal_incident_is_removed(tmp_path):
     s = _store(tmp_path)
     inc = Incident(id="i2", status="signal", lat=41.0, lon=29.0)

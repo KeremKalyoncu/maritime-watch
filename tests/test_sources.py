@@ -36,7 +36,8 @@ def test_quakes_multi_provider_and_coastal(cfg):
 def test_quakes_same_event_merges_in_store(cfg, tmp_path):
     from src.store import Store
     s = Store(str(tmp_path / "web" / "data"), log_dir=str(tmp_path / "data"))
-    n_new = sum(1 for w in quakes.fetch_quakes(cfg) if s.upsert_warning(w)[1] == "new")
+    for w in quakes.fetch_quakes(cfg):
+        s.upsert_warning(w)
     # AFAD+USGS+EMSC all report the Marmara M~4.2 quake -> one stored warning for it
     marmara = [w for w in s.warnings.values() if "Marmara" in w.area or "MARMARA" in w.area.upper()]
     assert len(marmara) == 1

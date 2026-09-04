@@ -4,110 +4,118 @@
 "use strict";
 
 const COLORS = {
-  confirmed: "#e5484d",
-  probable: "#f5a524",
-  signal: "#8b9bab",
-  resolved: "#30a46c",
-  "false-positive": "#4b5563",
-  warning: "#3b82f6",
+  confirmed: "#e5484d", probable: "#f5a524", signal: "#8b9bab",
+  resolved: "#30a46c", "false-positive": "#4b5563", warning: "#3b82f6",
 };
 
-const TYPE_TR = {
-  grounding: "karaya oturma", collision: "çatışma", drift: "sürüklenme",
-  distress: "tehlike çağrısı", capsize: "alabora", fire: "yangın",
-  sinking: "batma", "man-overboard": "denize adam düştü", unknown: "belirsiz",
+const T = {
+  tr: {
+    type: { grounding: "karaya oturma", collision: "çatışma", drift: "sürüklenme",
+      distress: "tehlike çağrısı", capsize: "alabora", fire: "yangın", sinking: "batma",
+      "man-overboard": "denize adam düştü", unknown: "belirsiz" },
+    status: { signal: "zayıf sinyal (doğrulanmadı)", probable: "kuvvetli ihtimal",
+      confirmed: "doğrulandı", resolved: "kapandı", "false-positive": "yanlış alarm" },
+    ui: {
+      tag: "Türkiye karasuları — AIS anomalileri + resmi açıklamalar, tek yerde. Sinyaller doğrulanana kadar “doğrulanmadı” etiketlidir.",
+      timeline: "Zaman çizelgesi", stats: "İstatistik", allregions: "Tüm bölgeler",
+      "l-confirmed": "doğrulandı", "l-probable": "olası", "l-signal": "sinyal (doğrulanmadı)",
+      "l-resolved": "kapandı", "l-warning": "hava uyarısı",
+      updated: "Son güncelleme", events: "olay", warnings: "uyarı", src: "Kaynak",
+      firstseen: "İlk görülme", lastupd: "Güncelleme", unloc: "konum belirsiz",
+      people: "kişi bildirildi", confirmedby: "bağımsız kaynak doğruluyor",
+      stale: h => `⚠ Veri ~${h} saat eski — otomatik güncelleme gecikmiş olabilir. Acil durum için 158 / 112.`,
+      sys: h => h ? `sistem: ${h.sources_ok}/${h.sources_total} kaynak · ${h.cycle_seconds}s` : "",
+      disclaimer: 'Bu bir kurtarma servisi değildir. Acil durumda <strong>158</strong> (Sahil Güvenlik) / <strong>112</strong>.',
+      sources: "Kaynaklar: aisstream.io · Open-Meteo · AFAD/USGS/EMSC · Sahil Güvenlik · GDACS · NASA EONET · haber RSS · OpenSeaMap",
+    },
+  },
+  en: {
+    type: { grounding: "grounding", collision: "collision", drift: "drift",
+      distress: "distress call", capsize: "capsize", fire: "fire", sinking: "sinking",
+      "man-overboard": "man overboard", unknown: "unknown" },
+    status: { signal: "weak signal (unverified)", probable: "probable",
+      confirmed: "confirmed", resolved: "closed", "false-positive": "false alarm" },
+    ui: {
+      tag: "Turkish waters — AIS anomalies + official statements in one place. Signals are labelled “unverified” until confirmed.",
+      timeline: "Timeline", stats: "Stats", allregions: "All areas",
+      "l-confirmed": "confirmed", "l-probable": "probable", "l-signal": "signal (unverified)",
+      "l-resolved": "closed", "l-warning": "weather warning",
+      updated: "Updated", events: "incidents", warnings: "warnings", src: "Source",
+      firstseen: "First seen", lastupd: "Updated", unloc: "location unknown",
+      people: "people reported", confirmedby: "independent sources confirm",
+      stale: h => `⚠ Data is ~${h}h old — the scheduled update may be delayed. Emergency: 158 / 112.`,
+      sys: h => h ? `system: ${h.sources_ok}/${h.sources_total} sources · ${h.cycle_seconds}s` : "",
+      disclaimer: 'This is not a rescue service. In an emergency call <strong>158</strong> (Coast Guard) / <strong>112</strong>.',
+      sources: "Sources: aisstream.io · Open-Meteo · AFAD/USGS/EMSC · Coast Guard · GDACS · NASA EONET · news RSS · OpenSeaMap",
+    },
+  },
 };
-const STATUS_TR = {
-  signal: "zayıf sinyal (doğrulanmadı)", probable: "kuvvetli ihtimal",
-  confirmed: "doğrulandı", resolved: "kapandı", "false-positive": "yanlış alarm",
-};
-const trType = t => TYPE_TR[t] || t;
-const trStatus = s => STATUS_TR[s] || s;
+
+let LANG = (localStorage.getItem("mw-lang") === "en") ? "en" : "tr";
+const trType = t => T[LANG].type[t] || t;
+const trStatus = s => T[LANG].status[s] || s;
+const U = () => T[LANG].ui;
+
+let REGION = "";           // active region filter ("" = all)
+let LAST = { incidents: [], warnings: [], summary: null, health: null };
 
 const MAP_OK = typeof L !== "undefined";
-let map = null;
-let layer = null;
+let map = null, layer = null;
 const markerById = {};
 
 if (MAP_OK) {
   map = L.map("map", { zoomControl: true }).setView([39.5, 30.5], 6);
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18, attribution: "&copy; OpenStreetMap",
-  }).addTo(map);
-  L.tileLayer("https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png", {
-    maxZoom: 18, opacity: 0.9, attribution: "&copy; OpenSeaMap",
-  }).addTo(map);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "&copy; OpenStreetMap" }).addTo(map);
+  L.tileLayer("https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png", { maxZoom: 18, opacity: 0.9, attribution: "&copy; OpenSeaMap" }).addTo(map);
+  fetch("data/regions.geojson").then(r => r.ok ? r.json() : null).then(gj => {
+    if (!gj) return;
+    L.geoJSON(gj, {
+      style: { color: "#3b82f6", weight: 1, opacity: 0.35, fill: false, dashArray: "4 4" },
+      onEachFeature: (f, lyr) => lyr.bindTooltip(f.properties && f.properties.name || "", { sticky: true }),
+    }).addTo(map);
+  }).catch(() => {});
   layer = L.layerGroup().addTo(map);
 } else {
   const el = document.getElementById("map");
   if (el) {
-    el.style.display = "flex";
-    el.style.alignItems = "center";
-    el.style.justifyContent = "center";
-    el.style.padding = "24px";
-    el.style.textAlign = "center";
-    el.style.color = "#93a4b3";
-    el.textContent = "Harita kütüphanesi (Leaflet CDN) yüklenemedi — ağ engeli olabilir. "
-      + "Zaman çizelgesi ve sayaçlar aşağıda / yanda çalışıyor.";
+    el.style.cssText = "display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;color:#93a4b3";
+    el.textContent = "Harita kütüphanesi (Leaflet CDN) yüklenemedi. Zaman çizelgesi ve sayaçlar çalışıyor.";
   }
 }
 
-function esc(s) {
-  return String(s == null ? "" : s).replace(/[&<>"]/g, c =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-}
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmtTime = iso => { if (!iso) return ""; const d = new Date(iso); return isNaN(d) ? iso : d.toLocaleString(LANG === "en" ? "en-GB" : "tr-TR", { dateStyle: "short", timeStyle: "short" }); };
+const radiusFor = sev => ({ critical: 11, major: 9, minor: 7, info: 6 }[sev] || 7);
+const inRegion = it => !REGION || it.area === REGION;
 
-function fmtTime(iso) {
-  if (!iso) return "";
-  const d = new Date(iso);
-  return isNaN(d) ? iso : d.toLocaleString("tr-TR", { dateStyle: "short", timeStyle: "short" });
-}
-
-function radiusFor(sev) {
-  return { critical: 11, major: 9, minor: 7, info: 6 }[sev] || 7;
+function orgsOf(x) {
+  const out = [];
+  (x.sources || []).forEach(s => { const o = s.org || s.kind; if (o && out.indexOf(o) === -1) out.push(o); });
+  if (!out.length && x.org) out.push(x.org);
+  return out;
 }
 
 function incidentPopup(i) {
-  const unverified = i.status === "signal"
-    ? `<div class="badge-unverified">⚠ Doğrulanmadı — tek zayıf kaynak</div>` : "";
-  const orgs = [];
-  (i.sources || []).forEach(s => {
-    const o = s.org || s.kind;
-    if (o && orgs.indexOf(o) === -1) orgs.push(o);
-  });
+  const u = U();
+  const unv = i.status === "signal" ? `<div class="badge-unverified">⚠ ${esc(trStatus("signal"))}</div>` : "";
   const srcs = (i.sources || []).map(s => {
-    const link = s.url ? ` — <a href="${esc(s.url)}" target="_blank" rel="noopener">bağlantı</a>` : "";
+    const link = s.url ? ` — <a href="${esc(s.url)}" target="_blank" rel="noopener">link</a>` : "";
     return `<li>${esc(s.org || s.kind)}: ${esc(s.detail)}${link}</li>`;
   }).join("");
-  return `
-    <div class="popup-title">${esc(trType(i.type))} — ${esc(trStatus(i.status))}</div>
-    ${unverified}
-    <div class="popup-meta">
-      ${esc(i.area || "konum belirsiz")}
-      ${i.casualties ? " · " + i.casualties + " kişi bildirildi" : ""}<br>
-      Kaynak: ${esc(orgs.join(", "))}<br>
-      İlk görülme: ${fmtTime(i.first_seen)} · Güncelleme: ${fmtTime(i.last_update)}
-    </div>
+  const vessel = (i.vessel && i.vessel.name) ? `⛴️ ${esc(i.vessel.name)}<br>` : "";
+  return `<div class="popup-title">${esc(trType(i.type))} — ${esc(trStatus(i.status))}</div>${unv}
+    <div class="popup-meta">${esc(i.area || u.unloc)}${i.casualties ? " · " + i.casualties + " " + u.people : ""}<br>
+    ${vessel}${u.src}: ${esc(orgsOf(i).join(", "))}<br>
+    ${u.firstseen}: ${fmtTime(i.first_seen)} · ${u.lastupd}: ${fmtTime(i.last_update)}</div>
     <ul style="margin:6px 0 0 16px;padding:0">${srcs}</ul>`;
 }
 
 function warningPopup(w) {
-  const orgs = [];
-  (w.sources || []).forEach(s => {
-    const o = s.org || s.kind;
-    if (o && orgs.indexOf(o) === -1) orgs.push(o);
-  });
-  if (!orgs.length && w.org) orgs.push(w.org);
-  const multi = orgs.length >= 2
-    ? `<div class="badge-unverified">✅ ${orgs.length} bağımsız kaynak doğruluyor</div>` : "";
-  return `
-    <div class="popup-title">🌊 ${esc(w.headline)}</div>
-    ${multi}
-    <div class="popup-meta">
-      ${esc(w.area)} · ${esc(orgs.join(", "))}<br>
-      Yayın: ${fmtTime(w.issued)}${w.last_update && w.last_update !== w.issued ? " · Güncelleme: " + fmtTime(w.last_update) : ""}
-    </div>
-    ${w.url ? `<a href="${esc(w.url)}" target="_blank" rel="noopener">kaynak</a>` : ""}`;
+  const o = orgsOf(w);
+  const multi = o.length >= 2 ? `<div class="badge-unverified">✅ ${o.length} ${U().confirmedby}</div>` : "";
+  return `<div class="popup-title">🌊 ${esc(w.headline)}</div>${multi}
+    <div class="popup-meta">${esc(w.area)} · ${esc(o.join(", "))}<br>${fmtTime(w.issued)}</div>
+    ${w.url ? `<a href="${esc(w.url)}" target="_blank" rel="noopener">link</a>` : ""}`;
 }
 
 function addTimeline(items) {
@@ -117,21 +125,14 @@ function addTimeline(items) {
     const li = document.createElement("li");
     li.className = it._kind === "warning" ? "warning" : it.status;
     const when = fmtTime(it._kind === "warning" ? it.issued : it.last_update);
-    const title = it._kind === "warning" ? "Uyarı" : trType(it.type);
+    const title = it._kind === "warning" ? "⚠" : trType(it.type);
     const badge = it._kind === "warning" ? "" : trStatus(it.status);
-    const area = esc(it.area || "konum belirsiz");
     const src = (it.sources || [])[0];
-    const srcHtml = it._kind === "warning"
-      ? esc(it.org)
-      : (src ? `${esc(src.org || src.kind)}${src.url ? ` — <a href="${esc(src.url)}" target="_blank" rel="noopener">bağlantı</a>` : ""}` : "");
-    li.innerHTML = `
-      <div class="t-head"><span class="t-type">${esc(title)}</span><span class="t-badge">${badge}</span></div>
-      <div class="t-area">${area} · ${when}</div>
-      <div class="t-src">${srcHtml}</div>`;
-    li.onclick = () => {
-      const m = markerById[it._id];
-      if (m && map) { map.setView(m.getLatLng(), 9); m.openPopup(); }
-    };
+    const srcHtml = it._kind === "warning" ? esc(orgsOf(it).join(", "))
+      : (src ? `${esc(src.org || src.kind)}${src.url ? ` — <a href="${esc(src.url)}" target="_blank" rel="noopener">link</a>` : ""}` : "");
+    li.innerHTML = `<div class="t-head"><span class="t-type">${esc(title)}</span><span class="t-badge">${esc(badge)}</span></div>
+      <div class="t-area">${esc(it.area || U().unloc)} · ${when}</div><div class="t-src">${srcHtml}</div>`;
+    li.onclick = () => { const m = markerById[it._id]; if (m && map) { map.setView(m.getLatLng(), 9); m.openPopup(); } };
     ol.appendChild(li);
   });
 }
@@ -141,72 +142,102 @@ function drawMarkers(incidents, warnings) {
   if (layer) layer.remove();
   layer = L.layerGroup().addTo(map);
   for (const k in markerById) delete markerById[k];
-
-  incidents.forEach(i => {
+  incidents.filter(inRegion).forEach(i => {
     if (i.lat == null || i.lon == null) return;
-    const color = COLORS[i.status] || COLORS.signal;
+    const c = COLORS[i.status] || COLORS.signal;
     const m = L.circleMarker([i.lat, i.lon], {
-      radius: radiusFor(i.severity),
-      color,
-      weight: i.status === "signal" ? 1 : 2,
-      dashArray: i.status === "signal" ? "3 3" : null,
-      fillColor: color,
+      radius: radiusFor(i.severity), color: c, weight: i.status === "signal" ? 1 : 2,
+      dashArray: i.status === "signal" ? "3 3" : null, fillColor: c,
       fillOpacity: i.status === "signal" ? 0.25 : 0.6,
     }).bindPopup(incidentPopup(i));
-    m.addTo(layer);
-    markerById[i.id] = m;
+    m.addTo(layer); markerById[i.id] = m;
   });
-
-  warnings.forEach(w => {
+  warnings.filter(inRegion).forEach(w => {
     if (w.lat == null || w.lon == null) return;
     const m = L.circleMarker([w.lat, w.lon], {
       radius: 10, color: COLORS.warning, weight: 2, fillColor: COLORS.warning, fillOpacity: 0.15,
     }).bindPopup(warningPopup(w));
-    m.addTo(layer);
-    markerById["w:" + w.id] = m;
+    m.addTo(layer); markerById["w:" + w.id] = m;
   });
 }
 
 async function getJSON(path) {
   try {
     const r = await fetch(path + "?" + Date.now(), { cache: "no-store" });
-    if (!r.ok) return null;
-    return await r.json();
-  } catch (e) {
-    return null;
-  }
+    return r.ok ? await r.json() : null;
+  } catch (e) { return null; }
 }
 
-async function load() {
-  const incidents = (await getJSON("data/incidents.json")) || [];
-  const warnings = (await getJSON("data/warnings.json")) || [];
-  const summary = await getJSON("data/summary.json");
+function applyI18n() {
+  document.documentElement.lang = LANG;
+  document.getElementById("lang").textContent = LANG === "en" ? "TR" : "EN";
+  document.querySelectorAll("[data-i]").forEach(el => {
+    const v = U()[el.dataset.i];
+    if (typeof v === "string") el.innerHTML = v;
+  });
+}
 
+function fillRegions(incidents, warnings) {
+  const sel = document.getElementById("region");
+  const areas = [...new Set([...incidents, ...warnings].map(x => x.area).filter(Boolean))].sort();
+  const cur = sel.value;
+  sel.innerHTML = `<option value="">${U().allregions}</option>` +
+    areas.map(a => `<option value="${esc(a)}">${esc(a)}</option>`).join("");
+  sel.value = areas.includes(cur) ? cur : "";
+  REGION = sel.value;
+}
+
+function render() {
+  const { incidents, warnings, summary, health } = LAST;
   drawMarkers(incidents, warnings);
-
   const tl = []
-    .concat(incidents.map(i => ({ ...i, _kind: "incident", _id: i.id })))
-    .concat(warnings.map(w => ({ ...w, _kind: "warning", _id: "w:" + w.id })))
+    .concat(incidents.filter(inRegion).map(i => ({ ...i, _kind: "incident", _id: i.id })))
+    .concat(warnings.filter(inRegion).map(w => ({ ...w, _kind: "warning", _id: "w:" + w.id })))
     .sort((a, b) => String(b.last_update || b.issued || "").localeCompare(String(a.last_update || a.issued || "")))
     .slice(0, 40);
   addTimeline(tl);
 
-  const meta = document.getElementById("meta");
+  const u = U();
   const gen = summary ? fmtTime(summary.generated) : "—";
   const bs = summary && summary.by_status
-    ? Object.entries(summary.by_status).map(([k, v]) => `${k}: ${v}`).join(" · ")
-    : "";
-  meta.textContent = `Son güncelleme: ${gen}  ·  ${incidents.length} olay${bs ? " (" + bs + ")" : ""}  ·  ${warnings.length} uyarı`;
+    ? Object.entries(summary.by_status).map(([k, v]) => `${trStatus(k)}: ${v}`).join(" · ") : "";
+  document.getElementById("meta").textContent =
+    `${u.updated}: ${gen}  ·  ${incidents.length} ${u.events}${bs ? " (" + bs + ")" : ""}  ·  ${warnings.length} ${u.warnings}`;
+  document.getElementById("sys").textContent = u.sys(health);
+
+  const stale = document.getElementById("stale");
+  const genMs = summary && Date.parse(summary.generated);
+  const limitH = (summary && summary.stale_hours) || 2;
+  if (genMs && !isNaN(genMs) && (Date.now() - genMs) / 3600000 > limitH) {
+    stale.textContent = u.stale(Math.round((Date.now() - genMs) / 3600000));
+    stale.hidden = false;
+  } else { stale.hidden = true; }
 }
 
-// open the map focused on #<incident-id> when a deep link is used
+async function load() {
+  LAST.incidents = (await getJSON("data/incidents.json")) || [];
+  LAST.warnings = (await getJSON("data/warnings.json")) || [];
+  LAST.summary = await getJSON("data/summary.json");
+  LAST.health = await getJSON("data/health.json");
+  fillRegions(LAST.incidents, LAST.warnings);
+  render();
+}
+
 function focusHash() {
   const id = decodeURIComponent((location.hash || "").slice(1));
   if (!id || !map) return;
   const m = markerById[id] || markerById["w:" + id];
   if (m) { map.setView(m.getLatLng(), 10); m.openPopup(); }
 }
+
+document.getElementById("lang").addEventListener("click", () => {
+  LANG = LANG === "en" ? "tr" : "en";
+  try { localStorage.setItem("mw-lang", LANG); } catch (e) {}
+  applyI18n(); render();
+});
+document.getElementById("region").addEventListener("change", e => { REGION = e.target.value; render(); });
 window.addEventListener("hashchange", focusHash);
 
+applyI18n();
 load().then(focusHash);
 setInterval(load, 60000);

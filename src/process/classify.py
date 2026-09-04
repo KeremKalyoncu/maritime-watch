@@ -11,19 +11,7 @@ from __future__ import annotations
 import math
 
 from .. import model
-
-# name, lat_min, lat_max, lon_min, lon_max  (most specific first)
-SEA_AREAS = [
-    ("İstanbul Boğazı", 41.00, 41.28, 28.90, 29.20),
-    ("Çanakkale Boğazı", 39.95, 40.55, 26.10, 26.75),
-    ("Marmara Denizi", 40.30, 41.05, 26.70, 29.95),
-    ("Kuzey Ege", 38.50, 40.60, 24.50, 27.20),
-    ("Güney Ege", 36.00, 38.50, 24.50, 28.60),
-    ("Antalya Körfezi / Batı Akdeniz", 35.80, 37.00, 29.00, 32.20),
-    ("Mersin–İskenderun / Doğu Akdeniz", 35.80, 37.10, 32.20, 36.60),
-    ("Batı Karadeniz", 41.10, 43.60, 27.30, 35.10),
-    ("Doğu Karadeniz", 40.90, 42.60, 35.10, 42.20),
-]
+from ..geo import area_centroid, area_of  # noqa: F401  polygon-based, re-exported here
 
 # coastal place -> approx (lat, lon), used to geocode scraped headlines
 PLACE_HINTS = {
@@ -100,26 +88,6 @@ def nearest_port(lat, lon):
     return best
 
 
-def area_of(lat, lon) -> str:
-    if lat is None or lon is None:
-        return ""
-    for name, la0, la1, lo0, lo1 in SEA_AREAS:
-        if la0 <= lat <= la1 and lo0 <= lon <= lo1:
-            return name
-    return "Türk karasuları civarı"
-
-
-def area_centroid(name: str):
-    """(lat, lon) centre of a named sea area, for placing a warning on the map."""
-    if not name:
-        return None, None
-    low = name.lower()
-    for aname, la0, la1, lo0, lo1 in SEA_AREAS:
-        if aname.lower() in low or low in aname.lower():
-            return round((la0 + la1) / 2, 3), round((lo0 + lo1) / 2, 3)
-    return None, None
-
-
 _TR_LOWER = str.maketrans("İIŞĞÜÖÇ", "iışğüöç")
 
 
@@ -136,7 +104,7 @@ def place_hint(text: str):
     return None, None, ""
 
 
-def classify(inc) -> "model.Incident":
+def classify(inc) -> model.Incident:
     kinds = {s.kind for s in inc.sources}
 
     conf = min(sum(SOURCE_WEIGHT.get(k, 0.1) for k in kinds), 0.98)

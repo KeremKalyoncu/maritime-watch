@@ -17,7 +17,8 @@ import requests
 from bs4 import BeautifulSoup
 
 from ..model import Incident, Source, Vessel, Warning, make_id
-from ..process.classify import area_centroid, place_hint
+from ..process.classify import area_centroid
+from ..process.extract import extract
 
 UA = {"User-Agent": "maritime-watch/1.0 (open-source maritime safety aggregator)"}
 TIMEOUT = 15
@@ -119,8 +120,8 @@ def _scrape_links(cfg: dict, url: str, sample: str, org: str, base: str) -> list
             continue
         # keep real headlines, drop nav/menu links: needs length plus a number
         # or a place name we recognise
-        lat, lon, area = place_hint(title)
-        has_signal = bool(re.search(r"\d", title)) or lat is not None
+        ex = extract(title)
+        has_signal = bool(re.search(r"\d", title)) or ex.lat is not None or ex.vessel
         if len(title) < 32 or not has_signal:
             continue
 
@@ -135,13 +136,12 @@ def _scrape_links(cfg: dict, url: str, sample: str, org: str, base: str) -> list
 
         stable = hashlib.sha1(norm.encode("utf-8")).hexdigest()[:6]
         inc = Incident(
-            id=make_id("rep", lat, lon) + "-" + stable,
-            type="unknown", lat=lat, lon=lon, area=area,
+            id=make_id("rep", ex.lat, ex.lon) + "-" + stable,
+            type="unknown", lat=ex.lat, lon=ex.lon, area=ex.area,
+            casualties=ex.casualties, places=ex.places,
+            vessel=Vessel(name=ex.vessel) if ex.vessel else Vessel(),
         )
         inc.sources.append(Source(kind="official", org=org, detail=title, url=href))
-        cnt = re.search(r"(\d+)\s*(?:kişi|can|göçmen|mürettebat|çocuk)", norm)
-        if cnt:
-            inc.casualties = int(cnt.group(1))
         out.append(inc)
     return out[:15]
 

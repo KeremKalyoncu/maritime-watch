@@ -8,7 +8,7 @@ import hashlib
 import time
 from dataclasses import asdict, dataclass, field
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 ISO = "%Y-%m-%dT%H:%M:%SZ"
 
@@ -72,8 +72,8 @@ def status_tr(s: str) -> str:
 class Source:
     kind: str                       # ais-anomaly | official | news | dsc | sdr | navtex
     detail: str = ""
-    org: Optional[str] = None
-    url: Optional[str] = None
+    org: str | None = None
+    url: str | None = None
     ts: str = field(default_factory=now_iso)
 
     def key(self) -> str:
@@ -82,10 +82,10 @@ class Source:
 
 @dataclass
 class Vessel:
-    name: Optional[str] = None
-    mmsi: Optional[int] = None
-    type: Optional[str] = None
-    callsign: Optional[str] = None
+    name: str | None = None
+    mmsi: int | None = None
+    type: str | None = None
+    callsign: str | None = None
 
 
 @dataclass
@@ -95,21 +95,22 @@ class Incident:
     status: str = Status.SIGNAL.value
     confidence: float = 0.2
     severity: str = Severity.INFO.value
-    lat: Optional[float] = None
-    lon: Optional[float] = None
+    lat: float | None = None
+    lon: float | None = None
     area: str = ""
     vessel: Vessel = field(default_factory=Vessel)
-    casualties: Optional[int] = None
+    casualties: int | None = None
     first_seen: str = field(default_factory=now_iso)
     last_update: str = field(default_factory=now_iso)
     sources: list[Source] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
+    places: list[str] = field(default_factory=list)   # coastal names extracted from text
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
     @staticmethod
-    def from_dict(d: dict[str, Any]) -> "Incident":
+    def from_dict(d: dict[str, Any]) -> Incident:
         d = dict(d)
         d["vessel"] = Vessel(**(d.get("vessel") or {}))
         d["sources"] = [Source(**s) for s in d.get("sources", [])]
@@ -131,16 +132,16 @@ class Warning:
     area: str = ""
     severity: str = Severity.MINOR.value
     kind: str = "marine-weather"    # marine-weather | metar | earthquake | gdacs | eonet | nav-warning | navtex
-    onset: Optional[str] = None
-    expires: Optional[str] = None
+    onset: str | None = None
+    expires: str | None = None
     org: str = ""
-    url: Optional[str] = None
+    url: str | None = None
     issued: str = field(default_factory=now_iso)
     last_update: str = field(default_factory=now_iso)
     raw: str = ""
-    lat: Optional[float] = None     # centroid / epicentre, for the map
-    lon: Optional[float] = None
-    value: Optional[float] = None   # magnitude or wave height, used to match duplicates
+    lat: float | None = None     # centroid / epicentre, for the map
+    lon: float | None = None
+    value: float | None = None   # magnitude or wave height, used to match duplicates
     sources: list[Source] = field(default_factory=list)
 
     def __post_init__(self) -> None:
@@ -152,7 +153,7 @@ class Warning:
         return asdict(self)
 
     @staticmethod
-    def from_dict(d: dict[str, Any]) -> "Warning":
+    def from_dict(d: dict[str, Any]) -> Warning:
         d = dict(d)
         d["sources"] = [Source(**s) for s in d.get("sources", [])]
         return Warning(**d)
@@ -175,7 +176,7 @@ class Warning:
         return out
 
 
-def make_id(kind: str, lat: Optional[float], lon: Optional[float], ts: Optional[str] = None) -> str:
+def make_id(kind: str, lat: float | None, lon: float | None, ts: str | None = None) -> str:
     """Stable-ish id: same kind + rounded position + day -> same id (dedupes re-runs)."""
     ts = ts or now_iso()
     day = ts[:10]

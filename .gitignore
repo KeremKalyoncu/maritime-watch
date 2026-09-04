@@ -11,6 +11,8 @@ data/events.jsonl
 data/outbox.log
 data/sent.json
 
-# generated feed (rebuilt each run; keep the seeded *.json so the map loads on clone)
+# generated each run; keep the seeded incidents/warnings so the map loads on clone
 web/data/feed.xml
 web/data/summary.json
+web/data/health.json
+web/data/stats.json
