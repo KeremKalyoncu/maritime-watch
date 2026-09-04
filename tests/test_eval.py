@@ -15,6 +15,7 @@ def test_eval_sections_pass():
         assert f >= 0.75, f"{name} F1 {f:.2f} below floor"
 
 
-def test_eval_main_writes_report(tmp_path, monkeypatch):
-    assert run_eval.main() == 0
-    assert (Path(run_eval.__file__).parent / "REPORT.md").exists()
+def test_eval_main_writes_report(tmp_path):
+    # write to tmp so running the tests never dirties the tracked eval/REPORT.md
+    assert run_eval.main(out_dir=tmp_path) == 0
+    assert (tmp_path / "REPORT.md").exists()
