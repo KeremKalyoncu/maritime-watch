@@ -27,7 +27,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-03-rep-e1f95e-442993",
@@ -59,11 +60,12 @@
     "notes": [],
     "places": [
       "Tekirdağ"
-    ]
+    ],
+    "coarse": false
   },
   {
     "id": "2026-09-03-rep-41d0fc-bb02b2",
-    "type": "unknown",
+    "type": "distress",
     "status": "confirmed",
     "confidence": 0.6,
     "severity": "critical",
@@ -105,11 +107,12 @@
     "notes": [],
     "places": [
       "Izmir"
-    ]
+    ],
+    "coarse": false
   },
   {
     "id": "2026-09-03-news-1539e8-59839",
-    "type": "unknown",
+    "type": "distress",
     "status": "signal",
     "confidence": 0.3,
     "severity": "minor",
@@ -235,7 +238,8 @@
     "notes": [],
     "places": [
       "Silivri"
-    ]
+    ],
+    "coarse": false
   },
   {
     "id": "2026-09-04-rep-e655a8-4d701b",
@@ -265,67 +269,8 @@
       }
     ],
     "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-04-news-14ea44-62898",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T09:06:08Z",
-    "last_update": "2026-09-04T09:06:08Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de batan gemiye binmeden 25 dakika önce çekildi! Demir kardeşlerin son görüntüsü ortaya çıktı",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/girnede-batan-gemiye-binmeden-25-dakika-once-cekildi-demir-kardeslerin-son-goruntusu-ortaya-cikti-43295393",
-        "ts": "2026-09-04T09:06:08Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-04-news-14ea44-44310",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T09:06:10Z",
-    "last_update": "2026-09-04T09:06:10Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'deki gemide can kaybı 12'ye yükseldi",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-12ye-yukseldi-955869.html",
-        "ts": "2026-09-04T09:06:10Z"
-      }
-    ],
-    "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-31890",
@@ -355,7 +300,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-91386",
@@ -385,7 +331,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-41005",
@@ -415,7 +362,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-29695",
@@ -445,7 +393,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-56781",
@@ -475,7 +424,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-01921",
@@ -505,7 +455,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-81678",
@@ -535,7 +486,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-096025-02810",
@@ -567,7 +519,8 @@
     "notes": [],
     "places": [
       "Antalya"
-    ]
+    ],
+    "coarse": false
   },
   {
     "id": "2026-09-04-ais-60c108",
@@ -597,7 +550,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-41459",
@@ -627,7 +581,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-85120",
@@ -657,7 +612,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-09a80d-32146",
@@ -689,7 +645,8 @@
     "notes": [],
     "places": [
       "Ordu"
-    ]
+    ],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-17893",
@@ -719,7 +676,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-86182",
@@ -749,7 +707,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-01084",
@@ -779,7 +738,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-52761",
@@ -809,7 +769,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-ais-357700",
@@ -839,7 +800,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-47970",
@@ -869,7 +831,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-32016",
@@ -899,7 +862,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-22249",
@@ -929,7 +893,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-55803",
@@ -959,7 +924,8 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
   },
   {
     "id": "2026-09-04-news-14ea44-58761",
@@ -989,6 +955,180 @@
       }
     ],
     "notes": [],
-    "places": []
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-04-ais-9f2531",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.71765666666667,
+    "lon": 29.88725833333333,
+    "area": "İzmit Körfezi",
+    "vessel": {
+      "name": "ALSANCAK 22",
+      "mmsi": 271049254,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T21:38:03Z",
+    "last_update": "2026-09-04T21:38:03Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: kumanda dışı (not under command)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T21:38:03Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-04-rep-a0c267-4d701b",
+    "type": "distress",
+    "status": "confirmed",
+    "confidence": 0.6,
+    "severity": "major",
+    "lat": 36.75,
+    "lon": 27.9,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T21:38:04Z",
+    "last_update": "2026-09-04T21:38:04Z",
+    "sources": [
+      {
+        "kind": "official",
+        "detail": "03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026",
+        "ts": "2026-09-04T21:38:04Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Muğla"
+    ],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-04-news-14ea44-65579",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T21:38:06Z",
+    "last_update": "2026-09-04T21:38:06Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Gemi kazalarında hayatını kaybedenler maç öncesinde anılacak",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/spor/gemi-kazalarinda-hayatini-kaybedenler-mac-oncesinde-anilacak/4047720",
+        "ts": "2026-09-04T21:38:06Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-04-news-90ec3c-86619",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": 35.34,
+    "lon": 33.32,
+    "area": "Türk karasuları civarı",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T21:38:07Z",
+    "last_update": "2026-09-04T21:38:21Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne açıklarında batan gemide ulaşılan iki naaşın kimliği belirlendi",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemide-ulasilan-iki-naasin-kimligi-belirlendi-43296485",
+        "ts": "2026-09-04T21:38:07Z"
+      },
+      {
+        "kind": "news",
+        "detail": "MSB’den Girne açıklarında batan yolcu gemisiyle ilgili açıklama",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/msbden-girne-aciklarinda-alabora-olan-gemiyle-ilgili-aciklama-43296462",
+        "ts": "2026-09-04T21:38:07Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Girne açıklarında batan gemiye ilişkin arama kurtarma faaliyeti yürüten komutanlardan açıklama",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemiye-iliskin-arama-kurtarma-faaliyeti-yuruten-komutanlardan-aciklama-43296234",
+        "ts": "2026-09-04T21:38:07Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Girne"
+    ],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-04-news-14ea44-85406",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T21:38:09Z",
+    "last_update": "2026-09-04T21:38:09Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "SON DAKİKA... Marmara'da batan geminin yeri tespit edildi",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/son-dakika-marmarada-batan-geminin-yeri-tespit-edildi-3462771",
+        "ts": "2026-09-04T21:38:09Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
   }
 ]

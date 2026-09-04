@@ -1,24 +1,29 @@
 {
-  "generated": "2026-09-04T21:00:15Z",
-  "total_incidents": 6,
+  "generated": "2026-09-04T21:38:35Z",
+  "total_incidents": 9,
   "by_month": {
-    "2026-09": 6
+    "2026-09": 9
   },
   "by_area": {
-    "belirsiz": 6
+    "belirsiz": 5,
+    "Türk karasuları civarı": 2,
+    "Güney Ege": 1,
+    "Doğu Karadeniz": 1
   },
   "by_type": {
-    "unknown": 5,
+    "sinking": 4,
+    "unknown": 3,
+    "distress": 1,
     "drift": 1
   },
   "by_status": {
-    "signal": 6
+    "signal": 9
   },
   "incidents_with_casualties": 0,
   "casualties_reported_total": 0,
   "top_vessels": [
     [
-      "LIDER PRESTIJ",
+      "ALSANCAK 22",
       1
     ]
   ],
