@@ -113,7 +113,7 @@ def eval_anomaly():
     return ("AIS anomaly rules", _prf(tp, fp, fn), (tp, fp, fn, 0), misses)
 
 
-def main():
+def main(out_dir=None):
     sections = [eval_news(), eval_extract(), eval_anomaly()]
     lines = ["# Eval report", "",
              f"_generated {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())} · "
@@ -129,7 +129,8 @@ def main():
             lines += ["", f"### {name} — kaçırılanlar"]
             lines += [f"- {m}" for m in misses]
     lines += ["", "> Sentetik + az sayıda örnek; mutlak sayı değil, regresyon takibi için."]
-    (Path(__file__).parent / "REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    out = Path(out_dir) if out_dir else Path(__file__).parent
+    (out / "REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
     return 0 if worst_f1 >= 0.6 else 1
 
