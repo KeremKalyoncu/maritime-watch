@@ -12,8 +12,8 @@ import re
 import time
 from xml.etree import ElementTree as ET
 
-from ..model import Incident, Source, make_id
-from ..process.classify import place_hint
+from ..model import Incident, Source, Vessel, make_id
+from ..process.extract import extract
 from ._net import get_text
 
 _TR_LOWER = str.maketrans("İIŞĞÜÖÇ", "iışğüöç")
@@ -30,9 +30,7 @@ def _match(text_low: str, tokens: list[str], keywords: list[str]) -> bool:
         if " " in kw:
             if kw in text_low:
                 return True
-        elif kw in tokens:
-            return True
-        elif len(kw) >= 4 and any(t.startswith(kw) for t in tokens):
+        elif kw in tokens or len(kw) >= 4 and any(t.startswith(kw) for t in tokens):
             return True
     return False
 
@@ -87,15 +85,14 @@ def fetch_news(cfg: dict) -> list[Incident]:
                 continue
             seen.add(key)
 
-            lat, lon, area = place_hint(title)
+            ex = extract(title)
             inc = Incident(
-                id=make_id("news", lat, lon) + f"-{abs(hash(key)) % 100000:05d}",
-                type="unknown", lat=lat, lon=lon, area=area,
+                id=make_id("news", ex.lat, ex.lon) + f"-{abs(hash(key)) % 100000:05d}",
+                type="unknown", lat=ex.lat, lon=ex.lon, area=ex.area,
+                casualties=ex.casualties, places=ex.places,
+                vessel=Vessel(name=ex.vessel) if ex.vessel else Vessel(),
             )
             inc.sources.append(Source(kind="news", org=_host(feed), detail=title, url=link))
-            cnt = re.search(r"(\d+)\s*(?:kişi|can|göçmen|mürettebat|çocuk)", low)
-            if cnt:
-                inc.casualties = int(cnt.group(1))
             out.append(inc)
     return out[:20]
 

@@ -12,7 +12,7 @@ def _notifier(cfg):
 
 def _body(n):
     """outbox.log without the internal '[key]' header / separator lines."""
-    return "\n".join(l for l in n.outbox.read_text("utf-8").splitlines() if not _HEADER.match(l))
+    return "\n".join(ln for ln in n.outbox.read_text("utf-8").splitlines() if not _HEADER.match(ln))
 
 
 def test_incident_message_is_plain_turkish(cfg):
@@ -91,3 +91,27 @@ def test_helpers():
     assert _num(2.6) == "2,6"
     assert _num(2.0) == "2"
     assert _beaufort(41) == 9 or _beaufort(41) == 8
+
+
+def test_digest_batches_into_one_message(cfg):
+    cfg["alert"]["telegram"]["digest"] = True
+    n = _notifier(cfg)
+    for i in range(3):
+        w = Warning(id=f"w{i}", headline=f"uyari {i}", kind="marine-weather",
+                    org="Open-Meteo", area="Marmara", lat=40.7, lon=28.3)
+        n.warning(w, dry=True)
+    assert n._sent == set()          # nothing sent yet, all queued
+    assert len(n._queue) == 3
+    n.flush(dry=True)
+    assert len(n._queue) == 0
+    assert {"wx:w0", "wx:w1", "wx:w2"} <= n._sent
+
+
+def test_digest_sart_bypasses_queue(cfg):
+    cfg["alert"]["telegram"]["digest"] = True
+    n = _notifier(cfg)
+    inc = Incident(id="s9", type="distress", status="signal", lat=41.0, lon=29.0)
+    inc.sources.append(Source(kind="ais-sart", org="AIS", detail="SART"))
+    n.incident(inc, dry=True)
+    assert "inc:s9:signal:1" in "".join(n._sent)   # sent immediately, not queued
+    assert n._queue == []

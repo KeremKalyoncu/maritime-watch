@@ -2,46 +2,48 @@
 
 ## Done
 
-- [x] Repo skeleton, config (`config.yaml` + `.env`), CAP-like `Incident`/`Warning` model
-- [x] JSON store + append-only event log
-- [x] AIS ingest: aisstream.io burst capture, sample fallback, no hardware
-- [x] AIS-SART / MOB (MMSI 970/972/974) + AIS safety broadcast (msg 14)
-- [x] Rule-based AIS anomaly: nav-status, speed-drop, course-spike, ais-gap; persistent tracks
-- [x] Correlation/dedup by position + time window
-- [x] Classify: status ladder, confidence, severity, Turkish sea-area geocoding + place hints
-- [x] Sources: Open-Meteo marine+wind, AFAD earthquakes, Sahil Güvenlik, news RSS (5 feeds),
-      GDACS RSS, coastal METAR; NGA NAVAREA III (code ready, endpoint down)
-- [x] Rich Telegram messages: coordinates, nearest port + bearing, Google Maps link,
-      map deep-link, MarineTraffic link, `sendLocation` pin; sends confirmed + probable + SART
-- [x] Leaflet + OpenSeaMap map, timeline, `#id` deep-link, "doğrulanmadı" labels, auto-refresh
-- [x] RSS feed (`feed.xml`) + `summary.json`
-- [x] `src/sdr/` integration guide (DSC / NAVTEX / Whisper) + experimental stub
-- [x] Tests (48, offline) + `.github/workflows/tests.yml`
-- [x] `.github/workflows/update.yml`: free GitHub Actions + Pages deployment
-- [x] README with data-source table + legal-design section, NOTICE, CONTRIBUTING
+**Core**
+- [x] Config (`config.yaml` + `.env`), CAP-like `Incident`/`Warning` model, JSON store + `events.jsonl`
+- [x] AIS burst ingest (no hardware): PositionReport, ShipStaticData, SafetyBroadcast (msg 14)
+- [x] AIS-SART / MOB (MMSI 970/972/974) → instant critical alert
+- [x] Rule-based anomaly: nav-status, speed-drop, course-spike, ais-gap; persistent tracks
+- [x] Ship-type-aware thresholds (fishing loiter suppressed, cargo/tanker sensitive)
+- [x] Turkish text extraction: vessel name, coordinates (DMS + decimal), casualties, places
+- [x] Incident entity resolution — merge by MMSI / vessel name / place / proximity + time window
+- [x] Warning `same_hazard` merge — "N bağımsız kaynak doğruluyor"; same-source re-fetch is a refresh, not a confirmation
+- [x] Classify: status ladder, confidence, severity, nearest port
+- [x] Polygon sea areas (`regions.geojson`, point-in-polygon), no GIS dependency
+- [x] Prune: TTL expiry, official "resolved" phrase closes an incident, seed drop once live
 
-## Your part (see README "Hızlı başlangıç")
+**Sources** (all `_safe`-wrapped)
+- [x] Open-Meteo marine+wind, AFAD+USGS+EMSC quakes, Sahil Güvenlik, news RSS ×10,
+      GDACS RSS, NASA EONET, coastal METAR; NGA NAVAREA III + ReliefWeb (code ready, endpoints down)
 
-- [ ] `git push` to GitHub
-- [ ] AISSTREAM_KEY (free) → `.env` and repo Secrets
-- [ ] Telegram bot token + chat id (free) → `.env` and repo Secrets
-- [ ] Enable GitHub Pages (Settings → Pages → GitHub Actions) **or** pick a host
-- [ ] Smoke test: `py run.py --once --serve`, open the map, send a dry-run alert
-- [ ] Reach out: Sahil Güvenlik basın / AFAD / a newsroom data desk, a balıkçı kooperatifi
+**Output**
+- [x] Leaflet + OpenSeaMap map: region filter, TR/EN toggle, `#id` deep-link, stale-data banner, health line
+- [x] `stats.html` + `stats.json` (by month / area / type / status, top vessels, resolution time)
+- [x] `feed.xml` RSS, `summary.json`, `health.json`
+- [x] Telegram: plain-Turkish messages, per-cycle digest (SART instant), `sendLocation`, operator health alert
+
+**Quality**
+- [x] Tests (69, offline) + eval harness (`eval/run_eval.py` → `REPORT.md`)
+- [x] CI: ruff + pytest matrix (3.11/3.12/3.13) + eval, free GitHub Actions/Pages deploy
+- [x] `ARCHITECTURE.md`, README, NOTICE, CONTRIBUTING
+
+## Your part
+
+- [ ] `git push`; add repo Secrets: `AISSTREAM_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`
+- [ ] Settings → Pages → GitHub Actions; run `update-and-publish` once
+- [ ] Telegram: add the bot as channel admin, set `TELEGRAM_CHAT_ID=@channel`
+- [ ] (recommended) move off GitHub cron to a €1–4/mo VPS + `--loop` for real-time
+- [ ] Reach out: newsroom data desk / balıkçı kooperatifi / AFAD-SG digital team
 
 ## Next
 
-- [ ] Working NGA NAVAREA III endpoint (current one 404s) or Kıyı Emniyeti NAVTEX text feed
-- [ ] MGM marine endpoint if a stable one turns up
-- [ ] `data/dsc_alerts.jsonl` reader → wire the DSC module into `run.py`
-- [ ] Polygon sea areas (GeoJSON) instead of bounding boxes
-- [ ] Resolve/false-positive automation (match a later "kurtarıldı/sonuçlandı" item to an open incident)
-- [ ] Per-region Telegram channels so a balıkçı only gets their sea
-- [ ] Map UI i18n (EN)
-- [ ] AIS anomaly eval harness + a labelled synthetic set; publish precision/recall
-
-## Later / maybe
-
-- [ ] Optional AIS via local `AIS-catcher` / `rtl_ais` when hardware is present
-- [ ] Whisper eval corpus + WER numbers in WRITEUP (only if the voice path proves worth it)
-- [ ] Historical archive view (play back `events.jsonl`)
+- [ ] Working NGA NAVAREA III endpoint, ReliefWeb v2, an MGM marine endpoint
+- [ ] Kandilli (KOERI) as a fourth quake source
+- [ ] Wire the DSC module (`data/dsc_alerts.jsonl` reader) when hardware / a KiwiSDR feed exists
+- [ ] Route deviation vs a learned traffic model (currently only rule-based)
+- [ ] Per-region Telegram channels (`/abone <bölge>`)
+- [ ] Draw `regions.geojson` on the map; per-incident detail page with the AIS track
+- [ ] Grow `eval/labels.json` with real historical cases; calibrate confidence weights

@@ -22,6 +22,22 @@ yayınlar.
 Ne sağlamaz: kurtarma yapmaz (o Sahil Güvenlik'in işi), AIS'i olmayan tekneleri
 (göçmen botlarının çoğu) göremez, "ilk duyan biz" garantisi vermez.
 
+## Nasıl çalışır (özet)
+
+- **Poligon deniz bölgeleri** — bbox değil, `regions.geojson` point-in-polygon → "İstanbul Boğazı", "Marmara Denizi" gibi kesin bölge
+- **Gemi-tipi farkında anomali** — balıkçı teknesi durması normal, boğazda kargo/tanker durması kritik (AIS tipi kodundan)
+- **AIS-SART / MOB** — imdat vericisinin MMSI'si tek başına alarm (anında gönderilir)
+- **Olay birleştirme** — aynı gerçek olay (haber × 8 + AIS izi + resmi açıklama) tek zengin kayıt olur (gemi adı / MMSI / yer / zaman eşleşmesi)
+- **Uyarı birleştirme** — aynı tehlikeyi veren AFAD + USGS + EMSC → tek kayıt, *"3 bağımsız kaynak doğruluyor"*
+- **Türkçe metin çıkarma** — haber/resmi metinden gemi adı, koordinat (DMS + ondalık), kişi sayısı
+- **Kendi kendini temizleme** — bayat uyarı süresi dolunca silinir, "operasyon tamamlandı" diyen resmi kaynak olayı kapatır
+- **Sağlık takibi** — `health.json`: kaynak başına canlı/örnek/down; 3+ kaynak düşerse operatöre uyarı
+- **Bayat veri bandı** — cron atlarsa harita "veri X saat eski" der
+- **TR / EN**, bölge filtresi, `stats.html` (aylara/bölgeye/türe göre)
+- **Eval** — [`eval/REPORT.md`](eval/REPORT.md): anomali/haber/çıkarma precision-recall
+
+Mimari: [`ARCHITECTURE.md`](ARCHITECTURE.md).
+
 ---
 
 ## Veri kaynakları

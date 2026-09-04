@@ -17,6 +17,10 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
+from .shiptype import CATEGORY_TR as SHIP_CAT_TR
+from .shiptype import category as ship_category
+from .shiptype import profile as ship_profile
+
 NAV_STATUS = {
     2: "kumanda dışı (not under command)",
     6: "karaya oturmuş (aground)",
@@ -70,6 +74,8 @@ class VesselState:
             v = self.data.setdefault(key, {"track": [], "name": ""})
             if p.get("name"):
                 v["name"] = p["name"]
+            if p.get("type_code") is not None:
+                v["type_code"] = p["type_code"]
             v["track"].append({
                 "lat": p["lat"], "lon": p["lon"], "sog": p.get("sog"),
                 "cog": p.get("cog"), "nav": p.get("nav_status"), "ts": p.get("ts"),
@@ -106,26 +112,33 @@ def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[s
     # rules driven by the current position plus the stored track
     for key, p in latest.items():
         nav = p.get("nav_status")
-        name = p.get("name") or state.data.get(key, {}).get("name", "")
-        track = state.data.get(key, {}).get("track", [])
+        vstate = state.data.get(key, {})
+        name = p.get("name") or vstate.get("name", "")
+        track = vstate.get("track", [])
+        prof = ship_profile(p.get("type_code", vstate.get("type_code")))
+        cat = ship_category(p.get("type_code", vstate.get("type_code")))
 
         if nav in NAV_STATUS:
             out.append(Anomaly(int(key), "nav-status", NAV_STATUS[nav], p["lat"], p["lon"],
                                "critical" if nav == 6 else "major", name))
 
         sogs = [t["sog"] for t in track if t.get("sog") is not None]
-        if len(sogs) >= 3:
-            was_moving = max(sogs[:-1]) >= a["moving_speed_kn"]
+        if prof["speed_drop"] and len(sogs) >= 3:
+            move_bar = a["moving_speed_kn"] * (0.6 if prof["sensitive"] else 1.0)
+            was_moving = max(sogs[:-1]) >= move_bar
             sustained_stop = sogs[-1] <= a["stopped_speed_kn"] and sogs[-2] <= a["stopped_speed_kn"]
             if was_moving and sustained_stop and nav not in (1, 5):  # not anchored / moored
-                out.append(Anomaly(int(key), "speed-drop",
-                                   f"seyir hızından ({max(sogs[:-1]):.1f} kn) ani duruşa geçti",
-                                   p["lat"], p["lon"], "major", name))
+                label = SHIP_CAT_TR.get(cat, "")
+                sev = "major" if not prof["sensitive"] else "critical"
+                detail = f"{label + ' ' if label and label != 'bilinmiyor' else ''}".strip()
+                detail = (f"{detail}: " if detail else "") + \
+                         f"seyir hızından ({max(sogs[:-1]):.1f} kn) ani duruşa geçti"
+                out.append(Anomaly(int(key), "speed-drop", detail, p["lat"], p["lon"], sev, name))
 
-        cogs = [t["cog"] for t in track if t.get("cog") is not None]
+        cogs = [t["cog"] for t in track if t.get("cog") is not None][-3:]
         if len(cogs) >= 2 and any((s or 0) > a["moving_speed_kn"] for s in sogs[-3:]):
-            d = abs(cogs[-1] - cogs[-2]) % 360
-            d = min(d, 360 - d)
+            d = max(min(abs(cogs[i] - cogs[i - 1]) % 360, 360 - abs(cogs[i] - cogs[i - 1]) % 360)
+                    for i in range(1, len(cogs)))
             if d >= a["course_change_deg"]:
                 out.append(Anomaly(int(key), "course-spike", f"ani rota değişimi (~{d:.0f}°)",
                                    p["lat"], p["lon"], "minor", name))

@@ -58,6 +58,7 @@ class Notifier:
         self.only_status = set(tcfg.get("only_status", ["confirmed"]))
         self.prevention = tcfg.get("prevention", True)
         self.pin = tcfg.get("send_location_pin", True)
+        self.digest = tcfg.get("digest", True)      # one combined message per cycle
         self.site = (cfg.get("site") or {}).get("url", "").rstrip("/")
 
         data_dir = Path(cfg["_root"]) / "data"
@@ -68,6 +69,7 @@ class Notifier:
             self._sent = set(json.loads(self.sent_path.read_text("utf-8")))
         except Exception:
             self._sent = set()
+        self._queue: list[tuple] = []              # (key, text, lat, lon) pending digest
 
     def _remember(self, key: str) -> None:
         self._sent.add(key)
@@ -84,26 +86,74 @@ class Notifier:
             print(f"[telegram] {method} error: {e}")
         return False
 
-    def _emit(self, key: str, text: str, dry: bool, lat=None, lon=None) -> None:
-        if key in self._sent:
-            return
-        with self.outbox.open("a", encoding="utf-8") as f:
-            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')}  [{key}]\n{text}\n{'-' * 60}\n")
-
+    def _send_one(self, key: str, text: str, dry: bool, lat=None, lon=None) -> None:
         if dry or not self.token or not self.chat:
             print(f"[telegram:dry] {text.splitlines()[0] if text else ''}")
             self._remember(key)
             return
-
-        ok = self._post("sendMessage", {
+        if self._post("sendMessage", {
             "chat_id": self.chat, "text": text, "parse_mode": "HTML",
             "disable_web_page_preview": "true",
-        })
-        if ok:
+        }):
             print(f"[telegram] sent key={key}")
             self._remember(key)
             if self.pin and lat is not None and lon is not None:
                 self._post("sendLocation", {"chat_id": self.chat, "latitude": lat, "longitude": lon})
+
+    def _emit(self, key: str, text: str, dry: bool, lat=None, lon=None, urgent: bool = False) -> None:
+        if key in self._sent or any(k == key for k, *_ in self._queue):
+            return
+        with self.outbox.open("a", encoding="utf-8") as f:
+            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')}  [{key}]\n{text}\n{'-' * 60}\n")
+
+        if urgent or not self.digest:
+            self._send_one(key, text, dry, lat, lon)
+        else:
+            self._queue.append((key, text, lat, lon))
+
+    def flush(self, dry: bool = True) -> None:
+        """Send everything queued this cycle as one message (or a few if long)."""
+        if not self._queue:
+            return
+        q, self._queue = self._queue, []
+        stamp = time.strftime("%H:%M")
+        blocks = [f"🔔 <b>{len(q)} yeni bildirim · {stamp}</b>"]
+        for _k, text, _la, _lo in q:
+            head = []
+            for line in text.splitlines():
+                if line.startswith("<i>") or line.startswith("📚"):
+                    break
+                head.append(line)
+            blocks.append("\n".join(head).strip())
+
+        sep = "\n\n➖➖➖➖➖\n\n"
+        chunks, cur = [], blocks[0]
+        for b in blocks[1:]:
+            if len(cur) + len(sep) + len(b) > 3800:
+                chunks.append(cur)
+                cur = b
+            else:
+                cur += sep + b
+        chunks.append(cur)
+
+        keys = [k for k, *_ in q]
+        with self.outbox.open("a", encoding="utf-8") as f:
+            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')}  [DIGEST {len(q)} items]\n"
+                    + f"\n\n{'=' * 60}\n\n".join(chunks) + f"\n{'-' * 60}\n")
+        if dry or not self.token or not self.chat:
+            print(f"[telegram:dry] digest: {len(q)} bildirim, {len(chunks)} mesaj")
+            for k in keys:
+                self._remember(k)
+            return
+        sent_any = False
+        for c in chunks:
+            if self._post("sendMessage", {"chat_id": self.chat, "text": c,
+                                          "parse_mode": "HTML", "disable_web_page_preview": "true"}):
+                sent_any = True
+        if sent_any:
+            print(f"[telegram] digest sent ({len(q)} items)")
+            for k in keys:
+                self._remember(k)
 
     def _where(self, lat, lon, area) -> str:
         """One plain-language 'where' line."""
@@ -163,7 +213,7 @@ class Notifier:
         lines.append("<i>Bu otomatik bir derlemedir; resmi açıklamayı esas alın.</i>")
         lines.append("<b>Acil durumda: 158 Sahil Güvenlik  ·  112</b>")
         self._emit(f"inc:{inc.id}:{inc.status}:{len(inc.sources)}", "\n".join(lines), dry,
-                   inc.lat, inc.lon)
+                   inc.lat, inc.lon, urgent=is_sart)
 
     # ---- warning -------------------------------------------------------------
     def _weather_body(self, w) -> list[str]:
@@ -214,6 +264,13 @@ class Notifier:
         else:
             lines.append("<i>Resmi kaynağı takip edin.</i>")
         self._emit(f"wx:{w.id}", "\n".join(lines), dry, w.lat, w.lon)
+
+    def operator(self, text: str, dry: bool = True) -> None:
+        """System health notice. Sent once per day per distinct message."""
+        if not self.enabled:
+            return
+        key = "ops:" + time.strftime("%Y-%m-%d") + ":" + str(abs(hash(text)) % 100000)
+        self._emit(key, f"{html.escape(text)}", dry, urgent=True)
 
     def warning_confirmed(self, w, dry: bool = True) -> None:
         if not self.enabled or not self.prevention:

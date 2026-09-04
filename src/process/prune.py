@@ -6,9 +6,18 @@ map. Also drops the bundled demo seeds once real data has arrived.
 
 from __future__ import annotations
 
+import re
 import time
 
 from .dedup import _epoch
+
+# phrases that mean the situation is over (not just "rescued", which is also how
+# an incident is first reported)
+_RESOLVED_RE = re.compile(
+    r"tamamland|sona er|sonuçland|sağ salim|yara almadan|"
+    r"limana (getiril|çekil|ulaş)|karaya (çıkarıl|alın)|operasyon.*son",
+    re.IGNORECASE,
+)
 
 # how long a warning stays "active" after its last update, by kind (hours)
 _WARN_TTL_H = {
@@ -31,28 +40,39 @@ def prune(store) -> tuple[int, int]:
     dropped_w = dropped_i = 0
 
     for wid, w in list(store.warnings.items()):
-        if "seed" in wid and real_w:
-            del store.warnings[wid]; dropped_w += 1; continue
         age = _age_h(w.last_update or w.issued)
-        if age is not None and age > _WARN_TTL_H.get(w.kind, 48):
-            del store.warnings[wid]; dropped_w += 1
+        expired = age is not None and age > _WARN_TTL_H.get(w.kind, 48)
+        if ("seed" in wid and real_w) or expired:
+            del store.warnings[wid]
+            dropped_w += 1
 
     for iid, inc in list(store.incidents.items()):
         if "seed" in iid and real_inc:
-            del store.incidents[iid]; dropped_i += 1; continue
+            del store.incidents[iid]
+            dropped_i += 1
+            continue
 
         age = _age_h(inc.last_update)
         if inc.status in ("resolved", "false-positive"):
             if age is not None and age > _HISTORY_H:
-                del store.incidents[iid]; dropped_i += 1
-            continue
-        if age is None:
+                del store.incidents[iid]
+                dropped_i += 1
             continue
 
+        # an official source now says it is over -> close it, whatever the age
+        if any(s.kind == "official" and _RESOLVED_RE.search(s.detail or "") for s in inc.sources):
+            inc.status = "resolved"
+            inc.notes.append("resmi kaynak olayın sonuçlandığını bildirdi")
+            dropped_i += 1
+            continue
+
+        if age is None:
+            continue
         limit = _INC_RESOLVE_H.get(inc.status)
         if limit and age > limit:
             if inc.status == "signal":
-                del store.incidents[iid]; dropped_i += 1
+                del store.incidents[iid]
+                dropped_i += 1
             else:
                 inc.status = "resolved"
                 inc.notes.append(f"otomatik kapandı: ~{age:.0f} saat güncelleme yok")

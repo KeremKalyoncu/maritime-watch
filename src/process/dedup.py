@@ -69,20 +69,52 @@ def same_hazard(a: Warning, b: Warning) -> bool:
     return (same_area or d <= 70) and gap <= 36 * 60
 
 
+def _vname(v) -> str:
+    return (v.name or "").translate(_TR_LOWER).lower().strip() if v else ""
+
+
+def _same_event(inc: Incident, cand: Incident, radius_nm: float) -> bool:
+    """One real event, seen by different sources? Match on any strong signal
+    (same MMSI, same vessel name, same place cluster) or plain proximity — all
+    gated by a time window so a week-old incident won't absorb a fresh one."""
+    if _minutes_apart(inc.last_update, cand.first_seen) > 4 * 24 * 60:
+        return False
+
+    if inc.vessel.mmsi and inc.vessel.mmsi == cand.vessel.mmsi:
+        return True
+    vn_i, vn_c = _vname(inc.vessel), _vname(cand.vessel)
+    if vn_i and vn_i == vn_c:
+        return True
+
+    shared_place = bool(set(inc.places) & set(cand.places))
+    d = dist_nm(inc.lat, inc.lon, cand.lat, cand.lon)
+    if shared_place and (d <= 40 or (inc.area and inc.area == cand.area)):
+        return True
+    return d <= radius_nm
+
+
 def correlate(store, candidate: Incident, radius_nm: float = 8.0) -> Incident:
-    """If a nearby open incident exists, merge candidate's sources into it and
-    return that incident; otherwise return the candidate unchanged."""
+    """If an open incident describes the same event, merge the candidate into it
+    and return it; otherwise return the candidate unchanged."""
     for inc in store.active_incidents():
         if inc.status in ("resolved", "false-positive"):
             continue
-        if dist_nm(inc.lat, inc.lon, candidate.lat, candidate.lon) <= radius_nm:
-            for s in candidate.sources:
-                inc.add_source(s)
-            if candidate.vessel.mmsi and not inc.vessel.mmsi:
-                inc.vessel = candidate.vessel
-            if candidate.casualties is not None:
-                inc.casualties = candidate.casualties
-            if candidate.type != "unknown" and inc.type == "unknown":
-                inc.type = candidate.type
-            return inc
+        if not _same_event(inc, candidate, radius_nm):
+            continue
+        for s in candidate.sources:
+            inc.add_source(s)
+        if candidate.vessel.mmsi and not inc.vessel.mmsi:
+            inc.vessel.mmsi = candidate.vessel.mmsi
+        if candidate.vessel.name and not inc.vessel.name:
+            inc.vessel.name = candidate.vessel.name
+        if candidate.casualties is not None:
+            inc.casualties = max(candidate.casualties, inc.casualties or 0)
+        if candidate.type != "unknown" and inc.type == "unknown":
+            inc.type = candidate.type
+        if candidate.lat is not None and inc.lat is None:
+            inc.lat, inc.lon, inc.area = candidate.lat, candidate.lon, candidate.area
+        for pl in candidate.places:
+            if pl not in inc.places:
+                inc.places.append(pl)
+        return inc
     return candidate

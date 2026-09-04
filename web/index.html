@@ -10,31 +10,40 @@
 </head>
 <body>
   <header>
-    <h1>Maritime&nbsp;Watch</h1>
-    <p class="tag">Türkiye karasuları — AIS anomalileri + resmi açıklamalar, tek yerde.
-      <strong>Sinyaller doğrulanana kadar “doğrulanmadı” etiketlidir.</strong></p>
+    <div class="topbar">
+      <h1>Maritime&nbsp;Watch</h1>
+      <div class="ctrl">
+        <select id="region" title="Bölge"></select>
+        <a href="stats.html" data-i="stats">İstatistik</a>
+        <button id="lang" type="button">EN</button>
+      </div>
+    </div>
+    <p class="tag" data-i="tag">Türkiye karasuları — AIS anomalileri + resmi açıklamalar, tek yerde.
+      Sinyaller doğrulanana kadar “doğrulanmadı” etiketlidir.</p>
     <p class="meta" id="meta">yükleniyor…</p>
+    <div id="stale" hidden></div>
   </header>
 
   <main>
     <div id="map"></div>
     <aside id="side">
       <div class="legend">
-        <span><i class="dot s-confirmed"></i>doğrulandı</span>
-        <span><i class="dot s-probable"></i>olası</span>
-        <span><i class="dot s-signal"></i>sinyal (doğrulanmadı)</span>
-        <span><i class="dot s-resolved"></i>kapandı</span>
-        <span><i class="dot s-warning"></i>hava uyarısı</span>
+        <span><i class="dot s-confirmed"></i><b data-i="l-confirmed">doğrulandı</b></span>
+        <span><i class="dot s-probable"></i><b data-i="l-probable">olası</b></span>
+        <span><i class="dot s-signal"></i><b data-i="l-signal">sinyal (doğrulanmadı)</b></span>
+        <span><i class="dot s-resolved"></i><b data-i="l-resolved">kapandı</b></span>
+        <span><i class="dot s-warning"></i><b data-i="l-warning">hava uyarısı</b></span>
       </div>
-      <h2>Zaman çizelgesi</h2>
+      <h2 data-i="timeline">Zaman çizelgesi</h2>
       <ol id="timeline"></ol>
     </aside>
   </main>
 
   <footer>
-    <span>Açık kaynak · <a href="https://github.com/" id="repo-link">GitHub</a></span>
-    <span>Kaynaklar: aisstream.io · Meteoroloji Genel Müdürlüğü · Sahil Güvenlik · AFAD · OpenSeaMap</span>
-    <span>Bu bir kurtarma servisi değildir. Acil durumda <strong>158</strong> (Sahil Güvenlik) / <strong>112</strong>.</span>
+    <span>Açık kaynak · <a href="https://github.com/KeremKalyoncu/maritime-watch" id="repo-link">GitHub</a>
+      · <span id="sys">—</span></span>
+    <span data-i="sources">Kaynaklar: aisstream.io · Open-Meteo · AFAD/USGS/EMSC · Sahil Güvenlik · GDACS · NASA EONET · haber RSS · OpenSeaMap</span>
+    <span data-i="disclaimer">Bu bir kurtarma servisi değildir. Acil durumda <strong>158</strong> (Sahil Güvenlik) / <strong>112</strong>.</span>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>

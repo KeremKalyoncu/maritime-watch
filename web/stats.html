@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maritime Watch — İstatistik</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8A%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .wrap { max-width: 900px; margin: 0 auto; padding: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+    .card h3 { margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+    .kpi { font-size: 28px; font-weight: 700; }
+    .row { display: flex; align-items: center; gap: 8px; margin: 4px 0; font-size: 13px; }
+    .row .lbl { flex: 0 0 40%; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bar { height: 8px; border-radius: 4px; background: #3b82f6; min-width: 2px; }
+    .row .num { margin-left: auto; }
+    a.back { color: #8ab4f8; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a class="back" href="index.html">← Harita</a></p>
+    <h1>İstatistik</h1>
+    <p class="meta" id="gen">yükleniyor…</p>
+    <div class="grid" id="grid"></div>
+  </div>
+  <script>
+    "use strict";
+    const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    function barCard(title, obj) {
+      const entries = Array.isArray(obj) ? obj : Object.entries(obj || {});
+      const max = Math.max(1, ...entries.map(e => e[1]));
+      const rows = entries.slice(0, 12).map(([k, v]) =>
+        `<div class="row"><span class="lbl" title="${esc(k)}">${esc(k)}</span>
+          <span class="bar" style="width:${Math.round(120 * v / max)}px"></span>
+          <span class="num">${v}</span></div>`).join("");
+      return `<div class="card"><h3>${esc(title)}</h3>${rows || "<div class='row'>—</div>"}</div>`;
+    }
+    function kpiCard(title, val) {
+      return `<div class="card"><h3>${esc(title)}</h3><div class="kpi">${esc(val)}</div></div>`;
+    }
+    (async () => {
+      let s = null;
+      try { s = await (await fetch("data/stats.json?" + Date.now(), { cache: "no-store" })).json(); } catch (e) {}
+      if (!s) { document.getElementById("gen").textContent = "veri yok"; return; }
+      document.getElementById("gen").textContent = "Üretim: " + new Date(s.generated).toLocaleString("tr-TR");
+      const g = document.getElementById("grid");
+      g.innerHTML = [
+        kpiCard("Toplam olay", s.total_incidents),
+        kpiCard("Bildirilen kişi (toplam)", s.casualties_reported_total),
+        kpiCard("Kişili olay sayısı", s.incidents_with_casualties),
+        kpiCard("Medyan çözülme süresi (saat)", s.median_resolution_hours == null ? "—" : s.median_resolution_hours),
+        barCard("Aylara göre", s.by_month),
+        barCard("Bölgeye göre", s.by_area),
+        barCard("Türe göre", s.by_type),
+        barCard("Duruma göre", s.by_status),
+        barCard("En sık geçen tekneler", s.top_vessels),
+      ].join("");
+    })();
+  </script>
+</body>
+</html>

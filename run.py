@@ -38,7 +38,9 @@ from src.process.classify import classify
 from src.process.dedup import correlate
 from src.process.prune import prune
 from src.render.feed import build_feed
+from src.render.health import write_health
 from src.render.mapdata import write_summary
+from src.render.stats import build_stats
 from src.store import Store
 
 _TYPE_FOR = {
@@ -50,21 +52,26 @@ _TYPE_FOR = {
 }
 
 
-def _safe(label, fn, default):
-    try:
-        return fn()
-    except Exception as e:  # keep one bad source from stopping the cycle
-        print(f"[{label}] error: {e}")
-        return default
-
-
 def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool = True) -> None:
+    started = time.time()
     root = Path(cfg["_root"])
     web_data = root / "web" / "data"
     store = Store(str(web_data), log_dir=str(root / "data"))
     notifier = Notifier(cfg)
     src = cfg.get("sources", {})
     touched: set[str] = set()          # incident ids seen this cycle -> notify at end
+    health: list[dict] = []
+
+    def _safe(label, fn, default):
+        try:
+            r = fn()
+            n = len(r) if isinstance(r, (list, tuple)) else None
+            health.append({"source": label, "ok": True, "items": n, "error": None})
+            return r
+        except Exception as e:  # keep one bad source from stopping the cycle
+            print(f"[{label}] error: {e}")
+            health.append({"source": label, "ok": False, "items": None, "error": str(e)[:200]})
+            return default
 
     if do_ais:
         records = capture_ais(cfg)
@@ -156,9 +163,18 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     if dw or di:
         print(f"[prune] {dw} warning(s) expired, {di} incident(s) closed/removed")
 
+    h = write_health(str(web_data), health, started,
+                     len(store.active_incidents()), len(store.active_warnings()))
+    down = h["sources_down"]
+    if len(down) >= 3:
+        notifier.operator(f"⚙️ {len(down)} kaynak yanıt vermiyor: {', '.join(down)}", dry=dry)
+    print(f"[health] {h['sources_ok']}/{h['sources_total']} kaynak OK, {h['cycle_seconds']}s")
+
+    notifier.flush(dry=dry)     # one digest message for everything this cycle
     store.save()
     build_feed(store, str(web_data))
-    write_summary(store, str(web_data))
+    write_summary(store, str(web_data), stale_hours=cfg.get("alert", {}).get("stale_hours", 2))
+    build_stats(str(root / "data" / "events.jsonl"), str(web_data))
     print(f"[done] incidents={len(store.active_incidents())} warnings={len(store.active_warnings())}")
 
 

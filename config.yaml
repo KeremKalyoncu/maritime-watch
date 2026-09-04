@@ -103,10 +103,13 @@ news:
     - "https://gcaptain.com/feed/"
   # a headline must contain one maritime word AND one incident word
   maritime_words: ["deniz", "tekne", "gemi", "balıkçı", "sahil", "liman", "kıyı",
-                   "boğaz", "feribot", "yat", "sandal", "denizci", "açıklar"]
-  incident_words: ["battı", "battı", "batan", "alabora", "kurtar", "kayıp", "mahsur",
+                   "boğaz", "feribot", "yat", "sandal", "denizci", "açıklar",
+                   "tanker", "körfez", "şilep", "römorkör", "yelkenli", "kotra",
+                   "gemisi", "teknesi", "vapur", "iskele"]
+  incident_words: ["battı", "batan", "alabora", "kurtar", "kayıp", "mahsur",
                    "yaralı", "kaza", "arama kurtarma", "sürüklen", "can kaybı",
-                   "göçmen", "fırtına", "dalga", "mahsur", "boğul"]
+                   "göçmen", "fırtına", "boğul", "hayatını kaybet", "karaya otur",
+                   "su alıyor", "su aldı", "tahliye", "mahsur", "yan yattı"]
 
 gdacs:
   alert_levels: ["Orange", "Red"]
@@ -125,7 +128,9 @@ alert:
     only_status: ["confirmed", "probable"]   # incident statuses that get pushed
     prevention: true                          # push weather / quake / navwarn / gdacs
     send_location_pin: true                   # also send a Telegram map pin
+    digest: true                              # one combined message per cycle (SART still instant)
   min_severity: "major"
+  stale_hours: 2                              # map shows a "data is old" banner past this
 
 loop:
   interval_seconds: 900

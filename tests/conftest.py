@@ -36,8 +36,8 @@ def cfg(tmp_path):
         "gdacs": {"alert_levels": ["Orange", "Red"], "event_types": ["TC", "FL", "EQ", "WF"]},
         "metar": {"stations": ["LTBA", "LTFE", "LTAI"], "wind_gust_kn": 33.0, "visibility_m": 2000},
         "alert": {"telegram": {"enabled": True, "only_status": ["confirmed", "probable"],
-                               "prevention": True, "send_location_pin": True},
-                  "min_severity": "major"},
+                               "prevention": True, "send_location_pin": True, "digest": False},
+                  "min_severity": "major", "stale_hours": 2},
         "loop": {"interval_seconds": 900},
         "secrets": {"aisstream_key": "", "telegram_token": "", "telegram_chat_id": ""},
     }
