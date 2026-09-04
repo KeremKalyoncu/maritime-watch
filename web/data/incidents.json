@@ -1,130 +1,5 @@
 [
   {
-    "id": "2026-09-03-seed-ais01",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 41.1183,
-    "lon": 29.041,
-    "area": "İstanbul Boğazı",
-    "vessel": {
-      "name": "DENIZ YILDIZI",
-      "mmsi": 271000002,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T09:00:05Z",
-    "last_update": "2026-09-03T09:00:05Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-03T09:00:05Z"
-      }
-    ],
-    "notes": [
-      "Örnek kayıt — ilk 'py run.py --once' çalıştırmasında gerçek veriyle değişir."
-    ]
-  },
-  {
-    "id": "2026-09-03-seed-ais02",
-    "type": "distress",
-    "status": "probable",
-    "confidence": 0.55,
-    "severity": "major",
-    "lat": 42.02,
-    "lon": 30.05,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "KIYI 12",
-      "mmsi": 271000009,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T08:10:00Z",
-    "last_update": "2026-09-03T08:55:00Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali ~50 dk önce kesildi",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-03T08:55:00Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Yerel haber: bölgede kötü hava, bir teknenin dönmediği bildirildi",
-        "org": "yerel",
-        "url": null,
-        "ts": "2026-09-03T08:50:00Z"
-      }
-    ],
-    "notes": []
-  },
-  {
-    "id": "2026-09-03-seed-off01",
-    "type": "unknown",
-    "status": "confirmed",
-    "confidence": 0.6,
-    "severity": "critical",
-    "lat": 38.32,
-    "lon": 26.3,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": 12,
-    "first_seen": "2026-09-03T07:40:00Z",
-    "last_update": "2026-09-03T07:40:00Z",
-    "sources": [
-      {
-        "kind": "official",
-        "detail": "Çeşme açıklarında lastik botta mahsur kalan 12 düzensiz göçmen kurtarıldı",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/",
-        "ts": "2026-09-03T07:40:00Z"
-      }
-    ],
-    "notes": []
-  },
-  {
-    "id": "2026-09-02-seed-off02",
-    "type": "capsize",
-    "status": "confirmed",
-    "confidence": 0.6,
-    "severity": "critical",
-    "lat": 41.45,
-    "lon": 31.79,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": 2,
-    "first_seen": "2026-09-02T18:20:00Z",
-    "last_update": "2026-09-02T18:20:00Z",
-    "sources": [
-      {
-        "kind": "official",
-        "detail": "Zonguldak açıklarında balıkçı teknesinin alabora olması sonucu 2 kişi kayıp",
-        "org": "AFAD",
-        "url": "https://www.afad.gov.tr/",
-        "ts": "2026-09-02T18:20:00Z"
-      }
-    ],
-    "notes": []
-  },
-  {
     "id": "2026-09-03-rep-ccf586-4d701b",
     "type": "unknown",
     "status": "confirmed",
@@ -235,7 +110,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-03T23:11:12Z",
-    "last_update": "2026-09-04T05:59:20Z",
+    "last_update": "2026-09-04T09:06:26Z",
     "sources": [
       {
         "kind": "news",
@@ -278,6 +153,34 @@
         "org": "hurriyet.com.tr",
         "url": "https://www.hurriyet.com.tr/gundem/girne-ve-silivri-kayiplarini-ariyor-iki-limanda-aci-bekleyis-43295299",
         "ts": "2026-09-04T05:59:01Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Silivri’deki gemi kazasının 3. günü | Ön tespit raporu hazırlandı: 2 kaptan da kusurlu! Ailelerin bekleyişi sürüyor: Kazadan önce görüştük",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/silivrideki-gemi-kazasinin-3-gunu-on-tespit-raporu-hazirlandi-2-kaptan-da-kusurlu-ailelerin-bekleyisi-suruyor-kazadan-once-gorustuk-43295492",
+        "ts": "2026-09-04T09:06:08Z"
+      },
+      {
+        "kind": "news",
+        "detail": "SİLİVRİ GEMİ KAZASI KAYIPLARIN KİMLİKLERİ BELLİ OLDU: Tuğberk İmamoğlu ve ALSU Gemileri KAyıp Mürettabatlar Kimler? Ölü Yaralı Var Mı?",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/silivri-gemi-kazasi-kayiplarin-kimlikleri-belli-oldu-tugberk-imamoglu-ve-alsu-gemileri-kayip-murettabatlar-kimler-olu-yarali-var-mi-3461877",
+        "ts": "2026-09-04T09:06:09Z"
+      },
+      {
+        "kind": "news",
+        "detail": "TUĞBERK İMAMOĞLU GEMİSİ KİME AİT? Silivri'deki Gemi Kazasında Son Durum Ne? ALSU Gemisi ve Tuğberk İmamoğlu Gemisi Neden Çarpıştı?",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/tugberk-imamoglu-gemisi-kime-ait-silivrideki-gemi-kazasinda-son-durum-ne-alsu-gemisi-ve-tugberk-imamoglu-gemisi-neden-carpisti-3461697",
+        "ts": "2026-09-04T09:06:09Z"
+      },
+      {
+        "kind": "news",
+        "detail": "SON DAKİKA HABERİ: Silivri'deki kazada Alsu Gemisi'nin 1. ve 3. kaptanı tutuklandı",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/son-dakika-haberi-silivrideki-kazada-alsu-gemisinin-1-ve-3-kaptanina-tutuklama-talebi-3462519",
+        "ts": "2026-09-04T09:06:09Z"
       }
     ],
     "notes": []
@@ -829,6 +732,64 @@
         "org": "trthaber.com",
         "url": "https://www.trthaber.com/haber/gundem/kktcdeki-gemi-kazasinda-can-kaybi-10a-cikti-955817.html",
         "ts": "2026-09-04T05:59:03Z"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-62898",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T09:06:08Z",
+    "last_update": "2026-09-04T09:06:08Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'de batan gemiye binmeden 25 dakika önce çekildi! Demir kardeşlerin son görüntüsü ortaya çıktı",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girnede-batan-gemiye-binmeden-25-dakika-once-cekildi-demir-kardeslerin-son-goruntusu-ortaya-cikti-43295393",
+        "ts": "2026-09-04T09:06:08Z"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-44310",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T09:06:10Z",
+    "last_update": "2026-09-04T09:06:10Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'deki gemide can kaybı 12'ye yükseldi",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-12ye-yukseldi-955869.html",
+        "ts": "2026-09-04T09:06:10Z"
       }
     ],
     "notes": []
