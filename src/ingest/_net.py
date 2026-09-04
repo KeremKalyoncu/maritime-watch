@@ -17,6 +17,11 @@ def get_text(url: str, sample_name: str, headers: dict | None = None,
     try:
         r = requests.get(url, headers={**UA, **(headers or {})}, timeout=timeout)
         r.raise_for_status()
+        # requests defaults to ISO-8859-1 when the header carries no charset,
+        # which mangles Turkish RSS ("DAKÄ°KA"). Trust the byte sniff instead.
+        ct = r.headers.get("content-type", "").lower()
+        if "charset=" not in ct or (r.encoding or "").lower() in ("iso-8859-1", "latin-1"):
+            r.encoding = r.apparent_encoding or r.encoding
         return r.text, True
     except Exception as e:
         print(f"[fetch] {url} down ({e}) -> sample {sample_name}")
