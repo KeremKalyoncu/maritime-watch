@@ -117,7 +117,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-03T23:11:12Z",
-    "last_update": "2026-09-04T09:06:26Z",
+    "last_update": "2026-09-04T15:01:06Z",
     "sources": [
       {
         "kind": "news",
@@ -188,312 +188,40 @@
         "org": "cnnturk.com",
         "url": "https://www.cnnturk.com/turkiye/son-dakika-haberi-silivrideki-kazada-alsu-gemisinin-1-ve-3-kaptanina-tutuklama-talebi-3462519",
         "ts": "2026-09-04T09:06:09Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Silivri'deki gemi kazası | Tutuklanan kaptanların ifadesi ortaya çıktı! Kaza anını anlattılar: Yaklaşık 1-2 dakika içerisinde gemi kayboldu",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/silivrideki-gemi-kazasi-tutuklanan-kaptanlarin-ifadesi-ortaya-cikti-kaza-anini-anlattilar-yaklasik-1-2-dakika-icerisinde-gemi-kayboldu-43296026",
+        "ts": "2026-09-04T15:00:52Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Son dakika... Silivri açıklarındaki kazada batan geminin yeri tespit edildi",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/silivrideki-gemi-kazasinin-3-gunu-on-tespit-raporu-hazirlandi-2-kaptan-da-kusurlu-ailelerin-bekleyisi-suruyor-kazadan-once-gorustuk-43295492",
+        "ts": "2026-09-04T15:00:52Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Silivri açıklarında batan geminin yeri tespit edildi",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/gundem/silivri-aciklarinda-batan-geminin-yeri-tespit-edildi-955887.html",
+        "ts": "2026-09-04T15:00:54Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Silivri açıklarındaki kazada dümendeki kaptanın ifadesi ortaya çıktı!",
+        "org": "haberturk.com",
+        "url": "https://www.haberturk.com/gundem/son-dakika-silivri-aciklarindaki-kazada-dumendeki-kaptanin-ifadesi-ortaya-cikti-3910308",
+        "ts": "2026-09-04T15:00:55Z"
       }
     ],
     "notes": [],
     "places": [
       "Silivri"
     ]
-  },
-  {
-    "id": "2026-09-03-news-0d4047-68292",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T23:11:13Z",
-    "last_update": "2026-09-03T23:11:13Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne açıklarında batan gemiden yeni görüntüler! Su almaya başlayınca böyle uyarmış: 'Çalıştırılmaması gerekiyor'",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemiden-yeni-goruntuler-su-almaya-baslayinca-boyle-uyarmis-calistirilmamasi-gerekiyor-43294729",
-        "ts": "2026-09-03T23:11:13Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-03-news-0d4047-32143",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T23:11:15Z",
-    "last_update": "2026-09-03T23:11:15Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de batan yolcu gemisinde skandal Ã¼zerine skandal! KaptanlarÄ±n konuÅmasÄ± ortaya Ã§Ä±ktÄ±",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/girnede-batan-yolcu-gemisinde-skandal-uzerine-skandal-kaptanlarin-konusmasi-ortaya-cikti-3462285",
-        "ts": "2026-09-03T23:11:15Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-03-news-0d4047-83937",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T23:11:16Z",
-    "last_update": "2026-09-03T23:11:16Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de alabora olan gemiden kurtulan gençler korku dolu anları anlattı",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/girnede-alabora-olan-gemiden-kurtulan-gencler-korku-dolu-anlari-anlatti-955831.html",
-        "ts": "2026-09-03T23:11:16Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-03-news-0d4047-65214",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T23:11:16Z",
-    "last_update": "2026-09-03T23:11:16Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "KKTC'deki gemi kazasında can kaybı 10'a çıktı",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/kktcdeki-gemi-kazasinda-can-kaybi-10a-cikti-955817.html",
-        "ts": "2026-09-03T23:11:16Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-03-news-0d4047-25325",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T23:11:17Z",
-    "last_update": "2026-09-03T23:11:17Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "SON DAKİKA: Marmara'daki gemi faciasında 10 kayıp denizci aranıyor!",
-        "org": "milliyet.com.tr",
-        "url": "",
-        "ts": "2026-09-03T23:11:17Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-03-news-0d4047-91712",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T23:33:03Z",
-    "last_update": "2026-09-03T23:33:03Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne açıklarında batan gemiden yeni görüntüler! Su almaya başlayınca böyle uyarmış: 'Çalıştırılmaması gerekiyor'",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemiden-yeni-goruntuler-su-almaya-baslayinca-boyle-uyarmis-calistirilmamasi-gerekiyor-43294729",
-        "ts": "2026-09-03T23:33:03Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-03-news-0d4047-70597",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T23:33:04Z",
-    "last_update": "2026-09-03T23:33:04Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de batan yolcu gemisinde skandal Ã¼zerine skandal! KaptanlarÄ±n konuÅmasÄ± ortaya Ã§Ä±ktÄ±",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/girnede-batan-yolcu-gemisinde-skandal-uzerine-skandal-kaptanlarin-konusmasi-ortaya-cikti-3462285",
-        "ts": "2026-09-03T23:33:04Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-03-news-0d4047-58015",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T23:33:05Z",
-    "last_update": "2026-09-03T23:33:05Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de alabora olan gemiden kurtulan gençler korku dolu anları anlattı",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/girnede-alabora-olan-gemiden-kurtulan-gencler-korku-dolu-anlari-anlatti-955831.html",
-        "ts": "2026-09-03T23:33:05Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-03-news-0d4047-68637",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T23:33:05Z",
-    "last_update": "2026-09-03T23:33:05Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "KKTC'deki gemi kazasında can kaybı 10'a çıktı",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/kktcdeki-gemi-kazasinda-can-kaybi-10a-cikti-955817.html",
-        "ts": "2026-09-03T23:33:05Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-03-news-0d4047-38568",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-03T23:33:06Z",
-    "last_update": "2026-09-03T23:33:06Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "SON DAKİKA: Marmara'daki gemi faciasında 10 kayıp denizci aranıyor!",
-        "org": "milliyet.com.tr",
-        "url": "",
-        "ts": "2026-09-03T23:33:06Z"
-      }
-    ],
-    "notes": [],
-    "places": []
   },
   {
     "id": "2026-09-04-rep-e655a8-4d701b",
@@ -520,156 +248,6 @@
         "org": "Sahil Güvenlik Komutanlığı",
         "url": "https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026",
         "ts": "2026-09-04T01:03:30Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-04-news-14ea44-57664",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T01:03:33Z",
-    "last_update": "2026-09-04T01:03:33Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne açıklarında batan gemiden yeni görüntüler! Su almaya başlayınca böyle uyarmış: 'Çalıştırılmaması gerekiyor'",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemiden-yeni-goruntuler-su-almaya-baslayinca-boyle-uyarmis-calistirilmamasi-gerekiyor-43294729",
-        "ts": "2026-09-04T01:03:33Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-04-news-14ea44-17935",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T01:03:34Z",
-    "last_update": "2026-09-04T01:03:34Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de batan yolcu gemisinde skandal Ã¼zerine skandal! KaptanlarÄ±n konuÅmasÄ± ortaya Ã§Ä±ktÄ±",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/girnede-batan-yolcu-gemisinde-skandal-uzerine-skandal-kaptanlarin-konusmasi-ortaya-cikti-3462285",
-        "ts": "2026-09-04T01:03:34Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-04-news-14ea44-91706",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T01:03:35Z",
-    "last_update": "2026-09-04T01:03:35Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de alabora olan gemiden kurtulan gençler korku dolu anları anlattı",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/girnede-alabora-olan-gemiden-kurtulan-gencler-korku-dolu-anlari-anlatti-955831.html",
-        "ts": "2026-09-04T01:03:35Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-04-news-14ea44-79276",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T01:03:35Z",
-    "last_update": "2026-09-04T01:03:35Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "KKTC'deki gemi kazasında can kaybı 10'a çıktı",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/kktcdeki-gemi-kazasinda-can-kaybi-10a-cikti-955817.html",
-        "ts": "2026-09-04T01:03:35Z"
-      }
-    ],
-    "notes": [],
-    "places": []
-  },
-  {
-    "id": "2026-09-04-news-14ea44-48010",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T01:03:36Z",
-    "last_update": "2026-09-04T01:03:36Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "SON DAKİKA: Marmara'daki gemi faciasında 10 kayıp denizci aranıyor!",
-        "org": "milliyet.com.tr",
-        "url": "",
-        "ts": "2026-09-04T01:03:36Z"
       }
     ],
     "notes": [],
@@ -1066,5 +644,187 @@
     "places": [
       "Antalya"
     ]
+  },
+  {
+    "id": "2026-09-04-ais-60c108",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.12807166666666,
+    "lon": 28.66475,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "MARIT SELMER",
+      "mmsi": 636022913,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T15:00:46Z",
+    "last_update": "2026-09-04T15:00:46Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: kumanda dışı (not under command)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T15:00:46Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-41459",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T15:00:52Z",
+    "last_update": "2026-09-04T15:00:52Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne açıklarında batan gemiye ilişkin arama kurtarma faaliyeti yürüten komutanlardan açıklama",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemiye-iliskin-arama-kurtarma-faaliyeti-yuruten-komutanlardan-aciklama-43296234",
+        "ts": "2026-09-04T15:00:52Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-85120",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T15:00:52Z",
+    "last_update": "2026-09-04T15:00:52Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'de batan gemiye binmeden 25 dakika önce çekildi! Demir kardeşlerin son görüntüsü ortaya çıktı",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girnede-batan-gemiye-binmeden-25-dakika-once-cekildi-demir-kardeslerin-son-goruntusu-ortaya-cikti-43295393",
+        "ts": "2026-09-04T15:00:52Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-09a80d-32146",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": 41.0,
+    "lon": 37.87,
+    "area": "Doğu Karadeniz",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T15:00:53Z",
+    "last_update": "2026-09-04T15:00:53Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Kayıp mürettebatın ailesi CNN TÜRK'e konuştu: \"Babam denizi çok seviyordu\"",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/video/turkiye/kayip-murettebatin-ailesi-cnn-turke-konustu-babam-denizi-cok-seviyordu-3462813",
+        "ts": "2026-09-04T15:00:53Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Ordu"
+    ]
+  },
+  {
+    "id": "2026-09-04-news-14ea44-17893",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T15:00:53Z",
+    "last_update": "2026-09-04T15:00:53Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "SON DAKİKA... Marmara'da batan geminin yeri tespit edildi",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/son-dakika-marmarada-batan-geminin-yeri-tespit-edildi-3462771",
+        "ts": "2026-09-04T15:00:53Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-86182",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T15:00:54Z",
+    "last_update": "2026-09-04T15:00:54Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'deki gemide can kaybı 12'ye yükseldi",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-12ye-yukseldi-955869.html",
+        "ts": "2026-09-04T15:00:54Z"
+      }
+    ],
+    "notes": [],
+    "places": []
   }
 ]
