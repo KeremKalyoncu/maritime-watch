@@ -26,7 +26,8 @@
         "ts": "2026-09-03T23:11:08Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-03-rep-e1f95e-442993",
@@ -55,14 +56,17 @@
         "ts": "2026-09-03T23:11:08Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": [
+      "Tekirdağ"
+    ]
   },
   {
     "id": "2026-09-03-rep-41d0fc-bb02b2",
     "type": "unknown",
     "status": "confirmed",
     "confidence": 0.6,
-    "severity": "major",
+    "severity": "critical",
     "lat": 38.43,
     "lon": 27.14,
     "area": "Güney Ege",
@@ -72,7 +76,7 @@
       "type": null,
       "callsign": null
     },
-    "casualties": null,
+    "casualties": 20,
     "first_seen": "2026-09-03T23:11:08Z",
     "last_update": "2026-09-03T23:11:08Z",
     "sources": [
@@ -91,7 +95,10 @@
         "ts": "2026-09-03T23:11:08Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": [
+      "Izmir"
+    ]
   },
   {
     "id": "2026-09-03-news-1539e8-59839",
@@ -183,7 +190,10 @@
         "ts": "2026-09-04T09:06:09Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": [
+      "Silivri"
+    ]
   },
   {
     "id": "2026-09-03-news-0d4047-68292",
@@ -212,7 +222,8 @@
         "ts": "2026-09-03T23:11:13Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-03-news-0d4047-32143",
@@ -241,7 +252,8 @@
         "ts": "2026-09-03T23:11:15Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-03-news-0d4047-83937",
@@ -270,7 +282,8 @@
         "ts": "2026-09-03T23:11:16Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-03-news-0d4047-65214",
@@ -299,7 +312,8 @@
         "ts": "2026-09-03T23:11:16Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-03-news-0d4047-25325",
@@ -328,7 +342,8 @@
         "ts": "2026-09-03T23:11:17Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-03-news-0d4047-91712",
@@ -357,7 +372,8 @@
         "ts": "2026-09-03T23:33:03Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-03-news-0d4047-70597",
@@ -386,7 +402,8 @@
         "ts": "2026-09-03T23:33:04Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-03-news-0d4047-58015",
@@ -415,7 +432,8 @@
         "ts": "2026-09-03T23:33:05Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-03-news-0d4047-68637",
@@ -444,7 +462,8 @@
         "ts": "2026-09-03T23:33:05Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-03-news-0d4047-38568",
@@ -473,7 +492,8 @@
         "ts": "2026-09-03T23:33:06Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-rep-e655a8-4d701b",
@@ -502,7 +522,8 @@
         "ts": "2026-09-04T01:03:30Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-news-14ea44-57664",
@@ -531,7 +552,8 @@
         "ts": "2026-09-04T01:03:33Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-news-14ea44-17935",
@@ -560,7 +582,8 @@
         "ts": "2026-09-04T01:03:34Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-news-14ea44-91706",
@@ -589,7 +612,8 @@
         "ts": "2026-09-04T01:03:35Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-news-14ea44-79276",
@@ -618,7 +642,8 @@
         "ts": "2026-09-04T01:03:35Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-news-14ea44-48010",
@@ -647,7 +672,8 @@
         "ts": "2026-09-04T01:03:36Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-news-14ea44-12280",
@@ -676,7 +702,8 @@
         "ts": "2026-09-04T05:59:02Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-news-14ea44-02004",
@@ -705,7 +732,8 @@
         "ts": "2026-09-04T05:59:03Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-news-14ea44-52678",
@@ -734,7 +762,8 @@
         "ts": "2026-09-04T05:59:03Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-news-14ea44-62898",
@@ -763,7 +792,8 @@
         "ts": "2026-09-04T09:06:08Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
   },
   {
     "id": "2026-09-04-news-14ea44-44310",
@@ -792,6 +822,127 @@
         "ts": "2026-09-04T09:06:10Z"
       }
     ],
-    "notes": []
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-31890",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T10:09:40Z",
+    "last_update": "2026-09-04T10:09:40Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "KKTC Başbakanı Üstel, Girne açıklarında batan gemide ölenlerin sayısının 12'ye yükseldiğini açıkladı",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/kktc-basbakani-ustel-girne-aciklarinda-batan-gemide-olenlerin-sayisinin-12ye-yukseldigini-acikladi/4047190",
+        "ts": "2026-09-04T10:09:40Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-91386",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T10:09:40Z",
+    "last_update": "2026-09-04T10:09:40Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'de batan gemiye binmeden 25 dakika önce çekildi! Demir kardeşlerin son görüntüsü ortaya çıktı",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girnede-batan-gemiye-binmeden-25-dakika-once-cekildi-demir-kardeslerin-son-goruntusu-ortaya-cikti-43295393",
+        "ts": "2026-09-04T10:09:40Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-41005",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T10:09:42Z",
+    "last_update": "2026-09-04T10:09:42Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'deki gemide can kaybı 12'ye yükseldi",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-12ye-yukseldi-955869.html",
+        "ts": "2026-09-04T10:09:42Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-29695",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T10:09:43Z",
+    "last_update": "2026-09-04T10:09:43Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Denizde yıllar sonra aynı facia! Gemi enkazı çok derinden çıkarılabilir mi? 9 yıl önce batan geminin mürettebatına ulaşılamamıştı",
+        "org": "milliyet.com.tr",
+        "url": "",
+        "ts": "2026-09-04T10:09:43Z"
+      }
+    ],
+    "notes": [],
+    "places": []
   }
 ]

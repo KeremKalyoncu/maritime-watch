@@ -1,0 +1,46 @@
+{
+  "generated": "2026-09-04T10:10:32Z",
+  "cycle_seconds": 148.0,
+  "sources_ok": 7,
+  "sources_total": 7,
+  "sources_down": [],
+  "incidents": 29,
+  "warnings": 5,
+  "sources": {
+    "scrape": {
+      "ok": true,
+      "items": 2,
+      "error": null
+    },
+    "news": {
+      "ok": true,
+      "items": 9,
+      "error": null
+    },
+    "openmeteo": {
+      "ok": true,
+      "items": 2,
+      "error": null
+    },
+    "quakes": {
+      "ok": true,
+      "items": 1,
+      "error": null
+    },
+    "gdacs": {
+      "ok": true,
+      "items": 0,
+      "error": null
+    },
+    "eonet": {
+      "ok": true,
+      "items": 0,
+      "error": null
+    },
+    "metar": {
+      "ok": true,
+      "items": 0,
+      "error": null
+    }
+  }
+}

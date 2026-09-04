@@ -1,0 +1,20 @@
+{
+  "generated": "2026-09-04T10:10:33Z",
+  "total_incidents": 4,
+  "by_month": {
+    "2026-09": 4
+  },
+  "by_area": {
+    "belirsiz": 4
+  },
+  "by_type": {
+    "unknown": 4
+  },
+  "by_status": {
+    "signal": 4
+  },
+  "incidents_with_casualties": 0,
+  "casualties_reported_total": 0,
+  "top_vessels": [],
+  "median_resolution_hours": null
+}
