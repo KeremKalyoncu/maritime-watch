@@ -810,5 +810,185 @@
     ],
     "notes": [],
     "places": []
+  },
+  {
+    "id": "2026-09-04-ais-357700",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 41.546348333333334,
+    "lon": 28.80545,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "LIDER PRESTIJ",
+      "mmsi": 613091160,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T20:59:13Z",
+    "last_update": "2026-09-04T20:59:13Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: kumanda dışı (not under command)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T20:59:13Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-47970",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T20:59:18Z",
+    "last_update": "2026-09-04T20:59:18Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Gemi kazalarında hayatını kaybedenler maç öncesinde anılacak",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/spor/gemi-kazalarinda-hayatini-kaybedenler-mac-oncesinde-anilacak/4047720",
+        "ts": "2026-09-04T20:59:18Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-32016",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T20:59:18Z",
+    "last_update": "2026-09-04T20:59:18Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne açıklarında batan gemide ulaşılan iki naaşın kimliği belirlendi",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemide-ulasilan-iki-naasin-kimligi-belirlendi-43296485",
+        "ts": "2026-09-04T20:59:18Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-22249",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T20:59:18Z",
+    "last_update": "2026-09-04T20:59:18Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "MSB’den Girne açıklarında batan yolcu gemisiyle ilgili açıklama",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/msbden-girne-aciklarinda-alabora-olan-gemiyle-ilgili-aciklama-43296462",
+        "ts": "2026-09-04T20:59:18Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-55803",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T20:59:18Z",
+    "last_update": "2026-09-04T20:59:18Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne açıklarında batan gemiye ilişkin arama kurtarma faaliyeti yürüten komutanlardan açıklama",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemiye-iliskin-arama-kurtarma-faaliyeti-yuruten-komutanlardan-aciklama-43296234",
+        "ts": "2026-09-04T20:59:18Z"
+      }
+    ],
+    "notes": [],
+    "places": []
+  },
+  {
+    "id": "2026-09-04-news-14ea44-58761",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T20:59:20Z",
+    "last_update": "2026-09-04T20:59:20Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "SON DAKİKA... Marmara'da batan geminin yeri tespit edildi",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/son-dakika-marmarada-batan-geminin-yeri-tespit-edildi-3462771",
+        "ts": "2026-09-04T20:59:20Z"
+      }
+    ],
+    "notes": [],
+    "places": []
   }
 ]

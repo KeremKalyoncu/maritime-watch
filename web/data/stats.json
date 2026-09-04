@@ -1,20 +1,26 @@
 {
-  "generated": "2026-09-04T18:21:50Z",
-  "total_incidents": 2,
+  "generated": "2026-09-04T21:00:15Z",
+  "total_incidents": 6,
   "by_month": {
-    "2026-09": 2
+    "2026-09": 6
   },
   "by_area": {
-    "belirsiz": 2
+    "belirsiz": 6
   },
   "by_type": {
-    "unknown": 2
+    "unknown": 5,
+    "drift": 1
   },
   "by_status": {
-    "signal": 2
+    "signal": 6
   },
   "incidents_with_casualties": 0,
   "casualties_reported_total": 0,
-  "top_vessels": [],
+  "top_vessels": [
+    [
+      "LIDER PRESTIJ",
+      1
+    ]
+  ],
   "median_resolution_hours": null
 }
