@@ -5,11 +5,11 @@ __pycache__/
 .venv/
 venv/
 
-# runtime state (regenerated every cycle)
-data/vessels.json
-data/events.jsonl
+# Local debug log only.
+# data/vessels.json, data/events.jsonl and data/sent.json ARE committed on purpose:
+# CI checks out fresh every run, so without them alerts re-send every cycle and
+# AIS tracks never accumulate (speed-drop / ais-gap could never fire).
 data/outbox.log
-data/sent.json
 
 # generated each run; keep the seeded incidents/warnings so the map loads on clone
 web/data/feed.xml

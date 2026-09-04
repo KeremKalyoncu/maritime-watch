@@ -41,6 +41,20 @@ flowchart TD
     PRUNE --> GEO[geo.py · regions.geojson<br/>point-in-polygon sea areas]
 ```
 
+## State that must survive a fresh checkout
+
+CI checks the repo out clean on every run, so three runtime files are **committed
+on purpose** (see `.gitignore`):
+
+| File | Without it |
+| :-- | :-- |
+| `data/sent.json` | every alert re-sends every cycle (the channel spams) |
+| `data/vessels.json` | AIS tracks never accumulate, so speed-drop / ais-gap / course-spike can never fire |
+| `data/events.jsonl` | the stats page is always empty |
+
+All three are bounded: vessels age out after `ais.vessel_ttl_hours`, sent keys are
+capped, and the event log is trimmed to the most recent lines each cycle.
+
 ## Key decisions
 
 | Choice | Why |

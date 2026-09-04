@@ -73,10 +73,15 @@ def _vname(v) -> str:
     return (v.name or "").translate(_TR_LOWER).lower().strip() if v else ""
 
 
+def _official_urls(inc: Incident) -> set:
+    return {s.url for s in inc.sources if s.kind == "official" and s.url}
+
+
 def _same_event(inc: Incident, cand: Incident, radius_nm: float) -> bool:
-    """One real event, seen by different sources? Match on any strong signal
-    (same MMSI, same vessel name, same place cluster) or plain proximity — all
-    gated by a time window so a week-old incident won't absorb a fresh one."""
+    """One real event, seen by different sources? Strong identity (same MMSI or
+    vessel name) always wins. Otherwise proximity, but city-name geocodes are
+    treated as weak: two separate official announcements about the same town are
+    usually two different rescues, not one."""
     if _minutes_apart(inc.last_update, cand.first_seen) > 4 * 24 * 60:
         return False
 
@@ -86,11 +91,18 @@ def _same_event(inc: Incident, cand: Incident, radius_nm: float) -> bool:
     if vn_i and vn_i == vn_c:
         return True
 
-    shared_place = bool(set(inc.places) & set(cand.places))
     d = dist_nm(inc.lat, inc.lon, cand.lat, cand.lon)
-    if shared_place and (d <= 40 or (inc.area and inc.area == cand.area)):
+    both_coarse = inc.coarse and cand.coarse
+    if d <= radius_nm and not both_coarse:
         return True
-    return d <= radius_nm
+
+    # distinct official announcements = distinct events
+    a_urls, b_urls = _official_urls(inc), _official_urls(cand)
+    if a_urls and b_urls and not (a_urls & b_urls):
+        return False
+
+    shared_place = bool(set(inc.places) & set(cand.places))
+    return shared_place and _minutes_apart(inc.first_seen, cand.first_seen) <= 24 * 60
 
 
 def correlate(store, candidate: Incident, radius_nm: float = 8.0) -> Incident:

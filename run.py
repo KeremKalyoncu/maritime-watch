@@ -83,7 +83,10 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         seen_now = {str(p["mmsi"]) for p in positions if p.get("mmsi") is not None}
         vs.update(positions)
         anomalies = detect(vs, positions, cfg, seen_now)
+        forgotten = vs.prune(cfg['ais'].get('vessel_ttl_hours', 12))
         vs.save()
+        if forgotten:
+            print(f'[ais] {forgotten} vessel(s) aged out of the track store')
         print(f"[anomaly] {len(anomalies)} flag(s)")
         for an in anomalies:
             kind = "ais-sart" if an.kind == "ais-sart" else "ais-anomaly"
@@ -171,6 +174,7 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     print(f"[health] {h['sources_ok']}/{h['sources_total']} kaynak OK, {h['cycle_seconds']}s")
 
     notifier.flush(dry=dry)     # one digest message for everything this cycle
+    store.trim_events()
     store.save()
     build_feed(store, str(web_data))
     write_summary(store, str(web_data), stale_hours=cfg.get("alert", {}).get("stale_hours", 2))

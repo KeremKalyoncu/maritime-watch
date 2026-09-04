@@ -10,6 +10,8 @@ from pathlib import Path
 from .model import Incident, Warning, now_iso
 from .process.dedup import same_hazard
 
+EVENT_LOG_MAX = 20000        # committed between CI runs, so keep it capped
+
 
 class Store:
     def __init__(self, data_dir: str, log_dir: str | None = None):
@@ -38,6 +40,18 @@ class Store:
     def _event(self, kind: str, payload: dict) -> None:
         with self.events_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps({"ts": now_iso(), "kind": kind, "payload": payload}, ensure_ascii=False) + "\n")
+
+    def trim_events(self, max_lines: int = EVENT_LOG_MAX) -> int:
+        """The event log is committed between CI runs, so cap it. Stats read the
+        whole file but only the recent tail matters."""
+        if not self.events_path.exists():
+            return 0
+        lines = self.events_path.read_text("utf-8").splitlines()
+        if len(lines) <= max_lines:
+            return 0
+        joined = "\n".join(lines[-max_lines:]) + "\n"
+        self.events_path.write_text(joined, encoding="utf-8")
+        return len(lines) - max_lines
 
     def upsert_incident(self, inc: Incident) -> Incident:
         with self._lock:

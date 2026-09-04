@@ -22,6 +22,7 @@ from ..model import status_tr, type_tr
 from ..process.classify import nearest_port
 
 BASE = "https://api.telegram.org/bot{token}/{method}"
+_SENT_CAP = 5000        # remembered alert keys kept in data/sent.json
 
 _WARN_KIND_TR = {
     "marine-weather": "DENİZ HAVA UYARISI",
@@ -73,6 +74,9 @@ class Notifier:
 
     def _remember(self, key: str) -> None:
         self._sent.add(key)
+        # this file is committed between CI runs, so keep it bounded
+        if len(self._sent) > _SENT_CAP:
+            self._sent = set(sorted(self._sent)[-_SENT_CAP:])
         self.sent_path.write_text(json.dumps(sorted(self._sent), ensure_ascii=False), encoding="utf-8")
 
     def _post(self, method: str, data: dict) -> bool:
@@ -155,15 +159,19 @@ class Notifier:
             for k in keys:
                 self._remember(k)
 
-    def _where(self, lat, lon, area) -> str:
-        """One plain-language 'where' line."""
+    def _where(self, lat, lon, area, coarse: bool = False) -> str:
+        """One plain-language 'where' line. A city-name geocode is reported as
+        "X açıkları" rather than a meaningless "~0 deniz mili" distance."""
         if lat is None or lon is None:
             return f"📍 Yer: {html.escape(area or 'belirtilmedi')}"
         np = nearest_port(lat, lon)
-        near = ""
-        if np:
-            near = f" — en yakın kıyı: {html.escape(np[0])} (~{np[1]:.0f} deniz mili)"
-        return f"📍 Yer: {html.escape(area or '')}{near}"
+        if not np:
+            return f"📍 Yer: {html.escape(area or '')}"
+        if coarse or np[1] < 2:
+            where = f"{html.escape(np[0])} açıkları"
+            return f"📍 Yer: {where}" + (f" ({html.escape(area)})" if area else "")
+        return (f"📍 Yer: {html.escape(area or '')} — en yakın kıyı: "
+                f"{html.escape(np[0])} (~{np[1]:.0f} deniz mili)")
 
     def _maplink(self, lat, lon) -> str:
         return f"🗺️ Haritada gör: https://www.google.com/maps?q={lat:.5f},{lon:.5f}"
@@ -185,26 +193,30 @@ class Notifier:
 
         lines = [head, ""]
         lines.append(f"Ne oldu: {html.escape(type_tr(inc.type))}")
-        lines.append(self._where(inc.lat, inc.lon, inc.area))
+        lines.append(self._where(inc.lat, inc.lon, inc.area, getattr(inc, 'coarse', False)))
         if inc.vessel.name:
             lines.append(f"⛴️ Tekne: {html.escape(inc.vessel.name)}")
+        told = [s for s in inc.sources if s.detail and s.kind in ("official", "news")]
         if inc.casualties:
-            lines.append(f"🧍 {inc.casualties} kişi bildirildi")
+            suffix = " (kaynaklarda geçen en yüksek sayı)" if len(told) > 1 else ""
+            lines.append(f"🧍 {inc.casualties} kişi bildirildi{suffix}")
         lines.append(f"Durum: {html.escape(status_tr(inc.status))}")
 
-        orgs = []
-        for s in inc.sources:
-            o = s.org or s.kind
-            if o not in orgs:
-                orgs.append(o)
         lines.append("")
-        lines.append(f"Kaynak: {html.escape(', '.join(orgs[:4]))}")
-        note = next((s.detail for s in inc.sources if s.detail and s.kind in ("official", "news")), "")
-        if note:
-            lines.append(f"“{html.escape(note[:220])}”")
-        link = next((s.url for s in inc.sources if s.url), "")
-        if link:
-            lines.append(f"🔗 {link}")
+        if len(told) > 1:
+            lines.append(f"Kaynaklar ({len(told)}):")
+        for s in told[:3]:
+            org = html.escape(s.org or s.kind)
+            lines.append(f"• {org}: “{html.escape(s.detail[:180])}”")
+            if s.url:
+                lines.append(f"  {s.url}")
+        if len(told) > 3:
+            lines.append(f"…ve {len(told) - 3} kaynak daha")
+        if not told:
+            first = inc.sources[0] if inc.sources else None
+            if first:
+                lines.append(f"Kaynak: {html.escape(first.org or first.kind)}"
+                             + (f" — {html.escape(first.detail[:180])}" if first.detail else ""))
 
         if inc.lat is not None and inc.lon is not None:
             lines.append(self._maplink(inc.lat, inc.lon))
