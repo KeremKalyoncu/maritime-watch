@@ -1,29 +1,53 @@
 {
-  "generated": "2026-09-04T21:38:35Z",
-  "total_incidents": 9,
+  "generated": "2026-09-04T23:00:53Z",
+  "total_incidents": 17,
   "by_month": {
-    "2026-09": 9
+    "2026-09": 17
   },
   "by_area": {
-    "belirsiz": 5,
+    "belirsiz": 13,
     "Türk karasuları civarı": 2,
     "Güney Ege": 1,
     "Doğu Karadeniz": 1
   },
   "by_type": {
-    "sinking": 4,
-    "unknown": 3,
+    "unknown": 10,
+    "sinking": 5,
     "distress": 1,
     "drift": 1
   },
   "by_status": {
-    "signal": 9
+    "signal": 17
   },
   "incidents_with_casualties": 0,
   "casualties_reported_total": 0,
   "top_vessels": [
     [
       "ALSANCAK 22",
+      1
+    ],
+    [
+      "UNLU-5",
+      1
+    ],
+    [
+      "MED CESME",
+      1
+    ],
+    [
+      "SOBRAY",
+      1
+    ],
+    [
+      "KAPETAN CHRISTOS",
+      1
+    ],
+    [
+      "M.T.EFREMOV",
+      1
+    ],
+    [
+      "ERDEK",
       1
     ]
   ],
