@@ -3,13 +3,27 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Fri, 04 Sep 2026 05:59:57 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 04 Sep 2026 09:07:19 +0000</lastBuildDate>
     <item>
       <title>[signal] unknown, Türk karasuları civarı</title>
       <link>https://www.aa.com.tr/tr/gundem/silivri-aciklarindaki-gemi-kazasina-iliskin-gozaltina-alinan-alsu-gemisinin-1-ve-3-kaptani-tutuklandi/4046904</link>
-      <guid isPermaLink="false">2026-09-03-news-1539e8-59839-6</guid>
-      <pubDate>Fri, 04 Sep 2026 05:59:20 +0000</pubDate>
-      <description>Güven: 0.3 | Önem: minor | news/aa.com.tr: Silivri açıklarındaki gemi kazasına ilişkin gözaltına alınan Alsu gemisinin 1. ve 3. kaptanı tutuklandı | news/hurriyet.com.tr: Silivri'deki gemi kazasında bilirkişi ön raporu ortaya çıktı | Dikkat çeken tespitler yer aldı: Gözcü olsaydı batmayabilirdi... Geminin 2 kaptanı tutuklandı | news/cnnturk.com: SON DAKÄ°KA HABERÄ°: Silivri'deki kazada Alsu Gemisi'nin 1. ve 3. kaptanÄ± tutuklandÄ± | news/cnnturk.com: TUÄBERK Ä°MAMOÄLU GEMÄ°SÄ° KÄ°ME AÄ°T? Silivri'deki Gemi KazasÄ±nda Son Durum Ne? ALSU Gemisi ve TuÄberk Ä°mamoÄlu Gemisi Neden ÃarpÄ±ÅtÄ±? | news/trthaber.com: Silivri'deki gemi kazasında uyuyan kaptan ve hayalet gemi bilirkişi raporunda | news/hurriyet.com.tr: Girne ve Silivri kayıplarını arıyor... İki limanda acı bekleyiş</description>
+      <guid isPermaLink="false">2026-09-03-news-1539e8-59839-10</guid>
+      <pubDate>Fri, 04 Sep 2026 09:06:26 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/aa.com.tr: Silivri açıklarındaki gemi kazasına ilişkin gözaltına alınan Alsu gemisinin 1. ve 3. kaptanı tutuklandı | news/hurriyet.com.tr: Silivri'deki gemi kazasında bilirkişi ön raporu ortaya çıktı | Dikkat çeken tespitler yer aldı: Gözcü olsaydı batmayabilirdi... Geminin 2 kaptanı tutuklandı | news/cnnturk.com: SON DAKÄ°KA HABERÄ°: Silivri'deki kazada Alsu Gemisi'nin 1. ve 3. kaptanÄ± tutuklandÄ± | news/cnnturk.com: TUÄBERK Ä°MAMOÄLU GEMÄ°SÄ° KÄ°ME AÄ°T? Silivri'deki Gemi KazasÄ±nda Son Durum Ne? ALSU Gemisi ve TuÄberk Ä°mamoÄlu Gemisi Neden ÃarpÄ±ÅtÄ±? | news/trthaber.com: Silivri'deki gemi kazasında uyuyan kaptan ve hayalet gemi bilirkişi raporunda | news/hurriyet.com.tr: Girne ve Silivri kayıplarını arıyor... İki limanda acı bekleyiş | news/hurriyet.com.tr: Silivri’deki gemi kazasının 3. günü | Ön tespit raporu hazırlandı: 2 kaptan da kusurlu! Ailelerin bekleyişi sürüyor: Kazadan önce görüştük | news/cnnturk.com: SİLİVRİ GEMİ KAZASI KAYIPLARIN KİMLİKLERİ BELLİ OLDU: Tuğberk İmamoğlu ve ALSU Gemileri KAyıp Mürettabatlar Kimler? Ölü Yaralı Var Mı? | news/cnnturk.com: TUĞBERK İMAMOĞLU GEMİSİ KİME AİT? Silivri'deki Gemi Kazasında Son Durum Ne? ALSU Gemisi ve Tuğberk İmamoğlu Gemisi Neden Çarpıştı? | news/cnnturk.com: SON DAKİKA HABERİ: Silivri'deki kazada Alsu Gemisi'nin 1. ve 3. kaptanı tutuklandı</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-12ye-yukseldi-955869.html</link>
+      <guid isPermaLink="false">2026-09-04-news-14ea44-44310-1</guid>
+      <pubDate>Fri, 04 Sep 2026 09:06:10 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/trthaber.com: Girne'deki gemide can kaybı 12'ye yükseldi</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.hurriyet.com.tr/gundem/girnede-batan-gemiye-binmeden-25-dakika-once-cekildi-demir-kardeslerin-son-goruntusu-ortaya-cikti-43295393</link>
+      <guid isPermaLink="false">2026-09-04-news-14ea44-62898-1</guid>
+      <pubDate>Fri, 04 Sep 2026 09:06:08 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/hurriyet.com.tr: Girne'de batan gemiye binmeden 25 dakika önce çekildi! Demir kardeşlerin son görüntüsü ortaya çıktı</description>
     </item>
     <item>
       <title>[signal] unknown, konum belirsiz</title>
@@ -164,33 +178,5 @@
       <guid isPermaLink="false">2026-09-03-rep-41d0fc-bb02b2-2</guid>
       <pubDate>Thu, 03 Sep 2026 23:11:08 +0000</pubDate>
       <description>Güven: 0.6 | Önem: major | official/Sahil Güvenlik Komutanlığı: 03.09.2026 İzmir Önlerinde 2 Şahıs Kurtarılmıştır | official/Sahil Güvenlik Komutanlığı: 02.09.2026 İzmir Açıklarında 20 Düzensiz Göçmen Kurtarılmıştır</description>
-    </item>
-    <item>
-      <title>[signal] drift, İstanbul Boğazı</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-03-seed-ais01-1</guid>
-      <pubDate>Thu, 03 Sep 2026 09:00:05 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: nav-status: kumanda dışı (not under command)</description>
-    </item>
-    <item>
-      <title>[probable] distress, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-03-seed-ais02-2</guid>
-      <pubDate>Thu, 03 Sep 2026 08:55:00 +0000</pubDate>
-      <description>Güven: 0.55 | Önem: major | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~50 dk önce kesildi | news/yerel: Yerel haber: bölgede kötü hava, bir teknenin dönmediği bildirildi</description>
-    </item>
-    <item>
-      <title>[confirmed] unknown, Güney Ege</title>
-      <link>https://www.sg.gov.tr/</link>
-      <guid isPermaLink="false">2026-09-03-seed-off01-1</guid>
-      <pubDate>Thu, 03 Sep 2026 07:40:00 +0000</pubDate>
-      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 12 | official/Sahil Güvenlik Komutanlığı: Çeşme açıklarında lastik botta mahsur kalan 12 düzensiz göçmen kurtarıldı</description>
-    </item>
-    <item>
-      <title>[confirmed] capsize, Batı Karadeniz</title>
-      <link>https://www.afad.gov.tr/</link>
-      <guid isPermaLink="false">2026-09-02-seed-off02-1</guid>
-      <pubDate>Wed, 02 Sep 2026 18:20:00 +0000</pubDate>
-      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 2 | official/AFAD: Zonguldak açıklarında balıkçı teknesinin alabora olması sonucu 2 kişi kayıp</description>
     </item>
 </channel></rss>
