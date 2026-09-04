@@ -1,21 +1,27 @@
 {
-  "generated": "2026-09-04T11:09:40Z",
-  "total_incidents": 4,
+  "generated": "2026-09-04T15:01:44Z",
+  "total_incidents": 6,
   "by_month": {
-    "2026-09": 4
+    "2026-09": 6
   },
   "by_area": {
-    "belirsiz": 3,
-    "Antalya Körfezi": 1
+    "belirsiz": 5,
+    "Doğu Karadeniz": 1
   },
   "by_type": {
-    "unknown": 4
+    "unknown": 5,
+    "drift": 1
   },
   "by_status": {
-    "signal": 4
+    "signal": 6
   },
   "incidents_with_casualties": 0,
   "casualties_reported_total": 0,
-  "top_vessels": [],
+  "top_vessels": [
+    [
+      "MARIT SELMER",
+      1
+    ]
+  ],
   "median_resolution_hours": null
 }
