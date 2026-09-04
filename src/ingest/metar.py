@@ -49,7 +49,7 @@ def fetch_metar(cfg: dict) -> list[Warning]:
         if low_vis:
             bits.append("düşük görüş")
         out.append(Warning(
-            id=f"mt-{row.get('icaoId') or name}-{now_iso()[:13]}",
+            id=f"mt-{row.get('icaoId') or name}",
             headline=f"{name}: {', '.join(bits)}",
             area=name,
             kind="metar",

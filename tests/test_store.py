@@ -21,11 +21,28 @@ def test_upsert_new_then_merge_sources(tmp_path):
     assert len(s.incidents["a"].sources) == 2
 
 
-def test_warning_dedup_same_id(tmp_path):
+def test_warning_same_id_refreshes_not_duplicates(tmp_path):
     s = _store(tmp_path)
-    w = Warning(id="w1", headline="h", org="A")
-    assert s.upsert_warning(w)[1] == "new"
-    assert s.upsert_warning(Warning(id="w1", headline="h", org="A"))[1] == "dup"
+    assert s.upsert_warning(Warning(id="w1", headline="dalga ~2.7 m", org="Open-Meteo",
+                                    value=2.7))[1] == "new"
+    cur, how = s.upsert_warning(Warning(id="w1", headline="dalga ~0.4 m", org="Open-Meteo",
+                                        value=0.4))
+    assert how == "refreshed"
+    assert cur.headline == "dalga ~0.4 m" and cur.value == 0.4   # live figure updated
+    assert len(cur.orgs) == 1                                    # not counted as 2 sources
+
+
+def test_same_org_refetch_is_not_a_confirmation(tmp_path):
+    s = _store(tmp_path)
+    s.upsert_warning(Warning(id="om-antalya", headline="dalga ~2.7 m", kind="marine-weather",
+                             org="Open-Meteo", area="Antalya Körfezi", value=2.7,
+                             lat=36.55, lon=30.6, issued="2026-09-04T01:00:00"))
+    cur, how = s.upsert_warning(Warning(id="om-antalya-later", headline="dalga ~0.2 m",
+                                        kind="marine-weather", org="Open-Meteo",
+                                        area="Antalya Körfezi", value=0.2,
+                                        lat=36.55, lon=30.6, issued="2026-09-04T06:00:00"))
+    assert how == "refreshed"
+    assert len(cur.orgs) == 1
 
 
 def test_warning_merges_same_hazard_from_two_sources(tmp_path):

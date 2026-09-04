@@ -36,6 +36,7 @@ from src.model import Incident, Source, Vessel, make_id
 from src.process.anomaly import VesselState, detect
 from src.process.classify import classify
 from src.process.dedup import correlate
+from src.process.prune import prune
 from src.render.feed import build_feed
 from src.render.mapdata import write_summary
 from src.store import Store
@@ -150,6 +151,10 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         inc = store.incidents.get(iid)
         if inc:
             notifier.incident(inc, dry=dry)
+
+    dw, di = prune(store)
+    if dw or di:
+        print(f"[prune] {dw} warning(s) expired, {di} incident(s) closed/removed")
 
     store.save()
     build_feed(store, str(web_data))

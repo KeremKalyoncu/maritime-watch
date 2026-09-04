@@ -50,7 +50,7 @@ def fetch_marine_warnings(cfg: dict) -> list[Warning]:
                 bits.append(f"rüzgar hamlesi ~{max_gust:.0f} kn")
             strong = max_wave >= om["wave_m"] + 1.0 or max_gust >= om["wind_gust_kn"] + 10
             out.append(Warning(
-                id=f"om-{name.lower().replace(' ', '')[:18]}-{now_iso()[:13]}",
+                id=f"om-{name.lower().replace(' ', '')[:24]}",
                 headline=f"{name}: {', '.join(bits)} (önümüzdeki {hours} saat)",
                 area=name,
                 kind="marine-weather",

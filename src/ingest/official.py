@@ -16,7 +16,7 @@ from urllib.parse import urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 
-from ..model import Incident, Source, Vessel, Warning, make_id, now_iso
+from ..model import Incident, Source, Vessel, Warning, make_id
 from ..process.classify import area_centroid, place_hint
 
 UA = {"User-Agent": "maritime-watch/1.0 (open-source maritime safety aggregator)"}
@@ -90,7 +90,7 @@ def scrape_mgm_marine(cfg: dict) -> list[Warning]:
             continue
         clat, clon = area_centroid(name)
         out.append(Warning(
-            id="wx-" + re.sub(r"\W+", "", name).lower()[:20] + "-" + now_iso()[:13],
+            id="wx-mgm-" + re.sub(r"\W+", "", name).lower()[:24],
             headline=f"{name}: {text or 'denizcilik uyarısı'}",
             area=name,
             kind="marine-weather",

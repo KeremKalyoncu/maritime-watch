@@ -68,22 +68,40 @@ class Store:
     def upsert_warning(self, w: Warning) -> tuple[Warning, str]:
         """Returns (warning, how) where how is 'new', 'merged' or 'dup'."""
         with self._lock:
+            def _refresh(cur: Warning) -> None:
+                # same source re-reported: update the live figures, don't add a
+                # "source" and don't count it as an independent confirmation
+                cur.headline = w.headline
+                cur.value = w.value
+                cur.severity = w.severity
+                cur.lat, cur.lon = w.lat, w.lon
+                cur.issued = w.issued
+                cur.last_update = now_iso()
+
             if w.id in self.warnings:
-                return self.warnings[w.id], "dup"
+                _refresh(self.warnings[w.id])
+                return self.warnings[w.id], "refreshed"
+
+            new_orgs = {s.org for s in w.sources if s.org}
             for cur in self.warnings.values():
-                if same_hazard(cur, w):
-                    added = False
-                    for s in w.sources:
-                        added |= cur.add_source(s)
-                    if w.severity == "major" and cur.severity != "major":
-                        cur.severity = "major"
-                    if w.value is not None and cur.value is None:
-                        cur.value = w.value
-                    if added:
-                        cur.last_update = now_iso()
-                        self._event("warning_merge", cur.to_dict())
-                        return cur, "merged"
-                    return cur, "dup"
+                if not same_hazard(cur, w):
+                    continue
+                if new_orgs and new_orgs.issubset(set(cur.orgs)):
+                    _refresh(cur)
+                    return cur, "refreshed"
+                added = False
+                for s in w.sources:
+                    added |= cur.add_source(s)
+                if w.severity == "major" and cur.severity != "major":
+                    cur.severity = "major"
+                if w.value is not None and cur.value is None:
+                    cur.value = w.value
+                if added:
+                    cur.last_update = now_iso()
+                    self._event("warning_merge", cur.to_dict())
+                    return cur, "merged"
+                return cur, "dup"
+
             self.warnings[w.id] = w
             self._event("warning_new", w.to_dict())
             return w, "new"
