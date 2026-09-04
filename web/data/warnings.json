@@ -1,57 +1,5 @@
 [
   {
-    "id": "wx-marmaradenizi-seed",
-    "headline": "Marmara Denizi: Güney-güneybatı 5-7, yer yer 8 Bofor · Fırtına bekleniyor; küçük deniz araçları dikkatli olmalı.",
-    "area": "Marmara Denizi",
-    "severity": "major",
-    "kind": "marine-weather",
-    "onset": null,
-    "expires": null,
-    "org": "Meteoroloji Genel Müdürlüğü",
-    "url": "https://www.mgm.gov.tr/denizcilik/deniz-hava-tahmini.aspx",
-    "issued": "2026-09-03T06:00:00Z",
-    "last_update": "2026-09-03T23:09:36Z",
-    "raw": "",
-    "lat": 40.675,
-    "lon": 28.325,
-    "value": null,
-    "sources": [
-      {
-        "kind": "marine-weather",
-        "detail": "Marmara Denizi: Güney-güneybatı 5-7, yer yer 8 Bofor · Fırtına bekleniyor; küçük deniz araçları dikkatli olmalı.",
-        "org": "Meteoroloji Genel Müdürlüğü",
-        "url": "https://www.mgm.gov.tr/denizcilik/deniz-hava-tahmini.aspx",
-        "ts": "2026-09-03T06:00:00Z"
-      }
-    ]
-  },
-  {
-    "id": "wx-batikaradeniz-seed",
-    "headline": "Batı Karadeniz: Kuzeydoğu 4-5, akşam saatlerinde 6-7 Bofor · Kuvvetli rüzgar ve yüksek dalga; liman çıkışları ertelenebilir.",
-    "area": "Batı Karadeniz",
-    "severity": "major",
-    "kind": "marine-weather",
-    "onset": null,
-    "expires": null,
-    "org": "Meteoroloji Genel Müdürlüğü",
-    "url": "https://www.mgm.gov.tr/denizcilik/deniz-hava-tahmini.aspx",
-    "issued": "2026-09-03T06:00:00Z",
-    "last_update": "2026-09-03T23:09:36Z",
-    "raw": "",
-    "lat": 42.35,
-    "lon": 31.2,
-    "value": null,
-    "sources": [
-      {
-        "kind": "marine-weather",
-        "detail": "Batı Karadeniz: Kuzeydoğu 4-5, akşam saatlerinde 6-7 Bofor · Kuvvetli rüzgar ve yüksek dalga; liman çıkışları ertelenebilir.",
-        "org": "Meteoroloji Genel Müdürlüğü",
-        "url": "https://www.mgm.gov.tr/denizcilik/deniz-hava-tahmini.aspx",
-        "ts": "2026-09-03T06:00:00Z"
-      }
-    ]
-  },
-  {
     "id": "om-kuzeyege-2026-09-03T23",
     "headline": "Kuzey Ege: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
     "area": "Kuzey Ege",
@@ -95,7 +43,7 @@
     "org": "EMSC",
     "url": "https://www.seismicportal.eu/",
     "issued": "2026-09-03T10:20:47.9Z",
-    "last_update": "2026-09-03T23:12:15Z",
+    "last_update": "2026-09-04T09:07:13Z",
     "raw": "",
     "lat": 38.7753,
     "lon": 27.144,
@@ -166,6 +114,32 @@
         "org": "Open-Meteo",
         "url": "https://open-meteo.com/en/docs/marine-weather-api",
         "ts": "2026-09-04T05:59:44Z"
+      }
+    ]
+  },
+  {
+    "id": "om-güneyege",
+    "headline": "Güney Ege: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
+    "area": "Güney Ege",
+    "severity": "minor",
+    "kind": "marine-weather",
+    "onset": null,
+    "expires": null,
+    "org": "Open-Meteo",
+    "url": "https://open-meteo.com/en/docs/marine-weather-api",
+    "issued": "2026-09-04T09:07:03Z",
+    "last_update": "2026-09-04T09:07:03Z",
+    "raw": "",
+    "lat": 37.0,
+    "lon": 27.1,
+    "value": 2.7,
+    "sources": [
+      {
+        "kind": "marine-weather",
+        "detail": "Güney Ege: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
+        "org": "Open-Meteo",
+        "url": "https://open-meteo.com/en/docs/marine-weather-api",
+        "ts": "2026-09-04T09:07:03Z"
       }
     ]
   }
