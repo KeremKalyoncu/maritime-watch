@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-04T21:38:35Z",
-  "cycle_seconds": 122.3,
+  "generated": "2026-09-04T23:00:53Z",
+  "cycle_seconds": 123.5,
   "sources_ok": 7,
   "sources_total": 7,
   "sources_down": [],
-  "incidents": 32,
+  "incidents": 36,
   "warnings": 4,
   "sources": {
     "scrape": {

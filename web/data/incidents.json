@@ -273,130 +273,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-04-news-14ea44-31890",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T10:09:40Z",
-    "last_update": "2026-09-04T10:09:40Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "KKTC Başbakanı Üstel, Girne açıklarında batan gemide ölenlerin sayısının 12'ye yükseldiğini açıkladı",
-        "org": "aa.com.tr",
-        "url": "https://www.aa.com.tr/tr/gundem/kktc-basbakani-ustel-girne-aciklarinda-batan-gemide-olenlerin-sayisinin-12ye-yukseldigini-acikladi/4047190",
-        "ts": "2026-09-04T10:09:40Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-04-news-14ea44-91386",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T10:09:40Z",
-    "last_update": "2026-09-04T10:09:40Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de batan gemiye binmeden 25 dakika önce çekildi! Demir kardeşlerin son görüntüsü ortaya çıktı",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/girnede-batan-gemiye-binmeden-25-dakika-once-cekildi-demir-kardeslerin-son-goruntusu-ortaya-cikti-43295393",
-        "ts": "2026-09-04T10:09:40Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-04-news-14ea44-41005",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T10:09:42Z",
-    "last_update": "2026-09-04T10:09:42Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'deki gemide can kaybı 12'ye yükseldi",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-12ye-yukseldi-955869.html",
-        "ts": "2026-09-04T10:09:42Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-04-news-14ea44-29695",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T10:09:43Z",
-    "last_update": "2026-09-04T10:09:43Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Denizde yıllar sonra aynı facia! Gemi enkazı çok derinden çıkarılabilir mi? 9 yıl önce batan geminin mürettebatına ulaşılamamıştı",
-        "org": "milliyet.com.tr",
-        "url": "",
-        "ts": "2026-09-04T10:09:43Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-04-news-14ea44-56781",
     "type": "unknown",
     "status": "signal",
@@ -789,7 +665,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-04T20:59:13Z",
-    "last_update": "2026-09-04T20:59:13Z",
+    "last_update": "2026-09-04T23:00:21Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -797,6 +673,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-04T20:59:13Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~152°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T23:00:21Z"
       }
     ],
     "notes": [],
@@ -1125,6 +1008,268 @@
         "org": "cnnturk.com",
         "url": "https://www.cnnturk.com/turkiye/son-dakika-marmarada-batan-geminin-yeri-tespit-edildi-3462771",
         "ts": "2026-09-04T21:38:09Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-04-ais-b615b8",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 43.129055,
+    "lon": 28.040090000000003,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "UNLU-5",
+      "mmsi": 271000854,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T23:00:21Z",
+    "last_update": "2026-09-04T23:00:21Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~61°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T23:00:21Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~94°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T23:00:21Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~171°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T23:00:21Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-04-ais-dce171",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 41.30782333333333,
+    "lon": 29.90213,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "MED CESME",
+      "mmsi": 271052110,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T23:00:21Z",
+    "last_update": "2026-09-04T23:00:21Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~107°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T23:00:21Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-04-ais-eb50a1",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.72613333333334,
+    "lon": 29.093283333333332,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "SOBRAY",
+      "mmsi": 273393450,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T23:00:21Z",
+    "last_update": "2026-09-04T23:00:21Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~131°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T23:00:21Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-04-ais-e42f33",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.53870833333334,
+    "lon": 25.15432,
+    "area": "Orta Ege",
+    "vessel": {
+      "name": "KAPETAN CHRISTOS",
+      "mmsi": 241495000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T23:00:21Z",
+    "last_update": "2026-09-04T23:00:21Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~134°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T23:00:21Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-04-ais-7c4293",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.65380666666667,
+    "lon": 28.893131666666665,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "M.T.EFREMOV",
+      "mmsi": 273614610,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T23:00:21Z",
+    "last_update": "2026-09-04T23:00:21Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~152°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T23:00:21Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-04-ais-22b810",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.6545,
+    "lon": 28.25137833333333,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "ERDEK",
+      "mmsi": 271049599,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T23:00:21Z",
+    "last_update": "2026-09-04T23:00:21Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~73°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-04T23:00:21Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-04-news-14ea44-28940",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T23:00:25Z",
+    "last_update": "2026-09-04T23:00:25Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Gemi kazalarında hayatını kaybedenler maç öncesinde anılacak",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/spor/gemi-kazalarinda-hayatini-kaybedenler-mac-oncesinde-anilacak/4047720",
+        "ts": "2026-09-04T23:00:25Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-04-news-14ea44-16319",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-04T23:00:26Z",
+    "last_update": "2026-09-04T23:00:26Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "SON DAKİKA... Marmara'da batan geminin yeri tespit edildi",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/son-dakika-marmarada-batan-geminin-yeri-tespit-edildi-3462771",
+        "ts": "2026-09-04T23:00:26Z"
       }
     ],
     "notes": [],
