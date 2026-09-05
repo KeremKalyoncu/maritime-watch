@@ -78,9 +78,9 @@
       "type": null,
       "callsign": null
     },
-    "casualties": 20,
+    "casualties": 30,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-04T18:20:48Z",
+    "last_update": "2026-09-05T13:00:47Z",
     "sources": [
       {
         "kind": "official",
@@ -102,6 +102,20 @@
         "org": "Sahil Güvenlik Komutanlığı",
         "url": "https://www.sg.gov.tr/izmir-aciklarinda-18-duzensiz-gocmen-beraberinde-8-cocuk-kurtarilmistir-03-09-2026",
         "ts": "2026-09-04T18:20:48Z"
+      },
+      {
+        "kind": "official",
+        "detail": "05.09.2026 İzmir Açıklarında 27 Düzensiz Göçmen Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/izmir-aciklarinda-27-duzensiz-gocmen-kurtarilmistir-04-09-2026-",
+        "ts": "2026-09-05T13:00:47Z"
+      },
+      {
+        "kind": "official",
+        "detail": "05.09.2026 İzmir Açıklarında 30 Düzensiz Göçmen Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/izmir-aciklarinda-30-duzensiz-gocmen-kurtarilmistir-04-09-2026-",
+        "ts": "2026-09-05T13:00:47Z"
       }
     ],
     "notes": [],
@@ -127,7 +141,7 @@
     },
     "casualties": 10,
     "first_seen": "2026-09-03T23:11:12Z",
-    "last_update": "2026-09-05T09:27:49Z",
+    "last_update": "2026-09-05T13:01:01Z",
     "sources": [
       {
         "kind": "news",
@@ -247,6 +261,20 @@
         "org": "trthaber.com",
         "url": "https://www.trthaber.com/haber/gundem/silivri-aciklarinda-batan-gemi-720-metre-derinlikte-bulundu-955964.html",
         "ts": "2026-09-05T09:27:37Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Silivri açıklarındaki kazada batan geminin bulunduğu bölgedeki çalışmalar sürüyor",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/silivri-aciklarindaki-kazada-batan-geminin-bulundugu-bolgedeki-calismalar-suruyor/4048157",
+        "ts": "2026-09-05T13:00:48Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Silivri'de batan gemi 720 metrede!",
+        "org": "haberturk.com",
+        "url": "https://www.haberturk.com/gundem/son-dakika-haberi-silivri-de-batan-gemi-720-metrede-550-kilometrekare-taraniyor-3910488",
+        "ts": "2026-09-05T13:00:50Z"
       }
     ],
     "notes": [],
@@ -280,51 +308,6 @@
         "org": "Sahil Güvenlik Komutanlığı",
         "url": "https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026",
         "ts": "2026-09-04T01:03:30Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-04-ais-357700",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 41.546348333333334,
-    "lon": 28.80545,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "LIDER PRESTIJ",
-      "mmsi": 613091160,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T20:59:13Z",
-    "last_update": "2026-09-05T00:52:46Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-04T20:59:13Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~152°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-04T23:00:21Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (11.5 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T00:52:46Z"
       }
     ],
     "notes": [],
@@ -631,68 +614,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-05-news-82abb2-79944",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T00:52:54Z",
-    "last_update": "2026-09-05T00:52:54Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "KKTC'deki gemi kazasında hayatını kaybeden Elmas Demir'in cenazesi Eskişehir'e getirildi",
-        "org": "aa.com.tr",
-        "url": "https://www.aa.com.tr/tr/gundem/kktcdeki-gemi-kazasinda-hayatini-kaybeden-elmas-demirin-cenazesi-eskisehire-getirildi/4047905",
-        "ts": "2026-09-05T00:52:54Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
-  },
-  {
-    "id": "2026-09-05-news-82abb2-45109",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T00:52:54Z",
-    "last_update": "2026-09-05T00:52:54Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Gemi kazalarında hayatını kaybedenler maç öncesinde anılacak",
-        "org": "aa.com.tr",
-        "url": "https://www.aa.com.tr/tr/spor/gemi-kazalarinda-hayatini-kaybedenler-mac-oncesinde-anilacak/4047720",
-        "ts": "2026-09-05T00:52:54Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
-  },
-  {
     "id": "2026-09-05-news-ed5434-94293",
     "type": "drift",
     "status": "signal",
@@ -730,99 +651,6 @@
     "places": [
       "Marmara Adası"
     ],
-    "coarse": true
-  },
-  {
-    "id": "2026-09-05-news-82abb2-97117",
-    "type": "sinking",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T00:52:57Z",
-    "last_update": "2026-09-05T00:52:57Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "SON DAKİKA... Marmara'da batan geminin yeri tespit edildi",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/son-dakika-marmarada-batan-geminin-yeri-tespit-edildi-3462771",
-        "ts": "2026-09-05T00:52:57Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
-  },
-  {
-    "id": "2026-09-05-news-82abb2-54420",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T00:52:57Z",
-    "last_update": "2026-09-05T00:52:57Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "KKTC'deki gemi kazasında hayatını kaybeden Demir'in cenazesi Eskişehir'e getirildi",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/turkiye/kktcdeki-gemi-kazasinda-hayatini-kaybeden-demirin-cenazesi-eskisehire-getirildi-955950.html",
-        "ts": "2026-09-05T00:52:57Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
-  },
-  {
-    "id": "2026-09-05-news-82abb2-10834",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T00:52:59Z",
-    "last_update": "2026-09-05T00:52:59Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "KKTC’deki gemi kazasında cansız bedeni bulundu... Elmas Demir'in acılı eşi: Mürettebat yolcuları ölüme terk etti",
-        "org": "milliyet.com.tr",
-        "url": "",
-        "ts": "2026-09-05T00:52:59Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
     "coarse": true
   },
   {
@@ -1025,7 +853,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T09:27:30Z",
-    "last_update": "2026-09-05T11:52:27Z",
+    "last_update": "2026-09-05T13:00:45Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1040,6 +868,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T11:52:27Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: diğer: seyir hızından (6.1 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T13:00:45Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (13.1 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T13:00:45Z"
       }
     ],
     "notes": [],
@@ -1383,6 +1225,351 @@
         "org": "trthaber.com",
         "url": "https://www.trthaber.com/haber/turkiye/kktcdeki-gemi-kazasinda-hayatini-kaybeden-demirin-cenazesi-eskisehire-getirildi-955950.html",
         "ts": "2026-09-05T11:52:33Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-ais-99ddce",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 41.45495666666667,
+    "lon": 29.147131666666667,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "DEMANTOID",
+      "mmsi": 273125720,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T13:00:45Z",
+    "last_update": "2026-09-05T13:00:45Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: tanker: seyir hızından (11.7 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T13:00:45Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-086865",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.575271666666666,
+    "lon": 28.01028833333333,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "PAMELA V",
+      "mmsi": 256090000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T13:00:45Z",
+    "last_update": "2026-09-05T13:00:45Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (5.2 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T13:00:45Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-516f23",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.40747666666667,
+    "lon": 28.221841666666666,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "LEDRA EXPLORER",
+      "mmsi": 210330000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T13:00:45Z",
+    "last_update": "2026-09-05T13:00:45Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (6.1 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T13:00:45Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-be714e",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.74273166666667,
+    "lon": 28.926178333333333,
+    "area": "Türk karasuları civarı",
+    "vessel": {
+      "name": "FUNDA D",
+      "mmsi": 271046262,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T13:00:45Z",
+    "last_update": "2026-09-05T13:00:45Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: karaya oturmuş (aground)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T13:00:45Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-rep-5c0aa8-d2a197",
+    "type": "distress",
+    "status": "confirmed",
+    "confidence": 0.6,
+    "severity": "major",
+    "lat": 40.37,
+    "lon": 28.88,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T13:00:47Z",
+    "last_update": "2026-09-05T13:00:47Z",
+    "sources": [
+      {
+        "kind": "official",
+        "detail": "05.09.2026 Bursa Açıklarında 2 Şahıs Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/bursa-aciklarinda-2-sahis-kurtarilmistir",
+        "ts": "2026-09-05T13:00:47Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Bursa"
+    ],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-82abb2-18602",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T13:00:48Z",
+    "last_update": "2026-09-05T13:00:48Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "KKTC'deki gemi kazasında hayatını kaybeden Elmas Demir'in cenazesi Eskişehir'de toprağa verildi",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/kktcdeki-gemi-kazasinda-hayatini-kaybeden-elmas-demirin-cenazesi-eskisehirde-topraga-verildi/4048109",
+        "ts": "2026-09-05T13:00:48Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-5551bb-63825",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": 36.88,
+    "lon": 30.7,
+    "area": "Antalya Körfezi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T13:00:49Z",
+    "last_update": "2026-09-05T13:00:49Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Antalya'da korkunç olay! İskeleden sığ suya balıklama atlayan tatilci hayatını kaybetti",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/antalyada-korkunc-olay-iskeleden-sig-suya-baliklama-atlayan-tatilci-hayatini-kaybetti-43297077",
+        "ts": "2026-09-05T13:00:49Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Antalya"
+    ],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-82abb2-43045",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "critical",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 23,
+    "first_seen": "2026-09-05T13:00:49Z",
+    "last_update": "2026-09-05T13:00:49Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Milas açıklarında lastik botta 23 kaçak göçmen yakalandı",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/milas-aciklarinda-lastik-botta-23-kacak-gocmen-yakalandi-3463231",
+        "ts": "2026-09-05T13:00:49Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-82abb2-91775",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T13:00:50Z",
+    "last_update": "2026-09-05T13:00:50Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Donanmanın kurtarma gemileri derin denizde iz sürüyor",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/turkiye/donanmanin-kurtarma-gemileri-derin-denizde-iz-suruyor-955975.html",
+        "ts": "2026-09-05T13:00:50Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-82abb2-48602",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T13:00:50Z",
+    "last_update": "2026-09-05T13:00:50Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "KKTC'deki gemi kazasında hayatını kaybeden Demir'in cenazesi Eskişehir'e getirildi",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/turkiye/kktcdeki-gemi-kazasinda-hayatini-kaybeden-demirin-cenazesi-eskisehire-getirildi-955950.html",
+        "ts": "2026-09-05T13:00:50Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-82abb2-91221",
+    "type": "collision",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T13:00:51Z",
+    "last_update": "2026-09-05T13:00:51Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Marmara'daki gemi kazasında 4'üncü gün: Çarpıştığı yerin 50 metre yakınında, 720 metre derinlikte",
+        "org": "milliyet.com.tr",
+        "url": "",
+        "ts": "2026-09-05T13:00:51Z"
       }
     ],
     "notes": [],
