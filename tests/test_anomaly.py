@@ -64,14 +64,70 @@ def test_no_flag_when_anchored(tmp_path, cfg):
     assert not any(a.kind == "speed-drop" for a in out)
 
 
-def test_ais_gap(tmp_path, cfg):
+def _track(vs, mmsi, lat, lon, ts, n=3, sog=9.0):
+    for _ in range(n):
+        vs.update([{"mmsi": mmsi, "lat": lat, "lon": lon, "sog": sog, "cog": 45.0,
+                    "nav_status": 0, "ts": ts}])
+
+
+def test_ais_gap_needs_several_consecutive_misses(tmp_path, cfg):
+    """We sample ~90 s per cycle; one silent burst means nothing."""
     vs = _state(tmp_path)
-    old = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() - 3600))  # 60 min ago
-    for _ in range(3):
-        vs.update([{"mmsi": 444, "lat": 42.0, "lon": 30.0, "sog": 9.0, "cog": 45.0,
-                    "nav_status": 0, "ts": old}])
-    out = detect(vs, [], cfg, set())          # 444 not seen this cycle
+    old = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() - 3600))
+    _track(vs, 444, 42.0, 30.0, old)
+
+    assert not [a for a in detect(vs, [], cfg, set()) if a.kind == "ais-gap"]   # miss 1
+    assert not [a for a in detect(vs, [], cfg, set()) if a.kind == "ais-gap"]   # miss 2
+    out = detect(vs, [], cfg, set())                                            # miss 3
     assert any(a.kind == "ais-gap" and a.mmsi == 444 for a in out)
+
+
+def test_being_seen_again_resets_the_miss_counter(tmp_path, cfg):
+    vs = _state(tmp_path)
+    old = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() - 3600))
+    _track(vs, 444, 42.0, 30.0, old)
+    detect(vs, [], cfg, set())
+    detect(vs, [], cfg, set())
+    detect(vs, [], cfg, {"444"})                       # heard again -> counter resets
+    assert not [a for a in detect(vs, [], cfg, set()) if a.kind == "ais-gap"]
+
+
+def test_no_gap_when_vessel_reached_port(tmp_path, cfg):
+    vs = _state(tmp_path)
+    old = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() - 3600))
+    _track(vs, 555, 41.02, 28.97, old)                 # sitting on Istanbul
+    for _ in range(4):
+        out = detect(vs, [], cfg, set())
+    assert not [a for a in out if a.kind == "ais-gap"]
+
+
+def test_no_gap_when_vessel_left_the_subscribed_box(tmp_path, cfg):
+    vs = _state(tmp_path)
+    old = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() - 3600))
+    _track(vs, 666, 43.4, 30.0, old)                   # hard against bbox lat_max 43.5
+    for _ in range(4):
+        out = detect(vs, [], cfg, set())
+    assert not [a for a in out if a.kind == "ais-gap"]
+
+
+def test_course_spike_is_off_by_default(tmp_path, cfg):
+    """An ordinary 60-degree turn produced 44 false flags in one live cycle."""
+    vs = _state(tmp_path)
+    pos = {"mmsi": 777, "lat": 40.7, "lon": 28.3, "sog": 12.0, "nav_status": 0, "type_code": 70}
+    vs.update([{**pos, "cog": 10.0, "ts": "2026-09-05T09:00:00Z"}])
+    vs.update([{**pos, "cog": 100.0, "ts": "2026-09-05T09:05:00Z"}])
+    out = detect(vs, [{**pos, "cog": 100.0}], cfg, {"777"})
+    assert not [a for a in out if a.kind == "course-spike"]
+
+
+def test_course_spike_fires_on_a_near_reversal_when_enabled(tmp_path, cfg):
+    cfg["anomaly"]["course_spike_enabled"] = True
+    vs = _state(tmp_path)
+    pos = {"mmsi": 888, "lat": 40.7, "lon": 28.3, "sog": 12.0, "nav_status": 0, "type_code": 80}
+    vs.update([{**pos, "cog": 10.0, "ts": "2026-09-05T09:00:00Z"}])
+    vs.update([{**pos, "cog": 190.0, "ts": "2026-09-05T09:05:00Z"}])
+    out = detect(vs, [{**pos, "cog": 190.0}], cfg, {"888"})
+    assert any(a.kind == "course-spike" for a in out)
 
 
 def test_gap_ignores_vessel_seen_now(tmp_path, cfg):

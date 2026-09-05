@@ -8,7 +8,8 @@ from pathlib import Path
 
 
 def write_health(out_dir: str, records: list[dict], started: float,
-                 incidents: int, warnings: int) -> dict:
+                 incidents: int, warnings: int,
+                 fetch_status: dict | None = None) -> dict:
     ok = sum(1 for r in records if r["ok"])
     down = [r["source"] for r in records if not r["ok"]]
     health = {
@@ -20,6 +21,8 @@ def write_health(out_dir: str, records: list[dict], started: float,
         "incidents": incidents,
         "warnings": warnings,
         "sources": {r["source"]: {k: v for k, v in r.items() if k != "source"} for r in records},
+        # per-endpoint: "live" | "sample" (dev only) | "down"
+        "fetch": fetch_status or {},
     }
     (Path(out_dir) / "health.json").write_text(
         json.dumps(health, ensure_ascii=False, indent=2), encoding="utf-8"

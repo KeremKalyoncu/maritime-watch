@@ -33,6 +33,15 @@
 - [x] Separate official announcements about one city no longer fuse into one incident
 - [x] Every source quoted in the message, so a casualty count is traceable
 
+**Second production sweep (audit of the live channel)**
+- [x] CRITICAL: fixture data could be published as real from any of 11 sources — it already had been
+      (Open-Meteo's "2.7 m / 41 kn" went out as a genuine forecast). One guarded fetch path now;
+      production publishes nothing when a source is down, and `health.json` reports live/sample/down
+- [x] `course-spike` disabled by default (44 false flags in one cycle); needs a near-reversal when on
+- [x] `ais-gap` needs several consecutive misses, and ignores port arrival / leaving the AIS box
+      (35 false flags in one cycle -> AIS noise went 83 -> 4)
+- [x] Purged the two fabricated warnings and 35 noise incidents from the live store
+
 **Quality**
 - [x] Tests (78, offline) + eval harness (`eval/run_eval.py` → `REPORT.md`)
 - [x] CI: ruff + pytest matrix (3.11/3.12/3.13) + eval, free GitHub Actions/Pages deploy

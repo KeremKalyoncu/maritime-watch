@@ -55,6 +55,23 @@ on purpose** (see `.gitignore`):
 All three are bounded: vessels age out after `ais.vessel_ttl_hours`, sent keys are
 capped, and the event log is trimmed to the most recent lines each cycle.
 
+## Two rules the live channel taught us
+
+**Fixtures are not data.** `src/ingest/samples/*` exists so tests and a fresh clone
+run offline. All eleven ingest modules used to discard the `live` flag, so any
+source outage published the fixture as fact — and it happened: a dead Open-Meteo
+fetch put the sample's *"dalga 2.7 m, ruzgar 41 kn"* on the live Telegram channel
+as a real forecast for two sea areas. Fetching now goes through `_net.get_text`,
+which returns nothing when `SAMPLES_ALLOWED` is off (the production default from
+`sources.use_samples_when_down`). Saying nothing beats saying something false.
+
+**Absence is not disappearance.** We sample ~90 s per cron interval. A vessel that
+did not transmit inside that burst is not missing, and a 60-degree turn is ordinary
+navigation. Unguarded, those two rules produced 79 of 83 flags in a single live
+cycle, all false. `ais-gap` now needs several consecutive misses and rules out port
+arrival and leaving the subscribed box; `course-spike` is off by default and, when
+enabled, wants a near-reversal by a cargo or tanker. Same cycle after: 4 flags.
+
 ## Key decisions
 
 | Choice | Why |

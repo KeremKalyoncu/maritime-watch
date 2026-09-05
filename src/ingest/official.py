@@ -1,8 +1,9 @@
 """Scrapers for official sources (MGM, Sahil Guvenlik, AFAD).
 
 There is no stable public API, so each parser catches its own errors, logs the
-failure and returns an empty list. Cached copies in ./samples keep the tests and
-the first run working without network access.
+failure and returns an empty list. Fetching goes through _net.get_text, so the
+"never publish fixture data" rule applies here too: a Coast Guard outage must not
+turn the sample file's rescue headline into a "confirmed" incident.
 """
 
 from __future__ import annotations
@@ -10,30 +11,18 @@ from __future__ import annotations
 import hashlib
 import json
 import re
-from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
-import requests
 from bs4 import BeautifulSoup
 
 from ..model import Incident, Source, Vessel, Warning, make_id
 from ..process.classify import area_centroid
 from ..process.extract import extract
+from ._net import get_text
 
-UA = {"User-Agent": "maritime-watch/1.0 (open-source maritime safety aggregator)"}
-TIMEOUT = 15
-SAMPLES = Path(__file__).parent / "samples"
-
-
-def _fetch(url: str, sample_name: str, headers: dict | None = None) -> tuple[str, bool]:
-    try:
-        r = requests.get(url, headers={**UA, **(headers or {})}, timeout=TIMEOUT)
-        r.raise_for_status()
-        return r.text, True
-    except Exception as e:
-        print(f"[scrape] {url} down ({e}) -> cached sample {sample_name}")
-        p = SAMPLES / sample_name
-        return (p.read_text("utf-8") if p.exists() else ""), False
+# one fetch path for the whole project, so the "never publish fixture data" rule
+# in _net.py applies to the scrapers too
+_fetch = get_text
 
 
 _TR_LOWER = str.maketrans("İIŞĞÜÖÇ", "iışğüöç")

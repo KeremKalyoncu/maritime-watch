@@ -22,11 +22,24 @@ anomaly:
   moving_speed_kn: 3.0
   stopped_speed_kn: 0.5
   stop_minutes: 20
+  # A vessel absent from one 90 s burst is not missing. Flag only after this many
+  # consecutive cycles without a report, inside the time window, and only when
+  # port arrival / leaving the box cannot explain it.
   gap_minutes: 45
-  course_change_deg: 60
+  gap_max_minutes: 1440
+  gap_min_cycles: 3
+  # Ordinary course changes are not incidents; off by default. When on, only a
+  # near-reversal by a cargo/tanker counts.
+  course_spike_enabled: false
+  course_reversal_deg: 120
 
 # extra sources, each independently toggleable
 sources:
+  # Cached files in src/ingest/samples/ are TEST FIXTURES. With this off (the
+  # production default) a dead source publishes nothing instead of publishing the
+  # fixture. Turning it on once put the fixture's "dalga 2.7 m / 41 kn" on the live
+  # channel as a real forecast. Only enable it for offline demos.
+  use_samples_when_down: false
   scrape: true          # Sahil Güvenlik announcements (see scrape: below)
   openmeteo: true        # marine + wind forecast (no key) - replaces MGM
   quakes: true           # AFAD + USGS + EMSC earthquakes (cross-confirmed)

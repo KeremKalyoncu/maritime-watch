@@ -10,16 +10,19 @@ from src.ingest import _net, eonet, gdacs, metar, navwarn, news, openmeteo, quak
 def _offline(monkeypatch):
     def boom(*_a, **_k):
         raise requests.RequestException("offline in tests")
+    monkeypatch.setattr(_net, "SAMPLES_ALLOWED", True)
     monkeypatch.setattr(_net.requests, "get", boom)
 
 
-def test_openmeteo_sample(cfg):
-    ws = openmeteo.fetch_marine_warnings(cfg)
-    assert len(ws) == 1
-    w = ws[0]
-    assert w.kind == "marine-weather"
-    assert w.lat is not None and w.lon is not None
-    assert "dalga" in w.headline or "rüzgar" in w.headline
+def test_openmeteo_parses_the_fixture_but_publishes_nothing_from_it(cfg):
+    # the parser must work on the fixture...
+    waves, live = openmeteo._series(
+        openmeteo.MARINE, {"latitude": 40.75, "longitude": 28.3},
+        "openmeteo_marine.json", "wave_height")
+    assert waves and max(waves) == 2.7 and live is False
+    # ...but a forecast built from fixture numbers must never be published.
+    # This exact leak put "dalga 2.7 m / 41 kn" on the live channel as real.
+    assert openmeteo.fetch_marine_warnings(cfg) == []
 
 
 def test_quakes_multi_provider_and_coastal(cfg):
