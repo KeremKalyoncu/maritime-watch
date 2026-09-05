@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-05T13:01:38Z",
-  "total_incidents": 83,
+  "generated": "2026-09-05T16:01:39Z",
+  "total_incidents": 91,
   "by_month": {
-    "2026-09": 83
+    "2026-09": 91
   },
   "by_area": {
-    "belirsiz": 75,
+    "belirsiz": 83,
     "Türk karasuları civarı": 2,
     "Doğu Karadeniz": 2,
     "Marmara Denizi": 2,
@@ -13,28 +13,32 @@
     "Antalya Körfezi": 1
   },
   "by_type": {
-    "unknown": 42,
-    "distress": 26,
-    "sinking": 7,
+    "unknown": 38,
+    "distress": 37,
+    "sinking": 8,
     "drift": 7,
     "collision": 1
   },
   "by_status": {
-    "signal": 83
+    "signal": 91
   },
-  "incidents_with_casualties": 1,
-  "casualties_reported_total": 23,
+  "incidents_with_casualties": 2,
+  "casualties_reported_total": 46,
   "top_vessels": [
+    [
+      "UNLU-5",
+      2
+    ],
     [
       "LEDRA EXPLORER",
       2
     ],
     [
-      "ALSANCAK 22",
-      1
+      "DAYTONA",
+      2
     ],
     [
-      "UNLU-5",
+      "ALSANCAK 22",
       1
     ],
     [
@@ -55,10 +59,6 @@
     ],
     [
       "ERDEK",
-      1
-    ],
-    [
-      "DAYTONA",
       1
     ],
     [
