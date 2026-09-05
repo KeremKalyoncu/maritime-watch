@@ -1,7 +1,7 @@
 [
   {
     "id": "om-kuzeyege-2026-09-03T23",
-    "headline": "Kuzey Ege: dalga ~0.5 m, rüzgar hamlesi ~34 kn (önümüzdeki 36 saat)",
+    "headline": "Kuzey Ege: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
     "area": "Kuzey Ege",
     "severity": "minor",
     "kind": "marine-weather",
@@ -9,12 +9,12 @@
     "expires": null,
     "org": "Open-Meteo",
     "url": "https://open-meteo.com/en/docs/marine-weather-api",
-    "issued": "2026-09-04T15:01:13Z",
-    "last_update": "2026-09-04T15:01:44Z",
+    "issued": "2026-09-05T00:53:37Z",
+    "last_update": "2026-09-05T00:53:46Z",
     "raw": "",
     "lat": 39.2,
     "lon": 26.3,
-    "value": 0.5,
+    "value": 2.7,
     "sources": [
       {
         "kind": "marine-weather",
@@ -55,39 +55,6 @@
         "org": "EMSC",
         "url": "https://www.seismicportal.eu/",
         "ts": "2026-09-03T10:20:47.9Z"
-      }
-    ]
-  },
-  {
-    "id": "om-antalyakörfezi-2026-09-04T01",
-    "headline": "Antalya Körfezi: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
-    "area": "Antalya Körfezi",
-    "severity": "minor",
-    "kind": "marine-weather",
-    "onset": null,
-    "expires": null,
-    "org": "Open-Meteo",
-    "url": "https://open-meteo.com/en/docs/marine-weather-api",
-    "issued": "2026-09-04T01:04:29Z",
-    "last_update": "2026-09-04T05:59:55Z",
-    "raw": "",
-    "lat": 36.55,
-    "lon": 30.6,
-    "value": 2.7,
-    "sources": [
-      {
-        "kind": "marine-weather",
-        "detail": "Antalya Körfezi: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
-        "org": "Open-Meteo",
-        "url": "https://open-meteo.com/en/docs/marine-weather-api",
-        "ts": "2026-09-04T01:04:29Z"
-      },
-      {
-        "kind": "marine-weather",
-        "detail": "Antalya Körfezi: dalga ~0.2 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
-        "org": "Open-Meteo",
-        "url": "https://open-meteo.com/en/docs/marine-weather-api",
-        "ts": "2026-09-04T05:59:44Z"
       }
     ]
   },

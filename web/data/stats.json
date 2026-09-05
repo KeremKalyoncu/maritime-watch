@@ -1,23 +1,24 @@
 {
-  "generated": "2026-09-04T23:00:53Z",
-  "total_incidents": 17,
+  "generated": "2026-09-05T00:53:46Z",
+  "total_incidents": 38,
   "by_month": {
-    "2026-09": 17
+    "2026-09": 38
   },
   "by_area": {
-    "belirsiz": 13,
+    "belirsiz": 33,
     "Türk karasuları civarı": 2,
     "Güney Ege": 1,
-    "Doğu Karadeniz": 1
+    "Doğu Karadeniz": 1,
+    "Marmara Denizi": 1
   },
   "by_type": {
-    "unknown": 10,
-    "sinking": 5,
-    "distress": 1,
-    "drift": 1
+    "unknown": 18,
+    "distress": 11,
+    "sinking": 6,
+    "drift": 3
   },
   "by_status": {
-    "signal": 17
+    "signal": 38
   },
   "incidents_with_casualties": 0,
   "casualties_reported_total": 0,
@@ -48,6 +49,18 @@
     ],
     [
       "ERDEK",
+      1
+    ],
+    [
+      "LEDRA EXPLORER",
+      1
+    ],
+    [
+      "DAYTONA",
+      1
+    ],
+    [
+      "KAPPA",
       1
     ]
   ],
