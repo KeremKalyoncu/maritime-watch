@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-05T20:29:24Z",
-  "total_incidents": 107,
+  "generated": "2026-09-05T20:48:42Z",
+  "total_incidents": 112,
   "by_month": {
-    "2026-09": 107
+    "2026-09": 112
   },
   "by_area": {
-    "belirsiz": 99,
+    "belirsiz": 104,
     "Türk karasuları civarı": 2,
     "Doğu Karadeniz": 2,
     "Marmara Denizi": 2,
@@ -15,12 +15,12 @@
   "by_type": {
     "distress": 48,
     "unknown": 40,
+    "drift": 13,
     "sinking": 10,
-    "drift": 8,
     "collision": 1
   },
   "by_status": {
-    "signal": 107
+    "signal": 112
   },
   "incidents_with_casualties": 4,
   "casualties_reported_total": 92,
@@ -42,6 +42,10 @@
       2
     ],
     [
+      "BARILOCHE",
+      2
+    ],
+    [
       "MED CESME",
       1
     ],
@@ -59,10 +63,6 @@
     ],
     [
       "ERDEK",
-      1
-    ],
-    [
-      "KAPPA",
       1
     ]
   ],
