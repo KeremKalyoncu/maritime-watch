@@ -230,3 +230,15 @@ def test_all_clear_message_names_the_area(tmp_path, cfg):
     n._send_one = lambda key, text, dry, lat=None, lon=None: sent.append(text)
     n.weather_passed(_wx("wx-a"), dry=True)
     assert sent and "UYARI KALKTI" in sent[0] and "Marmara Denizi" in sent[0]
+
+
+def test_a_source_is_never_counted_twice(tmp_path):
+    from src.process.prune import dedupe_sources
+    s = _store(tmp_path)
+    inc = Incident(id="x", lat=41.0, lon=29.0)
+    inc.sources.append(Source(kind="news", org="cnnturk.com", detail="Silivri'de gemi battı"))
+    inc.sources.append(Source(kind="news", org="cnnturk.com", detail="Silivri'de gemi battı"))
+    inc.sources.append(Source(kind="news", org="trthaber.com", detail="Silivri'de gemi battı"))
+    s.upsert_incident(inc)
+    assert dedupe_sources(s) == 1
+    assert len(s.incidents["x"].sources) == 2      # two outlets, not three reports

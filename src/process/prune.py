@@ -127,8 +127,30 @@ def clear_passed_weather(store, seen_ids: set[str], live_sources: bool) -> list:
     return gone
 
 
+def dedupe_sources(store) -> int:
+    """Drop repeated sources on one incident.
+
+    add_source() refuses a duplicate, but correlation paths that append straight
+    to the list do not, so the same outlet's headline could be listed twice and
+    the message would count it as two confirmations.
+    """
+    n = 0
+    for inc in store.incidents.values():
+        seen, keep = set(), []
+        for s in inc.sources:
+            k = s.key()
+            if k in seen:
+                n += 1
+                continue
+            seen.add(k)
+            keep.append(s)
+        inc.sources = keep
+    return n
+
+
 def prune(store, cfg: dict | None = None) -> tuple[int, int]:
     scrub_names(store)
+    dedupe_sources(store)
     backfill(store)
     dropped_aftermath = drop_stored_aftermath(store, cfg)
     real_inc = any("seed" not in i for i in store.incidents)
