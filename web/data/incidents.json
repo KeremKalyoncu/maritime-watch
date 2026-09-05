@@ -273,194 +273,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-04-ais-60c108",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 42.12807166666666,
-    "lon": 28.66475,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "MARIT SELMER",
-      "mmsi": 636022913,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T15:00:46Z",
-    "last_update": "2026-09-04T15:00:46Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-04T15:00:46Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-04-news-14ea44-41459",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T15:00:52Z",
-    "last_update": "2026-09-04T15:00:52Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne açıklarında batan gemiye ilişkin arama kurtarma faaliyeti yürüten komutanlardan açıklama",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemiye-iliskin-arama-kurtarma-faaliyeti-yuruten-komutanlardan-aciklama-43296234",
-        "ts": "2026-09-04T15:00:52Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-04-news-14ea44-85120",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T15:00:52Z",
-    "last_update": "2026-09-04T15:00:52Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'de batan gemiye binmeden 25 dakika önce çekildi! Demir kardeşlerin son görüntüsü ortaya çıktı",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/girnede-batan-gemiye-binmeden-25-dakika-once-cekildi-demir-kardeslerin-son-goruntusu-ortaya-cikti-43295393",
-        "ts": "2026-09-04T15:00:52Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-04-news-09a80d-32146",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": 41.0,
-    "lon": 37.87,
-    "area": "Doğu Karadeniz",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T15:00:53Z",
-    "last_update": "2026-09-04T15:00:53Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Kayıp mürettebatın ailesi CNN TÜRK'e konuştu: \"Babam denizi çok seviyordu\"",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/video/turkiye/kayip-murettebatin-ailesi-cnn-turke-konustu-babam-denizi-cok-seviyordu-3462813",
-        "ts": "2026-09-04T15:00:53Z"
-      }
-    ],
-    "notes": [],
-    "places": [
-      "Ordu"
-    ],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-04-news-14ea44-17893",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T15:00:53Z",
-    "last_update": "2026-09-04T15:00:53Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "SON DAKİKA... Marmara'da batan geminin yeri tespit edildi",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/son-dakika-marmarada-batan-geminin-yeri-tespit-edildi-3462771",
-        "ts": "2026-09-04T15:00:53Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-04-news-14ea44-86182",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T15:00:54Z",
-    "last_update": "2026-09-04T15:00:54Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne'deki gemide can kaybı 12'ye yükseldi",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-12ye-yukseldi-955869.html",
-        "ts": "2026-09-04T15:00:54Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-04-news-14ea44-01084",
     "type": "unknown",
     "status": "signal",
@@ -912,7 +724,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-04T23:00:21Z",
-    "last_update": "2026-09-05T00:52:46Z",
+    "last_update": "2026-09-05T05:33:15Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -941,6 +753,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T00:52:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~145°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
       }
     ],
     "notes": [],
@@ -949,7 +768,7 @@
   },
   {
     "id": "2026-09-04-ais-dce171",
-    "type": "unknown",
+    "type": "distress",
     "status": "signal",
     "confidence": 0.25,
     "severity": "minor",
@@ -964,7 +783,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-04T23:00:21Z",
-    "last_update": "2026-09-04T23:00:21Z",
+    "last_update": "2026-09-05T05:33:15Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -972,6 +791,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-04T23:00:21Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
       }
     ],
     "notes": [],
@@ -995,7 +821,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-04T23:00:21Z",
-    "last_update": "2026-09-05T00:52:46Z",
+    "last_update": "2026-09-05T05:33:15Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1024,6 +850,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T00:52:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~167°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
       }
     ],
     "notes": [],
@@ -1085,7 +925,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-04T23:00:21Z",
-    "last_update": "2026-09-05T00:52:46Z",
+    "last_update": "2026-09-05T05:33:15Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1100,6 +940,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T00:52:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~137°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
       }
     ],
     "notes": [],
@@ -1108,7 +955,7 @@
   },
   {
     "id": "2026-09-04-ais-22b810",
-    "type": "unknown",
+    "type": "distress",
     "status": "signal",
     "confidence": 0.25,
     "severity": "minor",
@@ -1123,7 +970,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-04T23:00:21Z",
-    "last_update": "2026-09-05T00:52:46Z",
+    "last_update": "2026-09-05T05:33:15Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1138,6 +985,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T00:52:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
       }
     ],
     "notes": [],
@@ -1254,7 +1108,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T00:52:46Z",
-    "last_update": "2026-09-05T00:52:46Z",
+    "last_update": "2026-09-05T05:33:15Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1269,6 +1123,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T00:52:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~138°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~282 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
       }
     ],
     "notes": [],
@@ -1292,7 +1160,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T00:52:46Z",
-    "last_update": "2026-09-05T00:52:46Z",
+    "last_update": "2026-09-05T05:33:15Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1307,6 +1175,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T00:52:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~104°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
       }
     ],
     "notes": [],
@@ -1392,7 +1274,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T00:52:46Z",
-    "last_update": "2026-09-05T00:52:46Z",
+    "last_update": "2026-09-05T05:33:15Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1400,6 +1282,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T00:52:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~68°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
       }
     ],
     "notes": [],
@@ -1867,6 +1756,554 @@
         "org": "milliyet.com.tr",
         "url": "",
         "ts": "2026-09-05T00:52:59Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-ais-d1e12b",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.017720000000004,
+    "lon": 27.42626166666667,
+    "area": "Gökova Körfezi",
+    "vessel": {
+      "name": "SEA STAR RHODES",
+      "mmsi": 511100115,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~178°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~101°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-c4f184",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 41.30172,
+    "lon": 29.30681,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "CHARA",
+      "mmsi": 538012518,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~168°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~98°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~92°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-624978",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 43.385531666666665,
+    "lon": 28.184956666666668,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "NEPTUNE",
+      "mmsi": 518790000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~117°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-b8aaa8",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 41.487095,
+    "lon": 29.18030333333333,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "MARAN MYRTO",
+      "mmsi": 241998000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~130°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-d0a624",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.49149666666666,
+    "lon": 27.80754166666667,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "TIGANI",
+      "mmsi": 249856000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "course-spike: ani rota değişimi (~132°)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-3ac834",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.267045,
+    "lon": 29.084888333333332,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "REGINA",
+      "mmsi": 249576000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~282 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-586436",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.97246500000001,
+    "lon": 28.992246666666666,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "ISLAND POLARIS",
+      "mmsi": 210888000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-668dca",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 41.86011666666666,
+    "lon": 28.989056666666666,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "INCI",
+      "mmsi": 671592100,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-016c9b",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.488985,
+    "lon": 28.23072,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "DOLPHIN E",
+      "mmsi": 511100815,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-e2f577",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.47018833333333,
+    "lon": 27.807775,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "PROTON",
+      "mmsi": 511101943,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-ef643a",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.93826333333333,
+    "lon": 28.888969999999997,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "DUZGIT DIGNITY",
+      "mmsi": 271043776,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~282 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-054623",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.870655000000006,
+    "lon": 28.073755000000002,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "DON",
+      "mmsi": 341527002,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~282 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-ef8750",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.20616833333334,
+    "lon": 26.03944166666667,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "SEAGUARDIAN",
+      "mmsi": 215247000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:15Z",
+    "last_update": "2026-09-05T05:33:15Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T05:33:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-news-82abb2-70932",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:19Z",
+    "last_update": "2026-09-05T05:33:19Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "KKTC'deki gemi kazasında hayatını kaybeden Elmas Demir'in cenazesi Eskişehir'e getirildi",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/kktcdeki-gemi-kazasinda-hayatini-kaybeden-elmas-demirin-cenazesi-eskisehire-getirildi/4047905",
+        "ts": "2026-09-05T05:33:19Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-82abb2-97545",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:19Z",
+    "last_update": "2026-09-05T05:33:19Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Gemi kazalarında hayatını kaybedenler maç öncesinde anılacak",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/spor/gemi-kazalarinda-hayatini-kaybedenler-mac-oncesinde-anilacak/4047720",
+        "ts": "2026-09-05T05:33:19Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-82abb2-01149",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:22Z",
+    "last_update": "2026-09-05T05:33:22Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "SON DAKİKA... Marmara'da batan geminin yeri tespit edildi",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/son-dakika-marmarada-batan-geminin-yeri-tespit-edildi-3462771",
+        "ts": "2026-09-05T05:33:22Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-82abb2-35822",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T05:33:23Z",
+    "last_update": "2026-09-05T05:33:23Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "KKTC'deki gemi kazasında hayatını kaybeden Demir'in cenazesi Eskişehir'e getirildi",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/turkiye/kktcdeki-gemi-kazasinda-hayatini-kaybeden-demirin-cenazesi-eskisehire-getirildi-955950.html",
+        "ts": "2026-09-05T05:33:23Z"
       }
     ],
     "notes": [],
