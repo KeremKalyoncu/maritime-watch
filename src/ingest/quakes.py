@@ -17,7 +17,34 @@ AFAD = "https://deprem.afad.gov.tr/apiv2/event/filter"
 USGS = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson"
 EMSC = "https://www.seismicportal.eu/fdsnws/event/1/query"
 
-COASTAL_NM = 60
+COASTAL_NM = 40          # anything further inland is a land quake for our readers
+
+# USGS and EMSC name regions in English; the channel is read in Turkish
+_PLACE_TR = {
+    "aegean sea": "Ege Denizi", "sea of marmara": "Marmara Denizi",
+    "black sea": "Karadeniz", "eastern mediterranean sea": "Doğu Akdeniz",
+    "mediterranean sea": "Akdeniz", "crete": "Girit",
+    "western turkey": "Batı Türkiye", "central turkey": "Orta Türkiye",
+    "eastern turkey": "Doğu Türkiye", "southern turkey": "Güney Türkiye",
+    "turkey-syria border region": "Türkiye-Suriye sınırı",
+    "greece": "Yunanistan", "dodecanese islands": "Onikiadalar",
+    "cyprus region": "Kıbrıs", "bulgaria": "Bulgaristan", "turkey": "Türkiye",
+}
+
+
+def place_tr(place: str) -> str:
+    """Give the region a Turkish name where we know one, keep the original otherwise."""
+    out = " ".join(place.split()).strip()
+    low = out.lower()
+    if low in _PLACE_TR:
+        return _PLACE_TR[low]
+    # longest first, so "eastern mediterranean sea" wins over "mediterranean sea"
+    for en in sorted(_PLACE_TR, key=len, reverse=True):
+        i = low.find(en)
+        if i >= 0:
+            out = out[:i] + _PLACE_TR[en] + out[i + len(en):]
+            low = out.lower()
+    return out
 _SEA_WORDS = ("deniz", "körfez", "açık", "boğaz", "ada", "sea", "gulf", "aegean", "marmara")
 
 
@@ -35,8 +62,8 @@ def _bbox(lat, lon, b) -> bool:
 def _mk(lat, lon, mag, place, ts, org, url) -> Warning:
     return Warning(
         id=f"eq-{org.lower()}-{round(lat, 2)}-{round(lon, 2)}-{str(ts)[:16]}",
-        headline=f"Deprem M{mag:.1f} - {place}",
-        area=place, kind="earthquake",
+        headline=f"Deprem M{mag:.1f} - {place_tr(place)}",
+        area=place_tr(place), kind="earthquake",
         severity="major" if mag >= 4.5 else "minor",
         org=org, url=url, issued=str(ts), value=round(mag, 1),
         lat=lat, lon=lon,

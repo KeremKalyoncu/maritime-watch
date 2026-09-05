@@ -19,6 +19,8 @@ from pathlib import Path
 
 import requests
 
+from ..model import fix_mojibake
+
 UA = {"User-Agent": "maritime-watch/1.0 (open-source maritime safety aggregator)"}
 SAMPLES = Path(__file__).parent / "samples"
 TIMEOUT = 10
@@ -46,7 +48,7 @@ def get_text(url: str, sample_name: str, headers: dict | None = None,
         if "charset=" not in ct or (r.encoding or "").lower() in ("iso-8859-1", "latin-1"):
             r.encoding = r.apparent_encoding or r.encoding
         STATUS[sample_name] = "live"
-        return r.text, True
+        return fix_mojibake(r.text), True
     except Exception as e:
         p = SAMPLES / sample_name
         if SAMPLES_ALLOWED and p.exists():

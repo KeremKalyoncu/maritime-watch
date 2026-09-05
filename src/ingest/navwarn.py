@@ -7,7 +7,7 @@ straits / coastal cities).
 
 from __future__ import annotations
 
-from ..model import Warning, now_iso
+from ..model import Warning, now_iso, stable_hash
 from ..process.classify import area_centroid
 from ._net import get_json
 
@@ -37,7 +37,7 @@ def fetch_navwarnings(cfg: dict) -> list[Warning]:
         first = text.split(".")[0][:200] if text else "seyir uyarısı"
         clat, clon = area_centroid(_area_guess(blob))
         out.append(Warning(
-            id=f"nw-{year}-{num}" if num else f"nw-{abs(hash(text)) % 100000}",
+            id=f"nw-{year}-{num}" if num else f"nw-{stable_hash(text)}",
             headline=f"NAVAREA {area or 'III'} {num}/{year}: {first}",
             area=_area_guess(blob),
             kind="nav-warning",

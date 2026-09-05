@@ -138,3 +138,50 @@ def test_gap_ignores_vessel_seen_now(tmp_path, cfg):
                     "nav_status": 0, "ts": old}])
     out = detect(vs, [], cfg, {"555"})
     assert not any(a.kind == "ais-gap" for a in out)
+
+
+def _fleet(vs, n, ts, lat=42.0, lon=30.0):
+    for m in range(1, n + 1):
+        _track(vs, 1000 + m, lat + m * 0.01, lon, ts)
+
+
+def test_a_whole_cohort_going_quiet_is_a_feed_outage_not_a_fleet_in_distress(tmp_path, cfg):
+    """One live cycle produced 31 'missing vessel' flags, all with the same gap
+    to the minute: aisstream had dropped, not the ships."""
+    vs = _state(tmp_path)
+    old = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() - 3600))
+    _fleet(vs, 12, old)
+    heard = [{"mmsi": 5000 + k, "lat": 41.5, "lon": 29.5, "sog": 8.0, "cog": 10.0,
+              "nav_status": 0, "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+             for k in range(30)]                      # feed is up, 30 ships heard
+    for _ in range(3):
+        vs.update(heard)
+        out = detect(vs, heard, cfg, {str(p["mmsi"]) for p in heard})
+    assert not [a for a in out if a.kind == "ais-gap"]
+
+
+def test_a_single_vessel_going_quiet_still_flags(tmp_path, cfg):
+    vs = _state(tmp_path)
+    now = time.time()
+    _track(vs, 2001, 42.0, 30.0, time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(now - 3600)))
+    # the rest of the fleet is still being heard, so the feed is plainly alive
+    heard = []
+    for k in range(20):
+        heard.append({"mmsi": 3000 + k, "lat": 42.2 + k * 0.01, "lon": 30.2, "sog": 9.0,
+                      "cog": 45.0, "nav_status": 0,
+                      "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(now))})
+    for _ in range(3):
+        vs.update(heard)
+        out = detect(vs, heard, cfg, {str(p["mmsi"]) for p in heard})
+    assert any(a.kind == "ais-gap" and a.mmsi == 2001 for a in out)
+
+
+def test_gap_message_is_written_in_turkish(tmp_path, cfg):
+    vs = _state(tmp_path)
+    old = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() - 3600))
+    _track(vs, 4001, 42.0, 30.0, old)
+    for _ in range(3):
+        out = detect(vs, [], cfg, set())
+    d = next(a.detail for a in out if a.kind == "ais-gap")
+    assert "yaklaşık" in d and "dakika önce" in d
+    assert "once" not in d and "ardisik" not in d      # no stripped-diacritic Turkish

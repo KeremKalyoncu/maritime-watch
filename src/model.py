@@ -5,12 +5,30 @@ items on the map."""
 from __future__ import annotations
 
 import hashlib
+import re
 import time
 from dataclasses import asdict, dataclass, field
 from enum import Enum
 from typing import Any
 
 ISO = "%Y-%m-%dT%H:%M:%SZ"
+
+
+# UTF-8 bytes that were decoded as latin-1: "DAKÄ°KA" instead of "DAKİKA"
+_MOJIBAKE = re.compile(r"[ÃÄÅÂ][- -¿]")
+
+
+def fix_mojibake(s: str) -> str:
+    """Some feeds send no charset. The same headline then arrives readable on one
+    run and mangled on the next, so dedup sees two stories and the map shows a
+    fisherman a line of garbage."""
+    if not s or not _MOJIBAKE.search(s):
+        return s
+    try:
+        fixed = s.encode("latin-1").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return s
+    return s if "�" in fixed else fixed
 
 
 def now_iso() -> str:
@@ -175,6 +193,12 @@ class Warning:
                 seen.add(o)
                 out.append(o)
         return out
+
+
+def stable_hash(s: str, n: int = 5) -> str:
+    """Python's built-in hash() is salted per process, so an id built from it
+    changes on every CI run and the same story lands as a fresh record."""
+    return hashlib.sha1(s.encode("utf-8")).hexdigest()[:n]
 
 
 def make_id(kind: str, lat: float | None, lon: float | None, ts: str | None = None) -> str:

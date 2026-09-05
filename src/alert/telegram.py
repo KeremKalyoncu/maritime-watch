@@ -18,7 +18,7 @@ from pathlib import Path
 
 import requests
 
-from ..model import status_tr, type_tr
+from ..model import stable_hash, status_tr, type_tr
 from ..process.classify import nearest_port
 
 BASE = "https://api.telegram.org/bot{token}/{method}"
@@ -192,7 +192,14 @@ class Notifier:
             head = "⚠️ <b>DENİZDE OLAY — henüz doğrulanmadı</b>"
 
         lines = [head, ""]
-        lines.append(f"Ne oldu: {html.escape(type_tr(inc.type))}")
+        # "Ne oldu: belirsiz" tells a fisherman nothing. When the type did not
+        # classify, quote the headline instead - that is what we actually know.
+        if inc.type and inc.type != "unknown":
+            lines.append(f"Ne oldu: {html.escape(type_tr(inc.type))}")
+        else:
+            first = next((x.detail for x in inc.sources if x.detail and x.kind in ("official", "news")), "")
+            lines.append(f"Ne oldu: {html.escape(first[:140])}" if first
+                         else "Ne oldu: kaynaklar ayrıntı vermiyor")
         lines.append(self._where(inc.lat, inc.lon, inc.area, getattr(inc, 'coarse', False)))
         if inc.vessel.name:
             lines.append(f"⛴️ Tekne: {html.escape(inc.vessel.name)}")
@@ -272,16 +279,48 @@ class Notifier:
             lines.append("<b>Küçük tekneyle denize çıkmayın.</b> Çıkmadan önce liman "
                          "başkanlığından / MGM'den teyit alın.")
         elif w.kind == "earthquake":
-            lines.append("<i>Kıyıya yakın deprem. Deniz seviyesi değişimlerine dikkat.</i>")
+            lines.append(self._quake_note(w))
         else:
             lines.append("<i>Resmi kaynağı takip edin.</i>")
         self._emit(f"wx:{w.id}", "\n".join(lines), dry, w.lat, w.lon)
+
+    # We have no coastline mask, so we do not guess whether an epicentre is on
+    # land or at sea - a quake 55 km inland went out as "kıyıya yakın deprem",
+    # and a mid-Marmara one would have gone out as "36 km içeride". Say only what
+    # the feed actually tells us: the named region, and the nearest port.
+    _SEA_NAMED = ("deniz", "körfez", "boğaz", "açıkları", "adalar", "sea", "gulf")
+
+    @staticmethod
+    def _quake_note(w) -> str:
+        from ..process.classify import nearest_port
+        at_sea = any(s in (w.area or "").lower() for s in Notifier._SEA_NAMED)
+        if at_sea:
+            return ("<i>Merkez üssü denizde. Deniz seviyesinde ani değişim olabilir; "
+                    "kıyıya ve sığ sulara yanaşmayın.</i>")
+        np = None if w.lat is None or w.lon is None else nearest_port(w.lat, w.lon)
+        if np is None:
+            return "<i>Resmi açıklamaları takip edin.</i>"
+        return (f"<i>En yakın liman {html.escape(np[0])}, yaklaşık {np[1] * 1.852:.0f} km. "
+                "Limanda bağlı teknelerde ve halatlarda sarsıntı etkisi olabilir.</i>")
+
+    def weather_passed(self, w, dry: bool = True) -> None:
+        """The blow is over. Without this the warning just aged out silently and
+        people had no way to know when it was safe to go back out."""
+        if not self.enabled or not self.prevention:
+            return
+        where = html.escape(w.area or "bölge")
+        lines = [f"✅ <b>UYARI KALKTI — {where}</b>", "",
+                 "Son tahminde bu bölgede uyarı eşiği aşılmıyor.",
+                 f"Kaynak: {html.escape(', '.join(w.orgs) or w.org)}", "",
+                 "<i>Yine de denize çıkmadan önce liman başkanlığından teyit alın; "
+                 "hava kısa sürede değişebilir.</i>"]
+        self._emit(f"wxend:{w.id}", "\n".join(lines), dry, w.lat, w.lon)
 
     def operator(self, text: str, dry: bool = True) -> None:
         """System health notice. Sent once per day per distinct message."""
         if not self.enabled:
             return
-        key = "ops:" + time.strftime("%Y-%m-%d") + ":" + str(abs(hash(text)) % 100000)
+        key = "ops:" + time.strftime("%Y-%m-%d") + ":" + stable_hash(text)
         self._emit(key, f"{html.escape(text)}", dry, urgent=True)
 
     def warning_confirmed(self, w, dry: bool = True) -> None:

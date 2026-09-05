@@ -6,7 +6,7 @@ pin. Useful as a slow, authoritative cross-check on the faster feeds.
 
 from __future__ import annotations
 
-from ..model import Warning, now_iso
+from ..model import Warning, now_iso, stable_hash
 from ._net import get_json
 
 # minimal query; we filter for Turkey on the name client-side
@@ -27,7 +27,7 @@ def fetch_reliefweb(cfg: dict) -> list[Warning]:
             continue
         created = (f.get("date") or {}).get("created") or now_iso()
         out.append(Warning(
-            id=f"rw-{row.get('id') or abs(hash(name)) % 100000}",
+            id=f"rw-{row.get('id') or stable_hash(name)}",
             headline=f"ReliefWeb: {name[:220]}",
             area=cfg["region"]["name"],
             kind="gdacs",

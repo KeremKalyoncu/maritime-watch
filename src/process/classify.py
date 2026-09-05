@@ -48,6 +48,10 @@ PLACE_HINTS = {
     "rize": (41.02, 40.52), "artvin": (41.42, 41.42), "hopa": (41.42, 41.42),
     # yakın sular (haber metinlerinde sık geçer)
     "girne": (35.34, 33.32), "gazimağusa": (35.12, 33.94), "lefkoşa": (35.19, 33.36),
+    # bare sea names: a headline often says only "Marmara'da" or "Ege'de"
+    "marmara": (40.75, 28.30), "ege": (38.60, 26.20), "akdeniz": (36.20, 30.50),
+    "karadeniz": (41.80, 32.00), "boğaz": (41.10, 29.05), "istanbul boğazı": (41.10, 29.05),
+    "çanakkale boğazı": (40.20, 26.40),
 }
 
 SOURCE_WEIGHT = {

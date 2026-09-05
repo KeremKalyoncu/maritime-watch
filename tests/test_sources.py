@@ -89,3 +89,24 @@ def test_metar_sample(cfg):
     assert "Ataturk" in names              # gust 38 kn
     assert "Bodrum" in names               # thunderstorm / low vis
     assert "Antalya" not in names          # calm
+
+
+def test_forecast_window_starts_at_the_current_hour(monkeypatch):
+    """Open-Meteo answers from 00:00 UTC. Taking the first N hours meant a run at
+    23:00 looked 13 hours ahead while the message promised 36."""
+    import time as _t
+
+    from src.ingest import openmeteo
+    body = {"hourly": {"time": [f"2026-09-05T{h:02d}:00" for h in range(24)],
+                       "wave_height": [float(h) for h in range(24)]}}
+    monkeypatch.setattr(openmeteo, "get_json", lambda *a, **k: (body, True))
+    monkeypatch.setattr(_t, "gmtime", lambda *a: _t.strptime("2026-09-05T20:00", "%Y-%m-%dT%H:%M"))
+    vals, live = openmeteo._series("u", {}, "s", "wave_height")
+    assert vals == [20.0, 21.0, 22.0, 23.0] and live
+
+
+def test_forecast_falls_back_to_the_whole_series_when_times_are_missing(monkeypatch):
+    from src.ingest import openmeteo
+    monkeypatch.setattr(openmeteo, "get_json",
+                        lambda *a, **k: ({"hourly": {"wave_height": [1.0, 2.0]}}, True))
+    assert openmeteo._series("u", {}, "s", "wave_height")[0] == [1.0, 2.0]

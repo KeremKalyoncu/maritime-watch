@@ -121,3 +121,112 @@ def test_every_source_is_shown_so_the_count_is_traceable(cfg):
     assert "Kaynaklar (2)" in body
     assert "2 şahıs" in body and "20 göçmen" in body        # both quotes visible
     assert "en yüksek sayı" in body                          # the 20 is explained
+
+
+# ---- the committed state must stay small and git-friendly ------------------
+def test_vessel_state_is_compact_and_stable_on_disk(tmp_path):
+    """This file is committed every cycle. One unsorted line of 16-digit floats
+    and nanosecond timestamps makes git rewrite the whole blob each time."""
+    vs = VesselState(str(tmp_path / "v.json"), 5)
+    for mmsi in (300, 100, 200):
+        vs.update([{"mmsi": mmsi, "lat": 40.76105833333334, "lon": 28.929850000001,
+                    "sog": 0.31111, "cog": 249.7333,
+                    "ts": "2026-09-04 21:36:32.547386925 +0000 UTC"}])
+    vs.save()
+    raw = (tmp_path / "v.json").read_text("utf-8")
+
+    assert "40.7611" in raw and "40.76105833333334" not in raw     # 4 dp is AIS resolution
+    assert "2026-09-04T21:36:32Z" in raw and "547386925" not in raw
+    assert raw.count("\n") == 2                                     # one line per vessel
+    assert raw.index('"100"') < raw.index('"200"') < raw.index('"300"')   # sorted
+
+    again = VesselState(str(tmp_path / "v.json"), 5)                # still valid JSON
+    assert set(again.data) == {"100", "200", "300"}
+
+
+def test_vessel_track_is_capped_to_what_the_rules_read(tmp_path):
+    vs = VesselState(str(tmp_path / "v.json"), 5)
+    for i in range(20):
+        vs.update([{"mmsi": 1, "lat": 41.0, "lon": 29.0, "sog": 5,
+                    "ts": f"2026-09-05T10:{i:02d}:00Z"}])
+    assert len(vs.data["1"]["track"]) == 5
+
+
+def test_map_json_is_written_in_stable_id_order(tmp_path):
+    s = _store(tmp_path)
+    for iid in ("c", "a", "b"):
+        s.upsert_incident(Incident(id=iid, lat=41.0, lon=29.0))
+    s.save()
+    ids = [i["id"] for i in json.loads((tmp_path / "web" / "data" / "incidents.json").read_text("utf-8"))]
+    assert ids == ["a", "b", "c"]
+
+
+def test_backfill_repairs_records_parsed_by_an_older_extractor(tmp_path):
+    """A report taken in before the extractor knew a place kept showing 'belirsiz'
+    with no pin, and never came back through ingest."""
+    from src.process.prune import backfill
+    s = _store(tmp_path)
+    inc = Incident(id="rep-old")
+    inc.sources.append(Source(kind="official",
+                              detail="03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır"))
+    s.upsert_incident(inc)
+    assert backfill(s) > 0
+    got = s.incidents["rep-old"]
+    assert got.lat is not None and got.lon is not None
+    assert got.type != "unknown" and got.area
+
+
+def test_backfill_never_overwrites_what_is_already_known(tmp_path):
+    from src.process.prune import backfill
+    s = _store(tmp_path)
+    inc = Incident(id="rep-set", type="collision", lat=41.5, lon=28.5, area="Marmara Denizi")
+    inc.sources.append(Source(kind="official", detail="Zonguldak açıklarında gemi su alıyor"))
+    s.upsert_incident(inc)
+    backfill(s)
+    got = s.incidents["rep-set"]
+    assert (got.type, got.lat, got.lon, got.area) == ("collision", 41.5, 28.5, "Marmara Denizi")
+
+
+def _wx(wid, area="Marmara Denizi", kind="marine-weather"):
+    from src.model import Warning
+    return Warning(id=wid, headline=f"{area}: fırtına", area=area, kind=kind,
+                   severity="major", org="Open-Meteo")
+
+
+def test_a_warning_the_forecast_no_longer_lists_is_lifted(tmp_path):
+    """The gale used to sit on the channel for its whole 18-hour TTL after the
+    wind dropped, so nobody learned when it was safe to go back out."""
+    from src.process.prune import clear_passed_weather
+    s = _store(tmp_path)
+    for w in (_wx("wx-a"), _wx("wx-b", "Kuzey Ege")):
+        s.upsert_warning(w)
+    gone = clear_passed_weather(s, {"wx-a"}, live_sources=True)
+    assert [w.id for w in gone] == ["wx-b"]
+    assert set(s.warnings) == {"wx-a"}
+
+
+def test_a_dead_forecast_never_counts_as_all_clear(tmp_path):
+    from src.process.prune import clear_passed_weather
+    s = _store(tmp_path)
+    s.upsert_warning(_wx("wx-a"))
+    assert clear_passed_weather(s, set(), live_sources=False) == []
+    assert set(s.warnings) == {"wx-a"}
+
+
+def test_earthquakes_are_never_lifted_this_way(tmp_path):
+    from src.model import Warning
+    from src.process.prune import clear_passed_weather
+    s = _store(tmp_path)
+    s.upsert_warning(Warning(id="eq-1", headline="Deprem M4.2", area="Ege Denizi",
+                             kind="earthquake", org="AFAD"))
+    assert clear_passed_weather(s, set(), live_sources=True) == []
+
+
+def test_all_clear_message_names_the_area(tmp_path, cfg):
+    cfg["secrets"] = {"telegram_token": "", "telegram_chat_id": "", "aisstream_key": ""}
+    cfg["alert"]["telegram"]["digest"] = False
+    n = Notifier(cfg)
+    sent = []
+    n._send_one = lambda key, text, dry, lat=None, lon=None: sent.append(text)
+    n.weather_passed(_wx("wx-a"), dry=True)
+    assert sent and "UYARI KALKTI" in sent[0] and "Marmara Denizi" in sent[0]

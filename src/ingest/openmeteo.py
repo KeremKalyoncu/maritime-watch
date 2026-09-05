@@ -7,6 +7,8 @@ This is the reliable replacement for the MGM scrape.
 
 from __future__ import annotations
 
+import time
+
 from ..model import Warning, now_iso
 from ._net import get_json
 
@@ -15,12 +17,25 @@ WIND = "https://api.open-meteo.com/v1/forecast"
 
 
 def _series(url: str, params: dict, sample: str, field: str):
+    """Hourly values starting at the current hour.
+
+    The API answers from 00:00 UTC of the current day, so slicing the first N
+    entries meant the forecast window shrank as the day went on: a run at 23:00
+    was looking 13 hours ahead while the message still promised 36, and a gale
+    starting the next evening fell outside it.
+    """
     q = "&".join(f"{k}={v}" for k, v in params.items())
     data, live = get_json(f"{url}?{q}", sample)
     if not data:
         return [], live
-    vals = (data.get("hourly") or {}).get(field) or []
-    return [v for v in vals if isinstance(v, (int, float))], live
+    hourly = data.get("hourly") or {}
+    vals = hourly.get(field) or []
+    times = hourly.get("time") or []
+    start = 0
+    if len(times) == len(vals):
+        cutoff = time.strftime("%Y-%m-%dT%H:00", time.gmtime())
+        start = next((i for i, t in enumerate(times) if str(t) >= cutoff), 0)
+    return [v for v in vals[start:] if isinstance(v, (int, float))], live
 
 
 def fetch_marine_warnings(cfg: dict) -> list[Warning]:
@@ -32,11 +47,11 @@ def fetch_marine_warnings(cfg: dict) -> list[Warning]:
         name, lat, lon = pt["name"], pt["lat"], pt["lon"]
         waves, live1 = _series(MARINE, {
             "latitude": lat, "longitude": lon,
-            "hourly": "wave_height", "forecast_days": 2,
+            "hourly": "wave_height", "forecast_days": 3,
         }, "openmeteo_marine.json", "wave_height")
         gusts, live2 = _series(WIND, {
             "latitude": lat, "longitude": lon,
-            "hourly": "wind_gusts_10m", "wind_speed_unit": "kn", "forecast_days": 2,
+            "hourly": "wind_gusts_10m", "wind_speed_unit": "kn", "forecast_days": 3,
         }, "openmeteo_wind.json", "wind_gusts_10m")
 
         # fixture numbers must never become a published forecast: this exact bug

@@ -86,6 +86,7 @@ class Store:
                 # same source re-reported: update the live figures, don't add a
                 # "source" and don't count it as an independent confirmation
                 cur.headline = w.headline
+                cur.area = w.area or cur.area      # a renamed region has to reach the message
                 cur.value = w.value
                 cur.severity = w.severity
                 cur.lat, cur.lon = w.lat, w.lon
@@ -129,10 +130,12 @@ class Store:
     def save(self) -> None:
         with self._lock:
             self.incidents_path.write_text(
-                json.dumps([i.to_dict() for i in self.incidents.values()], ensure_ascii=False, indent=2),
+                json.dumps([i.to_dict() for i in sorted(self.incidents.values(), key=lambda x: x.id)],
+                           ensure_ascii=False, indent=2),
                 encoding="utf-8",
             )
             self.warnings_path.write_text(
-                json.dumps([w.to_dict() for w in self.warnings.values()], ensure_ascii=False, indent=2),
+                json.dumps([w.to_dict() for w in sorted(self.warnings.values(), key=lambda x: x.id)],
+                           ensure_ascii=False, indent=2),
                 encoding="utf-8",
             )

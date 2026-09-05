@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from xml.etree import ElementTree as ET
 
-from ..model import Warning, now_iso
+from ..model import Warning, now_iso, stable_hash
 from ._net import get_text
 
 RSS = "https://www.gdacs.org/xml/rss.xml"
@@ -54,7 +54,7 @@ def fetch_gdacs(cfg: dict) -> list[Warning]:
 
         title = f.get("title") or _TYPE_TR.get(etype, etype)
         out.append(Warning(
-            id=f"gd-{f.get('guid') or abs(hash(title)) % 100000}",
+            id=f"gd-{f.get('guid') or stable_hash(title)}",
             headline=f"GDACS {level}: {_TYPE_TR.get(etype, etype)} - {title[:200]}",
             area=f.get("country") or cfg["region"]["name"],
             kind="gdacs",

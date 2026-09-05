@@ -12,8 +12,9 @@ import re
 import time
 from xml.etree import ElementTree as ET
 
-from ..model import Incident, Source, Vessel, make_id
+from ..model import Incident, Source, Vessel, stable_hash
 from ..process.extract import extract
+from ..process.privacy import drop_aftermath, redact
 from ._net import get_text
 
 _TR_LOWER = str.maketrans("İIŞĞÜÖÇ", "iışğüöç")
@@ -66,6 +67,8 @@ def fetch_news(cfg: dict) -> list[Incident]:
     nc = cfg["news"]
     mari = [_norm(w) for w in nc["maritime_words"]]
     inci = [_norm(w) for w in nc["incident_words"]]
+    after = [_norm(w) for w in nc.get("aftermath_words", [])]
+    never = [_norm(w) for w in nc.get("exclude_words", [])]
     out: list[Incident] = []
     seen: set[str] = set()
 
@@ -78,6 +81,10 @@ def fetch_news(cfg: dict) -> list[Incident]:
             tokens = re.findall(r"[a-zçğıöşü]+", low)
             if not (_match(low, tokens, mari) and _match(low, tokens, inci)):
                 continue
+            if drop_aftermath(low, after):
+                continue          # funerals, arrests and hearings warn nobody
+            if drop_aftermath(low, never):
+                continue          # a diving accident off a jetty is not a sea incident
             if not _recent(pub, nc["hours_back"]):
                 continue
             key = low[:80]
@@ -87,13 +94,14 @@ def fetch_news(cfg: dict) -> list[Incident]:
 
             ex = extract(title)
             inc = Incident(
-                id=make_id("news", ex.lat, ex.lon) + f"-{abs(hash(key)) % 100000:05d}",
+                id="news-" + stable_hash(key, 10),   # content, not date: see official.py
                 type=ex.itype, lat=ex.lat, lon=ex.lon, area=ex.area,
                 casualties=ex.casualties, places=ex.places,
                 coarse=not ex.precise,
                 vessel=Vessel(name=ex.vessel) if ex.vessel else Vessel(),
             )
-            inc.sources.append(Source(kind="news", org=_host(feed), detail=title, url=link))
+            inc.sources.append(Source(kind="news", org=_host(feed),
+                                      detail=redact(title, keep=(ex.vessel,)), url=link))
             out.append(inc)
     return out[:20]
 

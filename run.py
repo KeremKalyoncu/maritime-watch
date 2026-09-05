@@ -37,7 +37,7 @@ from src.model import Incident, Source, Vessel, make_id
 from src.process.anomaly import VesselState, detect
 from src.process.classify import classify
 from src.process.dedup import correlate
-from src.process.prune import prune
+from src.process.prune import clear_passed_weather, prune
 from src.render.feed import build_feed
 from src.render.health import write_health
 from src.render.mapdata import write_summary
@@ -116,8 +116,13 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
             inc = correlate(store, inc)
             touched.add(store.upsert_incident(inc).id)
 
+    wx_seen: set[str] = set()
+    extra_warns_ran = False
+
     def push_warning(w):
         cur, how = store.upsert_warning(w)
+        if w.kind in ("marine-weather", "metar"):
+            wx_seen.add(cur.id)
         if how == "new":
             notifier.warning(cur, dry=dry)
         elif how == "merged" and len(cur.orgs) >= 2:
@@ -155,6 +160,7 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
             extra_warns += _safe("reliefweb", lambda: fetch_reliefweb(cfg), [])
         if src.get("metar", True):
             extra_warns += _safe("metar", lambda: fetch_metar(cfg), [])
+        extra_warns_ran = True
         print(f"[extra] {len(extra_warns)} warning(s)")
         for w in extra_warns:
             push_warning(w)
@@ -167,7 +173,13 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         if inc:
             notifier.incident(inc, dry=dry)
 
-    dw, di = prune(store)
+    # a forecast that came back live and no longer lists an area means the blow
+    # is over; tell people so, instead of leaving the warning up for its full TTL
+    wx_live = do_scrape and all(_net.STATUS.get(k) != "sample" for k in _net.STATUS)
+    for w in clear_passed_weather(store, wx_seen, wx_live and bool(wx_seen or extra_warns_ran)):
+        notifier.weather_passed(w, dry=dry)
+
+    dw, di = prune(store, cfg)
     if dw or di:
         print(f"[prune] {dw} warning(s) expired, {di} incident(s) closed/removed")
 

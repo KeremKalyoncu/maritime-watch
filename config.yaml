@@ -13,7 +13,7 @@ ais:
   enabled: true
   ws_url: "wss://stream.aisstream.io/v0/stream"
   capture_seconds: 90
-  vessel_history: 20
+  vessel_history: 5         # rules read the last 3 points; this file is committed every cycle
   vessel_ttl_hours: 12       # forget vessels not heard from for this long (keeps data/vessels.json small enough to commit)
   # MMSI prefixes for AIS distress transmitters (ITU): SART 970, MOB 972, EPIRB-AIS 974
   distress_mmsi_prefixes: ["970", "972", "974"]
@@ -28,6 +28,8 @@ anomaly:
   gap_minutes: 45
   gap_max_minutes: 1440
   gap_min_cycles: 3
+  gap_max_cluster: 3         # more ships than this sharing one silence = our feed dropped, not theirs
+  gap_max_share: 0.25        # ...same conclusion if a quarter of the tracked fleet vanishes at once
   # Ordinary course changes are not incidents; off by default. When on, only a
   # near-reversal by a cargo/tanker counts.
   course_spike_enabled: false
@@ -51,7 +53,8 @@ sources:
   metar: true            # coastal airport weather
 
 scrape:
-  mgm: false             # MGM has no stable public endpoint; Open-Meteo covers this
+  mgm: false             # /web/denizler/tahmin/bolgeler answers 404 since Sep 2026
+  mgm_alarms: true       # /web/alarmlar still works - official MGM storm warnings
   sahil_guvenlik: true
   afad: false            # announcements page 404s; AFAD data comes via quakes: below
   keywords:
@@ -124,6 +127,19 @@ news:
                    "yaralı", "kaza", "arama kurtarma", "sürüklen", "can kaybı",
                    "göçmen", "fırtına", "boğul", "hayatını kaybet", "karaya otur",
                    "su alıyor", "su aldı", "tahliye", "mahsur", "yan yattı"]
+  # aftermath, not a hazard: nobody at sea acts on a funeral or a court date, and
+  # these are the headlines that carry victim and relative names
+  aftermath_words: ["cenaze", "defnedil", "toprağa veril", "toprağa ver", "mezar",
+                    "taziye", "helallik", "musalla", "anma tören", "anılacak",
+                    "anıldı", "otopsi", "başsağlığı", "son yolculuğ",
+                    "tutuklan", "gözaltı", "adliye", "duruşma", "iddianame",
+                    "mahkeme", "dava açıl", "savcılık", "hakim karşısına",
+                    "kimliği belli", "kimlikleri belli", "kimler?", "kime ait",
+                    "ailesi", "yakınları", "acılı"]
+  # shore-side accidents that trip the keyword gate but tell a mariner nothing
+  exclude_words: ["balıklama", "sığ suya", "sığ su", "havuzda", "havuza",
+                  "serinlemek için", "yüzmek için", "plajda boğul", "selfie",
+                  "denize düşen cep telefon", "kayıkçılar derneği"]
 
 gdacs:
   alert_levels: ["Orange", "Red"]

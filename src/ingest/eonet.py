@@ -5,7 +5,7 @@ Kept when the event's latest point falls inside the region bbox.
 
 from __future__ import annotations
 
-from ..model import Warning, now_iso
+from ..model import Warning, now_iso, stable_hash
 from ._net import get_json
 
 API = "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&days=7"
@@ -39,7 +39,7 @@ def fetch_eonet(cfg: dict) -> list[Warning]:
         cat_tr = next((_CAT_TR[c] for c in cats if c in _CAT_TR), "doğa olayı")
         title = ev.get("title") or cat_tr
         out.append(Warning(
-            id=f"eo-{ev.get('id') or abs(hash(title)) % 100000}",
+            id=f"eo-{ev.get('id') or stable_hash(title)}",
             headline=f"NASA EONET: {cat_tr} - {title[:200]}",
             area=cfg["region"]["name"],
             kind="eonet",

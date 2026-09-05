@@ -54,6 +54,20 @@ def _parse_ts(s: str | None):
     return None
 
 
+def _iso(ts) -> str:
+    """aisstream sends '2026-09-04 21:36:32.547386925 +0000 UTC'. Storing that
+    verbatim triples the size of every track point and defeats git deltas."""
+    if not ts:
+        return ""
+    e = _parse_ts(str(ts))
+    if e is None:
+        return str(ts)[:19]
+    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(e))
+
+
+def _round(x, nd=4):
+    # AIS resolution is ~0.0001 deg (11 m); 16 significant digits is noise
+    return round(x, nd) if isinstance(x, (int, float)) else x
 def _near_bbox_edge(lat, lon, bbox, margin_deg: float = 0.35) -> bool:
     """A vessel that simply sailed out of the subscribed box is not 'missing'."""
     if not bbox or lat is None or lon is None:
@@ -93,11 +107,12 @@ class VesselState:
             if p.get("type_code") is not None:
                 v["type_code"] = p["type_code"]
             v["track"].append({
-                "lat": p["lat"], "lon": p["lon"], "sog": p.get("sog"),
-                "cog": p.get("cog"), "nav": p.get("nav_status"), "ts": p.get("ts"),
+                "lat": _round(p["lat"]), "lon": _round(p["lon"]),
+                "sog": _round(p.get("sog"), 1), "cog": _round(p.get("cog"), 1),
+                "nav": p.get("nav_status"), "ts": _iso(p.get("ts")),
             })
             v["track"] = v["track"][-self.history:]
-            v["last_seen"] = p.get("ts")
+            v["last_seen"] = _iso(p.get("ts"))
 
     def prune(self, ttl_hours: float = 12.0, max_vessels: int = 4000) -> int:
         """Forget vessels not heard from in a while, so the persisted state stays
@@ -116,7 +131,41 @@ class VesselState:
 
     def save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.path.write_text(json.dumps(self.data, ensure_ascii=False), encoding="utf-8")
+        # sorted + one line per vessel: this file is committed every cycle, and a
+        # single unsorted line makes git rewrite all 170 KB each time
+        rows = [json.dumps(k) + ":" + json.dumps(v, ensure_ascii=False, sort_keys=True)
+                for k, v in sorted(self.data.items())]
+        self.path.write_text("{" + ",\n".join(rows) + "}", encoding="utf-8")
+
+
+def _gap_anomalies(cand, tracked: int, a: dict) -> list[Anomaly]:
+    """Drop cohorts that went quiet together.
+
+    A vessel in trouble stops transmitting on its own. When a dozen ships share
+    the same silence to the minute it is our receiver that stopped - a dropped
+    aisstream socket, or a cron run that never fired - and one live cycle turned
+    that into 31 "missing vessel" alerts. Same start minute, same cause, no news.
+    """
+    max_cluster = a.get("gap_max_cluster", 3)
+    buckets: dict[int, int] = {}
+    for _mmsi, _v, gap_min, _lat, _lon in cand:
+        buckets[int(gap_min // 10)] = buckets.get(int(gap_min // 10), 0) + 1
+
+    share = a.get("gap_max_share", 0.25)
+    if tracked and len(cand) > max(max_cluster, tracked * share):
+        print(f"[anomaly] {len(cand)}/{tracked} takip edilen gemi ayni anda sustu "
+              f"-> AIS beslemesi kesintisi, ais-gap uyarilari atlandi")
+        return []
+
+    out = []
+    for mmsi, v, gap_min, lat, lon in cand:
+        if buckets[int(gap_min // 10)] > max_cluster:
+            continue
+        out.append(Anomaly(mmsi, "ais-gap",
+                           f"seyir halindeyken AIS sinyali yaklaşık {gap_min:.0f} dakika önce "
+                           f"kesildi ({v['misses']} taramada üst üste görünmedi)",
+                           lat, lon, "major", v.get("name", "")))
+    return out
 
 
 def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[str]) -> list[Anomaly]:
@@ -187,13 +236,19 @@ def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[s
     now = time.time()
     bbox = cfg.get("region", {}).get("bbox")
     min_misses = a.get("gap_min_cycles", 3)
+    cand: list[tuple[int, dict, float, float, float]] = []
+    # the whole fleet we hold a usable track for, heard this cycle or not - the
+    # denominator for "is it them or is it us"
+    tracked = sum(1 for v in state.data.values() if len(v.get("track", [])) >= 3)
     for key, v in state.data.items():
         if key in seen_now:
             v["misses"] = 0
             continue
         v["misses"] = v.get("misses", 0) + 1
         track = v.get("track", [])
-        if len(track) < 3 or v["misses"] < min_misses:
+        if len(track) < 3:
+            continue
+        if v["misses"] < min_misses:
             continue
         last_ts = _parse_ts(v.get("last_seen"))
         if last_ts is None:
@@ -206,8 +261,7 @@ def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[s
         lat, lon = track[-1]["lat"], track[-1]["lon"]
         if _near_bbox_edge(lat, lon, bbox) or _near_port(lat, lon):
             continue
-        out.append(Anomaly(int(key), "ais-gap",
-                           f"seyir halindeyken AIS sinyali ~{gap_min:.0f} dk once kesildi "
-                           f"({v['misses']} ardisik taramada goruntulenmedi)",
-                           lat, lon, "major", v.get("name", "")))
+        cand.append((int(key), v, gap_min, lat, lon))
+
+    out.extend(_gap_anomalies(cand, tracked, a))
     return out
