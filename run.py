@@ -22,6 +22,7 @@ from pathlib import Path
 
 from src.alert.telegram import Notifier
 from src.config import load_config
+from src.ingest import _net
 from src.ingest.ais_stream import capture_ais
 from src.ingest.eonet import fetch_eonet
 from src.ingest.gdacs import fetch_gdacs
@@ -61,6 +62,10 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     src = cfg.get("sources", {})
     touched: set[str] = set()          # incident ids seen this cycle -> notify at end
     health: list[dict] = []
+
+    # fixtures are never publishable in production; see src/ingest/_net.py
+    _net.SAMPLES_ALLOWED = bool(src.get("use_samples_when_down", False))
+    _net.reset_status()
 
     def _safe(label, fn, default):
         try:
@@ -166,9 +171,14 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     if dw or di:
         print(f"[prune] {dw} warning(s) expired, {di} incident(s) closed/removed")
 
+    fetch_status = dict(_net.STATUS)
+    dead = sorted(k for k, v in fetch_status.items() if v != "live")
+    if dead:
+        print(f"[fetch] canli olmayan kaynak: {', '.join(dead)}")
     h = write_health(str(web_data), health, started,
-                     len(store.active_incidents()), len(store.active_warnings()))
-    down = h["sources_down"]
+                     len(store.active_incidents()), len(store.active_warnings()),
+                     fetch_status=fetch_status)
+    down = sorted(set(h["sources_down"]) | {k for k, v in fetch_status.items() if v == "down"})
     if len(down) >= 3:
         notifier.operator(f"⚙️ {len(down)} kaynak yanıt vermiyor: {', '.join(down)}", dry=dry)
     print(f"[health] {h['sources_ok']}/{h['sources_total']} kaynak OK, {h['cycle_seconds']}s")

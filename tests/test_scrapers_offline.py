@@ -3,7 +3,7 @@
 import pytest
 import requests
 
-from src.ingest import official
+from src.ingest import _net, official
 from src.ingest.official import _collapse_dup, _norm
 
 
@@ -11,7 +11,8 @@ from src.ingest.official import _collapse_dup, _norm
 def _no_network(monkeypatch):
     def boom(*_a, **_k):
         raise requests.RequestException("no network in tests")
-    monkeypatch.setattr(official.requests, "get", boom)
+    monkeypatch.setattr(_net, "SAMPLES_ALLOWED", True)
+    monkeypatch.setattr(_net.requests, "get", boom)
 
 
 def test_mgm_parses_sample(cfg):

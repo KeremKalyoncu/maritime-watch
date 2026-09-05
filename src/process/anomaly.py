@@ -2,11 +2,14 @@
 
   nav-status   NavigationalStatus 2 (not under command) or 6 (aground)
   speed-drop   was under way, now stopped for 2+ samples, and not anchored
-  course-spike large course change while under way
-  ais-gap      an under-way vessel goes silent for gap_minutes or more
+  course-spike near-reversal by a cargo/tanker under way (off by default: an
+               ordinary 60-degree turn produced 44 false flags in one live cycle)
+  ais-gap      an under-way vessel missing for several CONSECUTIVE cycles, not
+               merely absent from one 90-second burst, and not explainable by
+               having reached port or left the subscribed box
 
 Tracks are kept in data/vessels.json between cycles so the gap and track rules
-still work across the short captures.
+work across the short captures.
 """
 
 from __future__ import annotations
@@ -51,6 +54,19 @@ def _parse_ts(s: str | None):
     return None
 
 
+def _near_bbox_edge(lat, lon, bbox, margin_deg: float = 0.35) -> bool:
+    """A vessel that simply sailed out of the subscribed box is not 'missing'."""
+    if not bbox or lat is None or lon is None:
+        return False
+    return (lat - bbox["lat_min"] < margin_deg or bbox["lat_max"] - lat < margin_deg
+            or lon - bbox["lon_min"] < margin_deg or bbox["lon_max"] - lon < margin_deg)
+
+
+def _near_port(lat, lon, nm: float = 6.0) -> bool:
+    """Arriving and switching the transponder off is routine, not a disappearance."""
+    from .classify import nearest_port
+    np = nearest_port(lat, lon)
+    return np is not None and np[1] <= nm
 class VesselState:
     """Per-MMSI rolling track, persisted as JSON."""
 
@@ -150,28 +166,48 @@ def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[s
                          f"seyir hızından ({max(sogs[:-1]):.1f} kn) ani duruşa geçti"
                 out.append(Anomaly(int(key), "speed-drop", detail, p["lat"], p["lon"], sev, name))
 
-        cogs = [t["cog"] for t in track if t.get("cog") is not None][-3:]
-        if len(cogs) >= 2 and any((s or 0) > a["moving_speed_kn"] for s in sogs[-3:]):
-            d = max(min(abs(cogs[i] - cogs[i - 1]) % 360, 360 - abs(cogs[i] - cogs[i - 1]) % 360)
-                    for i in range(1, len(cogs)))
-            if d >= a["course_change_deg"]:
-                out.append(Anomaly(int(key), "course-spike", f"ani rota değişimi (~{d:.0f}°)",
-                                   p["lat"], p["lon"], "minor", name))
+        # A 60-degree turn is ordinary navigation (traffic separation schemes,
+        # Bosphorus bends, port approaches) - in one live cycle this rule alone
+        # produced 44 of 83 flags, essentially all false. It now needs a
+        # near-reversal AND a ship type that has no business making one.
+        if a.get("course_spike_enabled", False):
+            cogs = [t["cog"] for t in track if t.get("cog") is not None][-3:]
+            if (len(cogs) >= 2 and prof["sensitive"]
+                    and any((s or 0) > a["moving_speed_kn"] for s in sogs[-3:])):
+                d = max(min(abs(cogs[i] - cogs[i - 1]) % 360, 360 - abs(cogs[i] - cogs[i - 1]) % 360)
+                        for i in range(1, len(cogs)))
+                if d >= a.get("course_reversal_deg", 120):
+                    out.append(Anomaly(int(key), "course-spike", f"ani rota değişimi (~{d:.0f}°)",
+                                       p["lat"], p["lon"], "minor", name))
 
-    # ais-gap: a vessel we were tracking under way is missing this cycle
+    # ais-gap: we sample ~90 s out of every cron interval, so a vessel simply not
+    # transmitting during this burst is NOT missing. Absence only means something
+    # after several consecutive cycles, and not when the vessel plausibly just
+    # arrived (near a port) or sailed out of the subscribed box.
     now = time.time()
+    bbox = cfg.get("region", {}).get("bbox")
+    min_misses = a.get("gap_min_cycles", 3)
     for key, v in state.data.items():
         if key in seen_now:
+            v["misses"] = 0
             continue
+        v["misses"] = v.get("misses", 0) + 1
         track = v.get("track", [])
-        if len(track) < 3:
+        if len(track) < 3 or v["misses"] < min_misses:
             continue
         last_ts = _parse_ts(v.get("last_seen"))
         if last_ts is None:
             continue
         gap_min = (now - last_ts) / 60.0
-        if a["gap_minutes"] <= gap_min <= a["gap_minutes"] * 8 and (track[-1].get("sog") or 0) >= a["moving_speed_kn"]:
-            out.append(Anomaly(int(key), "ais-gap",
-                               f"seyir halindeyken AIS sinyali ~{gap_min:.0f} dk önce kesildi",
-                               track[-1]["lat"], track[-1]["lon"], "major", v.get("name", "")))
+        if gap_min < a["gap_minutes"] or gap_min > a.get("gap_max_minutes", 24 * 60):
+            continue
+        if (track[-1].get("sog") or 0) < a["moving_speed_kn"]:
+            continue
+        lat, lon = track[-1]["lat"], track[-1]["lon"]
+        if _near_bbox_edge(lat, lon, bbox) or _near_port(lat, lon):
+            continue
+        out.append(Anomaly(int(key), "ais-gap",
+                           f"seyir halindeyken AIS sinyali ~{gap_min:.0f} dk once kesildi "
+                           f"({v['misses']} ardisik taramada goruntulenmedi)",
+                           lat, lon, "major", v.get("name", "")))
     return out

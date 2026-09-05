@@ -39,6 +39,12 @@ def fetch_marine_warnings(cfg: dict) -> list[Warning]:
             "hourly": "wind_gusts_10m", "wind_speed_unit": "kn", "forecast_days": 2,
         }, "openmeteo_wind.json", "wind_gusts_10m")
 
+        # fixture numbers must never become a published forecast: this exact bug
+        # put "dalga 2.7 m, ruzgar 41 kn" (the sample file's values) on the live
+        # channel as a real warning for two different sea areas
+        if not (live1 and live2):
+            break
+
         max_wave = max(waves[:hours]) if waves else 0.0
         max_gust = max(gusts[:hours]) if gusts else 0.0
 
@@ -61,9 +67,5 @@ def fetch_marine_warnings(cfg: dict) -> list[Warning]:
                 value=round(max_wave, 1) or None,
                 lat=lat, lon=lon,
             ))
-
-        # offline: the sample is the same for every point, so stop after one
-        if not (live1 and live2):
-            break
 
     return out

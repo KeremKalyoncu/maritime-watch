@@ -1,38 +1,5 @@
 [
   {
-    "id": "om-kuzeyege-2026-09-03T23",
-    "headline": "Kuzey Ege: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
-    "area": "Kuzey Ege",
-    "severity": "minor",
-    "kind": "marine-weather",
-    "onset": null,
-    "expires": null,
-    "org": "Open-Meteo",
-    "url": "https://open-meteo.com/en/docs/marine-weather-api",
-    "issued": "2026-09-05T00:53:37Z",
-    "last_update": "2026-09-05T00:53:46Z",
-    "raw": "",
-    "lat": 39.2,
-    "lon": 26.3,
-    "value": 2.7,
-    "sources": [
-      {
-        "kind": "marine-weather",
-        "detail": "Kuzey Ege: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
-        "org": "Open-Meteo",
-        "url": "https://open-meteo.com/en/docs/marine-weather-api",
-        "ts": "2026-09-03T23:12:10Z"
-      },
-      {
-        "kind": "marine-weather",
-        "detail": "Kuzey Ege: dalga ~0.5 m, rüzgar hamlesi ~33 kn (önümüzdeki 36 saat)",
-        "org": "Open-Meteo",
-        "url": "https://open-meteo.com/en/docs/marine-weather-api",
-        "ts": "2026-09-04T01:03:58Z"
-      }
-    ]
-  },
-  {
     "id": "eq-emsc-38.78-27.14-2026-09-03T10:20",
     "headline": "Deprem M3.8 - WESTERN TURKEY",
     "area": "WESTERN TURKEY",
@@ -55,32 +22,6 @@
         "org": "EMSC",
         "url": "https://www.seismicportal.eu/",
         "ts": "2026-09-03T10:20:47.9Z"
-      }
-    ]
-  },
-  {
-    "id": "om-güneyege",
-    "headline": "Güney Ege: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
-    "area": "Güney Ege",
-    "severity": "minor",
-    "kind": "marine-weather",
-    "onset": null,
-    "expires": null,
-    "org": "Open-Meteo",
-    "url": "https://open-meteo.com/en/docs/marine-weather-api",
-    "issued": "2026-09-05T09:28:16Z",
-    "last_update": "2026-09-05T09:28:25Z",
-    "raw": "",
-    "lat": 37.0,
-    "lon": 27.1,
-    "value": 2.7,
-    "sources": [
-      {
-        "kind": "marine-weather",
-        "detail": "Güney Ege: dalga ~2.7 m, rüzgar hamlesi ~41 kn (önümüzdeki 36 saat)",
-        "org": "Open-Meteo",
-        "url": "https://open-meteo.com/en/docs/marine-weather-api",
-        "ts": "2026-09-04T09:07:03Z"
       }
     ]
   }
