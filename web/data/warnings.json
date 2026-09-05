@@ -26,28 +26,28 @@
     ]
   },
   {
-    "id": "om-doğukaradeniz",
-    "headline": "Doğu Karadeniz: dalga ~1.2 m, rüzgar hamlesi ~43 kn (önümüzdeki 36 saat)",
-    "area": "Doğu Karadeniz",
+    "id": "mt-LTFH",
+    "headline": "Samsun-Çarşamba Arpt, SA, TR: hava: BR, düşük görüş",
+    "area": "Samsun-Çarşamba Arpt, SA, TR",
     "severity": "major",
-    "kind": "marine-weather",
+    "kind": "metar",
     "onset": null,
     "expires": null,
-    "org": "Open-Meteo",
-    "url": "https://open-meteo.com/en/docs/marine-weather-api",
-    "issued": "2026-09-05T20:48:29Z",
-    "last_update": "2026-09-05T20:48:29Z",
+    "org": "aviationweather.gov",
+    "url": "https://aviationweather.gov/",
+    "issued": "2026-09-05T22:00:00.000Z",
+    "last_update": "2026-09-05T22:15:35Z",
     "raw": "",
-    "lat": 41.3,
-    "lon": 39.7,
-    "value": 1.2,
+    "lat": 41.255,
+    "lon": 36.567,
+    "value": null,
     "sources": [
       {
-        "kind": "marine-weather",
-        "detail": "Doğu Karadeniz: dalga ~1.2 m, rüzgar hamlesi ~43 kn (önümüzdeki 36 saat)",
-        "org": "Open-Meteo",
-        "url": "https://open-meteo.com/en/docs/marine-weather-api",
-        "ts": "2026-09-05T20:48:29Z"
+        "kind": "metar",
+        "detail": "Samsun-Çarşamba Arpt, SA, TR: hava: BR, düşük görüş",
+        "org": "aviationweather.gov",
+        "url": "https://aviationweather.gov/",
+        "ts": "2026-09-05T22:00:00.000Z"
       }
     ]
   }
