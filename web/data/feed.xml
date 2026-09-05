@@ -3,13 +3,118 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Sat, 05 Sep 2026 13:01:38 +0000</lastBuildDate>
+  <lastBuildDate>Sat, 05 Sep 2026 16:01:39 +0000</lastBuildDate>
     <item>
       <title>[signal] distress, Türk karasuları civarı</title>
       <link>https://www.aa.com.tr/tr/gundem/silivri-aciklarindaki-gemi-kazasina-iliskin-gozaltina-alinan-alsu-gemisinin-1-ve-3-kaptani-tutuklandi/4046904</link>
-      <guid isPermaLink="false">2026-09-03-news-1539e8-59839-19</guid>
-      <pubDate>Sat, 05 Sep 2026 13:01:01 +0000</pubDate>
-      <description>Güven: 0.3 | Önem: critical | Bildirilen kişi: 10 | news/aa.com.tr: Silivri açıklarındaki gemi kazasına ilişkin gözaltına alınan Alsu gemisinin 1. ve 3. kaptanı tutuklandı | news/hurriyet.com.tr: Silivri'deki gemi kazasında bilirkişi ön raporu ortaya çıktı | Dikkat çeken tespitler yer aldı: Gözcü olsaydı batmayabilirdi... Geminin 2 kaptanı tutuklandı | news/cnnturk.com: SON DAKÄ°KA HABERÄ°: Silivri'deki kazada Alsu Gemisi'nin 1. ve 3. kaptanÄ± tutuklandÄ± | news/cnnturk.com: TUÄBERK Ä°MAMOÄLU GEMÄ°SÄ° KÄ°ME AÄ°T? Silivri'deki Gemi KazasÄ±nda Son Durum Ne? ALSU Gemisi ve TuÄberk Ä°mamoÄlu Gemisi Neden ÃarpÄ±ÅtÄ±? | news/trthaber.com: Silivri'deki gemi kazasında uyuyan kaptan ve hayalet gemi bilirkişi raporunda | news/hurriyet.com.tr: Girne ve Silivri kayıplarını arıyor... İki limanda acı bekleyiş | news/hurriyet.com.tr: Silivri’deki gemi kazasının 3. günü | Ön tespit raporu hazırlandı: 2 kaptan da kusurlu! Ailelerin bekleyişi sürüyor: Kazadan önce görüştük | news/cnnturk.com: SİLİVRİ GEMİ KAZASI KAYIPLARIN KİMLİKLERİ BELLİ OLDU: Tuğberk İmamoğlu ve ALSU Gemileri KAyıp Mürettabatlar Kimler? Ölü Yaralı Var Mı? | news/cnnturk.com: TUĞBERK İMAMOĞLU GEMİSİ KİME AİT? Silivri'deki Gemi Kazasında Son Durum Ne? ALSU Gemisi ve Tuğberk İmamoğlu Gemisi Neden Çarpıştı? | news/cnnturk.com: SON DAKİKA HABERİ: Silivri'deki kazada Alsu Gemisi'nin 1. ve 3. kaptanı tutuklandı | news/hurriyet.com.tr: Silivri'deki gemi kazası | Tutuklanan kaptanların ifadesi ortaya çıktı! Kaza anını anlattılar: Yaklaşık 1-2 dakika içerisinde gemi kayboldu | news/hurriyet.com.tr: Son dakika... Silivri açıklarındaki kazada batan geminin yeri tespit edildi | news/trthaber.com: Silivri açıklarında batan geminin yeri tespit edildi | news/haberturk.com: Silivri açıklarındaki kazada dümendeki kaptanın ifadesi ortaya çıktı! | news/trthaber.com: Silivri'deki gemi kazasına ilişkin kaptanların ifadelerine ulaşıldı | news/hurriyet.com.tr: Silivri açıklarındaki gemi kazasında 4'üncü gün: Kayıp 10 kişilik mürettebat aranıyor | news/trthaber.com: Silivri açıklarında batan gemi 720 metre derinlikte bulundu | news/aa.com.tr: Silivri açıklarındaki kazada batan geminin bulunduğu bölgedeki çalışmalar sürüyor | news/haberturk.com: Silivri'de batan gemi 720 metrede!</description>
+      <guid isPermaLink="false">2026-09-03-news-1539e8-59839-24</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:59 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: critical | Bildirilen kişi: 10 | news/aa.com.tr: Silivri açıklarındaki gemi kazasına ilişkin gözaltına alınan Alsu gemisinin 1. ve 3. kaptanı tutuklandı | news/hurriyet.com.tr: Silivri'deki gemi kazasında bilirkişi ön raporu ortaya çıktı | Dikkat çeken tespitler yer aldı: Gözcü olsaydı batmayabilirdi... Geminin 2 kaptanı tutuklandı | news/cnnturk.com: SON DAKÄ°KA HABERÄ°: Silivri'deki kazada Alsu Gemisi'nin 1. ve 3. kaptanÄ± tutuklandÄ± | news/cnnturk.com: TUÄBERK Ä°MAMOÄLU GEMÄ°SÄ° KÄ°ME AÄ°T? Silivri'deki Gemi KazasÄ±nda Son Durum Ne? ALSU Gemisi ve TuÄberk Ä°mamoÄlu Gemisi Neden ÃarpÄ±ÅtÄ±? | news/trthaber.com: Silivri'deki gemi kazasında uyuyan kaptan ve hayalet gemi bilirkişi raporunda | news/hurriyet.com.tr: Girne ve Silivri kayıplarını arıyor... İki limanda acı bekleyiş | news/hurriyet.com.tr: Silivri’deki gemi kazasının 3. günü | Ön tespit raporu hazırlandı: 2 kaptan da kusurlu! Ailelerin bekleyişi sürüyor: Kazadan önce görüştük | news/cnnturk.com: SİLİVRİ GEMİ KAZASI KAYIPLARIN KİMLİKLERİ BELLİ OLDU: Tuğberk İmamoğlu ve ALSU Gemileri KAyıp Mürettabatlar Kimler? Ölü Yaralı Var Mı? | news/cnnturk.com: TUĞBERK İMAMOĞLU GEMİSİ KİME AİT? Silivri'deki Gemi Kazasında Son Durum Ne? ALSU Gemisi ve Tuğberk İmamoğlu Gemisi Neden Çarpıştı? | news/cnnturk.com: SON DAKİKA HABERİ: Silivri'deki kazada Alsu Gemisi'nin 1. ve 3. kaptanı tutuklandı | news/hurriyet.com.tr: Silivri'deki gemi kazası | Tutuklanan kaptanların ifadesi ortaya çıktı! Kaza anını anlattılar: Yaklaşık 1-2 dakika içerisinde gemi kayboldu | news/hurriyet.com.tr: Son dakika... Silivri açıklarındaki kazada batan geminin yeri tespit edildi | news/trthaber.com: Silivri açıklarında batan geminin yeri tespit edildi | news/haberturk.com: Silivri açıklarındaki kazada dümendeki kaptanın ifadesi ortaya çıktı! | news/trthaber.com: Silivri'deki gemi kazasına ilişkin kaptanların ifadelerine ulaşıldı | news/hurriyet.com.tr: Silivri açıklarındaki gemi kazasında 4'üncü gün: Kayıp 10 kişilik mürettebat aranıyor | news/trthaber.com: Silivri açıklarında batan gemi 720 metre derinlikte bulundu | news/aa.com.tr: Silivri açıklarındaki kazada batan geminin bulunduğu bölgedeki çalışmalar sürüyor | news/haberturk.com: Silivri'de batan gemi 720 metrede! | news/aa.com.tr: AA, Silivri açıklarındaki kazada batan gemiye ilişkin çalışmaları TCG Akın'da görüntüledi | news/aa.com.tr: Silivri açıklarındaki kazada batan geminin deniz altındaki görüntülerine ulaşıldı | news/hurriyet.com.tr: Silivri açıklarındaki gemi kazasında 4'üncü gün | 'Tuğberk İmamoğlu' gemisinin deniz altındaki görüntülerine ulaşıldı | news/cnnturk.com: 720 metre derinlikte bulundu! Silivri'de batan Tuğberk İmamoğlu gemisi görüntülendi | news/milliyet.com.tr: Son dakika: Silivri'de batan Tuğberk İmamoğlu gemisi görüntülendi</description>
+    </item>
+    <item>
+      <title>[signal] sinking, konum belirsiz</title>
+      <link>https://www.haberturk.com/gundem/silivri-aciklarinda-batan-tugberk-imamoglu-gemisi-rov-ile-goruntulendi-3910512</link>
+      <guid isPermaLink="false">2026-09-05-news-82abb2-86501-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:49 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/haberturk.com: Batan geminin görüntülerine ulaşıldı</description>
+    </item>
+    <item>
+      <title>[signal] distress, konum belirsiz</title>
+      <link>https://www.trthaber.com/haber/turkiye/donanmanin-kurtarma-gemileri-derin-denizde-iz-suruyor-955975.html</link>
+      <guid isPermaLink="false">2026-09-05-news-82abb2-88242-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:48 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/trthaber.com: Donanmanın kurtarma gemileri derin denizde iz sürüyor</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.cnnturk.com/turkiye/milas-aciklarinda-lastik-botta-23-kacak-gocmen-yakalandi-3463231</link>
+      <guid isPermaLink="false">2026-09-05-news-82abb2-98088-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:47 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: critical | Bildirilen kişi: 23 | news/cnnturk.com: Milas açıklarında lastik botta 23 kaçak göçmen yakalandı</description>
+    </item>
+    <item>
+      <title>[signal] drift, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-4b6ef4-5</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: course-spike: ani rota değişimi (~160°) | ais-anomaly/AIS: speed-drop: seyir hızından (11.5 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: diğer: seyir hızından (6.1 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (13.1 kn) ani duruşa geçti | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~628 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-159f54-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~393 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-99c5a3-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~394 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-2ad657-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~394 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-d24ea5-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~628 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Gökova Körfezi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-e95df9-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~394 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-d0a624-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~628 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-65a54b-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~393 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-54dc19-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~628 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-14811d-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~393 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-5371c6-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~393 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-c4f184-1</guid>
+      <pubDate>Sat, 05 Sep 2026 16:00:40 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~628 dk once kesildi (3 ardisik taramada goruntulenmedi)</description>
     </item>
     <item>
       <title>[signal] collision, konum belirsiz</title>
@@ -66,13 +171,6 @@
       <guid isPermaLink="false">2026-09-05-rep-5c0aa8-d2a197-1</guid>
       <pubDate>Sat, 05 Sep 2026 13:00:47 +0000</pubDate>
       <description>Güven: 0.6 | Önem: major | official/Sahil Güvenlik Komutanlığı: 05.09.2026 Bursa Açıklarında 2 Şahıs Kurtarılmıştır</description>
-    </item>
-    <item>
-      <title>[signal] drift, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-4b6ef4-4</guid>
-      <pubDate>Sat, 05 Sep 2026 13:00:45 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: course-spike: ani rota değişimi (~160°) | ais-anomaly/AIS: speed-drop: seyir hızından (11.5 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: diğer: seyir hızından (6.1 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (13.1 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[signal] drift, Batı Karadeniz</title>
