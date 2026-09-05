@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-05T18:14:09Z",
-  "cycle_seconds": 146.0,
+  "generated": "2026-09-05T20:29:24Z",
+  "cycle_seconds": 121.5,
   "sources_ok": 7,
   "sources_total": 7,
   "sources_down": [],
-  "incidents": 54,
+  "incidents": 65,
   "warnings": 1,
   "sources": {
     "scrape": {
@@ -14,7 +14,7 @@
     },
     "news": {
       "ok": true,
-      "items": 13,
+      "items": 12,
       "error": null
     },
     "openmeteo": {
@@ -55,8 +55,8 @@
     "news_7.xml": "live",
     "news_8.xml": "down",
     "news_9.xml": "live",
-    "openmeteo_marine.json": "down",
-    "openmeteo_wind.json": "down",
+    "openmeteo_marine.json": "live",
+    "openmeteo_wind.json": "live",
     "afad_quakes.json": "live",
     "usgs_quakes.json": "live",
     "emsc_quakes.json": "live",

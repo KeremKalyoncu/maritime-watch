@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-05T18:14:09Z",
-  "total_incidents": 96,
+  "generated": "2026-09-05T20:29:24Z",
+  "total_incidents": 107,
   "by_month": {
-    "2026-09": 96
+    "2026-09": 107
   },
   "by_area": {
-    "belirsiz": 88,
+    "belirsiz": 99,
     "Türk karasuları civarı": 2,
     "Doğu Karadeniz": 2,
     "Marmara Denizi": 2,
@@ -13,18 +13,22 @@
     "Antalya Körfezi": 1
   },
   "by_type": {
-    "distress": 40,
-    "unknown": 39,
-    "sinking": 9,
-    "drift": 7,
+    "distress": 48,
+    "unknown": 40,
+    "sinking": 10,
+    "drift": 8,
     "collision": 1
   },
   "by_status": {
-    "signal": 96
+    "signal": 107
   },
-  "incidents_with_casualties": 3,
-  "casualties_reported_total": 69,
+  "incidents_with_casualties": 4,
+  "casualties_reported_total": 92,
   "top_vessels": [
+    [
+      "ALSANCAK 22",
+      2
+    ],
     [
       "UNLU-5",
       2
@@ -36,10 +40,6 @@
     [
       "DAYTONA",
       2
-    ],
-    [
-      "ALSANCAK 22",
-      1
     ],
     [
       "MED CESME",

@@ -141,7 +141,7 @@
     },
     "casualties": 10,
     "first_seen": "2026-09-03T23:11:12Z",
-    "last_update": "2026-09-05T18:13:32Z",
+    "last_update": "2026-09-05T20:29:09Z",
     "sources": [
       {
         "kind": "news",
@@ -317,6 +317,13 @@
         "org": "milliyet.com.tr",
         "url": "",
         "ts": "2026-09-05T18:13:22Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Silivri açıklarında batan gemi 720 metre derinlikte görüntülendi",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/gundem/silivri-aciklarinda-batan-gemi-720-metre-derinlikte-goruntulendi-956007.html",
+        "ts": "2026-09-05T20:28:58Z"
       }
     ],
     "notes": [],
@@ -568,7 +575,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T00:52:46Z",
-    "last_update": "2026-09-05T09:27:30Z",
+    "last_update": "2026-09-05T20:28:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -604,6 +611,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T09:27:30Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~449 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
       }
     ],
     "notes": [],
@@ -1201,7 +1215,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T13:00:45Z",
-    "last_update": "2026-09-05T13:00:45Z",
+    "last_update": "2026-09-05T20:28:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1209,6 +1223,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T13:00:45Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~449 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
       }
     ],
     "notes": [],
@@ -1546,7 +1567,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T16:00:40Z",
-    "last_update": "2026-09-05T18:13:14Z",
+    "last_update": "2026-09-05T20:28:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1561,6 +1582,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T18:13:14Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~662 dk once kesildi (5 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
       }
     ],
     "notes": [],
@@ -1584,7 +1612,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T16:00:40Z",
-    "last_update": "2026-09-05T18:13:14Z",
+    "last_update": "2026-09-05T20:28:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1599,6 +1627,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T18:13:14Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~662 dk once kesildi (5 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~449 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
       }
     ],
     "notes": [],
@@ -1622,7 +1664,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T16:00:40Z",
-    "last_update": "2026-09-05T18:13:14Z",
+    "last_update": "2026-09-05T20:28:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1637,6 +1679,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T18:13:14Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~662 dk once kesildi (5 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
       }
     ],
     "notes": [],
@@ -1767,7 +1816,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T16:00:40Z",
-    "last_update": "2026-09-05T18:13:14Z",
+    "last_update": "2026-09-05T20:28:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1803,6 +1852,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T18:13:14Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~662 dk once kesildi (5 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~517 dk once kesildi (4 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
       }
     ],
     "notes": [],
@@ -1864,7 +1927,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T16:00:40Z",
-    "last_update": "2026-09-05T18:13:14Z",
+    "last_update": "2026-09-05T20:28:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1879,6 +1942,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T18:13:14Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~662 dk once kesildi (5 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
       }
     ],
     "notes": [],
@@ -1902,7 +1972,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T16:00:40Z",
-    "last_update": "2026-09-05T18:13:14Z",
+    "last_update": "2026-09-05T20:28:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -1917,6 +1987,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T18:13:14Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~662 dk once kesildi (5 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
       }
     ],
     "notes": [],
@@ -2071,7 +2148,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T18:13:14Z",
-    "last_update": "2026-09-05T18:13:14Z",
+    "last_update": "2026-09-05T20:28:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -2079,6 +2156,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T18:13:14Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~517 dk once kesildi (4 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
       }
     ],
     "notes": [],
@@ -2102,7 +2186,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T18:13:14Z",
-    "last_update": "2026-09-05T18:13:14Z",
+    "last_update": "2026-09-05T20:28:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -2110,6 +2194,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-05T18:13:14Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~518 dk once kesildi (4 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
       }
     ],
     "notes": [],
@@ -2203,6 +2294,354 @@
         "org": "haberturk.com",
         "url": "https://www.haberturk.com/gundem/silivri-aciklarinda-batan-tugberk-imamoglu-gemisi-rov-ile-goruntulendi-3910512",
         "ts": "2026-09-05T18:13:22Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-ais-f9b4b8",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.717578333333336,
+    "lon": 29.887138333333333,
+    "area": "İzmit Körfezi",
+    "vessel": {
+      "name": "ALSANCAK 22",
+      "mmsi": 271049254,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T20:28:53Z",
+    "last_update": "2026-09-05T20:28:53Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: kumanda dışı (not under command)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-0c23cc",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.62462,
+    "lon": 28.98013,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "LADY IOANNA",
+      "mmsi": 314172000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T20:28:53Z",
+    "last_update": "2026-09-05T20:28:53Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~449 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~448 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-ea1478",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.85093833333334,
+    "lon": 28.809106666666665,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "FORTUNE EXPRESS",
+      "mmsi": 271042197,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T20:28:53Z",
+    "last_update": "2026-09-05T20:28:53Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~449 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-dc1813",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.40189,
+    "lon": 28.85173,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "MUSTAFA NECATI",
+      "mmsi": 636020407,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T20:28:53Z",
+    "last_update": "2026-09-05T20:28:53Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~449 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-9104f2",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.877515,
+    "lon": 29.09006,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "MONTREUX",
+      "mmsi": 667001917,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T20:28:53Z",
+    "last_update": "2026-09-05T20:28:53Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~449 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-4a0b59",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.404736666666665,
+    "lon": 25.975773333333333,
+    "area": "Orta Ege",
+    "vessel": {
+      "name": "CHEM NANA",
+      "mmsi": 271053982,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T20:28:53Z",
+    "last_update": "2026-09-05T20:28:53Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~450 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-d4736b",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.55257166666667,
+    "lon": 27.838055,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "SIMI II",
+      "mmsi": 241677000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T20:28:53Z",
+    "last_update": "2026-09-05T20:28:53Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~449 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-ais-b80dc5",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.43203333333334,
+    "lon": 28.04665,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "SEAVEN HOPE",
+      "mmsi": 241750000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T20:28:53Z",
+    "last_update": "2026-09-05T20:28:53Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali ~449 dk once kesildi (3 ardisik taramada goruntulenmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-05T20:28:53Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-05-news-82abb2-52839",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "critical",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 23,
+    "first_seen": "2026-09-05T20:28:58Z",
+    "last_update": "2026-09-05T20:28:58Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Milas açıklarında lastik botta 23 kaçak göçmen yakalandı",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/milas-aciklarinda-lastik-botta-23-kacak-gocmen-yakalandi-3463231",
+        "ts": "2026-09-05T20:28:58Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-82abb2-39875",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T20:28:58Z",
+    "last_update": "2026-09-05T20:28:58Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Donanmanın kurtarma gemileri derin denizde iz sürüyor",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/turkiye/donanmanin-kurtarma-gemileri-derin-denizde-iz-suruyor-955975.html",
+        "ts": "2026-09-05T20:28:58Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "2026-09-05-news-82abb2-71514",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-05T20:28:59Z",
+    "last_update": "2026-09-05T20:28:59Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Batan geminin görüntülerine ulaşıldı",
+        "org": "haberturk.com",
+        "url": "https://www.haberturk.com/gundem/silivri-aciklarinda-batan-tugberk-imamoglu-gemisi-rov-ile-goruntulendi-3910512",
+        "ts": "2026-09-05T20:28:59Z"
       }
     ],
     "notes": [],
