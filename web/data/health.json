@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-05T05:34:10Z",
-  "cycle_seconds": 145.9,
+  "generated": "2026-09-05T09:28:25Z",
+  "cycle_seconds": 146.2,
   "sources_ok": 7,
   "sources_total": 7,
   "sources_down": [],
-  "incidents": 64,
+  "incidents": 68,
   "warnings": 3,
   "sources": {
     "scrape": {
@@ -14,7 +14,7 @@
     },
     "news": {
       "ok": true,
-      "items": 8,
+      "items": 13,
       "error": null
     },
     "openmeteo": {
