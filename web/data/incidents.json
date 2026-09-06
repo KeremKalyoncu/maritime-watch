@@ -124,7 +124,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T00:52:46Z",
-    "last_update": "2026-09-06T04:28:12Z",
+    "last_update": "2026-09-06T08:51:17Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -167,6 +167,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T04:28:12Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 725 dakika önce kesildi (5 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T08:51:17Z"
       }
     ],
     "notes": [],
@@ -287,7 +294,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T22:18:35Z",
-    "last_update": "2026-09-06T04:28:12Z",
+    "last_update": "2026-09-06T08:51:17Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -309,68 +316,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T04:28:12Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-05-ais-5ec3dc",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 40.84264333333333,
-    "lon": 29.281871666666667,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "T.FLORYA",
-      "mmsi": 271054417,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T20:47:55Z",
-    "last_update": "2026-09-05T20:47:55Z",
-    "sources": [
+      },
       {
         "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (5.5 kn) ani duruşa geçti",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 744 dakika önce kesildi (6 taramada üst üste görünmedi)",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-05T20:47:55Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-05-ais-6e8644",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.72701,
-    "lon": 27.695615,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "ADMIRAL",
-      "mmsi": 271043459,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T20:47:55Z",
-    "last_update": "2026-09-05T20:47:55Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (8.2 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T20:47:55Z"
+        "ts": "2026-09-06T08:51:17Z"
       }
     ],
     "notes": [],
@@ -541,37 +493,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-05-ais-916d93",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 37.4625,
-    "lon": 25.325166666666668,
-    "area": "Orta Ege",
-    "vessel": {
-      "name": "THEOLOGOS P .",
-      "mmsi": 240521000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T20:47:55Z",
-    "last_update": "2026-09-05T20:47:55Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (19.1 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T20:47:55Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-05-ais-bf6916",
     "type": "drift",
     "status": "signal",
@@ -735,79 +656,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-05-ais-d1e12b",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 37.017720000000004,
-    "lon": 27.42626166666667,
-    "area": "Gökova Körfezi",
-    "vessel": {
-      "name": "SEA STAR RHODES",
-      "mmsi": 511100115,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T05:33:15Z",
-    "last_update": "2026-09-05T18:13:14Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~178°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T05:33:15Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~101°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T05:33:15Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (26.9 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T09:27:30Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~85°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T09:27:30Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali ~234 dk önce kesildi",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T09:27:30Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (24.0 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T18:13:14Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (17.4 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T18:13:14Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-05-ais-effd65",
     "type": "distress",
     "status": "signal",
@@ -824,7 +672,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T22:18:35Z",
-    "last_update": "2026-09-06T04:28:12Z",
+    "last_update": "2026-09-06T08:51:17Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -846,6 +694,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T04:28:12Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 743 dakika önce kesildi (6 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T08:51:17Z"
       }
     ],
     "notes": [],
@@ -853,30 +708,30 @@
     "coarse": false
   },
   {
-    "id": "2026-09-05-ais-f9b4b8",
+    "id": "2026-09-06-ais-16a850",
     "type": "drift",
     "status": "signal",
     "confidence": 0.25,
     "severity": "minor",
-    "lat": 40.717578333333336,
-    "lon": 29.887138333333333,
-    "area": "İzmit Körfezi",
+    "lat": 37.537715000000006,
+    "lon": 25.15664333333333,
+    "area": "Orta Ege",
     "vessel": {
-      "name": "ALSANCAK 22",
-      "mmsi": 271049254,
+      "name": "ANDROS QUEEN",
+      "mmsi": 241835000,
       "type": null,
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-05T20:28:53Z",
-    "last_update": "2026-09-05T20:28:53Z",
+    "first_seen": "2026-09-06T08:51:17Z",
+    "last_update": "2026-09-06T08:51:17Z",
     "sources": [
       {
         "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
+        "detail": "speed-drop: seyir hızından (19.9 kn) ani duruşa geçti",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-05T20:28:53Z"
+        "ts": "2026-09-06T08:51:17Z"
       }
     ],
     "notes": [],
@@ -900,7 +755,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-06T00:00:03Z",
-    "last_update": "2026-09-06T04:28:12Z",
+    "last_update": "2026-09-06T08:51:17Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -915,6 +770,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T04:28:12Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 724 dakika önce kesildi (5 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T08:51:17Z"
       }
     ],
     "notes": [],
@@ -1065,198 +927,35 @@
     "coarse": true
   },
   {
-    "id": "news-c6c104deac",
-    "type": "distress",
+    "id": "news-f0b1a0ffda",
+    "type": "unknown",
     "status": "signal",
     "confidence": 0.3,
     "severity": "critical",
-    "lat": 41.07,
-    "lon": 28.25,
-    "area": "Türk karasuları civarı",
+    "lat": null,
+    "lon": null,
+    "area": "",
     "vessel": {
-      "name": "Tuğberk İmamoğlu",
+      "name": null,
       "mmsi": null,
       "type": null,
       "callsign": null
     },
-    "casualties": 10,
-    "first_seen": "2026-09-03T23:11:12Z",
-    "last_update": "2026-09-05T20:29:09Z",
+    "casualties": 23,
+    "first_seen": "2026-09-06T08:51:24Z",
+    "last_update": "2026-09-06T08:51:24Z",
     "sources": [
       {
         "kind": "news",
-        "detail": "Silivri açıklarındaki gemi kazasına ilişkin gözaltına alınan Alsu gemisinin 1. ve 3. kaptanı tutuklandı",
-        "org": "aa.com.tr",
-        "url": "https://www.aa.com.tr/tr/gundem/silivri-aciklarindaki-gemi-kazasina-iliskin-gozaltina-alinan-alsu-gemisinin-1-ve-3-kaptani-tutuklandi/4046904",
-        "ts": "2026-09-03T23:11:12Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri'deki gemi kazasında bilirkişi ön raporu ortaya çıktı | Dikkat çeken tespitler yer aldı: Gözcü olsaydı batmayabilirdi... Geminin 2 kaptanı tutuklandı",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/silivrideki-gemi-kazasinda-bilirkisi-raporu-ortaya-cikti-dikkat-ceken-tespitler-yer-aldi-43294933",
-        "ts": "2026-09-03T23:11:13Z"
-      },
-      {
-        "kind": "news",
-        "detail": "SON DAKİKA HABERİ: Silivri'deki kazada Alsu Gemisi'nin 1. ve 3. kaptanı tutuklandı",
+        "detail": "Milas açıklarında lastik botta 23 kaçak göçmen yakalandı",
         "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/son-dakika-haberi-silivrideki-kazada-alsu-gemisinin-1-ve-3-kaptanina-tutuklama-talebi-3462519",
-        "ts": "2026-09-03T23:11:15Z"
-      },
-      {
-        "kind": "news",
-        "detail": "TUĞBERK İMAMOĞLU GEMİSİ KİME AİT? Silivri'deki Gemi Kazasında Son Durum Ne? ALSU Gemisi ve Tuğberk İmamoğlu Gemisi Neden Çarpıştı?",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/tugberk-imamoglu-gemisi-kime-ait-silivrideki-gemi-kazasinda-son-durum-ne-alsu-gemisi-ve-tugberk-imamoglu-gemisi-neden-carpisti-3461697",
-        "ts": "2026-09-03T23:11:15Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri'deki gemi kazasında uyuyan kaptan ve hayalet gemi bilirkişi raporunda",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/silivrideki-gemi-kazasinda-uyuyan-kaptan-ve-hayalet-gemi-bilirkisi-raporunda-955802.html",
-        "ts": "2026-09-03T23:11:16Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Girne ve Silivri kayıplarını arıyor... İki limanda acı bekleyiş",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/girne-ve-silivri-kayiplarini-ariyor-iki-limanda-aci-bekleyis-43295299",
-        "ts": "2026-09-04T05:59:01Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri’deki gemi kazasının 3. günü | Ön tespit raporu hazırlandı: 2 kaptan da kusurlu! Ailelerin bekleyişi sürüyor: Kazadan önce görüştük",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/silivrideki-gemi-kazasinin-3-gunu-on-tespit-raporu-hazirlandi-2-kaptan-da-kusurlu-ailelerin-bekleyisi-suruyor-kazadan-once-gorustuk-43295492",
-        "ts": "2026-09-04T09:06:08Z"
-      },
-      {
-        "kind": "news",
-        "detail": "SİLİVRİ GEMİ KAZASI KAYIPLARIN KİMLİKLERİ BELLİ OLDU: Tuğberk İmamoğlu ve ALSU Gemileri KAyıp Mürettabatlar Kimler? Ölü Yaralı Var Mı?",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/silivri-gemi-kazasi-kayiplarin-kimlikleri-belli-oldu-tugberk-imamoglu-ve-alsu-gemileri-kayip-murettabatlar-kimler-olu-yarali-var-mi-3461877",
-        "ts": "2026-09-04T09:06:09Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri'deki gemi kazası | Tutuklanan kaptanların ifadesi ortaya çıktı! Kaza anını anlattılar: Yaklaşık 1-2 dakika içerisinde gemi kayboldu",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/silivrideki-gemi-kazasi-tutuklanan-kaptanlarin-ifadesi-ortaya-cikti-kaza-anini-anlattilar-yaklasik-1-2-dakika-icerisinde-gemi-kayboldu-43296026",
-        "ts": "2026-09-04T15:00:52Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Son dakika... Silivri açıklarındaki kazada batan geminin yeri tespit edildi",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/silivrideki-gemi-kazasinin-3-gunu-on-tespit-raporu-hazirlandi-2-kaptan-da-kusurlu-ailelerin-bekleyisi-suruyor-kazadan-once-gorustuk-43295492",
-        "ts": "2026-09-04T15:00:52Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri açıklarında batan geminin yeri tespit edildi",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/silivri-aciklarinda-batan-geminin-yeri-tespit-edildi-955887.html",
-        "ts": "2026-09-04T15:00:54Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri açıklarındaki kazada dümendeki kaptanın ifadesi ortaya çıktı!",
-        "org": "haberturk.com",
-        "url": "https://www.haberturk.com/gundem/son-dakika-silivri-aciklarindaki-kazada-dumendeki-kaptanin-ifadesi-ortaya-cikti-3910308",
-        "ts": "2026-09-04T15:00:55Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri'deki gemi kazasına ilişkin kaptanların ifadelerine ulaşıldı",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/silivrideki-gemi-kazasina-iliskin-kaptanlarin-ifadelerine-ulasildi-955911.html",
-        "ts": "2026-09-04T18:20:59Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri açıklarındaki gemi kazasında 4'üncü gün: Kayıp 10 kişilik mürettebat aranıyor",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/silivri-aciklarindaki-gemi-kazasinda-4uncu-gun-kayip-10-kisilik-murettebat-araniyor-43296697",
-        "ts": "2026-09-05T09:27:35Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri açıklarında batan gemi 720 metre derinlikte bulundu",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/silivri-aciklarinda-batan-gemi-720-metre-derinlikte-bulundu-955964.html",
-        "ts": "2026-09-05T09:27:37Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri açıklarındaki kazada batan geminin bulunduğu bölgedeki çalışmalar sürüyor",
-        "org": "aa.com.tr",
-        "url": "https://www.aa.com.tr/tr/gundem/silivri-aciklarindaki-kazada-batan-geminin-bulundugu-bolgedeki-calismalar-suruyor/4048157",
-        "ts": "2026-09-05T13:00:48Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri'de batan gemi 720 metrede!",
-        "org": "haberturk.com",
-        "url": "https://www.haberturk.com/gundem/son-dakika-haberi-silivri-de-batan-gemi-720-metrede-550-kilometrekare-taraniyor-3910488",
-        "ts": "2026-09-05T13:00:50Z"
-      },
-      {
-        "kind": "news",
-        "detail": "AA, Silivri açıklarındaki kazada batan gemiye ilişkin çalışmaları TCG Akın'da görüntüledi",
-        "org": "aa.com.tr",
-        "url": "https://www.aa.com.tr/tr/gundem/aa-silivri-aciklarindaki-kazada-batan-gemiye-iliskin-calismalari-tcg-akinda-goruntuledi/4048241",
-        "ts": "2026-09-05T16:00:45Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri açıklarındaki kazada batan geminin deniz altındaki görüntülerine ulaşıldı",
-        "org": "aa.com.tr",
-        "url": "https://www.aa.com.tr/tr/gundem/silivri-aciklarindaki-kazada-batan-geminin-deniz-altindaki-goruntulerine-ulasildi/4048157",
-        "ts": "2026-09-05T16:00:45Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri açıklarındaki gemi kazasında 4'üncü gün | 'Tuğberk İmamoğlu' gemisinin deniz altındaki görüntülerine ulaşıldı",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/silivri-aciklarindaki-gemi-kazasinda-4uncu-gun-kayip-10-kisilik-murettebat-araniyor-43296697",
-        "ts": "2026-09-05T16:00:46Z"
-      },
-      {
-        "kind": "news",
-        "detail": "720 metre derinlikte bulundu! Silivri'de batan Tuğberk İmamoğlu gemisi görüntülendi",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/720-metre-derinlikte-bulundu-silivride-batan-tugberk-imamoglu-gemisi-goruntulendi-3463344",
-        "ts": "2026-09-05T16:00:47Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Son dakika: Silivri'de batan Tuğberk İmamoğlu gemisi görüntülendi",
-        "org": "milliyet.com.tr",
-        "url": "",
-        "ts": "2026-09-05T16:00:49Z"
-      },
-      {
-        "kind": "news",
-        "detail": "MSB'den Silivri açıklarındaki kazada batan gemiye ilişkin paylaşım",
-        "org": "milliyet.com.tr",
-        "url": "",
-        "ts": "2026-09-05T18:13:22Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri açıklarında batan gemi 720 metre derinlikte görüntülendi",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/silivri-aciklarinda-batan-gemi-720-metre-derinlikte-goruntulendi-956007.html",
-        "ts": "2026-09-05T20:28:58Z"
+        "url": "https://www.cnnturk.com/turkiye/milas-aciklarinda-lastik-botta-23-kacak-gocmen-yakalandi-3463231",
+        "ts": "2026-09-06T08:51:24Z"
       }
     ],
     "notes": [],
-    "places": [
-      "Silivri"
-    ],
-    "coarse": false
+    "places": [],
+    "coarse": true
   },
   {
     "id": "rep-442993157a",
