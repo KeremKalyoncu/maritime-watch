@@ -3,7 +3,105 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Sat, 05 Sep 2026 22:19:38 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 06 Sep 2026 00:01:02 +0000</lastBuildDate>
+    <item>
+      <title>[signal] distress, konum belirsiz</title>
+      <link>https://www.hurriyet.com.tr/gundem/msb-tugberk-imamoglu-gemisi-icin-arama-kurtarma-faaliyetlerine-devam-ediyor-43297597</link>
+      <guid isPermaLink="false">news-68b7669f6e-1</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:12 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/hurriyet.com.tr: MSB, Tuğberk İmamoğlu gemisi için arama kurtarma faaliyetlerine devam ediyor</description>
+    </item>
+    <item>
+      <title>[signal] distress, Marmara Denizi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-04-ais-eb50a1-12</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: course-spike: ani rota değişimi (~131°) | ais-anomaly/AIS: course-spike: ani rota değişimi (~92°) | ais-anomaly/AIS: course-spike: ani rota değişimi (~113°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~112 dk önce kesildi | ais-anomaly/AIS: course-spike: ani rota değişimi (~167°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (11.5 kn) ani duruşa geçti | ais-anomaly/AIS: nav-status: kumanda dışı (not under command) | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (2.4 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (3.5 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (6.3 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (3.4 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] drift, Marmara Denizi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-037dce-5</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: course-spike: ani rota değişimi (~84°) | ais-anomaly/AIS: course-spike: ani rota değişimi (~120°) | ais-anomaly/AIS: course-spike: ani rota değişimi (~135°) | ais-anomaly/AIS: speed-drop: seyir hızından (13.2 kn) ani duruşa geçti | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 193 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-3e214f-3</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 374 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 378 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 479 dakika önce kesildi (6 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] drift, İstanbul Boğazı</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-48671e-3</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (8.3 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (7.9 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (8.2 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] distress, Marmara Denizi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-548f6c-2</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 111 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 212 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-76ec58-4</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 537 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 623 dakika önce kesildi (6 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 627 dakika önce kesildi (7 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 729 dakika önce kesildi (8 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] drift, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-8913c8-5</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (16.8 kn) ani duruşa geçti | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 536 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 622 dakika önce kesildi (6 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 626 dakika önce kesildi (7 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 728 dakika önce kesildi (8 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-8c3550-4</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 536 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 623 dakika önce kesildi (6 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 627 dakika önce kesildi (7 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 728 dakika önce kesildi (8 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] drift, Marmara Denizi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-bf6916-2</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (10.5 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (10.5 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] distress, Gökova Körfezi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-c3f3b6-3</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 375 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 379 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 480 dakika önce kesildi (6 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] drift, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-d1d7ec-6</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (14.4 kn) ani duruşa geçti | ais-anomaly/AIS: nav-status: kumanda dışı (not under command) | ais-anomaly/AIS: speed-drop: seyir hızından (10.3 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (12.4 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (12.2 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (5.2 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-05-ais-effd65-2</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 110 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 212 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Marmara Denizi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-06-ais-ac384a-1</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:03 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 193 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
     <item>
       <title>[signal] collision, Marmara Denizi</title>
       <link>https://www.cnnturk.com/turkiye/marmara-adasi-aciklarinda-petrol-tankeri-suruklendi-3463100</link>
@@ -19,88 +117,11 @@
       <description>Güven: 0.3 | Önem: minor | news/trthaber.com: Donanmanın kurtarma gemileri derin denizde iz sürüyor</description>
     </item>
     <item>
-      <title>[signal] distress, Marmara Denizi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-04-ais-eb50a1-10</guid>
-      <pubDate>Sat, 05 Sep 2026 22:18:35 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: course-spike: ani rota değişimi (~131°) | ais-anomaly/AIS: course-spike: ani rota değişimi (~92°) | ais-anomaly/AIS: course-spike: ani rota değişimi (~113°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~112 dk önce kesildi | ais-anomaly/AIS: course-spike: ani rota değişimi (~167°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (11.5 kn) ani duruşa geçti | ais-anomaly/AIS: nav-status: kumanda dışı (not under command) | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (2.4 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (3.5 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[signal] distress, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-3e214f-2</guid>
-      <pubDate>Sat, 05 Sep 2026 22:18:35 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 374 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 378 dakika önce kesildi (5 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[signal] distress, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-76ec58-3</guid>
-      <pubDate>Sat, 05 Sep 2026 22:18:35 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 537 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 623 dakika önce kesildi (6 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 627 dakika önce kesildi (7 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[signal] drift, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-8913c8-4</guid>
-      <pubDate>Sat, 05 Sep 2026 22:18:35 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (16.8 kn) ani duruşa geçti | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 536 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 622 dakika önce kesildi (6 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 626 dakika önce kesildi (7 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[signal] distress, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-8c3550-3</guid>
-      <pubDate>Sat, 05 Sep 2026 22:18:35 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 536 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 623 dakika önce kesildi (6 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 627 dakika önce kesildi (7 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[signal] distress, Gökova Körfezi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-c3f3b6-2</guid>
-      <pubDate>Sat, 05 Sep 2026 22:18:35 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 375 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 379 dakika önce kesildi (5 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[signal] drift, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-d1d7ec-5</guid>
-      <pubDate>Sat, 05 Sep 2026 22:18:35 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (14.4 kn) ani duruşa geçti | ais-anomaly/AIS: nav-status: kumanda dışı (not under command) | ais-anomaly/AIS: speed-drop: seyir hızından (10.3 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (12.4 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (12.2 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[signal] drift, İstanbul Boğazı</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-48671e-1</guid>
-      <pubDate>Sat, 05 Sep 2026 22:18:35 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (8.3 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[signal] distress, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-effd65-1</guid>
-      <pubDate>Sat, 05 Sep 2026 22:18:35 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 110 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[signal] distress, Marmara Denizi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-548f6c-1</guid>
-      <pubDate>Sat, 05 Sep 2026 22:18:35 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 111 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
       <title>[signal] unknown, Türk karasuları civarı</title>
       <link>https://www.cnnturk.com/turkiye/girne-aciklarindaki-deniz-kazasinda-2-kisinin-daha-kimligi-belirlendi-3463212</link>
       <guid isPermaLink="false">news-b6d44b2069-2</guid>
       <pubDate>Sat, 05 Sep 2026 22:14:56 +0000</pubDate>
       <description>Güven: 0.3 | Önem: critical | Bildirilen kişi: 2 | news/cnnturk.com: Girne açıklarındaki deniz kazasında 2 kişinin daha kimliği belirlendi | news/trthaber.com: Girne'deki gemide can kaybı 13'e yükseldi</description>
-    </item>
-    <item>
-      <title>[signal] drift, Marmara Denizi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-bf6916-1</guid>
-      <pubDate>Sat, 05 Sep 2026 22:14:33 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (10.5 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[signal] drift, Marmara Denizi</title>
@@ -206,20 +227,6 @@
       <guid isPermaLink="false">2026-09-05-ais-be714e-1</guid>
       <pubDate>Sat, 05 Sep 2026 13:00:45 +0000</pubDate>
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: nav-status: karaya oturmuş (aground)</description>
-    </item>
-    <item>
-      <title>[signal] drift, Marmara Denizi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-037dce-4</guid>
-      <pubDate>Sat, 05 Sep 2026 11:52:27 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: course-spike: ani rota değişimi (~84°) | ais-anomaly/AIS: course-spike: ani rota değişimi (~120°) | ais-anomaly/AIS: course-spike: ani rota değişimi (~135°) | ais-anomaly/AIS: speed-drop: seyir hızından (13.2 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[signal] sinking, Türk karasuları civarı</title>
-      <link>https://www.hurriyet.com.tr/gundem/girne-aciklarinda-batan-gemide-ulasilan-iki-naasin-kimligi-belirlendi-43296485</link>
-      <guid isPermaLink="false">news-c12a40b05e-7</guid>
-      <pubDate>Sat, 05 Sep 2026 11:46:06 +0000</pubDate>
-      <description>Güven: 0.3 | Önem: critical | Bildirilen kişi: 2 | news/hurriyet.com.tr: Girne açıklarında batan gemide ulaşılan iki naaşın kimliği belirlendi | news/hurriyet.com.tr: MSB’den Girne açıklarında batan yolcu gemisiyle ilgili açıklama | news/hurriyet.com.tr: Girne açıklarında batan gemiye ilişkin arama kurtarma faaliyeti yürüten komutanlardan açıklama | news/aa.com.tr: Girne’deki gemi kazasında hayatını kaybedenlerin sayısı 13’e yükseldi | news/trthaber.com: Girne'deki gemide can kaybı 13'e yükseldi | news/cnnturk.com: Girne açıklarındaki deniz kazasında 2 kişinin daha kimliği belirlendi | news/milliyet.com.tr: KKTC Başbakanı Üstel: Girne'de meydana gelen deniz kazasında can kaybı 13'e yükseldi</description>
     </item>
     <item>
       <title>[confirmed] distress, Marmara Denizi</title>
