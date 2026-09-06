@@ -89,7 +89,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T22:14:33Z",
-    "last_update": "2026-09-06T18:22:09Z",
+    "last_update": "2026-09-06T20:45:07Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -125,6 +125,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T18:22:09Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 714 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T20:45:07Z"
       }
     ],
     "notes": [],
@@ -243,6 +250,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-06-ais-0377f5",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.13787666666666,
+    "lon": 26.135175,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "MONOLIT",
+      "mmsi": 273128810,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-06T20:45:07Z",
+    "last_update": "2026-09-06T20:45:07Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: kumanda dışı (not under command)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T20:45:07Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-06-ais-03987d",
     "type": "drift",
     "status": "signal",
@@ -305,6 +343,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-06-ais-8e8095",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.379511666666666,
+    "lon": 28.25928,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "TIGANI",
+      "mmsi": 249856000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-06T20:45:07Z",
+    "last_update": "2026-09-06T20:45:07Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (4.0 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T20:45:07Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-06-ais-ac384a",
     "type": "distress",
     "status": "signal",
@@ -350,6 +419,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-06-ais-ba3eb0",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.61664833333334,
+    "lon": 29.051266666666667,
+    "area": "Batı Akdeniz",
+    "vessel": {
+      "name": "ZELDA",
+      "mmsi": 248335000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-06T20:45:07Z",
+    "last_update": "2026-09-06T20:45:07Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (8.1 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T20:45:07Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-06-ais-fd7a13",
     "type": "drift",
     "status": "signal",
@@ -366,7 +466,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-06T18:22:09Z",
-    "last_update": "2026-09-06T18:22:09Z",
+    "last_update": "2026-09-06T20:45:07Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -374,11 +474,49 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T18:22:09Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (4.2 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T20:45:07Z"
       }
     ],
     "notes": [],
     "places": [],
     "coarse": false
+  },
+  {
+    "id": "news-7de677cdc9",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-06T20:45:15Z",
+    "last_update": "2026-09-06T20:45:15Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "KKTC'deki gemi kazasında can kaybı 14 oldu",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/kktcdeki-gemi-kazasinda-can-kaybi-14-oldu-43298294",
+        "ts": "2026-09-06T20:45:15Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
   },
   {
     "id": "news-85c082f7db",
@@ -461,7 +599,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-06T18:22:16Z",
-    "last_update": "2026-09-06T18:22:16Z",
+    "last_update": "2026-09-06T20:45:28Z",
     "sources": [
       {
         "kind": "news",
@@ -469,6 +607,20 @@
         "org": "aa.com.tr",
         "url": "https://www.aa.com.tr/tr/gundem/girne-onlerinde-batan-gemideki-kayip-yolculara-yonelik-arama-kurtarma-faaliyetlerinde-6-naasa-ulasildi/4049041",
         "ts": "2026-09-06T18:22:16Z"
+      },
+      {
+        "kind": "news",
+        "detail": "KKTC'nin Girne açıklarında batan gemiden 6'ncı naaş çıkarıldı",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/kktcnin-girne-aciklarinda-batan-gemiden-6nci-naas-cikarildi/4049041",
+        "ts": "2026-09-06T20:45:15Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Girne açıklarında batan gemiden acı haber! Deniz Kuvvetleri Komutanlığı 6. naaşa ulaştı",
+        "org": "milliyet.com.tr",
+        "url": "",
+        "ts": "2026-09-06T20:45:18Z"
       }
     ],
     "notes": [],
@@ -533,6 +685,37 @@
         "org": "cnnturk.com",
         "url": "https://www.cnnturk.com/turkiye/milas-aciklarinda-lastik-botta-23-kacak-gocmen-yakalandi-3463231",
         "ts": "2026-09-06T08:51:24Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "news-fe6589a9f3",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-06T20:45:17Z",
+    "last_update": "2026-09-06T20:45:17Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "KKTC'deki gemi kazasında can kaybı 14'e yükseldi",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/gundem/kktcdeki-gemi-kazasinda-can-kaybi-14e-yukseldi-956066.html",
+        "ts": "2026-09-06T20:45:17Z"
       }
     ],
     "notes": [],

@@ -3,27 +3,62 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Sun, 06 Sep 2026 18:23:02 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 06 Sep 2026 20:45:52 +0000</lastBuildDate>
     <item>
       <title>[signal] sinking, Türk karasuları civarı</title>
       <link>https://www.aa.com.tr/tr/gundem/girne-onlerinde-batan-gemideki-kayip-yolculara-yonelik-arama-kurtarma-faaliyetlerinde-6-naasa-ulasildi/4049041</link>
-      <guid isPermaLink="false">news-9fdac47415-1</guid>
-      <pubDate>Sun, 06 Sep 2026 18:22:16 +0000</pubDate>
-      <description>Güven: 0.3 | Önem: minor | news/aa.com.tr: Girne önlerinde batan gemideki kayıp yolculara yönelik arama kurtarma faaliyetlerinde 6. naaşa ulaşıldı</description>
+      <guid isPermaLink="false">news-9fdac47415-3</guid>
+      <pubDate>Sun, 06 Sep 2026 20:45:28 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/aa.com.tr: Girne önlerinde batan gemideki kayıp yolculara yönelik arama kurtarma faaliyetlerinde 6. naaşa ulaşıldı | news/aa.com.tr: KKTC'nin Girne açıklarında batan gemiden 6'ncı naaş çıkarıldı | news/milliyet.com.tr: Girne açıklarında batan gemiden acı haber! Deniz Kuvvetleri Komutanlığı 6. naaşa ulaştı</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.trthaber.com/haber/gundem/kktcdeki-gemi-kazasinda-can-kaybi-14e-yukseldi-956066.html</link>
+      <guid isPermaLink="false">news-fe6589a9f3-1</guid>
+      <pubDate>Sun, 06 Sep 2026 20:45:17 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/trthaber.com: KKTC'deki gemi kazasında can kaybı 14'e yükseldi</description>
+    </item>
+    <item>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.hurriyet.com.tr/gundem/kktcdeki-gemi-kazasinda-can-kaybi-14-oldu-43298294</link>
+      <guid isPermaLink="false">news-7de677cdc9-1</guid>
+      <pubDate>Sun, 06 Sep 2026 20:45:15 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/hurriyet.com.tr: KKTC'deki gemi kazasında can kaybı 14 oldu</description>
     </item>
     <item>
       <title>[signal] distress, Güney Ege</title>
       <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-05-ais-3e214f-5</guid>
-      <pubDate>Sun, 06 Sep 2026 18:22:09 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 374 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 378 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 479 dakika önce kesildi (6 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 748 dakika önce kesildi (7 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 571 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+      <guid isPermaLink="false">2026-09-05-ais-3e214f-6</guid>
+      <pubDate>Sun, 06 Sep 2026 20:45:07 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 374 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 378 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 479 dakika önce kesildi (6 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 748 dakika önce kesildi (7 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 571 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 714 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
     </item>
     <item>
       <title>[signal] drift, Gökova Körfezi</title>
       <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-06-ais-fd7a13-1</guid>
-      <pubDate>Sun, 06 Sep 2026 18:22:09 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (8.6 kn) ani duruşa geçti</description>
+      <guid isPermaLink="false">2026-09-06-ais-fd7a13-2</guid>
+      <pubDate>Sun, 06 Sep 2026 20:45:07 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (8.6 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (4.2 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] drift, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-06-ais-0377f5-1</guid>
+      <pubDate>Sun, 06 Sep 2026 20:45:07 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: nav-status: kumanda dışı (not under command)</description>
+    </item>
+    <item>
+      <title>[signal] drift, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-06-ais-8e8095-1</guid>
+      <pubDate>Sun, 06 Sep 2026 20:45:07 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (4.0 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] drift, Batı Akdeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-06-ais-ba3eb0-1</guid>
+      <pubDate>Sun, 06 Sep 2026 20:45:07 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (8.1 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[confirmed] distress, Güney Ege</title>
