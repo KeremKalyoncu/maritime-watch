@@ -3,7 +3,14 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Sun, 06 Sep 2026 12:50:59 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 06 Sep 2026 16:10:00 +0000</lastBuildDate>
+    <item>
+      <title>[confirmed] distress, Güney Ege</title>
+      <link>https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026</link>
+      <guid isPermaLink="false">rep-4d701b7ab0-3</guid>
+      <pubDate>Sun, 06 Sep 2026 16:09:16 +0000</pubDate>
+      <description>Güven: 0.85 | Önem: major | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: course-spike: ani rota değişimi (~114°) | official/Sahil Güvenlik Komutanlığı: 06.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır</description>
+    </item>
     <item>
       <title>[signal] unknown, konum belirsiz</title>
       <link>https://example.github.io/maritime-watch</link>
@@ -94,13 +101,6 @@
       <guid isPermaLink="false">2026-09-05-ais-d1d7ec-7</guid>
       <pubDate>Sun, 06 Sep 2026 04:28:12 +0000</pubDate>
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (14.4 kn) ani duruşa geçti | ais-anomaly/AIS: nav-status: kumanda dışı (not under command) | ais-anomaly/AIS: speed-drop: seyir hızından (10.3 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (12.4 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (12.2 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (5.2 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (12.8 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[confirmed] distress, Güney Ege</title>
-      <link>https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026</link>
-      <guid isPermaLink="false">rep-4d701b7ab0-2</guid>
-      <pubDate>Sat, 05 Sep 2026 20:45:02 +0000</pubDate>
-      <description>Güven: 0.85 | Önem: major | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: course-spike: ani rota değişimi (~114°)</description>
     </item>
     <item>
       <title>[confirmed] distress, Güney Ege</title>
