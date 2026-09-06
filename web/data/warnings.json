@@ -24,31 +24,5 @@
         "ts": "2026-09-03T10:20:47.9Z"
       }
     ]
-  },
-  {
-    "id": "mt-LTFH",
-    "headline": "Samsun-Çarşamba Arpt, SA, TR: hava: BR, düşük görüş",
-    "area": "Samsun-Çarşamba Arpt, SA, TR",
-    "severity": "major",
-    "kind": "metar",
-    "onset": null,
-    "expires": null,
-    "org": "aviationweather.gov",
-    "url": "https://aviationweather.gov/",
-    "issued": "2026-09-06T00:00:00.000Z",
-    "last_update": "2026-09-06T00:01:02Z",
-    "raw": "",
-    "lat": 41.255,
-    "lon": 36.567,
-    "value": null,
-    "sources": [
-      {
-        "kind": "metar",
-        "detail": "Samsun-Çarşamba Arpt, SA, TR: hava: BR, düşük görüş",
-        "org": "aviationweather.gov",
-        "url": "https://aviationweather.gov/",
-        "ts": "2026-09-05T22:00:00.000Z"
-      }
-    ]
   }
 ]
