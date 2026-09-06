@@ -1,78 +1,5 @@
 [
   {
-    "id": "2026-09-05-ais-037dce",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 40.919756666666665,
-    "lon": 28.697091666666665,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "CMA CGM BLOSSOM",
-      "mmsi": 352001685,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T00:52:46Z",
-    "last_update": "2026-09-06T08:51:17Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~84°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T00:52:46Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~120°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T09:27:30Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~135°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T09:27:30Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (13.2 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T11:52:27Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 193 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 461 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T04:28:12Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 725 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T08:51:17Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-05-ais-3e214f",
     "type": "distress",
     "status": "signal",
@@ -89,7 +16,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T22:14:33Z",
-    "last_update": "2026-09-06T20:45:07Z",
+    "last_update": "2026-09-06T22:28:08Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -132,6 +59,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T20:45:07Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 817 dakika önce kesildi (5 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T22:28:08Z"
       }
     ],
     "notes": [],
@@ -198,58 +132,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-05-ais-effd65",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.86176666666667,
-    "lon": 26.41935,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "PATRIS",
-      "mmsi": 210719000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T22:18:35Z",
-    "last_update": "2026-09-06T08:51:17Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 110 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:18:35Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 212 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 480 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T04:28:12Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 743 dakika önce kesildi (6 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T08:51:17Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-06-ais-0377f5",
     "type": "drift",
     "status": "signal",
@@ -297,7 +179,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-06T12:49:53Z",
-    "last_update": "2026-09-06T12:49:53Z",
+    "last_update": "2026-09-06T22:28:08Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -305,6 +187,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T12:49:53Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 381 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T22:28:08Z"
       }
     ],
     "notes": [],
@@ -312,30 +201,61 @@
     "coarse": false
   },
   {
-    "id": "2026-09-06-ais-16a850",
+    "id": "2026-09-06-ais-432ee2",
     "type": "drift",
     "status": "signal",
     "confidence": 0.25,
     "severity": "minor",
-    "lat": 37.537715000000006,
-    "lon": 25.15664333333333,
-    "area": "Orta Ege",
+    "lat": 36.444941666666665,
+    "lon": 28.23706333333333,
+    "area": "Güney Ege",
     "vessel": {
-      "name": "ANDROS QUEEN",
-      "mmsi": 241835000,
+      "name": "STAVROS",
+      "mmsi": 237352400,
       "type": null,
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-06T08:51:17Z",
-    "last_update": "2026-09-06T08:51:17Z",
+    "first_seen": "2026-09-06T22:28:08Z",
+    "last_update": "2026-09-06T22:28:08Z",
     "sources": [
       {
         "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (19.9 kn) ani duruşa geçti",
+        "detail": "speed-drop: seyir hızından (14.8 kn) ani duruşa geçti",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-06T08:51:17Z"
+        "ts": "2026-09-06T22:28:08Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-06-ais-5c280a",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.4909,
+    "lon": 28.0349,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "PANAGIA SKIADENI",
+      "mmsi": 240192000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-06T22:28:08Z",
+    "last_update": "2026-09-06T22:28:08Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 380 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T22:28:08Z"
       }
     ],
     "notes": [],
@@ -374,51 +294,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-06-ais-ac384a",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 40.6017,
-    "lon": 28.6705,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "MEDALTA ADVENTURER",
-      "mmsi": 319084600,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-06T00:00:03Z",
-    "last_update": "2026-09-06T08:51:17Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 193 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 461 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T04:28:12Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 724 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T08:51:17Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-06-ais-ba3eb0",
     "type": "drift",
     "status": "signal",
@@ -435,7 +310,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-06T20:45:07Z",
-    "last_update": "2026-09-06T20:45:07Z",
+    "last_update": "2026-09-06T22:28:08Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -443,6 +318,44 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T20:45:07Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (7.1 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T22:28:08Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-06-ais-eaee07",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.724,
+    "lon": 28.375,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "ADMIRAL",
+      "mmsi": 271043459,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-06T22:28:08Z",
+    "last_update": "2026-09-06T22:28:08Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 381 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T22:28:08Z"
       }
     ],
     "notes": [],
@@ -654,37 +567,6 @@
         "org": "milliyet.com.tr",
         "url": "",
         "ts": "2026-09-06T12:50:14Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
-  },
-  {
-    "id": "news-f0b1a0ffda",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "critical",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": 23,
-    "first_seen": "2026-09-06T08:51:24Z",
-    "last_update": "2026-09-06T08:51:24Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Milas açıklarında lastik botta 23 kaçak göçmen yakalandı",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/milas-aciklarinda-lastik-botta-23-kacak-gocmen-yakalandi-3463231",
-        "ts": "2026-09-06T08:51:24Z"
       }
     ],
     "notes": [],

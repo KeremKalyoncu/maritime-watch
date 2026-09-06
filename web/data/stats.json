@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-06T20:45:52Z",
-  "total_incidents": 135,
+  "generated": "2026-09-06T22:29:01Z",
+  "total_incidents": 138,
   "by_month": {
-    "2026-09": 135
+    "2026-09": 138
   },
   "by_area": {
-    "belirsiz": 124,
+    "belirsiz": 127,
     "Türk karasuları civarı": 4,
     "Marmara Denizi": 3,
     "Doğu Karadeniz": 2,
@@ -13,14 +13,14 @@
     "Antalya Körfezi": 1
   },
   "by_type": {
-    "distress": 55,
+    "distress": 57,
     "unknown": 45,
-    "drift": 21,
+    "drift": 22,
     "sinking": 13,
     "collision": 1
   },
   "by_status": {
-    "signal": 135
+    "signal": 138
   },
   "incidents_with_casualties": 7,
   "casualties_reported_total": 118,
@@ -54,15 +54,15 @@
       2
     ],
     [
+      "ADMIRAL",
+      2
+    ],
+    [
+      "PANAGIA SKIADENI",
+      2
+    ],
+    [
       "MED CESME",
-      1
-    ],
-    [
-      "SOBRAY",
-      1
-    ],
-    [
-      "KAPETAN CHRISTOS",
       1
     ]
   ],
