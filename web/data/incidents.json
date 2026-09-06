@@ -1,113 +1,5 @@
 [
   {
-    "id": "2026-09-04-ais-eb50a1",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 40.72613333333334,
-    "lon": 29.093283333333332,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "SOBRAY",
-      "mmsi": 273393450,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-04T23:00:21Z",
-    "last_update": "2026-09-06T00:00:03Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~131°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-04T23:00:21Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~92°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T00:52:46Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~113°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T00:52:46Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali ~112 dk önce kesildi",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T00:52:46Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "course-spike: ani rota değişimi (~167°)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T05:33:15Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali ~281 dk önce kesildi",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T05:33:15Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: kuru yük gemisi: seyir hızından (11.5 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T11:52:27Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T18:13:14Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: tanker: seyir hızından (2.4 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T20:47:55Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (3.5 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:18:35Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (6.3 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (3.4 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-05-ais-037dce",
     "type": "drift",
     "status": "signal",
@@ -233,51 +125,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-05-ais-48671e",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 41.27712333333333,
-    "lon": 29.048164999999997,
-    "area": "İstanbul Boğazı",
-    "vessel": {
-      "name": "NC CAPTAIN",
-      "mmsi": 375004000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T22:18:35Z",
-    "last_update": "2026-09-06T00:00:03Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: kuru yük gemisi: seyir hızından (8.3 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:18:35Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (7.9 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: kuru yük gemisi: seyir hızından (8.2 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-05-ais-548f6c",
     "type": "distress",
     "status": "signal",
@@ -294,7 +141,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T22:18:35Z",
-    "last_update": "2026-09-06T08:51:17Z",
+    "last_update": "2026-09-06T12:49:53Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -323,207 +170,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T08:51:17Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-05-ais-76ec58",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 41.363415,
-    "lon": 30.919018333333334,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "EVOLUTION",
-      "mmsi": 636016732,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T20:47:55Z",
-    "last_update": "2026-09-06T00:00:03Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 537 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T20:47:55Z"
       },
       {
         "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 623 dakika önce kesildi (6 taramada üst üste görünmedi)",
+        "detail": "speed-drop: seyir hızından (4.8 kn) ani duruşa geçti",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-05T22:14:33Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 627 dakika önce kesildi (7 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:18:35Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 729 dakika önce kesildi (8 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-05-ais-8913c8",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.44249666666666,
-    "lon": 28.23651,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "PANAGIA SKIADENI",
-      "mmsi": 240192000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T20:47:55Z",
-    "last_update": "2026-09-06T00:00:03Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (16.8 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T20:47:55Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 536 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T20:47:55Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 622 dakika önce kesildi (6 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:14:33Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 626 dakika önce kesildi (7 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:18:35Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 728 dakika önce kesildi (8 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-05-ais-8c3550",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.791015,
-    "lon": 28.551311666666667,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "WHITE ROSE OF DRACHS",
-      "mmsi": 235862000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T20:47:55Z",
-    "last_update": "2026-09-06T00:00:03Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 536 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T20:47:55Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 623 dakika önce kesildi (6 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:14:33Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 627 dakika önce kesildi (7 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:18:35Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 728 dakika önce kesildi (8 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-05-ais-bf6916",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 40.77840666666667,
-    "lon": 28.854013333333334,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "IN",
-      "mmsi": 304993000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T22:14:33Z",
-    "last_update": "2026-09-06T00:00:03Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (10.5 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:14:33Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: tanker: seyir hızından (10.5 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
+        "ts": "2026-09-06T12:49:53Z"
       }
     ],
     "notes": [],
@@ -708,6 +361,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-06-ais-03987d",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.54904166666667,
+    "lon": 27.845206666666666,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "SIMI II",
+      "mmsi": 241677000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-06T12:49:53Z",
+    "last_update": "2026-09-06T12:49:53Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (12.1 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T12:49:53Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-06-ais-16a850",
     "type": "drift",
     "status": "signal",
@@ -784,75 +468,13 @@
     "coarse": false
   },
   {
-    "id": "news-68b7669f6e",
-    "type": "distress",
+    "id": "news-85c082f7db",
+    "type": "sinking",
     "status": "signal",
     "confidence": 0.3,
     "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-06T00:00:12Z",
-    "last_update": "2026-09-06T00:00:12Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "MSB, Tuğberk İmamoğlu gemisi için arama kurtarma faaliyetlerine devam ediyor",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/msb-tugberk-imamoglu-gemisi-icin-arama-kurtarma-faaliyetlerine-devam-ediyor-43297597",
-        "ts": "2026-09-06T00:00:12Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
-  },
-  {
-    "id": "news-6bdc176282",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T22:18:50Z",
-    "last_update": "2026-09-05T22:18:50Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Donanmanın kurtarma gemileri derin denizde iz sürüyor",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/turkiye/donanmanin-kurtarma-gemileri-derin-denizde-iz-suruyor-955975.html",
-        "ts": "2026-09-05T22:18:50Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
-  },
-  {
-    "id": "news-b5b8b1a82e",
-    "type": "collision",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": 40.75,
-    "lon": 28.3,
+    "lat": 41.07,
+    "lon": 28.25,
     "area": "Marmara Denizi",
     "vessel": {
       "name": null,
@@ -861,69 +483,83 @@
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-05T13:00:51Z",
-    "last_update": "2026-09-05T22:19:02Z",
+    "first_seen": "2026-09-06T12:50:12Z",
+    "last_update": "2026-09-06T12:50:12Z",
     "sources": [
       {
         "kind": "news",
-        "detail": "Marmara'daki gemi kazasında 4'üncü gün: Çarpıştığı yerin 50 metre yakınında, 720 metre derinlikte",
-        "org": "milliyet.com.tr",
-        "url": "",
-        "ts": "2026-09-05T13:00:51Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Marmara Adası açıklarında petrol tankeri sürüklendi",
+        "detail": "720 metre derinlikte bulundu! Silivri'de batan Tuğberk İmamoğlu gemisi görüntülendi",
         "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/marmara-adasi-aciklarinda-petrol-tankeri-suruklendi-3463100",
-        "ts": "2026-09-05T22:18:49Z"
+        "url": "https://www.cnnturk.com/turkiye/720-metre-derinlikte-bulundu-silivride-batan-tugberk-imamoglu-gemisi-goruntulendi-3463344",
+        "ts": "2026-09-06T12:50:12Z"
       }
     ],
     "notes": [],
     "places": [
-      "Marmara",
-      "Marmara Adası"
+      "Silivri"
     ],
     "coarse": true
   },
   {
-    "id": "news-b6d44b2069",
-    "type": "unknown",
+    "id": "news-98c38acab2",
+    "type": "sinking",
     "status": "signal",
     "confidence": 0.3,
-    "severity": "critical",
-    "lat": 35.34,
-    "lon": 33.32,
-    "area": "Türk karasuları civarı",
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
     "vessel": {
       "name": null,
       "mmsi": null,
       "type": null,
       "callsign": null
     },
-    "casualties": 2,
-    "first_seen": "2026-09-05T22:14:43Z",
-    "last_update": "2026-09-05T22:14:56Z",
+    "casualties": null,
+    "first_seen": "2026-09-06T12:50:10Z",
+    "last_update": "2026-09-06T12:50:10Z",
     "sources": [
       {
         "kind": "news",
-        "detail": "Girne açıklarındaki deniz kazasında 2 kişinin daha kimliği belirlendi",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/girne-aciklarindaki-deniz-kazasinda-2-kisinin-daha-kimligi-belirlendi-3463212",
-        "ts": "2026-09-05T22:14:43Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Girne'deki gemide can kaybı 13'e yükseldi",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/girnedeki-gemide-can-kaybi-13e-yukseldi-955978.html",
-        "ts": "2026-09-05T22:14:44Z"
+        "detail": "KKTC açıklarında batan gemide kaybolanların ailelerine psikososyal destek veriliyor",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/kktc-aciklarinda-batan-gemide-kaybolanlarin-ailelerine-psikososyal-destek-veriliyor/4048820",
+        "ts": "2026-09-06T12:50:10Z"
       }
     ],
     "notes": [],
-    "places": [
-      "Girne"
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "news-e789428a42",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "critical",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 1,
+    "first_seen": "2026-09-06T12:50:14Z",
+    "last_update": "2026-09-06T12:50:14Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Denizde can pazarı! 1 kişi hayatını kaybetti",
+        "org": "milliyet.com.tr",
+        "url": "",
+        "ts": "2026-09-06T12:50:14Z"
+      }
     ],
+    "notes": [],
+    "places": [],
     "coarse": true
   },
   {

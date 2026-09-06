@@ -1,29 +1,29 @@
 {
-  "generated": "2026-09-06T08:52:10Z",
-  "total_incidents": 124,
+  "generated": "2026-09-06T12:50:59Z",
+  "total_incidents": 128,
   "by_month": {
-    "2026-09": 124
+    "2026-09": 128
   },
   "by_area": {
-    "belirsiz": 115,
+    "belirsiz": 118,
     "Türk karasuları civarı": 3,
+    "Marmara Denizi": 3,
     "Doğu Karadeniz": 2,
-    "Marmara Denizi": 2,
     "Güney Ege": 1,
     "Antalya Körfezi": 1
   },
   "by_type": {
     "distress": 55,
-    "unknown": 42,
-    "drift": 16,
-    "sinking": 10,
+    "unknown": 43,
+    "drift": 17,
+    "sinking": 12,
     "collision": 1
   },
   "by_status": {
-    "signal": 124
+    "signal": 128
   },
-  "incidents_with_casualties": 6,
-  "casualties_reported_total": 117,
+  "incidents_with_casualties": 7,
+  "casualties_reported_total": 118,
   "top_vessels": [
     [
       "ALSANCAK 22",
@@ -46,6 +46,10 @@
       2
     ],
     [
+      "SIMI II",
+      2
+    ],
+    [
       "MED CESME",
       1
     ],
@@ -59,10 +63,6 @@
     ],
     [
       "M.T.EFREMOV",
-      1
-    ],
-    [
-      "ERDEK",
       1
     ]
   ],
