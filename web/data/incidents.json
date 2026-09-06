@@ -89,7 +89,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T22:14:33Z",
-    "last_update": "2026-09-06T04:28:12Z",
+    "last_update": "2026-09-06T18:22:09Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -118,6 +118,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T04:28:12Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 571 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T18:22:09Z"
       }
     ],
     "notes": [],
@@ -177,131 +184,6 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T12:49:53Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-05-ais-c3f3b6",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.98011333333333,
-    "lon": 27.648715,
-    "area": "Gökova Körfezi",
-    "vessel": {
-      "name": "OGUZ BEY",
-      "mmsi": 271041336,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T22:14:33Z",
-    "last_update": "2026-09-06T04:28:12Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 375 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:14:33Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 379 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:18:35Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 480 dakika önce kesildi (6 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 749 dakika önce kesildi (7 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T04:28:12Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-05-ais-d1d7ec",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 41.410428333333336,
-    "lon": 29.060080000000003,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "BARILOCHE",
-      "mmsi": 563259500,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-05T20:47:55Z",
-    "last_update": "2026-09-06T04:28:12Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: kuru yük gemisi: seyir hızından (14.4 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T20:47:55Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:14:33Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (10.3 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:18:35Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (12.4 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:18:35Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (12.2 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-05T22:18:35Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: tanker: seyir hızından (5.2 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T00:00:03Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (12.8 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T04:28:12Z"
       }
     ],
     "notes": [],
@@ -468,6 +350,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-06-ais-fd7a13",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.025665000000004,
+    "lon": 27.427284999999998,
+    "area": "Gökova Körfezi",
+    "vessel": {
+      "name": "VEGA",
+      "mmsi": 538080057,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-06T18:22:09Z",
+    "last_update": "2026-09-06T18:22:09Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (8.6 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-06T18:22:09Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "news-85c082f7db",
     "type": "sinking",
     "status": "signal",
@@ -529,6 +442,39 @@
     ],
     "notes": [],
     "places": [],
+    "coarse": true
+  },
+  {
+    "id": "news-9fdac47415",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": 35.34,
+    "lon": 33.32,
+    "area": "Türk karasuları civarı",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-06T18:22:16Z",
+    "last_update": "2026-09-06T18:22:16Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne önlerinde batan gemideki kayıp yolculara yönelik arama kurtarma faaliyetlerinde 6. naaşa ulaşıldı",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/girne-onlerinde-batan-gemideki-kayip-yolculara-yonelik-arama-kurtarma-faaliyetlerinde-6-naasa-ulasildi/4049041",
+        "ts": "2026-09-06T18:22:16Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Girne"
+    ],
     "coarse": true
   },
   {
