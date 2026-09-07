@@ -16,7 +16,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-05T22:14:33Z",
-    "last_update": "2026-09-07T05:08:48Z",
+    "last_update": "2026-09-07T10:24:43Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -73,37 +73,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-07T05:08:48Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-06-ais-0377f5",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 37.13787666666666,
-    "lon": 26.135175,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "MONOLIT",
-      "mmsi": 273128810,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-06T20:45:07Z",
-    "last_update": "2026-09-06T20:45:07Z",
-    "sources": [
+      },
       {
         "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 821 dakika önce kesildi (4 taramada üst üste görünmedi)",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-06T20:45:07Z"
+        "ts": "2026-09-07T10:24:43Z"
       }
     ],
     "notes": [],
@@ -165,7 +141,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-06T22:28:08Z",
-    "last_update": "2026-09-07T05:08:48Z",
+    "last_update": "2026-09-07T10:24:43Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -194,6 +170,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-07T05:08:48Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 964 dakika önce kesildi (5 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T10:24:43Z"
       }
     ],
     "notes": [],
@@ -346,44 +329,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-06-ais-fd7a13",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 37.025665000000004,
-    "lon": 27.427284999999998,
-    "area": "Gökova Körfezi",
-    "vessel": {
-      "name": "VEGA",
-      "mmsi": 538080057,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-06T18:22:09Z",
-    "last_update": "2026-09-06T20:45:07Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (8.6 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T18:22:09Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (4.2 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T20:45:07Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-07-ais-3d5634",
     "type": "drift",
     "status": "signal",
@@ -477,6 +422,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-07-ais-9b7d47",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.80228833333333,
+    "lon": 34.65754833333334,
+    "area": "Mersin–İskenderun Körfezi",
+    "vessel": {
+      "name": "ARSLAND",
+      "mmsi": 271054044,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-07T10:24:43Z",
+    "last_update": "2026-09-07T10:24:43Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (11.2 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T10:24:43Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-07-ais-9c72c2",
     "type": "distress",
     "status": "signal",
@@ -555,7 +531,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-07T00:18:34Z",
-    "last_update": "2026-09-07T05:08:48Z",
+    "last_update": "2026-09-07T10:24:43Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -570,6 +546,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-07T05:08:48Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 964 dakika önce kesildi (5 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T10:24:43Z"
       }
     ],
     "notes": [],
@@ -646,89 +629,11 @@
     "coarse": false
   },
   {
-    "id": "news-7de677cdc9",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-06T20:45:15Z",
-    "last_update": "2026-09-06T20:45:15Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "KKTC'deki gemi kazasında can kaybı 14 oldu",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/kktcdeki-gemi-kazasinda-can-kaybi-14-oldu-43298294",
-        "ts": "2026-09-06T20:45:15Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
-  },
-  {
-    "id": "news-9fdac47415",
+    "id": "news-c50a0135ea",
     "type": "sinking",
     "status": "signal",
     "confidence": 0.3,
     "severity": "minor",
-    "lat": 35.34,
-    "lon": 33.32,
-    "area": "Türk karasuları civarı",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-06T18:22:16Z",
-    "last_update": "2026-09-06T20:45:28Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Girne önlerinde batan gemideki kayıp yolculara yönelik arama kurtarma faaliyetlerinde 6. naaşa ulaşıldı",
-        "org": "aa.com.tr",
-        "url": "https://www.aa.com.tr/tr/gundem/girne-onlerinde-batan-gemideki-kayip-yolculara-yonelik-arama-kurtarma-faaliyetlerinde-6-naasa-ulasildi/4049041",
-        "ts": "2026-09-06T18:22:16Z"
-      },
-      {
-        "kind": "news",
-        "detail": "KKTC'nin Girne açıklarında batan gemiden 6'ncı naaş çıkarıldı",
-        "org": "aa.com.tr",
-        "url": "https://www.aa.com.tr/tr/gundem/kktcnin-girne-aciklarinda-batan-gemiden-6nci-naas-cikarildi/4049041",
-        "ts": "2026-09-06T20:45:15Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Girne açıklarında batan gemiden acı haber! Deniz Kuvvetleri Komutanlığı 6. naaşa ulaştı",
-        "org": "milliyet.com.tr",
-        "url": "",
-        "ts": "2026-09-06T20:45:18Z"
-      }
-    ],
-    "notes": [],
-    "places": [
-      "Girne"
-    ],
-    "coarse": true
-  },
-  {
-    "id": "news-fe6589a9f3",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
     "lat": null,
     "lon": null,
     "area": "",
@@ -739,19 +644,52 @@
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-06T20:45:17Z",
-    "last_update": "2026-09-06T20:45:17Z",
+    "first_seen": "2026-09-07T10:25:04Z",
+    "last_update": "2026-09-07T10:25:04Z",
     "sources": [
       {
         "kind": "news",
-        "detail": "KKTC'deki gemi kazasında can kaybı 14'e yükseldi",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/gundem/kktcdeki-gemi-kazasinda-can-kaybi-14e-yukseldi-956066.html",
-        "ts": "2026-09-06T20:45:17Z"
+        "detail": "Bu kadarına pes! KKTC'de batan gemide kaybolan kardeşlerin adıyla dolandırıcılık",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/bu-kadarina-pes-kktcde-batan-gemide-kaybolan-kardeslerin-adiyla-dolandiricilik-3463786",
+        "ts": "2026-09-07T10:25:04Z"
       }
     ],
     "notes": [],
     "places": [],
+    "coarse": true
+  },
+  {
+    "id": "news-ec76f6e748",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "critical",
+    "lat": 41.07,
+    "lon": 28.25,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 10,
+    "first_seen": "2026-09-07T10:25:02Z",
+    "last_update": "2026-09-07T10:25:02Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Silivri'de batan Tuğberk İmamoğlu gemisinin kayıp 10 mürettebatını arama çalışmaları sürüyor",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/silivride-batan-tugberk-imamoglu-gemisinin-kayip-10-murettebatini-arama-calismalari-suruyor-43298600",
+        "ts": "2026-09-07T10:25:02Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Silivri"
+    ],
     "coarse": true
   },
   {
@@ -806,7 +744,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-07T05:08:48Z",
+    "last_update": "2026-09-07T10:24:43Z",
     "sources": [
       {
         "kind": "official",
@@ -835,6 +773,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-07T05:08:48Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 820 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T10:24:43Z"
       }
     ],
     "notes": [],

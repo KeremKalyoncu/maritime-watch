@@ -1,13 +1,13 @@
 {
-  "generated": "2026-09-07T05:09:51Z",
-  "total_incidents": 146,
+  "generated": "2026-09-07T10:25:53Z",
+  "total_incidents": 149,
   "by_month": {
-    "2026-09": 146
+    "2026-09": 149
   },
   "by_area": {
-    "belirsiz": 135,
+    "belirsiz": 137,
     "Türk karasuları civarı": 4,
-    "Marmara Denizi": 3,
+    "Marmara Denizi": 4,
     "Doğu Karadeniz": 2,
     "Güney Ege": 1,
     "Antalya Körfezi": 1
@@ -15,15 +15,15 @@
   "by_type": {
     "distress": 62,
     "unknown": 45,
-    "drift": 25,
-    "sinking": 13,
+    "drift": 26,
+    "sinking": 15,
     "collision": 1
   },
   "by_status": {
-    "signal": 146
+    "signal": 149
   },
-  "incidents_with_casualties": 7,
-  "casualties_reported_total": 118,
+  "incidents_with_casualties": 8,
+  "casualties_reported_total": 128,
   "top_vessels": [
     [
       "ALSANCAK 22",
