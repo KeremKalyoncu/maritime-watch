@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-06T22:29:01Z",
-  "cycle_seconds": 143.2,
+  "generated": "2026-09-07T00:19:42Z",
+  "cycle_seconds": 158.5,
   "sources_ok": 7,
   "sources_total": 7,
   "sources_down": [],
-  "incidents": 20,
-  "warnings": 2,
+  "incidents": 23,
+  "warnings": 1,
   "sources": {
     "scrape": {
       "ok": true,
@@ -19,7 +19,7 @@
     },
     "openmeteo": {
       "ok": true,
-      "items": 1,
+      "items": 0,
       "error": null
     },
     "quakes": {

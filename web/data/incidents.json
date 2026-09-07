@@ -217,7 +217,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-06T22:28:08Z",
-    "last_update": "2026-09-06T22:28:08Z",
+    "last_update": "2026-09-07T00:18:34Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -225,6 +225,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T22:28:08Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (14.1 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T00:18:34Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 358 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T00:18:34Z"
       }
     ],
     "notes": [],
@@ -394,6 +408,99 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-06T20:45:07Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-07-ais-adb47f",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 43.0851,
+    "lon": 28.1616,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "EYMEN E",
+      "mmsi": 577576000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-07T00:18:34Z",
+    "last_update": "2026-09-07T00:18:34Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 358 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T00:18:34Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-07-ais-c8f2e4",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 43.0606,
+    "lon": 28.7146,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "HIMALAYA",
+      "mmsi": 577073000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-07T00:18:34Z",
+    "last_update": "2026-09-07T00:18:34Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 690 dakika önce kesildi (5 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T00:18:34Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-07-ais-ee30d2",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.9035,
+    "lon": 28.7551,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "COFFEE STAR",
+      "mmsi": 304140000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-07T00:18:34Z",
+    "last_update": "2026-09-07T00:18:34Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 358 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T00:18:34Z"
       }
     ],
     "notes": [],
@@ -607,7 +714,7 @@
   {
     "id": "rep-442993157a",
     "type": "distress",
-    "status": "confirmed",
+    "status": "resolved",
     "confidence": 0.6,
     "severity": "major",
     "lat": 40.98,
@@ -631,7 +738,9 @@
         "ts": "2026-09-03T23:11:08Z"
       }
     ],
-    "notes": [],
+    "notes": [
+      "otomatik kapandı: ~73 saat güncelleme yok"
+    ],
     "places": [
       "Tekirdağ"
     ],
