@@ -87,44 +87,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-06-ais-03987d",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.54904166666667,
-    "lon": 27.845206666666666,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "SIMI II",
-      "mmsi": 241677000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-06T12:49:53Z",
-    "last_update": "2026-09-06T22:28:08Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (12.1 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T12:49:53Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 381 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T22:28:08Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-06-ais-432ee2",
     "type": "drift",
     "status": "signal",
@@ -260,75 +222,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-06-ais-ba3eb0",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.61664833333334,
-    "lon": 29.051266666666667,
-    "area": "Batı Akdeniz",
-    "vessel": {
-      "name": "ZELDA",
-      "mmsi": 248335000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-06T20:45:07Z",
-    "last_update": "2026-09-06T22:28:08Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (8.1 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T20:45:07Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (7.1 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T22:28:08Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-06-ais-eaee07",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.724,
-    "lon": 28.375,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "ADMIRAL",
-      "mmsi": 271043459,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-06T22:28:08Z",
-    "last_update": "2026-09-06T22:28:08Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 381 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-06T22:28:08Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-07-ais-3d5634",
     "type": "drift",
     "status": "signal",
@@ -391,6 +284,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-07-ais-540525",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 43.19831666666666,
+    "lon": 27.779036666666666,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "BOGDAN",
+      "mmsi": 229257000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-07T16:01:24Z",
+    "last_update": "2026-09-07T16:01:24Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: kuru yük gemisi: seyir hızından (9.2 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T16:01:24Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-07-ais-72dc93",
     "type": "drift",
     "status": "signal",
@@ -415,6 +339,37 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-07T05:08:48Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-07-ais-85396b",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.01566666666667,
+    "lon": 27.450468333333333,
+    "area": "Gökova Körfezi",
+    "vessel": {
+      "name": "WHITE ISLAND",
+      "mmsi": 271051573,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-07T16:01:24Z",
+    "last_update": "2026-09-07T16:01:24Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (10.4 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-07T16:01:24Z"
       }
     ],
     "notes": [],
@@ -598,35 +553,35 @@
     "coarse": false
   },
   {
-    "id": "2026-09-07-ais-ee30d2",
-    "type": "distress",
+    "id": "news-5b3afec442",
+    "type": "unknown",
     "status": "signal",
-    "confidence": 0.25,
+    "confidence": 0.3,
     "severity": "minor",
-    "lat": 40.9035,
-    "lon": 28.7551,
-    "area": "Marmara Denizi",
+    "lat": null,
+    "lon": null,
+    "area": "",
     "vessel": {
-      "name": "COFFEE STAR",
-      "mmsi": 304140000,
+      "name": null,
+      "mmsi": null,
       "type": null,
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-07T00:18:34Z",
-    "last_update": "2026-09-07T00:18:34Z",
+    "first_seen": "2026-09-07T16:01:37Z",
+    "last_update": "2026-09-07T16:01:37Z",
     "sources": [
       {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 358 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-07T00:18:34Z"
+        "kind": "news",
+        "detail": "Dalgalı denizde tehlikeli eğlence! 4 arkadaşı çevredekiler kurtardı",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/dalgali-denizde-tehlikeli-eglence-4-arkadasi-cevredekiler-kurtardi-43299187",
+        "ts": "2026-09-07T16:01:37Z"
       }
     ],
     "notes": [],
     "places": [],
-    "coarse": false
+    "coarse": true
   },
   {
     "id": "news-c50a0135ea",
@@ -879,6 +834,39 @@
     "notes": [],
     "places": [
       "Bursa"
+    ],
+    "coarse": true
+  },
+  {
+    "id": "rep-dba1f112fd",
+    "type": "distress",
+    "status": "confirmed",
+    "confidence": 0.6,
+    "severity": "major",
+    "lat": 37.86,
+    "lon": 27.26,
+    "area": "Orta Ege",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-07T16:01:34Z",
+    "last_update": "2026-09-07T16:01:34Z",
+    "sources": [
+      {
+        "kind": "official",
+        "detail": "07.09.2026 Aydın Açıklarında 2 Şahıs Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/aydin-aciklarinda-2-sahis-kurtarilmistir-06-09-2026",
+        "ts": "2026-09-07T16:01:34Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Aydın"
     ],
     "coarse": true
   }

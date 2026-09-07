@@ -1,31 +1,5 @@
 [
   {
-    "id": "om-kuzeyege",
-    "headline": "Kuzey Ege: dalga ~0.4 m, rüzgar hamlesi ~34 kn (önümüzdeki 36 saat)",
-    "area": "Kuzey Ege",
-    "severity": "minor",
-    "kind": "marine-weather",
-    "onset": null,
-    "expires": null,
-    "org": "Open-Meteo",
-    "url": "https://open-meteo.com/en/docs/marine-weather-api",
-    "issued": "2026-09-07T10:25:22Z",
-    "last_update": "2026-09-07T10:25:52Z",
-    "raw": "",
-    "lat": 39.2,
-    "lon": 26.3,
-    "value": 0.4,
-    "sources": [
-      {
-        "kind": "marine-weather",
-        "detail": "Kuzey Ege: dalga ~0.4 m, rüzgar hamlesi ~34 kn (önümüzdeki 36 saat)",
-        "org": "Open-Meteo",
-        "url": "https://open-meteo.com/en/docs/marine-weather-api",
-        "ts": "2026-09-07T05:09:18Z"
-      }
-    ]
-  },
-  {
     "id": "wx-mgma-26010456",
     "headline": "Doğu Karadeniz'de Yerel Kuvvetli Yağışlara Dikkat!",
     "area": "Karadeniz",
@@ -35,8 +9,8 @@
     "expires": null,
     "org": "Meteoroloji Genel Müdürlüğü",
     "url": "https://www.mgm.gov.tr/tahmin/uyari-goster.aspx?sN=26010456y",
-    "issued": "2026-09-07T10:24:57Z",
-    "last_update": "2026-09-07T10:24:59Z",
+    "issued": "2026-09-07T16:01:32Z",
+    "last_update": "2026-09-07T16:01:34Z",
     "raw": "{\"seriNo\": \"26010456\", \"baslangic\": \"2026-09-06T07:40:00.000Z\", \"baslik\": \"Doğu Karadeniz'de Yerel Kuvvetli Yağışlara Dikkat!\", \"hadiseCinsi\": \"Gökgürültülü Sağanak Yağış\", \"ihbarTipi\": 1}",
     "lat": 41.876,
     "lon": 29.643,
