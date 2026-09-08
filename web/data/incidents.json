@@ -116,7 +116,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-08T21:14:11Z",
-    "last_update": "2026-09-08T21:14:11Z",
+    "last_update": "2026-09-08T23:28:21Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -124,44 +124,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-08T21:14:11Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-08-ais-b26452",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.3416,
-    "lon": 28.6914,
-    "area": "Batı Akdeniz",
-    "vessel": {
-      "name": "ASTORIA GRANDE",
-      "mmsi": 511100759,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-08T05:23:24Z",
-    "last_update": "2026-09-08T10:03:03Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 569 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T05:23:24Z"
       },
       {
         "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 849 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 806 dakika önce kesildi (4 taramada üst üste görünmedi)",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-08T10:03:03Z"
+        "ts": "2026-09-08T23:28:21Z"
       }
     ],
     "notes": [],
@@ -185,7 +154,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-08T05:23:24Z",
-    "last_update": "2026-09-08T21:14:11Z",
+    "last_update": "2026-09-08T23:28:21Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -214,6 +183,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-08T21:14:11Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 805 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T23:28:21Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 806 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T23:28:21Z"
       }
     ],
     "notes": [],
