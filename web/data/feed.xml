@@ -3,7 +3,28 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Mon, 07 Sep 2026 22:45:55 +0000</lastBuildDate>
+  <lastBuildDate>Tue, 08 Sep 2026 00:46:45 +0000</lastBuildDate>
+    <item>
+      <title>[signal] sinking, konum belirsiz</title>
+      <link>https://www.cnnturk.com/turkiye/bu-kadarina-pes-kktcde-batan-gemide-kaybolan-kardeslerin-adiyla-dolandiricilik-3463786</link>
+      <guid isPermaLink="false">news-c50a0135ea-1</guid>
+      <pubDate>Tue, 08 Sep 2026 00:45:57 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/cnnturk.com: Bu kadarına pes! KKTC'de batan gemide kaybolan kardeşlerin adıyla dolandırıcılık</description>
+    </item>
+    <item>
+      <title>[signal] drift, Gökova Körfezi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-08-ais-a37ae1-1</guid>
+      <pubDate>Tue, 08 Sep 2026 00:45:45 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (102.3 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] drift, Orta Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-08-ais-339320-1</guid>
+      <pubDate>Tue, 08 Sep 2026 00:45:45 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (33.7 kn) ani duruşa geçti</description>
+    </item>
     <item>
       <title>[signal] sinking, Marmara Denizi</title>
       <link>https://www.hurriyet.com.tr/gundem/silivride-batan-tugberk-imamoglu-gemisinin-kayip-10-murettebatini-arama-calismalari-suruyor-43298600</link>
@@ -21,16 +42,16 @@
     <item>
       <title>[signal] drift, Güney Ege</title>
       <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-07-ais-a9d0c9-1</guid>
+      <guid isPermaLink="false">2026-09-07-ais-a13bfb-1</guid>
       <pubDate>Mon, 07 Sep 2026 22:44:50 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (9.3 kn) ani duruşa geçti</description>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: nav-status: kumanda dışı (not under command)</description>
     </item>
     <item>
       <title>[signal] drift, Güney Ege</title>
       <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-07-ais-a13bfb-1</guid>
+      <guid isPermaLink="false">2026-09-07-ais-a9d0c9-1</guid>
       <pubDate>Mon, 07 Sep 2026 22:44:50 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: nav-status: kumanda dışı (not under command)</description>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (9.3 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[signal] unknown, konum belirsiz</title>

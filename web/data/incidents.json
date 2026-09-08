@@ -131,6 +131,68 @@
     "coarse": false
   },
   {
+    "id": "2026-09-08-ais-339320",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.462968333333336,
+    "lon": 25.32618666666667,
+    "area": "Orta Ege",
+    "vessel": {
+      "name": "SUPEREXPRESS",
+      "mmsi": 241881000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-08T00:45:45Z",
+    "last_update": "2026-09-08T00:45:45Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (33.7 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T00:45:45Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-08-ais-a37ae1",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.84279333333333,
+    "lon": 28.267356666666668,
+    "area": "Gökova Körfezi",
+    "vessel": {
+      "name": "KASIF",
+      "mmsi": 319276200,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-08T00:45:45Z",
+    "last_update": "2026-09-08T00:45:45Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (102.3 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T00:45:45Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "news-2be395ebaf",
     "type": "unknown",
     "status": "signal",
@@ -186,6 +248,37 @@
         "org": "hurriyet.com.tr",
         "url": "https://www.hurriyet.com.tr/gundem/dalgali-denizde-tehlikeli-eglence-4-arkadasi-cevredekiler-kurtardi-43299187",
         "ts": "2026-09-07T16:01:37Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "news-c50a0135ea",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-08T00:45:57Z",
+    "last_update": "2026-09-08T00:45:57Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Bu kadarına pes! KKTC'de batan gemide kaybolan kardeşlerin adıyla dolandırıcılık",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/bu-kadarina-pes-kktcde-batan-gemide-kaybolan-kardeslerin-adiyla-dolandiricilik-3463786",
+        "ts": "2026-09-08T00:45:57Z"
       }
     ],
     "notes": [],
