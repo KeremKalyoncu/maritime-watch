@@ -38,6 +38,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-08-ais-312ca9",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.46615666666666,
+    "lon": 25.315056666666667,
+    "area": "Orta Ege",
+    "vessel": {
+      "name": "MSC LIRICA",
+      "mmsi": 356042000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-08T21:14:11Z",
+    "last_update": "2026-09-08T21:14:11Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (14.0 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T21:14:11Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-08-ais-330f92",
     "type": "drift",
     "status": "signal",
@@ -62,6 +93,37 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-08T18:09:18Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-08-ais-a82c03",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.7857,
+    "lon": 28.6832,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "MARAN PLATO",
+      "mmsi": 240837000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-08T21:14:11Z",
+    "last_update": "2026-09-08T21:14:11Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 672 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T21:14:11Z"
       }
     ],
     "notes": [],
@@ -123,7 +185,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-08T05:23:24Z",
-    "last_update": "2026-09-08T10:03:03Z",
+    "last_update": "2026-09-08T21:14:11Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -138,6 +200,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-08T10:03:03Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 671 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T21:14:11Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 672 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T21:14:11Z"
       }
     ],
     "notes": [],
