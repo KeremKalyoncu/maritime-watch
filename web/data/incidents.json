@@ -1,36 +1,5 @@
 [
   {
-    "id": "2026-09-07-ais-540525",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 43.19831666666666,
-    "lon": 27.779036666666666,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "BOGDAN",
-      "mmsi": 229257000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-07T16:01:24Z",
-    "last_update": "2026-09-07T16:01:24Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: kuru yük gemisi: seyir hızından (9.2 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-07T16:01:24Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-07-ais-85396b",
     "type": "drift",
     "status": "signal",
@@ -162,6 +131,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-08-ais-7f875f",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.44251,
+    "lon": 28.236386666666665,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "PANAGIA SKIADENI",
+      "mmsi": 240192000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-08T05:23:24Z",
+    "last_update": "2026-09-08T05:23:24Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (15.9 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T05:23:24Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-08-ais-a37ae1",
     "type": "drift",
     "status": "signal",
@@ -193,6 +193,68 @@
     "coarse": false
   },
   {
+    "id": "2026-09-08-ais-b26452",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.3416,
+    "lon": 28.6914,
+    "area": "Batı Akdeniz",
+    "vessel": {
+      "name": "ASTORIA GRANDE",
+      "mmsi": 511100759,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-08T05:23:24Z",
+    "last_update": "2026-09-08T05:23:24Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 569 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T05:23:24Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-08-ais-bbec1e",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.5059,
+    "lon": 27.4767,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "LADY SUHA II",
+      "mmsi": 312004000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-08T05:23:24Z",
+    "last_update": "2026-09-08T05:23:24Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 569 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T05:23:24Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "news-2be395ebaf",
     "type": "unknown",
     "status": "signal",
@@ -217,37 +279,6 @@
         "org": "cnnturk.com",
         "url": "https://www.cnnturk.com/video/turkiye/kayip-10-denizci-nerede-3463982",
         "ts": "2026-09-07T19:54:51Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
-  },
-  {
-    "id": "news-5b3afec442",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-07T16:01:37Z",
-    "last_update": "2026-09-07T16:01:37Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Dalgalı denizde tehlikeli eğlence! 4 arkadaşı çevredekiler kurtardı",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/dalgali-denizde-tehlikeli-eglence-4-arkadasi-cevredekiler-kurtardi-43299187",
-        "ts": "2026-09-07T16:01:37Z"
       }
     ],
     "notes": [],

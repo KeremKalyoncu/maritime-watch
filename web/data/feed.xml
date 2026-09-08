@@ -3,7 +3,28 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Tue, 08 Sep 2026 00:46:45 +0000</lastBuildDate>
+  <lastBuildDate>Tue, 08 Sep 2026 05:24:14 +0000</lastBuildDate>
+    <item>
+      <title>[signal] drift, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-08-ais-7f875f-1</guid>
+      <pubDate>Tue, 08 Sep 2026 05:23:24 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (15.9 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-08-ais-bbec1e-1</guid>
+      <pubDate>Tue, 08 Sep 2026 05:23:24 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 569 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Akdeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-08-ais-b26452-1</guid>
+      <pubDate>Tue, 08 Sep 2026 05:23:24 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 569 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
     <item>
       <title>[signal] sinking, konum belirsiz</title>
       <link>https://www.cnnturk.com/turkiye/bu-kadarina-pes-kktcde-batan-gemide-kaybolan-kardeslerin-adiyla-dolandiricilik-3463786</link>
@@ -12,18 +33,18 @@
       <description>Güven: 0.3 | Önem: minor | news/cnnturk.com: Bu kadarına pes! KKTC'de batan gemide kaybolan kardeşlerin adıyla dolandırıcılık</description>
     </item>
     <item>
-      <title>[signal] drift, Gökova Körfezi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-08-ais-a37ae1-1</guid>
-      <pubDate>Tue, 08 Sep 2026 00:45:45 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (102.3 kn) ani duruşa geçti</description>
-    </item>
-    <item>
       <title>[signal] drift, Orta Ege</title>
       <link>https://example.github.io/maritime-watch</link>
       <guid isPermaLink="false">2026-09-08-ais-339320-1</guid>
       <pubDate>Tue, 08 Sep 2026 00:45:45 +0000</pubDate>
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (33.7 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] drift, Gökova Körfezi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-08-ais-a37ae1-1</guid>
+      <pubDate>Tue, 08 Sep 2026 00:45:45 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (102.3 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[signal] sinking, Marmara Denizi</title>
@@ -61,25 +82,11 @@
       <description>Güven: 0.3 | Önem: critical | Bildirilen kişi: 10 | news/cnnturk.com: Kayıp 10 denizci nerede?</description>
     </item>
     <item>
-      <title>[signal] unknown, konum belirsiz</title>
-      <link>https://www.hurriyet.com.tr/gundem/dalgali-denizde-tehlikeli-eglence-4-arkadasi-cevredekiler-kurtardi-43299187</link>
-      <guid isPermaLink="false">news-5b3afec442-1</guid>
-      <pubDate>Mon, 07 Sep 2026 16:01:37 +0000</pubDate>
-      <description>Güven: 0.3 | Önem: minor | news/hurriyet.com.tr: Dalgalı denizde tehlikeli eğlence! 4 arkadaşı çevredekiler kurtardı</description>
-    </item>
-    <item>
       <title>[confirmed] distress, Orta Ege</title>
       <link>https://www.sg.gov.tr/aydin-aciklarinda-2-sahis-kurtarilmistir-06-09-2026</link>
       <guid isPermaLink="false">rep-dba1f112fd-1</guid>
       <pubDate>Mon, 07 Sep 2026 16:01:34 +0000</pubDate>
       <description>Güven: 0.6 | Önem: major | official/Sahil Güvenlik Komutanlığı: 07.09.2026 Aydın Açıklarında 2 Şahıs Kurtarılmıştır</description>
-    </item>
-    <item>
-      <title>[signal] drift, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-07-ais-540525-1</guid>
-      <pubDate>Mon, 07 Sep 2026 16:01:24 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (9.2 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[confirmed] distress, Güney Ege</title>
