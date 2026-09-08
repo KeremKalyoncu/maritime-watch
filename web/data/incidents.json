@@ -1,105 +1,5 @@
 [
   {
-    "id": "2026-09-07-ais-85396b",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 37.01566666666667,
-    "lon": 27.450468333333333,
-    "area": "Gökova Körfezi",
-    "vessel": {
-      "name": "WHITE ISLAND",
-      "mmsi": 271051573,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-07T16:01:24Z",
-    "last_update": "2026-09-07T22:44:50Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (10.4 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-07T16:01:24Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (25.8 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-07T22:44:50Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-07-ais-a13bfb",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.18949333333333,
-    "lon": 28.536786666666668,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": null,
-      "mmsi": 677054500,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-07T22:44:50Z",
-    "last_update": "2026-09-07T22:44:50Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-07T22:44:50Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-07-ais-a9d0c9",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.640425,
-    "lon": 27.122206666666667,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "FLAMINGO",
-      "mmsi": 240477100,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-07T22:44:50Z",
-    "last_update": "2026-09-07T22:44:50Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (9.3 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-07T22:44:50Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-08-ais-29ebfb",
     "type": "distress",
     "status": "signal",
@@ -116,7 +16,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-08T10:03:03Z",
-    "last_update": "2026-09-08T10:03:03Z",
+    "last_update": "2026-09-08T14:36:59Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -124,37 +24,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-08T10:03:03Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-08-ais-339320",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 37.462968333333336,
-    "lon": 25.32618666666667,
-    "area": "Orta Ege",
-    "vessel": {
-      "name": "SUPEREXPRESS",
-      "mmsi": 241881000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-08T00:45:45Z",
-    "last_update": "2026-09-08T00:45:45Z",
-    "sources": [
+      },
       {
         "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (33.7 kn) ani duruşa geçti",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 953 dakika önce kesildi (4 taramada üst üste görünmedi)",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-08T00:45:45Z"
+        "ts": "2026-09-08T14:36:59Z"
       }
     ],
     "notes": [],
@@ -186,37 +62,6 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-08T05:23:24Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-08-ais-a37ae1",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.84279333333333,
-    "lon": 28.267356666666668,
-    "area": "Gökova Körfezi",
-    "vessel": {
-      "name": "KASIF",
-      "mmsi": 319276200,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-08T00:45:45Z",
-    "last_update": "2026-09-08T00:45:45Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (102.3 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T00:45:45Z"
       }
     ],
     "notes": [],
@@ -298,84 +143,6 @@
     "notes": [],
     "places": [],
     "coarse": false
-  },
-  {
-    "id": "news-c50a0135ea",
-    "type": "sinking",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-08T00:45:57Z",
-    "last_update": "2026-09-08T00:45:57Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Bu kadarına pes! KKTC'de batan gemide kaybolan kardeşlerin adıyla dolandırıcılık",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/bu-kadarina-pes-kktcde-batan-gemide-kaybolan-kardeslerin-adiyla-dolandiricilik-3463786",
-        "ts": "2026-09-08T00:45:57Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
-  },
-  {
-    "id": "news-ec76f6e748",
-    "type": "sinking",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "critical",
-    "lat": 41.07,
-    "lon": 28.25,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": 10,
-    "first_seen": "2026-09-07T10:25:02Z",
-    "last_update": "2026-09-07T22:45:18Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Silivri'de batan Tuğberk İmamoğlu gemisinin kayıp 10 mürettebatını arama çalışmaları sürüyor",
-        "org": "hurriyet.com.tr",
-        "url": "https://www.hurriyet.com.tr/gundem/silivride-batan-tugberk-imamoglu-gemisinin-kayip-10-murettebatini-arama-calismalari-suruyor-43298600",
-        "ts": "2026-09-07T10:25:02Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri'deki gemi kazasının bulunduğu bölgede çalışmalar sürüyor",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/turkiye/silivrideki-gemi-kazasinin-bulundugu-bolgede-calismalar-suruyor-956156.html",
-        "ts": "2026-09-07T19:54:51Z"
-      },
-      {
-        "kind": "news",
-        "detail": "Silivri açıklarındaki kazada batan geminin bulunduğu bölgedeki çalışmalar sürüyor",
-        "org": "aa.com.tr",
-        "url": "https://www.aa.com.tr/tr/gundem/silivri-aciklarindaki-kazada-batan-geminin-bulundugu-bolgedeki-calismalar-suruyor/4049995",
-        "ts": "2026-09-07T22:45:04Z"
-      }
-    ],
-    "notes": [],
-    "places": [
-      "Silivri"
-    ],
-    "coarse": true
   },
   {
     "id": "rep-442993157a",
@@ -476,7 +243,7 @@
   {
     "id": "rep-bb02b2dc7a",
     "type": "distress",
-    "status": "confirmed",
+    "status": "resolved",
     "confidence": 0.6,
     "severity": "critical",
     "lat": 38.43,
@@ -528,7 +295,9 @@
         "ts": "2026-09-05T13:00:47Z"
       }
     ],
-    "notes": [],
+    "notes": [
+      "otomatik kapandı: ~74 saat güncelleme yok"
+    ],
     "places": [
       "Izmir"
     ],
@@ -537,7 +306,7 @@
   {
     "id": "rep-d2a197a441",
     "type": "distress",
-    "status": "confirmed",
+    "status": "resolved",
     "confidence": 0.6,
     "severity": "major",
     "lat": 40.37,
@@ -561,7 +330,9 @@
         "ts": "2026-09-05T13:00:47Z"
       }
     ],
-    "notes": [],
+    "notes": [
+      "otomatik kapandı: ~74 saat güncelleme yok"
+    ],
     "places": [
       "Bursa"
     ],
