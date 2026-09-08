@@ -100,6 +100,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-08-ais-29ebfb",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.9924,
+    "lon": 27.1398,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "KARAZI",
+      "mmsi": 341756002,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-08T10:03:03Z",
+    "last_update": "2026-09-08T10:03:03Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 679 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T10:03:03Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-08-ais-339320",
     "type": "drift",
     "status": "signal",
@@ -209,7 +240,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-08T05:23:24Z",
-    "last_update": "2026-09-08T05:23:24Z",
+    "last_update": "2026-09-08T10:03:03Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -217,6 +248,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-08T05:23:24Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 849 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T10:03:03Z"
       }
     ],
     "notes": [],
@@ -240,7 +278,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-08T05:23:24Z",
-    "last_update": "2026-09-08T05:23:24Z",
+    "last_update": "2026-09-08T10:03:03Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -248,42 +286,18 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-08T05:23:24Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 849 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-08T10:03:03Z"
       }
     ],
     "notes": [],
     "places": [],
     "coarse": false
-  },
-  {
-    "id": "news-2be395ebaf",
-    "type": "unknown",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "critical",
-    "lat": null,
-    "lon": null,
-    "area": "",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": 10,
-    "first_seen": "2026-09-07T19:54:51Z",
-    "last_update": "2026-09-07T19:54:51Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Kayıp 10 denizci nerede?",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/video/turkiye/kayip-10-denizci-nerede-3463982",
-        "ts": "2026-09-07T19:54:51Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": true
   },
   {
     "id": "news-c50a0135ea",
