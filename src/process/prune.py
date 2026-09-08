@@ -70,10 +70,15 @@ def backfill(store) -> int:
         if not text:
             continue
         ex = extract(text)
-        for attr, val in (("type", ex.itype), ("area", ex.area),
+        # the extractor owns the text-derived type; an AIS-driven record keeps
+        # the type its anomaly set
+        from_ais = any(s.kind.startswith("ais") for s in inc.sources)
+        if not from_ais and ex.itype != "unknown" and inc.type != ex.itype:
+            inc.type, n = ex.itype, n + 1
+        for attr, val in (("area", ex.area),
                           ("lat", ex.lat), ("lon", ex.lon), ("casualties", ex.casualties)):
             cur = getattr(inc, attr)
-            if val and not cur or (attr == "type" and cur == "unknown" and val != "unknown"):
+            if val and not cur:
                 setattr(inc, attr, val)
                 n += 1
         if ex.places and not inc.places:
@@ -148,8 +153,41 @@ def dedupe_sources(store) -> int:
     return n
 
 
+def unmerge_legacy_reports(store) -> int:
+    """Undo merges made before correlation learned to keep announcements apart.
+
+    Five separate Izmir rescues, five days apart, had collapsed into one record
+    and the message added their casualty counts together ("30 kisi bildirildi").
+    A scraped report's id is the sha1 of its own headline, so any other official
+    source on that record does not belong to it; each of those already exists, or
+    comes back, as its own incident.
+    """
+    import hashlib
+
+    from ..ingest.official import _norm as _onorm
+    n = 0
+    for iid, inc in store.incidents.items():
+        if not iid.startswith("rep-"):
+            continue
+        want = iid[len("rep-"):]
+        official = [s for s in inc.sources if s.kind == "official"]
+        if len(official) < 2:
+            continue
+        keep = [s for s in official
+                if hashlib.sha1(_onorm(s.detail or "").encode("utf-8")).hexdigest().startswith(want)]
+        if not keep or len(keep) == len(official):
+            continue
+        inc.sources = keep + [s for s in inc.sources if s.kind != "official"]
+        inc.casualties = None          # recomputed by backfill from what is left
+        inc.type = "unknown"
+        inc.vessel.name = None
+        n += len(official) - len(keep)
+    return n
+
+
 def prune(store, cfg: dict | None = None) -> tuple[int, int]:
     scrub_names(store)
+    unmerge_legacy_reports(store)
     dedupe_sources(store)
     backfill(store)
     dropped_aftermath = drop_stored_aftermath(store, cfg)

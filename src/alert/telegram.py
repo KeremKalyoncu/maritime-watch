@@ -186,6 +186,10 @@ class Notifier:
 
         if is_sart:
             head = "🆘 <b>TEHLİKE İŞARETİ ALINDI</b>\nBir teknenin otomatik imdat vericisi sinyal veriyor."
+        elif inc.type == "rescue":
+            # a finished rescue is good news; a red siren on it teaches people to
+            # ignore the siren when it matters
+            head = "✅ <b>KURTARMA TAMAMLANDI</b>"
         elif inc.status == "confirmed":
             head = "🚨 <b>DENİZDE OLAY — DOĞRULANDI</b>"
         else:

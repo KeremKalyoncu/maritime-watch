@@ -26,7 +26,7 @@ _VESSEL_RE = [
 
 _CAS_RE = re.compile(
     r"(\d{1,3})\s*(?:[a-zçğıöşü]+\s+){0,2}?"          # optional adjectives ("20 düzensiz göçmen")
-    r"(?:kişi|can|mürettebat|göçmen|çocuk|yolcu|denizci|balıkçı|tayfa|personel)"
+    r"(?:kişi|şahıs|can|mürettebat|göçmen|çocuk|yolcu|denizci|balıkçı|tayfa|personel)"
     r"(?:[^.]{0,40}?(kayıp|yaralı|öl|hayat|mahsur|kurtar|aran|tahliye))?",
     re.IGNORECASE,
 )
@@ -52,7 +52,10 @@ _TYPE_RULES = [
     ("man-overboard", r"denize düş|adam düş|denize atla"),
     ("drift",         r"sürüklen|makine arıza|kumanda dışı|motor arıza"),
     ("distress",      r"imdat|mayday|tehlike çağrısı|yardım çağrısı"),
-    ("distress",      r"kurtarıl|kurtarma|mahsur|tahliye|arama kurtarma|kayb?ol"),
+    # a completed rescue is not a distress call; the channel used to announce
+    # "2 sahis kurtarilmistir" as "tehlike cagrisi"
+    ("rescue",        r"kurtarıld|kurtarılmış|kurtarıl(dı|mak)|sağ salim|karaya çıkarıl"),
+    ("distress",      r"kurtarma|mahsur|tahliye|arama kurtarma|kayb?ol"),
 ]
 
 

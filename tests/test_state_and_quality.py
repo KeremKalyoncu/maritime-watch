@@ -52,7 +52,10 @@ def test_event_log_is_trimmed(tmp_path):
 
 # ---- message quality ------------------------------------------------------
 def test_incident_type_is_inferred_from_wording():
-    assert incident_type("Muğla açıklarında 2 şahıs kurtarılmıştır") == "distress"
+    # a finished rescue is not a distress call; the channel announced completed
+    # rescues as "tehlike çağrısı"
+    assert incident_type("Muğla açıklarında 2 şahıs kurtarılmıştır") == "rescue"
+    assert incident_type("mahsur kalan 12 göçmen için arama kurtarma sürüyor") == "distress"
     assert incident_type("balıkçı teknesi alabora oldu") == "capsize"
     assert incident_type("tanker karaya oturdu") == "grounding"
     assert incident_type("iki gemi çarpıştı") == "collision"
@@ -176,7 +179,7 @@ def test_backfill_repairs_records_parsed_by_an_older_extractor(tmp_path):
     assert got.type != "unknown" and got.area
 
 
-def test_backfill_never_overwrites_what_is_already_known(tmp_path):
+def test_backfill_keeps_a_position_someone_already_established(tmp_path):
     from src.process.prune import backfill
     s = _store(tmp_path)
     inc = Incident(id="rep-set", type="collision", lat=41.5, lon=28.5, area="Marmara Denizi")
@@ -184,7 +187,20 @@ def test_backfill_never_overwrites_what_is_already_known(tmp_path):
     s.upsert_incident(inc)
     backfill(s)
     got = s.incidents["rep-set"]
-    assert (got.type, got.lat, got.lon, got.area) == ("collision", 41.5, 28.5, "Marmara Denizi")
+    assert (got.lat, got.lon, got.area) == (41.5, 28.5, "Marmara Denizi")
+    # the type is text-derived, so a better parse of the same headline wins
+    assert got.type == "sinking"
+
+
+def test_backfill_leaves_an_ais_driven_type_alone(tmp_path):
+    from src.process.prune import backfill
+    s = _store(tmp_path)
+    inc = Incident(id="ais-1", type="drift", lat=41.5, lon=28.5)
+    inc.sources.append(Source(kind="ais-anomaly", org="AIS", detail="ais-gap: sinyal kesildi"))
+    inc.sources.append(Source(kind="news", detail="Zonguldak açıklarında gemi su alıyor"))
+    s.upsert_incident(inc)
+    backfill(s)
+    assert s.incidents["ais-1"].type == "drift"
 
 
 def _wx(wid, area="Marmara Denizi", kind="marine-weather"):

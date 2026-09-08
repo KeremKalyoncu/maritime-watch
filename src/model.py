@@ -44,6 +44,7 @@ class IncidentType(str, Enum):
     FIRE = "fire"
     SINKING = "sinking"
     MOB = "man-overboard"
+    RESCUE = "rescue"
     UNKNOWN = "unknown"
 
 
@@ -67,7 +68,7 @@ TYPE_TR = {
     "grounding": "karaya oturma", "collision": "çatışma (çarpışma)",
     "drift": "sürüklenme", "distress": "tehlike çağrısı", "capsize": "alabora",
     "fire": "yangın", "sinking": "batma", "man-overboard": "denize adam düştü",
-    "unknown": "belirsiz",
+    "rescue": "kurtarma operasyonu", "unknown": "belirsiz",
 }
 STATUS_TR = {
     "signal": "zayıf sinyal — teyit bekliyor",
