@@ -38,30 +38,30 @@
     "coarse": false
   },
   {
-    "id": "2026-09-08-ais-7f875f",
+    "id": "2026-09-08-ais-330f92",
     "type": "drift",
     "status": "signal",
     "confidence": 0.25,
     "severity": "minor",
-    "lat": 36.44251,
-    "lon": 28.236386666666665,
-    "area": "Güney Ege",
+    "lat": 37.00301833333333,
+    "lon": 27.385613333333332,
+    "area": "Gökova Körfezi",
     "vessel": {
-      "name": "PANAGIA SKIADENI",
-      "mmsi": 240192000,
+      "name": "MERVE",
+      "mmsi": 271053081,
       "type": null,
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-08T05:23:24Z",
-    "last_update": "2026-09-08T05:23:24Z",
+    "first_seen": "2026-09-08T18:09:18Z",
+    "last_update": "2026-09-08T18:09:18Z",
     "sources": [
       {
         "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (15.9 kn) ani duruşa geçti",
+        "detail": "speed-drop: seyir hızından (12.3 kn) ani duruşa geçti",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-08T05:23:24Z"
+        "ts": "2026-09-08T18:09:18Z"
       }
     ],
     "notes": [],
@@ -196,7 +196,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-07T10:24:43Z",
+    "last_update": "2026-09-08T18:09:32Z",
     "sources": [
       {
         "kind": "official",
@@ -232,6 +232,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-07T10:24:43Z"
+      },
+      {
+        "kind": "official",
+        "detail": "08.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-07-09-2026-",
+        "ts": "2026-09-08T18:09:32Z"
       }
     ],
     "notes": [],
@@ -239,6 +246,39 @@
       "Muğla"
     ],
     "coarse": false
+  },
+  {
+    "id": "rep-5e0298d9eb",
+    "type": "distress",
+    "status": "confirmed",
+    "confidence": 0.6,
+    "severity": "critical",
+    "lat": 38.43,
+    "lon": 27.14,
+    "area": "Orta Ege",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 18,
+    "first_seen": "2026-09-08T18:09:32Z",
+    "last_update": "2026-09-08T18:09:32Z",
+    "sources": [
+      {
+        "kind": "official",
+        "detail": "08.09.2026 İzmir Açıklarında 18 Düzensiz Göçmen (Beraberinde 1 Çocuk) Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/izmir-aciklarinda-18-duzensiz-gocmen-beraberinde-1-cocuk-kurtarilmistir",
+        "ts": "2026-09-08T18:09:32Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Izmir"
+    ],
+    "coarse": true
   },
   {
     "id": "rep-bb02b2dc7a",
@@ -308,7 +348,7 @@
     "type": "distress",
     "status": "resolved",
     "confidence": 0.6,
-    "severity": "major",
+    "severity": "info",
     "lat": 40.37,
     "lon": 28.88,
     "area": "Marmara Denizi",
