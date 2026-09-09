@@ -3,13 +3,20 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Wed, 09 Sep 2026 22:13:50 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 09 Sep 2026 22:36:48 +0000</lastBuildDate>
     <item>
       <title>[confirmed] unknown, Güney Ege</title>
       <link>https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026</link>
       <guid isPermaLink="false">rep-4d701b7ab0-4</guid>
-      <pubDate>Wed, 09 Sep 2026 22:13:14 +0000</pubDate>
+      <pubDate>Wed, 09 Sep 2026 22:36:05 +0000</pubDate>
       <description>Güven: 0.85 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: course-spike: ani rota değişimi (~114°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 504 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 820 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] drift, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-09-ais-9b46b5-2</guid>
+      <pubDate>Wed, 09 Sep 2026 22:36:04 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (7.6 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: diğer: seyir hızından (8.1 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[signal] drift, Orta Ege</title>
@@ -24,13 +31,6 @@
       <guid isPermaLink="false">2026-09-09-ais-543051-1</guid>
       <pubDate>Wed, 09 Sep 2026 21:56:25 +0000</pubDate>
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (27.2 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[signal] drift, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-09-ais-9b46b5-1</guid>
-      <pubDate>Wed, 09 Sep 2026 21:56:25 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (7.6 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[signal] sinking, Türk karasuları civarı</title>
