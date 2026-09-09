@@ -4,10 +4,11 @@
 
 # 🌊 Maritime Watch
 
-**Türkiye karasuları için deniz olayı erken-uyarı ve şeffaflık aracı.**
+**Küçük tekne sahibine her sabah "bugün çıkabilir miyim" diye cevap veren açık kaynaklı sistem.**
 
-AIS anomalilerini, resmi açıklamaları ve denizcilik hava uyarılarını tek akışta birleştirir;
-sonucu bir haritada, bir RSS beslemesinde ve opsiyonel bir Telegram kanalında yayınlar.
+Saatlik deniz tahminini tekne boyuna göre değerlendirip zaman penceresine çevirir;
+üstüne AIS anomalilerini ve resmi açıklamaları ekleyip haritada, RSS'te ve
+Telegram'da yayınlar.
 
 [Canlı harita](https://keremkalyoncu.github.io/maritime-watch) &middot;
 [İstatistikler](https://keremkalyoncu.github.io/maritime-watch/stats.html) &middot;
@@ -55,11 +56,14 @@ sonucu bir haritada, bir RSS beslemesinde ve opsiyonel bir Telegram kanalında y
 
 ## Proje hakkında
 
-Türkiye'de bir deniz kazası olduğunda bilgi dağınıktır: Sahil Güvenlik bir duyuru yayınlar,
-MGM ayrı bir fırtına uyarısı verir, haber siteleri birbirinden kopyalar, AIS verisi ise
-kimsenin bakmadığı bir yerde durur. Bunların hepsi **kamuya açık**. Maritime Watch bunları
-15 dakikada bir toplar, aynı olayın farklı anlatımlarını tek kayda indirger, kaynak
-göstererek yayınlar.
+Küçük tekneyle denize çıkan biri sabah tek bir şey merak eder: **bugün çıkabilir miyim, saat
+kaça kadar.** Mevcut kaynaklar bu soruya cevap vermiyor — fırtına uyarısı ancak fırtınada
+çıkar, deniz tahmini ise "en fazla 25 knot" gibi bir sayı verir ve saat bilgisi taşımaz.
+Oysa 8 metrelik bir tekne 6 Bofor'da limanda kalır; aynı hava bir gemi için hiçbir şeydir.
+
+Maritime Watch saatlik tahmini alıp **tekne boyuna göre** değerlendirir ve zaman penceresine
+çevirir. Üstüne, aynı bölgede olan bitene dair kamuya açık ne varsa ekler: AIS anomalileri,
+Sahil Güvenlik duyuruları, MGM alarmları, deprem, haber. Hepsi kaynak gösterilerek.
 
 Sunucu gerektirmez: GitHub Actions cron + GitHub Pages ile **sıfır maliyetle** çalışır.
 
@@ -67,7 +71,7 @@ Sunucu gerektirmez: GitHub Actions cron + GitHub Pages ile **sıfır maliyetle**
 
 | Kullanıcı | Aldığı şey |
 | :-- | :-- |
-| 🎣 **Balıkçı / küçük tekne** | Opt-in Telegram kanalı — *"Yarın Marmara'da 7–8 Bofor lodos, fırtına uyarısı"*. Resmi uyarı, sade Türkçe. Fırtına geçince **"UYARI KALKTI"** mesajı da gelir. |
+| 🎣 **Balıkçı / küçük tekne** | Her sabah 06:00'da bölge bölge **saat saat** durum: *"Marmara — 08:00-18:00 uygun (4 Bofor), 18:00'den sonra dikkatli olun."* Tekne boyuna göre eşik. Fırtına geçince **"UYARI KALKTI"** mesajı. |
 | 📰 **Gazeteci / araştırmacı** | Web haritası + zaman çizelgesi. Her kayıtta kaynak linki ve **doğrulanmadı** etiketi. |
 | 🏢 **Haber merkezi** | `feed.xml` (RSS) — olay akışını kendi sistemine bağlar. |
 | 🧭 **Vatandaş** | Bölge filtresi, TR/EN arayüz, aylara ve türe göre istatistik. |
@@ -85,6 +89,12 @@ Sunucu gerektirmez: GitHub Actions cron + GitHub Pages ile **sıfır maliyetle**
 
 ## Nasıl çalışır
 
+- **Günlük pencere mesajı** — asıl ürün bu. Saatlik tahmini `🟢 uygun / 🟡 dikkat /
+  🔴 çıkmayın` bloklarına indirger. *"Bugün en fazla 25 kn"* kimsenin kararını
+  değiştirmez; *"14:00'ten sonra 6 Bofor"* değiştirir. İki blok arasındaki tek saatlik
+  sakinlik pencere sayılmaz.
+- **Tekne sınıfına göre eşik** — 8 m altı tekne 22 kn / 1,25 m'de limanda kalır;
+  bir gemi için aynı hava hiçbir şeydir. Tek bir eşik ikisine birden hizmet edemez.
 - **Poligon deniz bölgeleri** — bbox değil, 15 poligonla point-in-polygon: "İstanbul Boğazı",
   "Güney Ege", "Mersin–İskenderun Körfezi" gibi kesin bölge adı. GIS bağımlılığı yok.
 - **Gemi-tipi farkında anomali** — balıkçı teknesinin durması normaldir, boğazda bir tankerin
@@ -119,7 +129,9 @@ flowchart LR
     C --> S[("JSON store<br/>web/data")]
     S --> M[Leaflet haritası]
     S --> F[feed.xml RSS]
-    S --> T["Telegram<br/>konum iğnesi + kaynak linkleri"]
+    S --> T["Telegram<br/>olay bildirimi"]
+    A2 --> W["window.py<br/>saatlik tahmin → zaman penceresi"]
+    W --> D["Telegram<br/>her sabah 06:00 günlük durum"]
 ```
 
 ### Durum merdiveni
@@ -134,7 +146,9 @@ flowchart LR
 | **Resmi açıklama** | `confirmed` | kırmızı | ✅ | ✅ |
 | Sonuç geldi | `resolved` / `false-positive` | yeşil / gri | ✅ | ❌ |
 
-Önleme kanalı ayrı hattır: girdi zaten resmi olduğu için (MGM, NAVTEX) doğrudan iletilir.
+**Önleme hattı bundan bağımsız çalışır.** Günlük pencere mesajı her sabah gider — bir olay
+olmasını beklemez. Bu ayrım kasıtlı: bir kaza olduktan sonra haber vermek şeffaflıktır,
+kaza olmadan önce hava durumunu söylemek ise işe yarayan kısımdır.
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
@@ -180,6 +194,7 @@ hatalar ve karşılığında konan korumalar.
 | Ölen kişilerin ve yakınlarının **adları kanala ve git geçmişine** düştü | Cenaze/tutuklama/duruşma haberleri kaynakta eleniyor; kalanlarda kişi adı maskeleniyor. Gemi adları korunuyor — Türkçede gemi adları insan adına benzer. |
 | Aynı duyuru **her gün yeni olay** olarak haritaya düştü | Kimlikler tarihten değil içerikten türetiliyor. `hash()` süreç başına tuzlandığı için sha1'e geçildi. |
 | `TUÄBERK Ä°MAMOÄLU` — bozuk kodlanmış başlıklar hem okunmuyor hem dedup'ı bozuyordu | Yanlış çözümlenmiş UTF-8 hem fetch'te hem depoda onarılıyor. |
+| Hava uyarısı kanalı **haftalarca hiç konuşmadı** | Eşik 34 kn / 2,0 m idi. Dokuz günlük gerçek ölçümde (13 nokta, 216 saat) 2,0 m dalga **hiç**, 34 kn **4 kez** aşıldı. Küçük tekne sınırı olan 22 kn ise **371 nokta-saat** aşıldı — Marmara'da tek başına 91 saat. Eşik bir yük gemisi için doğruydu, kitle küçük tekneydi. Artık eşik tekne sınıfından geliyor; fırtına kesintisi 28 kn'e indi. |
 | Fırtına geçti, uyarı **18 saat asılı kaldı** | Tahmin canlı dönüp bölgeyi artık listelemiyorsa "UYARI KALKTI" mesajı gidiyor. Ölü kaynak asla "her şey yolunda" sayılmaz. |
 | 55 km içerideki deprem *"kıyıya yakın deprem"* diye duyuruldu | Kara/deniz maskesi olmadığı için artık tahmin yürütülmüyor: yalnız bölge adı ve en yakın limanın mesafesi yazılıyor. |
 | Cron atlayınca durum kayboluyordu | Gemi izleri, gönderilmiş mesajlar ve olay günlüğü depoya yazılıyor; `vessels.json` gemi başına tek satır, sıralı ve kısaltılmış koordinatla — git delta'ları çalışsın diye. |
@@ -229,7 +244,7 @@ py run.py --loop --send
 | `py run.py --once --send` | Telegram'a **gerçekten** gönder |
 | `py run.py --no-ais` / `--no-scrape` | Katman kapat |
 | `py run.py --config yol.yaml` | Başka bir yapılandırma |
-| `py -m pytest` | 131 test |
+| `py -m pytest` | 146 test |
 | `py eval/run_eval.py` | Precision / recall raporu |
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
@@ -302,11 +317,12 @@ src/
     privacy.py            kişi adı maskeleme + aftermath süzgeci
     prune.py              bayat kayıt temizliği, geriye dönük onarım, "uyarı kalktı"
     shiptype.py           AIS tip kodu → kategori ve duyarlılık profili
+    window.py             saatlik tahmin → 🟢/🟡/🔴 zaman pencereleri (tekne sınıfına göre)
   render/                 feed.xml (RSS) + summary.json
   alert/telegram.py       sade Türkçe mesajlar, digest, tekrar koruması
   sdr/                    opsiyonel modül — entegrasyon rehberi + stub
 web/                      Leaflet haritası + stats.html (statik, build yok)
-tests/                    pytest (131)
+tests/                    pytest (146)
 eval/                     precision/recall ölçümü
 .github/workflows/        tests.yml + update.yml
 ```
@@ -318,7 +334,7 @@ eval/                     precision/recall ölçümü
 ## Test ve ölçüm
 
 ```bash
-py -m pytest          # 131 test
+py -m pytest          # 146 test
 py -m ruff check .    # lint
 py eval/run_eval.py   # eval/REPORT.md üretir
 ```
@@ -341,6 +357,8 @@ Açık maddeler: [`TODO.md`](TODO.md). Öne çıkanlar:
 - [ ] NAVAREA III için çalışan bir endpoint bulmak
 - [ ] MGM `/api/meteoalarm` erişimi (şu an 403)
 - [ ] Kıyı çizgisi maskesi — deprem merkez üssünün karada mı denizde mi olduğunu söyleyebilmek
+- [ ] Bölge aboneliği — Marmara'daki balıkçı İskenderun'u görmesin (Telegram topic'leri)
+- [ ] Gün batımı/doğumu ile birleşik "güvenli pencere" hesabı
 - [ ] Daha geniş eval kümesi, gerçek olay arşiviyle
 
 ## Katkı
