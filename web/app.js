@@ -12,7 +12,7 @@ const T = {
   tr: {
     type: { grounding: "karaya oturma", collision: "çatışma", drift: "sürüklenme",
       distress: "tehlike çağrısı", capsize: "alabora", fire: "yangın", sinking: "batma",
-      "man-overboard": "denize adam düştü", unknown: "belirsiz" },
+      "man-overboard": "denize adam düştü", rescue: "kurtarma operasyonu", unknown: "belirsiz" },
     status: { signal: "zayıf sinyal (doğrulanmadı)", probable: "kuvvetli ihtimal",
       confirmed: "doğrulandı", resolved: "kapandı", "false-positive": "yanlış alarm" },
     ui: {
@@ -21,6 +21,13 @@ const T = {
       "l-confirmed": "doğrulandı", "l-probable": "olası", "l-signal": "sinyal (doğrulanmadı)",
       "l-resolved": "kapandı", "l-warning": "hava uyarısı",
       updated: "Son güncelleme", events: "olay", warnings: "uyarı", src: "Kaynak",
+      live: "canlı",
+      k_open: "açık olay", k_confirmed: "doğrulanmış", k_warn: "hava uyarısı",
+      k_src: "kaynak canlı", k_upd: "son güncelleme",
+      empty_t: "Şu an bu bölgede kayıt yok",
+      empty_b: "Sistem çalışıyor; kaynaklar uyarı vermiyor. Sayfa dakikada bir kendini yeniler.",
+      ago: m => m < 1 ? "az önce" : m < 60 ? `${Math.round(m)} dk önce`
+        : m < 1440 ? `${Math.round(m / 60)} sa önce` : `${Math.round(m / 1440)} gün önce`,
       firstseen: "İlk görülme", lastupd: "Güncelleme", unloc: "konum belirsiz",
       people: "kişi bildirildi", confirmedby: "bağımsız kaynak doğruluyor",
       stale: h => `⚠ Veri ~${h} saat eski — otomatik güncelleme gecikmiş olabilir. Acil durum için 158 / 112.`,
@@ -32,7 +39,7 @@ const T = {
   en: {
     type: { grounding: "grounding", collision: "collision", drift: "drift",
       distress: "distress call", capsize: "capsize", fire: "fire", sinking: "sinking",
-      "man-overboard": "man overboard", unknown: "unknown" },
+      "man-overboard": "man overboard", rescue: "rescue completed", unknown: "unknown" },
     status: { signal: "weak signal (unverified)", probable: "probable",
       confirmed: "confirmed", resolved: "closed", "false-positive": "false alarm" },
     ui: {
@@ -41,6 +48,13 @@ const T = {
       "l-confirmed": "confirmed", "l-probable": "probable", "l-signal": "signal (unverified)",
       "l-resolved": "closed", "l-warning": "weather warning",
       updated: "Updated", events: "incidents", warnings: "warnings", src: "Source",
+      live: "live",
+      k_open: "open incidents", k_confirmed: "confirmed", k_warn: "weather warnings",
+      k_src: "sources live", k_upd: "last update",
+      empty_t: "Nothing on record here right now",
+      empty_b: "The system is running; no source is reporting. This page refreshes every minute.",
+      ago: m => m < 1 ? "just now" : m < 60 ? `${Math.round(m)} min ago`
+        : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`,
       firstseen: "First seen", lastupd: "Updated", unloc: "location unknown",
       people: "people reported", confirmedby: "independent sources confirm",
       stale: h => `⚠ Data is ~${h}h old — the scheduled update may be delayed. Emergency: 158 / 112.`,
@@ -65,7 +79,12 @@ const markerById = {};
 
 if (MAP_OK) {
   map = L.map("map", { zoomControl: true }).setView([39.5, 30.5], 6);
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "&copy; OpenStreetMap" }).addTo(map);
+  // the standard OSM tiles are bright and fight the dark UI; CARTO's dark skin
+  // lets the incident markers carry the colour
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    maxZoom: 18, subdomains: "abcd",
+    attribution: "&copy; OpenStreetMap &copy; CARTO",
+  }).addTo(map);
   L.tileLayer("https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png", { maxZoom: 18, opacity: 0.9, attribution: "&copy; OpenSeaMap" }).addTo(map);
   fetch("data/regions.geojson").then(r => r.ok ? r.json() : null).then(gj => {
     if (!gj) return;
@@ -118,23 +137,64 @@ function warningPopup(w) {
     ${w.url ? `<a href="${esc(w.url)}" target="_blank" rel="noopener">link</a>` : ""}`;
 }
 
+const ICON = {
+  grounding: "⛰️", collision: "💥", drift: "🧭", distress: "🆘",
+  capsize: "🔃", fire: "🔥", sinking: "⬇️",
+  "man-overboard": "🏊", rescue: "✅", unknown: "❓", warning: "⚠️",
+};
+
+function agoText(iso) {
+  const t = Date.parse(iso);
+  if (!t || isNaN(t)) return "";
+  return U().ago(Math.max(0, (Date.now() - t) / 60000));
+}
+
+/* The KPI strip answers the first question a visitor has: is this thing alive,
+   and is anything happening right now. */
+function renderKpis(incidents, warnings, summary, health) {
+  const u = U();
+  const open = incidents.filter(i => i.status !== "resolved" && i.status !== "false-positive");
+  const confirmed = open.filter(i => i.status === "confirmed");
+  const ok = health ? health.sources_ok : null;
+  const total = health ? health.sources_total : null;
+  const degraded = ok !== null && total ? ok < total : false;
+  const cells = [
+    { v: open.length, l: u.k_open, c: "" },
+    { v: confirmed.length, l: u.k_confirmed, c: confirmed.length ? "is-confirmed" : "" },
+    { v: warnings.length, l: u.k_warn, c: warnings.length ? "is-warning" : "" },
+    { v: ok === null ? "—" : ok + "/" + total, l: u.k_src, c: degraded ? "is-degraded" : "is-ok" },
+    { v: summary ? (agoText(summary.generated) || "—") : "—", l: u.k_upd, c: "" },
+  ];
+  document.getElementById("kpis").innerHTML = cells.map(c =>
+    `<div class="kpi ${c.c}"><div class="k-val">${esc(String(c.v))}</div><div class="k-lab">${esc(c.l)}</div></div>`
+  ).join("");
+}
+
 function addTimeline(items) {
   const ol = document.getElementById("timeline");
   ol.innerHTML = "";
   items.forEach(it => {
     const li = document.createElement("li");
     li.className = it._kind === "warning" ? "warning" : it.status;
-    const when = fmtTime(it._kind === "warning" ? it.issued : it.last_update);
-    const title = it._kind === "warning" ? "⚠" : trType(it.type);
+    const stamp = it._kind === "warning" ? it.issued : it.last_update;
+    const when = agoText(stamp) || fmtTime(stamp);
+    const title = it._kind === "warning" ? (it.headline || "").slice(0, 60) : trType(it.type);
+    const ico = it._kind === "warning" ? ICON.warning : (ICON[it.type] || ICON.unknown);
     const badge = it._kind === "warning" ? "" : trStatus(it.status);
     const src = (it.sources || [])[0];
     const srcHtml = it._kind === "warning" ? esc(orgsOf(it).join(", "))
       : (src ? `${esc(src.org || src.kind)}${src.url ? ` — <a href="${esc(src.url)}" target="_blank" rel="noopener">link</a>` : ""}` : "");
-    li.innerHTML = `<div class="t-head"><span class="t-type">${esc(title)}</span><span class="t-badge">${esc(badge)}</span></div>
-      <div class="t-area">${esc(it.area || U().unloc)} · ${when}</div><div class="t-src">${srcHtml}</div>`;
+    li.innerHTML = `<div class="t-head"><span class="t-type"><span class="t-ico">${ico}</span><span class="t-txt">${esc(title)}</span></span><span class="t-badge">${esc(badge)}</span></div>
+      <div class="t-area">${esc(it.area || U().unloc)} · <span class="t-when">${esc(when)}</span></div>
+      <div class="t-src">${srcHtml}</div>`;
     li.onclick = () => { const m = markerById[it._id]; if (m && map) { map.setView(m.getLatLng(), 9); m.openPopup(); } };
     ol.appendChild(li);
   });
+  const empty = document.getElementById("empty");
+  if (empty) {
+    empty.innerHTML = `<b>${esc(U().empty_t)}</b>${esc(U().empty_b)}`;
+    empty.hidden = items.length > 0;
+  }
 }
 
 function drawMarkers(incidents, warnings) {
@@ -198,11 +258,7 @@ function render() {
   addTimeline(tl);
 
   const u = U();
-  const gen = summary ? fmtTime(summary.generated) : "—";
-  const bs = summary && summary.by_status
-    ? Object.entries(summary.by_status).map(([k, v]) => `${trStatus(k)}: ${v}`).join(" · ") : "";
-  document.getElementById("meta").textContent =
-    `${u.updated}: ${gen}  ·  ${incidents.length} ${u.events}${bs ? " (" + bs + ")" : ""}  ·  ${warnings.length} ${u.warnings}`;
+  renderKpis(incidents.filter(inRegion), warnings.filter(inRegion), summary, health);
   document.getElementById("sys").textContent = u.sys(health);
 
   const stale = document.getElementById("stale");

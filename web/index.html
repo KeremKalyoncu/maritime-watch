@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Maritime Watch — Türkiye deniz olayları</title>
+  <meta name="description" content="Türkiye karasuları için deniz olayı erken-uyarı ve şeffaflık aracı. AIS anomalileri, resmi açıklamalar ve denizcilik hava uyarıları tek haritada.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <link rel="stylesheet" href="style.css">
@@ -11,16 +12,20 @@
 <body>
   <header>
     <div class="topbar">
-      <h1>Maritime&nbsp;Watch</h1>
+      <div class="brand">
+        <h1>🌊 Maritime&nbsp;Watch</h1>
+        <span class="live" data-i="live">canlı</span>
+      </div>
       <div class="ctrl">
         <select id="region" title="Bölge"></select>
-        <a href="stats.html" data-i="stats">İstatistik</a>
+        <a class="btn" href="stats.html" data-i="stats">İstatistik</a>
         <button id="lang" type="button">EN</button>
       </div>
     </div>
     <p class="tag" data-i="tag">Türkiye karasuları — AIS anomalileri + resmi açıklamalar, tek yerde.
       Sinyaller doğrulanana kadar “doğrulanmadı” etiketlidir.</p>
-    <p class="meta" id="meta">yükleniyor…</p>
+
+    <div class="kpis" id="kpis"></div>
     <div id="stale" hidden></div>
   </header>
 
@@ -36,13 +41,14 @@
       </div>
       <h2 data-i="timeline">Zaman çizelgesi</h2>
       <ol id="timeline"></ol>
+      <div class="empty" id="empty" hidden></div>
     </aside>
   </main>
 
   <footer>
     <span>Açık kaynak · <a href="https://github.com/KeremKalyoncu/maritime-watch" id="repo-link">GitHub</a>
       · <span id="sys">—</span></span>
-    <span data-i="sources">Kaynaklar: aisstream.io · Open-Meteo · AFAD/USGS/EMSC · Sahil Güvenlik · GDACS · NASA EONET · haber RSS · OpenSeaMap</span>
+    <span data-i="sources">Kaynaklar: aisstream.io · Open-Meteo · AFAD/USGS/EMSC · Sahil Güvenlik · MGM · GDACS · NASA EONET · haber RSS · OpenSeaMap</span>
     <span data-i="disclaimer">Bu bir kurtarma servisi değildir. Acil durumda <strong>158</strong> (Sahil Güvenlik) / <strong>112</strong>.</span>
   </footer>
 
