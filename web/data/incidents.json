@@ -45,6 +45,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-09-ais-6bc0f8",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.8429,
+    "lon": 28.6394,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "MSC GRETA III",
+      "mmsi": 636021356,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T16:30:42Z",
+    "last_update": "2026-09-09T16:30:42Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 902 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-09T16:30:42Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-09-ais-8a328c",
     "type": "drift",
     "status": "signal",
@@ -76,6 +107,68 @@
     "coarse": false
   },
   {
+    "id": "2026-09-09-ais-a00547",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.667,
+    "lon": 28.4016,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "MEIN SCHIFF 5",
+      "mmsi": 256235000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T16:30:42Z",
+    "last_update": "2026-09-09T16:30:42Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 902 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-09T16:30:42Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-09-ais-b40703",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.662164999999995,
+    "lon": 28.891418333333334,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "A.M.K. MARIN",
+      "mmsi": 630001068,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T16:30:42Z",
+    "last_update": "2026-09-09T16:30:42Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: kumanda dışı (not under command)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-09T16:30:42Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-09-ais-c804cd",
     "type": "distress",
     "status": "signal",
@@ -100,6 +193,37 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-09T11:57:24Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-09-ais-cf750e",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.4889,
+    "lon": 34.9672,
+    "area": "Mersin–İskenderun Körfezi",
+    "vessel": {
+      "name": "HABIBIN YAVUZ",
+      "mmsi": 271073375,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T16:30:42Z",
+    "last_update": "2026-09-09T16:30:42Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 901 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-09T16:30:42Z"
       }
     ],
     "notes": [],
@@ -403,6 +527,39 @@
     "coarse": false
   },
   {
+    "id": "rep-ce92da3519",
+    "type": "distress",
+    "status": "confirmed",
+    "confidence": 0.6,
+    "severity": "major",
+    "lat": 40.35,
+    "lon": 27.97,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T16:30:47Z",
+    "last_update": "2026-09-09T16:30:47Z",
+    "sources": [
+      {
+        "kind": "official",
+        "detail": "09.09.2026 Balıkesir Açıklarında 5 Şahıs Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/balikesir-aciklarinda-5-sahis-kurtarilmistir-08-09-2026",
+        "ts": "2026-09-09T16:30:47Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Balıkesir"
+    ],
+    "coarse": true
+  },
+  {
     "id": "rep-d2a197a441",
     "type": "distress",
     "status": "resolved",
@@ -467,6 +624,39 @@
     "notes": [],
     "places": [
       "Aydın"
+    ],
+    "coarse": true
+  },
+  {
+    "id": "rep-e2463186f9",
+    "type": "distress",
+    "status": "confirmed",
+    "confidence": 0.6,
+    "severity": "critical",
+    "lat": 38.43,
+    "lon": 27.14,
+    "area": "Orta Ege",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 2,
+    "first_seen": "2026-09-09T16:30:47Z",
+    "last_update": "2026-09-09T16:30:47Z",
+    "sources": [
+      {
+        "kind": "official",
+        "detail": "09.09.2026 İzmir Açıklarında 2 Çocuk Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/izmir-aciklarinda-2-cocuk-kurtarilmistir",
+        "ts": "2026-09-09T16:30:47Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Izmir"
     ],
     "coarse": true
   }
