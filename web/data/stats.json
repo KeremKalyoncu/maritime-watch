@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-09T21:57:27Z",
-  "total_incidents": 181,
+  "generated": "2026-09-09T22:13:50Z",
+  "total_incidents": 182,
   "by_month": {
-    "2026-09": 181
+    "2026-09": 182
   },
   "by_area": {
-    "belirsiz": 162,
+    "belirsiz": 163,
     "Marmara Denizi": 6,
     "Türk karasuları civarı": 5,
     "Doğu Karadeniz": 3,
@@ -16,12 +16,12 @@
   "by_type": {
     "distress": 75,
     "unknown": 47,
-    "drift": 40,
+    "drift": 41,
     "sinking": 18,
     "collision": 1
   },
   "by_status": {
-    "signal": 181
+    "signal": 182
   },
   "incidents_with_casualties": 12,
   "casualties_reported_total": 160,
@@ -63,8 +63,8 @@
       2
     ],
     [
-      "MED CESME",
-      1
+      "ANDROS QUEEN",
+      2
     ]
   ],
   "median_resolution_hours": null

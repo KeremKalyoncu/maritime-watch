@@ -1,5 +1,36 @@
 [
   {
+    "id": "2026-09-09-ais-0d6967",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.46367166666666,
+    "lon": 25.322911666666666,
+    "area": "Orta Ege",
+    "vessel": {
+      "name": "ANDROS QUEEN",
+      "mmsi": 241835000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T22:13:13Z",
+    "last_update": "2026-09-09T22:13:13Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (18.2 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-09T22:13:13Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-09-ais-543051",
     "type": "drift",
     "status": "signal",
@@ -344,7 +375,7 @@
   },
   {
     "id": "news-4d7532c821",
-    "type": "distress",
+    "type": "rescue",
     "status": "signal",
     "confidence": 0.3,
     "severity": "critical",
@@ -410,10 +441,10 @@
   },
   {
     "id": "rep-442993157a",
-    "type": "distress",
+    "type": "rescue",
     "status": "resolved",
     "confidence": 0.6,
-    "severity": "info",
+    "severity": "critical",
     "lat": 40.98,
     "lon": 27.51,
     "area": "Marmara Denizi",
@@ -423,7 +454,7 @@
       "type": null,
       "callsign": null
     },
-    "casualties": null,
+    "casualties": 2,
     "first_seen": "2026-09-03T23:11:08Z",
     "last_update": "2026-09-03T23:11:08Z",
     "sources": [
@@ -445,22 +476,22 @@
   },
   {
     "id": "rep-4d701b7ab0",
-    "type": "distress",
+    "type": "unknown",
     "status": "confirmed",
     "confidence": 0.85,
-    "severity": "major",
+    "severity": "critical",
     "lat": 36.75,
     "lon": 27.9,
     "area": "Güney Ege",
     "vessel": {
-      "name": "OPTASIA",
+      "name": null,
       "mmsi": 248704000,
       "type": null,
       "callsign": null
     },
-    "casualties": null,
+    "casualties": 2,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-08T18:09:32Z",
+    "last_update": "2026-09-09T22:13:14Z",
     "sources": [
       {
         "kind": "official",
@@ -477,13 +508,6 @@
         "ts": "2026-09-05T09:27:30Z"
       },
       {
-        "kind": "official",
-        "detail": "06.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-05-09-2026",
-        "ts": "2026-09-06T16:09:16Z"
-      },
-      {
         "kind": "ais-anomaly",
         "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 504 dakika önce kesildi (3 taramada üst üste görünmedi)",
         "org": "AIS",
@@ -496,13 +520,6 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-07T10:24:43Z"
-      },
-      {
-        "kind": "official",
-        "detail": "08.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-07-09-2026-",
-        "ts": "2026-09-08T18:09:32Z"
       }
     ],
     "notes": [],
@@ -513,7 +530,7 @@
   },
   {
     "id": "rep-5e0298d9eb",
-    "type": "distress",
+    "type": "rescue",
     "status": "confirmed",
     "confidence": 0.6,
     "severity": "critical",
@@ -546,7 +563,7 @@
   },
   {
     "id": "rep-bb02b2dc7a",
-    "type": "distress",
+    "type": "rescue",
     "status": "resolved",
     "confidence": 0.6,
     "severity": "critical",
@@ -559,7 +576,7 @@
       "type": null,
       "callsign": null
     },
-    "casualties": 30,
+    "casualties": 2,
     "first_seen": "2026-09-03T23:11:08Z",
     "last_update": "2026-09-05T13:00:47Z",
     "sources": [
@@ -569,34 +586,6 @@
         "org": "Sahil Güvenlik Komutanlığı",
         "url": "https://www.sg.gov.tr/izmir-onlerinde-2-sahis-kurtarilmistir",
         "ts": "2026-09-03T23:11:08Z"
-      },
-      {
-        "kind": "official",
-        "detail": "02.09.2026 İzmir Açıklarında 20 Düzensiz Göçmen Kurtarılmıştır",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/izmir-aciklarinda-20-duzensiz-gocmen-kurtarilmistir-01-09-2026-",
-        "ts": "2026-09-03T23:11:08Z"
-      },
-      {
-        "kind": "official",
-        "detail": "04.09.2026 İzmir Açıklarında 18 Düzensiz Göçmen (Beraberinde 8 Çocuk) Kurtarılmıştır",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/izmir-aciklarinda-18-duzensiz-gocmen-beraberinde-8-cocuk-kurtarilmistir-03-09-2026",
-        "ts": "2026-09-04T18:20:48Z"
-      },
-      {
-        "kind": "official",
-        "detail": "05.09.2026 İzmir Açıklarında 27 Düzensiz Göçmen Kurtarılmıştır",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/izmir-aciklarinda-27-duzensiz-gocmen-kurtarilmistir-04-09-2026-",
-        "ts": "2026-09-05T13:00:47Z"
-      },
-      {
-        "kind": "official",
-        "detail": "05.09.2026 İzmir Açıklarında 30 Düzensiz Göçmen Kurtarılmıştır",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/izmir-aciklarinda-30-duzensiz-gocmen-kurtarilmistir-04-09-2026-",
-        "ts": "2026-09-05T13:00:47Z"
       }
     ],
     "notes": [
@@ -609,10 +598,10 @@
   },
   {
     "id": "rep-ce92da3519",
-    "type": "distress",
+    "type": "rescue",
     "status": "confirmed",
     "confidence": 0.6,
-    "severity": "major",
+    "severity": "critical",
     "lat": 40.35,
     "lon": 27.97,
     "area": "Marmara Denizi",
@@ -622,7 +611,7 @@
       "type": null,
       "callsign": null
     },
-    "casualties": null,
+    "casualties": 5,
     "first_seen": "2026-09-09T16:30:47Z",
     "last_update": "2026-09-09T16:30:47Z",
     "sources": [
@@ -642,10 +631,10 @@
   },
   {
     "id": "rep-d2a197a441",
-    "type": "distress",
+    "type": "rescue",
     "status": "resolved",
     "confidence": 0.6,
-    "severity": "info",
+    "severity": "critical",
     "lat": 40.37,
     "lon": 28.88,
     "area": "Marmara Denizi",
@@ -655,7 +644,7 @@
       "type": null,
       "callsign": null
     },
-    "casualties": null,
+    "casualties": 2,
     "first_seen": "2026-09-05T13:00:47Z",
     "last_update": "2026-09-05T13:00:47Z",
     "sources": [
@@ -677,10 +666,10 @@
   },
   {
     "id": "rep-dba1f112fd",
-    "type": "distress",
+    "type": "rescue",
     "status": "confirmed",
     "confidence": 0.6,
-    "severity": "major",
+    "severity": "critical",
     "lat": 37.86,
     "lon": 27.26,
     "area": "Orta Ege",
@@ -690,7 +679,7 @@
       "type": null,
       "callsign": null
     },
-    "casualties": null,
+    "casualties": 2,
     "first_seen": "2026-09-07T16:01:34Z",
     "last_update": "2026-09-07T16:01:34Z",
     "sources": [
@@ -710,7 +699,7 @@
   },
   {
     "id": "rep-e2463186f9",
-    "type": "distress",
+    "type": "rescue",
     "status": "confirmed",
     "confidence": 0.6,
     "severity": "critical",

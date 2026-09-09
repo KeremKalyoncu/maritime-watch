@@ -3,13 +3,20 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Wed, 09 Sep 2026 21:57:27 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 09 Sep 2026 22:13:50 +0000</lastBuildDate>
     <item>
-      <title>[signal] drift, Batı Karadeniz</title>
+      <title>[confirmed] unknown, Güney Ege</title>
+      <link>https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026</link>
+      <guid isPermaLink="false">rep-4d701b7ab0-4</guid>
+      <pubDate>Wed, 09 Sep 2026 22:13:14 +0000</pubDate>
+      <description>Güven: 0.85 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: course-spike: ani rota değişimi (~114°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 504 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 820 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] drift, Orta Ege</title>
       <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-09-ais-9b46b5-1</guid>
-      <pubDate>Wed, 09 Sep 2026 21:56:25 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (7.6 kn) ani duruşa geçti</description>
+      <guid isPermaLink="false">2026-09-09-ais-0d6967-1</guid>
+      <pubDate>Wed, 09 Sep 2026 22:13:13 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (18.2 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[signal] drift, Gökova Körfezi</title>
@@ -17,6 +24,13 @@
       <guid isPermaLink="false">2026-09-09-ais-543051-1</guid>
       <pubDate>Wed, 09 Sep 2026 21:56:25 +0000</pubDate>
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (27.2 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] drift, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-09-ais-9b46b5-1</guid>
+      <pubDate>Wed, 09 Sep 2026 21:56:25 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (7.6 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[signal] sinking, Türk karasuları civarı</title>
@@ -33,14 +47,14 @@
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (12.3 kn) ani duruşa geçti</description>
     </item>
     <item>
-      <title>[confirmed] distress, Marmara Denizi</title>
+      <title>[confirmed] rescue, Marmara Denizi</title>
       <link>https://www.sg.gov.tr/balikesir-aciklarinda-5-sahis-kurtarilmistir-08-09-2026</link>
       <guid isPermaLink="false">rep-ce92da3519-1</guid>
       <pubDate>Wed, 09 Sep 2026 16:30:47 +0000</pubDate>
-      <description>Güven: 0.6 | Önem: major | official/Sahil Güvenlik Komutanlığı: 09.09.2026 Balıkesir Açıklarında 5 Şahıs Kurtarılmıştır</description>
+      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 5 | official/Sahil Güvenlik Komutanlığı: 09.09.2026 Balıkesir Açıklarında 5 Şahıs Kurtarılmıştır</description>
     </item>
     <item>
-      <title>[confirmed] distress, Orta Ege</title>
+      <title>[confirmed] rescue, Orta Ege</title>
       <link>https://www.sg.gov.tr/izmir-aciklarinda-2-cocuk-kurtarilmistir</link>
       <guid isPermaLink="false">rep-e2463186f9-1</guid>
       <pubDate>Wed, 09 Sep 2026 16:30:47 +0000</pubDate>
@@ -75,7 +89,7 @@
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 901 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
     </item>
     <item>
-      <title>[signal] distress, Doğu Karadeniz</title>
+      <title>[signal] rescue, Doğu Karadeniz</title>
       <link>https://www.cnnturk.com/turkiye/rize-aciklarinda-ucak-denize-acil-inis-yapti-2-kisi-icin-kurtarma-calismasi-3464664</link>
       <guid isPermaLink="false">news-4d7532c821-1</guid>
       <pubDate>Wed, 09 Sep 2026 11:57:35 +0000</pubDate>
@@ -110,45 +124,38 @@
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 749 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
     </item>
     <item>
-      <title>[confirmed] distress, Güney Ege</title>
-      <link>https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026</link>
-      <guid isPermaLink="false">rep-4d701b7ab0-6</guid>
-      <pubDate>Tue, 08 Sep 2026 18:09:32 +0000</pubDate>
-      <description>Güven: 0.85 | Önem: major | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: course-spike: ani rota değişimi (~114°) | official/Sahil Güvenlik Komutanlığı: 06.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 504 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 820 dakika önce kesildi (4 taramada üst üste görünmedi) | official/Sahil Güvenlik Komutanlığı: 08.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır</description>
-    </item>
-    <item>
-      <title>[confirmed] distress, Orta Ege</title>
+      <title>[confirmed] rescue, Orta Ege</title>
       <link>https://www.sg.gov.tr/izmir-aciklarinda-18-duzensiz-gocmen-beraberinde-1-cocuk-kurtarilmistir</link>
       <guid isPermaLink="false">rep-5e0298d9eb-1</guid>
       <pubDate>Tue, 08 Sep 2026 18:09:32 +0000</pubDate>
       <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 18 | official/Sahil Güvenlik Komutanlığı: 08.09.2026 İzmir Açıklarında 18 Düzensiz Göçmen (Beraberinde 1 Çocuk) Kurtarılmıştır</description>
     </item>
     <item>
-      <title>[confirmed] distress, Orta Ege</title>
+      <title>[confirmed] rescue, Orta Ege</title>
       <link>https://www.sg.gov.tr/aydin-aciklarinda-2-sahis-kurtarilmistir-06-09-2026</link>
       <guid isPermaLink="false">rep-dba1f112fd-1</guid>
       <pubDate>Mon, 07 Sep 2026 16:01:34 +0000</pubDate>
-      <description>Güven: 0.6 | Önem: major | official/Sahil Güvenlik Komutanlığı: 07.09.2026 Aydın Açıklarında 2 Şahıs Kurtarılmıştır</description>
+      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 07.09.2026 Aydın Açıklarında 2 Şahıs Kurtarılmıştır</description>
     </item>
     <item>
-      <title>[resolved] distress, Güney Ege</title>
+      <title>[resolved] rescue, Güney Ege</title>
       <link>https://www.sg.gov.tr/izmir-onlerinde-2-sahis-kurtarilmistir</link>
-      <guid isPermaLink="false">rep-bb02b2dc7a-5</guid>
+      <guid isPermaLink="false">rep-bb02b2dc7a-1</guid>
       <pubDate>Sat, 05 Sep 2026 13:00:47 +0000</pubDate>
-      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 30 | official/Sahil Güvenlik Komutanlığı: 03.09.2026 İzmir Önlerinde 2 Şahıs Kurtarılmıştır | official/Sahil Güvenlik Komutanlığı: 02.09.2026 İzmir Açıklarında 20 Düzensiz Göçmen Kurtarılmıştır | official/Sahil Güvenlik Komutanlığı: 04.09.2026 İzmir Açıklarında 18 Düzensiz Göçmen (Beraberinde 8 Çocuk) Kurtarılmıştır | official/Sahil Güvenlik Komutanlığı: 05.09.2026 İzmir Açıklarında 27 Düzensiz Göçmen Kurtarılmıştır | official/Sahil Güvenlik Komutanlığı: 05.09.2026 İzmir Açıklarında 30 Düzensiz Göçmen Kurtarılmıştır</description>
+      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 03.09.2026 İzmir Önlerinde 2 Şahıs Kurtarılmıştır</description>
     </item>
     <item>
-      <title>[resolved] distress, Marmara Denizi</title>
+      <title>[resolved] rescue, Marmara Denizi</title>
       <link>https://www.sg.gov.tr/bursa-aciklarinda-2-sahis-kurtarilmistir</link>
       <guid isPermaLink="false">rep-d2a197a441-1</guid>
       <pubDate>Sat, 05 Sep 2026 13:00:47 +0000</pubDate>
-      <description>Güven: 0.6 | Önem: info | official/Sahil Güvenlik Komutanlığı: 05.09.2026 Bursa Açıklarında 2 Şahıs Kurtarılmıştır</description>
+      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 05.09.2026 Bursa Açıklarında 2 Şahıs Kurtarılmıştır</description>
     </item>
     <item>
-      <title>[resolved] distress, Marmara Denizi</title>
+      <title>[resolved] rescue, Marmara Denizi</title>
       <link>https://www.sg.gov.tr/tekirdag-aciklarinda-2-sahis-kurtarilmistir-02-09-2026</link>
       <guid isPermaLink="false">rep-442993157a-1</guid>
       <pubDate>Thu, 03 Sep 2026 23:11:08 +0000</pubDate>
-      <description>Güven: 0.6 | Önem: info | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Tekirdağ Açıklarında 2 Şahıs Kurtarılmıştır</description>
+      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Tekirdağ Açıklarında 2 Şahıs Kurtarılmıştır</description>
     </item>
 </channel></rss>
