@@ -1,50 +1,5 @@
 [
   {
-    "id": "2026-09-08-ais-29ebfb",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.9924,
-    "lon": 27.1398,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "KARAZI",
-      "mmsi": 341756002,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-08T10:03:03Z",
-    "last_update": "2026-09-09T06:38:27Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 679 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T10:03:03Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 953 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T14:36:59Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 750 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-09T06:38:27Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-09-ais-6bc0f8",
     "type": "distress",
     "status": "signal",
@@ -69,6 +24,37 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-09T16:30:42Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-09-ais-6dd8c8",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.572426666666665,
+    "lon": 34.67923833333334,
+    "area": "Mersin–İskenderun Körfezi",
+    "vessel": {
+      "name": "MED ANTALYA",
+      "mmsi": 271054288,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T19:29:02Z",
+    "last_update": "2026-09-09T19:29:02Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (12.3 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-09T19:29:02Z"
       }
     ],
     "notes": [],
@@ -229,6 +215,39 @@
     "notes": [],
     "places": [],
     "coarse": false
+  },
+  {
+    "id": "news-327a8aaf9f",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": 35.34,
+    "lon": 33.32,
+    "area": "Türk karasuları civarı",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T19:29:17Z",
+    "last_update": "2026-09-09T19:29:17Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne açıklarında batan gemide kaybolanları aramak için KKTC'ye bir gemi daha gelecek",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/girne-aciklarinda-batan-gemide-kaybolanlari-aramak-icin-kktcye-bir-gemi-daha-gelecek/4052398",
+        "ts": "2026-09-09T19:29:17Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Girne"
+    ],
+    "coarse": true
   },
   {
     "id": "news-4ac5529afb",
