@@ -3,13 +3,27 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Wed, 09 Sep 2026 22:36:48 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 09 Sep 2026 22:49:32 +0000</lastBuildDate>
     <item>
       <title>[confirmed] unknown, Güney Ege</title>
       <link>https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026</link>
       <guid isPermaLink="false">rep-4d701b7ab0-4</guid>
-      <pubDate>Wed, 09 Sep 2026 22:36:05 +0000</pubDate>
+      <pubDate>Wed, 09 Sep 2026 22:48:45 +0000</pubDate>
       <description>Güven: 0.85 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: course-spike: ani rota değişimi (~114°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 504 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 820 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] drift, Mersin–İskenderun Körfezi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-09-ais-6dd8c8-2</guid>
+      <pubDate>Wed, 09 Sep 2026 22:48:44 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (12.3 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (3.1 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] distress, Gökova Körfezi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-09-ais-b20fe8-1</guid>
+      <pubDate>Wed, 09 Sep 2026 22:48:44 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 53 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
     </item>
     <item>
       <title>[signal] drift, Batı Karadeniz</title>
@@ -38,13 +52,6 @@
       <guid isPermaLink="false">news-327a8aaf9f-1</guid>
       <pubDate>Wed, 09 Sep 2026 19:29:17 +0000</pubDate>
       <description>Güven: 0.3 | Önem: minor | news/aa.com.tr: Girne açıklarında batan gemide kaybolanları aramak için KKTC'ye bir gemi daha gelecek</description>
-    </item>
-    <item>
-      <title>[signal] drift, Mersin–İskenderun Körfezi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-09-ais-6dd8c8-1</guid>
-      <pubDate>Wed, 09 Sep 2026 19:29:02 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (12.3 kn) ani duruşa geçti</description>
     </item>
     <item>
       <title>[confirmed] rescue, Marmara Denizi</title>

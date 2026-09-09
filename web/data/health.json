@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-09T22:36:48Z",
-  "cycle_seconds": 134.6,
-  "sources_ok": 7,
-  "sources_total": 7,
+  "generated": "2026-09-09T22:49:32Z",
+  "cycle_seconds": 138.8,
+  "sources_ok": 8,
+  "sources_total": 8,
   "sources_down": [],
-  "incidents": 22,
+  "incidents": 23,
   "warnings": 0,
   "sources": {
     "scrape": {
@@ -40,6 +40,11 @@
     "metar": {
       "ok": true,
       "items": 0,
+      "error": null
+    },
+    "bot": {
+      "ok": true,
+      "items": null,
       "error": null
     }
   },
