@@ -39,7 +39,7 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
     static: dict = {}
     deadline = time.time() + seconds
 
-    async with websockets.connect(url, ping_interval=20, close_timeout=5, max_size=2 ** 20) as ws:
+    async with websockets.connect(url, ping_interval=30, close_timeout=10, max_size=2 ** 20) as ws:
         await ws.send(json.dumps(sub))
         while time.time() < deadline:
             try:

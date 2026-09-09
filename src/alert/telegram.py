@@ -71,6 +71,8 @@ class Notifier:
         except Exception:
             self._sent = set()
         self._queue: list[tuple] = []              # (key, text, lat, lon) pending digest
+        # Telegram answers 429 past ~20 messages a minute to one chat
+        self._sent_at: list[float] = []
 
     def _remember(self, key: str) -> None:
         self._sent.add(key)
@@ -79,7 +81,19 @@ class Notifier:
             self._sent = set(sorted(self._sent)[-_SENT_CAP:])
         self.sent_path.write_text(json.dumps(sorted(self._sent), ensure_ascii=False), encoding="utf-8")
 
+    def _throttle(self, per_minute: int = 18) -> None:
+        now = time.time()
+        self._sent_at = [t for t in self._sent_at if now - t < 60]
+        if len(self._sent_at) >= per_minute:
+            wait = 60 - (now - self._sent_at[0])
+            if wait > 0:
+                print(f"[telegram] hiz siniri: {wait:.0f}s bekleniyor")
+                time.sleep(wait)
+            self._sent_at.clear()
+        self._sent_at.append(time.time())
+
     def _post(self, method: str, data: dict) -> bool:
+        self._throttle()
         try:
             r = requests.post(BASE.format(token=self.token, method=method), data=data, timeout=15)
             body = r.json()

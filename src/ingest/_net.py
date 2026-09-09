@@ -23,10 +23,12 @@ from ..model import fix_mojibake
 
 UA = {"User-Agent": "maritime-watch/1.0 (open-source maritime safety aggregator)"}
 SAMPLES = Path(__file__).parent / "samples"
-TIMEOUT = 10
+TIMEOUT = 20        # denizhaber.com.tr her donguyu 10 s'de zaman asimina ugratiyordu
 
-# True in tests and offline demos, False in production (set by run.py from config)
-SAMPLES_ALLOWED = True
+# True in tests and offline demos, False in production (set by run.py from config).
+# The default is the safe one: a module imported outside run.py must not be able
+# to publish fixture data just because nobody set the flag.
+SAMPLES_ALLOWED = False
 
 # per-cycle record of how each source answered: "live" | "sample" | "down"
 STATUS: dict[str, str] = {}
