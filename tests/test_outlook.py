@@ -85,7 +85,7 @@ def test_outlook_message_names_the_hours_and_the_boat_class(cfg):
     msg = sent[0]
     assert "Marmara Denizi" in msg and "12:00" in msg
     assert "küçük tekne" in msg
-    assert "ÇIKMAYIN" in msg
+    assert "ÇIKMA" in msg
     assert "Model tahminidir" in msg          # never presented as measurement
     assert "158" in msg
 

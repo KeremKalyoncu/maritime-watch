@@ -16,3 +16,6 @@ web/data/feed.xml
 web/data/summary.json
 web/data/health.json
 web/data/stats.json
+
+# chat ids identify people; this file stays on the host
+data/subscribers.json

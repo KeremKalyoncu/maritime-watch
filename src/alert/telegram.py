@@ -37,6 +37,14 @@ _WARN_EMOJI = {
     "marine-weather": "🌊", "metar": "🌬️", "nav-warning": "⚓", "navtex": "⚓",
     "earthquake": "🌍", "gdacs": "🛑", "eonet": "🛑",
 }
+_TR_UPPER = str.maketrans("iı", "İI")
+
+
+def _upper_tr(s: str) -> str:
+    """str.upper() turns "Denizi" into "DENIZI"; Turkish needs the dotted I."""
+    return s.translate(_TR_UPPER).upper()
+
+
 def _num(x) -> str:
     """Turkish decimal comma, trimmed."""
     s = f"{x:.1f}".rstrip("0").rstrip(".")
@@ -335,55 +343,112 @@ class Notifier:
         self._emit(f"wxend:{w.id}", "\n".join(lines), dry, w.lat, w.lon)
 
     # ---- daily outlook ------------------------------------------------------
-    _LEVEL_MARK = {"ok": "🟢", "watch": "🟡", "danger": "🔴"}
-    _LEVEL_TR = {"ok": "uygun", "watch": "dikkatli olun", "danger": "ÇIKMAYIN"}
+    _MARK = {"ok": "🟢", "watch": "🟡", "danger": "🔴"}
+    _VERDICT = {"ok": "uygun", "watch": "dikkatli ol", "danger": "ÇIKMA"}
+    _DAYS = ("Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar")
+    _MONTHS = ("Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz",
+               "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık")
 
-    def daily_outlook(self, areas, klass: dict, dry: bool = True, day: str = "") -> None:
+    @classmethod
+    def _long_date(cls, tz_offset_h: float = 3.0) -> str:
+        t = time.gmtime(time.time() + tz_offset_h * 3600)
+        return f"{t.tm_mday} {cls._MONTHS[t.tm_mon - 1]} {cls._DAYS[t.tm_wday]}"
+
+    @classmethod
+    def _window_line(cls, w, klass: dict) -> str:
+        over_w = w.wave_m >= float(klass.get("wave_m", 2.0))
+        over_g = w.gust_kn >= float(klass.get("gust_kn", 34))
+        bits = [f"{_beaufort(w.gust_kn)} Bofor"]
+        if over_g:
+            bits[0] = "<b>" + bits[0] + "</b>"
+        bits.append(f"{w.gust_kn:.0f} kn")
+        if w.wave_m >= 0.05:
+            wave = f"dalga {_num(round(w.wave_m, 1))} m"
+            bits.append("<b>" + wave + "</b>" if over_w else wave)
+        verdict = cls._VERDICT[w.level]
+        if w.level == "danger":
+            verdict = "<b>" + verdict + "</b>"
+        return (f"{cls._MARK[w.level]} <code>{w.start}–{w.end}</code>  "
+                f"{verdict} · {' · '.join(bits)}")
+
+    @classmethod
+    def outlook_text(cls, areas, klass: dict, tz_offset_h: float = 3.0) -> str:
         """The morning "can I go out today" message.
 
         This is the channel's reason to exist. A rescue that already happened
-        warns nobody; a gale-only alert never fires. What a fisherman decides at
-        04:00 is the hours, so the message is a list of hours.
+        warns nobody, and a gale-only alert never fires; what a fisherman decides
+        at 04:00 is the hours, so the message is a list of hours.
         """
-        if not self.enabled or not self.prevention or not areas:
-            return
-        label = klass.get("label", "tekne")
         rough = [a for a in areas if a.worst != "ok"]
         calm = [a for a in areas if a.worst == "ok"]
+        label = klass.get("label", "tekne")
 
-        lines = [f"🎣 <b>GÜNLÜK DENİZ DURUMU</b> — {html.escape(day)}", "",
-                 f"<i>{html.escape(label)} için değerlendirildi "
-                 f"(sınır: {klass.get('gust_kn')} kn rüzgâr, {klass.get('wave_m')} m dalga)</i>", ""]
+        head = [f"🌅 <b>BUGÜN DENİZ</b> · {cls._long_date(tz_offset_h)}",
+                f"<i>{html.escape(label)} · sınır {klass.get('gust_kn')} kn / "
+                f"{str(klass.get('wave_m', 2)).replace('.', ',')} m</i>"]
 
+        # the one line someone reads before deciding whether to read the rest
+        shuts = [a for a in areas if a.first_danger]
+        if not areas:
+            head.append("")
+            head.append("Tahmin alınamadı.")
+            return "\n".join(head)
         if not rough:
-            lines.append("🟢 <b>Tüm bölgelerde koşullar sınırın altında.</b>")
+            head.append("")
+            head.append("🟢 <b>Bugün tüm bölgeler sınırın altında.</b>")
+        elif shuts:
+            first = min(shuts, key=lambda a: a.first_danger.start)
+            head.append("")
+            head.append(f"⚠️ <b>{len(shuts)} bölge bugün kapanıyor.</b> "
+                        f"En erken {html.escape(first.name)}: "
+                        f"<b>{first.first_danger.start}</b>")
+
+        body = []
         for a in rough:
-            lines.append(f"<b>{html.escape(a.name)}</b>")
+            body.append("")
+            body.append(f"🌊 <b>{html.escape(_upper_tr(a.name))}</b>")
             for w in a.windows:
                 if w.level == "ok" and w.hours < 3:
                     continue
-                # say which limit is the problem: a calm-wind, high-swell block
-                # read as "ÇIKMAYIN · 4 Bofor", which looks like a mistake
-                over_w = w.wave_m >= float(klass.get("wave_m", 2.0))
-                over_g = w.gust_kn >= float(klass.get("gust_kn", 34))
-                bits = f"{_beaufort(w.gust_kn)} Bofor ({w.gust_kn:.0f} kn)"
-                if over_g and not over_w:
-                    bits = "⚠ rüzgâr " + bits
-                if w.wave_m >= 0.05:
-                    wave = f"dalga {_num(round(w.wave_m, 1))} m"
-                    bits += ", " + ("⚠ yüksek " + wave if over_w and not over_g else wave)
-                lines.append(f"  {self._LEVEL_MARK[w.level]} {w.start}–{w.end}  "
-                             f"{self._LEVEL_TR[w.level]} · {bits}")
-            lines.append("")
+                body.append(cls._window_line(w, klass))
 
+        tail = []
         if calm:
-            lines.append("🟢 Sınırın altında: " +
-                         html.escape(", ".join(a.name for a in calm)))
-        lines += ["",
-                  "<i>Model tahminidir, ölçüm değildir. Karar sizindir; çıkmadan önce "
-                  "liman başkanlığından ve MGM'den teyit alın.</i>",
-                  "<b>Acil durumda: 158 Sahil Güvenlik  ·  112</b>"]
-        self._emit(f"outlook:{day}", "\n".join(lines), dry, urgent=True)
+            tail += ["", "🟢 <b>Sınırın altında:</b> " +
+                     html.escape(", ".join(a.name for a in calm))]
+        tail += ["", "———",
+                 "<i>Model tahminidir, ölçüm değildir. Karar senindir; çıkmadan önce "
+                 "liman başkanlığından ve MGM'den teyit al.</i>",
+                 "<b>Acil: 158 Sahil Güvenlik · 112</b>"]
+        return "\n".join(head + body + tail)
+
+    def outlook_text_for(self, cfg: dict, sub: dict) -> str:
+        """One subscriber's own message: their areas, their boat class."""
+        from ..ingest.openmeteo import fetch_forecast_points
+        from ..process.window import build as build_window
+
+        oc = cfg.get("outlook", {})
+        klass = oc.get("classes", {}).get(sub.get("boat", "small"), {})
+        wanted = set(sub.get("areas") or [])
+        try:
+            pts = fetch_forecast_points(cfg)
+        except Exception as e:
+            print(f"[outlook] error: {e}")
+            return ""
+        pts = [p for p in pts if not wanted or p["name"] in wanted]
+        if not pts:
+            return ""
+        tz = float(oc.get("tz_offset_hours", 3))
+        areas = [build_window(p["name"], p["times"], p["gusts"], p["waves"], klass,
+                              hours=int(oc.get("hours", 18)), tz_offset_h=tz,
+                              lat=p["lat"], lon=p["lon"]) for p in pts]
+        return self.outlook_text(areas, klass, tz_offset_h=tz)
+
+    def daily_outlook(self, areas, klass: dict, dry: bool = True, day: str = "") -> None:
+        """Broadcast form, for a public channel with no per-person settings."""
+        if not self.enabled or not self.prevention or not areas:
+            return
+        self._emit(f"outlook:{day}", self.outlook_text(areas, klass), dry, urgent=True)
 
     def operator(self, text: str, dry: bool = True) -> None:
         """System health notice. Sent once per day per distinct message."""

@@ -145,6 +145,14 @@ news:
                   "serinlemek için", "yüzmek için", "plajda boğul", "selfie",
                   "denize düşen cep telefon", "kayıkçılar derneği"]
 
+# Interactive bot. Each chat picks its own sea areas and boat class, and the
+# morning message is built for it. Commands are answered from getUpdates on every
+# cycle, so this really wants `run.py --loop` on a host: under cron alone a reply
+# would wait for the next scheduled run. Subscriber ids are personal data and
+# data/subscribers.json is git-ignored - it must never reach the public repo.
+bot:
+  enabled: true
+
 # Daily "can I go out today" message. This is the channel's main product: a
 # warning that only fires in a gale is useless for planning, and our old gale
 # threshold (34 kn / 2.0 m) was crossed 4 and 0 times in nine days of real data.

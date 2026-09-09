@@ -20,6 +20,7 @@ import threading
 import time
 from pathlib import Path
 
+from src.alert.bot import Bot
 from src.alert.telegram import Notifier
 from src.config import load_config
 from src.ingest import _net
@@ -67,6 +68,25 @@ def send_daily_outlook(cfg: dict, notifier, *, dry: bool = True) -> None:
     tz = float(oc.get("tz_offset_hours", 3))
     now_local = time.gmtime(time.time() + tz * 3600)
     if now_local.tm_hour < int(oc.get("send_hour_local", 6)):
+        return
+
+    # per-subscriber first: a Marmara fisherman should not get thirteen sea areas
+    bot = Bot(cfg, notifier=notifier)
+    subs = bot.subs.active()
+    if subs:
+        day = time.strftime("%Y-%m-%d", now_local)
+        sent = 0
+        for chat, sub in subs:
+            if sub.get("last_outlook") == day:
+                continue
+            text = notifier.outlook_text_for(cfg, sub)
+            if not text:
+                continue
+            if bot.send(chat, text, dry=dry):
+                sub["last_outlook"] = day
+                sent += 1
+        bot.subs.save()
+        print(f"[outlook] {sent}/{len(subs)} aboneye gonderildi")
         return
 
     klass = oc["classes"][oc.get("boat_class", "small")]
@@ -212,6 +232,10 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     for w in clear_passed_weather(store, wx_seen, wx_live and bool(wx_seen or extra_warns_ran)):
         notifier.weather_passed(w, dry=dry)
 
+    if cfg.get("bot", {}).get("enabled", False):
+        n = _safe("bot", lambda: Bot(cfg, notifier=notifier).poll(dry=dry), 0)
+        if n:
+            print(f"[bot] {n} guncelleme islendi")
     send_daily_outlook(cfg, notifier, dry=dry)
 
     dw, di = prune(store, cfg)

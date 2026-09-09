@@ -71,7 +71,7 @@ Sunucu gerektirmez: GitHub Actions cron + GitHub Pages ile **sıfır maliyetle**
 
 | Kullanıcı | Aldığı şey |
 | :-- | :-- |
-| 🎣 **Balıkçı / küçük tekne** | Her sabah 06:00'da bölge bölge **saat saat** durum: *"Marmara — 08:00-18:00 uygun (4 Bofor), 18:00'den sonra dikkatli olun."* Tekne boyuna göre eşik. Fırtına geçince **"UYARI KALKTI"** mesajı. |
+| 🎣 **Balıkçı / küçük tekne** | Telegram botuna `/bolge` ve `/tekne` der, her sabah 06:00'da **kendi** denizleri için **saat saat** durum: *"Marmara — 08:00-18:00 uygun (4 Bofor), 18:00'den sonra dikkatli olun."* Tekne boyuna göre eşik. Fırtına geçince **"UYARI KALKTI"** mesajı. |
 | 📰 **Gazeteci / araştırmacı** | Web haritası + zaman çizelgesi. Her kayıtta kaynak linki ve **doğrulanmadı** etiketi. |
 | 🏢 **Haber merkezi** | `feed.xml` (RSS) — olay akışını kendi sistemine bağlar. |
 | 🧭 **Vatandaş** | Bölge filtresi, TR/EN arayüz, aylara ve türe göre istatistik. |
@@ -89,6 +89,8 @@ Sunucu gerektirmez: GitHub Actions cron + GitHub Pages ile **sıfır maliyetle**
 
 ## Nasıl çalışır
 
+- **Kişiye özel abonelik** — bot üzerinden herkes kendi denizlerini ve tekne boyunu seçer;
+  sabah mesajı ona göre kurulur. Marmara'daki balıkçı İskenderun'u görmez.
 - **Günlük pencere mesajı** — asıl ürün bu. Saatlik tahmini `🟢 uygun / 🟡 dikkat /
   🔴 çıkmayın` bloklarına indirger. *"Bugün en fazla 25 kn"* kimsenin kararını
   değiştirmez; *"14:00'ten sonra 6 Bofor"* değiştirir. İki blok arasındaki tek saatlik
@@ -239,12 +241,12 @@ py run.py --loop --send
 | Komut | Ne yapar |
 | :-- | :-- |
 | `py run.py --once` | Tek döngü (dry-run), çık |
-| `py run.py --loop` | `config.yaml → loop.interval_seconds` aralığıyla sürekli |
+| `py run.py --loop` | Sürekli çalışır — **bot komutları için bu mod gerekli** |
 | `py run.py --serve` | Sadece `web/` klasörünü sun |
 | `py run.py --once --send` | Telegram'a **gerçekten** gönder |
 | `py run.py --no-ais` / `--no-scrape` | Katman kapat |
 | `py run.py --config yol.yaml` | Başka bir yapılandırma |
-| `py -m pytest` | 146 test |
+| `py -m pytest` | 157 test |
 | `py eval/run_eval.py` | Precision / recall raporu |
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
@@ -258,6 +260,12 @@ py run.py --loop --send
 | **GitHub Actions + Pages** — `.github/workflows/update.yml` | **$0** | ~15 dk | Sunucu yok. Public repo = sınırsız Actions dakikası. Secrets: `AISSTREAM_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
 | Fly.io / Koyeb free | $0 | ~gerçek zamanlı | Küçük always-on; WebSocket'i açık tutar |
 | Ucuz VPS (Hetzner ~€4/ay) | düşük | gerçek zamanlı | `py run.py --loop --send` + systemd; SDR modülleri de buraya |
+
+> [!IMPORTANT]
+> **Bot komutları cron'da çalışmaz.** `getUpdates` her döngüde okunur, cron 15 dakikada
+> bir döner; `/durum` yazan biri 15 dakika bekler ki bu sohbet değildir. Bot için
+> `--loop` modu bir sunucuda çalışmalı (Fly.io ücretsiz katmanı yeter). Günlük mesaj
+> ve harita cron'da sorunsuz.
 
 > [!TIP]
 > GitHub cron'u garantili değildir — pratikte 1–5 saatlik atlamalar görülüyor. Bu yüzden
@@ -282,6 +290,9 @@ Araç **TCK 132** (haberleşmenin gizliliği) ve **KVKK** gözetilerek tasarland
   (RX-only), yalnız izinli frekanslar (Ch16, DSC, NAVTEX, amatör afet, havacılık acil —
   **asla** kolluk/askerî), kalıcı kayıt yok, ham yakalama asla yayınlanmaz.
   Ayrıntı: [`src/sdr/README.md`](src/sdr/README.md).
+- 🔒 **Abone kimlikleri:** Telegram `chat_id` bir kişiyi tanımlar. `data/subscribers.json`
+  git-ignore'dadır ve sunucudan çıkmaz — public depoya, haritaya ya da beslemeye
+  hiçbir abone bilgisi düşmez.
 - 🔒 **Kişisel veri:** kaza kurbanlarının ve yakınlarının adları yayına çıkmaz. Cenaze,
   tutuklama ve duruşma haberleri denizciye bir şey söylemediği için kaynakta elenir; kalan
   metinde kişi adı maskelenir. Bu süzgeç depoda duran eski kayıtlara da her döngüde uygulanır.
@@ -320,9 +331,10 @@ src/
     window.py             saatlik tahmin → 🟢/🟡/🔴 zaman pencereleri (tekne sınıfına göre)
   render/                 feed.xml (RSS) + summary.json
   alert/telegram.py       sade Türkçe mesajlar, digest, tekrar koruması
+  alert/bot.py            Telegram botu: kişiye özel bölge + tekne sınıfı aboneliği
   sdr/                    opsiyonel modül — entegrasyon rehberi + stub
 web/                      Leaflet haritası + stats.html (statik, build yok)
-tests/                    pytest (146)
+tests/                    pytest (157)
 eval/                     precision/recall ölçümü
 .github/workflows/        tests.yml + update.yml
 ```
@@ -334,7 +346,7 @@ eval/                     precision/recall ölçümü
 ## Test ve ölçüm
 
 ```bash
-py -m pytest          # 146 test
+py -m pytest          # 157 test
 py -m ruff check .    # lint
 py eval/run_eval.py   # eval/REPORT.md üretir
 ```
