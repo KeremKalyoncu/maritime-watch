@@ -38,6 +38,43 @@ def _series(url: str, params: dict, sample: str, field: str):
     return [v for v in vals[start:] if isinstance(v, (int, float))], live
 
 
+def _hourly(url: str, params: dict, sample: str, field: str):
+    """Like _series but keeps the timestamps: the daily outlook needs to say
+    *when*, not just how much."""
+    q = "&".join(f"{k}={v}" for k, v in params.items())
+    data, live = get_json(f"{url}?{q}", sample)
+    if not data:
+        return [], [], live
+    hourly = data.get("hourly") or {}
+    vals, times = hourly.get(field) or [], hourly.get("time") or []
+    if len(times) != len(vals):
+        return [], [], live
+    cutoff = time.strftime("%Y-%m-%dT%H:00", time.gmtime())
+    start = next((i for i, t in enumerate(times) if str(t) >= cutoff), 0)
+    return times[start:], vals[start:], live
+
+
+def fetch_forecast_points(cfg: dict) -> list[dict]:
+    """Hourly gust + wave for every configured sea area, from the current hour.
+
+    Returns only points whose data came back live - a fixture must never become
+    a forecast, and an outlook built from a dead source would be worse than
+    silence because people plan a day around it.
+    """
+    out = []
+    for pt in cfg["openmeteo"]["points"]:
+        base = {"latitude": pt["lat"], "longitude": pt["lon"], "forecast_days": 3}
+        wt, waves, lw = _hourly(MARINE, {**base, "hourly": "wave_height"},
+                                "openmeteo_marine.json", "wave_height")
+        gt, gusts, lg = _hourly(WIND, {**base, "hourly": "wind_gusts_10m", "wind_speed_unit": "kn"},
+                                "openmeteo_wind.json", "wind_gusts_10m")
+        if not (lw and lg) or not gt:
+            continue
+        out.append({"name": pt["name"], "lat": pt["lat"], "lon": pt["lon"],
+                    "times": gt, "gusts": gusts, "waves": waves if wt else []})
+    return out
+
+
 def fetch_marine_warnings(cfg: dict) -> list[Warning]:
     om = cfg["openmeteo"]
     hours = int(om["hours_ahead"])

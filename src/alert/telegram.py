@@ -334,6 +334,57 @@ class Notifier:
                  "hava kısa sürede değişebilir.</i>"]
         self._emit(f"wxend:{w.id}", "\n".join(lines), dry, w.lat, w.lon)
 
+    # ---- daily outlook ------------------------------------------------------
+    _LEVEL_MARK = {"ok": "🟢", "watch": "🟡", "danger": "🔴"}
+    _LEVEL_TR = {"ok": "uygun", "watch": "dikkatli olun", "danger": "ÇIKMAYIN"}
+
+    def daily_outlook(self, areas, klass: dict, dry: bool = True, day: str = "") -> None:
+        """The morning "can I go out today" message.
+
+        This is the channel's reason to exist. A rescue that already happened
+        warns nobody; a gale-only alert never fires. What a fisherman decides at
+        04:00 is the hours, so the message is a list of hours.
+        """
+        if not self.enabled or not self.prevention or not areas:
+            return
+        label = klass.get("label", "tekne")
+        rough = [a for a in areas if a.worst != "ok"]
+        calm = [a for a in areas if a.worst == "ok"]
+
+        lines = [f"🎣 <b>GÜNLÜK DENİZ DURUMU</b> — {html.escape(day)}", "",
+                 f"<i>{html.escape(label)} için değerlendirildi "
+                 f"(sınır: {klass.get('gust_kn')} kn rüzgâr, {klass.get('wave_m')} m dalga)</i>", ""]
+
+        if not rough:
+            lines.append("🟢 <b>Tüm bölgelerde koşullar sınırın altında.</b>")
+        for a in rough:
+            lines.append(f"<b>{html.escape(a.name)}</b>")
+            for w in a.windows:
+                if w.level == "ok" and w.hours < 3:
+                    continue
+                # say which limit is the problem: a calm-wind, high-swell block
+                # read as "ÇIKMAYIN · 4 Bofor", which looks like a mistake
+                over_w = w.wave_m >= float(klass.get("wave_m", 2.0))
+                over_g = w.gust_kn >= float(klass.get("gust_kn", 34))
+                bits = f"{_beaufort(w.gust_kn)} Bofor ({w.gust_kn:.0f} kn)"
+                if over_g and not over_w:
+                    bits = "⚠ rüzgâr " + bits
+                if w.wave_m >= 0.05:
+                    wave = f"dalga {_num(round(w.wave_m, 1))} m"
+                    bits += ", " + ("⚠ yüksek " + wave if over_w and not over_g else wave)
+                lines.append(f"  {self._LEVEL_MARK[w.level]} {w.start}–{w.end}  "
+                             f"{self._LEVEL_TR[w.level]} · {bits}")
+            lines.append("")
+
+        if calm:
+            lines.append("🟢 Sınırın altında: " +
+                         html.escape(", ".join(a.name for a in calm)))
+        lines += ["",
+                  "<i>Model tahminidir, ölçüm değildir. Karar sizindir; çıkmadan önce "
+                  "liman başkanlığından ve MGM'den teyit alın.</i>",
+                  "<b>Acil durumda: 158 Sahil Güvenlik  ·  112</b>"]
+        self._emit(f"outlook:{day}", "\n".join(lines), dry, urgent=True)
+
     def operator(self, text: str, dry: bool = True) -> None:
         """System health notice. Sent once per day per distinct message."""
         if not self.enabled:

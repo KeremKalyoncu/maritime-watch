@@ -77,7 +77,11 @@ scrape:
 
 openmeteo:
   wave_m: 2.0            # significant wave height that triggers a warning
-  wind_gust_kn: 33.0     # ~7 Bft
+  # 33 kn (Bft 8) was crossed 4 times in nine days of real Turkish coastal data;
+  # an alert that never fires teaches nobody to read it. 28 kn (Bft 7) fires a
+  # few times a week, which is the right rate for something that interrupts you.
+  # Day-to-day small-craft planning is the job of outlook: below, not this.
+  wind_gust_kn: 28.0
   hours_ahead: 36
   points:
     - { name: "Marmara Denizi", lat: 40.75, lon: 28.30 }
@@ -140,6 +144,20 @@ news:
   exclude_words: ["balıklama", "sığ suya", "sığ su", "havuzda", "havuza",
                   "serinlemek için", "yüzmek için", "plajda boğul", "selfie",
                   "denize düşen cep telefon", "kayıkçılar derneği"]
+
+# Daily "can I go out today" message. This is the channel's main product: a
+# warning that only fires in a gale is useless for planning, and our old gale
+# threshold (34 kn / 2.0 m) was crossed 4 and 0 times in nine days of real data.
+outlook:
+  enabled: true
+  send_hour_local: 6         # local time the morning message goes out
+  tz_offset_hours: 3         # Türkiye, UTC+3
+  hours: 18                  # how far ahead the message looks
+  boat_class: small          # who the channel is written for
+  classes:
+    small:  { label: "küçük tekne (8 m ve altı)", gust_kn: 22, wave_m: 1.25 }
+    medium: { label: "orta boy tekne (8-15 m)",   gust_kn: 28, wave_m: 2.0 }
+    large:  { label: "büyük tekne / gemi",        gust_kn: 34, wave_m: 3.0 }
 
 gdacs:
   alert_levels: ["Orange", "Red"]

@@ -30,7 +30,7 @@ from src.ingest.metar import fetch_metar
 from src.ingest.navwarn import fetch_navwarnings
 from src.ingest.news import fetch_news
 from src.ingest.official import gather_official
-from src.ingest.openmeteo import fetch_marine_warnings
+from src.ingest.openmeteo import fetch_forecast_points, fetch_marine_warnings
 from src.ingest.quakes import fetch_quakes
 from src.ingest.reliefweb import fetch_reliefweb
 from src.model import Incident, Source, Vessel, make_id
@@ -38,6 +38,7 @@ from src.process.anomaly import VesselState, detect
 from src.process.classify import classify
 from src.process.dedup import correlate
 from src.process.prune import clear_passed_weather, prune
+from src.process.window import build as build_outlook
 from src.render.feed import build_feed
 from src.render.health import write_health
 from src.render.mapdata import write_summary
@@ -51,6 +52,38 @@ _TYPE_FOR = {
     "course-spike": "unknown",
     "ais-sart": "distress",
 }
+
+
+def send_daily_outlook(cfg: dict, notifier, *, dry: bool = True) -> None:
+    """The morning "can I go out today" message, once a day.
+
+    Sent on the first cycle at or after the configured local hour; the notifier's
+    own sent-key (outlook:<date>) keeps it to one per day even though the cron
+    fires every 15 minutes.
+    """
+    oc = cfg.get("outlook", {})
+    if not oc.get("enabled", False):
+        return
+    tz = float(oc.get("tz_offset_hours", 3))
+    now_local = time.gmtime(time.time() + tz * 3600)
+    if now_local.tm_hour < int(oc.get("send_hour_local", 6)):
+        return
+
+    klass = oc["classes"][oc.get("boat_class", "small")]
+    try:
+        pts = fetch_forecast_points(cfg)
+    except Exception as e:
+        print(f"[outlook] error: {e}")
+        return
+    if not pts:
+        print("[outlook] canli tahmin yok -> mesaj gonderilmedi")
+        return
+    areas = [build_outlook(p["name"], p["times"], p["gusts"], p["waves"], klass,
+                           hours=int(oc.get("hours", 18)), tz_offset_h=tz,
+                           lat=p["lat"], lon=p["lon"]) for p in pts]
+    day = time.strftime("%d.%m.%Y", now_local)
+    print(f"[outlook] {len(areas)} bolge, {sum(1 for a in areas if a.worst != 'ok')} tanesinde sinir asiliyor")
+    notifier.daily_outlook(areas, klass, dry=dry, day=day)
 
 
 def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool = True) -> None:
@@ -178,6 +211,8 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     wx_live = do_scrape and all(_net.STATUS.get(k) != "sample" for k in _net.STATUS)
     for w in clear_passed_weather(store, wx_seen, wx_live and bool(wx_seen or extra_warns_ran)):
         notifier.weather_passed(w, dry=dry)
+
+    send_daily_outlook(cfg, notifier, dry=dry)
 
     dw, di = prune(store, cfg)
     if dw or di:
