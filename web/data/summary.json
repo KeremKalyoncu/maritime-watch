@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-09T01:30:34Z",
+  "generated": "2026-09-09T06:39:21Z",
   "stale_hours": 2,
-  "incident_count": 11,
+  "incident_count": 10,
   "by_status": {
-    "signal": 5,
+    "signal": 4,
     "resolved": 3,
     "confirmed": 3
   },

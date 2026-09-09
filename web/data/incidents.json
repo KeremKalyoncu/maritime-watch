@@ -16,7 +16,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-08T10:03:03Z",
-    "last_update": "2026-09-08T14:36:59Z",
+    "last_update": "2026-09-09T06:38:27Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -31,6 +31,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-08T14:36:59Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 750 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-09T06:38:27Z"
       }
     ],
     "notes": [],
@@ -62,37 +69,6 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-08T21:14:11Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-08-ais-330f92",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 37.00301833333333,
-    "lon": 27.385613333333332,
-    "area": "Gökova Körfezi",
-    "vessel": {
-      "name": "MERVE",
-      "mmsi": 271053081,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-08T18:09:18Z",
-    "last_update": "2026-09-08T18:09:18Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (12.3 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T18:09:18Z"
       }
     ],
     "notes": [],
