@@ -45,139 +45,163 @@
     "coarse": false
   },
   {
-    "id": "2026-09-08-ais-312ca9",
+    "id": "2026-09-09-ais-8a328c",
     "type": "drift",
     "status": "signal",
     "confidence": 0.25,
     "severity": "minor",
-    "lat": 37.46615666666666,
-    "lon": 25.315056666666667,
-    "area": "Orta Ege",
-    "vessel": {
-      "name": "MSC LIRICA",
-      "mmsi": 356042000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-08T21:14:11Z",
-    "last_update": "2026-09-08T21:14:11Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (14.0 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T21:14:11Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-08-ais-a82c03",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 40.7857,
-    "lon": 28.6832,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "MARAN PLATO",
-      "mmsi": 240837000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-08T21:14:11Z",
-    "last_update": "2026-09-08T23:28:21Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 672 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T21:14:11Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 806 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T23:28:21Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-08-ais-bbec1e",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.5059,
-    "lon": 27.4767,
+    "lat": 36.44538,
+    "lon": 28.233651666666667,
     "area": "Güney Ege",
     "vessel": {
-      "name": "LADY SUHA II",
-      "mmsi": 312004000,
+      "name": "COSTA FORTUNA",
+      "mmsi": 247094800,
       "type": null,
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-08T05:23:24Z",
-    "last_update": "2026-09-08T23:28:21Z",
+    "first_seen": "2026-09-09T11:57:24Z",
+    "last_update": "2026-09-09T11:57:24Z",
     "sources": [
       {
         "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 569 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (16.7 kn) ani duruşa geçti",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-08T05:23:24Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 849 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T10:03:03Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 671 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T21:14:11Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 672 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T21:14:11Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 805 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T23:28:21Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 806 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-08T23:28:21Z"
+        "ts": "2026-09-09T11:57:24Z"
       }
     ],
     "notes": [],
     "places": [],
     "coarse": false
+  },
+  {
+    "id": "2026-09-09-ais-c804cd",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 35.6788,
+    "lon": 34.6392,
+    "area": "Türk karasuları civarı",
+    "vessel": {
+      "name": "KIBRIS YILDIZI III",
+      "mmsi": 271055033,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T11:57:24Z",
+    "last_update": "2026-09-09T11:57:24Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 749 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-09T11:57:24Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "news-4ac5529afb",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T11:57:32Z",
+    "last_update": "2026-09-09T11:57:32Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Batan gemideki can pazarını anlattı: Kapılar kapalıydı, bir amcayı 30 dakika elimdeki zincirle tutmaya çalıştım",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/batan-gemideki-can-pazarini-anlatti-kapilar-kapaliydi-bir-amcayi-30-dakika-elimdeki-zincirle-tutmaya-calistim-43300908",
+        "ts": "2026-09-09T11:57:32Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "news-4d7532c821",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "critical",
+    "lat": 41.02,
+    "lon": 40.52,
+    "area": "Doğu Karadeniz",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 2,
+    "first_seen": "2026-09-09T11:57:35Z",
+    "last_update": "2026-09-09T11:57:35Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Rize açıklarında uçak denize acil iniş yaptı: 2 kişi kurtarıldı",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/rize-aciklarinda-ucak-denize-acil-inis-yapti-2-kisi-icin-kurtarma-calismasi-3464664",
+        "ts": "2026-09-09T11:57:35Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Rize"
+    ],
+    "coarse": true
+  },
+  {
+    "id": "news-eabfb05b75",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": 41.07,
+    "lon": 28.25,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T11:57:31Z",
+    "last_update": "2026-09-09T11:57:31Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Silivri açıklarında batan geminin mürettebatı 8. gününde aranıyor",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/silivri-aciklarinda-batan-geminin-murettebati-8-gununde-araniyor/4051978",
+        "ts": "2026-09-09T11:57:31Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Silivri"
+    ],
+    "coarse": true
   },
   {
     "id": "rep-442993157a",
