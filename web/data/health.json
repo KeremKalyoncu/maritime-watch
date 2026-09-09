@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-09T19:30:14Z",
-  "cycle_seconds": 162.8,
+  "generated": "2026-09-09T21:57:27Z",
+  "cycle_seconds": 153.0,
   "sources_ok": 7,
   "sources_total": 7,
   "sources_down": [],
-  "incidents": 19,
+  "incidents": 21,
   "warnings": 0,
   "sources": {
     "scrape": {
@@ -14,7 +14,7 @@
     },
     "news": {
       "ok": true,
-      "items": 2,
+      "items": 1,
       "error": null
     },
     "openmeteo": {
@@ -44,7 +44,7 @@
     }
   },
   "fetch": {
-    "mgm_alarmlar.json": "down",
+    "mgm_alarmlar.json": "live",
     "sahil_guvenlik.html": "live",
     "news_0.xml": "live",
     "news_1.xml": "live",

@@ -1,5 +1,36 @@
 [
   {
+    "id": "2026-09-09-ais-543051",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.84900666666667,
+    "lon": 28.28089,
+    "area": "Gökova Körfezi",
+    "vessel": {
+      "name": "AKCAKOCA",
+      "mmsi": 271002446,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T21:56:25Z",
+    "last_update": "2026-09-09T21:56:25Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (27.2 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-09T21:56:25Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-09-ais-6bc0f8",
     "type": "distress",
     "status": "signal",
@@ -86,6 +117,37 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-09T11:57:24Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-09-ais-9b46b5",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 43.198751666666666,
+    "lon": 27.892015,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "MARIA S",
+      "mmsi": 311001740,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-09T21:56:25Z",
+    "last_update": "2026-09-09T21:56:25Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (7.6 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-09T21:56:25Z"
       }
     ],
     "notes": [],
