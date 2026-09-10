@@ -78,7 +78,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-09T16:30:42Z",
-    "last_update": "2026-09-09T16:30:42Z",
+    "last_update": "2026-09-10T04:49:17Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -86,6 +86,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-09T16:30:42Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 375 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T04:49:17Z"
       }
     ],
     "notes": [],
@@ -169,37 +176,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-09-ais-a00547",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.667,
-    "lon": 28.4016,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "MEIN SCHIFF 5",
-      "mmsi": 256235000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-09T16:30:42Z",
-    "last_update": "2026-09-09T16:30:42Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 902 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-09T16:30:42Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-09-ais-b20fe8",
     "type": "distress",
     "status": "signal",
@@ -216,7 +192,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-09T22:48:44Z",
-    "last_update": "2026-09-10T00:02:30Z",
+    "last_update": "2026-09-10T04:49:17Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -231,68 +207,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T00:02:30Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-09-ais-b40703",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 40.662164999999995,
-    "lon": 28.891418333333334,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "A.M.K. MARIN",
-      "mmsi": 630001068,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-09T16:30:42Z",
-    "last_update": "2026-09-09T16:30:42Z",
-    "sources": [
+      },
       {
         "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 414 dakika önce kesildi (5 taramada üst üste görünmedi)",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-09T16:30:42Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-09-ais-cf750e",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.4889,
-    "lon": 34.9672,
-    "area": "Mersin–İskenderun Körfezi",
-    "vessel": {
-      "name": "HABIBIN YAVUZ",
-      "mmsi": 271073375,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-09T16:30:42Z",
-    "last_update": "2026-09-09T16:30:42Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 901 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-09T16:30:42Z"
+        "ts": "2026-09-10T04:49:17Z"
       }
     ],
     "notes": [],
@@ -316,7 +237,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T00:02:30Z",
-    "last_update": "2026-09-10T00:02:30Z",
+    "last_update": "2026-09-10T04:49:17Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -324,6 +245,44 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T00:02:30Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 396 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T04:49:17Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-10-ais-5f1e37",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.2374,
+    "lon": 35.3644,
+    "area": "Mersin–İskenderun Körfezi",
+    "vessel": {
+      "name": "WINSEN FB",
+      "mmsi": 271055038,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T04:49:17Z",
+    "last_update": "2026-09-10T04:49:17Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 373 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T04:49:17Z"
       }
     ],
     "notes": [],
@@ -347,7 +306,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T00:02:30Z",
-    "last_update": "2026-09-10T00:02:30Z",
+    "last_update": "2026-09-10T04:49:17Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -355,6 +314,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T00:02:30Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 397 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T04:49:17Z"
       }
     ],
     "notes": [],
@@ -409,7 +375,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T00:02:30Z",
-    "last_update": "2026-09-10T00:02:30Z",
+    "last_update": "2026-09-10T04:49:17Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -417,6 +383,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T00:02:30Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 397 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T04:49:17Z"
       }
     ],
     "notes": [],
@@ -453,6 +426,39 @@
     "notes": [],
     "places": [
       "Girne"
+    ],
+    "coarse": true
+  },
+  {
+    "id": "news-4d7532c821",
+    "type": "rescue",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "critical",
+    "lat": 41.02,
+    "lon": 40.52,
+    "area": "Doğu Karadeniz",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 2,
+    "first_seen": "2026-09-10T04:49:28Z",
+    "last_update": "2026-09-10T04:49:28Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Rize açıklarında uçak denize acil iniş yaptı: 2 kişi kurtarıldı",
+        "org": "cnnturk.com",
+        "url": "https://www.cnnturk.com/turkiye/rize-aciklarinda-ucak-denize-acil-inis-yapti-2-kisi-icin-kurtarma-calismasi-3464664",
+        "ts": "2026-09-10T04:49:28Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Rize"
     ],
     "coarse": true
   },
@@ -508,7 +514,7 @@
     },
     "casualties": 2,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-10T00:02:44Z",
+    "last_update": "2026-09-10T04:49:22Z",
     "sources": [
       {
         "kind": "official",
