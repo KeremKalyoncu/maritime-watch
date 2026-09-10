@@ -54,7 +54,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-09T16:30:42Z",
-    "last_update": "2026-09-10T13:53:10Z",
+    "last_update": "2026-09-10T20:05:34Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -83,6 +83,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T13:53:10Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (11.3 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T20:05:34Z"
       }
     ],
     "notes": [],
@@ -142,6 +149,37 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T13:53:10Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-10-ais-0ef609",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 43.18662333333334,
+    "lon": 27.898361666666666,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "TULENOVO 2",
+      "mmsi": 207822380,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T20:05:34Z",
+    "last_update": "2026-09-10T20:05:34Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: diğer: seyir hızından (7.0 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T20:05:34Z"
       }
     ],
     "notes": [],
@@ -217,7 +255,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T17:38:49Z",
-    "last_update": "2026-09-10T17:38:49Z",
+    "last_update": "2026-09-10T20:05:34Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -225,6 +263,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T17:38:49Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 632 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T20:05:34Z"
       }
     ],
     "notes": [],
@@ -446,6 +491,68 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T13:53:10Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-10-ais-b2d928",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.755478333333336,
+    "lon": 28.883991666666667,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "SEA BRIDLE",
+      "mmsi": 312086000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T20:05:34Z",
+    "last_update": "2026-09-10T20:05:34Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: kumanda dışı (not under command)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T20:05:34Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-10-ais-b44df9",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.623345,
+    "lon": 29.104958333333332,
+    "area": "Batı Akdeniz",
+    "vessel": {
+      "name": "SEA STAR MYKONOS",
+      "mmsi": 630001184,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T20:05:34Z",
+    "last_update": "2026-09-10T20:05:34Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (24.3 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T20:05:34Z"
       }
     ],
     "notes": [],
@@ -682,7 +789,7 @@
     },
     "casualties": 2,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-10T17:38:53Z",
+    "last_update": "2026-09-10T20:05:47Z",
     "sources": [
       {
         "kind": "official",
