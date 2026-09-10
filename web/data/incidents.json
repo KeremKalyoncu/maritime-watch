@@ -201,6 +201,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-10-ais-5b502e",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.4922,
+    "lon": 27.8735,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "ERMIONI",
+      "mmsi": 241025000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T17:38:49Z",
+    "last_update": "2026-09-10T17:38:49Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 770 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T17:38:49Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-10-ais-5f1e37",
     "type": "distress",
     "status": "signal",
@@ -239,6 +270,37 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T13:53:10Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-10-ais-690ddb",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.6604,
+    "lon": 28.049,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "M/Y GOLDEN HORN",
+      "mmsi": 538071660,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T17:38:49Z",
+    "last_update": "2026-09-10T17:38:49Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 770 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T17:38:49Z"
       }
     ],
     "notes": [],
@@ -298,6 +360,68 @@
     "coarse": false
   },
   {
+    "id": "2026-09-10-ais-8ced70",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 41.5589,
+    "lon": 29.0996,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "FLAVIN",
+      "mmsi": 538009975,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T17:38:49Z",
+    "last_update": "2026-09-10T17:38:49Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 770 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T17:38:49Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-10-ais-90b45b",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.58171333333333,
+    "lon": 28.266313333333336,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "ALTAVITA",
+      "mmsi": 538071673,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T17:38:49Z",
+    "last_update": "2026-09-10T17:38:49Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: kumanda dışı (not under command)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T17:38:49Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-10-ais-9ce9e9",
     "type": "drift",
     "status": "signal",
@@ -322,6 +446,37 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T13:53:10Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-10-ais-c12305",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.5106,
+    "lon": 34.5997,
+    "area": "Mersin–İskenderun Körfezi",
+    "vessel": {
+      "name": "DEEP KARPAZ",
+      "mmsi": 271055001,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T17:38:49Z",
+    "last_update": "2026-09-10T17:38:49Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 771 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T17:38:49Z"
       }
     ],
     "notes": [],
@@ -409,39 +564,6 @@
     ],
     "notes": [],
     "places": [],
-    "coarse": true
-  },
-  {
-    "id": "news-4d7532c821",
-    "type": "rescue",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "critical",
-    "lat": 41.02,
-    "lon": 40.52,
-    "area": "Doğu Karadeniz",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": 2,
-    "first_seen": "2026-09-10T04:49:28Z",
-    "last_update": "2026-09-10T04:49:28Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Rize açıklarında uçak denize acil iniş yaptı: 2 kişi kurtarıldı",
-        "org": "cnnturk.com",
-        "url": "https://www.cnnturk.com/turkiye/rize-aciklarinda-ucak-denize-acil-inis-yapti-2-kisi-icin-kurtarma-calismasi-3464664",
-        "ts": "2026-09-10T04:49:28Z"
-      }
-    ],
-    "notes": [],
-    "places": [
-      "Rize"
-    ],
     "coarse": true
   },
   {
@@ -560,7 +682,7 @@
     },
     "casualties": 2,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-10T13:53:17Z",
+    "last_update": "2026-09-10T17:38:53Z",
     "sources": [
       {
         "kind": "official",
@@ -736,7 +858,7 @@
   {
     "id": "rep-dba1f112fd",
     "type": "rescue",
-    "status": "confirmed",
+    "status": "resolved",
     "confidence": 0.6,
     "severity": "critical",
     "lat": 37.86,
@@ -760,7 +882,9 @@
         "ts": "2026-09-07T16:01:34Z"
       }
     ],
-    "notes": [],
+    "notes": [
+      "otomatik kapandı: ~74 saat güncelleme yok"
+    ],
     "places": [
       "Aydın"
     ],

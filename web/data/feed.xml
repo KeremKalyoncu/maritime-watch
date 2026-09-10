@@ -3,7 +3,49 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Thu, 10 Sep 2026 13:58:13 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 10 Sep 2026 17:43:44 +0000</lastBuildDate>
+    <item>
+      <title>[confirmed] unknown, Güney Ege</title>
+      <link>https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026</link>
+      <guid isPermaLink="false">rep-4d701b7ab0-4</guid>
+      <pubDate>Thu, 10 Sep 2026 17:38:53 +0000</pubDate>
+      <description>Güven: 0.85 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: course-spike: ani rota değişimi (~114°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 504 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 820 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] drift, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-10-ais-90b45b-1</guid>
+      <pubDate>Thu, 10 Sep 2026 17:38:49 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: nav-status: kumanda dışı (not under command)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-10-ais-5b502e-1</guid>
+      <pubDate>Thu, 10 Sep 2026 17:38:49 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 770 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Mersin–İskenderun Körfezi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-10-ais-c12305-1</guid>
+      <pubDate>Thu, 10 Sep 2026 17:38:49 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 771 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-10-ais-8ced70-1</guid>
+      <pubDate>Thu, 10 Sep 2026 17:38:49 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 770 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-10-ais-690ddb-1</guid>
+      <pubDate>Thu, 10 Sep 2026 17:38:49 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 770 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
     <item>
       <title>[signal] fire, konum belirsiz</title>
       <link>https://example.github.io/maritime-watch</link>
@@ -24,13 +66,6 @@
       <guid isPermaLink="false">news-994d8d0ad2-1</guid>
       <pubDate>Thu, 10 Sep 2026 13:53:21 +0000</pubDate>
       <description>Güven: 0.3 | Önem: minor | news/hurriyet.com.tr: Gaziantep'te tünel inşaatında iskele faciası: 1 işçi öldü, 3 yaralı</description>
-    </item>
-    <item>
-      <title>[confirmed] unknown, Güney Ege</title>
-      <link>https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026</link>
-      <guid isPermaLink="false">rep-4d701b7ab0-4</guid>
-      <pubDate>Thu, 10 Sep 2026 13:53:17 +0000</pubDate>
-      <description>Güven: 0.85 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: course-spike: ani rota değişimi (~114°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 504 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 820 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
     </item>
     <item>
       <title>[signal] drift, Orta Ege</title>
@@ -75,13 +110,6 @@
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 110 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 397 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 681 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 941 dakika önce kesildi (6 taramada üst üste görünmedi)</description>
     </item>
     <item>
-      <title>[signal] distress, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-10-ais-cbde37-4</guid>
-      <pubDate>Thu, 10 Sep 2026 13:53:10 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 110 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 397 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 681 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 941 dakika önce kesildi (6 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
       <title>[signal] drift, Gökova Körfezi</title>
       <link>https://example.github.io/maritime-watch</link>
       <guid isPermaLink="false">2026-09-10-ais-9ce9e9-1</guid>
@@ -89,11 +117,11 @@
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (8.5 kn) ani duruşa geçti</description>
     </item>
     <item>
-      <title>[signal] rescue, Doğu Karadeniz</title>
-      <link>https://www.cnnturk.com/turkiye/rize-aciklarinda-ucak-denize-acil-inis-yapti-2-kisi-icin-kurtarma-calismasi-3464664</link>
-      <guid isPermaLink="false">news-4d7532c821-1</guid>
-      <pubDate>Thu, 10 Sep 2026 04:49:28 +0000</pubDate>
-      <description>Güven: 0.3 | Önem: critical | Bildirilen kişi: 2 | news/cnnturk.com: Rize açıklarında uçak denize acil iniş yaptı: 2 kişi kurtarıldı</description>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-10-ais-cbde37-4</guid>
+      <pubDate>Thu, 10 Sep 2026 13:53:10 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 110 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 397 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 681 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 941 dakika önce kesildi (6 taramada üst üste görünmedi)</description>
     </item>
     <item>
       <title>[confirmed] rescue, Marmara Denizi</title>
@@ -117,7 +145,7 @@
       <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 18 | official/Sahil Güvenlik Komutanlığı: 08.09.2026 İzmir Açıklarında 18 Düzensiz Göçmen (Beraberinde 1 Çocuk) Kurtarılmıştır</description>
     </item>
     <item>
-      <title>[confirmed] rescue, Orta Ege</title>
+      <title>[resolved] rescue, Orta Ege</title>
       <link>https://www.sg.gov.tr/aydin-aciklarinda-2-sahis-kurtarilmistir-06-09-2026</link>
       <guid isPermaLink="false">rep-dba1f112fd-1</guid>
       <pubDate>Mon, 07 Sep 2026 16:01:34 +0000</pubDate>
