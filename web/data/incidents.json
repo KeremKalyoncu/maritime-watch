@@ -16,7 +16,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-09T22:13:13Z",
-    "last_update": "2026-09-09T22:13:13Z",
+    "last_update": "2026-09-10T13:53:10Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -24,37 +24,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-09T22:13:13Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-09-ais-543051",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.84900666666667,
-    "lon": 28.28089,
-    "area": "Gökova Körfezi",
-    "vessel": {
-      "name": "AKCAKOCA",
-      "mmsi": 271002446,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-09T21:56:25Z",
-    "last_update": "2026-09-09T21:56:25Z",
-    "sources": [
+      },
       {
         "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (27.2 kn) ani duruşa geçti",
+        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (10.6 kn) ani duruşa geçti",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-09T21:56:25Z"
+        "ts": "2026-09-10T13:53:10Z"
       }
     ],
     "notes": [],
@@ -78,7 +54,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-09T16:30:42Z",
-    "last_update": "2026-09-10T09:33:46Z",
+    "last_update": "2026-09-10T13:53:10Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -100,82 +76,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T09:33:46Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-09-ais-6dd8c8",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.572426666666665,
-    "lon": 34.67923833333334,
-    "area": "Mersin–İskenderun Körfezi",
-    "vessel": {
-      "name": "MED ANTALYA",
-      "mmsi": 271054288,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-09T19:29:02Z",
-    "last_update": "2026-09-09T22:48:44Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (12.3 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-09T19:29:02Z"
       },
       {
         "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (3.1 kn) ani duruşa geçti",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 918 dakika önce kesildi (5 taramada üst üste görünmedi)",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-09T22:48:44Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-09-ais-9b46b5",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 43.198751666666666,
-    "lon": 27.892015,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "MARIA S",
-      "mmsi": 311001740,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-09T21:56:25Z",
-    "last_update": "2026-09-09T22:36:04Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (7.6 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-09T21:56:25Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: diğer: seyir hızından (8.1 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-09T22:36:04Z"
+        "ts": "2026-09-10T13:53:10Z"
       }
     ],
     "notes": [],
@@ -199,7 +106,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-09T22:48:44Z",
-    "last_update": "2026-09-10T09:33:46Z",
+    "last_update": "2026-09-10T13:53:10Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -228,6 +135,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T09:33:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 957 dakika önce kesildi (7 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T13:53:10Z"
       }
     ],
     "notes": [],
@@ -251,7 +165,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T00:02:30Z",
-    "last_update": "2026-09-10T09:33:46Z",
+    "last_update": "2026-09-10T13:53:10Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -273,6 +187,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T09:33:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 940 dakika önce kesildi (6 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T13:53:10Z"
       }
     ],
     "notes": [],
@@ -296,7 +217,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T04:49:17Z",
-    "last_update": "2026-09-10T09:33:46Z",
+    "last_update": "2026-09-10T13:53:10Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -311,6 +232,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T09:33:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 917 dakika önce kesildi (5 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T13:53:10Z"
       }
     ],
     "notes": [],
@@ -334,7 +262,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T00:02:30Z",
-    "last_update": "2026-09-10T09:33:46Z",
+    "last_update": "2026-09-10T13:53:10Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -356,6 +284,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T09:33:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 941 dakika önce kesildi (6 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T13:53:10Z"
       }
     ],
     "notes": [],
@@ -363,30 +298,30 @@
     "coarse": false
   },
   {
-    "id": "2026-09-10-ais-bbced5",
+    "id": "2026-09-10-ais-9ce9e9",
     "type": "drift",
     "status": "signal",
     "confidence": 0.25,
     "severity": "minor",
-    "lat": 37.087333333333326,
-    "lon": 25.14816666666667,
-    "area": "Güney Ege",
+    "lat": 37.0358,
+    "lon": 27.427500000000002,
+    "area": "Gökova Körfezi",
     "vessel": {
-      "name": "THEOLOGOS P .",
-      "mmsi": 240521000,
+      "name": "BOREAS 1",
+      "mmsi": 271050148,
       "type": null,
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-10T00:02:30Z",
-    "last_update": "2026-09-10T00:02:30Z",
+    "first_seen": "2026-09-10T13:53:10Z",
+    "last_update": "2026-09-10T13:53:10Z",
     "sources": [
       {
         "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (5.4 kn) ani duruşa geçti",
+        "detail": "speed-drop: seyir hızından (8.5 kn) ani duruşa geçti",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-10T00:02:30Z"
+        "ts": "2026-09-10T13:53:10Z"
       }
     ],
     "notes": [],
@@ -410,7 +345,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T00:02:30Z",
-    "last_update": "2026-09-10T09:33:46Z",
+    "last_update": "2026-09-10T13:53:10Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -432,11 +367,49 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T09:33:46Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 941 dakika önce kesildi (6 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T13:53:10Z"
       }
     ],
     "notes": [],
     "places": [],
     "coarse": false
+  },
+  {
+    "id": "news-4a45dc87b3",
+    "type": "fire",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T13:53:24Z",
+    "last_update": "2026-09-10T13:53:24Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Çin'de tersanedeki kargo gemisinde yangın! 20 ölü, 5 yaralı",
+        "org": "milliyet.com.tr",
+        "url": "",
+        "ts": "2026-09-10T13:53:24Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
   },
   {
     "id": "news-4d7532c821",
@@ -468,6 +441,70 @@
     "notes": [],
     "places": [
       "Rize"
+    ],
+    "coarse": true
+  },
+  {
+    "id": "news-994d8d0ad2",
+    "type": "unknown",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T13:53:21Z",
+    "last_update": "2026-09-10T13:53:21Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Gaziantep'te tünel inşaatında iskele faciası: 1 işçi öldü, 3 yaralı",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/gaziantepte-tunel-insaatinda-iskele-faciasi-1-isci-oldu-3-yarali-43302375",
+        "ts": "2026-09-10T13:53:21Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "news-cc8bb53de8",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": 41.07,
+    "lon": 28.25,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T13:53:23Z",
+    "last_update": "2026-09-10T13:53:23Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Silivri açıklarında batan geminin mürettebatı 9. gününde aranıyor",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/turkiye/silivri-aciklarinda-batan-geminin-murettebati-9-gununde-araniyor-956475.html",
+        "ts": "2026-09-10T13:53:23Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Silivri"
     ],
     "coarse": true
   },
@@ -523,7 +560,7 @@
     },
     "casualties": 2,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-10T09:33:51Z",
+    "last_update": "2026-09-10T13:53:17Z",
     "sources": [
       {
         "kind": "official",
