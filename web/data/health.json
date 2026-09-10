@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-10T20:10:20Z",
-  "cycle_seconds": 376.6,
+  "generated": "2026-09-10T22:40:09Z",
+  "cycle_seconds": 162.5,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
-  "incidents": 27,
+  "incidents": 28,
   "warnings": 0,
   "sources": {
     "scrape": {
@@ -61,7 +61,7 @@
     "news_7.xml": "live",
     "news_8.xml": "down",
     "news_9.xml": "live",
-    "openmeteo_marine.json": "down",
+    "openmeteo_marine.json": "live",
     "openmeteo_wind.json": "down",
     "afad_quakes.json": "live",
     "usgs_quakes.json": "live",

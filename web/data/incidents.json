@@ -255,7 +255,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T17:38:49Z",
-    "last_update": "2026-09-10T20:05:34Z",
+    "last_update": "2026-09-10T22:38:57Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -270,6 +270,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T20:05:34Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 785 dakika önce kesildi (4 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T22:38:57Z"
       }
     ],
     "notes": [],
@@ -460,6 +467,37 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T17:38:49Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-10-ais-9c1abb",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.745868333333334,
+    "lon": 29.172135,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": "KASIRGA BALIKCILIK",
+      "mmsi": 271074234,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-10T22:38:57Z",
+    "last_update": "2026-09-10T22:38:57Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: diğer: seyir hızından (10.7 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-10T22:38:57Z"
       }
     ],
     "notes": [],
@@ -789,7 +827,7 @@
     },
     "casualties": 2,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-10T20:05:47Z",
+    "last_update": "2026-09-10T22:39:05Z",
     "sources": [
       {
         "kind": "official",
