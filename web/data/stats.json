@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-09T22:49:32Z",
-  "total_incidents": 183,
+  "generated": "2026-09-10T00:04:03Z",
+  "total_incidents": 187,
   "by_month": {
-    "2026-09": 183
+    "2026-09": 187
   },
   "by_area": {
-    "belirsiz": 164,
+    "belirsiz": 168,
     "Marmara Denizi": 6,
     "Türk karasuları civarı": 5,
     "Doğu Karadeniz": 3,
@@ -14,14 +14,14 @@
     "Antalya Körfezi": 1
   },
   "by_type": {
-    "distress": 76,
+    "distress": 79,
     "unknown": 47,
-    "drift": 41,
+    "drift": 42,
     "sinking": 18,
     "collision": 1
   },
   "by_status": {
-    "signal": 183
+    "signal": 187
   },
   "incidents_with_casualties": 12,
   "casualties_reported_total": 160,
@@ -59,11 +59,11 @@
       2
     ],
     [
-      "ADMIRAL",
+      "THEOLOGOS P .",
       2
     ],
     [
-      "ANDROS QUEEN",
+      "ADMIRAL",
       2
     ]
   ],
