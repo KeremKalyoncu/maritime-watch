@@ -100,6 +100,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-11-ais-8cfda6",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 42.972120000000004,
+    "lon": 28.201228333333333,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "POSEIDON GAS",
+      "mmsi": 636022682,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-11T20:51:46Z",
+    "last_update": "2026-09-11T20:51:46Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: tanker: seyir hızından (10.1 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-11T20:51:46Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "2026-09-11-ais-f18ac4",
     "type": "drift",
     "status": "signal",
@@ -129,6 +160,39 @@
     "notes": [],
     "places": [],
     "coarse": false
+  },
+  {
+    "id": "news-4084b9efc1",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": 35.34,
+    "lon": 33.32,
+    "area": "Türk karasuları civarı",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-11T20:52:05Z",
+    "last_update": "2026-09-11T20:52:05Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Girne'de batan geminin ardından KKTC'de 2 bakan değişti",
+        "org": "milliyet.com.tr",
+        "url": "",
+        "ts": "2026-09-11T20:52:05Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Girne"
+    ],
+    "coarse": true
   },
   {
     "id": "news-5247389799",
@@ -220,7 +284,7 @@
   {
     "id": "rep-5e0298d9eb",
     "type": "rescue",
-    "status": "confirmed",
+    "status": "resolved",
     "confidence": 0.6,
     "severity": "critical",
     "lat": 38.43,
@@ -244,7 +308,9 @@
         "ts": "2026-09-08T18:09:32Z"
       }
     ],
-    "notes": [],
+    "notes": [
+      "otomatik kapandı: ~75 saat güncelleme yok"
+    ],
     "places": [
       "Izmir"
     ],
