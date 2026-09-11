@@ -16,7 +16,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T20:05:34Z",
-    "last_update": "2026-09-11T09:58:57Z",
+    "last_update": "2026-09-11T23:10:35Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -31,6 +31,44 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-11T09:58:57Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: tanker: seyir hızından (7.1 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-11T23:10:35Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-11-ais-0db6e0",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 41.68648666666666,
+    "lon": 28.452245,
+    "area": "Batı Karadeniz",
+    "vessel": {
+      "name": "PREMIER",
+      "mmsi": 620635000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-11T23:10:35Z",
+    "last_update": "2026-09-11T23:10:35Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (7.9 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-11T23:10:35Z"
       }
     ],
     "notes": [],
@@ -85,7 +123,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-11T14:19:42Z",
-    "last_update": "2026-09-11T14:19:42Z",
+    "last_update": "2026-09-11T23:10:35Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -93,6 +131,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-11T14:19:42Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (12.7 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-11T23:10:35Z"
       }
     ],
     "notes": [],
@@ -124,6 +169,37 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-11T20:51:46Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-11-ais-b6b231",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.849093333333336,
+    "lon": 28.279306666666667,
+    "area": "Gökova Körfezi",
+    "vessel": {
+      "name": "MARMARIS EXPRESS",
+      "mmsi": 271005006,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-11T23:10:35Z",
+    "last_update": "2026-09-11T23:10:35Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (25.1 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-11T23:10:35Z"
       }
     ],
     "notes": [],
@@ -191,39 +267,6 @@
     "notes": [],
     "places": [
       "Girne"
-    ],
-    "coarse": true
-  },
-  {
-    "id": "news-5247389799",
-    "type": "sinking",
-    "status": "signal",
-    "confidence": 0.3,
-    "severity": "minor",
-    "lat": 41.07,
-    "lon": 28.25,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-11T09:59:19Z",
-    "last_update": "2026-09-11T09:59:19Z",
-    "sources": [
-      {
-        "kind": "news",
-        "detail": "Silivri açıklarında batan gemideki mürettebatı arama çalışmaları sürüyor",
-        "org": "trthaber.com",
-        "url": "https://www.trthaber.com/haber/turkiye/silivri-aciklarinda-batan-gemideki-murettebati-arama-calismalari-suruyor-956573.html",
-        "ts": "2026-09-11T09:59:19Z"
-      }
-    ],
-    "notes": [],
-    "places": [
-      "Silivri"
     ],
     "coarse": true
   },
