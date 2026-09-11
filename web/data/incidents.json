@@ -490,7 +490,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T22:38:57Z",
-    "last_update": "2026-09-10T22:38:57Z",
+    "last_update": "2026-09-11T00:36:21Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -498,6 +498,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T22:38:57Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: diğer: seyir hızından (7.5 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-11T00:36:21Z"
       }
     ],
     "notes": [],
@@ -776,41 +783,6 @@
     "coarse": true
   },
   {
-    "id": "rep-442993157a",
-    "type": "rescue",
-    "status": "resolved",
-    "confidence": 0.6,
-    "severity": "critical",
-    "lat": 40.98,
-    "lon": 27.51,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": 2,
-    "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-03T23:11:08Z",
-    "sources": [
-      {
-        "kind": "official",
-        "detail": "03.09.2026 Tekirdağ Açıklarında 2 Şahıs Kurtarılmıştır",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/tekirdag-aciklarinda-2-sahis-kurtarilmistir-02-09-2026",
-        "ts": "2026-09-03T23:11:08Z"
-      }
-    ],
-    "notes": [
-      "otomatik kapandı: ~73 saat güncelleme yok"
-    ],
-    "places": [
-      "Tekirdağ"
-    ],
-    "coarse": false
-  },
-  {
     "id": "rep-4d701b7ab0",
     "type": "unknown",
     "status": "confirmed",
@@ -827,7 +799,7 @@
     },
     "casualties": 2,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-10T22:39:05Z",
+    "last_update": "2026-09-11T00:36:34Z",
     "sources": [
       {
         "kind": "official",
