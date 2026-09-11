@@ -100,6 +100,37 @@
     "coarse": false
   },
   {
+    "id": "2026-09-11-ais-f18ac4",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 37.46592666666666,
+    "lon": 25.31528666666667,
+    "area": "Orta Ege",
+    "vessel": {
+      "name": "NORWEGIAN PEARL",
+      "mmsi": 309653000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-11T17:52:29Z",
+    "last_update": "2026-09-11T17:52:29Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (15.6 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-11T17:52:29Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
     "id": "news-5247389799",
     "type": "sinking",
     "status": "signal",

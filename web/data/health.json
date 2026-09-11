@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-11T14:22:43Z",
-  "cycle_seconds": 272.4,
+  "generated": "2026-09-11T17:57:35Z",
+  "cycle_seconds": 396.4,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
-  "incidents": 11,
+  "incidents": 12,
   "warnings": 0,
   "sources": {
     "scrape": {
@@ -49,7 +49,7 @@
     }
   },
   "fetch": {
-    "mgm_alarmlar.json": "down",
+    "mgm_alarmlar.json": "live",
     "sahil_guvenlik.html": "live",
     "news_0.xml": "live",
     "news_1.xml": "live",
