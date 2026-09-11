@@ -1,95 +1,5 @@
 [
   {
-    "id": "2026-09-09-ais-6bc0f8",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 40.8429,
-    "lon": 28.6394,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "MSC GRETA III",
-      "mmsi": 636021356,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-09T16:30:42Z",
-    "last_update": "2026-09-10T20:05:34Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 902 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-09T16:30:42Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 375 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T04:49:17Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 659 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T09:33:46Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 918 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T13:53:10Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (11.3 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T20:05:34Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-10-ais-0ef609",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 43.18662333333334,
-    "lon": 27.898361666666666,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "TULENOVO 2",
-      "mmsi": 207822380,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-10T20:05:34Z",
-    "last_update": "2026-09-10T20:05:34Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: diğer: seyir hızından (7.0 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T20:05:34Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-10-ais-5b502e",
     "type": "distress",
     "status": "signal",
@@ -128,99 +38,6 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T22:38:57Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-10-ais-690ddb",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.6604,
-    "lon": 28.049,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "M/Y GOLDEN HORN",
-      "mmsi": 538071660,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-10T17:38:49Z",
-    "last_update": "2026-09-10T17:38:49Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 770 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T17:38:49Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-10-ais-8ced70",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 41.5589,
-    "lon": 29.0996,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "FLAVIN",
-      "mmsi": 538009975,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-10T17:38:49Z",
-    "last_update": "2026-09-10T17:38:49Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 770 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T17:38:49Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-10-ais-90b45b",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.58171333333333,
-    "lon": 28.266313333333336,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "ALTAVITA",
-      "mmsi": 538071673,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-10T17:38:49Z",
-    "last_update": "2026-09-10T17:38:49Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T17:38:49Z"
       }
     ],
     "notes": [],
@@ -282,7 +99,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-10T20:05:34Z",
-    "last_update": "2026-09-10T20:05:34Z",
+    "last_update": "2026-09-11T09:58:57Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -290,6 +107,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-10T20:05:34Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (12.3 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-11T09:58:57Z"
       }
     ],
     "notes": [],
@@ -297,66 +121,37 @@
     "coarse": false
   },
   {
-    "id": "2026-09-10-ais-b44df9",
-    "type": "drift",
+    "id": "news-5247389799",
+    "type": "sinking",
     "status": "signal",
-    "confidence": 0.25,
+    "confidence": 0.3,
     "severity": "minor",
-    "lat": 36.623345,
-    "lon": 29.104958333333332,
-    "area": "Batı Akdeniz",
+    "lat": 41.07,
+    "lon": 28.25,
+    "area": "Marmara Denizi",
     "vessel": {
-      "name": "SEA STAR MYKONOS",
-      "mmsi": 630001184,
+      "name": null,
+      "mmsi": null,
       "type": null,
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-10T20:05:34Z",
-    "last_update": "2026-09-10T20:05:34Z",
+    "first_seen": "2026-09-11T09:59:19Z",
+    "last_update": "2026-09-11T09:59:19Z",
     "sources": [
       {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (24.3 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T20:05:34Z"
+        "kind": "news",
+        "detail": "Silivri açıklarında batan gemideki mürettebatı arama çalışmaları sürüyor",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/turkiye/silivri-aciklarinda-batan-gemideki-murettebati-arama-calismalari-suruyor-956573.html",
+        "ts": "2026-09-11T09:59:19Z"
       }
     ],
     "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-10-ais-c12305",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.5106,
-    "lon": 34.5997,
-    "area": "Mersin–İskenderun Körfezi",
-    "vessel": {
-      "name": "DEEP KARPAZ",
-      "mmsi": 271055001,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-10T17:38:49Z",
-    "last_update": "2026-09-10T17:38:49Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 771 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T17:38:49Z"
-      }
+    "places": [
+      "Silivri"
     ],
-    "notes": [],
-    "places": [],
-    "coarse": false
+    "coarse": true
   },
   {
     "id": "rep-4d701b7ab0",
@@ -375,7 +170,7 @@
     },
     "casualties": 2,
     "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-11T05:20:27Z",
+    "last_update": "2026-09-11T09:59:13Z",
     "sources": [
       {
         "kind": "official",
