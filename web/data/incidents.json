@@ -76,37 +76,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-11-ais-66edd3",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.74623,
-    "lon": 28.934886666666667,
-    "area": "Türk karasuları civarı",
-    "vessel": {
-      "name": "SEA SUN",
-      "mmsi": 271045161,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-11T14:19:42Z",
-    "last_update": "2026-09-11T14:19:42Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-11T14:19:42Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-11-ais-8343ef",
     "type": "drift",
     "status": "signal",
@@ -292,7 +261,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-12T01:11:24Z",
-    "last_update": "2026-09-12T01:11:24Z",
+    "last_update": "2026-09-12T05:52:29Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -307,6 +276,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-12T01:11:24Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: tanker: seyir hızından (4.6 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-12T05:52:29Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: kuru yük gemisi: seyir hızından (10.5 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-12T05:52:29Z"
       }
     ],
     "notes": [],
