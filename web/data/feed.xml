@@ -3,7 +3,14 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Sat, 12 Sep 2026 13:52:07 +0000</lastBuildDate>
+  <lastBuildDate>Sat, 12 Sep 2026 17:00:30 +0000</lastBuildDate>
+    <item>
+      <title>[signal] drift, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-12-ais-ad08e7-6</guid>
+      <pubDate>Sat, 12 Sep 2026 16:55:42 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (7.9 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (5.4 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (4.6 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (10.5 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (5.5 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (6.0 kn) ani duruşa geçti</description>
+    </item>
     <item>
       <title>[signal] sinking, Marmara Denizi</title>
       <link>https://www.aa.com.tr/tr/gundem/silivri-aciklarinda-batan-gemideki-kayip-murettebati-arama-calismalari-suruyor/4055214</link>
@@ -61,13 +68,6 @@
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: nav-status: kumanda dışı (not under command)</description>
     </item>
     <item>
-      <title>[signal] drift, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-12-ais-ad08e7-4</guid>
-      <pubDate>Sat, 12 Sep 2026 05:52:29 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (7.9 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: seyir hızından (5.4 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (4.6 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (10.5 kn) ani duruşa geçti</description>
-    </item>
-    <item>
       <title>[confirmed] unknown, Güney Ege</title>
       <link>https://www.sg.gov.tr/mugla-aciklarinda-2-sahis-kurtarilmistir-02-09-2026</link>
       <guid isPermaLink="false">rep-4d701b7ab0-4</guid>
@@ -75,14 +75,14 @@
       <description>Güven: 0.85 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: course-spike: ani rota değişimi (~114°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 504 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 820 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
     </item>
     <item>
-      <title>[confirmed] rescue, Marmara Denizi</title>
+      <title>[resolved] rescue, Marmara Denizi</title>
       <link>https://www.sg.gov.tr/balikesir-aciklarinda-5-sahis-kurtarilmistir-08-09-2026</link>
       <guid isPermaLink="false">rep-ce92da3519-1</guid>
       <pubDate>Wed, 09 Sep 2026 16:30:47 +0000</pubDate>
       <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 5 | official/Sahil Güvenlik Komutanlığı: 09.09.2026 Balıkesir Açıklarında 5 Şahıs Kurtarılmıştır</description>
     </item>
     <item>
-      <title>[confirmed] rescue, Orta Ege</title>
+      <title>[resolved] rescue, Orta Ege</title>
       <link>https://www.sg.gov.tr/izmir-aciklarinda-2-cocuk-kurtarilmistir</link>
       <guid isPermaLink="false">rep-e2463186f9-1</guid>
       <pubDate>Wed, 09 Sep 2026 16:30:47 +0000</pubDate>

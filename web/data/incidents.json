@@ -54,7 +54,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-12T01:11:24Z",
-    "last_update": "2026-09-12T05:52:29Z",
+    "last_update": "2026-09-12T16:55:42Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -83,6 +83,20 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-12T05:52:29Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (5.5 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-12T16:55:42Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (6.0 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-12T16:55:42Z"
       }
     ],
     "notes": [],
@@ -402,7 +416,7 @@
   {
     "id": "rep-ce92da3519",
     "type": "rescue",
-    "status": "confirmed",
+    "status": "resolved",
     "confidence": 0.6,
     "severity": "critical",
     "lat": 40.35,
@@ -426,7 +440,9 @@
         "ts": "2026-09-09T16:30:47Z"
       }
     ],
-    "notes": [],
+    "notes": [
+      "otomatik kapandı: ~72 saat güncelleme yok"
+    ],
     "places": [
       "Balıkesir"
     ],
@@ -470,7 +486,7 @@
   {
     "id": "rep-e2463186f9",
     "type": "rescue",
-    "status": "confirmed",
+    "status": "resolved",
     "confidence": 0.6,
     "severity": "critical",
     "lat": 38.43,
@@ -494,7 +510,9 @@
         "ts": "2026-09-09T16:30:47Z"
       }
     ],
-    "notes": [],
+    "notes": [
+      "otomatik kapandı: ~72 saat güncelleme yok"
+    ],
     "places": [
       "Izmir"
     ],
