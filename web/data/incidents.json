@@ -1,188 +1,5 @@
 [
   {
-    "id": "2026-09-10-ais-b2d928",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 40.755478333333336,
-    "lon": 28.883991666666667,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "SEA BRIDLE",
-      "mmsi": 312086000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-10T20:05:34Z",
-    "last_update": "2026-09-11T23:10:35Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-10T20:05:34Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (12.3 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-11T09:58:57Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: tanker: seyir hızından (7.1 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-11T23:10:35Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-11-ais-0db6e0",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 41.68648666666666,
-    "lon": 28.452245,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "PREMIER",
-      "mmsi": 620635000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-11T23:10:35Z",
-    "last_update": "2026-09-11T23:10:35Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (7.9 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-11T23:10:35Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-11-ais-8343ef",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 42.524588333333334,
-    "lon": 28.23037833333333,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "MINERVA EVROPI",
-      "mmsi": 241572000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-11T14:19:42Z",
-    "last_update": "2026-09-11T23:10:35Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (3.2 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-11T14:19:42Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (12.7 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-11T23:10:35Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-11-ais-b6b231",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.849093333333336,
-    "lon": 28.279306666666667,
-    "area": "Gökova Körfezi",
-    "vessel": {
-      "name": "MARMARIS EXPRESS",
-      "mmsi": 271005006,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-11T23:10:35Z",
-    "last_update": "2026-09-11T23:10:35Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (25.1 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-11T23:10:35Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
-    "id": "2026-09-11-ais-f18ac4",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 37.46592666666666,
-    "lon": 25.31528666666667,
-    "area": "Orta Ege",
-    "vessel": {
-      "name": "NORWEGIAN PEARL",
-      "mmsi": 309653000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-11T17:52:29Z",
-    "last_update": "2026-09-12T01:11:24Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (15.6 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-11T17:52:29Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: seyir hızından (10.0 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-12T01:11:24Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-12-ais-a90ab4",
     "type": "drift",
     "status": "signal",
@@ -397,6 +214,39 @@
     "coarse": true
   },
   {
+    "id": "news-b750c767b9",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": 41.07,
+    "lon": 28.25,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-12T13:47:43Z",
+    "last_update": "2026-09-12T13:47:43Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Silivri açıklarında batan gemideki kayıp mürettebatı arama çalışmaları sürüyor",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/silivri-aciklarinda-batan-gemideki-kayip-murettebati-arama-calismalari-suruyor/4055214",
+        "ts": "2026-09-12T13:47:43Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Silivri"
+    ],
+    "coarse": true
+  },
+  {
     "id": "news-f6f2d4772d",
     "type": "collision",
     "status": "signal",
@@ -425,6 +275,39 @@
     ],
     "notes": [],
     "places": [],
+    "coarse": true
+  },
+  {
+    "id": "rep-23be220bf5",
+    "type": "rescue",
+    "status": "confirmed",
+    "confidence": 0.6,
+    "severity": "critical",
+    "lat": 36.88,
+    "lon": 30.7,
+    "area": "Antalya Körfezi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 1,
+    "first_seen": "2026-09-12T13:47:41Z",
+    "last_update": "2026-09-12T13:47:41Z",
+    "sources": [
+      {
+        "kind": "official",
+        "detail": "12.09.2026 Antalya Açıklarında 1 Şahıs Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/antalya-aciklarinda-1-sahis-kurtarilmistir-11-09-2026",
+        "ts": "2026-09-12T13:47:41Z"
+      }
+    ],
+    "notes": [],
+    "places": [
+      "Antalya"
+    ],
     "coarse": true
   },
   {
@@ -517,41 +400,6 @@
     "coarse": true
   },
   {
-    "id": "rep-bb02b2dc7a",
-    "type": "rescue",
-    "status": "resolved",
-    "confidence": 0.6,
-    "severity": "critical",
-    "lat": 38.43,
-    "lon": 27.14,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": 2,
-    "first_seen": "2026-09-03T23:11:08Z",
-    "last_update": "2026-09-05T13:00:47Z",
-    "sources": [
-      {
-        "kind": "official",
-        "detail": "03.09.2026 İzmir Önlerinde 2 Şahıs Kurtarılmıştır",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/izmir-onlerinde-2-sahis-kurtarilmistir",
-        "ts": "2026-09-03T23:11:08Z"
-      }
-    ],
-    "notes": [
-      "otomatik kapandı: ~74 saat güncelleme yok"
-    ],
-    "places": [
-      "Izmir"
-    ],
-    "coarse": false
-  },
-  {
     "id": "rep-ce92da3519",
     "type": "rescue",
     "status": "confirmed",
@@ -581,41 +429,6 @@
     "notes": [],
     "places": [
       "Balıkesir"
-    ],
-    "coarse": true
-  },
-  {
-    "id": "rep-d2a197a441",
-    "type": "rescue",
-    "status": "resolved",
-    "confidence": 0.6,
-    "severity": "critical",
-    "lat": 40.37,
-    "lon": 28.88,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": 2,
-    "first_seen": "2026-09-05T13:00:47Z",
-    "last_update": "2026-09-05T13:00:47Z",
-    "sources": [
-      {
-        "kind": "official",
-        "detail": "05.09.2026 Bursa Açıklarında 2 Şahıs Kurtarılmıştır",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/bursa-aciklarinda-2-sahis-kurtarilmistir",
-        "ts": "2026-09-05T13:00:47Z"
-      }
-    ],
-    "notes": [
-      "otomatik kapandı: ~74 saat güncelleme yok"
-    ],
-    "places": [
-      "Bursa"
     ],
     "coarse": true
   },
