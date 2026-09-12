@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-12T19:07:56Z",
-  "total_incidents": 228,
+  "generated": "2026-09-12T21:28:43Z",
+  "total_incidents": 232,
   "by_month": {
-    "2026-09": 228
+    "2026-09": 232
   },
   "by_area": {
-    "belirsiz": 203,
+    "belirsiz": 207,
     "Marmara Denizi": 10,
     "Türk karasuları civarı": 6,
     "Doğu Karadeniz": 3,
@@ -15,18 +15,18 @@
   },
   "by_type": {
     "distress": 85,
-    "drift": 61,
+    "drift": 62,
     "unknown": 49,
     "sinking": 24,
-    "collision-risk": 3,
+    "collision-risk": 6,
     "collision": 2,
     "rescue": 2,
     "fire": 1,
     "capsize": 1
   },
   "by_status": {
-    "signal": 225,
-    "probable": 3
+    "signal": 226,
+    "probable": 6
   },
   "incidents_with_casualties": 14,
   "casualties_reported_total": 171,
