@@ -5,8 +5,8 @@
  * - Data Feeds (/data/*.json): Network-First with Cache-Fallback
  */
 
-const CACHE_NAME = "maritime-watch-shell-v1";
-const DATA_CACHE_NAME = "maritime-watch-data-v1";
+const CACHE_NAME = "maritime-watch-shell-v2";
+const DATA_CACHE_NAME = "maritime-watch-data-v2";
 
 const STATIC_ASSETS = [
   "./",
