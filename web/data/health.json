@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-12T21:24:32Z",
-  "cycle_seconds": 256.9,
+  "generated": "2026-09-12T23:07:10Z",
+  "cycle_seconds": 134.7,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
-  "incidents": 27,
+  "incidents": 24,
   "warnings": 3,
   "sources": {
     "scrape": {
@@ -49,17 +49,17 @@
     }
   },
   "fetch": {
-    "mgm_alarmlar.json": "live",
+    "mgm_alarmlar.json": "down",
     "sahil_guvenlik.html": "live",
     "kegm_sample.html": "live",
     "shod_navtex.txt": "live",
     "news_2.xml": "live",
     "news_3.xml": "live",
-    "news_5.xml": "live",
-    "news_6.xml": "live",
-    "news_4.xml": "live",
-    "news_9.xml": "live",
     "news_1.xml": "live",
+    "news_6.xml": "live",
+    "news_9.xml": "live",
+    "news_5.xml": "live",
+    "news_4.xml": "live",
     "news_7.xml": "live",
     "news_0.xml": "live",
     "news_8.xml": "down",
