@@ -1,0 +1,25 @@
+{
+  "generated": "2026-09-12T19:07:56Z",
+  "straits": [
+    {
+      "id": "bosphorus",
+      "name": "İstanbul Boğazı",
+      "status": "open",
+      "status_tr": "Trafik Normal",
+      "reason": null,
+      "active_vessels_in_transit": 0,
+      "avg_speed_kn": 8.5,
+      "last_update": "2026-09-12T19:07:56Z"
+    },
+    {
+      "id": "dardanelles",
+      "name": "Çanakkale Boğazı",
+      "status": "open",
+      "status_tr": "Trafik Normal",
+      "reason": null,
+      "active_vessels_in_transit": 0,
+      "avg_speed_kn": 8.5,
+      "last_update": "2026-09-12T19:07:56Z"
+    }
+  ]
+}
