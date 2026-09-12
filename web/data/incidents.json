@@ -114,37 +114,6 @@
     "coarse": false
   },
   {
-    "id": "2026-09-11-ais-8cfda6",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 42.972120000000004,
-    "lon": 28.201228333333333,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "POSEIDON GAS",
-      "mmsi": 636022682,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-11T20:51:46Z",
-    "last_update": "2026-09-11T20:51:46Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: tanker: seyir hızından (10.1 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-11T20:51:46Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false
-  },
-  {
     "id": "2026-09-11-ais-b6b231",
     "type": "drift",
     "status": "signal",
@@ -230,7 +199,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-12T01:11:24Z",
-    "last_update": "2026-09-12T01:11:24Z",
+    "last_update": "2026-09-12T10:32:57Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -238,6 +207,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-12T01:11:24Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: diğer: seyir hızından (6.8 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-12T10:32:57Z"
       }
     ],
     "notes": [],
@@ -297,14 +273,107 @@
     "coarse": false
   },
   {
-    "id": "news-4084b9efc1",
+    "id": "2026-09-12-ais-be03ba",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 40.694898333333335,
+    "lon": 29.446028333333334,
+    "area": "İzmit Körfezi",
+    "vessel": {
+      "name": "HAMIDIYE",
+      "mmsi": 271044109,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-12T10:32:57Z",
+    "last_update": "2026-09-12T10:32:57Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (8.7 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-12T10:32:57Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "2026-09-12-ais-e1fc54",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.28341666666667,
+    "lon": 35.19027333333334,
+    "area": "Mersin–İskenderun Körfezi",
+    "vessel": {
+      "name": "SH EXPRESS",
+      "mmsi": 341519002,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-12T10:32:57Z",
+    "last_update": "2026-09-12T10:32:57Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: kumanda dışı (not under command)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-12T10:32:57Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false
+  },
+  {
+    "id": "news-220c8a96aa",
     "type": "sinking",
     "status": "signal",
     "confidence": 0.3,
+    "severity": "critical",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 10,
+    "first_seen": "2026-09-12T10:33:05Z",
+    "last_update": "2026-09-12T10:33:05Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Batan Tuğberk İmamoğlu gemisindeki 10 denizciyi arama çalışmaları 11. gününde! Ailelerin bekleyişi sürüyor",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/batan-tugberk-imamoglu-gemisindeki-10-denizciyi-arama-calismalari-11-gununde-ailelerin-bekleyisi-suruyor-43304363",
+        "ts": "2026-09-12T10:33:05Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "news-6685ec7a27",
+    "type": "capsize",
+    "status": "signal",
+    "confidence": 0.3,
     "severity": "minor",
-    "lat": 35.34,
-    "lon": 33.32,
-    "area": "Türk karasuları civarı",
+    "lat": null,
+    "lon": null,
+    "area": "",
     "vessel": {
       "name": null,
       "mmsi": null,
@@ -312,21 +381,50 @@
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-11T20:52:05Z",
-    "last_update": "2026-09-11T20:52:05Z",
+    "first_seen": "2026-09-12T10:33:08Z",
+    "last_update": "2026-09-12T10:33:08Z",
     "sources": [
       {
         "kind": "news",
-        "detail": "Girne'de batan geminin ardından KKTC'de 2 bakan değişti",
-        "org": "milliyet.com.tr",
-        "url": "",
-        "ts": "2026-09-11T20:52:05Z"
+        "detail": "Alabora olan teknenin üzerinde günlerce kalan çocuk kurtarıldı",
+        "org": "trthaber.com",
+        "url": "https://www.trthaber.com/haber/dunya/alabora-olan-teknenin-uzerinde-gunlerce-kalan-cocuk-kurtarildi-956635.html",
+        "ts": "2026-09-12T10:33:08Z"
       }
     ],
     "notes": [],
-    "places": [
-      "Girne"
+    "places": [],
+    "coarse": true
+  },
+  {
+    "id": "news-f6f2d4772d",
+    "type": "collision",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-12T10:33:09Z",
+    "last_update": "2026-09-12T10:33:09Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Küçükçekmece'de feci kaza! Su tankerinin çarptığı kadın hayatını kaybetti",
+        "org": "milliyet.com.tr",
+        "url": "",
+        "ts": "2026-09-12T10:33:09Z"
+      }
     ],
+    "notes": [],
+    "places": [],
     "coarse": true
   },
   {
