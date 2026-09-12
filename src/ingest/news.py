@@ -15,7 +15,7 @@ from xml.etree import ElementTree as ET
 from ..model import Incident, Source, Vessel, stable_hash
 from ..process.extract import extract
 from ..process.privacy import drop_aftermath, redact
-from ._net import get_text
+from ._net import fetch_parallel, get_text
 
 _TR_LOWER = str.maketrans("İIŞĞÜÖÇ", "iışğüöç")
 
@@ -72,8 +72,9 @@ def fetch_news(cfg: dict) -> list[Incident]:
     out: list[Incident] = []
     seen: set[str] = set()
 
-    for i, feed in enumerate(nc["feeds"]):
-        raw, _live = get_text(feed, f"news_{i}.xml")
+    tasks = [(feed, f"news_{i}.xml", None, 15) for i, feed in enumerate(nc["feeds"])]
+    results = fetch_parallel(tasks, max_workers=6)
+    for (feed, _sample, _hdr, _to), (raw, _live) in zip(tasks, results):
         if not raw:
             continue
         for title, link, pub in _parse_rss(raw)[: nc["max_items_per_feed"]]:

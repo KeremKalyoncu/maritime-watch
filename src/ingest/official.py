@@ -219,11 +219,16 @@ def gather_official(cfg: dict) -> tuple[list[Incident], list[Warning]]:
     if not s.get("enabled", True):
         return incidents, warnings
 
+    from .kegm import scrape_kegm
+    from .shod import scrape_shod
+
     jobs = [
         (s.get("mgm", True), "mgm", lambda: warnings.extend(scrape_mgm_marine(cfg))),
         (s.get("mgm_alarms", True), "mgm-alarms", lambda: warnings.extend(scrape_mgm_alarms(cfg))),
         (s.get("sahil_guvenlik", True), "sg", lambda: incidents.extend(scrape_sahil_guvenlik(cfg))),
+        (s.get("kegm", True), "kegm", lambda: incidents.extend(scrape_kegm(cfg))),
         (s.get("afad", True), "afad", lambda: incidents.extend(scrape_afad(cfg))),
+        (s.get("shod", True), "shod", lambda: warnings.extend(scrape_shod(cfg))),
     ]
     for enabled, name, fn in jobs:
         if not enabled:

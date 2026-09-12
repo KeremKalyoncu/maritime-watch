@@ -15,10 +15,24 @@ from __future__ import annotations
 import argparse
 import functools
 import http.server
+import json
 import socketserver
+import sys
 import threading
 import time
 from pathlib import Path
+
+# Windows ve non-UTF8 konsollarda emojili logların çökmesini engelle
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+if sys.stderr and hasattr(sys.stderr, "reconfigure"):
+    try:
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 from src.alert.bot import Bot
 from src.alert.telegram import Notifier
@@ -31,19 +45,23 @@ from src.ingest.metar import fetch_metar
 from src.ingest.navwarn import fetch_navwarnings
 from src.ingest.news import fetch_news
 from src.ingest.official import gather_official
-from src.ingest.openmeteo import fetch_forecast_points, fetch_marine_warnings
+from src.ingest.openmeteo import fetch_forecast_points, fetch_marine_warnings, reset_cache as reset_openmeteo_cache
 from src.ingest.quakes import fetch_quakes
 from src.ingest.reliefweb import fetch_reliefweb
 from src.model import Incident, Source, Vessel, make_id
 from src.process.anomaly import VesselState, detect
-from src.process.classify import classify
+from src.process.classify import classify, enrich_weather_context
+from src.process.cpa import cpa_events_to_incidents, detect_cpa_risks
 from src.process.dedup import correlate
 from src.process.prune import clear_passed_weather, prune
+from src.process.safety_index import render_safety_index
 from src.process.window import build as build_outlook
 from src.render.feed import build_feed
 from src.render.health import write_health
-from src.render.mapdata import write_summary
+from src.render.mapdata import enrich_incident_tracks, write_summary
 from src.render.stats import build_stats
+from src.render.straits import render_straits_status
+from src.render.weather_grid import render_weather_grid
 from src.store import Store
 
 _TYPE_FOR = {
@@ -82,9 +100,12 @@ def send_daily_outlook(cfg: dict, notifier, *, dry: bool = True) -> None:
             text = notifier.outlook_text_for(cfg, sub)
             if not text:
                 continue
-            if bot.send(chat, text, dry=dry):
-                sub["last_outlook"] = day
-                sent += 1
+            try:
+                if bot.send(chat, text, dry=dry):
+                    sub["last_outlook"] = day
+                    sent += 1
+            except Exception as e:
+                print(f"[outlook] chat {chat} gonderim hatasi: {e}")
         bot.subs.save()
         print(f"[outlook] {sent}/{len(subs)} aboneye gonderildi")
         return
@@ -119,6 +140,7 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     # fixtures are never publishable in production; see src/ingest/_net.py
     _net.SAMPLES_ALLOWED = bool(src.get("use_samples_when_down", False))
     _net.reset_status()
+    reset_openmeteo_cache()
 
     def _safe(label, fn, default):
         try:
@@ -157,6 +179,13 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
             inc.sources.append(Source(kind=kind, org="AIS", detail=f"{an.kind}: {an.detail}"))
             inc = correlate(store, inc)
             touched.add(store.upsert_incident(inc).id)
+
+        cpa_events = detect_cpa_risks(positions)
+        if cpa_events:
+            print(f"[cpa] {len(cpa_events)} collision risk encounter(s) detected")
+            for cpa_inc in cpa_events_to_incidents(cpa_events):
+                cpa_inc = correlate(store, cpa_inc)
+                touched.add(store.upsert_incident(cpa_inc).id)
 
         for s in safety:
             if not s.get("text"):
@@ -236,7 +265,10 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         n = _safe("bot", lambda: Bot(cfg, notifier=notifier).poll(dry=dry), 0)
         if n:
             print(f"[bot] {n} guncelleme islendi")
-    send_daily_outlook(cfg, notifier, dry=dry)
+    try:
+        send_daily_outlook(cfg, notifier, dry=dry)
+    except Exception as e:
+        print(f"[outlook] error: {e}")
 
     dw, di = prune(store, cfg)
     if dw or di:
@@ -255,6 +287,41 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     print(f"[health] {h['sources_ok']}/{h['sources_total']} kaynak OK, {h['cycle_seconds']}s")
 
     notifier.flush(dry=dry)     # one digest message for everything this cycle
+    try:
+        enrich_incident_tracks(store, root / "data" / "vessels.json")
+    except Exception as e:
+        print(f"[tracks] enrich error: {e}")
+
+    # Render marine weather vector grid & correlate incidents
+    grid_payload = None
+    try:
+        grid_payload = render_weather_grid(cfg, web_data / "weather_overlay.json")
+        for inc in store.active_incidents():
+            enrich_weather_context(inc, grid_payload.get("points", []))
+    except Exception as e:
+        print(f"[weather_grid] render error: {e}")
+
+    # Render Turkish Straits live transit status
+    try:
+        vessels_file = root / "data" / "vessels.json"
+        vessels_dict = {}
+        if vessels_file.exists():
+            try:
+                vessels_dict = json.loads(vessels_file.read_text("utf-8") or "{}")
+            except Exception:
+                vessels_dict = {}
+        render_straits_status(store, web_data / "straits.json", vessels_data=vessels_dict)
+    except Exception as e:
+        print(f"[straits] render error: {e}")
+
+    # Render fisherman marine safety rating index
+    try:
+        pts = grid_payload.get("points", []) if grid_payload else []
+        storm_areas = {w.area for w in store.active_warnings() if w.area}
+        render_safety_index(pts, storm_areas=storm_areas, out_file=web_data / "safety_index.json")
+    except Exception as e:
+        print(f"[safety_index] render error: {e}")
+
     store.trim_events()
     store.save()
     build_feed(store, str(web_data))

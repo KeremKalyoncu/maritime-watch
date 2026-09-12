@@ -15,6 +15,7 @@ the correct behaviour — say nothing rather than say something false.
 from __future__ import annotations
 
 import json
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import requests
@@ -73,3 +74,19 @@ def get_json(url: str, sample_name: str, headers: dict | None = None,
         print(f"[fetch] {url}: response was not JSON")
         STATUS[sample_name] = "down"
         return None, live
+
+
+def fetch_parallel(tasks: list[tuple], max_workers: int = 6) -> list[tuple[str, bool]]:
+    """Fetches multiple URLs concurrently using ThreadPoolExecutor.
+    Each task is a tuple: (url, sample_name, [headers], [timeout]).
+    Returns list of (text, is_live) in the same order as tasks.
+    """
+    def _worker(t):
+        url = t[0]
+        sample_name = t[1]
+        headers = t[2] if len(t) > 2 else None
+        timeout = t[3] if len(t) > 3 and t[3] is not None else TIMEOUT
+        return get_text(url, sample_name, headers=headers, timeout=timeout)
+
+    with ThreadPoolExecutor(max_workers=max_workers) as ex:
+        return list(ex.map(_worker, tasks))

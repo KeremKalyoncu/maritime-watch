@@ -101,6 +101,8 @@ openmeteo:
 quakes:
   min_mag: 3.8           # coastal quakes at/above this magnitude
   hours_back: 24
+  kandilli: true
+
 
 navwarn:
   # keep warnings whose text mentions any of these (NAVAREA III is huge)

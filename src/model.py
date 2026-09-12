@@ -38,6 +38,7 @@ def now_iso() -> str:
 class IncidentType(str, Enum):
     GROUNDING = "grounding"
     COLLISION = "collision"
+    COLLISION_RISK = "collision-risk"
     DRIFT = "drift"
     DISTRESS = "distress"
     CAPSIZE = "capsize"
@@ -66,6 +67,7 @@ class Severity(str, Enum):
 # plain-Turkish labels for end users (Telegram + map)
 TYPE_TR = {
     "grounding": "karaya oturma", "collision": "çatışma (çarpışma)",
+    "collision-risk": "çatışma riski (yakın geçiş)",
     "drift": "sürüklenme", "distress": "tehlike çağrısı", "capsize": "alabora",
     "fire": "yangın", "sinking": "batma", "man-overboard": "denize adam düştü",
     "rescue": "kurtarma operasyonu", "unknown": "belirsiz",
@@ -108,6 +110,87 @@ class Vessel:
 
 
 @dataclass
+class WeatherContext:
+    wind_kn: float
+    gust_kn: float
+    wave_m: float | None
+    wind_dir: int               # 0-360 degrees
+    beaufort: int               # 0-12
+    summary_tr: str
+    summary_en: str
+    station_name: str | None = None
+    distance_nm: float | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+    @staticmethod
+    def from_dict(d: dict[str, Any]) -> WeatherContext:
+        return WeatherContext(**d)
+
+
+@dataclass
+class StraitStatus:
+    id: str                     # "bosphorus" | "dardanelles"
+    name: str                   # "İstanbul Boğazı" | "Çanakkale Boğazı"
+    status: str                 # "open" | "caution" | "suspended"
+    status_tr: str              # "Trafik Normal" | "Tedbirli Geçiş" | "Geçiş Askıya Alındı"
+    reason: str | None = None   # "Yoğun Sis (Görüş < 300m)"
+    active_vessels_in_transit: int = 0
+    avg_speed_kn: float = 0.0
+    last_update: str = field(default_factory=now_iso)
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+    @staticmethod
+    def from_dict(d: dict[str, Any]) -> StraitStatus:
+        return StraitStatus(**d)
+
+
+@dataclass
+class MarineSafetyRating:
+    area: str                   # "Marmara Denizi", "Saroz Körfezi", vb.
+    score: int                  # 0 - 100
+    status: str                 # "good" (>=75) | "caution" (45-74) | "danger" (<45)
+    wave_m: float | None
+    wind_kn: float
+    gust_kn: float
+    recommendation_tr: str
+    recommendation_en: str
+    last_update: str = field(default_factory=now_iso)
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+    @staticmethod
+    def from_dict(d: dict[str, Any]) -> MarineSafetyRating:
+        return MarineSafetyRating(**d)
+
+
+@dataclass
+class CpaEvent:
+    mmsi1: int
+    mmsi2: int
+    cpa_nm: float               # Closest Point of Approach in nautical miles (< 0.35 NM)
+    tcpa_min: float             # Time to CPA in minutes (0 < TCPA <= 12 min)
+    lat: float
+    lon: float
+    sog1_kn: float
+    sog2_kn: float
+    vessel1_name: str | None = None
+    vessel2_name: str | None = None
+    ts: str = field(default_factory=now_iso)
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+    @staticmethod
+    def from_dict(d: dict[str, Any]) -> CpaEvent:
+        return CpaEvent(**d)
+
+
+@dataclass
 class Incident:
     id: str
     type: str = IncidentType.UNKNOWN.value
@@ -125,6 +208,10 @@ class Incident:
     notes: list[str] = field(default_factory=list)
     places: list[str] = field(default_factory=list)   # coastal names extracted from text
     coarse: bool = False                             # position is a city centre, not a fix
+    track: list[list[float]] = field(default_factory=list)  # [[lat, lon], ...] coordinates history
+    heading: float | None = None
+    vessel_type: str = "unknown"
+    weather_context: WeatherContext | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -132,8 +219,17 @@ class Incident:
     @staticmethod
     def from_dict(d: dict[str, Any]) -> Incident:
         d = dict(d)
+        d.setdefault("id", "unknown")
+        d.setdefault("track", [])
+        d.setdefault("heading", None)
+        d.setdefault("vessel_type", "unknown")
         d["vessel"] = Vessel(**(d.get("vessel") or {}))
         d["sources"] = [Source(**s) for s in d.get("sources", [])]
+        wc = d.get("weather_context")
+        if wc and isinstance(wc, dict):
+            d["weather_context"] = WeatherContext.from_dict(wc)
+        elif not isinstance(wc, WeatherContext):
+            d["weather_context"] = None
         return Incident(**d)
 
     def add_source(self, s: Source) -> bool:

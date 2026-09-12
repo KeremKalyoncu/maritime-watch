@@ -517,5 +517,95 @@
       "Izmir"
     ],
     "coarse": true
+  },
+  {
+    "id": "rep-bb02b2dc7a",
+    "type": "rescue",
+    "status": "resolved",
+    "confidence": 0.6,
+    "severity": "critical",
+    "lat": 38.43,
+    "lon": 27.14,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 2,
+    "first_seen": "2026-09-03T23:11:08Z",
+    "last_update": "2026-09-05T13:00:47Z",
+    "sources": [
+      {
+        "kind": "official",
+        "detail": "03.09.2026 İzmir Önlerinde 2 Şahıs Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/izmir-onlerinde-2-sahis-kurtarilmistir",
+        "ts": "2026-09-03T23:11:08Z"
+      }
+    ],
+    "notes": [
+      "otomatik kapandı: ~74 saat güncelleme yok"
+    ],
+    "places": [
+      "Izmir"
+    ],
+    "coarse": false,
+    "track": [],
+    "heading": null,
+    "vessel_type": "unknown",
+    "weather_context": null
+  },
+  {
+    "id": "rep-d2a197a441",
+    "type": "rescue",
+    "status": "resolved",
+    "confidence": 0.6,
+    "severity": "critical",
+    "lat": 40.37,
+    "lon": 28.88,
+    "area": "Marmara Denizi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 2,
+    "first_seen": "2026-09-05T13:00:47Z",
+    "last_update": "2026-09-05T13:00:47Z",
+    "sources": [
+      {
+        "kind": "official",
+        "detail": "05.09.2026 Bursa Açıklarında 2 Şahıs Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/bursa-aciklarinda-2-sahis-kurtarilmistir",
+        "ts": "2026-09-05T13:00:47Z"
+      }
+    ],
+    "notes": [
+      "otomatik kapandı: ~74 saat güncelleme yok",
+      "Bölgede 18 kn Poyraz ve 0.3 m dalga kaydedildi.",
+      "Bölgede 6 kn Poyraz ve 0.2 m dalga kaydedildi."
+    ],
+    "places": [
+      "Bursa"
+    ],
+    "coarse": true,
+    "track": [],
+    "heading": null,
+    "vessel_type": "unknown",
+    "weather_context": {
+      "wind_kn": 4.3,
+      "gust_kn": 5.8,
+      "wave_m": 0.22,
+      "wind_dir": 45,
+      "beaufort": 2,
+      "summary_tr": "Bölgede 6 kn Poyraz ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 6 kn NE wind and 0.2 m waves.",
+      "station_name": "Marmara Denizi",
+      "distance_nm": 34.9
+    }
   }
 ]

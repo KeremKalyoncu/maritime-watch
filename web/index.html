@@ -3,13 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maritime Watch — Türkiye deniz olayları</title>
-  <meta name="description" content="Türkiye karasuları için deniz olayı erken-uyarı ve şeffaflık aracı. AIS anomalileri, resmi açıklamalar ve denizcilik hava uyarıları tek haritada.">
+  <title>Maritime Watch — Türkiye Deniz Olayları ve Canlı Durum</title>
+  <meta name="description" content="Türkiye karasuları için deniz kazası erken-uyarı, canlı deniz hava durumu, Türk Boğazları geçiş durumu ve şeffaflık aracı.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#080d13">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="offline-bar" class="offline-bar" hidden>📵 <span data-i="offline_msg">Çevrimdışı Mod — İnternet bağlantısı yok, son önbellek gösteriliyor.</span></div>
+
   <header>
     <div class="topbar">
       <div class="brand">
@@ -17,20 +21,55 @@
         <span class="live" data-i="live">canlı</span>
       </div>
       <div class="ctrl">
+        <button type="button" class="btn btn-playback" id="btn-toggle-playback" title="Zaman Makinesi">▶ <span data-i="playback_btn">Zaman Makinesi</span></button>
+        <button type="button" class="btn btn-emergency" id="btn-emergency" title="Acil Durum Frekans Rehberi">🆘 <span data-i="emergency_btn">Acil Rehber</span></button>
         <select id="region" title="Bölge"></select>
         <a class="btn" href="stats.html" data-i="stats">İstatistik</a>
         <button id="lang" type="button">EN</button>
       </div>
     </div>
-    <p class="tag" data-i="tag">Türkiye karasuları — AIS anomalileri + resmi açıklamalar, tek yerde.
-      Sinyaller doğrulanana kadar “doğrulanmadı” etiketlidir.</p>
+
+    <!-- Live Straits Transit & Marine Safety Ticker -->
+    <div id="safety-strip" class="safety-strip"></div>
+
+    <!-- Instant Search & Quick Filter Chips -->
+    <div class="filter-row">
+      <div class="search-box">
+        <span class="search-ico">🔍</span>
+        <input type="search" id="search-input" placeholder="Olay, gemi, liman veya sebep ara..." autocomplete="off">
+      </div>
+      <div class="chip-bar" id="chips">
+        <button type="button" class="chip is-active" data-chip="all" data-i="chip_all">Tümü</button>
+        <button type="button" class="chip" data-chip="confirmed" data-i="chip_confirmed">🚨 Doğrulandı</button>
+        <button type="button" class="chip" data-chip="warning" data-i="chip_warning">🌊 Hava Uyarısı</button>
+        <button type="button" class="chip" data-chip="collision-risk" data-i="chip_cpa">💥 Çatışma Riski</button>
+        <button type="button" class="chip" data-chip="rescue" data-i="chip_rescue">⚓ Kurtarma</button>
+      </div>
+    </div>
 
     <div class="kpis" id="kpis"></div>
     <div id="stale" hidden></div>
   </header>
 
   <main>
-    <div id="map"></div>
+    <div class="map-wrapper">
+      <div id="map"></div>
+      
+      <!-- Time-Lapse Playback Scrubber Bar -->
+      <div id="playback-bar" class="playback-bar" hidden>
+        <button type="button" id="play-btn" class="play-btn" title="Oynat / Duraklat">▶</button>
+        <span id="play-label" class="play-label">Zaman Makinesi</span>
+        <input type="range" id="play-range" min="0" max="100" value="100" title="Zaman Çizelgesi">
+        <span id="play-time" class="play-time">Canlı</span>
+        <div class="play-speeds">
+          <button type="button" class="speed-btn is-active" data-speed="1">1x</button>
+          <button type="button" class="speed-btn" data-speed="2">2x</button>
+          <button type="button" class="speed-btn" data-speed="4">4x</button>
+        </div>
+        <button type="button" id="play-close" class="play-close" title="Kapat">&times;</button>
+      </div>
+    </div>
+
     <aside id="side">
       <div class="legend">
         <span><i class="dot s-confirmed"></i><b data-i="l-confirmed">doğrulandı</b></span>
@@ -45,16 +84,64 @@
     </aside>
   </main>
 
+  <!-- Emergency Modal Guide -->
+  <div id="emergency-modal" class="modal" hidden>
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>🆘 Deniz Acil Durum & VHF Frekans Rehberi</h3>
+        <button type="button" class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="emergency-grid">
+          <div class="em-card em-primary">
+            <div class="em-num">VHF Kanal 16</div>
+            <div class="em-title">Uluslararası Tehlike & Çağrı (156.800 MHz)</div>
+            <div class="em-desc">MAYDAY / PAN-PAN acil yardım çağrısı. Seyir halindeyken sürekli dinlemede kalınmalıdır.</div>
+            <button type="button" class="btn-copy" data-copy="VHF Ch 16 (156.800 MHz)">📋 Kopyala</button>
+          </div>
+          <div class="em-card">
+            <div class="em-num">Tel: 158</div>
+            <div class="em-title">Sahil Güvenlik İhbar Hattı</div>
+            <div class="em-desc">Türkiye karasularında 7/24 kesintisiz acil arama-kurtarma ve ihbar hattı.</div>
+            <button type="button" class="btn-copy" data-copy="158">📋 Kopyala</button>
+          </div>
+          <div class="em-card">
+            <div class="em-num">Tel: 151</div>
+            <div class="em-title">Kıyı Emniyeti Acil Kurtarma</div>
+            <div class="em-desc">Boğazlar ve Marmara'da römorkör, tahlisiye, dalgıç ve yedekleme talebi.</div>
+            <button type="button" class="btn-copy" data-copy="151">📋 Kopyala</button>
+          </div>
+          <div class="em-card">
+            <div class="em-num">Türk Radyo</div>
+            <div class="em-title">VHF Seyir & Hava Yayın Kanalları</div>
+            <div class="em-desc">İstanbul: Ch 67 · Çanakkale: Ch 67 · İzmir: Ch 68 · Antalya: Ch 68 · Samsun: Ch 67.</div>
+            <button type="button" class="btn-copy" data-copy="Türk Radyo: İstanbul Ch 67, Çanakkale Ch 67, İzmir Ch 68, Antalya Ch 68, Samsun Ch 67">📋 Kopyala</button>
+          </div>
+          <div class="em-card em-mayday-card" style="grid-column: 1 / -1; border-color: rgba(242, 85, 90, 0.4); background: rgba(242, 85, 90, 0.08);">
+            <div class="em-num" style="color: #f2555a;">📻 Telsizden Okunacak İmdat Metni (Kanal 16 MAYDAY)</div>
+            <div class="em-desc" style="font-family: monospace; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; margin: 8px 0; border: 1px dashed rgba(242, 85, 90, 0.3); font-size: 13px; line-height: 1.5;">
+              "MAYDAY, MAYDAY, MAYDAY. BURASI [TEKNE ADINIZ]. MEVKİMİZ: [ENLEM, BOYLAM VEYA MEVKİ]. [SU ALIYORUZ / BATIYORUZ / ALABORA OLDUK]. [X] KİŞİYİZ. ACİL YARDIM İSTİYORUZ. TAMAM."
+            </div>
+            <button type="button" class="btn-copy" data-copy='MAYDAY, MAYDAY, MAYDAY. BURASI [TEKNE ADINIZ]. MEVKİMİZ: [MEVKİ]. SU ALIYORUZ / BATIYORUZ. [X] KİŞİYİZ. ACİL YARDIM İSTİYORUZ. TAMAM.'>📋 Şablonu Kopyala</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notifications Container -->
+  <div id="toast-container" class="toast-container"></div>
+
   <footer>
     <span>Açık kaynak · <a href="https://github.com/KeremKalyoncu/maritime-watch" id="repo-link">GitHub</a>
       · <span id="sys">—</span></span>
-    <span data-i="sources">Kaynaklar: aisstream.io · Open-Meteo · AFAD/USGS/EMSC · Sahil Güvenlik · MGM · GDACS · NASA EONET · haber RSS · OpenSeaMap</span>
+    <span data-i="sources">Kaynaklar: aisstream.io · Open-Meteo · KEGM · SHOD · Sahil Güvenlik · MGM · AFAD/USGS/EMSC · GDACS · haber RSS · OpenSeaMap</span>
     <span data-i="disclaimer">Bu bir kurtarma servisi değildir. Acil durumda <strong>158</strong> (Sahil Güvenlik) / <strong>112</strong>.</span>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script>
-    // fallback CDN if cdnjs is unreachable
     if (typeof L === "undefined") {
       document.write('<scr' + 'ipt src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></scr' + 'ipt>');
     }

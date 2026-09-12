@@ -36,24 +36,32 @@ def fetch_metar(cfg: dict) -> list[Warning]:
 
         gust_kn = max(gust, wspd)
         bad_wx = any(tok in wx for tok in _BAD_WX)
-        low_vis = vis * 1609.34 <= m["visibility_m"] if vis < 100 else vis <= m["visibility_m"]
-        if gust_kn < m["wind_gust_kn"] and not bad_wx and not low_vis:
+        vis_m = vis * 1609.34 if vis < 100 else vis
+        low_vis = vis_m <= m["visibility_m"]
+        is_fog = "FG" in wx or (vis_m <= 1000.0)
+        if gust_kn < m["wind_gust_kn"] and not bad_wx and not low_vis and not is_fog:
             continue
 
         name = row.get("name") or row.get("icaoId") or "havaalanı"
         bits = []
+        if is_fog:
+            bits.append("yoğun sis / düşük görüş (< 1000m)")
+        elif low_vis:
+            bits.append("düşük görüş")
         if gust_kn >= m["wind_gust_kn"]:
             bits.append(f"rüzgar ~{gust_kn:.0f} kn")
-        if bad_wx:
+        if bad_wx and not is_fog:
             bits.append(f"hava: {wx}")
-        if low_vis:
-            bits.append("düşük görüş")
+
+        warn_kind = "fog" if is_fog else "metar"
+        severity = "major" if (gust_kn >= m["wind_gust_kn"] + 10 or bad_wx or is_fog) else "minor"
+
         out.append(Warning(
             id=f"mt-{row.get('icaoId') or name}",
             headline=f"{name}: {', '.join(bits)}",
             area=name,
-            kind="metar",
-            severity="major" if gust_kn >= m["wind_gust_kn"] + 10 or bad_wx else "minor",
+            kind=warn_kind,
+            severity=severity,
             org="aviationweather.gov",
             url="https://aviationweather.gov/",
             issued=(row.get("reportTime") or now_iso()),

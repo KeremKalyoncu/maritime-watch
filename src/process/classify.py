@@ -155,3 +155,77 @@ def classify(inc) -> model.Incident:
     else:
         inc.severity = "minor"
     return inc
+
+
+WIND_NAMES_TR = {
+    "K": "Yıldız", "KKD": "Poyraz", "KD": "Poyraz", "DKD": "Poyraz",
+    "D": "Gündoğusu", "DGD": "Keşişleme", "GD": "Keşişleme", "GGD": "Keşişleme",
+    "G": "Kıble", "GGB": "Lodos", "GB": "Lodos", "BGB": "Lodos",
+    "B": "Günbatısı", "BKB": "Karayel", "KB": "Karayel", "KKB": "Karayel",
+}
+
+WIND_NAMES_EN = {
+    "K": "North", "KKD": "NNE", "KD": "NE", "DKD": "ENE",
+    "D": "East", "DGD": "ESE", "GD": "SE", "GGD": "SSE",
+    "G": "South", "GGB": "SSW", "GB": "SW", "BGB": "WSW",
+    "B": "West", "BKB": "WNW", "KB": "NW", "KKB": "NNW",
+}
+
+
+def enrich_weather_context(
+    inc: model.Incident,
+    weather_points: list[dict],
+    max_dist_nm: float = 35.0,
+) -> model.Incident:
+    """Enrich an incident with proximate weather conditions if within max_dist_nm."""
+    if inc.lat is None or inc.lon is None or not weather_points:
+        return inc
+
+    best_pt = None
+    best_dist = float("inf")
+    for pt in weather_points:
+        try:
+            plat, plon = float(pt["lat"]), float(pt["lon"])
+            d = _haversine_nm(inc.lat, inc.lon, plat, plon)
+            if d < best_dist:
+                best_dist = d
+                best_pt = pt
+        except (KeyError, ValueError, TypeError):
+            continue
+
+    if best_pt is not None and best_dist <= max_dist_nm:
+        wind_kn = float(best_pt.get("wind_kn") or 0.0)
+        gust_kn = float(best_pt.get("gust_kn") or wind_kn)
+        wave_m = float(best_pt["wave_m"]) if best_pt.get("wave_m") is not None else None
+        wind_dir = int(best_pt.get("wind_dir") or 0)
+        beaufort = int(best_pt.get("beaufort") or 0)
+
+        c_idx = round(wind_dir / 22.5) % 16
+        c_code = _COMPASS[c_idx] if c_idx < len(_COMPASS) else "K"
+        name_tr = WIND_NAMES_TR.get(c_code, "Rüzgar")
+        name_en = WIND_NAMES_EN.get(c_code, "Wind")
+
+        if wave_m is not None:
+            sum_tr = f"Bölgede {gust_kn:.0f} kn {name_tr} ve {wave_m:.1f} m dalga kaydedildi."
+            sum_en = f"At site: {gust_kn:.0f} kn {name_en} wind and {wave_m:.1f} m waves."
+        else:
+            sum_tr = f"Bölgede {gust_kn:.0f} kn {name_tr} rüzgar kaydedildi."
+            sum_en = f"At site: {gust_kn:.0f} kn {name_en} wind recorded."
+
+        inc.weather_context = model.WeatherContext(
+            wind_kn=round(wind_kn, 1),
+            gust_kn=round(gust_kn, 1),
+            wave_m=round(wave_m, 2) if wave_m is not None else None,
+            wind_dir=wind_dir,
+            beaufort=beaufort,
+            summary_tr=sum_tr,
+            summary_en=sum_en,
+            station_name=best_pt.get("name"),
+            distance_nm=round(best_dist, 1),
+        )
+        if sum_tr not in inc.notes:
+            inc.notes.append(sum_tr)
+    else:
+        inc.weather_context = None
+
+    return inc

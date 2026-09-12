@@ -131,8 +131,13 @@ def _emsc(cfg) -> list[Warning]:
 
 
 def fetch_quakes(cfg: dict) -> list[Warning]:
+    from .kandilli import fetch_kandilli
+
     out: list[Warning] = []
-    for fn in (_afad, _usgs, _emsc):
+    providers = [_afad, _usgs, _emsc]
+    if cfg.get("quakes", {}).get("kandilli", True):
+        providers.append(fetch_kandilli)
+    for fn in providers:
         try:
             out += fn(cfg)
         except Exception as e:

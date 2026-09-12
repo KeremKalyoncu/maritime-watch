@@ -89,3 +89,33 @@ def test_event_log_written(tmp_path):
     s.upsert_incident(Incident(id="a", lat=1.0, lon=2.0))
     log = (tmp_path / "data" / "events.jsonl").read_text("utf-8").strip().splitlines()
     assert json.loads(log[0])["kind"] == "incident_new"
+
+
+def test_enrich_incident_tracks(tmp_path):
+    from src.model import Vessel
+    from src.render.mapdata import enrich_incident_tracks
+
+    s = _store(tmp_path)
+    inc = Incident(id="inc-1", lat=40.5, lon=29.0, vessel=Vessel(name="TEST VESSEL", mmsi=271000123))
+    s.upsert_incident(inc)
+
+    vessels_data = {
+        "271000123": {
+            "name": "TEST VESSEL",
+            "track": [
+                {"lat": 40.40, "lon": 28.90, "sog": 10.5, "cog": 45.0},
+                {"lat": 40.45, "lon": 28.95, "sog": 8.0, "cog": 40.0},
+                {"lat": 40.50, "lon": 29.00, "sog": 0.2, "cog": 10.0},
+            ]
+        }
+    }
+
+    n = enrich_incident_tracks(s, vessels_data)
+    assert n == 1
+    assert len(s.incidents["inc-1"].track) == 3
+    assert s.incidents["inc-1"].track[0] == [40.40, 28.90]
+
+    s.save()
+    raw = json.loads((tmp_path / "web" / "data" / "incidents.json").read_text("utf-8"))
+    assert raw[0]["track"] == [[40.40, 28.90], [40.45, 28.95], [40.50, 29.00]]
+

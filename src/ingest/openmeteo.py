@@ -15,6 +15,12 @@ from ._net import get_json
 MARINE = "https://marine-api.open-meteo.com/v1/marine"
 WIND = "https://api.open-meteo.com/v1/forecast"
 
+_FORECAST_CACHE: list[dict] = []
+
+
+def reset_cache() -> None:
+    _FORECAST_CACHE.clear()
+
 
 def _series(url: str, params: dict, sample: str, field: str):
     """Hourly values starting at the current hour.
@@ -55,12 +61,9 @@ def _hourly(url: str, params: dict, sample: str, field: str):
 
 
 def fetch_forecast_points(cfg: dict) -> list[dict]:
-    """Hourly gust + wave for every configured sea area, from the current hour.
-
-    Returns only points whose data came back live - a fixture must never become
-    a forecast, and an outlook built from a dead source would be worse than
-    silence because people plan a day around it.
-    """
+    """Hourly gust + wave for every configured sea area, from the current hour."""
+    if _FORECAST_CACHE:
+        return list(_FORECAST_CACHE)
     out = []
     for pt in cfg["openmeteo"]["points"]:
         base = {"latitude": pt["lat"], "longitude": pt["lon"], "forecast_days": 3}
@@ -72,6 +75,7 @@ def fetch_forecast_points(cfg: dict) -> list[dict]:
             continue
         out.append({"name": pt["name"], "lat": pt["lat"], "lon": pt["lon"],
                     "times": gt, "gusts": gusts, "waves": waves if wt else []})
+    _FORECAST_CACHE.extend(out)
     return out
 
 
@@ -95,7 +99,7 @@ def fetch_marine_warnings(cfg: dict) -> list[Warning]:
         # put "dalga 2.7 m, ruzgar 41 kn" (the sample file's values) on the live
         # channel as a real warning for two different sea areas
         if not (live1 and live2):
-            break
+            continue
 
         max_wave = max(waves[:hours]) if waves else 0.0
         max_gust = max(gusts[:hours]) if gusts else 0.0
