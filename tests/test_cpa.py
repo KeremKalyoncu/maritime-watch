@@ -1,4 +1,3 @@
-import math
 from src.process.cpa import (
     calculate_cpa,
     cpa_events_to_incidents,

@@ -96,9 +96,7 @@ def is_vessel_underway(p: dict[str, Any]) -> bool:
     if p.get("nav_status") in (1, 5):  # 1 = anchored, 5 = moored
         return False
     sog = float(p.get("sog") or 0.0)
-    if sog < MIN_UNDERWAY_SPEED_KN:
-        return False
-    return True
+    return sog >= MIN_UNDERWAY_SPEED_KN
 
 
 def detect_cpa_risks(

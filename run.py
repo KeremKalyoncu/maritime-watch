@@ -45,7 +45,8 @@ from src.ingest.metar import fetch_metar
 from src.ingest.navwarn import fetch_navwarnings
 from src.ingest.news import fetch_news
 from src.ingest.official import gather_official
-from src.ingest.openmeteo import fetch_forecast_points, fetch_marine_warnings, reset_cache as reset_openmeteo_cache
+from src.ingest.openmeteo import fetch_forecast_points, fetch_marine_warnings
+from src.ingest.openmeteo import reset_cache as reset_openmeteo_cache
 from src.ingest.quakes import fetch_quakes
 from src.ingest.reliefweb import fetch_reliefweb
 from src.model import Incident, Source, Vessel, make_id

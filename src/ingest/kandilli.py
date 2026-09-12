@@ -10,7 +10,7 @@ from __future__ import annotations
 import re
 import time
 
-from ..model import Warning, now_iso
+from ..model import Warning
 from ..process.classify import nearest_port
 from ._net import get_text
 

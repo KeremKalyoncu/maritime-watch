@@ -5,7 +5,6 @@ warnings to calculate a 0-100 safety score and actionable recommendations.
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
 from typing import Any
 
