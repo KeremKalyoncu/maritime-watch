@@ -3,7 +3,14 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Sat, 12 Sep 2026 23:09:15 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 13 Sep 2026 01:00:05 +0000</lastBuildDate>
+    <item>
+      <title>[signal] sinking, konum belirsiz</title>
+      <link>https://www.hurriyet.com.tr/gundem/batan-tugberk-imamoglu-gemisindeki-10-denizciyi-arama-calismalari-11-gununde-ailelerin-bekleyisi-suruyor-43304363</link>
+      <guid isPermaLink="false">news-220c8a96aa-1</guid>
+      <pubDate>Sun, 13 Sep 2026 00:53:29 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: critical | Bildirilen kişi: 10 | news/hurriyet.com.tr: Batan Tuğberk İmamoğlu gemisindeki 10 denizciyi arama çalışmaları 11. gününde! Ailelerin bekleyişi sürüyor</description>
+    </item>
     <item>
       <title>[signal] distress, Güney Ege</title>
       <link>https://example.github.io/maritime-watch</link>
@@ -35,9 +42,9 @@
     <item>
       <title>[signal] collision-risk, Güney Ege</title>
       <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">cpa-352002364-352002364-1</guid>
+      <guid isPermaLink="false">cpa-271053928-271053928-1</guid>
       <pubDate>Sat, 12 Sep 2026 23:06:26 +0000</pubDate>
-      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.19 NM (~348 m), kalan süre: 2.2 dk (Hızlar: 11.4 kn / 11.4 kn)</description>
+      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.10 NM (~181 m), kalan süre: 1.4 dk (Hızlar: 10.2 kn / 10.2 kn)</description>
     </item>
     <item>
       <title>[signal] collision-risk, Güney Ege</title>
@@ -49,9 +56,9 @@
     <item>
       <title>[signal] collision-risk, Güney Ege</title>
       <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">cpa-271053928-271053928-1</guid>
+      <guid isPermaLink="false">cpa-352002364-352002364-1</guid>
       <pubDate>Sat, 12 Sep 2026 23:06:26 +0000</pubDate>
-      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.10 NM (~181 m), kalan süre: 1.4 dk (Hızlar: 10.2 kn / 10.2 kn)</description>
+      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.19 NM (~348 m), kalan süre: 2.2 dk (Hızlar: 11.4 kn / 11.4 kn)</description>
     </item>
     <item>
       <title>[signal] collision-risk, Güney Ege</title>
