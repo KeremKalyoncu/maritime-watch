@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-13T14:44:00Z",
-  "cycle_seconds": 433.7,
+  "generated": "2026-09-13T17:42:04Z",
+  "cycle_seconds": 325.5,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
-  "incidents": 21,
-  "warnings": 2,
+  "incidents": 19,
+  "warnings": 1,
   "sources": {
     "scrape": {
       "ok": true,
@@ -14,12 +14,12 @@
     },
     "news": {
       "ok": true,
-      "items": 3,
+      "items": 4,
       "error": null
     },
     "openmeteo": {
       "ok": true,
-      "items": 1,
+      "items": 0,
       "error": null
     },
     "quakes": {
@@ -49,20 +49,20 @@
     }
   },
   "fetch": {
-    "mgm_alarmlar.json": "down",
+    "mgm_alarmlar.json": "live",
     "sahil_guvenlik.html": "live",
     "kegm_sample.html": "live",
     "shod_navtex.txt": "live",
-    "news_4.xml": "live",
     "news_2.xml": "live",
     "news_3.xml": "live",
+    "news_4.xml": "live",
     "news_1.xml": "live",
     "news_9.xml": "live",
-    "news_6.xml": "live",
     "news_5.xml": "live",
+    "news_6.xml": "live",
     "news_7.xml": "live",
-    "news_8.xml": "live",
     "news_0.xml": "live",
+    "news_8.xml": "live",
     "openmeteo_marine.json": "live",
     "openmeteo_wind.json": "live",
     "afad_quakes.json": "live",

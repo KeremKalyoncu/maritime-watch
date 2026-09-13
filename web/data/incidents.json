@@ -143,41 +143,6 @@
     "weather_context": null
   },
   {
-    "id": "2026-09-13-ais-2a6bd9",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 37.2556,
-    "lon": 26.0235,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "AMZAN",
-      "mmsi": 403644001,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-13T05:26:48Z",
-    "last_update": "2026-09-13T05:26:48Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 940 dakika önce kesildi (6 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-13T05:26:48Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false,
-    "track": [],
-    "heading": null,
-    "vessel_type": "unknown",
-    "weather_context": null
-  },
-  {
     "id": "2026-09-13-ais-7fc707",
     "type": "drift",
     "status": "signal",
@@ -306,53 +271,6 @@
     }
   },
   {
-    "id": "2026-09-13-ais-e8b3ca",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 40.7729,
-    "lon": 28.7063,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "M/V LUNA MAERSK",
-      "mmsi": 477648700,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-13T05:26:48Z",
-    "last_update": "2026-09-13T05:26:48Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 940 dakika önce kesildi (6 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-13T05:26:48Z"
-      }
-    ],
-    "notes": [
-      "Bölgede 14 kn Poyraz ve 0.8 m dalga kaydedildi."
-    ],
-    "places": [],
-    "coarse": false,
-    "track": [],
-    "heading": null,
-    "vessel_type": "unknown",
-    "weather_context": {
-      "wind_kn": 10.0,
-      "gust_kn": 14.0,
-      "wave_m": 0.8,
-      "wind_dir": 45,
-      "beaufort": 3,
-      "summary_tr": "Bölgede 14 kn Poyraz ve 0.8 m dalga kaydedildi.",
-      "summary_en": "At site: 14 kn NE wind and 0.8 m waves.",
-      "station_name": "Marmara Denizi",
-      "distance_nm": 18.5
-    }
-  },
-  {
     "id": "cpa-209653000-241835000",
     "type": "collision-risk",
     "status": "signal",
@@ -468,7 +386,8 @@
     ],
     "notes": [
       "Çatışma / Yakın Geçiş Riski: CPA 0.16 NM (~292 m), kalan süre: 1.1 dk (Hızlar: 9.9 kn / 9.6 kn)",
-      "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi."
+      "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi.",
+      "Bölgede 9 kn Kıble ve 0.2 m dalga kaydedildi."
     ],
     "places": [],
     "coarse": false,
@@ -489,13 +408,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 9.1,
-      "gust_kn": 12.1,
+      "wind_kn": 6.7,
+      "gust_kn": 8.9,
       "wave_m": 0.18,
       "wind_dir": 180,
       "beaufort": 3,
-      "summary_tr": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 12 kn South wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 9 kn Kıble ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 9 kn South wind and 0.2 m waves.",
       "station_name": "Mersin Körfezi",
       "distance_nm": 17.5
     }
@@ -529,7 +448,8 @@
     ],
     "notes": [
       "Çatışma / Yakın Geçiş Riski: CPA 0.14 NM (~250 m), kalan süre: 6.1 dk (Hızlar: 8.0 kn / 8.0 kn)",
-      "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi."
+      "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi.",
+      "Bölgede 9 kn Kıble ve 0.2 m dalga kaydedildi."
     ],
     "places": [],
     "coarse": false,
@@ -550,84 +470,51 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 9.1,
-      "gust_kn": 12.1,
+      "wind_kn": 6.7,
+      "gust_kn": 8.9,
       "wave_m": 0.18,
       "wind_dir": 180,
       "beaufort": 3,
-      "summary_tr": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 12 kn South wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 9 kn Kıble ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 9 kn South wind and 0.2 m waves.",
       "station_name": "Mersin Körfezi",
       "distance_nm": 6.4
     }
   },
   {
-    "id": "cpa-667002511-667002511",
-    "type": "collision-risk",
+    "id": "news-059927e08c",
+    "type": "unknown",
     "status": "signal",
-    "confidence": 0.1,
+    "confidence": 0.3,
     "severity": "minor",
-    "lat": 40.8721,
-    "lon": 28.4836,
-    "area": "Marmara Denizi",
+    "lat": null,
+    "lon": null,
+    "area": "",
     "vessel": {
-      "name": "GREGAL & GREGAL",
-      "mmsi": 667002511,
+      "name": null,
+      "mmsi": null,
       "type": null,
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-12T19:00:55Z",
-    "last_update": "2026-09-13T05:26:48Z",
+    "first_seen": "2026-09-13T17:38:19Z",
+    "last_update": "2026-09-13T17:38:19Z",
     "sources": [
       {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.17 NM (~316 m), kalan süre: 0.1 dk (Hızlar: 12.0 kn / 12.0 kn)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-12T19:00:55Z"
-      },
-      {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.16 NM (~294 m), kalan süre: 0.6 dk (Hızlar: 11.1 kn / 11.1 kn)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-13T05:26:48Z"
+        "kind": "news",
+        "detail": "KKTC Başbakanı [isim]'den gemi kazası açıklaması: Yarın yeni bir aşamaya geçiyoruz",
+        "org": "hurriyet.com.tr",
+        "url": "https://www.hurriyet.com.tr/gundem/kktc-basbakani-unal-ustelden-gemi-kazasi-aciklamasi-yarin-yeni-bir-asamaya-geciyoruz-43305400",
+        "ts": "2026-09-13T17:38:19Z"
       }
     ],
-    "notes": [
-      "Çatışma / Yakın Geçiş Riski: CPA 0.17 NM (~316 m), kalan süre: 0.1 dk (Hızlar: 12.0 kn / 12.0 kn)",
-      "Bölgede 14 kn Poyraz ve 0.8 m dalga kaydedildi."
-    ],
+    "notes": [],
     "places": [],
-    "coarse": false,
-    "track": [
-      [
-        40.8724,
-        28.4854
-      ],
-      [
-        40.8718,
-        28.4817
-      ],
-      [
-        40.8721,
-        28.4836
-      ]
-    ],
+    "coarse": true,
+    "track": [],
     "heading": null,
     "vessel_type": "unknown",
-    "weather_context": {
-      "wind_kn": 10.0,
-      "gust_kn": 14.0,
-      "wave_m": 0.8,
-      "wind_dir": 45,
-      "beaufort": 3,
-      "summary_tr": "Bölgede 14 kn Poyraz ve 0.8 m dalga kaydedildi.",
-      "summary_en": "At site: 14 kn NE wind and 0.8 m waves.",
-      "station_name": "Marmara Denizi",
-      "distance_nm": 11.1
-    }
+    "weather_context": null
   },
   {
     "id": "news-1ee9de075e",
@@ -752,13 +639,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 17.6,
-      "gust_kn": 23.5,
-      "wave_m": 0.24,
+      "wind_kn": 10.0,
+      "gust_kn": 14.0,
+      "wave_m": 0.8,
       "wind_dir": 40,
-      "beaufort": 5,
-      "summary_tr": "Bölgede 24 kn Poyraz ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 24 kn NE wind and 0.2 m waves.",
+      "beaufort": 3,
+      "summary_tr": "Bölgede 14 kn Poyraz ve 0.8 m dalga kaydedildi.",
+      "summary_en": "At site: 14 kn NE wind and 0.8 m waves.",
       "station_name": "İstanbul Boğazı",
       "distance_nm": 3.8
     }
@@ -832,7 +719,8 @@
       "Bölgede 2 kn Lodos ve 0.3 m dalga kaydedildi.",
       "Bölgede 2 kn Lodos ve 0.2 m dalga kaydedildi.",
       "Bölgede 11 kn Lodos ve 0.2 m dalga kaydedildi.",
-      "Bölgede 9 kn Lodos ve 0.2 m dalga kaydedildi."
+      "Bölgede 9 kn Lodos ve 0.2 m dalga kaydedildi.",
+      "Bölgede 8 kn Lodos ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -842,13 +730,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 6.4,
-      "gust_kn": 8.6,
+      "wind_kn": 5.7,
+      "gust_kn": 7.6,
       "wave_m": 0.22,
       "wind_dir": 220,
-      "beaufort": 3,
-      "summary_tr": "Bölgede 9 kn Lodos ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 9 kn SW wind and 0.2 m waves.",
+      "beaufort": 2,
+      "summary_tr": "Bölgede 8 kn Lodos ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 8 kn SW wind and 0.2 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4
     }

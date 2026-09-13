@@ -3,13 +3,13 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Sun, 13 Sep 2026 14:44:01 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 13 Sep 2026 17:42:04 +0000</lastBuildDate>
     <item>
-      <title>[signal] unknown, Marmara Denizi</title>
-      <link>https://www.hurriyet.com.tr/gundem/silivri-aciklarindaki-gemi-faciasinda-12nci-gun-kayip-10-murettebat-araniyor-43305167</link>
-      <guid isPermaLink="false">news-27bf38646a-1</guid>
-      <pubDate>Sun, 13 Sep 2026 14:38:35 +0000</pubDate>
-      <description>Güven: 0.3 | Önem: critical | Bildirilen kişi: 10 | news/hurriyet.com.tr: Silivri açıklarındaki gemi faciasında 12'nci gün: Kayıp 10 mürettebat aranıyor</description>
+      <title>[signal] unknown, konum belirsiz</title>
+      <link>https://www.hurriyet.com.tr/gundem/kktc-basbakani-unal-ustelden-gemi-kazasi-aciklamasi-yarin-yeni-bir-asamaya-geciyoruz-43305400</link>
+      <guid isPermaLink="false">news-059927e08c-1</guid>
+      <pubDate>Sun, 13 Sep 2026 17:38:19 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/hurriyet.com.tr: KKTC Başbakanı [isim]'den gemi kazası açıklaması: Yarın yeni bir aşamaya geçiyoruz</description>
     </item>
     <item>
       <title>[signal] unknown, konum belirsiz</title>
@@ -17,6 +17,13 @@
       <guid isPermaLink="false">news-1ee9de075e-1</guid>
       <pubDate>Sun, 13 Sep 2026 14:38:35 +0000</pubDate>
       <description>Güven: 0.3 | Önem: minor | news/cnnturk.com: Ahmet Denizolgun nasıl öldü? Kayıp telefon sır perdesini aralayacak!</description>
+    </item>
+    <item>
+      <title>[signal] unknown, Marmara Denizi</title>
+      <link>https://www.hurriyet.com.tr/gundem/silivri-aciklarindaki-gemi-faciasinda-12nci-gun-kayip-10-murettebat-araniyor-43305167</link>
+      <guid isPermaLink="false">news-27bf38646a-1</guid>
+      <pubDate>Sun, 13 Sep 2026 14:38:35 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: critical | Bildirilen kişi: 10 | news/hurriyet.com.tr: Silivri açıklarındaki gemi faciasında 12'nci gün: Kayıp 10 mürettebat aranıyor</description>
     </item>
     <item>
       <title>[signal] drift, Orta Ege</title>
@@ -87,27 +94,6 @@
       <guid isPermaLink="false">cpa-353427000-353427000-1</guid>
       <pubDate>Sun, 13 Sep 2026 10:33:40 +0000</pubDate>
       <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.14 NM (~250 m), kalan süre: 6.1 dk (Hızlar: 8.0 kn / 8.0 kn)</description>
-    </item>
-    <item>
-      <title>[signal] distress, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-13-ais-2a6bd9-1</guid>
-      <pubDate>Sun, 13 Sep 2026 05:26:48 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 940 dakika önce kesildi (6 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[signal] distress, Marmara Denizi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-13-ais-e8b3ca-1</guid>
-      <pubDate>Sun, 13 Sep 2026 05:26:48 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 940 dakika önce kesildi (6 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[signal] collision-risk, Marmara Denizi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">cpa-667002511-667002511-2</guid>
-      <pubDate>Sun, 13 Sep 2026 05:26:48 +0000</pubDate>
-      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.17 NM (~316 m), kalan süre: 0.1 dk (Hızlar: 12.0 kn / 12.0 kn) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.16 NM (~294 m), kalan süre: 0.6 dk (Hızlar: 11.1 kn / 11.1 kn)</description>
     </item>
     <item>
       <title>[confirmed] rescue, Antalya Körfezi</title>
