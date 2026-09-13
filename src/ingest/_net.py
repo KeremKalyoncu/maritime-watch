@@ -59,7 +59,8 @@ def get_text(url: str, sample_name: str, headers: dict | None = None,
             STATUS[sample_name] = "sample"
             return p.read_text("utf-8"), False
         print(f"[fetch] {url} down ({e}) -> yayin yok")
-        STATUS[sample_name] = "down"
+        if STATUS.get(sample_name) != "live":
+            STATUS[sample_name] = "down"
         return "", False
 
 
@@ -72,7 +73,8 @@ def get_json(url: str, sample_name: str, headers: dict | None = None,
         return json.loads(raw), live
     except json.JSONDecodeError:
         print(f"[fetch] {url}: response was not JSON")
-        STATUS[sample_name] = "down"
+        if STATUS.get(sample_name) != "live":
+            STATUS[sample_name] = "down"
         return None, live
 
 

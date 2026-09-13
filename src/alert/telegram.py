@@ -68,6 +68,7 @@ class Notifier:
         self.prevention = tcfg.get("prevention", True)
         self.pin = tcfg.get("send_location_pin", True)
         self.digest = tcfg.get("digest", True)      # one combined message per cycle
+        self.operator_alerts = tcfg.get("operator_alerts", False)  # internal scraper ops notices
         self.site = (cfg.get("site") or {}).get("url", "").rstrip("/")
 
         data_dir = Path(cfg["_root"]) / "data"
@@ -196,7 +197,10 @@ class Notifier:
                 f"{html.escape(np[0])} (~{np[1]:.0f} deniz mili)")
 
     def _maplink(self, lat, lon) -> str:
-        return f"🗺️ Haritada gör: https://www.google.com/maps?q={lat:.5f},{lon:.5f}"
+        base = f"🗺️ Haritada gör: https://www.google.com/maps?q={lat:.5f},{lon:.5f}"
+        if self.site:
+            return f"{base}\n🌐 Deniz Haritası: {self.site}/#{lat:.5f},{lon:.5f}"
+        return base
 
     # ---- incident --------------------------------------------------------
     def incident(self, inc, dry: bool = True) -> None:
@@ -256,7 +260,7 @@ class Notifier:
 
         lines.append("")
         lines.append("<i>Bu otomatik bir derlemedir; resmi açıklamayı esas alın.</i>")
-        lines.append("<b>Acil durumda: 158 Sahil Güvenlik  ·  112</b>")
+        lines.append("<b>Acil durumda: 158 Sahil Güvenlik  ·  112  ·  VHF Kanal 16</b>")
         self._emit(f"inc:{inc.id}:{inc.status}:{len(inc.sources)}", "\n".join(lines), dry,
                    inc.lat, inc.lon, urgent=is_sart)
 
@@ -451,10 +455,13 @@ class Notifier:
         self._emit(f"outlook:{day}", self.outlook_text(areas, klass), dry, urgent=True)
 
     def operator(self, text: str, dry: bool = True) -> None:
-        """System health notice. Sent once per day per distinct message."""
-        if not self.enabled:
-            return
+        """System health notice. Logged to outbox, sent to Telegram only if operator_alerts enabled."""
         key = "ops:" + time.strftime("%Y-%m-%d") + ":" + stable_hash(text)
+        with self.outbox.open("a", encoding="utf-8") as f:
+            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')}  [{key}]\n{text}\n{'-' * 60}\n")
+        if not self.enabled or not self.operator_alerts:
+            print(f"[operator:log] {text}")
+            return
         self._emit(key, f"{html.escape(text)}", dry, urgent=True)
 
     def warning_confirmed(self, w, dry: bool = True) -> None:
