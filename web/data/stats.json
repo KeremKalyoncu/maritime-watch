@@ -1,36 +1,41 @@
 {
-  "generated": "2026-09-13T05:33:48Z",
-  "total_incidents": 238,
+  "generated": "2026-09-13T10:40:36Z",
+  "total_incidents": 244,
   "by_month": {
-    "2026-09": 238
+    "2026-09": 244
   },
   "by_area": {
-    "belirsiz": 213,
+    "belirsiz": 218,
     "Marmara Denizi": 10,
     "Türk karasuları civarı": 6,
     "Doğu Karadeniz": 3,
     "Orta Ege": 3,
     "Antalya Körfezi": 2,
-    "Güney Ege": 1
+    "Güney Ege": 1,
+    "İstanbul Boğazı": 1
   },
   "by_type": {
     "distress": 88,
-    "drift": 62,
-    "unknown": 49,
+    "drift": 63,
+    "unknown": 51,
     "sinking": 24,
-    "collision-risk": 9,
+    "collision-risk": 12,
     "collision": 2,
     "rescue": 2,
     "fire": 1,
     "capsize": 1
   },
   "by_status": {
-    "signal": 229,
-    "probable": 9
+    "signal": 232,
+    "probable": 12
   },
-  "incidents_with_casualties": 14,
-  "casualties_reported_total": 171,
+  "incidents_with_casualties": 15,
+  "casualties_reported_total": 172,
   "top_vessels": [
+    [
+      "SIMI II",
+      3
+    ],
     [
       "PANAGIA SKIADENI",
       3
@@ -57,10 +62,6 @@
     ],
     [
       "BARILOCHE",
-      2
-    ],
-    [
-      "SIMI II",
       2
     ],
     [
