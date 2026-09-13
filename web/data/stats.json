@@ -1,12 +1,12 @@
 {
-  "generated": "2026-09-13T10:40:36Z",
-  "total_incidents": 244,
+  "generated": "2026-09-13T14:44:01Z",
+  "total_incidents": 246,
   "by_month": {
-    "2026-09": 244
+    "2026-09": 246
   },
   "by_area": {
-    "belirsiz": 218,
-    "Marmara Denizi": 10,
+    "belirsiz": 219,
+    "Marmara Denizi": 11,
     "Türk karasuları civarı": 6,
     "Doğu Karadeniz": 3,
     "Orta Ege": 3,
@@ -17,20 +17,20 @@
   "by_type": {
     "distress": 88,
     "drift": 63,
-    "unknown": 51,
+    "unknown": 52,
     "sinking": 24,
-    "collision-risk": 12,
+    "collision-risk": 13,
     "collision": 2,
     "rescue": 2,
     "fire": 1,
     "capsize": 1
   },
   "by_status": {
-    "signal": 232,
-    "probable": 12
+    "signal": 233,
+    "probable": 13
   },
-  "incidents_with_casualties": 15,
-  "casualties_reported_total": 172,
+  "incidents_with_casualties": 16,
+  "casualties_reported_total": 182,
   "top_vessels": [
     [
       "SIMI II",
