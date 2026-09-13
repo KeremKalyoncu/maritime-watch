@@ -3,13 +3,48 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Sun, 13 Sep 2026 19:51:40 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 13 Sep 2026 21:52:21 +0000</lastBuildDate>
+    <item>
+      <title>[signal] drift, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-13-ais-7fc707-3</guid>
+      <pubDate>Sun, 13 Sep 2026 21:45:38 +0000</pubDate>
+      <description>Güven: 0.35 | Önem: minor | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (10.9 kn) ani duruşa geçti | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.30 NM (~557 m), kalan süre: 1.6 dk (Hızlar: 15.4 kn / 15.3 kn) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 427 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
     <item>
       <title>[signal] collision-risk, Güney Ege</title>
       <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">cpa-256614000-256614000-2</guid>
-      <pubDate>Sun, 13 Sep 2026 19:44:57 +0000</pubDate>
-      <description>Güven: 0.35 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.03 NM (~51 m), kalan süre: 8.6 dk (Hızlar: 11.7 kn / 11.6 kn) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 552 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+      <guid isPermaLink="false">cpa-256614000-256614000-3</guid>
+      <pubDate>Sun, 13 Sep 2026 21:45:38 +0000</pubDate>
+      <description>Güven: 0.35 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.03 NM (~51 m), kalan süre: 8.6 dk (Hızlar: 11.7 kn / 11.6 kn) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 552 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 673 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] drift, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-13-ais-45cd82-3</guid>
+      <pubDate>Sun, 13 Sep 2026 21:45:38 +0000</pubDate>
+      <description>Güven: 0.35 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (15.8 kn) ani duruşa geçti | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 428 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.07 NM (~120 m), kalan süre: 1.9 dk (Hızlar: 11.1 kn / 11.1 kn)</description>
+    </item>
+    <item>
+      <title>[signal] drift, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-13-ais-ed1d38-1</guid>
+      <pubDate>Sun, 13 Sep 2026 21:45:38 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (9.5 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-13-ais-87fad8-2</guid>
+      <pubDate>Sun, 13 Sep 2026 21:45:38 +0000</pubDate>
+      <description>Güven: 0.35 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 428 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.15 NM (~285 m), kalan süre: 9.2 dk (Hızlar: 10.9 kn / 10.8 kn)</description>
+    </item>
+    <item>
+      <title>[signal] collision-risk, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">cpa-241639000-241639000-1</guid>
+      <pubDate>Sun, 13 Sep 2026 21:45:38 +0000</pubDate>
+      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.04 NM (~74 m), kalan süre: 1.0 dk (Hızlar: 4.8 kn / 4.8 kn)</description>
     </item>
     <item>
       <title>[signal] distress, Güney Ege</title>
@@ -52,13 +87,6 @@
       <guid isPermaLink="false">2026-09-12-ais-7b555b-3</guid>
       <pubDate>Sun, 13 Sep 2026 14:38:17 +0000</pubDate>
       <description>Güven: 0.35 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (11.9 kn) ani duruşa geçti | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.03 NM (~62 m), kalan süre: 0.1 dk (Hızlar: 13.8 kn / 13.8 kn) | ais-anomaly/AIS: speed-drop: seyir hızından (11.6 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[signal] drift, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-13-ais-7fc707-2</guid>
-      <pubDate>Sun, 13 Sep 2026 14:38:17 +0000</pubDate>
-      <description>Güven: 0.35 | Önem: minor | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (10.9 kn) ani duruşa geçti | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.30 NM (~557 m), kalan süre: 1.6 dk (Hızlar: 15.4 kn / 15.3 kn)</description>
     </item>
     <item>
       <title>[signal] unknown, İstanbul Boğazı</title>

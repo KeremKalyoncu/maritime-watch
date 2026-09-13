@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-13T19:51:40Z",
-  "total_incidents": 249,
+  "generated": "2026-09-13T21:52:21Z",
+  "total_incidents": 253,
   "by_month": {
-    "2026-09": 249
+    "2026-09": 253
   },
   "by_area": {
-    "belirsiz": 222,
+    "belirsiz": 226,
     "Marmara Denizi": 11,
     "Türk karasuları civarı": 6,
     "Doğu Karadeniz": 3,
@@ -15,29 +15,29 @@
     "İstanbul Boğazı": 1
   },
   "by_type": {
-    "distress": 89,
-    "drift": 63,
+    "distress": 90,
+    "drift": 65,
     "unknown": 53,
     "sinking": 24,
-    "collision-risk": 14,
+    "collision-risk": 15,
     "collision": 2,
     "rescue": 2,
     "fire": 1,
     "capsize": 1
   },
   "by_status": {
-    "signal": 235,
-    "probable": 14
+    "signal": 238,
+    "probable": 15
   },
   "incidents_with_casualties": 16,
   "casualties_reported_total": 182,
   "top_vessels": [
     [
-      "SIMI II",
-      3
+      "PANAGIA SKIADENI",
+      4
     ],
     [
-      "PANAGIA SKIADENI",
+      "SIMI II",
       3
     ],
     [
