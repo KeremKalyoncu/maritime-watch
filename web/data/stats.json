@@ -1,12 +1,12 @@
 {
-  "generated": "2026-09-14T07:00:45Z",
-  "total_incidents": 260,
+  "generated": "2026-09-14T13:56:28Z",
+  "total_incidents": 264,
   "by_month": {
-    "2026-09": 260
+    "2026-09": 264
   },
   "by_area": {
-    "belirsiz": 233,
-    "Marmara Denizi": 11,
+    "belirsiz": 236,
+    "Marmara Denizi": 12,
     "Türk karasuları civarı": 6,
     "Doğu Karadeniz": 3,
     "Orta Ege": 3,
@@ -15,22 +15,22 @@
     "İstanbul Boğazı": 1
   },
   "by_type": {
-    "distress": 92,
+    "distress": 93,
     "drift": 66,
-    "unknown": 53,
-    "sinking": 24,
-    "collision-risk": 19,
+    "unknown": 54,
+    "sinking": 25,
+    "collision-risk": 20,
     "collision": 2,
     "rescue": 2,
     "fire": 1,
     "capsize": 1
   },
   "by_status": {
-    "signal": 241,
-    "probable": 19
+    "signal": 244,
+    "probable": 20
   },
-  "incidents_with_casualties": 16,
-  "casualties_reported_total": 182,
+  "incidents_with_casualties": 17,
+  "casualties_reported_total": 192,
   "top_vessels": [
     [
       "PANAGIA SKIADENI",
