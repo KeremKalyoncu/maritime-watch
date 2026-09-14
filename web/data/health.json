@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-14T13:56:28Z",
-  "cycle_seconds": 453.9,
+  "generated": "2026-09-14T19:02:03Z",
+  "cycle_seconds": 492.4,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
-  "incidents": 17,
-  "warnings": 5,
+  "incidents": 14,
+  "warnings": 3,
   "sources": {
     "scrape": {
       "ok": true,
@@ -19,7 +19,7 @@
     },
     "openmeteo": {
       "ok": true,
-      "items": 4,
+      "items": 2,
       "error": null
     },
     "quakes": {
@@ -56,20 +56,20 @@
     "news_2.xml": "live",
     "news_3.xml": "live",
     "news_6.xml": "live",
-    "news_5.xml": "live",
     "news_1.xml": "live",
+    "news_4.xml": "live",
     "news_7.xml": "live",
     "news_9.xml": "live",
-    "news_4.xml": "live",
-    "news_0.xml": "live",
+    "news_5.xml": "live",
     "news_8.xml": "live",
+    "news_0.xml": "live",
     "openmeteo_marine.json": "live",
     "openmeteo_wind.json": "live",
     "afad_quakes.json": "live",
     "usgs_quakes.json": "live",
     "emsc_quakes.json": "live",
     "kandilli_quakes.html": "live",
-    "gdacs_rss.xml": "down",
+    "gdacs_rss.xml": "live",
     "eonet.json": "live",
     "metar.json": "live"
   }

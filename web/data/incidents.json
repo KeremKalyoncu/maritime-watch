@@ -1,78 +1,5 @@
 [
   {
-    "id": "2026-09-13-ais-2ea555",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.35,
-    "severity": "minor",
-    "lat": 36.3767,
-    "lon": 27.7379,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "SEAVEN HOPE",
-      "mmsi": 241750000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-13T23:36:56Z",
-    "last_update": "2026-09-14T06:55:29Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 360 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-13T23:36:56Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 478 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-14T01:34:43Z"
-      },
-      {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.27 NM (~501 m), kalan süre: 2.7 dk (Hızlar: 14.9 kn / 14.9 kn)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-14T01:34:43Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 798 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-14T06:55:29Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false,
-    "track": [
-      [
-        36.1784,
-        27.303
-      ],
-      [
-        36.4787,
-        28.2016
-      ],
-      [
-        36.4102,
-        28.2314
-      ],
-      [
-        36.3767,
-        27.7379
-      ]
-    ],
-    "heading": null,
-    "vessel_type": "unknown",
-    "weather_context": null
-  },
-  {
     "id": "2026-09-13-ais-45cd82",
     "type": "drift",
     "status": "signal",
@@ -89,7 +16,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-13T21:45:38Z",
-    "last_update": "2026-09-14T13:50:25Z",
+    "last_update": "2026-09-14T18:55:22Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -160,6 +87,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-14T13:50:25Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: kuru yük gemisi: seyir hızından (4.7 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-14T18:55:22Z"
       }
     ],
     "notes": [],
@@ -189,87 +123,6 @@
       [
         36.4425,
         28.2365
-      ]
-    ],
-    "heading": null,
-    "vessel_type": "unknown",
-    "weather_context": null
-  },
-  {
-    "id": "2026-09-13-ais-7fc707",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.35,
-    "severity": "minor",
-    "lat": 36.617513333333335,
-    "lon": 27.839031666666664,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "SIMI II",
-      "mmsi": 241677000,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-13T10:33:40Z",
-    "last_update": "2026-09-14T06:55:29Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (10.9 kn) ani duruşa geçti",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-13T10:33:40Z"
-      },
-      {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.30 NM (~557 m), kalan süre: 1.6 dk (Hızlar: 15.4 kn / 15.3 kn)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-13T14:38:17Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 427 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-13T21:45:38Z"
-      },
-      {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.22 NM (~412 m), kalan süre: 6.4 dk (Hızlar: 13.0 kn / 12.6 kn)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-14T06:55:29Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false,
-    "track": [
-      [
-        36.4523,
-        28.1711
-      ],
-      [
-        36.521,
-        28.0586
-      ],
-      [
-        36.5225,
-        28.0538
-      ],
-      [
-        36.4953,
-        27.985
-      ],
-      [
-        36.4944,
-        27.9888
-      ],
-      [
-        36.6175,
-        27.839
       ]
     ],
     "heading": null,
@@ -541,89 +394,6 @@
     }
   },
   {
-    "id": "cpa-352980765-352980765",
-    "type": "collision-risk",
-    "status": "signal",
-    "confidence": 0.1,
-    "severity": "minor",
-    "lat": 43.1447,
-    "lon": 27.9749,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "TANARO RIVER & TANARO RIVER",
-      "mmsi": 352980765,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-13T19:44:57Z",
-    "last_update": "2026-09-14T06:55:29Z",
-    "sources": [
-      {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.05 NM (~100 m), kalan süre: 6.9 dk (Hızlar: 7.2 kn / 7.1 kn)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-13T19:44:57Z"
-      },
-      {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.09 NM (~162 m), kalan süre: 0.1 dk (Hızlar: 6.5 kn / 5.3 kn)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-14T06:55:29Z"
-      },
-      {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.09 NM (~170 m), kalan süre: 0.1 dk (Hızlar: 6.5 kn / 5.2 kn)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-14T06:55:29Z"
-      },
-      {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.00 NM (~7 m), kalan süre: 0.1 dk (Hızlar: 5.3 kn / 5.2 kn)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-14T06:55:29Z"
-      }
-    ],
-    "notes": [
-      "Çatışma / Yakın Geçiş Riski: CPA 0.05 NM (~100 m), kalan süre: 6.9 dk (Hızlar: 7.2 kn / 7.1 kn)"
-    ],
-    "places": [],
-    "coarse": false,
-    "track": [
-      [
-        43.1452,
-        27.975
-      ],
-      [
-        43.1461,
-        27.9751
-      ],
-      [
-        43.1992,
-        27.8913
-      ],
-      [
-        43.1992,
-        27.8913
-      ],
-      [
-        43.1991,
-        27.8913
-      ],
-      [
-        43.1447,
-        27.9749
-      ]
-    ],
-    "heading": null,
-    "vessel_type": "unknown",
-    "weather_context": null
-  },
-  {
     "id": "cpa-538005112-538005112",
     "type": "collision-risk",
     "status": "signal",
@@ -710,7 +480,7 @@
   },
   {
     "id": "news-aab4d4cc29",
-    "type": "unknown",
+    "type": "sinking",
     "status": "signal",
     "confidence": 0.3,
     "severity": "critical",
@@ -725,7 +495,7 @@
     },
     "casualties": 10,
     "first_seen": "2026-09-14T13:50:37Z",
-    "last_update": "2026-09-14T13:50:37Z",
+    "last_update": "2026-09-14T18:55:31Z",
     "sources": [
       {
         "kind": "news",
@@ -733,6 +503,13 @@
         "org": "hurriyet.com.tr",
         "url": "https://www.hurriyet.com.tr/gundem/silivri-aciklarindaki-gemi-faciasinda-13uncu-gun-kayip-10-murettebati-arama-calismalari-suruyor-43306033",
         "ts": "2026-09-14T13:50:37Z"
+      },
+      {
+        "kind": "news",
+        "detail": "Silivri açıklarında batan geminin mürettebatını arama çalışmalarında bir cansız bedene ulaşıldı",
+        "org": "aa.com.tr",
+        "url": "https://www.aa.com.tr/tr/gundem/silivri-aciklarinda-batan-geminin-murettebatini-arama-calismalarinda-bir-cansiz-bedene-ulasildi/4057106",
+        "ts": "2026-09-14T18:55:31Z"
       }
     ],
     "notes": [
@@ -795,7 +572,8 @@
       "Bölgede 8 kn Lodos ve 0.2 m dalga kaydedildi.",
       "Bölgede 3 kn Lodos ve 0.3 m dalga kaydedildi.",
       "Bölgede 8 kn Lodos ve 0.3 m dalga kaydedildi.",
-      "Bölgede 12 kn Lodos ve 0.2 m dalga kaydedildi."
+      "Bölgede 12 kn Lodos ve 0.2 m dalga kaydedildi.",
+      "Bölgede 10 kn Lodos ve 0.4 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -805,13 +583,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 9.3,
-      "gust_kn": 12.4,
-      "wave_m": 0.22,
+      "wind_kn": 7.4,
+      "gust_kn": 9.9,
+      "wave_m": 0.36,
       "wind_dir": 220,
       "beaufort": 3,
-      "summary_tr": "Bölgede 12 kn Lodos ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 12 kn SW wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 10 kn Lodos ve 0.4 m dalga kaydedildi.",
+      "summary_en": "At site: 10 kn SW wind and 0.4 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4
     }
@@ -819,7 +597,7 @@
   {
     "id": "rep-4d701b7ab0",
     "type": "unknown",
-    "status": "confirmed",
+    "status": "resolved",
     "confidence": 0.85,
     "severity": "critical",
     "lat": 36.75,
@@ -864,7 +642,9 @@
         "ts": "2026-09-07T10:24:43Z"
       }
     ],
-    "notes": [],
+    "notes": [
+      "otomatik kapandı: ~77 saat güncelleme yok"
+    ],
     "places": [
       "Muğla"
     ],
@@ -912,6 +692,55 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": null
+  },
+  {
+    "id": "rep-66976ba308",
+    "type": "rescue",
+    "status": "confirmed",
+    "confidence": 0.6,
+    "severity": "critical",
+    "lat": 36.8,
+    "lon": 34.63,
+    "area": "Mersin–İskenderun Körfezi",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": 4,
+    "first_seen": "2026-09-14T18:55:26Z",
+    "last_update": "2026-09-14T18:55:26Z",
+    "sources": [
+      {
+        "kind": "official",
+        "detail": "14.09.2026 Mersin Açıklarında 4 Şahıs Kurtarılmıştır",
+        "org": "Sahil Güvenlik Komutanlığı",
+        "url": "https://www.sg.gov.tr/mersin-aciklarinda-4-sahis-kurtarilmistir",
+        "ts": "2026-09-14T18:55:26Z"
+      }
+    ],
+    "notes": [
+      "Bölgede 5 kn Kıble ve 0.2 m dalga kaydedildi."
+    ],
+    "places": [
+      "Mersin"
+    ],
+    "coarse": true,
+    "track": [],
+    "heading": null,
+    "vessel_type": "unknown",
+    "weather_context": {
+      "wind_kn": 3.5,
+      "gust_kn": 4.7,
+      "wave_m": 0.2,
+      "wind_dir": 180,
+      "beaufort": 2,
+      "summary_tr": "Bölgede 5 kn Kıble ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 5 kn South wind and 0.2 m waves.",
+      "station_name": "Mersin Körfezi",
+      "distance_nm": 18.7
+    }
   },
   {
     "id": "rep-ce92da3519",
@@ -962,45 +791,6 @@
       "station_name": "Marmara Denizi",
       "distance_nm": 28.3
     }
-  },
-  {
-    "id": "rep-dba1f112fd",
-    "type": "rescue",
-    "status": "resolved",
-    "confidence": 0.6,
-    "severity": "critical",
-    "lat": 37.86,
-    "lon": 27.26,
-    "area": "Orta Ege",
-    "vessel": {
-      "name": null,
-      "mmsi": null,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": 2,
-    "first_seen": "2026-09-07T16:01:34Z",
-    "last_update": "2026-09-07T16:01:34Z",
-    "sources": [
-      {
-        "kind": "official",
-        "detail": "07.09.2026 Aydın Açıklarında 2 Şahıs Kurtarılmıştır",
-        "org": "Sahil Güvenlik Komutanlığı",
-        "url": "https://www.sg.gov.tr/aydin-aciklarinda-2-sahis-kurtarilmistir-06-09-2026",
-        "ts": "2026-09-07T16:01:34Z"
-      }
-    ],
-    "notes": [
-      "otomatik kapandı: ~74 saat güncelleme yok"
-    ],
-    "places": [
-      "Aydın"
-    ],
-    "coarse": true,
-    "track": [],
-    "heading": null,
-    "vessel_type": "unknown",
-    "weather_context": null
   },
   {
     "id": "rep-e2463186f9",
