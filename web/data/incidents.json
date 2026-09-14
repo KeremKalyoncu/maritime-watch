@@ -338,7 +338,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-13T23:36:56Z",
-    "last_update": "2026-09-14T13:50:25Z",
+    "last_update": "2026-09-14T22:24:09Z",
     "sources": [
       {
         "kind": "ais-cpa",
@@ -353,6 +353,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-14T13:50:25Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "nav-status: kumanda dışı (not under command)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-14T22:24:09Z"
       }
     ],
     "notes": [
@@ -479,6 +486,41 @@
     "weather_context": null
   },
   {
+    "id": "news-2fcd982f29",
+    "type": "sinking",
+    "status": "signal",
+    "confidence": 0.3,
+    "severity": "minor",
+    "lat": null,
+    "lon": null,
+    "area": "",
+    "vessel": {
+      "name": null,
+      "mmsi": null,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-14T22:24:19Z",
+    "last_update": "2026-09-14T22:24:19Z",
+    "sources": [
+      {
+        "kind": "news",
+        "detail": "Bakan Sucuoğlu'ndan batan gemiye ilişkin açıklama",
+        "org": "haberturk.com",
+        "url": "https://www.haberturk.com/gundem/kktc-de-bayindirlik-ve-ulastirma-bakanligi-gorevini-devralan-sucuoglu-ndan-batan-gemiye-iliskin-aciklama-3912465",
+        "ts": "2026-09-14T22:24:19Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": true,
+    "track": [],
+    "heading": null,
+    "vessel_type": "unknown",
+    "weather_context": null
+  },
+  {
     "id": "news-aab4d4cc29",
     "type": "sinking",
     "status": "signal",
@@ -573,7 +615,8 @@
       "Bölgede 3 kn Lodos ve 0.3 m dalga kaydedildi.",
       "Bölgede 8 kn Lodos ve 0.3 m dalga kaydedildi.",
       "Bölgede 12 kn Lodos ve 0.2 m dalga kaydedildi.",
-      "Bölgede 10 kn Lodos ve 0.4 m dalga kaydedildi."
+      "Bölgede 10 kn Lodos ve 0.4 m dalga kaydedildi.",
+      "Bölgede 7 kn Lodos ve 0.4 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -583,13 +626,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 7.4,
-      "gust_kn": 9.9,
-      "wave_m": 0.36,
+      "wind_kn": 5.1,
+      "gust_kn": 6.8,
+      "wave_m": 0.4,
       "wind_dir": 220,
-      "beaufort": 3,
-      "summary_tr": "Bölgede 10 kn Lodos ve 0.4 m dalga kaydedildi.",
-      "summary_en": "At site: 10 kn SW wind and 0.4 m waves.",
+      "beaufort": 2,
+      "summary_tr": "Bölgede 7 kn Lodos ve 0.4 m dalga kaydedildi.",
+      "summary_en": "At site: 7 kn SW wind and 0.4 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4
     }
@@ -721,7 +764,8 @@
       }
     ],
     "notes": [
-      "Bölgede 5 kn Kıble ve 0.2 m dalga kaydedildi."
+      "Bölgede 5 kn Kıble ve 0.2 m dalga kaydedildi.",
+      "Bölgede 14 kn Kıble ve 0.8 m dalga kaydedildi."
     ],
     "places": [
       "Mersin"
@@ -731,13 +775,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 3.5,
-      "gust_kn": 4.7,
-      "wave_m": 0.2,
+      "wind_kn": 10.0,
+      "gust_kn": 14.0,
+      "wave_m": 0.8,
       "wind_dir": 180,
-      "beaufort": 2,
-      "summary_tr": "Bölgede 5 kn Kıble ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 5 kn South wind and 0.2 m waves.",
+      "beaufort": 3,
+      "summary_tr": "Bölgede 14 kn Kıble ve 0.8 m dalga kaydedildi.",
+      "summary_en": "At site: 14 kn South wind and 0.8 m waves.",
       "station_name": "Mersin Körfezi",
       "distance_nm": 18.7
     }
