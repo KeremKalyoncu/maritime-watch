@@ -3,7 +3,14 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Mon, 14 Sep 2026 22:28:11 +0000</lastBuildDate>
+  <lastBuildDate>Tue, 15 Sep 2026 00:54:22 +0000</lastBuildDate>
+    <item>
+      <title>[signal] drift, Batı Akdeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-15-ais-c93719-1</guid>
+      <pubDate>Tue, 15 Sep 2026 00:51:53 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (22.9 kn) ani duruşa geçti</description>
+    </item>
     <item>
       <title>[signal] sinking, konum belirsiz</title>
       <link>https://www.haberturk.com/gundem/kktc-de-bayindirlik-ve-ulastirma-bakanligi-gorevini-devralan-sucuoglu-ndan-batan-gemiye-iliskin-aciklama-3912465</link>
