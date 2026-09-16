@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-16T18:20:20Z",
-  "total_incidents": 296,
+  "generated": "2026-09-16T21:26:39Z",
+  "total_incidents": 298,
   "by_month": {
-    "2026-09": 296
+    "2026-09": 298
   },
   "by_area": {
-    "belirsiz": 264,
+    "belirsiz": 266,
     "Marmara Denizi": 13,
     "Türk karasuları civarı": 6,
     "Antalya Körfezi": 4,
@@ -19,7 +19,7 @@
     "distress": 103,
     "drift": 71,
     "unknown": 55,
-    "collision-risk": 30,
+    "collision-risk": 32,
     "sinking": 28,
     "rescue": 4,
     "collision": 3,
@@ -28,7 +28,7 @@
   },
   "by_status": {
     "signal": 266,
-    "probable": 30
+    "probable": 32
   },
   "incidents_with_casualties": 21,
   "casualties_reported_total": 208,
