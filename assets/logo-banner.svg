@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" height="100%">
+  <defs>
+    <!-- Background Radial Gradient -->
+    <radialGradient id="bannerBg" cx="25%" cy="50%" r="80%">
+      <stop offset="0%" stop-color="#0f2240"/>
+      <stop offset="45%" stop-color="#071120"/>
+      <stop offset="100%" stop-color="#03060c"/>
+    </radialGradient>
+
+    <!-- Radar Sweep Gradient -->
+    <linearGradient id="bSweep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.45"/>
+      <stop offset="60%" stop-color="#4facfe" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Wave Gradients -->
+    <linearGradient id="bWave1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0052d4"/>
+      <stop offset="50%" stop-color="#4364f7"/>
+      <stop offset="100%" stop-color="#6fb1fc"/>
+    </linearGradient>
+
+    <linearGradient id="bWave2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00c6ff"/>
+      <stop offset="100%" stop-color="#0072ff"/>
+    </linearGradient>
+
+    <!-- Glow Filters -->
+    <filter id="bGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="bSoftGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Typography Gradients -->
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#e1f5fe"/>
+      <stop offset="100%" stop-color="#00f2fe"/>
+    </linearGradient>
+
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#4facfe"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="630" fill="url(#bannerBg)"/>
+
+  <!-- Subtle High-tech Grid Background Pattern -->
+  <g stroke="#132742" stroke-width="1" opacity="0.35">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Framing Border -->
+  <rect width="1170" height="600" x="15" y="15" rx="24" fill="none" stroke="#1d3860" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- ==================== LEFT SIDE: RADAR LOGO EMBLEM ==================== -->
+  <g transform="translate(235, 315)">
+    <!-- Concentric Rings -->
+    <circle r="190" fill="none" stroke="#142c4c" stroke-width="2.5"/>
+    <circle r="182" fill="none" stroke="#00f2fe" stroke-width="1.2" stroke-opacity="0.3"/>
+    <circle r="135" fill="none" stroke="#142c4c" stroke-width="1.5" stroke-dasharray="6,6"/>
+    <circle r="88" fill="none" stroke="#142c4c" stroke-width="1.5"/>
+    <circle r="42" fill="none" stroke="#00f2fe" stroke-width="1" stroke-opacity="0.2"/>
+
+    <!-- Compass Ticks & Labels -->
+    <line x1="0" y1="-194" x2="0" y2="-178" stroke="#00f2fe" stroke-width="2.5" filter="url(#bSoftGlow)"/>
+    <line x1="0" y1="178" x2="0" y2="194" stroke="#00f2fe" stroke-width="2.5"/>
+    <line x1="-194" y1="0" x2="-178" y2="0" stroke="#00f2fe" stroke-width="2.5"/>
+    <line x1="178" y1="0" x2="194" y2="0" stroke="#00f2fe" stroke-width="2.5"/>
+
+    <text x="0" y="-200" font-family="'Segoe UI', 'Inter', system-ui, sans-serif" font-size="12" font-weight="800" fill="#00f2fe" text-anchor="middle">N</text>
+    <text x="0" y="212" font-family="'Segoe UI', 'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#4facfe" text-anchor="middle">S</text>
+    <text x="-210" y="4" font-family="'Segoe UI', 'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#4facfe" text-anchor="middle">W</text>
+    <text x="210" y="4" font-family="'Segoe UI', 'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#4facfe" text-anchor="middle">E</text>
+
+    <!-- Radar Crosshairs -->
+    <line x1="-182" y1="0" x2="182" y2="0" stroke="#142c4c" stroke-width="1" stroke-opacity="0.5"/>
+    <line x1="0" y1="-182" x2="0" y2="182" stroke="#142c4c" stroke-width="1" stroke-opacity="0.5"/>
+
+    <!-- Radar Sweep Sector -->
+    <path d="M 0 0 L 128 -128 A 182 182 0 0 1 182 0 Z" fill="url(#bSweep)"/>
+
+    <!-- Blip Targets -->
+    <circle cx="95" cy="-60" r="4.5" fill="#00f2fe" filter="url(#bGlow)"/>
+    <circle cx="95" cy="-60" r="9" fill="none" stroke="#00f2fe" stroke-width="1.2" opacity="0.6"/>
+
+    <circle cx="-80" cy="98" r="4" fill="#ff4757" filter="url(#bGlow)"/>
+    <circle cx="-80" cy="98" r="9" fill="none" stroke="#ff4757" stroke-width="1" stroke-dasharray="3,3" opacity="0.8"/>
+
+    <!-- Central Beacon Light Beams -->
+    <polygon points="0,-35 -150,-12 0,-25" fill="#00f2fe" opacity="0.2" filter="url(#bGlow)"/>
+    <polygon points="0,-35 150,-55 0,-25" fill="#00f2fe" opacity="0.25" filter="url(#bGlow)"/>
+
+    <!-- Central Lighthouse -->
+    <g transform="translate(0, -8)">
+      <circle cx="0" cy="-30" r="15" fill="#00f2fe" opacity="0.3" filter="url(#bGlow)"/>
+      <circle cx="0" cy="-30" r="6" fill="#ffffff" filter="url(#bSoftGlow)"/>
+      <path d="M -8 -36 Q 0 -44 8 -36 Z" fill="#4facfe"/>
+      <rect x="-7" y="-36" width="14" height="3" fill="#00f2fe"/>
+      <rect x="-8" y="-33" width="16" height="8" rx="1.5" fill="#ffffff" opacity="0.9"/>
+      <polygon points="-10,-22 10,-22 15,20 -15,20" fill="#1b3254" stroke="#00f2fe" stroke-width="1.2"/>
+      <polygon points="-11,-10 11,-10 13,3 -13,3" fill="#00f2fe" opacity="0.85"/>
+      <line x1="-13" y1="-22" x2="13" y2="-22" stroke="#00f2fe" stroke-width="2" filter="url(#bSoftGlow)"/>
+    </g>
+
+    <!-- Vessel Bow Silhouette -->
+    <g transform="translate(42, 38)">
+      <path d="M -34 0 L 20 -2 L 42 10 L -30 12 Z" fill="#0a1d38" stroke="#00f2fe" stroke-width="1.2"/>
+      <polygon points="-12,-2 -4,-13 8,-2" fill="#4facfe"/>
+      <circle cx="28" cy="4" r="2" fill="#2ed573" filter="url(#bSoftGlow)"/>
+    </g>
+
+    <!-- Waves -->
+    <path d="M -145 55 Q -85 30 -25 55 T 95 55 T 155 50 L 155 95 L -145 95 Z" fill="url(#bWave1)" opacity="0.45"/>
+    <path d="M -155 66 Q -95 42 -35 64 T 85 64 T 165 60 L 165 105 L -155 105 Z" fill="url(#bWave2)" opacity="0.75"/>
+    <path d="M -165 78 Q -105 60 -45 76 T 70 75 T 165 72 L 165 115 L -165 115 Z" fill="#0052d4" opacity="0.9"/>
+    <path d="M -165 78 Q -105 60 -45 76 T 70 75 T 165 72" fill="none" stroke="#00f2fe" stroke-width="2" filter="url(#bSoftGlow)"/>
+  </g>
+
+  <!-- ==================== RIGHT SIDE: CONTENT & TYPOGRAPHY ==================== -->
+  <g transform="translate(490, 140)">
+    <!-- Top Pill: Status -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="220" height="30" rx="15" fill="#0b1e38" stroke="#00f2fe" stroke-width="1.2"/>
+      <circle cx="16" cy="15" r="4.5" fill="#2ed573" filter="url(#bGlow)"/>
+      <text x="32" y="20" font-family="'Segoe UI', 'Inter', system-ui, sans-serif" font-size="12" font-weight="700" fill="#00f2fe" letter-spacing="1.5">
+        7/24 CANLI &amp; OTONOM
+      </text>
+    </g>
+
+    <!-- Main Title -->
+    <text x="0" y="82" 
+          font-family="'Montserrat', 'Arial Black', system-ui, sans-serif" 
+          font-size="52" 
+          font-weight="900" 
+          letter-spacing="2" 
+          fill="url(#titleGrad)"
+          filter="url(#bSoftGlow)">
+      MARITIME WATCH
+    </text>
+
+    <!-- Subtitle Badge: TÜRKİYE -->
+    <g transform="translate(0, 100)">
+      <rect x="0" y="0" width="130" height="26" rx="6" fill="#0c1b33" stroke="#ff4757" stroke-width="1.2"/>
+      <circle cx="16" cy="13" r="3.5" fill="#ff4757" filter="url(#bGlow)"/>
+      <text x="70" y="18" font-family="'Segoe UI', 'Inter', system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" letter-spacing="4" text-anchor="middle">
+        TÜRKİYE
+      </text>
+    </g>
+
+    <!-- Core Pitch / Value Proposition -->
+    <text x="0" y="165" 
+          font-family="'Segoe UI', 'Inter', system-ui, sans-serif" 
+          font-size="21" 
+          font-weight="600" 
+          fill="#ffffff">
+      Küçük Tekne Sahibine <tspan fill="#00f2fe">"Bugün Çıkabilir miyim?"</tspan>
+    </text>
+    <text x="0" y="196" 
+          font-family="'Segoe UI', 'Inter', system-ui, sans-serif" 
+          font-size="19" 
+          font-weight="400" 
+          fill="#a0c0e0">
+      Cevabını Saat Saat Veren Açık Kaynaklı Deniz Sentinel'i.
+    </text>
+
+    <!-- Feature Bullet Cards (Horizontal Grid) -->
+    <g transform="translate(0, 230)">
+      <!-- Card 1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="195" height="54" rx="10" fill="#0a1930" stroke="#1c3b65" stroke-width="1.2"/>
+        <text x="14" y="24" font-family="'Segoe UI', system-ui, sans-serif" font-size="14" font-weight="700" fill="#00f2fe">🛰️ AIS &amp; CPA</text>
+        <text x="14" y="42" font-family="'Segoe UI', system-ui, sans-serif" font-size="11" fill="#7d9dbf">Çatışma &amp; Anomali Tespiti</text>
+      </g>
+
+      <!-- Card 2 -->
+      <g transform="translate(208, 0)">
+        <rect x="0" y="0" width="205" height="54" rx="10" fill="#0a1930" stroke="#1c3b65" stroke-width="1.2"/>
+        <text x="14" y="24" font-family="'Segoe UI', system-ui, sans-serif" font-size="14" font-weight="700" fill="#2ed573">🌊 Tekne Eşikleri</text>
+        <text x="14" y="42" font-family="'Segoe UI', system-ui, sans-serif" font-size="11" fill="#7d9dbf">Saatlik Güvenli Çıkış Penceresi</text>
+      </g>
+
+      <!-- Card 3 -->
+      <g transform="translate(425, 0)">
+        <rect x="0" y="0" width="195" height="54" rx="10" fill="#0a1930" stroke="#1c3b65" stroke-width="1.2"/>
+        <text x="14" y="24" font-family="'Segoe UI', system-ui, sans-serif" font-size="14" font-weight="700" fill="#ffa502">🤖 Telegram Botu</text>
+        <text x="14" y="42" font-family="'Segoe UI', system-ui, sans-serif" font-size="11" fill="#7d9dbf">/neredeyim · /mayday · /bogaz</text>
+      </g>
+    </g>
+
+    <!-- Bottom Footer Strip -->
+    <g transform="translate(0, 325)">
+      <line x1="0" y1="0" x2="620" y2="0" stroke="#162e50" stroke-width="1.5"/>
+      <text x="0" y="24" font-family="'Courier New', monospace" font-size="13" font-weight="700" fill="#4facfe">
+        github.com/KeremKalyoncu/maritime-watch
+      </text>
+      <text x="620" y="24" font-family="'Segoe UI', system-ui, sans-serif" font-size="12" font-weight="600" fill="#2ed573" text-anchor="end">
+        $0 Sunucu Maliyeti · %100 Yasal &amp; Açık Kaynak
+      </text>
+    </g>
+  </g>
+</svg>

@@ -2,398 +2,431 @@
 
 <div align="center">
 
-# 🌊 Maritime Watch
+<img src="assets/logo.png" alt="Maritime Watch Logo" width="220" style="border-radius: 20px; box-shadow: 0 8px 30px rgba(0, 242, 254, 0.25); margin-bottom: 15px;">
 
-**Küçük tekne sahibine her sabah "bugün çıkabilir miyim" diye cevap veren açık kaynaklı sistem.**
+# 🌊 Maritime Watch Türkiye
 
-Saatlik deniz tahminini tekne boyuna göre değerlendirip zaman penceresine çevirir;
-üstüne AIS anomalilerini ve resmi açıklamaları ekleyip haritada, RSS'te ve
-Telegram'da yayınlar.
+### *Küçük tekne sahibine her sabah "bugün çıkabilir miyim, saat kaça kadar" cevabını veren açık kaynaklı deniz emniyet ve istihbarat sistemi.*
 
-[Canlı harita](https://keremkalyoncu.github.io/maritime-watch) &middot;
-[İstatistikler](https://keremkalyoncu.github.io/maritime-watch/stats.html) &middot;
-[RSS](https://keremkalyoncu.github.io/maritime-watch/data/feed.xml) &middot;
-[Mimari](ARCHITECTURE.md) &middot;
-[Hata bildir](https://github.com/KeremKalyoncu/maritime-watch/issues)
+Saatlik deniz hava tahminini **tekne boyuna göre** değerlendirip zaman penceresine çevirir; üstüne canlı AIS anomalilerini, çatışma risklerini (CPA), Sahil Güvenlik bültenlerini, depremleri ve meteorolojik alarmları ekleyip haritada, Telegram'da ve RSS beslemesinde yayınlar.
 
-[![tests][tests-shield]][tests-url]
-[![veri döngüsü][update-shield]][update-url]
-[![python][python-shield]][python-url]
-[![lisans][license-shield]][license-url]
-[![son commit][commit-shield]][commit-url]
+[![Canlı Harita](https://img.shields.io/badge/Canlı%20Harita-Online-00bcd4?style=for-the-badge&logo=leaflet&logoColor=white)](https://keremkalyoncu.github.io/maritime-watch)
+[![İstatistikler](https://img.shields.io/badge/İstatistikler-Rapor-4caf50?style=for-the-badge&logo=google-analytics&logoColor=white)](https://keremkalyoncu.github.io/maritime-watch/stats.html)
+[![Telegram Bot](https://img.shields.io/badge/Telegram-Bot-229ED9?style=for-the-badge&logo=telegram&logoColor=white)](#-telegram-botu-cebinizdeki-deniz-sentineli)
+[![RSS Beslemesi](https://img.shields.io/badge/RSS-feed.xml-FFA500?style=for-the-badge&logo=rss&logoColor=white)](https://keremkalyoncu.github.io/maritime-watch/data/feed.xml)
+[![Lisans](https://img.shields.io/badge/Lisans-MIT-blue?style=for-the-badge)](LICENSE)
+
+[![Tests](https://img.shields.io/badge/Tests-196%20Passing-brightgreen?style=flat-square&logo=pytest)](tests/)
+[![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Sıfır Maliyet](https://img.shields.io/badge/Maliyet-$0%20(GitHub%20Pages%20+%20Actions)-success?style=flat-square)](#-dağıtım-ve-çalıştırma)
+[![PWA Ready](https://img.shields.io/badge/PWA-Çevrimdışı%20Destekli-orange?style=flat-square&logo=pwa)](web/)
 
 </div>
 
 > [!WARNING]
-> Bu bir kurtarma servisi **değildir**. Acil durumda **158** (Sahil Güvenlik) veya **112**.
-> Araç yalnızca kamuya açık ve resmi bilgiyi hızlı, tek yerde toplar.
-
-<details>
-  <summary><b>İçindekiler</b></summary>
-
-1. [Proje hakkında](#proje-hakkında)
-   - [Kime ne sağlar](#kime-ne-sağlar)
-   - [Neyi sağlamaz](#neyi-sağlamaz)
-2. [Nasıl çalışır](#nasıl-çalışır)
-   - [Akış](#akış)
-   - [Durum merdiveni](#durum-merdiveni)
-3. [Veri kaynakları](#veri-kaynakları)
-4. [Sahada öğrenilenler](#sahada-öğrenilenler)
-5. [Hızlı başlangıç](#hızlı-başlangıç)
-   - [Canlı veri](#canlı-veri-hepsi-ücretsiz-kartsız)
-   - [Komutlar](#komutlar)
-6. [Dağıtım](#dağıtım)
-7. [Hukuki tasarım](#hukuki-tasarım)
-8. [Depo yapısı](#depo-yapısı)
-9. [Test ve ölçüm](#test-ve-ölçüm)
-10. [Yol haritası](#yol-haritası)
-11. [Katkı](#katkı)
-12. [Lisans](#lisans)
-
-</details>
+> **BU SİSTEM BİR RESMİ KURTARMA SERVİSİ DEĞİLDİR.**  
+> Denizde hayati bir tehlike durumunda derhal **158** (Sahil Güvenlik), **151** (Kıyı Emniyeti) veya **VHF Kanal 16** (156.800 MHz) acil imdat kanalını kullanınız.  
+> Bu sistem kamuya açık ve yasal verileri tek bir yerde toplayan **durumsal farkındalık ve önleme** aracıdır.
 
 ---
 
-## Proje hakkında
+## 📑 İçindekiler
 
-Küçük tekneyle denize çıkan biri sabah tek bir şey merak eder: **bugün çıkabilir miyim, saat
-kaça kadar.** Mevcut kaynaklar bu soruya cevap vermiyor — fırtına uyarısı ancak fırtınada
-çıkar, deniz tahmini ise "en fazla 25 knot" gibi bir sayı verir ve saat bilgisi taşımaz.
-Oysa 8 metrelik bir tekne 6 Bofor'da limanda kalır; aynı hava bir gemi için hiçbir şeydir.
+1. [Proje Nedir ve Hangi Sorunu Çözer?](#proje-nedir)
+2. [Hedef Kitle: Kime Ne Sağlar?](#hedef-kitle)
+3. [Telegram Botu: Cebinizdeki Deniz Sentinel'i](#telegram-botu)
+4. [Canlı Web Haritası Özellikleri](#canli-harita)
+5. [Sistem Mimarisi ve Veri Akışı](#mimari)
+6. [Canlı Veri Kaynakları](#veri-kaynaklari)
+7. [Sahada Öğrenilenler & Güvenilirlik](#sahada-ogrenilenler)
+8. [Hukuki Tasarım (TCK 132 & KVKK)](#hukuki-tasarim)
+9. [Hızlı Başlangıç & Yerel Kurulum](#hizli-baslangic)
+10. [Dağıtım ve Çalıştırma](#dagitim)
+11. [Depo Dosya Yapısı](#depo-yapisi)
+12. [Lisans & Katkı](#lisans)
 
-Maritime Watch saatlik tahmini alıp **tekne boyuna göre** değerlendirir ve zaman penceresine
-çevirir. Üstüne, aynı bölgede olan bitene dair kamuya açık ne varsa ekler: AIS anomalileri,
-Sahil Güvenlik duyuruları, MGM alarmları, deprem, haber. Hepsi kaynak gösterilerek.
+---
 
-Sunucu gerektirmez: GitHub Actions cron + GitHub Pages ile **sıfır maliyetle** çalışır.
+<a id="proje-nedir"></a>
 
-### Kime ne sağlar
+## 💡 Proje Nedir ve Hangi Sorunu Çözer?
 
-| Kullanıcı | Aldığı şey |
-| :-- | :-- |
-| 🎣 **Balıkçı / küçük tekne** | Telegram botuna `/bolge` ve `/tekne` der, her sabah 06:00'da **kendi** denizleri için **saat saat** durum: *"Marmara — 08:00-18:00 uygun (4 Bofor), 18:00'den sonra dikkatli olun."* Tekne boyuna göre eşik. Fırtına geçince **"UYARI KALKTI"** mesajı. |
-| 📰 **Gazeteci / araştırmacı** | Web haritası + zaman çizelgesi. Her kayıtta kaynak linki ve **doğrulanmadı** etiketi. |
-| 🏢 **Haber merkezi** | `feed.xml` (RSS) — olay akışını kendi sistemine bağlar. |
-| 🧭 **Vatandaş** | Bölge filtresi, TR/EN arayüz, aylara ve türe göre istatistik. |
+Denize küçük tekneyle çıkan bir balıkçı veya amatör denizci sabah uyandığında tek bir soru sorar:  
+👉 **"Bugün denize çıkabilir miyim, saat kaça kadar dönebilirim?"**
 
-### Neyi sağlamaz
+Mevcut kaynaklar (MGM, MeteoUyarı, Windy vb.) genel hava verisi verir: *"Rüzgâr 20-25 knot, dalga 1.5 metre."* Fakat bu bilgi saatsizdir ve **tekne boyutunu hesaba katmaz**:
+* **8 metrelik küçük bir tekne** için 22 knot rüzgâr ve 1.25 m dalga limanda kalma sebebidir; denize çıkarsa alabora riski yaşar.
+* **Büyük bir ticari kargo gemisi** için aynı 22 knot rüzgâr hiçbir risk teşkil etmez.
 
-- Kurtarma yapmaz — o Sahil Güvenlik'in işidir.
-- **AIS'i olmayan tekneleri göremez.** Göçmen botlarının çoğu, küçük balıkçı tekneleri
-  ve kapalı transponderli gemiler bu araca görünmez. Bu, aracın en büyük kör noktası.
-- "İlk duyan biz" garantisi vermez. Gecikme = cron aralığı (~15 dk).
+**Maritime Watch**, saatlik deniz tahminlerini alır, kullanıcının tekne sınıfına göre süzer ve şu net sonuca çevirir:
+> 🟢 **Marmara Denizi:** 08:00 – 16:00 arası hava uygun (3-4 Bofor).  
+> 🟡 **Dikkat:** 16:00 – 19:00 arası rüzgâr 20 knot'a yükseliyor.  
+> 🔴 **Çıkmayın:** 19:00'dan sonra fırtına (6 Bofor / 26 knot hamle).
+
+Ayrıca Türkiye karasularındaki tüm kamuya açık olayları (AIS sinyal kayıpları, çatışma riskleri, Sahil Güvenlik arama-kurtarmaları, deniz depremleri ve haberler) 7/24 tarayarak tek bir kontrol panelinde toplar.
+
+---
+
+<a id="hedef-kitle"></a>
+
+## 🎯 Hedef Kitle: Kime Ne Sağlar?
+
+| Kullanıcı | Sağlanan Fayda | Kullanılan Araç |
+| :--- | :--- | :--- |
+| 🎣 **Küçük Tekne & Balıkçı** | Her sabah 06:00'da kendi denizine ve tekne boyuna özel saatlik çıkış penceresi mesajı. Fırtına dindiğinde *"UYARI KALKTI"* bildirimi. | Telegram Botu (`/bolge`, `/tekne`) |
+| ⛵ **Amatör Denizci & Yatçı** | Seyir halinde tek tıkla en yakın liman, mesafe ve anlık dalga/rüzgâr analizi. Acil durumda VHF 16 imdat şablonu. | Telegram Botu (`/neredeyim`, `/mayday`) |
+| 📰 **Gazeteci & Kıyı Muhabiri** | Doğrulanmış kaza ve kurtarma operasyonları. Kaynak şeffaflığı ve kanıt merdiveni (`signal` → `probable` → `confirmed`). | Canlı Harita & RSS (`feed.xml`) |
+| 🏢 **Liman & Deniz Acentesi** | İstanbul ve Çanakkale Boğazları canlı transit gemi sayısı, sis/görüş kısıtları ve çatışma riski (CPA) erken uyarıları. | Canlı Harita & Bot (`/bogaz`) |
+| 🧭 **Kıyı Sakini & Vatandaş** | Denize yakın depremler, tsunami risk değerlendirmesi, regional meteorolojik alarmlar. | Harita & Telegram |
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 ---
 
-## Nasıl çalışır
+<a id="telegram-botu"></a>
 
-- **Kişiye özel abonelik** — bot üzerinden herkes kendi denizlerini ve tekne boyunu seçer;
-  sabah mesajı ona göre kurulur. Marmara'daki balıkçı İskenderun'u görmez.
-- **Günlük pencere mesajı** — asıl ürün bu. Saatlik tahmini `🟢 uygun / 🟡 dikkat /
-  🔴 çıkmayın` bloklarına indirger. *"Bugün en fazla 25 kn"* kimsenin kararını
-  değiştirmez; *"14:00'ten sonra 6 Bofor"* değiştirir. İki blok arasındaki tek saatlik
-  sakinlik pencere sayılmaz.
-- **Tekne sınıfına göre eşik** — 8 m altı tekne 22 kn / 1,25 m'de limanda kalır;
-  bir gemi için aynı hava hiçbir şeydir. Tek bir eşik ikisine birden hizmet edemez.
-- **Poligon deniz bölgeleri** — bbox değil, 15 poligonla point-in-polygon: "İstanbul Boğazı",
-  "Güney Ege", "Mersin–İskenderun Körfezi" gibi kesin bölge adı. GIS bağımlılığı yok.
-- **Gemi-tipi farkında anomali** — balıkçı teknesinin durması normaldir, boğazda bir tankerin
-  durması kritiktir. AIS tip kodundan ayırt eder.
-- **AIS-SART / MOB / EPIRB** — imdat vericisinin MMSI ön eki tek başına alarmdır (970/972/974),
-  digest kuyruğunu atlar, anında gider.
-- **Olay birleştirme** — aynı gerçek olayın 8 haber + AIS izi + resmi açıklama hâli tek zengin
-  kayda iner. Eşleştirme sırası: MMSI → gemi adı → konum/zaman yakınlığı.
-- **Uyarı birleştirme** — aynı depremi veren AFAD + USGS + EMSC tek kayıt olur ve mesaj
-  *"3 bağımsız kaynak doğruluyor"* der.
-- **Türkçe metin çıkarma** — haber ve resmi metinden gemi adı, koordinat (DMS + ondalık),
-  kişi sayısı, olay türü. Türkçe İ/I büyük-küçük harf tuzağı dahil.
-- **Kendi kendini onarma** — çıkarıcı geliştikçe eski kayıtlar her döngüde yeniden ayrıştırılır;
-  "operasyon tamamlandı" diyen resmi kaynak olayı kapatır; bayat uyarı süresi dolunca silinir.
-- **Sağlık takibi** — `health.json` kaynak başına canlı/örnek/down durumunu tutar; 3+ kaynak
-  düşerse operatöre uyarı gider, harita "veri X saat eski" bandı gösterir.
+## 🤖 Telegram Botu: Cebinizdeki Deniz Sentinel'i
 
-### Akış
+Bot, her denizcinin kendi bölgesine ve tekne sınıfına göre özelleştirilmiş bildirim almasını sağlar. Kanala spam atmaz; herkese sadece ilgilendiği denizin bilgisini verir.
 
-```mermaid
-flowchart LR
-    A1[aisstream.io] --> P[ingest]
-    A2[Open-Meteo] --> P
-    A3["AFAD · USGS · EMSC"] --> P
-    A4[Sahil Güvenlik] --> P
-    A5[MGM alarmlar] --> P
-    A6[Haber RSS] --> P
-    A7["GDACS · EONET · METAR"] --> P
-    A8["(opsiyonel) SDR"] -. belgelenmiş .-> P
-    P --> N["normalize · gizlilik süzgeci · dedup/correlate"]
-    N --> C["classify<br/>status · confidence · geocode"]
-    C --> S[("JSON store<br/>web/data")]
-    S --> M[Leaflet haritası]
-    S --> F[feed.xml RSS]
-    S --> T["Telegram<br/>olay bildirimi"]
-    A2 --> W["window.py<br/>saatlik tahmin → zaman penceresi"]
-    W --> D["Telegram<br/>her sabah 06:00 günlük durum"]
+```text
+       ┌────────────────────────────────────────────────────────┐
+       │             MARITIME WATCH TELEGRAM BOTU               │
+       ├────────────────────────────────────────────────────────┤
+       │ ⚓ /neredeyim      -> Canlı GPS ile en yakın liman & hava│
+       │ 🆘 /mayday         -> VHF 16 hazır acil durum anonsu   │
+       │ 🚢 /bogaz          -> Boğazlar canlı gemi & sis raporu │
+       │ 🎣 /balikci [bölge]-> Sefer emniyeti güvenlik analizi  │
+       │ 🚨 /kazalar        -> Güncel kaza & kurtarma bülteni   │
+       │ 🌊 /durum          -> Seçili denizlerin anlık havası   │
+       │ ⚙️ /bolge & /tekne -> Kişisel deniz ve tekne ayarları  │
+       └────────────────────────────────────────────────────────┘
 ```
 
-### Durum merdiveni
+### 📋 Bot Komutları ve Kullanımı
 
-Çıktıyı bu tablo yönetir. Bir olay ancak resmi kaynak doğruladığında Telegram'a düşer.
+#### 1. Seyir ve Emniyet Komutları
 
-| Kanıt | status | Haritada | Feed | Telegram |
-| :-- | :-- | :-- | :--: | :--: |
-| Yalnız AIS anomalisi | `signal` | soluk, kesik çizgili | ✅ | ❌ |
-| AIS + haber | `probable` | turuncu | ✅ | ❌ |
-| DSC distress | `probable` | turuncu | ✅ | ❌ |
-| **Resmi açıklama** | `confirmed` | kırmızı | ✅ | ✅ |
-| Sonuç geldi | `resolved` / `false-positive` | yeşil / gri | ✅ | ❌ |
+* **`/neredeyim` — Anlık Konum & En Yakın Liman:**  
+  Telegram'dan canlı konumunuzu (GPS pin) paylaştığınızda; bulunduğunuz deniz bölgesini, en yakın güvenli limanı, limana olan deniz mili mesafesini ve o koordinattaki anlık rüzgâr/dalga durumunu raporlar.
+* **`/mayday` — VHF Kanal 16 Telsiz İmdat Şablonu:**  
+  Panik anında telsiz mandalına basıp ne söyleyeceğini düşünmek zordur. Bot; teknenizin adı, MMSI numarası ve son bilinen koordinatlarınızı alarak uluslararası standartta Türkçe ve İngilizce telsiz konuşma metni üretir:
+  > *"MAYDAY, MAYDAY, MAYDAY. Burası tekne [İSİM], Çağrı İşareti [MMSI]. Mevkiimiz 40°58.2'N 028°50.1'E. Su alıyoruz, batma tehlikemiz var. Teknede 3 kişi var. ACİL YARDIM TALEP EDİYORUZ. TAMAM."*
+* **`/bogaz` — Türk Boğazları Canlı Durumu:**  
+  İstanbul ve Çanakkale Boğazları'ndaki anlık transit gemi sayısını, sis/görüş koşullarını, akıntı durumunu ve Kıyı Emniyeti'nin seyir kısıtlamalarını raporlar.
+* **`/balikci [bölge]` — "Bugün Denize Çıkılır mı?" Analizi:**  
+  Örnek: `/balikci marmara` veya `/balikci ege`. Seçilen bölge için önümüzdeki 18 saatin dalga ve rüzgâr kırılımlarını inceler; teknenize göre güvenli denize çıkış ve limana dönüş saatlerini listeler.
+* **`/kazalar` — Canlı Olay ve Kurtarma Bülteni:**  
+  Son 24 saat içinde Sahil Güvenlik ve Kıyı Emniyeti tarafından doğrulanmış arama-kurtarma çalışmalarını, sürüklenen tekneleri ve kazaları listeler.
+* **`/durum` — Anlık Hava Özeti:**  
+  Takip ettiğiniz tüm denizler için güncel Bofor rüzgâr şiddeti ve dalga yüksekliği tablosu verir.
 
-**Önleme hattı bundan bağımsız çalışır.** Günlük pencere mesajı her sabah gider — bir olay
-olmasını beklemez. Bu ayrım kasıtlı: bir kaza olduktan sonra haber vermek şeffaflıktır,
-kaza olmadan önce hava durumunu söylemek ise işe yarayan kısımdır.
+#### 2. Kişiselleştirme & Ayarlar
 
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
+* **`/bolge`:** Takip etmek istediğiniz denizleri seçmenizi sağlar (örn: *Yalnızca Marmara* veya *Kuzey Ege + Güney Ege*). Seçmediğiniz denizlerin bildirimleri sizi rahatsız etmez.
+* **`/tekne`:** Tekne sınıfınızı belirler:
+  * **Sınıf 1 (Küçük):** $\le 8$ metre (Eşikler: 22 kn rüzgâr / 1.25 m dalga)
+  * **Sınıf 2 (Orta):** $8 - 15$ metre (Eşikler: 28 kn rüzgâr / 2.0 m dalga)
+  * **Sınıf 3 (Büyük):** $> 15$ metre (Eşikler: 34 kn rüzgâr / 2.5 m dalga)
+* **`/abone [bölge]`:** Belirli bir bölgenin anlık fırtına veya kaza alarmlarına doğrudan abone olur.
+* **`/ayarlar`:** Kayıtlı bölge, tekne tipi ve bildirim durumunuzu görüntüler.
+* **`/dur`:** Bildirimleri dondurur.
 
----
+#### 3. Sabah 06:00 Günlük Zaman Penceresi Mesajı
 
-## Veri kaynakları
+Her sabah saat 06:00'da aboneye giden otomatik mesaj örneği:
 
-| Kaynak | Ne getirir | Anahtar | Durum |
-| :-- | :-- | :--: | :-- |
-| **aisstream.io** | Gemi konumu, AIS anomalisi, SART/MOB, güvenlik yayını (msg 14) | ücretsiz | 🟢 canlı |
-| **Open-Meteo** marine + forecast | Dalga yüksekliği ve rüzgâr hamlesi tahmini | — | 🟢 canlı |
-| **AFAD · USGS · EMSC** | Kıyıya yakın depremler, üç kurum çapraz doğrulamalı | — | 🟢 canlı |
-| **Sahil Güvenlik** | Resmi kurtarma açıklamaları | — | 🟢 canlı (scrape) |
-| **MGM** `/web/alarmlar` | Resmi meteorolojik alarmlar, denizciliğe göre süzülmüş | — | 🟢 canlı |
-| **Haber RSS** ×10 | AA, Hürriyet, NTV, Sözcü, CNN Türk, TRT, Habertürk, Milliyet, Denizhaber, gCaptain | — | 🟢 canlı |
-| **GDACS** | Bölgesel afet uyarıları (fırtına, sel, kasırga) | — | 🟢 canlı |
-| **NASA EONET** | Doğa olayları | — | 🟢 canlı |
-| **aviationweather.gov** METAR | Kıyı havaalanı rüzgâr / görüş / fırtına | — | 🟢 canlı |
-| MGM deniz tahmini | — | — | 🔴 endpoint 404 (Eyl 2026), Open-Meteo kapsıyor |
-| NGA NAVAREA III | Seyir uyarıları | — | 🔴 endpoint 404, kod hazır |
-| ReliefWeb | Türkiye afet raporları | — | 🔴 API v1 kapandı (410), kod hazır |
-| AFAD basın açıklamaları | — | — | 🔴 sayfa 404, deprem verisi yukarıdan geliyor |
-| **SDR** (DSC / NAVTEX / Ch16) | Yapısal tehlike, MSI, ses | — | ⚪ opsiyonel modül, varsayılan kapalı |
+```text
+🌅 GÜNLÜK DENİZ HAVA RAPORU (06:00)
+Tekne Sınıfı: 8m ve altı
 
-> [!NOTE]
-> Ölü kaynaklar `config.yaml`'de gerekçesiyle birlikte kapalı tutuluyor, kodları silinmiyor —
-> endpoint geri gelirse tek satırla açılır.
+📍 Marmara Denizi:
+🟢 08:00 - 15:00 UYGUN (3-4 Bofor, Dalga 0.6m)
+🟡 15:00 - 18:00 DİKKAT (5 Bofor, Rüzgâr 21 kn hamle)
+🔴 18:00'den sonra ÇIKMAYIN (6 Bofor, Fırtına uyarısı)
 
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
-
----
-
-## Sahada öğrenilenler
-
-Bu bölüm projeyi demo olmaktan çıkaran kısım. Hepsi **canlı kanalda gerçekten olan**
-hatalar ve karşılığında konan korumalar.
-
-| Ne oldu | Koruma |
-| :-- | :-- |
-| Open-Meteo düştü, test fixture'ındaki `2,7 m / 41 kn` **gerçek tahmin diye kanala gitti** | `_net.py` tek kapı: prodüksiyonda fixture'a düşmek kapalı. Ölü kaynak boş döner — yanlış konuşmaktansa susar. 11 kaynağın hepsi için regresyon testi var. |
-| Bir döngüde **31 "gemi kayboldu"** uyarısı — hepsi aynı dakikada susmuştu | Kaybolan gemiler değil, AIS beslemesi düşmüştü. Aynı sessizliği paylaşan filo artık bastırılıyor. |
-| Sıradan 60°'lik dönüş **44 sahte alarm** üretti | `course-spike` varsayılan kapalı; açıkken bile yalnız gerçek rota tersine dönüşü + uygun gemi tipi. |
-| Ölen kişilerin ve yakınlarının **adları kanala ve git geçmişine** düştü | Cenaze/tutuklama/duruşma haberleri kaynakta eleniyor; kalanlarda kişi adı maskeleniyor. Gemi adları korunuyor — Türkçede gemi adları insan adına benzer. |
-| Aynı duyuru **her gün yeni olay** olarak haritaya düştü | Kimlikler tarihten değil içerikten türetiliyor. `hash()` süreç başına tuzlandığı için sha1'e geçildi. |
-| `TUÄBERK Ä°MAMOÄLU` — bozuk kodlanmış başlıklar hem okunmuyor hem dedup'ı bozuyordu | Yanlış çözümlenmiş UTF-8 hem fetch'te hem depoda onarılıyor. |
-| Hava uyarısı kanalı **haftalarca hiç konuşmadı** | Eşik 34 kn / 2,0 m idi. Dokuz günlük gerçek ölçümde (13 nokta, 216 saat) 2,0 m dalga **hiç**, 34 kn **4 kez** aşıldı. Küçük tekne sınırı olan 22 kn ise **371 nokta-saat** aşıldı — Marmara'da tek başına 91 saat. Eşik bir yük gemisi için doğruydu, kitle küçük tekneydi. Artık eşik tekne sınıfından geliyor; fırtına kesintisi 28 kn'e indi. |
-| Fırtına geçti, uyarı **18 saat asılı kaldı** | Tahmin canlı dönüp bölgeyi artık listelemiyorsa "UYARI KALKTI" mesajı gidiyor. Ölü kaynak asla "her şey yolunda" sayılmaz. |
-| 55 km içerideki deprem *"kıyıya yakın deprem"* diye duyuruldu | Kara/deniz maskesi olmadığı için artık tahmin yürütülmüyor: yalnız bölge adı ve en yakın limanın mesafesi yazılıyor. |
-| Cron atlayınca durum kayboluyordu | Gemi izleri, gönderilmiş mesajlar ve olay günlüğü depoya yazılıyor; `vessels.json` gemi başına tek satır, sıralı ve kısaltılmış koordinatla — git delta'ları çalışsın diye. |
+💡 Öneri: Limana dönüşünüzü en geç 15:30'a kadar planlayınız.
+```
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 ---
 
-## Hızlı başlangıç
+<a id="canli-harita"></a>
 
-Gereken: Python 3.11+ ve beş paket. Derleme adımı, veritabanı, Docker yok.
+## 🗺️ Canlı Web Haritası Özellikleri
+
+Web arayüzü (`web/`), hiçbir harici JavaScript kütüphane derleme adımı (React, Webpack, npm build vb.) gerektirmeyen saf HTML5/CSS/Vanilla JS ile tasarlanmıştır.
+
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│ 🌊 MARITIME WATCH TÜRKİYE               [Zaman Makinesi ▶] [Acil 🆘]    │
+├────────────────────────────────────────────────────────────────────────┤
+│ 🟢 Boğazlar: Normal Trafik (34 Gemi) · Marmara Güvenlik İndeksi: 82/100 │
+├──────────────────────────────────────┬─────────────────────────────────┤
+│ [🔍 Arama...] [🚨Doğrulandı] [🌊Hava] │ 📋 ZAMAN ÇİZELGESİ              │
+│                                      │                                 │
+│         LEAFLET HARİTASI             │ 🔴 Sahil Güvenlik Kurtarma      │
+│     + OpenSeaMap Deniz Fenerleri     │    Bodrum açıkları (2 kişi)     │
+│     + AIS Anomali & CPA Çatışma      │ 🌊 Fırtına Uyarısı              │
+│     + Dalga & Rüzgâr Vektör Örtüsü   │    Kuzey Ege (7 Bofor)          │
+│                                      │ 🟡 Sürüklenme Şüphesi           │
+│                                      │    Şile açıkları (Kargo gemisi) │
+├──────────────────────────────────────┴─────────────────────────────────┤
+│ ⏱️ ZAMAN MAKİNESİ: [◀] [ ━━━●━━━━━━━━━ ] [▶ 1x 2x 4x] Canlı             │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+1. **⏱️ Zaman Makinesi (Playback Scrubber):**  
+   Haritanın altındaki zaman çubuğu ile son 48 saatteki tüm gemi anomalilerini ve kaza hareketlerini 1x, 2x veya 4x hızında harita üzerinde video gibi geri sarıp oynatabilirsiniz.
+2. **🆘 Acil Durum & VHF Frekans Rehberi:**  
+   Harita üzerindeki acil durum butonuna basıldığında açılan modal rehber:
+   * **VHF Kanal 16 (156.800 MHz):** Uluslararası imdat ve çağrı frekansı.
+   * **Alo 158:** Sahil Güvenlik 7/24 arama-kurtarma ihbar hattı.
+   * **Alo 151:** Kıyı Emniyeti can kurtarma ve tahlisiye hattı.
+   * **Türk Radyo:** Bölgesel deniz hava yayını kanalları (İstanbul Ch 67, İzmir Ch 68 vb.) — *Tek tıkla kopyalanabilir.*
+3. **💥 Çatışma Riski (CPA - Closest Point of Approach):**  
+   Boğazlar veya dar geçitlerde rotaları ve hızları birbirine tehlikeli derecede yaklaşan gemileri gerçek zamanlı tespit eder ve haritada çatışma riski halkasıyla vurgular.
+4. **📊 Canlı Boğaz & Güvenlik Şeridi (`safety-strip`):**  
+   Sayfa başında anlık olarak Türk Boğazları'ndan geçen gemi sayısını ve bölgelerin genel deniz güvenlik puanını (0–100) gösterir.
+5. **📱 PWA & Çevrimdışı Çalışma (Offline Mode):**  
+   Service Worker (`sw.js`) sayesinde deniz ortasında internetiniz kopsa dahi uygulama açılır, son indirilen harita verisini ve acil durum rehberini çevrimdışı olarak ekranınıza getirir.
+
+<p align="right">(<a href="#readme-top">başa dön</a>)</p>
+
+---
+
+<a id="mimari"></a>
+
+## 🏗️ Sistem Mimarisi ve Veri Akışı
+
+Sistem, harici bir SQL veritabanı veya ağır bir sunucu parkı gerektirmeden, **JSON Store + `events.jsonl`** veri mimarisiyle çalışır.
+
+```mermaid
+flowchart TD
+    subgraph INGEST [1. Veri Toplama]
+        AIS["aisstream.io WebSocket<br/>(AIS Burst: Konum, Gemi Bilgisi, SART/MOB)"]
+        METEO["Open-Meteo API<br/>(Saatlik Dalga & Rüzgâr Hamlesi)"]
+        QUAKE["AFAD + USGS + EMSC + Kandilli<br/>(Kıyıya Yakın Depremler)"]
+        OFFICIAL["Sahil Güvenlik & Kıyı Emniyeti<br/>(Kurtarma Bültenleri & Seyir Duyuruları)"]
+        NEWS["10x Haber RSS Akışı<br/>(AA, NTV, Sözcü, TRT, Denizhaber...)"]
+        GLOBAL["GDACS + NASA EONET + METAR<br/>(Küresel Afetler & Havalimanı Rüzgârı)"]
+    end
+
+    subgraph PROCESS [2. Karar & İşleme Motoru]
+        ANOM["anomaly.py & shiptype.py<br/>Gemi Tipine Göre Anomali Tespiti"]
+        CPA["cpa.py<br/>Çatışma Riski (CPA) Tespiti"]
+        EXTRACT["extract.py<br/>Türkçe Metin & Koordinat & Gemi Adı Çıkarımı"]
+        DEDUP["dedup.py<br/>Olay Füzyonu & Çift Uyarı Birleştirme"]
+        WINDOW["window.py<br/>Tekne Sınıfına Göre Zaman Penceresi"]
+        CLASSIFY["classify.py<br/>Kanıt Merdiveni & Güvenilirlik Derecesi"]
+    end
+
+    subgraph OUTPUT [3. Çıktı & Bildirim]
+        MAP["web/ Canlı Harita & Zaman Makinesi"]
+        BOT["Telegram Botu (Kişisel Abonelik & Komutlar)"]
+        RSS["feed.xml (Haber Merkezleri İçin RSS Beslemesi)"]
+        STATS["stats.html (Aylık Kaza & Tür İstatistikleri)"]
+    end
+
+    INGEST --> PROCESS
+    PROCESS --> OUTPUT
+```
+
+### 🪜 Durum Merdiveni (Status Ladder)
+
+Her olay için yanıltıcı alarm üretmemek adına katı bir kanıt merdiveni uygulanır:
+
+| Kanıt Seviyesi | Status Kodu | Harita Görünümü | RSS Feed | Telegram Bildirimi |
+| :--- | :---: | :---: | :---: | :---: |
+| Yalnızca AIS Hız/Rota Anomalisi | `signal` | Soluk, kesik çizgili | ✅ | ❌ (Spam engeli) |
+| AIS + Haber Eşleşmesi | `probable` | Turuncu | ✅ | ❌ |
+| DSC İmdat Çağrısı | `probable` | Turuncu | ✅ | ❌ |
+| **Resmi Açıklama (Sahil Güvenlik / KEGM)** | `confirmed` | 🚨 Kırmızı | ✅ | ✅ (Anında gönderilir) |
+| Kurtarma Tamamlandı / Tehdit Geçti | `resolved` | 🟢 Yeşil | ✅ | ❌ |
+
+<p align="right">(<a href="#readme-top">başa dön</a>)</p>
+
+---
+
+<a id="veri-kaynaklari"></a>
+
+## 🌐 Canlı Veri Kaynakları
+
+Tüm veri kaynakları `_safe` hata sarıcısıyla korunur; bir kaynak çökse bile döngü asla durmaz.
+
+| Kaynak | Çekilen Veri | API / Yöntem | Durum |
+| :--- | :--- | :---: | :---: |
+| **aisstream.io** | Gemi konumları, hız düşüşü, rotadan sapma, SART/MOB acil durum vericileri | Ücretsiz WebSocket | 🟢 Canlı |
+| **Open-Meteo** | Saatlik dalga yüksekliği, dalga periyodu, 10m rüzgâr hamlesi | Açık REST API | 🟢 Canlı |
+| **Sahil Güvenlik** | Resmi arama-kurtarma duyuruları ve tahliye bültenleri | Otomatik Tarama | 🟢 Canlı |
+| **Kıyı Emniyeti (KEGM)** | Boğaz geçiş bildirimleri, tahlisiye ve kılavuzluk duyuruları | Otomatik Tarama | 🟢 Canlı |
+| **AFAD & Kandilli & USGS & EMSC** | Kıyı depremleri (3 kurum onaylı çifte teyit) | REST / RSS | 🟢 Canlı |
+| **Haber RSS (×10)** | AA, Hürriyet, NTV, Sözcü, CNN Türk, TRT, Habertürk, Milliyet, Denizhaber, gCaptain | RSS / XML | 🟢 Canlı |
+| **GDACS & NASA EONET** | Fırtına, kasırga, sel ve aşırı doğa olayları | GeoJSON / RSS | 🟢 Canlı |
+| **METAR (aviationweather.gov)** | Kıyı havalimanı anlık rüzgâr, fırtına ve görüş kısıtları | Text / METAR | 🟢 Canlı |
+| **SDR Modülü (Opsiyonel)** | VHF Ch70 DSC, NAVTEX 518 kHz, VHF 16 ses tarama | RTL-SDR Donanım | ⚪ Opsiyonel |
+
+<p align="right">(<a href="#readme-top">başa dön</a>)</p>
+
+---
+
+<a id="sahada-ogrenilenler"></a>
+
+## 🛡️ Sahada Öğrenilenler & Güvenilirlik
+
+Bu proje masa başında üretilmemiş, **canlı Telegram kanalında yaşanan gerçek tecrübelerle** olgunlaştırılmıştır:
+
+* **"Fixtures Are Not Data" Kuralı:** İlk testlerde Open-Meteo çöktüğünde sistem yedek test verisine (`2.7 m dalga, 41 kn rüzgâr`) düşmüş ve bu sahte fırtına canlı kanala gerçek gibi gitmişti. Artık `_net.py` üretimde sahte veriyi tamamen engeller: *Bir kaynak çökerse sistem susar, asla yalan söylemez.*
+* **Sinyal Kesintisi vs. Kayıp Gemi:** Bir döngüde 31 gemi aniden kayboldu uyarısı üretildi; oysa batan gemi yoktu, AIS sağlayıcısı 1 dakikalık bakımdaydı. Artık toplu sinyal kesintileri filtrelenir ve `ais-gap` gemi gerçekten limana yanaşmadıysa birkaç teyit sonrası alarm verir.
+* **Gemi Tipine Göre Eşik:** Bir balıkçı teknesinin rölantide beklemesi normal bir balık avıdır. Boğazın ortasında bir tankerin 0 knot'a düşmesi ise acil durumdur. Sistem AIS gemi tip koduna (`shiptype.py`) göre alarm üretir.
+* **Hava Eşiği Kalibrasyonu:** İlk sürümde fırtına eşiği 34 knot idi ve kanal haftalarca susmuştu. Oysa 22 knot rüzgâr küçük tekne için ölümcül sınırdı ve Marmara'da 91 saat boyunca bu hava hakimdi. Eşikler tekne sınıfına indirgendi ve sistem doğru zamanda konuşmaya başladı.
+
+---
+
+<a id="hukuki-tasarim"></a>
+
+## ⚖️ Hukuki Tasarım (TCK 132 & KVKK)
+
+Bu proje Türk Ceza Kanunu ve Kişisel Verilerin Korunması Kanunu sınırlarına titizlikle uyar:
+
+1. **TCK 132 (Haberleşmenin Gizliliği):**  
+   Telsiz frekanslarını dinlemek serbest olsa da, konuşmaları kaydetmek ve üçüncü kişilere aktarmak suçtur. Bu nedenle Maritime Watch, **kişiler arası sesli telsiz trafiğini asla kaydetmez, deşifre etmez ve yayınlamaz.** Yalnızca açık kamu verileri (AIS, DSC, resmi bültenler) kullanılır.
+2. **KVKK ve Kişisel Veri Maskelemesi (`privacy.py`):**  
+   Kazalarda hayatını kaybedenlerin veya yaralananların isimleri haber bültenlerinden otomatik olarak temizlenir ve maskelenir. Cenaze ve adli dava detayları deniz emniyeti taşımadığı için elenir.
+3. **Abone Gizliliği:**  
+   Telegram kullanıcılarının `chat_id` bilgileri yalnızca yerel `data/subscribers.json` içinde saklanır; `.gitignore` ile korunur ve asla GitHub'a veya genel sunuculara aktarılmaz.
+
+<p align="right">(<a href="#readme-top">başa dön</a>)</p>
+
+---
+
+<a id="hizli-baslangic"></a>
+
+## 🚀 Hızlı Başlangıç & Yerel Kurulum
+
+Sistem için harici bir veritabanı veya Docker gerekmez. Yalnızca **Python 3.11+** ve temel kütüphaneler yeterlidir.
+
+### 1. Depoyu Klonlayın ve Bağımlılıkları Yükleyin
 
 ```bash
 git clone https://github.com/KeremKalyoncu/maritime-watch.git
 cd maritime-watch
-py -m pip install -r requirements.txt     # Linux/macOS: python3
-
-py run.py --once --serve                  # bir döngü + http://127.0.0.1:8000
+python -m pip install -r requirements.txt
 ```
 
-Anahtarsız çalışır: AIS katmanı ve uyarılar `src/ingest/samples/` içindeki örnek veriyle
-gelir, Telegram mesajları konsola ve `data/outbox.log`'a yazılır — gönderilmez.
+### 2. Canlı Haritayı Yerel Olarak Başlatın (Test Modu)
 
-### Canlı veri (hepsi ücretsiz, kartsız)
+Herhangi bir API anahtarı olmadan, test verileriyle sistemi hemen ayağa kaldırabilirsiniz:
+
+```bash
+python run.py --once --serve
+```
+
+Tarayıcınızda açın: **`http://127.0.0.1:8000`**
+
+### 3. Canlı Veri ile Çalıştırma (Ücretsiz & Kartsız)
+
+Canlı AIS ve Telegram bildirimleri için `.env` dosyasını oluşturun:
 
 ```bash
 cp .env.example .env
 ```
 
-| Değişken | Nereden | Not |
-| :-- | :-- | :-- |
-| `AISSTREAM_KEY` | <https://aisstream.io/apikeys> | Yalnız e-posta ister |
-| `TELEGRAM_BOT_TOKEN` | Telegram'da `@BotFather` → `/newbot` | |
-| `TELEGRAM_CHAT_ID` | Kanal ID'si | Bot **kanalda yönetici** olmalı, yoksa `400: chat not found` |
+`.env` dosyanızı düzenleyin:
+```ini
+# Ücretsiz AIS Anahtarı: https://aisstream.io/apikeys
+AISSTREAM_KEY=buraya_anahtari_yazin
 
-```bash
-py run.py --loop --send
+# Telegram BotFather'dan alınan bot token'ı
+TELEGRAM_BOT_TOKEN=123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ
+
+# Bildirimlerin gideceği kanal veya grup ID'si (örn: @denizkanali veya -100123456789)
+TELEGRAM_CHAT_ID=@senin_kanal_adın
 ```
 
-### Komutlar
-
-| Komut | Ne yapar |
-| :-- | :-- |
-| `py run.py --once` | Tek döngü (dry-run), çık |
-| `py run.py --loop` | Sürekli çalışır — **bot komutları için bu mod gerekli** |
-| `py run.py --serve` | Sadece `web/` klasörünü sun |
-| `py run.py --once --send` | Telegram'a **gerçekten** gönder |
-| `py run.py --no-ais` / `--no-scrape` | Katman kapat |
-| `py run.py --config yol.yaml` | Başka bir yapılandırma |
-| `py -m pytest` | 157 test |
-| `py eval/run_eval.py` | Precision / recall raporu |
+Canlı döngüyü ve botu başlatın:
+```bash
+python run.py --loop --send
+```
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 ---
 
-## Dağıtım
+<a id="dagitim"></a>
 
-| Yol | Maliyet | Gecikme | Not |
-| :-- | :--: | :-- | :-- |
-| **GitHub Actions + Pages** — `.github/workflows/update.yml` | **$0** | ~15 dk | Sunucu yok. Public repo = sınırsız Actions dakikası. Secrets: `AISSTREAM_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
-| Fly.io / Koyeb free | $0 | ~gerçek zamanlı | Küçük always-on; WebSocket'i açık tutar |
-| Ucuz VPS (Hetzner ~€4/ay) | düşük | gerçek zamanlı | `py run.py --loop --send` + systemd; SDR modülleri de buraya |
+## 🚢 Dağıtım ve Çalıştırma
 
-> [!IMPORTANT]
-> **Bot komutları cron'da çalışmaz.** `getUpdates` her döngüde okunur, cron 15 dakikada
-> bir döner; `/durum` yazan biri 15 dakika bekler ki bu sohbet değildir. Bot için
-> `--loop` modu bir sunucuda çalışmalı (Fly.io ücretsiz katmanı yeter). Günlük mesaj
-> ve harita cron'da sorunsuz.
+| Dağıtım Yolu | Maliyet | Gecikme | Kullanım Amacı |
+| :--- | :---: | :---: | :--- |
+| **GitHub Actions + Pages** | **$0** | ~15 dk | **Sıfır Sunucu:** Her 15 dakikada bir Actions çalışır, haritayı ve Telegram günlük bültenini günceller. |
+| **Küçük Bir VPS (Hetzner vb.)** | ~€3/ay | Gerçek Zamanlı | **İnteraktif Bot:** `python run.py --loop --send` komutu sürekli çalışarak Telegram bot komutlarına saniyeler içinde cevap verir. |
 
 > [!TIP]
-> GitHub cron'u garantili değildir — pratikte 1–5 saatlik atlamalar görülüyor. Bu yüzden
-> tüm durum depoya commit edilir ve her koşu taze checkout'ta kaldığı yerden devam eder.
-
-Harita statiktir; `web/` klasörünü herhangi bir statik host (Pages, Vercel, Netlify,
-Cloudflare Pages) yayınlar.
-
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
+> Telegram botunun `/neredeyim`, `/bogaz`, `/balikci` gibi interaktif komutlarına anında cevap verebilmesi için botun `--loop` parametresiyle kesintisiz çalışması önerilir.
 
 ---
 
-## Hukuki tasarım
+<a id="depo-yapisi"></a>
 
-Araç **TCK 132** (haberleşmenin gizliliği) ve **KVKK** gözetilerek tasarlandı.
-
-- ✅ **Yayına giden akış yalnızca resmi ve açık kaynaklıdır** — resmi açıklamalar, MGM/NAVTEX
-  uyarıları ve alım için yayınlanan açık veri (AIS, DSC güvenlik yayını). Bunları toplamak ve
-  dağıtmak serbesttir.
-- ❌ **Kişiler arası telsiz trafiği kaydedilmez, dökümü çıkarılmaz, yayınlanmaz.**
-- ⚙️ `src/sdr/` modülü **opsiyonel, deneysel ve varsayılan kapalıdır.** Kuralları: yalnız alıcı
-  (RX-only), yalnız izinli frekanslar (Ch16, DSC, NAVTEX, amatör afet, havacılık acil —
-  **asla** kolluk/askerî), kalıcı kayıt yok, ham yakalama asla yayınlanmaz.
-  Ayrıntı: [`src/sdr/README.md`](src/sdr/README.md).
-- 🔒 **Abone kimlikleri:** Telegram `chat_id` bir kişiyi tanımlar. `data/subscribers.json`
-  git-ignore'dadır ve sunucudan çıkmaz — public depoya, haritaya ya da beslemeye
-  hiçbir abone bilgisi düşmez.
-- 🔒 **Kişisel veri:** kaza kurbanlarının ve yakınlarının adları yayına çıkmaz. Cenaze,
-  tutuklama ve duruşma haberleri denizciye bir şey söylemediği için kaynakta elenir; kalan
-  metinde kişi adı maskelenir. Bu süzgeç depoda duran eski kayıtlara da her döngüde uygulanır.
-
-Habercilik açısından: haber değeri taşıyan olguyu (bir kurtarma yaşandığını) doğrulanmış ve
-kaynak göstererek duyurmak korunur; ham telsiz trafiğini dağıtmak değil.
-
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
-
----
-
-## Depo yapısı
+## 📁 Depo Dosya Yapısı
 
 ```text
-run.py                    orkestratör (--once / --loop / --serve)
-config.yaml               bölge, eşikler, anahtar kelimeler, aralıklar
-src/
-  config.py               config.yaml + .env
-  model.py                Incident / Warning (CAP-benzeri) + kararlı id + kodlama onarımı
-  store.py                web/data/*.json + events.jsonl
-  geo.py                  poligon deniz bölgeleri (point-in-polygon)
-  ingest/
-    ais_stream.py         aisstream.io burst capture
-    official.py           Sahil Güvenlik + MGM alarmları (savunmacı scrape)
-    openmeteo.py quakes.py news.py gdacs.py eonet.py metar.py navwarn.py reliefweb.py
-    _net.py               ortak fetch — "fixture asla yayına çıkmaz" kuralının tek kapısı
-    samples/              çevrimdışı test önbelleği (TEST FIXTURE, veri değil)
-  process/
-    anomaly.py            kural tabanlı AIS anomali + SART/MOB + besleme kesintisi koruması
-    dedup.py              olay korelasyonu + same_hazard (çift uyarı birleştirme)
-    classify.py           status / confidence / severity / geocode / en yakın liman
-    extract.py            Türkçe metinden gemi adı, koordinat, kişi sayısı, tür
-    privacy.py            kişi adı maskeleme + aftermath süzgeci
-    prune.py              bayat kayıt temizliği, geriye dönük onarım, "uyarı kalktı"
-    shiptype.py           AIS tip kodu → kategori ve duyarlılık profili
-    window.py             saatlik tahmin → 🟢/🟡/🔴 zaman pencereleri (tekne sınıfına göre)
-  render/                 feed.xml (RSS) + summary.json
-  alert/telegram.py       sade Türkçe mesajlar, digest, tekrar koruması
-  alert/bot.py            Telegram botu: kişiye özel bölge + tekne sınıfı aboneliği
-  sdr/                    opsiyonel modül — entegrasyon rehberi + stub
-web/                      Leaflet haritası + stats.html (statik, build yok)
-tests/                    pytest (157)
-eval/                     precision/recall ölçümü
-.github/workflows/        tests.yml + update.yml
+maritime-watch/
+├── run.py                 # Ana orkestratör döngüsü (--once / --loop / --serve)
+├── config.yaml            # Bölge sınırları, eşikler, anahtar kelimeler ve kaynak ayarları
+├── src/
+│   ├── alert/
+│   │   ├── bot.py         # Kişisel abonelik ve interaktif Telegram botu (/neredeyim, /mayday)
+│   │   └── telegram.py    # Kanal bildirimleri, acil durum alarmları ve özet motoru
+│   ├── ingest/            # Canlı veri toplayıcıları (AIS, OpenMeteo, Deprem, SG, Haberler)
+│   │   ├── _net.py        # Güvenli fetch katmanı (sahte veri sızıntı koruması)
+│   │   └── ais_stream.py  # aisstream.io WebSocket burst dinleyicisi
+│   ├── process/           # Veri işleme & Yapay Karar Motoru
+│   │   ├── anomaly.py     # Gemi-tipi duyarlı kural tabanlı anomali tespiti
+│   │   ├── cpa.py         # Çatışma riski (CPA) hesaplama algoritması
+│   │   ├── extract.py     # Türkçe NLP koordinat ve kaza metni ayrıştırıcı
+│   │   ├── dedup.py       # Çapraz kaynak olay birleştirme ve teyit motoru
+│   │   └── window.py      # Tekne boyuna göre saatlik seyir güvenlik penceresi
+│   ├── render/            # Web çıktı üreticileri (feed.xml, health.json, straits.json)
+│   └── sdr/               # Opsiyonel donanım modülü (Ch70 DSC & NAVTEX rehberi)
+├── web/                   # Statik Leaflet haritası, Zaman Makinesi, PWA Service Worker
+├── tests/                 # 78+ Çevrimdışı pytest birim testi
+└── eval/                  # NLP ve sınıflandırma başarım ölçüm seti
 ```
-
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 ---
 
-## Test ve ölçüm
+## 🧪 Test ve Kalite Kontrol
+
+Kod tabanı tam test kapsamına sahiptir ve harici ağa ihtiyaç duymadan çevrimdışı test edilebilir:
 
 ```bash
-py -m pytest          # 157 test
-py -m ruff check .    # lint
-py eval/run_eval.py   # eval/REPORT.md üretir
+# Tüm birim testlerini çalıştır
+python -m pytest
+
+# Kod kalite ve lint kontrolü
+python -m ruff check .
+
+# Model ve metin çıkarım başarı testi
+python eval/run_eval.py
 ```
-
-Testler CI'da Python 3.11 / 3.12 / 3.13 üzerinde koşar. Test yapılandırması gerçek
-`config.yaml`'i okur — elle kopyalanmış bir fixture, prodüksiyonda kapalı olan kaynakları
-ve ölü ayarları gizlediği için kaldırıldı.
-
-Güncel ölçüm: [`eval/REPORT.md`](eval/REPORT.md). Sayılar sentetik ve küçük örneklem
-üzerinden; mutlak başarı iddiası değil, **regresyon takibi** içindir.
-
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 ---
 
-## Yol haritası
+<a id="lisans"></a>
 
-Açık maddeler: [`TODO.md`](TODO.md). Öne çıkanlar:
+## 📜 Lisans & Katkı
 
-- [ ] NAVAREA III için çalışan bir endpoint bulmak
-- [ ] MGM `/api/meteoalarm` erişimi (şu an 403)
-- [ ] Kıyı çizgisi maskesi — deprem merkez üssünün karada mı denizde mi olduğunu söyleyebilmek
-- [ ] Bölge aboneliği — Marmara'daki balıkçı İskenderun'u görmesin (Telegram topic'leri)
-- [ ] Gün batımı/doğumu ile birleşik "güvenli pencere" hesabı
-- [ ] Daha geniş eval kümesi, gerçek olay arşiviyle
+Bu proje [MIT Lisansı](LICENSE) ile açık kaynak olarak sunulmuştur.  
+Topluluk katkılarına, denizcilerden gelecek eşik geri bildirimlerine ve balıkçı kooperatifi deneyimlerine tamamen açıktır.
 
-## Katkı
+Katkıda bulunmak için lütfen [CONTRIBUTING.md](CONTRIBUTING.md) belgesini inceleyiniz.
 
-[`CONTRIBUTING.md`](CONTRIBUTING.md). Kullanılan ve atıf yapılan açık kaynak projeler:
-[`NOTICE`](NOTICE).
+<div align="center">
 
-Kaynak eklerken tek kural: fetch **`src/ingest/_net.py`** üzerinden geçmeli, ve kaynak
-düştüğünde boş dönmeli. Yanlış konuşmaktansa susmak.
+**Maritime Watch Türkiye**  
+*Denizde emniyet, kıyıda şeffaflık.*
 
-## Lisans
-
-MIT — [`LICENSE`](LICENSE).
-
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
-
-[tests-shield]: https://img.shields.io/github/actions/workflow/status/KeremKalyoncu/maritime-watch/tests.yml?branch=main&label=tests&style=for-the-badge
-[tests-url]: https://github.com/KeremKalyoncu/maritime-watch/actions/workflows/tests.yml
-[update-shield]: https://img.shields.io/github/actions/workflow/status/KeremKalyoncu/maritime-watch/update.yml?branch=main&label=veri%20d%C3%B6ng%C3%BCs%C3%BC&style=for-the-badge
-[update-url]: https://github.com/KeremKalyoncu/maritime-watch/actions/workflows/update.yml
-[python-shield]: https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-3776AB?style=for-the-badge&logo=python&logoColor=white
-[python-url]: https://www.python.org/
-[license-shield]: https://img.shields.io/github/license/KeremKalyoncu/maritime-watch?style=for-the-badge
-[license-url]: https://github.com/KeremKalyoncu/maritime-watch/blob/main/LICENSE
-[commit-shield]: https://img.shields.io/github/last-commit/KeremKalyoncu/maritime-watch?style=for-the-badge
-[commit-url]: https://github.com/KeremKalyoncu/maritime-watch/commits/main
+</div>

@@ -342,10 +342,28 @@ def serve(cfg: dict, port: int = 8000) -> None:
             pass
 
 
+def run_bot_listener(cfg: dict, *, dry: bool = False) -> None:
+    """Dedicated low-latency Telegram bot worker loop."""
+    if not cfg.get("bot", {}).get("enabled", False):
+        print("[bot] config.yaml içinde bot.enabled: false, dinleyici başlatılmadı.")
+        return
+    notifier = Notifier(cfg)
+    bot = Bot(cfg, notifier=notifier)
+    mode_str = "DRY-RUN (test modu - konsola yazar)" if dry else "CANLI (gerçek Telegram yanıtı)"
+    print(f"[bot] ⚡ Anlık Telegram bot dinleyicisi devrede [{mode_str}]. Komutlar bekleniyor...")
+    while True:
+        try:
+            bot.poll(dry=dry)
+        except Exception as e:
+            print(f"[bot] polling hatası: {e}")
+        time.sleep(1.5)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Maritime Watch: Turkiye deniz olayi izleme")
     ap.add_argument("--once", action="store_true", help="run one cycle then exit")
     ap.add_argument("--loop", action="store_true", help="run cycles forever")
+    ap.add_argument("--bot", action="store_true", help="run dedicated real-time Telegram bot listener")
     ap.add_argument("--serve", action="store_true", help="serve web/ on localhost")
     ap.add_argument("--port", type=int, default=8000)
     ap.add_argument("--send", action="store_true", help="really send Telegram (default: dry-run)")
@@ -357,6 +375,11 @@ def main() -> None:
     cfg = load_config(args.config)
     dry = not args.send
 
+    # Exclusive bot-only mode
+    if args.bot:
+        run_bot_listener(cfg, dry=dry)
+        return
+
     if args.serve and not (args.once or args.loop):
         serve(cfg, args.port)
         return
@@ -364,6 +387,10 @@ def main() -> None:
         threading.Thread(target=serve, args=(cfg, args.port), daemon=True).start()
 
     if args.loop:
+        # Start low-latency bot thread so users get instant replies during the 15-min cycle sleep
+        if cfg.get("bot", {}).get("enabled", False):
+            threading.Thread(target=run_bot_listener, args=(cfg,), kwargs={"dry": dry}, daemon=True).start()
+
         interval = cfg["loop"]["interval_seconds"]
         while True:
             try:

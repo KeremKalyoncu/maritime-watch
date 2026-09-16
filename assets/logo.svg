@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <!-- Background Radial Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="65%" fx="50%" fy="40%">
+      <stop offset="0%" stop-color="#0e1e38"/>
+      <stop offset="60%" stop-color="#070e1b"/>
+      <stop offset="100%" stop-color="#03060c"/>
+    </radialGradient>
+
+    <!-- Radar Sweep Gradient -->
+    <linearGradient id="radarSweep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#4facfe" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Cyan Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Soft Glow -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Wave Gradients -->
+    <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0052d4"/>
+      <stop offset="50%" stop-color="#4364f7"/>
+      <stop offset="100%" stop-color="#6fb1fc"/>
+    </linearGradient>
+
+    <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00c6ff"/>
+      <stop offset="100%" stop-color="#0072ff"/>
+    </linearGradient>
+
+    <linearGradient id="goldBadge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd200"/>
+      <stop offset="100%" stop-color="#f7971e"/>
+    </linearGradient>
+
+    <linearGradient id="cyanText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#e0f7fa"/>
+      <stop offset="100%" stop-color="#00f2fe"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="800" rx="40" fill="url(#bgGrad)"/>
+
+  <!-- Subtle Outer Border -->
+  <rect width="780" height="780" x="10" y="10" rx="32" fill="none" stroke="#1b3054" stroke-width="2" opacity="0.6"/>
+
+  <!-- ==================== RADAR & COMPASS SECTION ==================== -->
+  <g transform="translate(400, 310)">
+    <!-- Outer Compass Ring -->
+    <circle r="220" fill="none" stroke="#162e50" stroke-width="3"/>
+    <circle r="212" fill="none" stroke="#00f2fe" stroke-width="1.5" stroke-opacity="0.3"/>
+    <circle r="160" fill="none" stroke="#162e50" stroke-width="1.5" stroke-dasharray="6,6"/>
+    <circle r="105" fill="none" stroke="#162e50" stroke-width="1.5"/>
+    <circle r="50" fill="none" stroke="#00f2fe" stroke-width="1" stroke-opacity="0.25"/>
+
+    <!-- Compass Degree Ticks (360 deg) -->
+    <!-- Cardinal Marks -->
+    <line x1="0" y1="-224" x2="0" y2="-208" stroke="#00f2fe" stroke-width="3" filter="url(#softGlow)"/>
+    <line x1="0" y1="208" x2="0" y2="224" stroke="#00f2fe" stroke-width="3"/>
+    <line x1="-224" y1="0" x2="-208" y2="0" stroke="#00f2fe" stroke-width="3"/>
+    <line x1="208" y1="0" x2="224" y2="0" stroke="#00f2fe" stroke-width="3"/>
+
+    <!-- Cardinal Labels -->
+    <text x="0" y="-232" font-family="'Segoe UI', 'Inter', system-ui, sans-serif" font-size="14" font-weight="800" fill="#00f2fe" text-anchor="middle">N</text>
+    <text x="0" y="246" font-family="'Segoe UI', 'Inter', system-ui, sans-serif" font-size="13" font-weight="700" fill="#4facfe" text-anchor="middle">S</text>
+    <text x="-244" y="5" font-family="'Segoe UI', 'Inter', system-ui, sans-serif" font-size="13" font-weight="700" fill="#4facfe" text-anchor="middle">W</text>
+    <text x="244" y="5" font-family="'Segoe UI', 'Inter', system-ui, sans-serif" font-size="13" font-weight="700" fill="#4facfe" text-anchor="middle">E</text>
+
+    <!-- Radar Crosshairs -->
+    <line x1="-212" y1="0" x2="212" y2="0" stroke="#162e50" stroke-width="1" stroke-opacity="0.5"/>
+    <line x1="0" y1="-212" x2="0" y2="212" stroke="#162e50" stroke-width="1" stroke-opacity="0.5"/>
+
+    <!-- Sweeping Radar Cone / Sector -->
+    <path d="M 0 0 L 150 -150 A 212 212 0 0 1 212 0 Z" fill="url(#radarSweep)"/>
+
+    <!-- AIS Signal Target Nodes (Glow Dots) -->
+    <!-- Target 1: North-East -->
+    <circle cx="110" cy="-70" r="5" fill="#00f2fe" filter="url(#glow)"/>
+    <circle cx="110" cy="-70" r="10" fill="none" stroke="#00f2fe" stroke-width="1.5" opacity="0.6"/>
+    <text x="124" y="-66" font-family="'Courier New', monospace" font-size="10" font-weight="700" fill="#00f2fe" opacity="0.85">AIS: 271044</text>
+
+    <!-- Target 2: South-West (Warning Node) -->
+    <circle cx="-95" cy="115" r="4.5" fill="#ff4757" filter="url(#glow)"/>
+    <circle cx="-95" cy="115" r="11" fill="none" stroke="#ff4757" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.8"/>
+    <text x="-165" y="119" font-family="'Courier New', monospace" font-size="10" font-weight="700" fill="#ff6b81" opacity="0.85">ALERT: CH16</text>
+
+    <!-- Target 3: North-West -->
+    <circle cx="-80" cy="-120" r="3.5" fill="#2ed573" opacity="0.8"/>
+
+    <!-- ==================== CENTRAL ICON: LIGHTHOUSE & VESSEL ==================== -->
+    <!-- Lighthouse Light Beam Cones -->
+    <polygon points="0,-40 -180,-15 0,-30" fill="#00f2fe" opacity="0.18" filter="url(#glow)"/>
+    <polygon points="0,-40 180,-65 0,-30" fill="#00f2fe" opacity="0.25" filter="url(#glow)"/>
+
+    <!-- Stylized Modern Geometric Lighthouse -->
+    <g transform="translate(0, -10)">
+      <!-- Beacon Glow Aura -->
+      <circle cx="0" cy="-35" r="18" fill="#00f2fe" opacity="0.3" filter="url(#glow)"/>
+      <circle cx="0" cy="-35" r="7" fill="#ffffff" filter="url(#softGlow)"/>
+
+      <!-- Lighthouse Dome & Cap -->
+      <path d="M -10 -42 Q 0 -52 10 -42 Z" fill="#4facfe"/>
+      <rect x="-8" y="-42" width="16" height="4" fill="#00f2fe"/>
+      
+      <!-- Lantern Room Glass -->
+      <rect x="-9" y="-38" width="18" height="10" rx="2" fill="#ffffff" opacity="0.9"/>
+      <line x1="-4" y1="-38" x2="-4" y2="-28" stroke="#0b172a" stroke-width="1.5"/>
+      <line x1="4" y1="-38" x2="4" y2="-28" stroke="#0b172a" stroke-width="1.5"/>
+
+      <!-- Tower Body -->
+      <polygon points="-12,-26 12,-26 18,25 -18,25" fill="#1b3254" stroke="#00f2fe" stroke-width="1.5"/>
+      <!-- Red/Cyan Stripes -->
+      <polygon points="-13,-12 13,-12 15,3 -15,3" fill="#00f2fe" opacity="0.85"/>
+      <!-- Gallery Railing -->
+      <line x1="-16" y1="-26" x2="16" y2="-26" stroke="#00f2fe" stroke-width="2.5" filter="url(#softGlow)"/>
+    </g>
+
+    <!-- Vessel Bow Silhouette Slicing Right -->
+    <g transform="translate(50, 45)">
+      <path d="M -40 0 L 25 -2 L 50 12 L -35 14 Z" fill="#0a1d38" stroke="#00f2fe" stroke-width="1.5"/>
+      <polygon points="-15,-2 -5,-16 10,-2" fill="#4facfe"/>
+      <circle cx="35" cy="5" r="2" fill="#2ed573" filter="url(#softGlow)"/> <!-- Starboard green navigation light -->
+    </g>
+
+    <!-- Layered Dynamic Ocean Waves -->
+    <!-- Wave Back -->
+    <path d="M -170 65 Q -100 35 -30 65 T 110 65 T 180 60 L 180 110 L -170 110 Z" 
+          fill="url(#waveGrad1)" opacity="0.45"/>
+    
+    <!-- Wave Mid -->
+    <path d="M -180 78 Q -110 50 -40 75 T 100 75 T 190 70 L 190 120 L -180 120 Z" 
+          fill="url(#waveGrad2)" opacity="0.75"/>
+    
+    <!-- Wave Front Crest -->
+    <path d="M -190 92 Q -120 70 -50 90 T 80 88 T 190 85 L 190 130 L -190 130 Z" 
+          fill="#0052d4" opacity="0.9"/>
+    <path d="M -190 92 Q -120 70 -50 90 T 80 88 T 190 85" 
+          fill="none" stroke="#00f2fe" stroke-width="2.5" filter="url(#softGlow)"/>
+  </g>
+
+  <!-- ==================== TYPOGRAPHY & BRANDING ==================== -->
+  <g transform="translate(400, 605)">
+    <!-- Main Title -->
+    <text x="0" y="0" 
+          font-family="'Montserrat', 'Arial Black', system-ui, sans-serif" 
+          font-size="44" 
+          font-weight="900" 
+          letter-spacing="5" 
+          fill="url(#cyanText)" 
+          text-anchor="middle"
+          filter="url(#softGlow)">
+      MARITIME WATCH
+    </text>
+
+    <!-- Badge: TÜRKİYE -->
+    <g transform="translate(0, 32)">
+      <!-- Badge Container -->
+      <rect x="-85" y="-18" width="170" height="28" rx="14" fill="#0c1b33" stroke="#00f2fe" stroke-width="1.5" filter="url(#softGlow)"/>
+      <!-- Pulse dot left -->
+      <circle cx="-62" cy="-4" r="3.5" fill="#ff4757" filter="url(#glow)"/>
+      <text x="6" y="2" 
+            font-family="'Segoe UI', 'Inter', system-ui, sans-serif" 
+            font-size="14" 
+            font-weight="800" 
+            letter-spacing="4" 
+            fill="#ffffff" 
+            text-anchor="middle">
+        TÜRKİYE
+      </text>
+    </g>
+
+    <!-- Subtitle / Motto -->
+    <text x="0" y="85" 
+          font-family="'Segoe UI', 'Inter', system-ui, sans-serif" 
+          font-size="15" 
+          font-weight="500" 
+          letter-spacing="2.5" 
+          fill="#7e9bbd" 
+          text-anchor="middle">
+      7/24 OTONOM DENİZ EMNİYET &amp; İSTİHBARAT RADARI
+    </text>
+
+    <!-- Tagline (Can I go out today?) -->
+    <text x="0" y="112" 
+          font-family="'Segoe UI', 'Inter', system-ui, sans-serif" 
+          font-size="13" 
+          font-weight="400" 
+          letter-spacing="1" 
+          fill="#00f2fe" 
+          opacity="0.9"
+          text-anchor="middle">
+      "Bugün çıkabilir miyim, saat kaça kadar?" · Açık Kaynak
+    </text>
+
+    <!-- Bottom Decorative Line -->
+    <line x1="-120" y1="135" x2="120" y2="135" stroke="#162e50" stroke-width="2"/>
+    <circle cx="0" cy="135" r="4" fill="#00f2fe"/>
+  </g>
+</svg>
