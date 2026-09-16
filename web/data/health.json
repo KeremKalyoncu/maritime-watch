@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-16T21:24:51Z",
-  "cycle_seconds": 237.8,
+  "generated": "2026-09-16T23:44:46Z",
+  "cycle_seconds": 247.1,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
-  "incidents": 15,
-  "warnings": 4,
+  "incidents": 13,
+  "warnings": 3,
   "sources": {
     "scrape": {
       "ok": true,
@@ -39,7 +39,7 @@
     },
     "metar": {
       "ok": true,
-      "items": 2,
+      "items": 1,
       "error": null
     },
     "bot": {
@@ -53,14 +53,14 @@
     "sahil_guvenlik.html": "live",
     "kegm_sample.html": "live",
     "shod_navtex.txt": "live",
-    "news_2.xml": "live",
-    "news_3.xml": "live",
-    "news_1.xml": "live",
-    "news_5.xml": "live",
-    "news_6.xml": "live",
-    "news_9.xml": "live",
-    "news_7.xml": "live",
     "news_4.xml": "live",
+    "news_2.xml": "live",
+    "news_1.xml": "live",
+    "news_3.xml": "live",
+    "news_5.xml": "live",
+    "news_9.xml": "live",
+    "news_6.xml": "live",
+    "news_7.xml": "live",
     "news_8.xml": "live",
     "news_0.xml": "live",
     "openmeteo_marine.json": "live",

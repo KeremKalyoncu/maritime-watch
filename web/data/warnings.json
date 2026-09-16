@@ -1,53 +1,27 @@
 [
   {
-    "id": "mt-LTAI",
-    "headline": "Antalya Arpt, AN, TR: hava: -SHRA VCTS",
-    "area": "Antalya Arpt, AN, TR",
+    "id": "mt-LTFJ",
+    "headline": "Istanbul/Gokcen Intl, KO, TR: hava: BR",
+    "area": "Istanbul/Gokcen Intl, KO, TR",
     "severity": "major",
     "kind": "metar",
     "onset": null,
     "expires": null,
     "org": "aviationweather.gov",
     "url": "https://aviationweather.gov/",
-    "issued": "2026-09-16T21:11:00.000Z",
-    "last_update": "2026-09-16T21:24:50Z",
+    "issued": "2026-09-16T23:20:00.000Z",
+    "last_update": "2026-09-16T23:44:45Z",
     "raw": "",
-    "lat": 36.9,
-    "lon": 30.798,
+    "lat": 40.899,
+    "lon": 29.309,
     "value": null,
     "sources": [
       {
         "kind": "metar",
-        "detail": "Antalya Arpt, AN, TR: hava: -SHRA VCTS",
+        "detail": "Istanbul/Gokcen Intl, KO, TR: hava: BR",
         "org": "aviationweather.gov",
         "url": "https://aviationweather.gov/",
-        "ts": "2026-09-16T21:11:00.000Z"
-      }
-    ]
-  },
-  {
-    "id": "mt-LTCG",
-    "headline": "Trabzon Arpt, TR, TR: hava: -TSRA",
-    "area": "Trabzon Arpt, TR, TR",
-    "severity": "major",
-    "kind": "metar",
-    "onset": null,
-    "expires": null,
-    "org": "aviationweather.gov",
-    "url": "https://aviationweather.gov/",
-    "issued": "2026-09-16T21:07:00.000Z",
-    "last_update": "2026-09-16T21:24:50Z",
-    "raw": "",
-    "lat": 40.995,
-    "lon": 39.782,
-    "value": null,
-    "sources": [
-      {
-        "kind": "metar",
-        "detail": "Trabzon Arpt, TR, TR: hava: -TSRA",
-        "org": "aviationweather.gov",
-        "url": "https://aviationweather.gov/",
-        "ts": "2026-09-16T18:01:00.000Z"
+        "ts": "2026-09-16T23:20:00.000Z"
       }
     ]
   },
@@ -61,8 +35,8 @@
     "expires": null,
     "org": "SHOD Seyir Hidrografi",
     "url": "https://www.shodb.gov.tr/navtex_duyurulari",
-    "issued": "2026-09-16T21:22:32Z",
-    "last_update": "2026-09-16T21:22:32Z",
+    "issued": "2026-09-16T23:42:18Z",
+    "last_update": "2026-09-16T23:42:18Z",
     "raw": "<!DOCTYPE html>\r\n<html lang=\"tr\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n    <meta name=\"keywords\" content=\"msb, Seyir, Hidrografi Ve Oşinografi Dairesi Başkanlığı,Hata404\">\r\n    <meta name=\"PKCS10\" content=\"198af01bbedafb50f8d5df75d776fd3ab4648d7c8171c73028a0a63b3e19419e\">\r\n    <meta name=\"description\" content=\"Seyir, Hidrografi ve Oşinografi Dairesi Başkanlığı\">\r\n    <meta name=\"copyright\"",
     "lat": null,
     "lon": null,
@@ -87,8 +61,8 @@
     "expires": null,
     "org": "Meteoroloji Genel Müdürlüğü",
     "url": "https://www.mgm.gov.tr/tahmin/uyari-goster.aspx?sN=26010459y",
-    "issued": "2026-09-16T21:22:27Z",
-    "last_update": "2026-09-16T21:22:32Z",
+    "issued": "2026-09-16T23:42:13Z",
+    "last_update": "2026-09-16T23:42:18Z",
     "raw": "{\"seriNo\": \"26010459\", \"baslangic\": \"2026-09-16T10:35:00.000Z\", \"baslik\": \"Güney ve İç Ege ile Batı Akdeniz'de Kuvvetli Yağış Bekleniyor!\\n\", \"hadiseCinsi\": \"Gökgürültülü Sağanak Yağış\", \"ihbarTipi\": 1}",
     "lat": 39.264,
     "lon": 25.736,
