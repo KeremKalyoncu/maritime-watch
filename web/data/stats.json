@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-15T22:09:55Z",
-  "total_incidents": 285,
+  "generated": "2026-09-16T00:13:59Z",
+  "total_incidents": 287,
   "by_month": {
-    "2026-09": 285
+    "2026-09": 287
   },
   "by_area": {
-    "belirsiz": 255,
+    "belirsiz": 257,
     "Marmara Denizi": 12,
     "Türk karasuları civarı": 6,
     "Doğu Karadeniz": 3,
@@ -17,18 +17,18 @@
   },
   "by_type": {
     "distress": 99,
-    "drift": 70,
+    "drift": 71,
     "unknown": 54,
+    "collision-risk": 28,
     "sinking": 27,
-    "collision-risk": 27,
     "collision": 3,
     "rescue": 3,
     "fire": 1,
     "capsize": 1
   },
   "by_status": {
-    "signal": 258,
-    "probable": 27
+    "signal": 259,
+    "probable": 28
   },
   "incidents_with_casualties": 19,
   "casualties_reported_total": 197,
@@ -39,6 +39,10 @@
     ],
     [
       "SIMI II",
+      3
+    ],
+    [
+      "SEA STAR MYKONOS",
       3
     ],
     [
@@ -67,10 +71,6 @@
     ],
     [
       "SEAVEN HOPE",
-      2
-    ],
-    [
-      "THEOLOGOS P .",
       2
     ]
   ],
