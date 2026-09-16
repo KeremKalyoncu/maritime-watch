@@ -3,7 +3,21 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Wed, 16 Sep 2026 09:41:05 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 16 Sep 2026 14:22:46 +0000</lastBuildDate>
+    <item>
+      <title>[signal] sinking, konum belirsiz</title>
+      <link>https://www.trthaber.com/haber/turkiye/batan-tugberk-imamoglu-gemisindeki-kayip-murettebati-arama-calismalari-suruyor-957019.html</link>
+      <guid isPermaLink="false">news-0cde0f14f9-1</guid>
+      <pubDate>Wed, 16 Sep 2026 14:20:23 +0000</pubDate>
+      <description>Güven: 0.3 | Önem: minor | news/trthaber.com: Batan 'Tuğberk İmamoğlu' gemisindeki kayıp mürettebatı arama çalışmaları sürüyor</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-16-ais-d882be-1</guid>
+      <pubDate>Wed, 16 Sep 2026 14:20:01 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 854 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
     <item>
       <title>[signal] unknown, Marmara Denizi</title>
       <link>https://www.hurriyet.com.tr/gundem/silivrideki-gemi-kazasi-9-murettebati-arama-calismalari-devam-ediyor-43308513</link>
@@ -52,41 +66,6 @@
       <guid isPermaLink="false">2026-09-16-ais-7affcc-1</guid>
       <pubDate>Wed, 16 Sep 2026 04:42:12 +0000</pubDate>
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 816 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[signal] collision-risk, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">cpa-255917308-255917308-2</guid>
-      <pubDate>Wed, 16 Sep 2026 00:06:47 +0000</pubDate>
-      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.02 NM (~35 m), kalan süre: 0.1 dk (Hızlar: 6.9 kn / 6.9 kn) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.11 NM (~205 m), kalan süre: 0.1 dk (Hızlar: 11.1 kn / 10.3 kn)</description>
-    </item>
-    <item>
-      <title>[signal] collision-risk, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">cpa-310872000-310872000-1</guid>
-      <pubDate>Wed, 16 Sep 2026 00:06:47 +0000</pubDate>
-      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.21 NM (~392 m), kalan süre: 0.2 dk (Hızlar: 12.7 kn / 12.7 kn)</description>
-    </item>
-    <item>
-      <title>[signal] drift, Gökova Körfezi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-15-ais-ec7cd2-1</guid>
-      <pubDate>Tue, 15 Sep 2026 22:03:29 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (26.8 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[signal] collision-risk, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">cpa-271054197-271054197-1</guid>
-      <pubDate>Tue, 15 Sep 2026 22:03:29 +0000</pubDate>
-      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.24 NM (~450 m), kalan süre: 1.2 dk (Hızlar: 12.3 kn / 12.3 kn)</description>
-    </item>
-    <item>
-      <title>[signal] collision-risk, Orta Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">cpa-356042000-356042000-1</guid>
-      <pubDate>Tue, 15 Sep 2026 22:03:29 +0000</pubDate>
-      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.14 NM (~250 m), kalan süre: 0.8 dk (Hızlar: 8.1 kn / 8.1 kn)</description>
     </item>
     <item>
       <title>[confirmed] collision, Antalya Körfezi</title>
