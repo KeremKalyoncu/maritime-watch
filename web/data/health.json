@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-16T14:22:46Z",
-  "cycle_seconds": 255.2,
+  "generated": "2026-09-16T18:20:20Z",
+  "cycle_seconds": 410.5,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
-  "incidents": 15,
-  "warnings": 1,
+  "incidents": 13,
+  "warnings": 3,
   "sources": {
     "scrape": {
       "ok": true,
@@ -14,7 +14,7 @@
     },
     "news": {
       "ok": true,
-      "items": 2,
+      "items": 1,
       "error": null
     },
     "openmeteo": {
@@ -39,7 +39,7 @@
     },
     "metar": {
       "ok": true,
-      "items": 0,
+      "items": 1,
       "error": null
     },
     "bot": {
@@ -49,15 +49,15 @@
     }
   },
   "fetch": {
-    "mgm_alarmlar.json": "down",
+    "mgm_alarmlar.json": "live",
     "sahil_guvenlik.html": "live",
     "kegm_sample.html": "live",
     "shod_navtex.txt": "live",
-    "news_3.xml": "live",
-    "news_1.xml": "live",
     "news_2.xml": "live",
+    "news_1.xml": "live",
     "news_4.xml": "live",
     "news_5.xml": "live",
+    "news_3.xml": "live",
     "news_9.xml": "live",
     "news_6.xml": "live",
     "news_7.xml": "live",

@@ -3,7 +3,28 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Wed, 16 Sep 2026 14:22:46 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 16 Sep 2026 18:20:20 +0000</lastBuildDate>
+    <item>
+      <title>[confirmed] rescue, Antalya Körfezi</title>
+      <link>https://www.sg.gov.tr/antalya-aciklarinda-2-sahis-kurtarilmistir-15-09-26</link>
+      <guid isPermaLink="false">rep-75afb3392f-1</guid>
+      <pubDate>Wed, 16 Sep 2026 18:15:05 +0000</pubDate>
+      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 16.09.2026 Antalya Açıklarında 2 Şahıs Kurtarılmıştır</description>
+    </item>
+    <item>
+      <title>[signal] distress, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-16-ais-c5869d-1</guid>
+      <pubDate>Wed, 16 Sep 2026 18:15:00 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 813 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
+    <item>
+      <title>[signal] collision-risk, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">cpa-207829660-207829660-1</guid>
+      <pubDate>Wed, 16 Sep 2026 18:15:00 +0000</pubDate>
+      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.09 NM (~159 m), kalan süre: 0.8 dk (Hızlar: 5.5 kn / 5.2 kn)</description>
+    </item>
     <item>
       <title>[signal] sinking, konum belirsiz</title>
       <link>https://www.trthaber.com/haber/turkiye/batan-tugberk-imamoglu-gemisindeki-kayip-murettebati-arama-calismalari-suruyor-957019.html</link>
@@ -47,27 +68,6 @@
       <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.14 NM (~262 m), kalan süre: 3.2 dk (Hızlar: 8.5 kn / 8.5 kn)</description>
     </item>
     <item>
-      <title>[signal] drift, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-13-ais-45cd82-14</guid>
-      <pubDate>Wed, 16 Sep 2026 04:42:12 +0000</pubDate>
-      <description>Güven: 0.35 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (15.8 kn) ani duruşa geçti | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 428 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.07 NM (~120 m), kalan süre: 1.9 dk (Hızlar: 11.1 kn / 11.1 kn) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 539 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 784 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 656 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 657 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 550 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 978 dakika önce kesildi (6 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 965 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: speed-drop: kuru yük gemisi: seyir hızından (4.7 kn) ani duruşa geçti | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 940 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (12.6 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (11.2 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[signal] distress, Marmara Denizi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-15-ais-b41e2a-3</guid>
-      <pubDate>Wed, 16 Sep 2026 04:42:12 +0000</pubDate>
-      <description>Güven: 0.35 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 806 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 817 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.20 NM (~372 m), kalan süre: 1.1 dk (Hızlar: 9.0 kn / 9.0 kn)</description>
-    </item>
-    <item>
-      <title>[signal] distress, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-16-ais-7affcc-1</guid>
-      <pubDate>Wed, 16 Sep 2026 04:42:12 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 816 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
       <title>[confirmed] collision, Antalya Körfezi</title>
       <link>https://www.hurriyet.com.tr/gundem/antalyada-feci-kaza-otomobil-tankere-carpti-1-kisi-hayatini-kaybetti-43307091</link>
       <guid isPermaLink="false">news-d3feb1cf8c-2</guid>
@@ -94,19 +94,5 @@
       <guid isPermaLink="false">rep-4d701b7ab0-4</guid>
       <pubDate>Fri, 11 Sep 2026 14:19:59 +0000</pubDate>
       <description>Güven: 0.85 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 03.09.2026 Muğla Açıklarında 2 Şahıs Kurtarılmıştır | ais-anomaly/AIS: course-spike: ani rota değişimi (~114°) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 504 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 820 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[resolved] rescue, Marmara Denizi</title>
-      <link>https://www.sg.gov.tr/balikesir-aciklarinda-5-sahis-kurtarilmistir-08-09-2026</link>
-      <guid isPermaLink="false">rep-ce92da3519-1</guid>
-      <pubDate>Wed, 09 Sep 2026 16:30:47 +0000</pubDate>
-      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 5 | official/Sahil Güvenlik Komutanlığı: 09.09.2026 Balıkesir Açıklarında 5 Şahıs Kurtarılmıştır</description>
-    </item>
-    <item>
-      <title>[resolved] rescue, Orta Ege</title>
-      <link>https://www.sg.gov.tr/izmir-aciklarinda-2-cocuk-kurtarilmistir</link>
-      <guid isPermaLink="false">rep-e2463186f9-1</guid>
-      <pubDate>Wed, 09 Sep 2026 16:30:47 +0000</pubDate>
-      <description>Güven: 0.6 | Önem: critical | Bildirilen kişi: 2 | official/Sahil Güvenlik Komutanlığı: 09.09.2026 İzmir Açıklarında 2 Çocuk Kurtarılmıştır</description>
     </item>
 </channel></rss>

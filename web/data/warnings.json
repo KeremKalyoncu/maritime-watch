@@ -1,5 +1,31 @@
 [
   {
+    "id": "mt-LTCG",
+    "headline": "Trabzon Arpt, TR, TR: hava: -TSRA",
+    "area": "Trabzon Arpt, TR, TR",
+    "severity": "major",
+    "kind": "metar",
+    "onset": null,
+    "expires": null,
+    "org": "aviationweather.gov",
+    "url": "https://aviationweather.gov/",
+    "issued": "2026-09-16T18:01:00.000Z",
+    "last_update": "2026-09-16T18:17:30Z",
+    "raw": "",
+    "lat": 40.995,
+    "lon": 39.782,
+    "value": null,
+    "sources": [
+      {
+        "kind": "metar",
+        "detail": "Trabzon Arpt, TR, TR: hava: -TSRA",
+        "org": "aviationweather.gov",
+        "url": "https://aviationweather.gov/",
+        "ts": "2026-09-16T18:01:00.000Z"
+      }
+    ]
+  },
+  {
     "id": "navtex-tr-e15ad064",
     "headline": "NAVTEX : <a href=\"#\" data-toggle=\"mega-menu\" data-target=\".header-menu-seyir-emniyeti\">SEYİR EMNİYETİ</a>",
     "area": "",
@@ -9,8 +35,8 @@
     "expires": null,
     "org": "SHOD Seyir Hidrografi",
     "url": "https://www.shodb.gov.tr/navtex_duyurulari",
-    "issued": "2026-09-16T14:20:21Z",
-    "last_update": "2026-09-16T14:20:21Z",
+    "issued": "2026-09-16T18:15:08Z",
+    "last_update": "2026-09-16T18:15:08Z",
     "raw": "<!DOCTYPE html>\r\n<html lang=\"tr\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n    <meta name=\"keywords\" content=\"msb, Seyir, Hidrografi Ve Oşinografi Dairesi Başkanlığı,Hata404\">\r\n    <meta name=\"PKCS10\" content=\"198af01bbedafb50f8d5df75d776fd3ab4648d7c8171c73028a0a63b3e19419e\">\r\n    <meta name=\"description\" content=\"Seyir, Hidrografi ve Oşinografi Dairesi Başkanlığı\">\r\n    <meta name=\"copyright\"",
     "lat": null,
     "lon": null,
@@ -22,6 +48,32 @@
         "org": "SHOD Seyir Hidrografi",
         "url": "https://www.shodb.gov.tr/navtex_duyurulari",
         "ts": "2026-09-11T15:28:46Z"
+      }
+    ]
+  },
+  {
+    "id": "wx-mgma-26010459",
+    "headline": "Güney ve İç Ege ile Batı Akdeniz'de Kuvvetli Yağış Bekleniyor!",
+    "area": "Ege",
+    "severity": "major",
+    "kind": "marine-weather",
+    "onset": null,
+    "expires": null,
+    "org": "Meteoroloji Genel Müdürlüğü",
+    "url": "https://www.mgm.gov.tr/tahmin/uyari-goster.aspx?sN=26010459y",
+    "issued": "2026-09-16T18:15:03Z",
+    "last_update": "2026-09-16T18:15:03Z",
+    "raw": "{\"seriNo\": \"26010459\", \"baslangic\": \"2026-09-16T10:35:00.000Z\", \"baslik\": \"Güney ve İç Ege ile Batı Akdeniz'de Kuvvetli Yağış Bekleniyor!\\n\", \"hadiseCinsi\": \"Gökgürültülü Sağanak Yağış\", \"ihbarTipi\": 1}",
+    "lat": 39.264,
+    "lon": 25.736,
+    "value": null,
+    "sources": [
+      {
+        "kind": "marine-weather",
+        "detail": "Güney ve İç Ege ile Batı Akdeniz'de Kuvvetli Yağış Bekleniyor!",
+        "org": "Meteoroloji Genel Müdürlüğü",
+        "url": "https://www.mgm.gov.tr/tahmin/uyari-goster.aspx?sN=26010459y",
+        "ts": "2026-09-16T18:15:03Z"
       }
     ]
   }
