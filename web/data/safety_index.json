@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-16T23:48:58Z",
+  "generated": "2026-09-17T01:52:18Z",
   "ratings": [
     {
       "area": "Marmara Denizi",
@@ -10,7 +10,7 @@
       "gust_kn": 14.0,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "İzmit Körfezi",
@@ -21,7 +21,7 @@
       "gust_kn": 14.0,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "İstanbul Boğazı",
@@ -32,73 +32,73 @@
       "gust_kn": 14.0,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "Çanakkale Boğazı",
       "score": 100,
       "status": "good",
-      "wave_m": 0.28,
+      "wave_m": 0.24,
       "wind_kn": 6.4,
       "gust_kn": 8.6,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "Saroz Körfezi",
-      "score": 100,
+      "score": 97,
       "status": "good",
-      "wave_m": 0.38,
-      "wind_kn": 9.4,
-      "gust_kn": 12.6,
+      "wave_m": 0.32,
+      "wind_kn": 11.6,
+      "gust_kn": 15.4,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "Kuzey Ege",
-      "score": 49,
+      "score": 50,
       "status": "caution",
       "wave_m": 0.14,
-      "wind_kn": 10.6,
-      "gust_kn": 14.2,
+      "wind_kn": 7.0,
+      "gust_kn": 9.3,
       "recommendation_tr": "Çırpıntılı deniz, donanımlı tekneler seyredebilir. Can yeleği takın ve hava raporunu takip edin.",
       "recommendation_en": "Choppy seas, equipped vessels may sail. Wear lifejackets and monitor weather updates.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "Güney Ege",
       "score": 50,
       "status": "caution",
-      "wave_m": 0.26,
-      "wind_kn": 4.3,
-      "gust_kn": 5.8,
+      "wave_m": 0.28,
+      "wind_kn": 4.1,
+      "gust_kn": 5.4,
       "recommendation_tr": "Çırpıntılı deniz, donanımlı tekneler seyredebilir. Can yeleği takın ve hava raporunu takip edin.",
       "recommendation_en": "Choppy seas, equipped vessels may sail. Wear lifejackets and monitor weather updates.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "Antalya Körfezi",
       "score": 100,
       "status": "good",
       "wave_m": 0.2,
-      "wind_kn": 4.2,
-      "gust_kn": 5.6,
+      "wind_kn": 2.8,
+      "gust_kn": 3.7,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "Mersin Körfezi",
       "score": 100,
       "status": "good",
-      "wave_m": 0.3,
-      "wind_kn": 5.8,
-      "gust_kn": 7.8,
+      "wave_m": 0.32,
+      "wind_kn": 6.7,
+      "gust_kn": 8.9,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "İskenderun Körfezi",
@@ -109,7 +109,7 @@
       "gust_kn": 14.0,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "Batı Karadeniz",
@@ -120,7 +120,7 @@
       "gust_kn": 14.0,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "Orta Karadeniz",
@@ -131,18 +131,18 @@
       "gust_kn": 14.0,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     },
     {
       "area": "Doğu Karadeniz",
-      "score": 97,
+      "score": 96,
       "status": "good",
-      "wave_m": 0.5,
-      "wind_kn": 11.7,
-      "gust_kn": 15.6,
+      "wave_m": 0.56,
+      "wind_kn": 11.9,
+      "gust_kn": 15.9,
       "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
-      "last_update": "2026-09-16T23:48:58Z"
+      "last_update": "2026-09-17T01:52:18Z"
     }
   ]
 }

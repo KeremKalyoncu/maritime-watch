@@ -65,7 +65,8 @@
       "Bölgede 12 kn Karayel ve 0.2 m dalga kaydedildi.",
       "Bölgede 5 kn Karayel ve 0.2 m dalga kaydedildi.",
       "Bölgede 4 kn Karayel ve 0.2 m dalga kaydedildi.",
-      "Bölgede 6 kn Karayel ve 0.3 m dalga kaydedildi."
+      "Bölgede 6 kn Karayel ve 0.3 m dalga kaydedildi.",
+      "Bölgede 5 kn Karayel ve 0.3 m dalga kaydedildi."
     ],
     "places": [],
     "coarse": false,
@@ -73,13 +74,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.3,
-      "gust_kn": 5.8,
-      "wave_m": 0.26,
+      "wind_kn": 4.1,
+      "gust_kn": 5.4,
+      "wave_m": 0.28,
       "wind_dir": 320,
       "beaufort": 2,
-      "summary_tr": "Bölgede 6 kn Karayel ve 0.3 m dalga kaydedildi.",
-      "summary_en": "At site: 6 kn NW wind and 0.3 m waves.",
+      "summary_tr": "Bölgede 5 kn Karayel ve 0.3 m dalga kaydedildi.",
+      "summary_en": "At site: 5 kn NW wind and 0.3 m waves.",
       "station_name": "Güney Ege",
       "distance_nm": 21.9
     }
@@ -115,6 +116,110 @@
     "places": [],
     "coarse": false,
     "track": [],
+    "heading": null,
+    "vessel_type": "unknown",
+    "weather_context": null
+  },
+  {
+    "id": "2026-09-17-ais-79e1c1",
+    "type": "drift",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.44533666666667,
+    "lon": 28.238466666666667,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "SAONISOS",
+      "mmsi": 239775900,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-17T01:45:34Z",
+    "last_update": "2026-09-17T01:45:34Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: yolcu gemisi / feribot: seyir hızından (15.6 kn) ani duruşa geçti",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-17T01:45:34Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false,
+    "track": [
+      [
+        36.4486,
+        28.1653
+      ],
+      [
+        36.4491,
+        28.1667
+      ],
+      [
+        36.4453,
+        28.2385
+      ],
+      [
+        36.4453,
+        28.2385
+      ]
+    ],
+    "heading": null,
+    "vessel_type": "unknown",
+    "weather_context": null
+  },
+  {
+    "id": "2026-09-17-ais-dfe579",
+    "type": "distress",
+    "status": "signal",
+    "confidence": 0.25,
+    "severity": "minor",
+    "lat": 36.4259,
+    "lon": 27.9517,
+    "area": "Güney Ege",
+    "vessel": {
+      "name": "EXPLORA II",
+      "mmsi": 256798000,
+      "type": null,
+      "callsign": null
+    },
+    "casualties": null,
+    "first_seen": "2026-09-17T01:45:34Z",
+    "last_update": "2026-09-17T01:45:34Z",
+    "sources": [
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 451 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-17T01:45:34Z"
+      }
+    ],
+    "notes": [],
+    "places": [],
+    "coarse": false,
+    "track": [
+      [
+        36.6224,
+        26.8863
+      ],
+      [
+        36.6205,
+        26.8904
+      ],
+      [
+        36.4726,
+        28.1567
+      ],
+      [
+        36.4259,
+        27.9517
+      ]
+    ],
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": null
@@ -287,6 +392,10 @@
         28.0716
       ],
       [
+        43.0838,
+        27.95
+      ],
+      [
         43.0876,
         28.0727
       ]
@@ -324,7 +433,8 @@
     ],
     "notes": [
       "Çatışma / Yakın Geçiş Riski: CPA 0.17 NM (~316 m), kalan süre: 1.0 dk (Hızlar: 12.1 kn / 12.1 kn)",
-      "Bölgede 6 kn Karayel ve 0.3 m dalga kaydedildi."
+      "Bölgede 6 kn Karayel ve 0.3 m dalga kaydedildi.",
+      "Bölgede 5 kn Karayel ve 0.3 m dalga kaydedildi."
     ],
     "places": [],
     "coarse": false,
@@ -349,13 +459,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.3,
-      "gust_kn": 5.8,
-      "wave_m": 0.26,
+      "wind_kn": 4.1,
+      "gust_kn": 5.4,
+      "wave_m": 0.28,
       "wind_dir": 320,
       "beaufort": 2,
-      "summary_tr": "Bölgede 6 kn Karayel ve 0.3 m dalga kaydedildi.",
-      "summary_en": "At site: 6 kn NW wind and 0.3 m waves.",
+      "summary_tr": "Bölgede 5 kn Karayel ve 0.3 m dalga kaydedildi.",
+      "summary_en": "At site: 5 kn NW wind and 0.3 m waves.",
       "station_name": "Güney Ege",
       "distance_nm": 33.0
     }
@@ -439,7 +549,8 @@
       "Bölgede 11 kn Lodos ve 0.2 m dalga kaydedildi.",
       "Bölgede 10 kn Lodos ve 0.3 m dalga kaydedildi.",
       "Bölgede 10 kn Lodos ve 0.2 m dalga kaydedildi.",
-      "Bölgede 6 kn Lodos ve 0.2 m dalga kaydedildi."
+      "Bölgede 6 kn Lodos ve 0.2 m dalga kaydedildi.",
+      "Bölgede 4 kn Lodos ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -449,13 +560,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.2,
-      "gust_kn": 5.6,
+      "wind_kn": 2.8,
+      "gust_kn": 3.7,
       "wave_m": 0.2,
       "wind_dir": 220,
-      "beaufort": 2,
-      "summary_tr": "Bölgede 6 kn Lodos ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 6 kn SW wind and 0.2 m waves.",
+      "beaufort": 1,
+      "summary_tr": "Bölgede 4 kn Lodos ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 4 kn SW wind and 0.2 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4
     }
@@ -510,7 +621,8 @@
       "Bölgede 4 kn Lodos ve 0.3 m dalga kaydedildi.",
       "Bölgede 10 kn Lodos ve 0.3 m dalga kaydedildi.",
       "Bölgede 10 kn Lodos ve 0.2 m dalga kaydedildi.",
-      "Bölgede 6 kn Lodos ve 0.2 m dalga kaydedildi."
+      "Bölgede 6 kn Lodos ve 0.2 m dalga kaydedildi.",
+      "Bölgede 4 kn Lodos ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -520,13 +632,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.2,
-      "gust_kn": 5.6,
+      "wind_kn": 2.8,
+      "gust_kn": 3.7,
       "wave_m": 0.2,
       "wind_dir": 220,
-      "beaufort": 2,
-      "summary_tr": "Bölgede 6 kn Lodos ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 6 kn SW wind and 0.2 m waves.",
+      "beaufort": 1,
+      "summary_tr": "Bölgede 4 kn Lodos ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 4 kn SW wind and 0.2 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4
     }
@@ -640,7 +752,8 @@
       "Bölgede 7 kn Kıble ve 0.3 m dalga kaydedildi.",
       "Bölgede 6 kn Kıble ve 0.3 m dalga kaydedildi.",
       "Bölgede 14 kn Kıble ve 0.3 m dalga kaydedildi.",
-      "Bölgede 8 kn Kıble ve 0.3 m dalga kaydedildi."
+      "Bölgede 8 kn Kıble ve 0.3 m dalga kaydedildi.",
+      "Bölgede 9 kn Kıble ve 0.3 m dalga kaydedildi."
     ],
     "places": [
       "Mersin"
@@ -650,13 +763,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 5.8,
-      "gust_kn": 7.8,
-      "wave_m": 0.3,
+      "wind_kn": 6.7,
+      "gust_kn": 8.9,
+      "wave_m": 0.32,
       "wind_dir": 180,
-      "beaufort": 2,
-      "summary_tr": "Bölgede 8 kn Kıble ve 0.3 m dalga kaydedildi.",
-      "summary_en": "At site: 8 kn South wind and 0.3 m waves.",
+      "beaufort": 3,
+      "summary_tr": "Bölgede 9 kn Kıble ve 0.3 m dalga kaydedildi.",
+      "summary_en": "At site: 9 kn South wind and 0.3 m waves.",
       "station_name": "Mersin Körfezi",
       "distance_nm": 18.7
     }
@@ -691,7 +804,8 @@
     "notes": [
       "Bölgede 8 kn Lodos ve 0.3 m dalga kaydedildi.",
       "Bölgede 10 kn Lodos ve 0.2 m dalga kaydedildi.",
-      "Bölgede 6 kn Lodos ve 0.2 m dalga kaydedildi."
+      "Bölgede 6 kn Lodos ve 0.2 m dalga kaydedildi.",
+      "Bölgede 4 kn Lodos ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -701,13 +815,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.2,
-      "gust_kn": 5.6,
+      "wind_kn": 2.8,
+      "gust_kn": 3.7,
       "wave_m": 0.2,
       "wind_dir": 220,
-      "beaufort": 2,
-      "summary_tr": "Bölgede 6 kn Lodos ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 6 kn SW wind and 0.2 m waves.",
+      "beaufort": 1,
+      "summary_tr": "Bölgede 4 kn Lodos ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 4 kn SW wind and 0.2 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4
     }

@@ -3,13 +3,20 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Wed, 16 Sep 2026 23:48:58 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 17 Sep 2026 01:52:18 +0000</lastBuildDate>
     <item>
-      <title>[signal] collision-risk, Batı Karadeniz</title>
+      <title>[signal] drift, Güney Ege</title>
       <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">cpa-248204000-248204000-2</guid>
-      <pubDate>Wed, 16 Sep 2026 23:42:10 +0000</pubDate>
-      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.01 NM (~18 m), kalan süre: 9.5 dk (Hızlar: 6.2 kn / 5.6 kn) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.18 NM (~327 m), kalan süre: 0.4 dk (Hızlar: 10.7 kn / 10.7 kn)</description>
+      <guid isPermaLink="false">2026-09-17-ais-79e1c1-1</guid>
+      <pubDate>Thu, 17 Sep 2026 01:45:34 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: yolcu gemisi / feribot: seyir hızından (15.6 kn) ani duruşa geçti</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-17-ais-dfe579-1</guid>
+      <pubDate>Thu, 17 Sep 2026 01:45:34 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 451 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
     </item>
     <item>
       <title>[signal] drift, Türk karasuları civarı</title>
@@ -17,6 +24,13 @@
       <guid isPermaLink="false">2026-09-16-ais-eede93-1</guid>
       <pubDate>Wed, 16 Sep 2026 23:42:10 +0000</pubDate>
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: nav-status: kumanda dışı (not under command)</description>
+    </item>
+    <item>
+      <title>[signal] collision-risk, Batı Karadeniz</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">cpa-248204000-248204000-2</guid>
+      <pubDate>Wed, 16 Sep 2026 23:42:10 +0000</pubDate>
+      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.01 NM (~18 m), kalan süre: 9.5 dk (Hızlar: 6.2 kn / 5.6 kn) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.18 NM (~327 m), kalan süre: 0.4 dk (Hızlar: 10.7 kn / 10.7 kn)</description>
     </item>
     <item>
       <title>[signal] collision-risk, Güney Ege</title>
