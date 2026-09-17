@@ -3,7 +3,7 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Thu, 17 Sep 2026 17:09:26 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 17 Sep 2026 20:15:48 +0000</lastBuildDate>
     <item>
       <title>[confirmed] rescue, Orta Ege</title>
       <link>https://www.sg.gov.tr/aydin-aciklarinda-4-duzensiz-gocmen-beraberinde-3-cocuk-kurtarilmistir-16-09-2026</link>
@@ -54,20 +54,6 @@
       <description>Güven: 0.35 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.01 NM (~18 m), kalan süre: 9.5 dk (Hızlar: 6.2 kn / 5.6 kn) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.18 NM (~327 m), kalan süre: 0.4 dk (Hızlar: 10.7 kn / 10.7 kn) | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (8.9 kn) ani duruşa geçti</description>
     </item>
     <item>
-      <title>[signal] distress, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-17-ais-dfe579-3</guid>
-      <pubDate>Thu, 17 Sep 2026 06:43:05 +0000</pubDate>
-      <description>Güven: 0.35 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 451 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 749 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.01 NM (~14 m), kalan süre: 6.8 dk (Hızlar: 10.6 kn / 17.7 kn)</description>
-    </item>
-    <item>
-      <title>[signal] collision-risk, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">cpa-538008969-538008969-1</guid>
-      <pubDate>Thu, 17 Sep 2026 06:43:05 +0000</pubDate>
-      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.11 NM (~209 m), kalan süre: 0.7 dk (Hızlar: 6.8 kn / 6.8 kn)</description>
-    </item>
-    <item>
       <title>[confirmed] rescue, Antalya Körfezi</title>
       <link>https://www.sg.gov.tr/antalya-aciklarinda-2-sahis-kurtarilmistir-15-09-26</link>
       <guid isPermaLink="false">rep-75afb3392f-1</guid>
@@ -82,7 +68,7 @@
       <description>Güven: 0.9 | Önem: critical | Bildirilen kişi: 1 | news/hurriyet.com.tr: Antalya'da feci kaza! Otomobil tankere çarptı: 1 kişi hayatını kaybetti | official/Sahil Güvenlik Komutanlığı: 12.09.2026 Antalya Açıklarında 1 Şahıs Kurtarılmıştır</description>
     </item>
     <item>
-      <title>[confirmed] rescue, Mersin–İskenderun Körfezi</title>
+      <title>[resolved] rescue, Mersin–İskenderun Körfezi</title>
       <link>https://www.sg.gov.tr/mersin-aciklarinda-4-sahis-kurtarilmistir</link>
       <guid isPermaLink="false">rep-66976ba308-1</guid>
       <pubDate>Mon, 14 Sep 2026 18:55:26 +0000</pubDate>
