@@ -3,7 +3,14 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Thu, 17 Sep 2026 20:15:48 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 17 Sep 2026 23:00:35 +0000</lastBuildDate>
+    <item>
+      <title>[confirmed] collision-risk, Mersin–İskenderun Körfezi</title>
+      <link>https://www.sg.gov.tr/mersin-aciklarinda-4-sahis-kurtarilmistir</link>
+      <guid isPermaLink="false">cpa-271044683-271044683-4</guid>
+      <pubDate>Thu, 17 Sep 2026 22:53:52 +0000</pubDate>
+      <description>Güven: 0.7 | Önem: critical | Bildirilen kişi: 4 | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.17 NM (~320 m), kalan süre: 1.2 dk (Hızlar: 10.3 kn / 10.1 kn) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.20 NM (~366 m), kalan süre: 0.7 dk (Hızlar: 10.3 kn / 10.1 kn) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.10 NM (~175 m), kalan süre: 0.2 dk (Hızlar: 11.2 kn / 11.2 kn) | official/Sahil Güvenlik Komutanlığı: 14.09.2026 Mersin Açıklarında 4 Şahıs Kurtarılmıştır</description>
+    </item>
     <item>
       <title>[confirmed] rescue, Orta Ege</title>
       <link>https://www.sg.gov.tr/aydin-aciklarinda-4-duzensiz-gocmen-beraberinde-3-cocuk-kurtarilmistir-16-09-2026</link>
