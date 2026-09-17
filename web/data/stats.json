@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-17T01:52:18Z",
-  "total_incidents": 302,
+  "generated": "2026-09-17T06:48:44Z",
+  "total_incidents": 305,
   "by_month": {
-    "2026-09": 302
+    "2026-09": 305
   },
   "by_area": {
-    "belirsiz": 270,
+    "belirsiz": 273,
     "Marmara Denizi": 13,
     "Türk karasuları civarı": 6,
     "Antalya Körfezi": 4,
@@ -16,10 +16,10 @@
     "Mersin–İskenderun Körfezi": 1
   },
   "by_type": {
-    "distress": 104,
+    "distress": 106,
     "drift": 73,
     "unknown": 55,
-    "collision-risk": 33,
+    "collision-risk": 34,
     "sinking": 28,
     "rescue": 4,
     "collision": 3,
@@ -27,8 +27,8 @@
     "capsize": 1
   },
   "by_status": {
-    "signal": 269,
-    "probable": 33
+    "signal": 271,
+    "probable": 34
   },
   "incidents_with_casualties": 21,
   "casualties_reported_total": 208,
@@ -70,7 +70,7 @@
       2
     ],
     [
-      "SEAVEN HOPE",
+      "CHEM NANA",
       2
     ]
   ],
