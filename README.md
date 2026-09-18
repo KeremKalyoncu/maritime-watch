@@ -10,18 +10,20 @@
 
 Saatlik deniz hava tahminini **tekne boyuna göre** değerlendirip zaman penceresine çevirir; üstüne canlı AIS anomalilerini, çatışma risklerini (CPA), deniz suyu sıcaklığını, yüzey akıntısını, Sahil Güvenlik bültenlerini, depremleri ve meteorolojik alarmları ekleyip haritada, Telegram'da ve RSS beslemesinde yayınlar.
 
+**🌐 Dil / Language:** [🇹🇷 Türkçe](#readme-top) &nbsp;|&nbsp; [🇬🇧 English](#english-summary)
+
+<br/>
+
 [![Canlı Harita](https://img.shields.io/badge/Canlı%20Harita-Online-00bcd4?style=for-the-badge&logo=leaflet&logoColor=white)](https://keremkalyoncu.github.io/maritime-watch)
 [![İstatistikler](https://img.shields.io/badge/İstatistikler-Rapor-4caf50?style=for-the-badge&logo=google-analytics&logoColor=white)](https://keremkalyoncu.github.io/maritime-watch/stats.html)
 [![Telegram Bot](https://img.shields.io/badge/Telegram-Bot-229ED9?style=for-the-badge&logo=telegram&logoColor=white)](#-telegram-botu-cebinizdeki-deniz-sentineli)
 [![RSS Beslemesi](https://img.shields.io/badge/RSS-feed.xml-FFA500?style=for-the-badge&logo=rss&logoColor=white)](https://keremkalyoncu.github.io/maritime-watch/data/feed.xml)
 [![Lisans](https://img.shields.io/badge/Lisans-MIT-blue?style=for-the-badge)](LICENSE)
 
-[![Tests](https://img.shields.io/badge/Tests-207%20Passing-brightgreen?style=flat-square&logo=pytest)](tests/)
-[![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![Edge Server](https://img.shields.io/badge/Edge%20Server-Galaxy%20Note%204%20(1.2W)-purple?style=flat-square&logo=android)](https://termux.dev/)
-[![Code Style](https://img.shields.io/badge/Code%20Style-Ruff%20Clean-000000?style=flat-square&logo=ruff)](https://github.com/astral-sh/ruff)
-[![Sıfır Maliyet](https://img.shields.io/badge/Maliyet-$0%20(GitHub%20Pages%20+%20Actions)-success?style=flat-square)](#-dağıtım-ve-çalıştırma)
-[![PWA Ready](https://img.shields.io/badge/PWA-Çevrimdışı%20Destekli-orange?style=flat-square&logo=pwa)](web/)
+[![Canlı Nöbetçi](https://img.shields.io/badge/7%2F24%20Nöbetçi-Aktif%20(Canlı%20AIS)-brightgreen?style=flat-square&logo=telegram)](#-telegram-botu-cebinizdeki-deniz-sentineli)
+[![Edge Server](https://img.shields.io/badge/Sunucu-Galaxy%20Note%204%20(1.2W)-purple?style=flat-square&logo=android)](#-eski-telefonu-12w-linux-edge-servera-dönüştürme-termux)
+[![Ücretsiz](https://img.shields.io/badge/Erişim-Tamamen%20Ücretsiz%20%26%20Açık%20Kaynak-blue?style=flat-square)](LICENSE)
+[![PWA Ready](https://img.shields.io/badge/PWA-Çevrimdışı%20Rehber%20Destekli-orange?style=flat-square&logo=pwa)](https://keremkalyoncu.github.io/maritime-watch)
 
 </div>
 
@@ -43,9 +45,10 @@ Saatlik deniz hava tahminini **tekne boyuna göre** değerlendirip zaman pencere
 7. [Sahada Öğrenilenler & Güvenilirlik](#sahada-ogrenilenler)
 8. [Hukuki Tasarım (TCK 132 & KVKK)](#hukuki-tasarim)
 9. [Hızlı Başlangıç & Yerel Kurulum](#hizli-baslangic)
-10. [Dağıtım ve Çalıştırma](#dagitim)
-11. [Depo Dosya Yapısı](#depo-yapisi)
-12. [Lisans & Katkı](#lisans)
+10. [Dağıtım ve Çalıştırma (1.2W Edge Sunucu)](#dagitim)
+11. [Sıkça Sorulan Sorular (SSS)](#sss)
+12. [🇬🇧 English Overview & Features](#english-summary)
+13. [Lisans & Katkı](#lisans)
 
 ---
 
@@ -400,42 +403,46 @@ maritime-watch/
 │   ├── render/            # Web çıktı üreticileri (feed.xml, health.json, straits.json)
 │   └── sdr/               # Opsiyonel donanım modülü (Ch70 DSC & NAVTEX rehberi)
 ├── web/                   # Statik Leaflet haritası, Zaman Makinesi, PWA Service Worker
-├── tests/                 # 78+ Çevrimdışı pytest birim testi
+├── tests/                 # 200+ Çevrimdışı senaryo testi
 └── eval/                  # NLP ve sınıflandırma başarım ölçüm seti
 ```
 
 ---
 
-## 🧪 Test ve Kalite Kontrol
+<a id="sss"></a>
 
-Kod tabanı tam test kapsamına sahiptir ve harici ağa ihtiyaç duymadan çevrimdışı test edilebilir:
+## ❓ Sıkça Sorulan Sorular (SSS)
 
-```bash
-# Tüm birim testlerini çalıştır
-python -m pytest
+**1. Teknem için fırtına eşiklerini nasıl ayarlarım?**  
+Telegram botunda `/tekne` komutunu kullanarak teknenizin boyunu seçebilirsiniz (Sınıf 1: $\le 8\text{ m}$, Sınıf 2: $8-15\text{ m}$, Sınıf 3: $>15\text{ m}$). Sistem, rüzgâr hamlesi ve dalga boyu limitlerini otomatik olarak teknenize göre uyarlar.
 
-# Kod kalite ve lint kontrolü
-python -m ruff check .
+**2. Telegram botunu veya web haritasını kullanmak ücretli mi?**  
+Hayır. Maritime Watch kâr amacı gütmeyen, tamamen açık kaynaklı ve kamu yararına geliştirilmiş bir projedir. Tüm bot özellikleri, canlı harita ve uyarılar herkes için ücretsizdir.
 
-# Model ve metin çıkarım başarı testi
-python eval/run_eval.py
-```
+**3. Açık denizde telefonumun interneti çekmezse ne olur?**  
+Web haritası bir **PWA (Progressive Web App)** olarak hazırlanmıştır. Kıyıdayken haritayı bir kez açtığınızda, açık denizde internetiniz kopsa dahi uygulama açılmaya devam eder; acil durum VHF frekansları (Ch 16, Türk Radyo istasyonları) ve son indirilen harita çevrimdışı görüntülenebilir.
+
+**4. Bu sistem resmi Sahil Güvenlik arama-kurtarma çağrısı yerine geçer mi?**  
+**HAYIR.** Bu sistem yalnızca durumsal farkındalık, önleme ve seyir öncesi karar destek aracıdır. Denizde hayati tehlike, kaza veya çatışma durumunda tek resmi merci **Alo 158 Sahil Güvenlik**, **Alo 151 Kıyı Emniyeti** ve **VHF Kanal 16 (156.800 MHz)** acil telsiz kanalıdır.
 
 ---
 
 <a id="english-summary"></a>
 
-## 🇬🇧 English Overview & Quickstart
+## 🇬🇧 English Overview & Features
 
-**Maritime Watch** is an open-source maritime situational awareness and coastal intelligence system designed for artisanal fishermen, small craft operators, and coastal communities in Turkish waters.
+**Maritime Watch** is a community-driven, open-source maritime safety and coastal decision-support platform designed for artisanal fishermen, small craft skippers, yachts, and coastal communities across Turkish territorial waters.
 
-### Key Capabilities
-- **Small-Craft Safety Index (0-100):** Translates hourly Open-Meteo marine forecasts (wind gusts, wave heights, sea surface temperature, and surface currents) into tailored "Go / No-Go" departure windows based on vessel length ($\le 8\text{m}$, $8-15\text{m}$, $>15\text{m}$).
-- **Real-Time AIS & Collision Risk (CPA):** Ingests live ITU-R M.1371 packets via `aisstream.io` WebSocket, calculating Closest Point of Approach (CPA $< 0.35\text{ NM}$) and Time to CPA (TCPA $\le 12\text{ min}$) for active commercial traffic.
-- **Turkish Straits Corridor Telemetry:** Real-time Bosphorus and Dardanelles transit status, active vessel counts, corridor speeds, and METAR visibility/fog restrictions.
-- **24/7 Telegram Assistant:** Instant GPS location query (`/neredeyim`), VHF Channel 16 MAYDAY template generation, and straits status.
-- **Zero-Cost Edge + Cloud Hybrid Architecture:** Runs the interactive Telegram listener on a recycled Samsung Galaxy Note 4 micro-server (1.2W power draw via Termux/tmux) while heavy scraping and static Leaflet map hosting are handled by GitHub Actions and GitHub Pages.
-- **207 Passing Unit Tests & 100% Type-Checked:** Complete offline test suite covering edge scenarios, network drops, and boundary conditions.
+### 🌟 Why Maritime Watch?
+Most marine weather services provide raw numeric forecasts (*"22 knots wind, 1.5m waves"*) that lack operational context for small boats. A 22-knot gust is harmless to a commercial container ship, but hazardous or fatal to a 7-meter open fishing boat. Maritime Watch automatically translates hourly high-resolution sea forecasts into personalized **"Go / No-Go" departure and return windows**.
+
+### ⚡ Core Capabilities
+* **Personalized Departure Windows:** Daily 06:00 AM briefing indicating exact safe operating hours tailored to your vessel class ($\le 8\text{m}$, $8-15\text{m}$, $>15\text{m}$).
+* **Live AIS & Collision Risk (CPA):** Real-time monitoring of active maritime traffic via `aisstream.io`, flagging dangerous Closest Point of Approach (CPA $< 0.35\text{ NM}$) and speed drop anomalies.
+* **Turkish Straits Corridor Telemetry:** Real-time vessel density, transit speed trends, and METAR coastal visibility/fog restrictions in the Bosphorus and Dardanelles.
+* **Emergency Assistant & MAYDAY Generator:** Instant Telegram location query (`/neredeyim`) finding nearest refuge ports, plus automated VHF Channel 16 bilingual distress speech templates (`/mayday`).
+* **Offline PWA Readiness:** Works offline at sea with cached nautical maps and emergency VHF frequency cards.
+* **Green Edge-Computing Architecture:** The 24/7 Telegram sentinel runs on a recycled Samsung Galaxy Note 4 smartphone consuming just **1.2 Watts** via Termux/Linux.
 
 ---
 
