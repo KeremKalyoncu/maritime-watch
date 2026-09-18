@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-18T05:22:42Z",
+  "generated": "2026-09-18T08:10:34Z",
   "straits": [
     {
       "id": "bosphorus",
@@ -9,7 +9,7 @@
       "reason": null,
       "active_vessels_in_transit": 0,
       "avg_speed_kn": 8.5,
-      "last_update": "2026-09-18T05:22:42Z"
+      "last_update": "2026-09-18T08:10:34Z"
     },
     {
       "id": "dardanelles",
@@ -19,7 +19,7 @@
       "reason": null,
       "active_vessels_in_transit": 0,
       "avg_speed_kn": 8.5,
-      "last_update": "2026-09-18T05:22:42Z"
+      "last_update": "2026-09-18T08:10:34Z"
     }
   ]
 }
