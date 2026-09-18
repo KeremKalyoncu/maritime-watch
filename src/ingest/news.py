@@ -74,7 +74,7 @@ def fetch_news(cfg: dict) -> list[Incident]:
 
     tasks = [(feed, f"news_{i}.xml", None, 15) for i, feed in enumerate(nc["feeds"])]
     results = fetch_parallel(tasks, max_workers=6)
-    for (feed, _sample, _hdr, _to), (raw, _live) in zip(tasks, results):
+    for (feed, _sample, _hdr, _to), (raw, _live) in zip(tasks, results):  # noqa: B905
         if not raw:
             continue
         for title, link, pub in _parse_rss(raw)[: nc["max_items_per_feed"]]:
