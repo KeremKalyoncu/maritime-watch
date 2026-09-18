@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-18T00:54:04Z",
-  "cycle_seconds": 254.2,
+  "generated": "2026-09-18T05:22:41Z",
+  "cycle_seconds": 347.7,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
-  "incidents": 10,
+  "incidents": 11,
   "warnings": 4,
   "sources": {
     "scrape": {
@@ -54,13 +54,13 @@
     "kegm_sample.html": "live",
     "shod_navtex.txt": "live",
     "news_3.xml": "live",
-    "news_4.xml": "live",
     "news_2.xml": "live",
     "news_1.xml": "live",
-    "news_9.xml": "live",
-    "news_7.xml": "live",
     "news_5.xml": "live",
     "news_6.xml": "live",
+    "news_4.xml": "live",
+    "news_9.xml": "live",
+    "news_7.xml": "live",
     "news_8.xml": "live",
     "news_0.xml": "live",
     "openmeteo_marine.json": "live",
@@ -70,7 +70,7 @@
     "emsc_quakes.json": "live",
     "kandilli_quakes.html": "live",
     "gdacs_rss.xml": "live",
-    "eonet.json": "live",
+    "eonet.json": "down",
     "metar.json": "live"
   }
 }
