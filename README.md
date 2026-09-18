@@ -446,6 +446,17 @@ Most marine weather services provide raw numeric forecasts (*"22 knots wind, 1.5
 
 ---
 
+<a id="ai-disclosure"></a>
+
+## 🤖 AI Transparency & Disclosure / Yapay Zekâ Beyanı
+
+We believe in full transparency regarding the use of AI tools in open-source software:
+
+* **Production Runtime (0% AI / Zero LLMs):** The live decision and safety engine is **100% deterministic, rule-based Python**. All Closest Point of Approach (CPA) collision mathematics, spatial polygon containment checks, vessel anomaly detection, and small-craft safety index formulas rely strictly on standard geometry, physics, and threshold heuristics. **There are NO Large Language Models (LLMs) or generative AI APIs in the live runtime decision path**, eliminating hallucination risks in marine safety.
+* **Development Assistance:** AI coding assistants were utilized during development as pair-programming tools for drafting unit test scenarios, improving type annotations, code refactoring, and English documentation translation.
+
+---
+
 <a id="lisans"></a>
 
 ## 📜 Lisans & Katkı
