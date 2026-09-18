@@ -8,7 +8,7 @@
 
 ### *Küçük tekne sahibine her sabah "bugün çıkabilir miyim, saat kaça kadar" cevabını veren açık kaynaklı deniz emniyet ve istihbarat sistemi.*
 
-Saatlik deniz hava tahminini **tekne boyuna göre** değerlendirip zaman penceresine çevirir; üstüne canlı AIS anomalilerini, çatışma risklerini (CPA), Sahil Güvenlik bültenlerini, depremleri ve meteorolojik alarmları ekleyip haritada, Telegram'da ve RSS beslemesinde yayınlar.
+Saatlik deniz hava tahminini **tekne boyuna göre** değerlendirip zaman penceresine çevirir; üstüne canlı AIS anomalilerini, çatışma risklerini (CPA), deniz suyu sıcaklığını, yüzey akıntısını, Sahil Güvenlik bültenlerini, depremleri ve meteorolojik alarmları ekleyip haritada, Telegram'da ve RSS beslemesinde yayınlar.
 
 [![Canlı Harita](https://img.shields.io/badge/Canlı%20Harita-Online-00bcd4?style=for-the-badge&logo=leaflet&logoColor=white)](https://keremkalyoncu.github.io/maritime-watch)
 [![İstatistikler](https://img.shields.io/badge/İstatistikler-Rapor-4caf50?style=for-the-badge&logo=google-analytics&logoColor=white)](https://keremkalyoncu.github.io/maritime-watch/stats.html)
@@ -16,8 +16,10 @@ Saatlik deniz hava tahminini **tekne boyuna göre** değerlendirip zaman pencere
 [![RSS Beslemesi](https://img.shields.io/badge/RSS-feed.xml-FFA500?style=for-the-badge&logo=rss&logoColor=white)](https://keremkalyoncu.github.io/maritime-watch/data/feed.xml)
 [![Lisans](https://img.shields.io/badge/Lisans-MIT-blue?style=for-the-badge)](LICENSE)
 
-[![Tests](https://img.shields.io/badge/Tests-196%20Passing-brightgreen?style=flat-square&logo=pytest)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-207%20Passing-brightgreen?style=flat-square&logo=pytest)](tests/)
 [![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Edge Server](https://img.shields.io/badge/Edge%20Server-Galaxy%20Note%204%20(1.2W)-purple?style=flat-square&logo=android)](https://termux.dev/)
+[![Code Style](https://img.shields.io/badge/Code%20Style-Ruff%20Clean-000000?style=flat-square&logo=ruff)](https://github.com/astral-sh/ruff)
 [![Sıfır Maliyet](https://img.shields.io/badge/Maliyet-$0%20(GitHub%20Pages%20+%20Actions)-success?style=flat-square)](#-dağıtım-ve-çalıştırma)
 [![PWA Ready](https://img.shields.io/badge/PWA-Çevrimdışı%20Destekli-orange?style=flat-square&logo=pwa)](web/)
 
@@ -358,13 +360,19 @@ python run.py --loop --send
 
 ## 🚢 Dağıtım ve Çalıştırma
 
-| Dağıtım Yolu | Maliyet | Gecikme | Kullanım Amacı |
-| :--- | :---: | :---: | :--- |
-| **GitHub Actions + Pages** | **$0** | ~15 dk | **Sıfır Sunucu:** Her 15 dakikada bir Actions çalışır, haritayı ve Telegram günlük bültenini günceller. |
-| **Küçük Bir VPS (Hetzner vb.)** | ~€3/ay | Gerçek Zamanlı | **İnteraktif Bot:** `python run.py --loop --send` komutu sürekli çalışarak Telegram bot komutlarına saniyeler içinde cevap verir. |
+| Dağıtım Yolu | Donanım / Altyapı | Maliyet | Gecikme | Kullanım Amacı |
+| :--- | :--- | :---: | :---: | :--- |
+| **Eski Akıllı Telefon (Edge Micro-Node)** | **Samsung Galaxy Note 4 (Android / Termux)** | **~$0.10/ay (1.2W)** | **< 1 sn (Gerçek Zamanlı)** | **Mükemmel Ev Sunucusu:** Çekmecede duran eski Android telefonu headless bir Linux micro-server'a dönüştürür; Long Polling ile Telegram botunu 7/24 sıfır gecikmeyle çalıştırır. |
+| **GitHub Actions + Pages** | **Bulut Runner (Ubuntu)** | **$0** | ~15 dk | **Sıfır Sunucu Otomasyonu:** Her 15 dakikada bir veri kazıyıcılarını çalıştırır, harita katmanlarını derler ve GitHub Pages'e basar. |
+| **Bulut VPS (Hetzner / DigitalOcean)** | **1 vCPU / 1GB RAM VPS** | ~€3.5/ay | Gerçek Zamanlı | Profesyonel kurumsal dağıtım veya yüksek aboneli bot trafiği için. |
 
-> [!TIP]
-> Telegram botunun `/neredeyim`, `/bogaz`, `/balikci` gibi interaktif komutlarına anında cevap verebilmesi için botun `--loop` parametresiyle kesintisiz çalışması önerilir.
+### 📱 Eski Telefonu 1.2W Linux Edge Server'a Dönüştürme (Termux)
+
+Bu proje için pahalı bir bulut sunucusu kiralamak yerine, 2014 model bir **Samsung Galaxy Note 4** (Exynos 5433 / 3GB RAM) tam teşekküllü bir Linux sunucuya dönüştürülmüştür:
+1. **Termux & Python Ortamı:** F-Droid üzerinden Termux kurulup OpenSSH (`sshd`), Python 3.12, git ve tmux yapılandırıldı.
+2. **Uykuda Kesintisiz Çalışma:** `termux-wake-lock` ve pil optimizasyon muafiyeti ile telefon ekranı tamamen kapalıyken CPU derin uykudan korunur.
+3. **Long Polling Optimizasyonu:** Telegram botu 1.5 saniyelik agresif HTTP yoklaması yerine **20 saniyelik HTTP Keep-Alive Long Polling** mimarisine geçirildi. Bu sayede saatlik 2.400 TLS bağlantısı ~140'a indirilerek telefonun pil tüketimi -118 mA'dan **-45 mA seviyesine (%62 tasarruf)** çekildi. Masada prizden çektiği toplam güç sadece **1.2 Watt**'tır (2026 EPDK tarifesiyle ayda ~3.5 TL).
+4. **Otomatik Başlangıç:** `~/.bashrc` içerisine eklenen tmux servis denetleyicisi ile telefon yeniden başlasa bile bot arka planda ayağa kalkar.
 
 ---
 
@@ -412,6 +420,22 @@ python -m ruff check .
 # Model ve metin çıkarım başarı testi
 python eval/run_eval.py
 ```
+
+---
+
+<a id="english-summary"></a>
+
+## 🇬🇧 English Overview & Quickstart
+
+**Maritime Watch** is an open-source maritime situational awareness and coastal intelligence system designed for artisanal fishermen, small craft operators, and coastal communities in Turkish waters.
+
+### Key Capabilities
+- **Small-Craft Safety Index (0-100):** Translates hourly Open-Meteo marine forecasts (wind gusts, wave heights, sea surface temperature, and surface currents) into tailored "Go / No-Go" departure windows based on vessel length ($\le 8\text{m}$, $8-15\text{m}$, $>15\text{m}$).
+- **Real-Time AIS & Collision Risk (CPA):** Ingests live ITU-R M.1371 packets via `aisstream.io` WebSocket, calculating Closest Point of Approach (CPA $< 0.35\text{ NM}$) and Time to CPA (TCPA $\le 12\text{ min}$) for active commercial traffic.
+- **Turkish Straits Corridor Telemetry:** Real-time Bosphorus and Dardanelles transit status, active vessel counts, corridor speeds, and METAR visibility/fog restrictions.
+- **24/7 Telegram Assistant:** Instant GPS location query (`/neredeyim`), VHF Channel 16 MAYDAY template generation, and straits status.
+- **Zero-Cost Edge + Cloud Hybrid Architecture:** Runs the interactive Telegram listener on a recycled Samsung Galaxy Note 4 micro-server (1.2W power draw via Termux/tmux) while heavy scraping and static Leaflet map hosting are handled by GitHub Actions and GitHub Pages.
+- **207 Passing Unit Tests & 100% Type-Checked:** Complete offline test suite covering edge scenarios, network drops, and boundary conditions.
 
 ---
 
