@@ -145,14 +145,15 @@ class Bot:
         self.subs = Subscribers(str(root / "data" / "subscribers.json"))
         self.areas = [p["name"] for p in cfg["openmeteo"]["points"]]
         self.classes = cfg.get("outlook", {}).get("classes", {})
+        self.session = requests.Session()
 
     # ---- transport -----------------------------------------------------------
     def _api(self, method: str, payload: dict, timeout: int = 20):
         if not self.token:
             return None
         try:
-            r = requests.post(BASE.format(token=self.token, method=method),
-                              data=payload, timeout=timeout)
+            r = self.session.post(BASE.format(token=self.token, method=method),
+                                  data=payload, timeout=timeout)
             body = r.json()
             if body.get("ok"):
                 return body.get("result")
@@ -579,13 +580,15 @@ class Bot:
         self.send(chat, text or "Şu an canlı tahmin alınamıyor, biraz sonra tekrar dene.", dry=dry)
 
     # ---- polling -------------------------------------------------------------
-    def poll(self, dry: bool = True, limit: int = 50) -> int:
+    def poll(self, dry: bool = True, limit: int = 50, timeout: int = 20) -> int:
         """Drain pending updates. Offset is persisted so a restart does not
-        replay yesterday's commands."""
+        replay yesterday's commands. Uses Telegram long-polling (timeout>0)
+        to drastically reduce battery drain and HTTP handshakes."""
         if not self.token:
             return 0
         res = self._api("getUpdates", {"offset": self.subs.offset + 1,
-                                       "limit": limit, "timeout": 0})
+                                       "limit": limit, "timeout": timeout},
+                        timeout=timeout + 10)
         if not res:
             return 0
         for up in res:
