@@ -97,6 +97,8 @@ def render_weather_grid(cfg: dict, out_file: str | Path | None = None) -> dict[s
 
             wave_trend = [round(float(w), 2) for w in waves[:12]] if waves else []
             wind_trend = [round(float(g), 1) for g in gusts[:12]] if gusts else []
+            sea_temp_c = fp.get("sea_temp_c")
+            current_kn = fp.get("current_kn")
         else:
             # Safe nominal defaults when point was not in forecast response
             gust_kn = 14.0
@@ -104,6 +106,8 @@ def render_weather_grid(cfg: dict, out_file: str | Path | None = None) -> dict[s
             wave_m = 0.8
             wave_trend = [0.8] * 12
             wind_trend = [14.0] * 12
+            sea_temp_c = None
+            current_kn = None
 
         wind_dir = guess_wind_dir(name)
         beaufort = knots_to_beaufort(wind_kn)
@@ -120,6 +124,8 @@ def render_weather_grid(cfg: dict, out_file: str | Path | None = None) -> dict[s
             "wind_dir": wind_dir,
             "beaufort": beaufort,
             "rating": rating,
+            "sea_temp_c": sea_temp_c,
+            "current_kn": current_kn,
             "trend_12h": {
                 "waves": wave_trend,
                 "winds": wind_trend,

@@ -71,10 +71,17 @@ def fetch_forecast_points(cfg: dict) -> list[dict]:
                                 "openmeteo_marine.json", "wave_height")
         gt, gusts, lg = _hourly(WIND, {**base, "hourly": "wind_gusts_10m", "wind_speed_unit": "kn"},
                                 "openmeteo_wind.json", "wind_gusts_10m")
+        st_t, sst_vals, _ = _hourly(MARINE, {**base, "hourly": "sea_surface_temperature"},
+                                    "openmeteo_marine.json", "sea_surface_temperature")
+        cur_t, cur_vals, _ = _hourly(MARINE, {**base, "hourly": "ocean_current_velocity"},
+                                     "openmeteo_marine.json", "ocean_current_velocity")
         if not (lw and lg) or not gt:
             continue
+        sea_temp = round(float(sst_vals[0]), 1) if sst_vals and sst_vals[0] is not None else None
+        current_kn = round(float(cur_vals[0]) * 0.539957, 1) if cur_vals and cur_vals[0] is not None else None
         out.append({"name": pt["name"], "lat": pt["lat"], "lon": pt["lon"],
-                    "times": gt, "gusts": gusts, "waves": waves if wt else []})
+                    "times": gt, "gusts": gusts, "waves": waves if wt else [],
+                    "sea_temp_c": sea_temp, "current_kn": current_kn})
     _FORECAST_CACHE.extend(out)
     return out
 

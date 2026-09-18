@@ -299,12 +299,14 @@ function weatherPointPopup(p) {
   const bColor = BEAUFORT_COLORS[Math.min(p.beaufort, BEAUFORT_COLORS.length - 1)];
   const wavesSpark = p.trend_12h && p.trend_12h.waves ? createSparklineSvg(p.trend_12h.waves, "#38bdf8", 180, 26) : "";
   const windsSpark = p.trend_12h && p.trend_12h.winds ? createSparklineSvg(p.trend_12h.winds, bColor, 180, 26) : "";
+  const sstLine = (p.sea_temp_c != null) ? `<br>🌡️ Deniz Suyu: <strong>${p.sea_temp_c} °C</strong>` : "";
+  const currLine = (p.current_kn != null) ? ` · 🌀 Akıntı: <strong>${p.current_kn} kn</strong>` : "";
 
   return `<div class="popup-title">🌊 ${esc(p.name)}</div>
     <div class="popup-meta">
       <span class="safety-badge ${p.rating}">${p.rating.toUpperCase()}</span> · Bft ${p.beaufort}
       <br>Rüzgar: <strong>${p.wind_kn} kn</strong> (Hamle: ${p.gust_kn} kn) · Yön: ${p.wind_dir}°
-      <br>Dalga: <strong>${p.wave_m != null ? p.wave_m + " m" : "—"}</strong>
+      <br>Dalga: <strong>${p.wave_m != null ? p.wave_m + " m" : "—"}</strong>${sstLine}${currLine}
     </div>
     ${wavesSpark ? `<div class="sparkline-box"><div class="sparkline-label">12 Saatlik Dalga Trendi (m)</div>${wavesSpark}</div>` : ""}
     ${windsSpark ? `<div class="sparkline-box"><div class="sparkline-label">12 Saatlik Rüzgar Hamlesi (kn)</div>${windsSpark}</div>` : ""}`;
@@ -366,6 +368,19 @@ function renderSafetyStrip(straitsData, safetyData) {
         <div class="safety-card">
           <span class="sc-title">Sefer Skoru:</span>
           <span class="safety-badge good">🟢 Karasularımız Elverişli</span>
+        </div>
+      `);
+    }
+
+    // 3. Sea Surface Temperature Card
+    const temps = safetyData.ratings.map(r => r.sea_temp_c).filter(t => t != null && typeof t === "number");
+    if (temps.length > 0) {
+      const avgTemp = (temps.reduce((a, b) => a + b, 0) / temps.length).toFixed(1);
+      cards.push(`
+        <div class="safety-card">
+          <span class="sc-title">🌡️ Deniz Suyu:</span>
+          <span class="safety-badge" style="background:#0284c7;color:#fff">${avgTemp} °C</span>
+          <span class="sc-meta">Marmara Ort.</span>
         </div>
       `);
     }

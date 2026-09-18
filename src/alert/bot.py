@@ -283,6 +283,10 @@ class Bot:
             icon = "🟢" if status == "good" else ("🟡" if status == "caution" else "🔴")
             status_tr = "Elverişli" if status == "good" else ("Tedbirli Seyir" if status == "caution" else "Denize Çıkmayın")
             safety_line = f"🌊 <b>Sefer Güvenlik Skoru:</b> {icon} {score}/100 ({status_tr})"
+            st = rating_info.get("sea_temp_c")
+            ck = rating_info.get("current_kn")
+            if st is not None:
+                safety_line += f"\n🌡️ <b>Deniz Suyu:</b> {st:.1f}°C" + (f" | <b>Akıntı:</b> {ck:.1f} kn" if ck is not None else "")
         else:
             safety_line = "🌊 <b>Sefer Güvenlik Skoru:</b> 🟢 85/100 (Elverişli)"
 
@@ -380,11 +384,19 @@ class Bot:
             gust = rating.get("gust_kn", 0)
             rec = rating.get("recommendation_tr", "")
 
+            extra_lines = []
+            if rating.get("sea_temp_c") is not None:
+                extra_lines.append(f"🌡️ Deniz Suyu: <b>{rating['sea_temp_c']:.1f} °C</b>")
+            if rating.get("current_kn") is not None:
+                extra_lines.append(f"🌀 Akıntı: <b>{rating['current_kn']:.1f} kn</b>")
+            extra_str = ("\n" + " | ".join(extra_lines)) if extra_lines else ""
+
             return (
                 f"🎣 <b>{target_area} Balıkçı Sefer Güvenlik Raporu</b>\n\n"
                 f"{icon} <b>Karar: {status_tr}</b> (Skor: {score}/100)\n\n"
                 f"🌊 Dalga Yüksekliği: <b>{wave_str}</b>\n"
-                f"💨 Rüzgar: <b>{wind:.0f} kn</b> (Hamle: <b>{gust:.0f} kn</b>)\n\n"
+                f"💨 Rüzgar: <b>{wind:.0f} kn</b> (Hamle: <b>{gust:.0f} kn</b>)"
+                f"{extra_str}\n\n"
                 f"💡 <b>Denizci Tavsiyesi:</b>\n{rec}\n\n"
                 f"⚠️ <i>Küçük tekneler (<12m) ve amatör balıkçılar için karar destek tahminidir. Denize çıkmadan önce Sahil Güvenlik (158) ve MGM teyidi alınız.</i>"
             )

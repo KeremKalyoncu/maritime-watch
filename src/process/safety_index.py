@@ -84,6 +84,8 @@ def calculate_safety_rating(
     wind_kn: float,
     gust_kn: float,
     has_storm_warning: bool = False,
+    sea_temp_c: float | None = None,
+    current_kn: float | None = None,
 ) -> MarineSafetyRating:
     """Produce a full MarineSafetyRating model for a coastal region."""
     score = calculate_safety_score(
@@ -104,6 +106,8 @@ def calculate_safety_rating(
         gust_kn=round(gust_kn, 1),
         recommendation_tr=rec_tr,
         recommendation_en=rec_en,
+        sea_temp_c=round(sea_temp_c, 1) if sea_temp_c is not None else None,
+        current_kn=round(current_kn, 1) if current_kn is not None else None,
         last_update=now_iso(),
     )
 
@@ -122,6 +126,8 @@ def evaluate_all_areas(
         wind = float(pt.get("wind_kn") or 0.0)
         gust = float(pt.get("gust_kn") or wind)
         has_warn = (name in storm_areas) or any(s in name for s in storm_areas)
+        sea_temp = pt.get("sea_temp_c")
+        current_kn = pt.get("current_kn")
 
         rating = calculate_safety_rating(
             area=name,
@@ -129,6 +135,8 @@ def evaluate_all_areas(
             wind_kn=wind,
             gust_kn=gust,
             has_storm_warning=has_warn,
+            sea_temp_c=sea_temp,
+            current_kn=current_kn,
         )
         ratings.append(rating)
 

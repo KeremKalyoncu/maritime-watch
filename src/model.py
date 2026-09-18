@@ -120,6 +120,8 @@ class WeatherContext:
     summary_en: str
     station_name: str | None = None
     distance_nm: float | None = None
+    sea_temp_c: float | None = None
+    current_kn: float | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -158,6 +160,8 @@ class MarineSafetyRating:
     gust_kn: float
     recommendation_tr: str
     recommendation_en: str
+    sea_temp_c: float | None = None
+    current_kn: float | None = None
     last_update: str = field(default_factory=now_iso)
 
     def to_dict(self) -> dict[str, Any]:
