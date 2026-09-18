@@ -146,6 +146,26 @@ class Bot:
         self.areas = [p["name"] for p in cfg.get("openmeteo", {}).get("points", [])]
         self.classes = cfg.get("outlook", {}).get("classes", {})
         self.session = requests.Session()
+        self._commands_registered = False
+
+    def register_commands(self) -> bool:
+        """Register the official command menu with Telegram so typing '/' pops up the menu."""
+        if not self.token:
+            return False
+        commands = [
+            {"command": "durum", "description": "🌊 Seçili bölgeler için anlık deniz hava bülteni"},
+            {"command": "neredeyim", "description": "📍 Canlı konum ile en yakın liman, mesafe ve hava"},
+            {"command": "bogaz", "description": "🚢 Boğazlar canlı gemi sayısı, sis ve hız durumu"},
+            {"command": "balikci", "description": "🎣 Sefer güvenlik analizi (Bugün denize çıkılır mı?)"},
+            {"command": "mayday", "description": "🆘 Telsiz VHF Kanal 16 hazır acil imdat metni"},
+            {"command": "kazalar", "description": "🚨 Son 24 saatteki onaylı kaza ve kurtarmalar"},
+            {"command": "bolge", "description": "⚙️ Takip etmek istediğin denizleri seç"},
+            {"command": "tekne", "description": "⛵ Tekne boyunu seç (Uyarı eşiklerini ayarla)"},
+            {"command": "ayarlar", "description": "📋 Mevcut kayıtlı ayarlarını ve aboneliğini gör"},
+            {"command": "yardim", "description": "ℹ️ Bot kullanım rehberi ve acil durum hatları"},
+        ]
+        res = self._api("setMyCommands", {"commands": json.dumps(commands)})
+        return res is not None
 
     # ---- transport -----------------------------------------------------------
     def _api(self, method: str, payload: dict, timeout: int = 20):
@@ -598,6 +618,12 @@ class Bot:
         to drastically reduce battery drain and HTTP handshakes."""
         if not self.token:
             return 0
+        if not self._commands_registered and not dry:
+            try:
+                self.register_commands()
+                self._commands_registered = True
+            except Exception:
+                pass
         res = self._api("getUpdates", {"offset": self.subs.offset + 1,
                                        "limit": limit, "timeout": timeout},
                         timeout=timeout + 10)

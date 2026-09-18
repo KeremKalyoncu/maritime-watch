@@ -15,7 +15,8 @@ from ._net import get_json
 MARINE = "https://marine-api.open-meteo.com/v1/marine"
 WIND = "https://api.open-meteo.com/v1/forecast"
 
-_FORECAST_CACHE: list[dict] = []
+_FORECAST_CACHE: dict[str, tuple[float, dict]] = {}
+CACHE_TTL_SEC: float = 900.0  # 15 minutes TTL
 
 
 def reset_cache() -> None:
@@ -60,29 +61,81 @@ def _hourly(url: str, params: dict, sample: str, field: str):
     return times[start:], vals[start:], live
 
 
-def fetch_forecast_points(cfg: dict) -> list[dict]:
-    """Hourly gust + wave for every configured sea area, from the current hour."""
-    if _FORECAST_CACHE:
-        return list(_FORECAST_CACHE)
+def _hourly_marine(url: str, params: dict, sample: str):
+    """Fetch wave height, sea temp and ocean current in a single combined HTTP request."""
+    q = "&".join(f"{k}={v}" for k, v in params.items())
+    data, live = get_json(f"{url}?{q}", sample)
+    if not data:
+        return [], [], None, None, live
+    hourly = data.get("hourly") or {}
+    times = hourly.get("time") or []
+    waves = hourly.get("wave_height") or []
+    sst = hourly.get("sea_surface_temperature") or []
+    cur = hourly.get("ocean_current_velocity") or []
+    cutoff = time.strftime("%Y-%m-%dT%H:00", time.gmtime())
+    start = next((i for i, t in enumerate(times) if str(t) >= cutoff), 0)
+    w_sliced = [v for v in waves[start:] if isinstance(v, (int, float))]
+    s_val = (
+        round(float(sst[start]), 1)
+        if (start < len(sst) and sst[start] is not None and isinstance(sst[start], (int, float)))
+        else None
+    )
+    c_val = (
+        round(float(cur[start]) * 0.539957, 1)
+        if (start < len(cur) and cur[start] is not None and isinstance(cur[start], (int, float)))
+        else None
+    )
+    return times[start:], w_sliced, s_val, c_val, live
+
+
+def fetch_forecast_points(cfg: dict, wanted_areas: set[str] | list[str] | None = None) -> list[dict]:
+    """Hourly gust + wave for configured sea areas, cached in memory for 15 minutes.
+    
+    If wanted_areas is given, only queries and resolves those areas to save bandwidth and latency.
+    """
+    now = time.time()
     out = []
-    for pt in cfg["openmeteo"]["points"]:
+    points = cfg.get("openmeteo", {}).get("points", [])
+    if wanted_areas:
+        wanted_set = set(wanted_areas)
+        points = [p for p in points if p["name"] in wanted_set]
+
+    for pt in points:
+        name = pt["name"]
+        cached = _FORECAST_CACHE.get(name)
+        if cached:
+            ts, item = cached
+            if (now - ts) < CACHE_TTL_SEC:
+                out.append(item)
+                continue
+
         base = {"latitude": pt["lat"], "longitude": pt["lon"], "forecast_days": 3}
-        wt, waves, lw = _hourly(MARINE, {**base, "hourly": "wave_height"},
-                                "openmeteo_marine.json", "wave_height")
-        gt, gusts, lg = _hourly(WIND, {**base, "hourly": "wind_gusts_10m", "wind_speed_unit": "kn"},
-                                "openmeteo_wind.json", "wind_gusts_10m")
-        st_t, sst_vals, _ = _hourly(MARINE, {**base, "hourly": "sea_surface_temperature"},
-                                    "openmeteo_marine.json", "sea_surface_temperature")
-        cur_t, cur_vals, _ = _hourly(MARINE, {**base, "hourly": "ocean_current_velocity"},
-                                     "openmeteo_marine.json", "ocean_current_velocity")
+        wt, waves, sea_temp, current_kn, lw = _hourly_marine(
+            MARINE,
+            {**base, "hourly": "wave_height,sea_surface_temperature,ocean_current_velocity"},
+            "openmeteo_marine.json",
+        )
+        gt, gusts, lg = _hourly(
+            WIND,
+            {**base, "hourly": "wind_gusts_10m", "wind_speed_unit": "kn"},
+            "openmeteo_wind.json",
+            "wind_gusts_10m",
+        )
         if not (lw and lg) or not gt:
             continue
-        sea_temp = round(float(sst_vals[0]), 1) if sst_vals and sst_vals[0] is not None else None
-        current_kn = round(float(cur_vals[0]) * 0.539957, 1) if cur_vals and cur_vals[0] is not None else None
-        out.append({"name": pt["name"], "lat": pt["lat"], "lon": pt["lon"],
-                    "times": gt, "gusts": gusts, "waves": waves if wt else [],
-                    "sea_temp_c": sea_temp, "current_kn": current_kn})
-    _FORECAST_CACHE.extend(out)
+        item = {
+            "name": pt["name"],
+            "lat": pt["lat"],
+            "lon": pt["lon"],
+            "times": gt,
+            "gusts": gusts,
+            "waves": waves if wt else [],
+            "sea_temp_c": sea_temp,
+            "current_kn": current_kn,
+        }
+        _FORECAST_CACHE[name] = (now, item)
+        out.append(item)
+
     return out
 
 

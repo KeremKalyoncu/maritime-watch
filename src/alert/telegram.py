@@ -424,7 +424,10 @@ class Notifier:
         klass = oc.get("classes", {}).get(sub.get("boat", "small"), {})
         wanted = set(sub.get("areas") or [])
         try:
-            pts = fetch_forecast_points(cfg)
+            try:
+                pts = fetch_forecast_points(cfg, wanted_areas=wanted if wanted else None)
+            except TypeError:
+                pts = fetch_forecast_points(cfg)
         except Exception as e:
             print(f"[outlook] error: {e}")
             return ""
