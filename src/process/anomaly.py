@@ -1,15 +1,5 @@
-"""Rule-based AIS anomaly checks.
-
-  nav-status   NavigationalStatus 2 (not under command) or 6 (aground)
-  speed-drop   was under way, now stopped for 2+ samples, and not anchored
-  course-spike near-reversal by a cargo/tanker under way (off by default: an
-               ordinary 60-degree turn produced 44 false flags in one live cycle)
-  ais-gap      an under-way vessel missing for several CONSECUTIVE cycles, not
-               merely absent from one 90-second burst, and not explainable by
-               having reached port or left the subscribed box
-
-Tracks are kept in data/vessels.json between cycles so the gap and track rules
-work across the short captures.
+"""AIS verilerindeki seyir ve emniyet anomalilerini inceler.
+Kumanda dışı kalma, karaya oturma, ani hız düşüşü ve sinyal kayıplarını kontrol eder.
 """
 
 from __future__ import annotations
@@ -55,8 +45,7 @@ def _parse_ts(s: str | None):
 
 
 def _iso(ts) -> str:
-    """aisstream sends '2026-09-04 21:36:32.547386925 +0000 UTC'. Storing that
-    verbatim triples the size of every track point and defeats git deltas."""
+    """Zaman damgasını standart ISO UTC formatına çevirir."""
     if not ts:
         return ""
     e = _parse_ts(str(ts))
@@ -66,10 +55,12 @@ def _iso(ts) -> str:
 
 
 def _round(x, nd=4):
-    # AIS resolution is ~0.0001 deg (11 m); 16 significant digits is noise
+    # AIS koordinat hassasiyeti (yaklaşık 11 metre)
     return round(x, nd) if isinstance(x, (int, float)) else x
+
+
 def _near_bbox_edge(lat, lon, bbox, margin_deg: float = 0.35) -> bool:
-    """A vessel that simply sailed out of the subscribed box is not 'missing'."""
+    # Kapsama alanının dışına çıkan gemiler kayıp sayılmaz
     if not bbox or lat is None or lon is None:
         return False
     return (lat - bbox["lat_min"] < margin_deg or bbox["lat_max"] - lat < margin_deg
@@ -77,12 +68,14 @@ def _near_bbox_edge(lat, lon, bbox, margin_deg: float = 0.35) -> bool:
 
 
 def _near_port(lat, lon, nm: float = 6.0) -> bool:
-    """Arriving and switching the transponder off is routine, not a disappearance."""
+    # Limana yanaşıp cihaz kapatan gemiler anomali sayılmaz
     from .classify import nearest_port
     np = nearest_port(lat, lon)
     return np is not None and np[1] <= nm
+
+
 class VesselState:
-    """Per-MMSI rolling track, persisted as JSON."""
+    """Gemilerin konum geçmişini JSON formatında saklar."""
 
     def __init__(self, path: str, history: int):
         self.path = Path(path)
@@ -215,10 +208,7 @@ def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[s
                          f"seyir hızından ({max(sogs[:-1]):.1f} kn) ani duruşa geçti"
                 out.append(Anomaly(int(key), "speed-drop", detail, p["lat"], p["lon"], sev, name))
 
-        # A 60-degree turn is ordinary navigation (traffic separation schemes,
-        # Bosphorus bends, port approaches) - in one live cycle this rule alone
-        # produced 44 of 83 flags, essentially all false. It now needs a
-        # near-reversal AND a ship type that has no business making one.
+        # Rota sapması: Sıradan manevralar hariç tutulup ani U dönüşü kontrol edilir
         if a.get("course_spike_enabled", False):
             cogs = [t["cog"] for t in track if t.get("cog") is not None][-3:]
             if (len(cogs) >= 2 and prof["sensitive"]

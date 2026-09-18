@@ -464,6 +464,10 @@ function addTimeline(items) {
     const src = (it.sources || [])[0];
     const srcText = it._kind === "warning" ? orgsOf(it).join(", ") : (src ? src.org || src.kind : "");
 
+    li.setAttribute("role", "button");
+    li.setAttribute("tabindex", "0");
+    li.setAttribute("aria-label", `${title}, ${it.area || ""}, ${badge || ""}`);
+
     li.innerHTML = `
       <div class="t-head">
         <span class="t-type">
@@ -475,11 +479,18 @@ function addTimeline(items) {
       <div class="t-area">${highlightText(it.area || U().unloc, SEARCH_QUERY)} · <span class="t-when">${esc(when)}</span></div>
       <div class="t-src">${highlightText(srcText, SEARCH_QUERY)}</div>
     `;
-    li.onclick = () => {
+    const openItem = () => {
       const m = markerById[it._id];
       if (m && map) {
         map.setView(m.getLatLng(), 10);
         m.openPopup();
+      }
+    };
+    li.onclick = openItem;
+    li.onkeydown = (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openItem();
       }
     };
     ol.appendChild(li);
@@ -490,7 +501,7 @@ function addTimeline(items) {
     empty.innerHTML = `
       <b>${esc(U().empty_t)}</b>
       ${esc(U().empty_b)}
-      <br><button type="button" class="btn" style="margin-top:8px" onclick="clearFilters()">${esc(U().empty_clear)}</button>
+      <br><button type="button" class="btn" style="margin-top:8px" onclick="clearFilters()" aria-label="Filtreleri Temizle">${esc(U().empty_clear)}</button>
     `;
     empty.hidden = items.length > 0;
   }

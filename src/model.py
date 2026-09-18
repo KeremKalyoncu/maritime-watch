@@ -50,9 +50,9 @@ class IncidentType(str, Enum):
 
 
 class Status(str, Enum):
-    SIGNAL = "signal"            # one weak source (e.g. AIS anomaly only)
-    PROBABLE = "probable"        # corroborated but not officially confirmed
-    CONFIRMED = "confirmed"      # an official body has stated it
+    SIGNAL = "signal"            # tek zayif kaynak (sadece ais anomalisi)
+    PROBABLE = "probable"        # kuvvetli ihtimal (birden cok kaynak)
+    CONFIRMED = "confirmed"      # resmi kurum onayi
     RESOLVED = "resolved"
     FALSE_POSITIVE = "false-positive"
 
@@ -64,7 +64,7 @@ class Severity(str, Enum):
     CRITICAL = "critical"
 
 
-# plain-Turkish labels for end users (Telegram + map)
+# Telegram ve harita icin Turkce karsiliklar
 TYPE_TR = {
     "grounding": "karaya oturma", "collision": "çatışma (çarpışma)",
     "collision-risk": "çatışma riski (yakın geçiş)",

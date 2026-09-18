@@ -22,62 +22,62 @@
         <span class="live" data-i="live">canlı</span>
       </div>
       <div class="ctrl">
-        <button type="button" class="btn btn-playback" id="btn-toggle-playback" title="Zaman Makinesi">▶ <span data-i="playback_btn">Zaman Makinesi</span></button>
-        <button type="button" class="btn btn-emergency" id="btn-emergency" title="Acil Durum Frekans Rehberi">🆘 <span data-i="emergency_btn">Acil Rehber</span></button>
-        <select id="region" title="Bölge"></select>
-        <a class="btn" href="stats.html" data-i="stats">İstatistik</a>
-        <button id="lang" type="button">EN</button>
+        <button type="button" class="btn btn-playback" id="btn-toggle-playback" title="Zaman Makinesi" aria-label="Zaman Makinesini Aç veya Kapat">▶ <span data-i="playback_btn">Zaman Makinesi</span></button>
+        <button type="button" class="btn btn-emergency" id="btn-emergency" title="Acil Durum Frekans Rehberi" aria-label="Deniz Acil Durum ve VHF Frekans Rehberi">🆘 <span data-i="emergency_btn">Acil Rehber</span></button>
+        <select id="region" title="Bölge" aria-label="Bölge Seçimi"></select>
+        <a class="btn" href="stats.html" data-i="stats" aria-label="İstatistik Sayfasına Git">İstatistik</a>
+        <button id="lang" type="button" aria-label="Dili Değiştir (TR/EN)">EN</button>
       </div>
     </div>
 
     <!-- Live Straits Transit & Marine Safety Ticker -->
-    <div id="safety-strip" class="safety-strip"></div>
+    <div id="safety-strip" class="safety-strip" role="region" aria-label="Boğaz Geçiş ve Deniz Güvenlik Şeridi"></div>
 
     <!-- Instant Search & Quick Filter Chips -->
-    <div class="filter-row">
+    <div class="filter-row" role="search">
       <div class="search-box">
-        <span class="search-ico">🔍</span>
-        <input type="search" id="search-input" placeholder="Olay, gemi, liman veya sebep ara..." autocomplete="off">
+        <span class="search-ico" aria-hidden="true">🔍</span>
+        <input type="search" id="search-input" placeholder="Olay, gemi, liman veya sebep ara..." autocomplete="off" aria-label="Olay, gemi, liman veya sebep ara">
       </div>
-      <div class="chip-bar" id="chips">
-        <button type="button" class="chip is-active" data-chip="all" data-i="chip_all">Tümü</button>
-        <button type="button" class="chip" data-chip="confirmed" data-i="chip_confirmed">🚨 Doğrulandı</button>
-        <button type="button" class="chip" data-chip="warning" data-i="chip_warning">🌊 Hava Uyarısı</button>
-        <button type="button" class="chip" data-chip="collision-risk" data-i="chip_cpa">💥 Çatışma Riski</button>
-        <button type="button" class="chip" data-chip="rescue" data-i="chip_rescue">⚓ Kurtarma</button>
+      <div class="chip-bar" id="chips" role="group" aria-label="Olay Filtreleri">
+        <button type="button" class="chip is-active" data-chip="all" data-i="chip_all" aria-label="Tüm olayları göster">Tümü</button>
+        <button type="button" class="chip" data-chip="confirmed" data-i="chip_confirmed" aria-label="Doğrulanmış olayları filtrele">🚨 Doğrulandı</button>
+        <button type="button" class="chip" data-chip="warning" data-i="chip_warning" aria-label="Hava ve fırtına uyarılarını filtrele">🌊 Hava Uyarısı</button>
+        <button type="button" class="chip" data-chip="collision-risk" data-i="chip_cpa" aria-label="Çatışma riski taşıyan gemileri filtrele">💥 Çatışma Riski</button>
+        <button type="button" class="chip" data-chip="rescue" data-i="chip_rescue" aria-label="Kurtarma operasyonlarını filtrele">⚓ Kurtarma</button>
       </div>
     </div>
 
-    <div class="kpis" id="kpis"></div>
-    <div id="stale" hidden></div>
+    <div class="kpis" id="kpis" role="region" aria-label="Canlı İstatistik Göstergeleri"></div>
+    <div id="stale" hidden role="alert"></div>
   </header>
 
   <main>
     <div class="map-wrapper">
-      <div id="map"></div>
+      <div id="map" role="application" aria-label="Türkiye Deniz Olayları ve Canlı Durum Haritası"></div>
       
       <!-- Time-Lapse Playback Scrubber Bar -->
-      <div id="playback-bar" class="playback-bar" hidden>
-        <button type="button" id="play-btn" class="play-btn" title="Oynat / Duraklat">▶</button>
+      <div id="playback-bar" class="playback-bar" role="toolbar" aria-label="Zaman Makinesi Oynatıcı Çubuğu" hidden>
+        <button type="button" id="play-btn" class="play-btn" title="Oynat / Duraklat" aria-label="Oynat veya Duraklat">▶</button>
         <span id="play-label" class="play-label">Zaman Makinesi</span>
-        <input type="range" id="play-range" min="0" max="100" value="100" title="Zaman Çizelgesi">
+        <input type="range" id="play-range" min="0" max="100" value="100" title="Zaman Çizelgesi" aria-label="Zaman Çizelgesi Konumu">
         <span id="play-time" class="play-time">Canlı</span>
-        <div class="play-speeds">
-          <button type="button" class="speed-btn is-active" data-speed="1">1x</button>
-          <button type="button" class="speed-btn" data-speed="2">2x</button>
-          <button type="button" class="speed-btn" data-speed="4">4x</button>
+        <div class="play-speeds" role="group" aria-label="Oynatma Hızı">
+          <button type="button" class="speed-btn is-active" data-speed="1" aria-label="1 kat hız">1x</button>
+          <button type="button" class="speed-btn" data-speed="2" aria-label="2 kat hız">2x</button>
+          <button type="button" class="speed-btn" data-speed="4" aria-label="4 kat hız">4x</button>
         </div>
-        <button type="button" id="play-close" class="play-close" title="Kapat">&times;</button>
+        <button type="button" id="play-close" class="play-close" title="Kapat" aria-label="Zaman Makinesini Kapat">&times;</button>
       </div>
     </div>
 
-    <aside id="side">
-      <div class="legend">
-        <span><i class="dot s-confirmed"></i><b data-i="l-confirmed">doğrulandı</b></span>
-        <span><i class="dot s-probable"></i><b data-i="l-probable">olası</b></span>
-        <span><i class="dot s-signal"></i><b data-i="l-signal">sinyal (doğrulanmadı)</b></span>
-        <span><i class="dot s-resolved"></i><b data-i="l-resolved">kapandı</b></span>
-        <span><i class="dot s-warning"></i><b data-i="l-warning">hava uyarısı</b></span>
+    <aside id="side" role="complementary" aria-label="Olay Zaman Çizelgesi">
+      <div class="legend" aria-label="Harita Lejantı">
+        <span><i class="dot s-confirmed" aria-hidden="true"></i><b data-i="l-confirmed">doğrulandı</b></span>
+        <span><i class="dot s-probable" aria-hidden="true"></i><b data-i="l-probable">olası</b></span>
+        <span><i class="dot s-signal" aria-hidden="true"></i><b data-i="l-signal">sinyal (doğrulanmadı)</b></span>
+        <span><i class="dot s-resolved" aria-hidden="true"></i><b data-i="l-resolved">kapandı</b></span>
+        <span><i class="dot s-warning" aria-hidden="true"></i><b data-i="l-warning">hava uyarısı</b></span>
       </div>
       <h2 data-i="timeline">Zaman çizelgesi</h2>
       <ol id="timeline"></ol>
@@ -86,12 +86,12 @@
   </main>
 
   <!-- Emergency Modal Guide -->
-  <div id="emergency-modal" class="modal" hidden>
+  <div id="emergency-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="em-modal-title" hidden>
     <div class="modal-backdrop" id="modal-backdrop"></div>
     <div class="modal-card">
       <div class="modal-head">
-        <h3>🆘 Deniz Acil Durum & VHF Frekans Rehberi</h3>
-        <button type="button" class="modal-close" id="modal-close">&times;</button>
+        <h3 id="em-modal-title">🆘 Deniz Acil Durum & VHF Frekans Rehberi</h3>
+        <button type="button" class="modal-close" id="modal-close" aria-label="Rehberi Kapat">&times;</button>
       </div>
       <div class="modal-body">
         <div class="emergency-grid">
@@ -99,32 +99,32 @@
             <div class="em-num">VHF Kanal 16</div>
             <div class="em-title">Uluslararası Tehlike & Çağrı (156.800 MHz)</div>
             <div class="em-desc">MAYDAY / PAN-PAN acil yardım çağrısı. Seyir halindeyken sürekli dinlemede kalınmalıdır.</div>
-            <button type="button" class="btn-copy" data-copy="VHF Ch 16 (156.800 MHz)">📋 Kopyala</button>
+            <button type="button" class="btn-copy" data-copy="VHF Ch 16 (156.800 MHz)" aria-label="VHF Kanal 16 Bilgisini Kopyala">📋 Kopyala</button>
           </div>
           <div class="em-card">
             <div class="em-num">Tel: 158</div>
             <div class="em-title">Sahil Güvenlik İhbar Hattı</div>
             <div class="em-desc">Türkiye karasularında 7/24 kesintisiz acil arama-kurtarma ve ihbar hattı.</div>
-            <button type="button" class="btn-copy" data-copy="158">📋 Kopyala</button>
+            <button type="button" class="btn-copy" data-copy="158" aria-label="Sahil Güvenlik 158 Numarasını Kopyala">📋 Kopyala</button>
           </div>
           <div class="em-card">
             <div class="em-num">Tel: 151</div>
             <div class="em-title">Kıyı Emniyeti Acil Kurtarma</div>
             <div class="em-desc">Boğazlar ve Marmara'da römorkör, tahlisiye, dalgıç ve yedekleme talebi.</div>
-            <button type="button" class="btn-copy" data-copy="151">📋 Kopyala</button>
+            <button type="button" class="btn-copy" data-copy="151" aria-label="Kıyı Emniyeti 151 Numarasını Kopyala">📋 Kopyala</button>
           </div>
           <div class="em-card">
             <div class="em-num">Türk Radyo</div>
             <div class="em-title">VHF Seyir & Hava Yayın Kanalları</div>
             <div class="em-desc">İstanbul: Ch 67 · Çanakkale: Ch 67 · İzmir: Ch 68 · Antalya: Ch 68 · Samsun: Ch 67.</div>
-            <button type="button" class="btn-copy" data-copy="Türk Radyo: İstanbul Ch 67, Çanakkale Ch 67, İzmir Ch 68, Antalya Ch 68, Samsun Ch 67">📋 Kopyala</button>
+            <button type="button" class="btn-copy" data-copy="Türk Radyo: İstanbul Ch 67, Çanakkale Ch 67, İzmir Ch 68, Antalya Ch 68, Samsun Ch 67" aria-label="Türk Radyo Bilgilerini Kopyala">📋 Kopyala</button>
           </div>
           <div class="em-card em-mayday-card" style="grid-column: 1 / -1; border-color: rgba(242, 85, 90, 0.4); background: rgba(242, 85, 90, 0.08);">
             <div class="em-num" style="color: #f2555a;">📻 Telsizden Okunacak İmdat Metni (Kanal 16 MAYDAY)</div>
             <div class="em-desc" style="font-family: monospace; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; margin: 8px 0; border: 1px dashed rgba(242, 85, 90, 0.3); font-size: 13px; line-height: 1.5;">
               "MAYDAY, MAYDAY, MAYDAY. BURASI [TEKNE ADINIZ]. MEVKİMİZ: [ENLEM, BOYLAM VEYA MEVKİ]. [SU ALIYORUZ / BATIYORUZ / ALABORA OLDUK]. [X] KİŞİYİZ. ACİL YARDIM İSTİYORUZ. TAMAM."
             </div>
-            <button type="button" class="btn-copy" data-copy='MAYDAY, MAYDAY, MAYDAY. BURASI [TEKNE ADINIZ]. MEVKİMİZ: [MEVKİ]. SU ALIYORUZ / BATIYORUZ. [X] KİŞİYİZ. ACİL YARDIM İSTİYORUZ. TAMAM.'>📋 Şablonu Kopyala</button>
+            <button type="button" class="btn-copy" data-copy='MAYDAY, MAYDAY, MAYDAY. BURASI [TEKNE ADINIZ]. MEVKİMİZ: [MEVKİ]. SU ALIYORUZ / BATIYORUZ. [X] KİŞİYİZ. ACİL YARDIM İSTİYORUZ. TAMAM.' aria-label="MAYDAY Metin Şablonunu Kopyala">📋 Şablonu Kopyala</button>
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@
   </div>
 
   <!-- Floating Toast Notifications Container -->
-  <div id="toast-container" class="toast-container"></div>
+  <div id="toast-container" class="toast-container" role="status" aria-live="polite"></div>
 
   <footer>
     <span>Açık kaynak · <a href="https://github.com/KeremKalyoncu/maritime-watch" id="repo-link">GitHub</a>

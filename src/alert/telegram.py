@@ -22,7 +22,7 @@ from ..model import stable_hash, status_tr, type_tr
 from ..process.classify import nearest_port
 
 BASE = "https://api.telegram.org/bot{token}/{method}"
-_SENT_CAP = 5000        # remembered alert keys kept in data/sent.json
+_SENT_CAP = 5000
 
 _WARN_KIND_TR = {
     "marine-weather": "DENİZ HAVA UYARISI",
@@ -67,8 +67,8 @@ class Notifier:
         self.only_status = set(tcfg.get("only_status", ["confirmed"]))
         self.prevention = tcfg.get("prevention", True)
         self.pin = tcfg.get("send_location_pin", True)
-        self.digest = tcfg.get("digest", True)      # one combined message per cycle
-        self.operator_alerts = tcfg.get("operator_alerts", False)  # internal scraper ops notices
+        self.digest = tcfg.get("digest", True)
+        self.operator_alerts = tcfg.get("operator_alerts", False)
         self.site = (cfg.get("site") or {}).get("url", "").rstrip("/")
 
         data_dir = Path(cfg["_root"]) / "data"
@@ -79,13 +79,11 @@ class Notifier:
             self._sent = set(json.loads(self.sent_path.read_text("utf-8")))
         except Exception:
             self._sent = set()
-        self._queue: list[tuple] = []              # (key, text, lat, lon) pending digest
-        # Telegram answers 429 past ~20 messages a minute to one chat
+        self._queue: list[tuple] = []
         self._sent_at: list[float] = []
 
     def _remember(self, key: str) -> None:
         self._sent.add(key)
-        # this file is committed between CI runs, so keep it bounded
         if len(self._sent) > _SENT_CAP:
             self._sent = set(sorted(self._sent)[-_SENT_CAP:])
         self.sent_path.write_text(json.dumps(sorted(self._sent), ensure_ascii=False), encoding="utf-8")
@@ -213,8 +211,6 @@ class Notifier:
         if is_sart:
             head = "🆘 <b>TEHLİKE İŞARETİ ALINDI</b>\nBir teknenin otomatik imdat vericisi sinyal veriyor."
         elif inc.type == "rescue":
-            # a finished rescue is good news; a red siren on it teaches people to
-            # ignore the siren when it matters
             head = "✅ <b>KURTARMA TAMAMLANDI</b>"
         elif inc.status == "confirmed":
             head = "🚨 <b>DENİZDE OLAY — DOĞRULANDI</b>"
@@ -222,8 +218,6 @@ class Notifier:
             head = "⚠️ <b>DENİZDE OLAY — henüz doğrulanmadı</b>"
 
         lines = [head, ""]
-        # "Ne oldu: belirsiz" tells a fisherman nothing. When the type did not
-        # classify, quote the headline instead - that is what we actually know.
         if inc.type and inc.type != "unknown":
             lines.append(f"Ne oldu: {html.escape(type_tr(inc.type))}")
         else:
@@ -314,10 +308,7 @@ class Notifier:
             lines.append("<i>Resmi kaynağı takip edin.</i>")
         self._emit(f"wx:{w.id}", "\n".join(lines), dry, w.lat, w.lon)
 
-    # We have no coastline mask, so we do not guess whether an epicentre is on
-    # land or at sea - a quake 55 km inland went out as "kıyıya yakın deprem",
-    # and a mid-Marmara one would have gone out as "36 km içeride". Say only what
-    # the feed actually tells us: the named region, and the nearest port.
+    # Kıyı şeridi ve en yakın limana göre deprem uyarısı
     _SEA_NAMED = ("deniz", "körfez", "boğaz", "açıkları", "adalar", "sea", "gulf")
 
     @staticmethod
@@ -334,8 +325,7 @@ class Notifier:
                 "Limanda bağlı teknelerde ve halatlarda sarsıntı etkisi olabilir.</i>")
 
     def weather_passed(self, w, dry: bool = True) -> None:
-        """The blow is over. Without this the warning just aged out silently and
-        people had no way to know when it was safe to go back out."""
+        """Sona eren fırtına veya hava uyarısını duyurur."""
         if not self.enabled or not self.prevention:
             return
         where = html.escape(w.area or "bölge")
@@ -391,7 +381,6 @@ class Notifier:
                 f"<i>{html.escape(label)} · sınır {klass.get('gust_kn')} kn / "
                 f"{str(klass.get('wave_m', 2)).replace('.', ',')} m</i>"]
 
-        # the one line someone reads before deciding whether to read the rest
         shuts = [a for a in areas if a.first_danger]
         if not areas:
             head.append("")

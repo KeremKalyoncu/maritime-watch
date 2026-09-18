@@ -83,10 +83,9 @@ class Store:
         """Returns (warning, how) where how is 'new', 'merged' or 'dup'."""
         with self._lock:
             def _refresh(cur: Warning) -> None:
-                # same source re-reported: update the live figures, don't add a
-                # "source" and don't count it as an independent confirmation
+                # Aynı kaynak güncellendi: canlı veriyi yenile
                 cur.headline = w.headline
-                cur.area = w.area or cur.area      # a renamed region has to reach the message
+                cur.area = w.area or cur.area
                 cur.value = w.value
                 cur.severity = w.severity
                 cur.lat, cur.lon = w.lat, w.lon

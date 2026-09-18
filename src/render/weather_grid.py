@@ -1,5 +1,5 @@
-"""Renders web/data/weather_overlay.json containing vector wind/wave data
-and 12-hour sparkline trends for the 13 coastal maritime regions.
+"""Kıyı bölgeleri için 12 saatlik rüzgar, dalga, deniz suyu sıcaklığı ve akıntı verilerini derler.
+Çıktı: web/data/weather_overlay.json
 """
 
 from __future__ import annotations
@@ -91,7 +91,7 @@ def render_weather_grid(cfg: dict, out_file: str | Path | None = None) -> dict[s
             gusts = fp.get("gusts", [])
             waves = fp.get("waves", [])
 
-            gust_kn = float(gusts[0]) if gusts else 12.0
+            gust_kn = float(gusts[0]) if gusts else 0.0
             wind_kn = round(gust_kn * 0.75, 1)
             wave_m = round(float(waves[0]), 2) if waves else None
 
@@ -100,12 +100,12 @@ def render_weather_grid(cfg: dict, out_file: str | Path | None = None) -> dict[s
             sea_temp_c = fp.get("sea_temp_c")
             current_kn = fp.get("current_kn")
         else:
-            # Safe nominal defaults when point was not in forecast response
-            gust_kn = 14.0
-            wind_kn = 10.0
-            wave_m = 0.8
-            wave_trend = [0.8] * 12
-            wind_trend = [14.0] * 12
+            # Tahmin verisi alınamadığında sahte değer üretmiyoruz
+            gust_kn = 0.0
+            wind_kn = 0.0
+            wave_m = None
+            wave_trend = []
+            wind_trend = []
             sea_temp_c = None
             current_kn = None
 

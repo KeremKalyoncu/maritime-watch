@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-18T14:02:56Z",
-  "total_incidents": 319,
+  "generated": "2026-09-18T15:07:59Z",
+  "total_incidents": 320,
   "by_month": {
-    "2026-09": 319
+    "2026-09": 320
   },
   "by_area": {
-    "belirsiz": 285,
+    "belirsiz": 286,
     "Marmara Denizi": 13,
     "Türk karasuları civarı": 7,
     "Antalya Körfezi": 4,
@@ -17,7 +17,7 @@
   },
   "by_type": {
     "distress": 110,
-    "drift": 74,
+    "drift": 75,
     "unknown": 56,
     "collision-risk": 41,
     "sinking": 28,
@@ -27,7 +27,7 @@
     "capsize": 1
   },
   "by_status": {
-    "signal": 278,
+    "signal": 279,
     "probable": 41
   },
   "incidents_with_casualties": 22,
@@ -39,6 +39,10 @@
     ],
     [
       "SIMI II",
+      3
+    ],
+    [
+      "SEA SUN",
       3
     ],
     [
@@ -67,10 +71,6 @@
     ],
     [
       "BARILOCHE",
-      2
-    ],
-    [
-      "CHEM NANA",
       2
     ]
   ],

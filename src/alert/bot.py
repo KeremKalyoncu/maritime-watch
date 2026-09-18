@@ -143,7 +143,7 @@ class Bot:
         self.notifier = notifier
         root = Path(cfg["_root"])
         self.subs = Subscribers(str(root / "data" / "subscribers.json"))
-        self.areas = [p["name"] for p in cfg["openmeteo"]["points"]]
+        self.areas = [p["name"] for p in cfg.get("openmeteo", {}).get("points", [])]
         self.classes = cfg.get("outlook", {}).get("classes", {})
         self.session = requests.Session()
 

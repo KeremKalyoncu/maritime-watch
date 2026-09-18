@@ -3,9 +3,9 @@
   --bg-2: #0d141c;
   --panel: #111b25;
   --panel-2: #16222e;
-  --ink: #eaf2f8;
-  --muted: #8fa3b5;
-  --faint: #62778b;
+  --ink: #ffffff;
+  --muted: #94a3b8;
+  --faint: #64748b;
   --line: #1e2c3a;
   --line-2: #2a3b4c;
   --accent: #38bdf8;
@@ -345,9 +345,10 @@ main { flex: 1; display: flex; min-height: 0; }
   border-color: var(--line-2);
 }
 .chip.is-active {
-  background: #1e3a5f;
-  color: #38bdf8;
+  background: #0284c7;
+  color: #ffffff;
   border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
 }
 
 .btn-emergency {

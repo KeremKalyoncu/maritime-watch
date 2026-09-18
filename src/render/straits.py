@@ -1,5 +1,5 @@
-"""Evaluates and renders live Turkish Straits (Bosphorus & Dardanelles) transit status.
-Output: web/data/straits.json
+"""İstanbul ve Çanakkale boğazlarının canlı geçiş ve meteorolojik durumunu hesaplar.
+Çıktı: web/data/straits.json
 """
 
 from __future__ import annotations
@@ -34,7 +34,7 @@ def evaluate_strait(
     zone = STRAIT_ZONES[strait_id]
     name = zone["name"]
 
-    # 1. Check for official suspensions or severe low visibility/fog
+    # Resmi kapatma, askıya alma veya yoğun sis kontrolü
     is_suspended = False
     suspension_reason = None
 
@@ -51,7 +51,7 @@ def evaluate_strait(
                 suspension_reason = "Yoğun Sis (Görüş < 300m)"
                 break
 
-    # 2. Check AIS traffic in strait corridor
+    # Boğaz koridorundaki canlı AIS gemi trafiği
     in_transit_count = 0
     speeds: list[float] = []
 
@@ -70,7 +70,8 @@ def evaluate_strait(
                     in_transit_count += 1
                     speeds.append(sog)
 
-    avg_speed = round(sum(speeds) / len(speeds), 1) if speeds else 8.5
+    # Boğaz geçişindeki gemilerin ortalama hızı (gemi yoksa 0.0 kn)
+    avg_speed = round(sum(speeds) / len(speeds), 1) if speeds else 0.0
 
     if is_suspended:
         status = "suspended"
