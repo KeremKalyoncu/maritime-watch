@@ -1,19 +1,19 @@
 [
   {
     "id": "eq-afad-37.91-27.13-2026-09-18T18:09",
-    "headline": "Deprem M3.8 - Ege Denizi - Kuşadası Körfezi - [11.69 km] Kuşadası (Aydın)",
-    "area": "Ege Denizi - Kuşadası Körfezi - [11.69 km] Kuşadası (Aydın)",
+    "headline": "Deprem M3.8 - Batı Türkiye",
+    "area": "Batı Türkiye",
     "severity": "minor",
     "kind": "earthquake",
     "onset": null,
     "expires": null,
     "org": "AFAD",
     "url": "https://deprem.afad.gov.tr/",
-    "issued": "2026-09-18T18:09:40",
-    "last_update": "2026-09-18T19:59:56Z",
+    "issued": "2026-09-18T18:09:40.0Z",
+    "last_update": "2026-09-18T22:28:34Z",
     "raw": "",
-    "lat": 37.90517,
-    "lon": 27.13083,
+    "lat": 37.9052,
+    "lon": 27.1308,
     "value": 3.8,
     "sources": [
       {
@@ -43,7 +43,7 @@
     "org": "Kandilli Rasathanesi",
     "url": "http://www.koeri.boun.edu.tr/",
     "issued": "2026-09-18T21:09:39",
-    "last_update": "2026-09-18T19:59:47Z",
+    "last_update": "2026-09-18T22:28:34Z",
     "raw": "",
     "lat": 37.9038,
     "lon": 27.1295,
@@ -68,8 +68,8 @@
     "expires": null,
     "org": "SHOD Seyir Hidrografi",
     "url": "https://www.shodb.gov.tr/navtex_duyurulari",
-    "issued": "2026-09-18T19:57:30Z",
-    "last_update": "2026-09-18T19:57:30Z",
+    "issued": "2026-09-18T22:27:57Z",
+    "last_update": "2026-09-18T22:27:57Z",
     "raw": "<!DOCTYPE html>\r\n<html lang=\"tr\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n    <meta name=\"keywords\" content=\"msb, Seyir, Hidrografi Ve Oşinografi Dairesi Başkanlığı,Hata404\">\r\n    <meta name=\"PKCS10\" content=\"198af01bbedafb50f8d5df75d776fd3ab4648d7c8171c73028a0a63b3e19419e\">\r\n    <meta name=\"description\" content=\"Seyir, Hidrografi ve Oşinografi Dairesi Başkanlığı\">\r\n    <meta name=\"copyright\"",
     "lat": null,
     "lon": null,
@@ -86,7 +86,7 @@
   },
   {
     "id": "om-doğukaradeniz",
-    "headline": "Trabzon Arpt, TR, TR: hava: -TSRA",
+    "headline": "Trabzon Arpt, TR, TR: hava: TSRA",
     "area": "Trabzon Arpt, TR, TR",
     "severity": "major",
     "kind": "marine-weather",
@@ -94,8 +94,8 @@
     "expires": null,
     "org": "Open-Meteo",
     "url": "https://open-meteo.com/en/docs/marine-weather-api",
-    "issued": "2026-09-18T20:00:00.000Z",
-    "last_update": "2026-09-18T19:59:56Z",
+    "issued": "2026-09-18T22:20:00.000Z",
+    "last_update": "2026-09-18T22:28:34Z",
     "raw": "",
     "lat": 40.995,
     "lon": 39.782,
@@ -114,32 +114,6 @@
         "org": "aviationweather.gov",
         "url": "https://aviationweather.gov/",
         "ts": "2026-09-18T17:20:00.000Z"
-      }
-    ]
-  },
-  {
-    "id": "wx-mgma-26010464",
-    "headline": "Doğu Karadeniz'de Kuvvetli Yağışlara Dikkat!",
-    "area": "Karadeniz",
-    "severity": "major",
-    "kind": "marine-weather",
-    "onset": null,
-    "expires": null,
-    "org": "Meteoroloji Genel Müdürlüğü",
-    "url": "https://www.mgm.gov.tr/tahmin/uyari-goster.aspx?sN=26010464y",
-    "issued": "2026-09-18T19:57:26Z",
-    "last_update": "2026-09-18T19:57:30Z",
-    "raw": "{\"seriNo\": \"26010464\", \"baslangic\": \"2026-09-18T08:25:00.000Z\", \"baslik\": \"Doğu Karadeniz'de Kuvvetli Yağışlara Dikkat!\", \"hadiseCinsi\": \"Gökgürültülü Sağanak Yağış\", \"ihbarTipi\": 1}",
-    "lat": 41.876,
-    "lon": 29.643,
-    "value": null,
-    "sources": [
-      {
-        "kind": "marine-weather",
-        "detail": "Doğu Karadeniz'de Kuvvetli Yağışlara Dikkat!",
-        "org": "Meteoroloji Genel Müdürlüğü",
-        "url": "https://www.mgm.gov.tr/tahmin/uyari-goster.aspx?sN=26010464y",
-        "ts": "2026-09-18T11:47:43Z"
       }
     ]
   }
