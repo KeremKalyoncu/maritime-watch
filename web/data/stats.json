@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-19T18:53:00Z",
-  "total_incidents": 335,
+  "generated": "2026-09-19T21:08:07Z",
+  "total_incidents": 336,
   "by_month": {
-    "2026-09": 335
+    "2026-09": 336
   },
   "by_area": {
-    "belirsiz": 298,
+    "belirsiz": 299,
     "Marmara Denizi": 13,
     "Türk karasuları civarı": 8,
     "Antalya Körfezi": 5,
@@ -17,7 +17,7 @@
   },
   "by_type": {
     "distress": 117,
-    "drift": 76,
+    "drift": 77,
     "unknown": 57,
     "collision-risk": 44,
     "sinking": 29,
@@ -27,7 +27,7 @@
     "capsize": 1
   },
   "by_status": {
-    "signal": 291,
+    "signal": 292,
     "probable": 44
   },
   "incidents_with_casualties": 24,
@@ -38,11 +38,11 @@
       4
     ],
     [
-      "SIMI II",
-      3
+      "SEA SUN",
+      4
     ],
     [
-      "SEA SUN",
+      "SIMI II",
       3
     ],
     [
