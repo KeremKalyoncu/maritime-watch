@@ -1,0 +1,558 @@
+{
+  "schema_version": 1,
+  "generated": "2026-09-19T11:33:39Z",
+  "hours": 18,
+  "tz_offset_hours": 3.0,
+  "question": "today",
+  "classes": {
+    "small": {
+      "label": "küçük tekne (8 m ve altı)",
+      "limits": {
+        "label": "küçük tekne (8 m ve altı)",
+        "gust_kn": 22.0,
+        "wave_m": 1.25
+      },
+      "areas": [
+        {
+          "name": "İstanbul Boğazı",
+          "lat": 41.15,
+          "lon": 29.1,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "20:00",
+              "level": "watch",
+              "gust_kn": 20.4,
+              "wave_m": 0.06
+            },
+            {
+              "start": "20:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 12.6,
+              "wave_m": 0.12
+            }
+          ],
+          "max_gust": 20.4,
+          "max_wave": 0.12,
+          "first_danger_start": null,
+          "return_by": "14:00",
+          "worst": "watch"
+        },
+        {
+          "name": "Çanakkale Boğazı",
+          "lat": 40.15,
+          "lon": 26.4,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "19:00",
+              "level": "watch",
+              "gust_kn": 19.4,
+              "wave_m": 0.24
+            },
+            {
+              "start": "19:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 15.6,
+              "wave_m": 0.26
+            }
+          ],
+          "max_gust": 19.4,
+          "max_wave": 0.26,
+          "first_danger_start": null,
+          "return_by": "14:00",
+          "worst": "watch"
+        },
+        {
+          "name": "Saroz Körfezi",
+          "lat": 40.5,
+          "lon": 26.4,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "05:00",
+              "level": "ok",
+              "gust_kn": 15.7,
+              "wave_m": 0.36
+            },
+            {
+              "start": "05:00",
+              "end": "08:00",
+              "level": "watch",
+              "gust_kn": 19.0,
+              "wave_m": 0.36
+            }
+          ],
+          "max_gust": 19.0,
+          "max_wave": 0.36,
+          "first_danger_start": null,
+          "return_by": "05:00",
+          "worst": "watch"
+        },
+        {
+          "name": "Kuzey Ege",
+          "lat": 39.2,
+          "lon": 26.3,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "15:00",
+              "level": "ok",
+              "gust_kn": 16.3,
+              "wave_m": 0.12
+            },
+            {
+              "start": "15:00",
+              "end": "08:00",
+              "level": "watch",
+              "gust_kn": 18.5,
+              "wave_m": 0.2
+            }
+          ],
+          "max_gust": 18.5,
+          "max_wave": 0.22,
+          "first_danger_start": null,
+          "return_by": "15:00",
+          "worst": "watch"
+        },
+        {
+          "name": "Güney Ege",
+          "lat": 37.0,
+          "lon": 27.1,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 13.2,
+              "wave_m": 0.66
+            }
+          ],
+          "max_gust": 13.2,
+          "max_wave": 0.66,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Antalya Körfezi",
+          "lat": 36.55,
+          "lon": 30.6,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 13.8,
+              "wave_m": 0.4
+            }
+          ],
+          "max_gust": 13.8,
+          "max_wave": 0.4,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Mersin Körfezi",
+          "lat": 36.55,
+          "lon": 34.4,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "15:00",
+              "level": "ok",
+              "gust_kn": 13.2,
+              "wave_m": 0.32
+            },
+            {
+              "start": "15:00",
+              "end": "08:00",
+              "level": "watch",
+              "gust_kn": 19.2,
+              "wave_m": 0.3
+            }
+          ],
+          "max_gust": 19.2,
+          "max_wave": 0.36,
+          "first_danger_start": null,
+          "return_by": "15:00",
+          "worst": "watch"
+        },
+        {
+          "name": "İskenderun Körfezi",
+          "lat": 36.6,
+          "lon": 35.9,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "15:00",
+              "level": "watch",
+              "gust_kn": 17.9,
+              "wave_m": 0.48
+            },
+            {
+              "start": "15:00",
+              "end": "20:00",
+              "level": "danger",
+              "gust_kn": 26.2,
+              "wave_m": 0.58
+            },
+            {
+              "start": "20:00",
+              "end": "08:00",
+              "level": "watch",
+              "gust_kn": 21.6,
+              "wave_m": 0.54
+            }
+          ],
+          "max_gust": 26.2,
+          "max_wave": 0.58,
+          "first_danger_start": "15:00",
+          "return_by": "15:00",
+          "worst": "danger"
+        }
+      ]
+    },
+    "medium": {
+      "label": "orta boy tekne (8-15 m)",
+      "limits": {
+        "label": "orta boy tekne (8-15 m)",
+        "gust_kn": 28.0,
+        "wave_m": 2.0
+      },
+      "areas": [
+        {
+          "name": "İstanbul Boğazı",
+          "lat": 41.15,
+          "lon": 29.1,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 20.4,
+              "wave_m": 0.12
+            }
+          ],
+          "max_gust": 20.4,
+          "max_wave": 0.12,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Çanakkale Boğazı",
+          "lat": 40.15,
+          "lon": 26.4,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 19.4,
+              "wave_m": 0.26
+            }
+          ],
+          "max_gust": 19.4,
+          "max_wave": 0.26,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Saroz Körfezi",
+          "lat": 40.5,
+          "lon": 26.4,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 19.0,
+              "wave_m": 0.36
+            }
+          ],
+          "max_gust": 19.0,
+          "max_wave": 0.36,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Kuzey Ege",
+          "lat": 39.2,
+          "lon": 26.3,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 18.5,
+              "wave_m": 0.22
+            }
+          ],
+          "max_gust": 18.5,
+          "max_wave": 0.22,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Güney Ege",
+          "lat": 37.0,
+          "lon": 27.1,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 13.2,
+              "wave_m": 0.66
+            }
+          ],
+          "max_gust": 13.2,
+          "max_wave": 0.66,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Antalya Körfezi",
+          "lat": 36.55,
+          "lon": 30.6,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 13.8,
+              "wave_m": 0.4
+            }
+          ],
+          "max_gust": 13.8,
+          "max_wave": 0.4,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Mersin Körfezi",
+          "lat": 36.55,
+          "lon": 34.4,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 19.2,
+              "wave_m": 0.36
+            }
+          ],
+          "max_gust": 19.2,
+          "max_wave": 0.36,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "İskenderun Körfezi",
+          "lat": 36.6,
+          "lon": 35.9,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "15:00",
+              "level": "ok",
+              "gust_kn": 17.9,
+              "wave_m": 0.48
+            },
+            {
+              "start": "15:00",
+              "end": "08:00",
+              "level": "watch",
+              "gust_kn": 26.2,
+              "wave_m": 0.58
+            }
+          ],
+          "max_gust": 26.2,
+          "max_wave": 0.58,
+          "first_danger_start": null,
+          "return_by": "15:00",
+          "worst": "watch"
+        }
+      ]
+    },
+    "large": {
+      "label": "büyük tekne / gemi",
+      "limits": {
+        "label": "büyük tekne / gemi",
+        "gust_kn": 34.0,
+        "wave_m": 3.0
+      },
+      "areas": [
+        {
+          "name": "İstanbul Boğazı",
+          "lat": 41.15,
+          "lon": 29.1,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 20.4,
+              "wave_m": 0.12
+            }
+          ],
+          "max_gust": 20.4,
+          "max_wave": 0.12,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Çanakkale Boğazı",
+          "lat": 40.15,
+          "lon": 26.4,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 19.4,
+              "wave_m": 0.26
+            }
+          ],
+          "max_gust": 19.4,
+          "max_wave": 0.26,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Saroz Körfezi",
+          "lat": 40.5,
+          "lon": 26.4,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 19.0,
+              "wave_m": 0.36
+            }
+          ],
+          "max_gust": 19.0,
+          "max_wave": 0.36,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Kuzey Ege",
+          "lat": 39.2,
+          "lon": 26.3,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 18.5,
+              "wave_m": 0.22
+            }
+          ],
+          "max_gust": 18.5,
+          "max_wave": 0.22,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Güney Ege",
+          "lat": 37.0,
+          "lon": 27.1,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 13.2,
+              "wave_m": 0.66
+            }
+          ],
+          "max_gust": 13.2,
+          "max_wave": 0.66,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Antalya Körfezi",
+          "lat": 36.55,
+          "lon": 30.6,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 13.8,
+              "wave_m": 0.4
+            }
+          ],
+          "max_gust": 13.8,
+          "max_wave": 0.4,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Mersin Körfezi",
+          "lat": 36.55,
+          "lon": 34.4,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "08:00",
+              "level": "ok",
+              "gust_kn": 19.2,
+              "wave_m": 0.36
+            }
+          ],
+          "max_gust": 19.2,
+          "max_wave": 0.36,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "İskenderun Körfezi",
+          "lat": 36.6,
+          "lon": 35.9,
+          "windows": [
+            {
+              "start": "14:00",
+              "end": "17:00",
+              "level": "ok",
+              "gust_kn": 25.1,
+              "wave_m": 0.52
+            },
+            {
+              "start": "17:00",
+              "end": "08:00",
+              "level": "watch",
+              "gust_kn": 26.2,
+              "wave_m": 0.58
+            }
+          ],
+          "max_gust": 26.2,
+          "max_wave": 0.58,
+          "first_danger_start": null,
+          "return_by": "17:00",
+          "worst": "watch"
+        }
+      ]
+    }
+  }
+}
