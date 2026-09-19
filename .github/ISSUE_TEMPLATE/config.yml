@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security / güvenlik açığı
+    url: https://github.com/KeremKalyoncu/maritime-watch/security/advisories/new
+    about: Token sızıntısı, sahte yeşil tahmin, fixture publish — public issue açmayın.
+  - name: Live map
+    url: https://keremkalyoncu.github.io/maritime-watch
+    about: Üretim haritası (GitHub Pages).

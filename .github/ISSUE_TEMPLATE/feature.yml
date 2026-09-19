@@ -1,0 +1,44 @@
+name: Feature request
+description: Ürüne küçük, ölçülebilir bir iyileştirme öner
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tercihen **küçük tekne / balıkçı** kararını iyileştiren şeyler.
+        Yeni DB, React rewrite, SDR/voice dinleme, sürekli AIS daemon — kapsam dışı (bkz. CONTRIBUTING).
+  - type: textarea
+    id: problem
+    attributes:
+      label: Hangi sorunu çözüyor?
+      description: Kullanıcı kim, bugün ne eksik?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Öneri (1–2 cümle + gerekirse maddeler)
+    validations:
+      required: true
+  - type: dropdown
+    id: size
+    attributes:
+      label: Tahmini boyut
+      options:
+        - S — birkaç dosya, mevcut JSON/pipeline
+        - M — yeni kaynak veya yüzey, hâlâ Note 4 dostu
+        - L — bilmiyorum / büyük
+    validations:
+      required: true
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Kısıtlar (onay)
+      options:
+        - label: Note 4 / edge bot’a ek Open-Meteo veya ağır daemon önermiyorum
+          required: true
+        - label: Fixture/sample verinin canlı publish olmasını istemiyorum
+          required: true
+        - label: Özel telsiz/ses kaydı veya yeniden dağıtım yok
+          required: true

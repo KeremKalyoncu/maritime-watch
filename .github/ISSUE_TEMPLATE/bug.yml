@@ -1,0 +1,57 @@
+name: Bug report
+description: Bot, web haritası, cycle veya Note 4 ile ilgili bir hata
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Emniyet verisi yanlışsa (sahte yeşil, fixture sızıntısı, token) → **Security advisory**, public issue değil.
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Yüzey / Surface
+      options:
+        - Telegram bot
+        - Web haritası (Pages / yerel)
+        - GitHub Actions cycle / outlook.json
+        - Note 4 / Termux edge host
+        - Docs / diğer
+    validations:
+      required: true
+  - type: input
+    id: when
+    attributes:
+      label: Ne zaman? (yaklaşık)
+      description: Örn. cycle `generated` saati, `/balikci` komutu, tarayıcı tarihi
+      placeholder: "2026-09-19 ~14:00 UTC"
+  - type: textarea
+    id: what
+    attributes:
+      label: Ne oldu?
+      description: Beklenen vs gerçek. Mümkünse komut çıktısı veya ekran görüntüsü.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Nasıl tekrarlanır?
+      placeholder: |
+        1. /start
+        2. /balikci marmara
+        3. …
+  - type: input
+    id: env
+    attributes:
+      label: Ortam
+      description: Python sürümü, host (Note 4 / laptop / Actions), commit SHA varsa
+      placeholder: "Python 3.12 · Termux Note 4 · main @ abc1234"
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Kontrol
+      options:
+        - label: Bu bir secret / sahte emniyet verisi sızıntısı değil (onlar SECURITY.md yolunda)
+          required: true
+        - label: `main` veya güncel fork üzerinde denedim
+          required: false
