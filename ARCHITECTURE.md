@@ -32,6 +32,7 @@ flowchart TD
     PRUNE --> RENDER
     subgraph RENDER [render]
         MAP[web/ Leaflet map · region filter · TR/EN]
+        OUT[outlook.json · 3 boat classes · hour windows]
         FEED[feed.xml RSS]
         SUM[summary.json + stale flag]
         HEALTH[health.json · per-source status]
@@ -39,6 +40,8 @@ flowchart TD
     end
     PRUNE --> TG[Telegram digest<br/>SART sent instantly · operator health alert]
     PRUNE --> GEO[geo.py · regions.geojson<br/>point-in-polygon sea areas]
+    OUT --> MAP
+    OUT --> TG
 ```
 
 ## State that must survive a fresh checkout
@@ -106,10 +109,10 @@ src/
     classify.py        status / confidence / severity ; nearest_port
     prune.py           TTL expiry + auto-resolve + seed drop
   render/
-    feed.py mapdata.py health.py stats.py
+    feed.py mapdata.py health.py stats.py outlook.py
   alert/telegram.py    plain-Turkish messages, digest, sendLocation, operator alerts
   sdr/                 optional DSC / NAVTEX / Whisper (off by default)
-web/                   static map + stats page + regions.geojson
+web/                   static map + stats page + regions.geojson + outlook panel
 eval/                  labels.json + run_eval.py -> REPORT.md
 run.py                 orchestrator
 ```
