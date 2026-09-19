@@ -35,40 +35,68 @@ except (ImportError, ValueError):
 
 BASE = "https://api.telegram.org/bot{token}/{method}"
 
-HELP = """<b>Maritime Watch Türkiye</b> — Deniz Emniyeti & Kurtarma Botu
+HELP = """⚓ <b>Maritime Watch Türkiye</b>
+<i>Bugün çıkabilir miyim? — tekne boyuna göre.</i>
 
-Türkiye karasularında seyreden balıkçılar, denizciler ve kıyı sakinleri için canlı kaza, tehlike ve hava durumu bilgilendirmesi.
+<b>Denize çıkış</b>
+🎣 /balikci — Bugün saatlik pencere + limana dönüş
+🌊 /durum — Anlık hava (seçili bölgeler)
+🚢 /bogaz — İstanbul &amp; Çanakkale canlı durum
+🚨 /kazalar — Onaylı kaza / kurtarma
 
-<b>⚓ Seyir ve Güvenlik Komutları:</b>
-/neredeyim — Canlı konumunuza göre en yakın liman, mesafe ve hava
-/mayday — Telsiz Kanal 16 için acil imdat çağrısı metni üretir
-/bogaz — İstanbul ve Çanakkale Boğazları canlı transit/sis durumu
-/balikci [bölge] — Bugün denize çıkış saat penceresi (tekne sınıfına göre)
-/kazalar — Türkiye karasularında son onaylanan kaza ve kurtarmalar
-/durum — Takip ettiğiniz bölgeler için anlık hava bülteni
+<b>Seyir &amp; acil</b>
+📍 /neredeyim — En yakın liman (konum paylaş)
+🆘 /mayday — VHF 16 hazır imdat metni
 
-<b>⚙️ Kişisel Ayarlar & Abonelik:</b>
-/abone [bölge] — Sadece kendi bölgenizin kaza ve fırtınalarına abone olun
-/bolge — takip ettiğin denizleri seç
-/tekne — tekne boyunu seç (eşikler buna göre)
-/ayarlar — mevcut ayarların
-/dur — bildirimleri kapat
-/yardim — bu mesaj
+<b>Ayarlar</b>
+⚙️ /bolge · ⛵ /tekne · 📋 /ayarlar
+🔕 /dur — bildirimleri kapat
 
-<i>Model tahminidir, ölçüm değildir. Karar senindir; çıkmadan önce liman
-başkanlığından ve MGM'den teyit al.</i>
-<b>Acil durumda: 158 Sahil Güvenlik · 151 Kıyı Emniyeti · VHF 16</b>"""
+<i>Model tahminidir. Karar senindir · 158 · 151 · VHF 16</i>"""
 
-WELCOME = """⚓ <b>Hoş geldin.</b>
+WELCOME = """⚓ <b>Hoş geldin — Maritime Watch</b>
 
-Sana her sabah <b>06:00'da</b> takip ettiğin denizler için
-<b>bugün çıkabilir misin, saat kaça kadar</b> sorusunun cevabını göndereceğim.
+Her sabah <b>06:00</b>’da sana özel cevap:
+<b>«Bugün çıkabilir miyim, saat kaça kadar?»</b>
 
-Önce iki şey seçelim:
-1️⃣ /bolge — hangi denizleri takip ediyorsun
-2️⃣ /tekne — teknenin boyu (eşikler buna göre değişir)
+Alttaki menüden tek dokunuşla kullan; ya da önce ayarla:
+1️⃣ <b>Bölge</b> — hangi denizler
+2️⃣ <b>Tekne</b> — boy (eşikler buna göre)
 
-Seçmezsen varsayılan: <b>tüm bölgeler</b>, <b>8 m ve altı tekne</b>."""
+Seçmezsen: <b>tüm bölgeler</b>, <b>≤8 m tekne</b>."""
+
+# Persistent reply keyboard — one tap for skippers (no slash typing at sea)
+MAIN_KEYBOARD_ROWS = [
+    [("🎣 Bugün",), ("🌊 Durum",), ("🚢 Boğaz",)],
+    [("🚨 Kazalar",), ("📍 Neredeyim",), ("🆘 Mayday",)],
+    [("⚙️ Bölge",), ("⛵ Tekne",), ("📋 Ayarlar",)],
+]
+
+# Map reply-keyboard labels → command tokens (keys via _norm at lookup time)
+_KEYBOARD_CMD_BY_LABEL = {
+    "🎣 Bugün": "balikci",
+    "🌊 Durum": "durum",
+    "🚢 Boğaz": "bogaz",
+    "🚨 Kazalar": "kazalar",
+    "📍 Neredeyim": "neredeyim",
+    "🆘 Mayday": "mayday",
+    "⚙️ Bölge": "bolge",
+    "⛵ Tekne": "tekne",
+    "📋 Ayarlar": "ayarlar",
+}
+
+
+def _keyboard_command(text: str) -> str | None:
+    """Resolve a reply-keyboard tap (or plain synonym) to a command name."""
+    low = _norm(text).strip()
+    for label, cmd in _KEYBOARD_CMD_BY_LABEL.items():
+        if _norm(label) == low:
+            return cmd
+    synonyms = {
+        "bugun": "balikci", "bugün": "balikci",
+        "menu": "yardim", "menü": "yardim", "yardim": "yardim", "yardım": "yardim",
+    }
+    return synonyms.get(low)
 
 
 class Subscribers:
@@ -129,6 +157,27 @@ def _keyboard(rows: list[list[str]]) -> str:
         [{"text": t, "callback_data": d} for t, d in row] for row in rows]})
 
 
+def _reply_keyboard() -> str:
+    """Bottom menu — resize + persistent so it stays after restart."""
+    return json.dumps({
+        "keyboard": [[{"text": cell[0]} for cell in row] for row in MAIN_KEYBOARD_ROWS],
+        "resize_keyboard": True,
+        "is_persistent": True,
+        "input_field_placeholder": "Komut seç veya yaz…",
+    }, ensure_ascii=False)
+
+
+def _inline_home_menu() -> str:
+    """Quick actions under /yardim (works even if reply keyboard hidden)."""
+    return _keyboard([
+        [("🎣 Bugün", "menu:balikci"), ("🌊 Durum", "menu:durum")],
+        [("🚢 Boğaz", "menu:bogaz"), ("🚨 Kazalar", "menu:kazalar")],
+        [("📍 Neredeyim", "menu:neredeyim"), ("🆘 Mayday", "menu:mayday")],
+        [("⚙️ Bölge", "menu:bolge"), ("⛵ Tekne", "menu:tekne")],
+        [("📋 Ayarlar", "menu:ayarlar")],
+    ])
+
+
 def _bearing_deg(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     y = math.sin(math.radians(lon2 - lon1)) * math.cos(math.radians(lat2))
     x = (math.cos(math.radians(lat1)) * math.sin(math.radians(lat2))
@@ -150,22 +199,24 @@ class Bot:
         self._commands_registered = False
 
     def register_commands(self) -> bool:
-        """Register the official command menu with Telegram so typing '/' pops up the menu."""
+        """Register the official '/' command menu (short labels for mobile)."""
         if not self.token:
             return False
+        # Order = priority for fishermen; keep descriptions ≤ ~40 chars
         commands = [
-            {"command": "durum", "description": "🌊 Seçili bölgeler için anlık deniz hava bülteni"},
-            {"command": "neredeyim", "description": "📍 Canlı konum ile en yakın liman, mesafe ve hava"},
-            {"command": "bogaz", "description": "🚢 Boğazlar canlı gemi sayısı, sis ve hız durumu"},
-            {"command": "balikci", "description": "🎣 Sefer güvenlik analizi (Bugün denize çıkılır mı?)"},
-            {"command": "mayday", "description": "🆘 Telsiz VHF Kanal 16 hazır acil imdat metni"},
-            {"command": "kazalar", "description": "🚨 Son 24 saatteki onaylı kaza ve kurtarmalar"},
-            {"command": "bolge", "description": "⚙️ Takip etmek istediğin denizleri seç"},
-            {"command": "tekne", "description": "⛵ Tekne boyunu seç (Uyarı eşiklerini ayarla)"},
-            {"command": "ayarlar", "description": "📋 Mevcut kayıtlı ayarlarını ve aboneliğini gör"},
-            {"command": "yardim", "description": "ℹ️ Bot kullanım rehberi ve acil durum hatları"},
+            {"command": "balikci", "description": "🎣 Bugün çıkılır mı? Saatlik pencere"},
+            {"command": "durum", "description": "🌊 Anlık deniz havası"},
+            {"command": "bogaz", "description": "🚢 Boğazlar — gemi & sis"},
+            {"command": "kazalar", "description": "🚨 Onaylı kaza / kurtarma"},
+            {"command": "neredeyim", "description": "📍 En yakın liman (konum)"},
+            {"command": "mayday", "description": "🆘 VHF 16 imdat metni"},
+            {"command": "bolge", "description": "⚙️ Takip edilen denizler"},
+            {"command": "tekne", "description": "⛵ Tekne boyu / eşikler"},
+            {"command": "ayarlar", "description": "📋 Kayıtlı ayarların"},
+            {"command": "yardim", "description": "ℹ️ Menü ve kullanım"},
+            {"command": "dur", "description": "🔕 Bildirimleri kapat"},
         ]
-        res = self._api("setMyCommands", {"commands": json.dumps(commands)})
+        res = self._api("setMyCommands", {"commands": json.dumps(commands, ensure_ascii=False)})
         return res is not None
 
     # ---- transport -----------------------------------------------------------
@@ -565,13 +616,22 @@ class Bot:
         if not text:
             return
         low_text = _norm(text)
-        cmd = low_text.split()[0].lstrip("/").split("@")[0]
+        aliased = _keyboard_command(text)
+        if aliased:
+            cmd = aliased
+            text = "/" + aliased
+            low_text = aliased
+        else:
+            cmd = low_text.split()[0].lstrip("/").split("@")[0]
 
         if cmd in ("start", "basla"):
             s["active"] = True
-            self.send(chat, WELCOME, dry=dry)
-        elif cmd in ("yardim", "help", "yardım"):
-            self.send(chat, HELP, dry=dry)
+            self.send(chat, WELCOME, markup=_reply_keyboard(), dry=dry)
+            self.send(chat, "👇 Hızlı menü:", markup=_inline_home_menu(), dry=dry)
+        elif cmd in ("yardim", "help", "yardım", "menu", "menü"):
+            self.send(chat, HELP, markup=_inline_home_menu(), dry=dry)
+            # Re-attach bottom keyboard if user hid it
+            self.send(chat, "⌨️ Alt menü yenilendi.", markup=_reply_keyboard(), dry=dry)
         elif cmd in ("bolge", "bölge", "bolgeler"):
             self.send(chat, "🌊 <b>Hangi denizleri takip ediyorsun?</b>\nSeçtikçe değişir; "
                             "hiçbiri seçili değilse hepsini gönderirim.",
@@ -678,6 +738,29 @@ class Bot:
                 s["boat"] = k
                 note = self.classes[k].get("label", k)
             self.send(chat, self._settings_text(s), dry=dry)
+        elif data.startswith("menu:"):
+            action = data.split(":", 1)[1]
+            note = action
+            if action == "balikci":
+                self.send(chat, self._fisherman_text(None, s), dry=dry)
+            elif action == "durum":
+                self.send_outlook_now(chat, s, dry=dry)
+            elif action == "bogaz":
+                self.send(chat, self._straits_text(), dry=dry)
+            elif action == "kazalar":
+                self.send(chat, self._incidents_text(), dry=dry)
+            elif action == "neredeyim":
+                self.send(chat, "📍 Konumunu Telegram’dan paylaş veya yaz:\n<code>/neredeyim 40.98 28.85</code>", dry=dry)
+            elif action == "mayday":
+                self.send(chat, self._mayday_text(s), dry=dry)
+            elif action == "bolge":
+                self.send(chat, "🌊 <b>Hangi denizleri takip ediyorsun?</b>",
+                          self._area_markup(s.get("areas", [])), dry=dry)
+            elif action == "tekne":
+                self.send(chat, "⛵ <b>Tekne boyun?</b>",
+                          self._boat_markup(s.get("boat", "small")), dry=dry)
+            elif action == "ayarlar":
+                self.send(chat, self._settings_text(s), dry=dry)
         if not dry:
             self._api("answerCallbackQuery", {"callback_query_id": cb.get("id"), "text": note})
         self.subs.save()

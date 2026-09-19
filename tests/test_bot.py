@@ -351,3 +351,53 @@ def test_kazalar_accepts_top_level_array(bot):
     ], ensure_ascii=False), encoding="utf-8")
     bot.handle(_msg(42, "/kazalar"))
     assert "Bodrum" in sent[0]
+
+
+def test_reply_keyboard_maps_bugun_to_balikci():
+    from src.alert.bot import _keyboard_command, _reply_keyboard, _inline_home_menu
+    assert _keyboard_command("🎣 Bugün") == "balikci"
+    assert _keyboard_command("🌊 Durum") == "durum"
+    assert _keyboard_command("🚢 Boğaz") == "bogaz"
+    kb = json.loads(_reply_keyboard())
+    assert kb["resize_keyboard"] is True
+    assert any(btn["text"] == "🎣 Bugün" for row in kb["keyboard"] for btn in row)
+    inline = json.loads(_inline_home_menu())
+    assert any(b.get("callback_data") == "menu:balikci"
+               for row in inline["inline_keyboard"] for b in row)
+
+
+def test_start_attaches_menus(bot):
+    sent = []
+    markups = []
+
+    def capture(chat, text, markup=None, dry=True):
+        sent.append(text)
+        markups.append(markup)
+
+    bot.send = capture
+    bot.handle(_msg(99, "/start"))
+    assert any("Hoş geldin" in t for t in sent)
+    assert any(m and "keyboard" in m for m in markups if m)
+    assert any(m and "inline_keyboard" in m for m in markups if m)
+
+
+def test_keyboard_tap_runs_balikci(bot):
+    from pathlib import Path
+    sent = []
+    bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
+    data_dir = Path(bot.cfg["_root"]) / "web" / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    data_dir.joinpath("outlook.json").write_text(json.dumps({
+        "schema_version": 1, "classes": {
+            "small": {"label": "küçük", "limits": {}, "areas": [{
+                "name": "Marmara Denizi",
+                "windows": [{"start": "08:00", "end": "16:00", "level": "ok",
+                             "gust_kn": 10, "wave_m": 0.4}],
+                "return_by": None, "worst": "ok",
+            }]},
+            "medium": {"label": "m", "limits": {}, "areas": []},
+            "large": {"label": "l", "limits": {}, "areas": []},
+        },
+    }, ensure_ascii=False), encoding="utf-8")
+    bot.handle(_msg(42, "🎣 Bugün"))
+    assert sent and "Bugün" in sent[0]
