@@ -1,5 +1,5 @@
 # Maritime Watch — core runtime deps (stdlib does the rest)
-requests>=2.31
+requests>=2.34.2
 beautifulsoup4>=4.12
 websockets>=12.0
 PyYAML>=6.0
