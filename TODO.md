@@ -15,6 +15,7 @@
 - [x] Polygon sea areas (`regions.geojson`, point-in-polygon), no GIS dependency
 - [x] Prune: TTL expiry, official "resolved" phrase closes an incident, seed drop once live
 - [x] Go/No-Go hour windows cached as `web/data/outlook.json` (3 boat classes); web panel + `/balikci` + morning outlook aligned; harbour `return_by`; CPA MMSI hygiene; safety null-quality guard
+- [x] Honest-data integrity: `unknown` hours (null≠calm), outlook coverage, no fake `/neredeyim` 85, stale banner, MGM under Bugün, shared forecast fetch
 
 **Sources** (all `_safe`-wrapped)
 - [x] Open-Meteo marine+wind, AFAD+USGS+EMSC+Kandilli quakes, Sahil Güvenlik, news RSS ×10,
