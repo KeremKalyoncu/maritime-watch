@@ -43,6 +43,8 @@ def dead_network(monkeypatch):
         raise requests.RequestException("every source is down")
     monkeypatch.setattr(_net.requests, "get", boom)
     monkeypatch.setattr(_net, "SAMPLES_ALLOWED", False)   # production setting
+    monkeypatch.setattr(openmeteo.time, "sleep", lambda *_a, **_k: None)
+    openmeteo.reset_cache()
     _net.reset_status()
 
 

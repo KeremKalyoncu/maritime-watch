@@ -25,17 +25,38 @@ def test_openmeteo_parses_the_fixture_but_publishes_nothing_from_it(cfg):
     assert openmeteo.fetch_marine_warnings(cfg) == []
 
 
-def test_openmeteo_continues_when_one_point_fails(cfg, monkeypatch):
-    calls = []
-    def fake_series(url, params, sample, field):
-        calls.append(params.get("latitude"))
-        if len(calls) <= 2:
-            return [1.0], False
-        return [3.5], True  # wave >= om["wave_m"]
-    monkeypatch.setattr(openmeteo, "_series", fake_series)
-    ws = openmeteo.fetch_marine_warnings(cfg)
-    assert len(calls) > 2
-    assert len(ws) > 0
+def test_warnings_from_forecast_uses_thresholds(cfg):
+    pts = [{
+        "name": "Marmara Denizi", "lat": 40.75, "lon": 28.3,
+        "gusts": [40.0] * 5, "waves": [0.5] * 5,
+    }]
+    ws = openmeteo.warnings_from_forecast(cfg, pts)
+    assert len(ws) == 1 and "Marmara" in ws[0].headline
+
+
+def test_openmeteo_retries_then_keeps_later_points(cfg, monkeypatch):
+    """First wind call can fail; a later attempt still fills the area list."""
+    openmeteo.reset_cache()
+    calls = {"n": 0}
+
+    def fake_marine(url, params, sample):
+        return ["2026-09-19T12:00"], [0.4], 18.0, 0.2, True
+
+    def fake_wind(url, params, sample):
+        calls["n"] += 1
+        # Fail first attempt for the first config point only
+        if calls["n"] == 1:
+            return [], [], [], False
+        times = [f"2026-09-19T{12 + i:02d}:00" for i in range(4)]
+        return times, [12.0] * 4, [45.0] * 4, True
+
+    monkeypatch.setattr(openmeteo, "_hourly_marine", fake_marine)
+    monkeypatch.setattr(openmeteo, "_hourly_wind", fake_wind)
+    monkeypatch.setattr(openmeteo.time, "sleep", lambda *_a, **_k: None)
+    pts = openmeteo.fetch_forecast_points(cfg)
+    names = [p["name"] for p in pts]
+    assert "Marmara Denizi" in names
+    assert len(pts) == len(cfg["openmeteo"]["points"])
 
 
 def test_quakes_multi_provider_and_coastal(cfg):

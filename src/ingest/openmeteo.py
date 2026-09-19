@@ -3,6 +3,10 @@
 For each configured point we look at the next `hours_ahead` hours and raise a
 Warning if the significant wave height or the wind gust crosses the threshold.
 This is the reliable replacement for the MGM scrape.
+
+The cycle must pull forecast points **once**: a prior double-pull (warnings then
+outlook) rate-limited Open-Meteo and dropped Marmara / Karadeniz from
+``outlook.json``.
 """
 
 from __future__ import annotations
@@ -121,87 +125,118 @@ def _hourly_wind(url: str, params: dict, sample: str):
     return t_sliced, g_sliced, d_sliced, live
 
 
-def fetch_forecast_points(cfg: dict, wanted_areas: set[str] | list[str] | None = None) -> list[dict]:
-    """Hourly gust + wave for configured sea areas, cached in memory for 15 minutes.
+def _fetch_one_point(pt: dict, *, attempts: int = 3) -> dict | None:
+    """One sea area: wind required, marine optional. Retries on transient fail."""
+    name = pt["name"]
+    base = {"latitude": pt["lat"], "longitude": pt["lon"], "forecast_days": 3}
+    wind_key = f"openmeteo_wind:{name}"
+    marine_key = f"openmeteo_marine:{name}"
 
-    If wanted_areas is given, only queries and resolves those areas to save bandwidth and latency.
-    """
-    now = time.time()
-    out = []
-    points = cfg.get("openmeteo", {}).get("points", [])
-    if wanted_areas:
-        wanted_set = set(wanted_areas)
-        points = [p for p in points if p["name"] in wanted_set]
-
-    for pt in points:
-        name = pt["name"]
-        cached = _FORECAST_CACHE.get(name)
-        if cached:
-            ts, item = cached
-            if (now - ts) < CACHE_TTL_SEC:
-                out.append(item)
-                continue
-
-        base = {"latitude": pt["lat"], "longitude": pt["lon"], "forecast_days": 3}
+    for attempt in range(attempts):
         wt, waves, sea_temp, current_kn, lw = _hourly_marine(
             MARINE,
             {**base, "hourly": "wave_height,sea_surface_temperature,ocean_current_velocity"},
-            "openmeteo_marine.json",
+            marine_key,
         )
         gt, gusts, wind_dirs, lg = _hourly_wind(
             WIND,
             {**base, "hourly": "wind_gusts_10m,wind_direction_10m", "wind_speed_unit": "kn"},
-            "openmeteo_wind.json",
+            wind_key,
         )
-        # Wind is required for go/no-go; marine may fail — keep null-aligned waves
-        if not lg or not gt or not any(g is not None for g in gusts):
+        if lg and gt and any(g is not None for g in gusts):
+            if not (lw and wt):
+                waves = [None] * len(gt)
+            elif len(waves) < len(gt):
+                waves = list(waves) + [None] * (len(gt) - len(waves))
+            return {
+                "name": name,
+                "lat": pt["lat"],
+                "lon": pt["lon"],
+                "times": gt,
+                "gusts": gusts,
+                "waves": waves,
+                "wind_dirs": wind_dirs,
+                "sea_temp_c": sea_temp if lw else None,
+                "current_kn": current_kn if lw else None,
+            }
+        if attempt + 1 < attempts:
+            time.sleep(0.35 * (attempt + 1))
+    return None
+
+
+def fetch_forecast_points(cfg: dict, wanted_areas: set[str] | list[str] | None = None) -> list[dict]:
+    """Hourly gust + wave for configured sea areas, cached in memory for 15 minutes.
+
+    If wanted_areas is given, only queries those areas. Retries failed points and
+    runs a second pass so Open-Meteo rate-limits do not drop Marmara / Karadeniz.
+    """
+    now = time.time()
+    out: list[dict] = []
+    points = list(cfg.get("openmeteo", {}).get("points", []))
+    if wanted_areas:
+        wanted_set = set(wanted_areas)
+        points = [p for p in points if p["name"] in wanted_set]
+
+    def _cached(name: str) -> dict | None:
+        cached = _FORECAST_CACHE.get(name)
+        if cached:
+            ts, item = cached
+            if (now - ts) < CACHE_TTL_SEC:
+                return item
+        return None
+
+    missing: list[dict] = []
+    for i, pt in enumerate(points):
+        name = pt["name"]
+        hit = _cached(name)
+        if hit:
+            out.append(hit)
             continue
-        if not (lw and wt):
-            waves = [None] * len(gt)
-        elif len(waves) < len(gt):
-            waves = list(waves) + [None] * (len(gt) - len(waves))
-        item = {
-            "name": pt["name"],
-            "lat": pt["lat"],
-            "lon": pt["lon"],
-            "times": gt,
-            "gusts": gusts,
-            "waves": waves,
-            "wind_dirs": wind_dirs,
-            "sea_temp_c": sea_temp if lw else None,
-            "current_kn": current_kn if lw else None,
-        }
-        _FORECAST_CACHE[name] = (now, item)
-        out.append(item)
+        item = _fetch_one_point(pt)
+        if item:
+            _FORECAST_CACHE[name] = (time.time(), item)
+            out.append(item)
+        else:
+            missing.append(pt)
+        if i + 1 < len(points) and not hit:
+            time.sleep(0.15)
 
-    return out
+    if missing:
+        time.sleep(0.5)
+        still: list[str] = []
+        for pt in missing:
+            name = pt["name"]
+            hit = _cached(name)
+            if hit:
+                out.append(hit)
+                continue
+            item = _fetch_one_point(pt, attempts=2)
+            if item:
+                _FORECAST_CACHE[name] = (time.time(), item)
+                out.append(item)
+            else:
+                still.append(name)
+        if still:
+            print(f"[openmeteo] still missing after retry: {', '.join(still)}")
+
+    by_name = {p["name"]: p for p in out}
+    return [by_name[p["name"]] for p in points if p["name"] in by_name]
 
 
-def fetch_marine_warnings(cfg: dict) -> list[Warning]:
+def warnings_from_forecast(cfg: dict, points: list[dict]) -> list[Warning]:
+    """Threshold warnings from an already-fetched forecast (no extra HTTP)."""
     om = cfg["openmeteo"]
     hours = int(om["hours_ahead"])
     out: list[Warning] = []
-
-    for pt in om["points"]:
-        name, lat, lon = pt["name"], pt["lat"], pt["lon"]
-        waves, live1 = _series(MARINE, {
-            "latitude": lat, "longitude": lon,
-            "hourly": "wave_height", "forecast_days": 3,
-        }, "openmeteo_marine.json", "wave_height")
-        gusts, live2 = _series(WIND, {
-            "latitude": lat, "longitude": lon,
-            "hourly": "wind_gusts_10m", "wind_speed_unit": "kn", "forecast_days": 3,
-        }, "openmeteo_wind.json", "wind_gusts_10m")
-
-        # fixture numbers must never become a published forecast: this exact bug
-        # put "dalga 2.7 m, ruzgar 41 kn" (the sample file's values) on the live
-        # channel as a real warning for two different sea areas
-        if not (live1 and live2):
+    for p in points:
+        name = p.get("name") or ""
+        lat, lon = p.get("lat"), p.get("lon")
+        gusts = [g for g in (p.get("gusts") or [])[:hours] if isinstance(g, (int, float))]
+        waves = [w for w in (p.get("waves") or [])[:hours] if isinstance(w, (int, float))]
+        if not gusts and not waves:
             continue
-
-        max_wave = max(waves[:hours]) if waves else 0.0
-        max_gust = max(gusts[:hours]) if gusts else 0.0
-
+        max_wave = max(waves) if waves else 0.0
+        max_gust = max(gusts) if gusts else 0.0
         if max_wave >= om["wave_m"] or max_gust >= om["wind_gust_kn"]:
             bits = []
             if max_wave:
@@ -221,5 +256,9 @@ def fetch_marine_warnings(cfg: dict) -> list[Warning]:
                 value=round(max_wave, 1) or None,
                 lat=lat, lon=lon,
             ))
-
     return out
+
+
+def fetch_marine_warnings(cfg: dict) -> list[Warning]:
+    """Open-Meteo gale-ish warnings via the shared forecast pull (no second HTTP storm)."""
+    return warnings_from_forecast(cfg, fetch_forecast_points(cfg))

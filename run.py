@@ -45,7 +45,11 @@ from src.ingest.metar import fetch_metar
 from src.ingest.navwarn import fetch_navwarnings
 from src.ingest.news import fetch_news
 from src.ingest.official import gather_official
-from src.ingest.openmeteo import fetch_forecast_points, fetch_marine_warnings
+from src.ingest.openmeteo import (  # noqa: F401 — fetch_marine_warnings: tests / back-compat
+    fetch_forecast_points,
+    fetch_marine_warnings,
+    warnings_from_forecast,
+)
 from src.ingest.openmeteo import reset_cache as reset_openmeteo_cache
 from src.ingest.quakes import fetch_quakes
 from src.ingest.reliefweb import fetch_reliefweb
@@ -202,6 +206,7 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
 
     wx_seen: set[str] = set()
     extra_warns_ran = False
+    forecast_pts: list | None = None
 
     def push_warning(w):
         cur, how = store.upsert_warning(w)
@@ -230,8 +235,11 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
                 touched.add(store.upsert_incident(c).id)
 
         extra_warns = []
+        # One Open-Meteo pull for the whole cycle (warnings + outlook + weather grid)
         if src.get("openmeteo", True):
-            extra_warns += _safe("openmeteo", lambda: fetch_marine_warnings(cfg), [])
+            forecast_pts = _safe("openmeteo", lambda: fetch_forecast_points(cfg), []) or []
+            extra_warns += warnings_from_forecast(cfg, forecast_pts)
+            print(f"[openmeteo] forecast points={len(forecast_pts)}")
         if src.get("quakes", True):
             extra_warns += _safe("quakes", lambda: fetch_quakes(cfg), [])
         if src.get("navwarn", True):
@@ -268,12 +276,13 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         if n:
             print(f"[bot] {n} guncelleme islendi")
 
-    # One forecast fetch shared by outlook + weather grid (avoids partial / double pull)
-    forecast_pts = None
-    try:
-        forecast_pts = fetch_forecast_points(cfg)
-    except Exception as e:
-        print(f"[forecast] fetch error: {e}")
+    # Reuse cycle forecast when available (second pull only if scrape skipped openmeteo)
+    if forecast_pts is None:
+        try:
+            forecast_pts = fetch_forecast_points(cfg)
+        except Exception as e:
+            print(f"[forecast] fetch error: {e}")
+            forecast_pts = None
 
     try:
         render_outlook(cfg, web_data / "outlook.json", points=forecast_pts)
@@ -315,7 +324,6 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
             enrich_weather_context(inc, grid_payload.get("points", []))
     except Exception as e:
         print(f"[weather_grid] render error: {e}")
-
     # Render Turkish Straits live transit status
     try:
         vessels_file = root / "data" / "vessels.json"

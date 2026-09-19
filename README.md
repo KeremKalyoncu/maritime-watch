@@ -374,7 +374,7 @@ python run.py --loop --send
 ### 📱 Eski Telefonu 1.2W Linux Edge Server'a Dönüştürme (Termux)
 
 Bu proje için pahalı bir bulut sunucusu kiralamak yerine, 2014 model bir **Samsung Galaxy Note 4** (Exynos 5433 / 3GB RAM) tam teşekküllü bir Linux sunucuya dönüştürülmüştür:
-1. **Termux & Python Ortamı:** F-Droid üzerinden Termux + OpenSSH (`sshd`), **Python 3.11+** (CI ile aynı hat), git ve tmux. Eski Termux kurulumlarında `python --version` 3.8 kalmış olabilir — `pkg upgrade python` ile yükseltin; aksi halde yeni bağımlılık tabanları (ör. modern `websockets`) kurulamayabilir.
+1. **Termux & Python Ortamı:** F-Droid Termux + OpenSSH (`sshd`), git, tmux. **Önemli:** Galaxy Note 4 / Android 5 dönemindeki Termux depoları (`termux-main-21`) çoğu zaman **Python 3.8**’de kilitli kalır — `pkg` ile 3.11 gelmez. Edge bot bu yüzden 3.8 ile çalışmaya devam edebilir; CI ve laptop için hedef **Python 3.11+**. Yeni `websockets` major’ları (17+) edge’de kurulmamalı. Daha yeni bir telefona geçince `pkg upgrade python` ile 3.11+ alın.
 2. **Uykuda Kesintisiz Çalışma:** `termux-wake-lock` ve pil optimizasyon muafiyeti ile telefon ekranı tamamen kapalıyken CPU derin uykudan korunur.
 3. **Long Polling Optimizasyonu:** Telegram botu 1.5 saniyelik agresif HTTP yoklaması yerine **20 saniyelik HTTP Keep-Alive Long Polling** mimarisine geçirildi. Bu sayede saatlik 2.400 TLS bağlantısı ~140'a indirilerek telefonun pil tüketimi -118 mA'dan **-45 mA seviyesine (%62 tasarruf)** çekildi. Masada prizden çektiği toplam güç sadece **1.2 Watt**'tır (2026 EPDK tarifesiyle ayda ~3.5 TL).
 4. **Otomatik Başlangıç:** `~/.bashrc` içerisine eklenen tmux servis denetleyicisi ile telefon yeniden başlasa bile bot arka planda ayağa kalkar.
@@ -382,9 +382,9 @@ Bu proje için pahalı bir bulut sunucusu kiralamak yerine, 2014 model bir **Sam
 **Edge host operasyon (özet):** Ağır hava/AIS cycle **GitHub Actions**’ta kalır; telefonda bot çoğunlukla `web/data/*.json` okur (komut başına Open-Meteo yok). Kod güncellemesi:
 
 ```bash
-cd ~/maritime-watch
-git fetch origin && git reset --hard origin/main   # force-push sonrası gerekebilir
-# tek bot süreci — getUpdates conflict olmasın
+bash ~/maritime-watch/scripts/note4_sync.sh
+# veya elle:
+cd ~/maritime-watch && git fetch origin && git reset --hard origin/main
 pkill -f "python run.py --bot" 2>/dev/null; tmux kill-session -t bot 2>/dev/null
 tmux new-session -d -s bot -c ~/maritime-watch "python run.py --bot --send"
 ```

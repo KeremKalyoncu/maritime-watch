@@ -114,7 +114,9 @@ def test_a_dead_source_never_becomes_an_outlook(cfg, monkeypatch, field):
     import requests
 
     from src.ingest import _net, openmeteo
+    openmeteo.reset_cache()
     monkeypatch.setattr(_net, "SAMPLES_ALLOWED", False)
+    monkeypatch.setattr(openmeteo.time, "sleep", lambda *_a, **_k: None)
     monkeypatch.setattr(_net.requests, "get",
                         lambda *a, **k: (_ for _ in ()).throw(requests.RequestException("down")))
     assert openmeteo.fetch_forecast_points(cfg) == []
