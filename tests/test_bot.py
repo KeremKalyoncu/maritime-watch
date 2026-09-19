@@ -2,6 +2,7 @@
 sea areas they do not care about."""
 
 import json
+from datetime import UTC
 
 import pytest
 
@@ -356,7 +357,7 @@ def test_kazalar_accepts_top_level_array(bot):
 
 
 def test_reply_keyboard_maps_bugun_to_balikci():
-    from src.alert.bot import _keyboard_command, _reply_keyboard, _inline_home_menu
+    from src.alert.bot import _inline_home_menu, _keyboard_command, _reply_keyboard
     assert _keyboard_command("🎣 Bugün") == "balikci"
     assert _keyboard_command("🌊 Durum") == "durum"
     assert _keyboard_command("🚢 Boğaz") == "bogaz"
@@ -415,13 +416,13 @@ def test_neredeyim_never_invents_eighty_five(bot):
 
 
 def test_balikci_shows_stale_and_official_warning(bot):
+    from datetime import datetime, timedelta
     from pathlib import Path
-    from datetime import datetime, timezone, timedelta
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
     data_dir = Path(bot.cfg["_root"]) / "web" / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
-    old = (datetime.now(timezone.utc) - timedelta(hours=5)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    old = (datetime.now(UTC) - timedelta(hours=5)).strftime("%Y-%m-%dT%H:%M:%SZ")
     data_dir.joinpath("outlook.json").write_text(json.dumps({
         "schema_version": 1,
         "generated": old,
