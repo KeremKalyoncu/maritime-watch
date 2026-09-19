@@ -29,7 +29,7 @@ Dürüst seviye + partial coverage + sahte skor öldürme + stale + MGM Bugün s
 ### C — Test / ship
 - [x] unit tests  
 - [x] pytest yeşil  
-- [ ] 2 commit · push · Note 4 pull+restart  
+- [x] 2 commit · push · Note 4 pull+restart  
 
 ### Bilerek sonra
 - AIS hayalet prune, eval corpus büyütme
