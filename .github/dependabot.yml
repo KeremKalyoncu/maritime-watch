@@ -1,0 +1,21 @@
+# Dependabot — free for public repos. Keep Actions + Python deps from rotting.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels: [dependencies, ci]
+
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels: [dependencies]
+    # Only touch lock-ish top files; no private index
+    allow:
+      - dependency-type: direct

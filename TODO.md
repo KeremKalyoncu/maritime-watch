@@ -48,6 +48,7 @@
 **Quality**
 - [x] Tests (offline) + eval harness (`eval/run_eval.py` → `REPORT.md`)
 - [x] CI: ruff + pytest matrix (3.11/3.12/3.13) + eval, free GitHub Actions/Pages deploy
+- [x] CI harden: publish artifact gate, `ci` required check, CodeQL, Dependabot, secret scanning
 - [x] `ARCHITECTURE.md`, README, NOTICE, CONTRIBUTING
 
 ## Your part
