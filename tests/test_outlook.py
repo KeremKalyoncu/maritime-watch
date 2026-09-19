@@ -54,6 +54,26 @@ def test_a_calm_day_produces_one_green_window():
     assert return_by(o) is None
 
 
+def test_missing_measurements_are_never_treated_as_calm():
+    from src.process.window import UNKNOWN, window_to_dict
+    assert level_for(None, None, SMALL) == UNKNOWN
+    assert level_for(10, None, SMALL) == OK
+    assert level_for(None, 0.3, SMALL) == OK
+    assert level_for(None, 1.5, SMALL) == DANGER
+    o = build("Bos", _times(4), [None] * 4, [None] * 4, SMALL, hours=4, tz_offset_h=0)
+    assert o.windows and all(w.level == UNKNOWN for w in o.windows)
+    d = window_to_dict(o.windows[0])
+    assert d["gust_kn"] is None and d["wave_m"] is None
+    assert d["level"] == UNKNOWN
+
+
+def test_wind_only_hours_do_not_invent_zero_wave():
+    o = build("Ege", _times(4), [8, 8, 8, 8], [], SMALL, hours=4, tz_offset_h=0)
+    assert o.windows
+    assert o.worst == OK
+    assert all(w.wave_m is None for w in o.windows)
+
+
 def test_return_by_prefers_danger_then_watch():
     from src.process.window import WATCH, return_by
 

@@ -16,20 +16,29 @@ import calendar
 import time
 from dataclasses import dataclass, field
 
-OK, WATCH, DANGER = "ok", "watch", "danger"
-_RANK = {OK: 0, WATCH: 1, DANGER: 2}
+OK, WATCH, DANGER, UNKNOWN = "ok", "watch", "danger", "unknown"
+# unknown ranks with watch: never report a day as "all clear" if hours lack data
+_RANK = {OK: 0, UNKNOWN: 1, WATCH: 1, DANGER: 2}
 
 # fraction of the limit at which conditions stop being comfortable
 WATCH_AT = 0.75
+
+
+def _max_opt(a: float | None, b: float | None) -> float | None:
+    if a is None:
+        return b
+    if b is None:
+        return a
+    return max(a, b)
 
 
 @dataclass
 class Window:
     start: str                  # "HH:MM"
     end: str                    # "HH:MM" (exclusive)
-    level: str                  # ok | watch | danger
-    gust_kn: float = 0.0
-    wave_m: float = 0.0
+    level: str                  # ok | watch | danger | unknown
+    gust_kn: float | None = None
+    wave_m: float | None = None
 
     @property
     def hours(self) -> int:
@@ -76,8 +85,8 @@ def window_to_dict(w: Window) -> dict:
         "start": w.start,
         "end": w.end,
         "level": w.level,
-        "gust_kn": round(float(w.gust_kn), 1),
-        "wave_m": round(float(w.wave_m), 2),
+        "gust_kn": None if w.gust_kn is None else round(float(w.gust_kn), 1),
+        "wave_m": None if w.wave_m is None else round(float(w.wave_m), 2),
     }
 
 
@@ -113,12 +122,27 @@ def _local_hhmm(iso: str, tz_offset_h: float) -> str:
 
 
 def level_for(gust: float | None, wave: float | None, limits: dict) -> str:
+    """Classify one hour. Missing measurements are never treated as calm (0)."""
     g_lim = float(limits.get("gust_kn", 34))
     w_lim = float(limits.get("wave_m", 2.0))
-    g, w = gust or 0.0, wave or 0.0
-    if g >= g_lim or w >= w_lim:
+    if gust is None and wave is None:
+        return UNKNOWN
+
+    danger = False
+    watch = False
+    if gust is not None:
+        if gust >= g_lim:
+            danger = True
+        elif gust >= g_lim * WATCH_AT:
+            watch = True
+    if wave is not None:
+        if wave >= w_lim:
+            danger = True
+        elif wave >= w_lim * WATCH_AT:
+            watch = True
+    if danger:
         return DANGER
-    if g >= g_lim * WATCH_AT or w >= w_lim * WATCH_AT:
+    if watch:
         return WATCH
     return OK
 
@@ -128,25 +152,30 @@ def build(name: str, times: list, gusts: list, waves: list, limits: dict,
           lat: float | None = None, lon: float | None = None) -> AreaOutlook:
     """Collapse consecutive hours that share a level into one window."""
     out = AreaOutlook(name=name, lat=lat, lon=lon)
-    n = min(hours, len(times), len(gusts) or hours, len(waves) or hours)
-    if n <= 0:
+    if not times:
         return out
+    usable = max(len(gusts), len(waves))
+    if usable <= 0:
+        return out
+    n = min(hours, len(times), usable)
 
     cur: Window | None = None
     for i in range(n):
         g = gusts[i] if i < len(gusts) else None
         w = waves[i] if i < len(waves) else None
         lv = level_for(g, w, limits)
-        out.max_gust = max(out.max_gust, g or 0.0)
-        out.max_wave = max(out.max_wave, w or 0.0)
+        if g is not None:
+            out.max_gust = max(out.max_gust, float(g))
+        if w is not None:
+            out.max_wave = max(out.max_wave, float(w))
         start = _local_hhmm(times[i], tz_offset_h)
         end = _local_hhmm(times[i + 1], tz_offset_h) if i + 1 < len(times) else "24:00"
         if cur and cur.level == lv:
             cur.end = end
-            cur.gust_kn = max(cur.gust_kn, g or 0.0)
-            cur.wave_m = max(cur.wave_m, w or 0.0)
+            cur.gust_kn = _max_opt(cur.gust_kn, g)
+            cur.wave_m = _max_opt(cur.wave_m, w)
         else:
-            cur = Window(start=start, end=end, level=lv, gust_kn=g or 0.0, wave_m=w or 0.0)
+            cur = Window(start=start, end=end, level=lv, gust_kn=g, wave_m=w)
             out.windows.append(cur)
 
     # an hour of calm between two blows is noise, not a window anyone can use
@@ -165,8 +194,8 @@ def _merge_slivers(ws: list[Window], min_hours: int = 2) -> list[Window]:
             continue
         if w.level == prev.level:
             prev.end = w.end
-            prev.gust_kn = max(prev.gust_kn, w.gust_kn)
-            prev.wave_m = max(prev.wave_m, w.wave_m)
+            prev.gust_kn = _max_opt(prev.gust_kn, w.gust_kn)
+            prev.wave_m = _max_opt(prev.wave_m, w.wave_m)
             continue
         kept.append(w)
     return kept

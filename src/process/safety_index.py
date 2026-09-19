@@ -158,15 +158,27 @@ def evaluate_all_areas(
     for pt in points:
         name = pt.get("name", "Bilinmeyen Bölge")
         wave = pt.get("wave_m")
-        wind = float(pt.get("wind_kn") or 0.0)
-        gust = float(pt.get("gust_kn") or wind)
+        wind_raw = pt.get("wind_kn")
+        gust_raw = pt.get("gust_kn")
+        # Missing forecast must not become wind=0 → green score
+        if pt.get("data_quality") == "unknown" or (
+            wind_raw is None and gust_raw is None and wave is None
+        ):
+            wind = 0.0
+            gust = 0.0
+            force_unknown = True
+        else:
+            wind = float(wind_raw) if wind_raw is not None else 0.0
+            gust = float(gust_raw) if gust_raw is not None else wind
+            force_unknown = False
         has_warn = (name in storm_areas) or any(s in name for s in storm_areas)
-        sea_temp = pt.get("sea_temp_c")
-        current_kn = pt.get("current_kn")
+        sea_temp = None if force_unknown else pt.get("sea_temp_c")
+        current_kn = None if force_unknown else pt.get("current_kn")
+        wave_use = None if force_unknown else wave
 
         rating = calculate_safety_rating(
             area=name,
-            wave_m=wave,
+            wave_m=wave_use,
             wind_kn=wind,
             gust_kn=gust,
             has_storm_warning=has_warn,

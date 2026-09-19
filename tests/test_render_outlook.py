@@ -60,3 +60,14 @@ def test_render_outlook_large_class_calmer_than_small(cfg, tmp_path):
     marmara_large = next(a for a in payload["classes"]["large"]["areas"] if a["name"] == "Marmara Denizi")
     assert marmara_small["worst"] == "danger"
     assert marmara_large["worst"] in ("ok", "watch")
+
+
+def test_render_outlook_reports_coverage_missing(cfg, tmp_path):
+    cfg = dict(cfg)
+    cfg["outlook"] = dict(cfg.get("outlook") or {})
+    payload = render_outlook(cfg, tmp_path / "c.json", points=_pts())
+    cov = payload["coverage"]
+    assert cov["present"] == 2
+    assert cov["expected"] >= 2
+    assert "Marmara Denizi" not in cov["missing"]
+    assert cov["missing"] or cov["expected"] == cov["present"]

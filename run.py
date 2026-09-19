@@ -267,9 +267,16 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         n = _safe("bot", lambda: Bot(cfg, notifier=notifier).poll(dry=dry), 0)
         if n:
             print(f"[bot] {n} guncelleme islendi")
-    # Outlook cache before morning send / bot commands in this cycle
+
+    # One forecast fetch shared by outlook + weather grid (avoids partial / double pull)
+    forecast_pts = None
     try:
-        render_outlook(cfg, web_data / "outlook.json")
+        forecast_pts = fetch_forecast_points(cfg)
+    except Exception as e:
+        print(f"[forecast] fetch error: {e}")
+
+    try:
+        render_outlook(cfg, web_data / "outlook.json", points=forecast_pts)
     except Exception as e:
         print(f"[outlook:error] render error: {e}")
     try:
@@ -302,7 +309,8 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     # Render marine weather vector grid & correlate incidents
     grid_payload = None
     try:
-        grid_payload = render_weather_grid(cfg, web_data / "weather_overlay.json")
+        grid_payload = render_weather_grid(
+            cfg, web_data / "weather_overlay.json", points=forecast_pts)
         for inc in store.active_incidents():
             enrich_weather_context(inc, grid_payload.get("points", []))
     except Exception as e:

@@ -47,7 +47,7 @@ def _series(url: str, params: dict, sample: str, field: str):
 
 def _hourly(url: str, params: dict, sample: str, field: str):
     """Like _series but keeps the timestamps: the daily outlook needs to say
-    *when*, not just how much."""
+    *when*, not just how much. Null API cells stay None (never coerced to 0)."""
     q = "&".join(f"{k}={v}" for k, v in params.items())
     data, live = get_json(f"{url}?{q}", sample)
     if not data:
@@ -58,7 +58,8 @@ def _hourly(url: str, params: dict, sample: str, field: str):
         return [], [], live
     cutoff = time.strftime("%Y-%m-%dT%H:00", time.gmtime())
     start = next((i for i, t in enumerate(times) if str(t) >= cutoff), 0)
-    return times[start:], vals[start:], live
+    cleaned = [float(v) if isinstance(v, (int, float)) else None for v in vals[start:]]
+    return times[start:], cleaned, live
 
 
 def _hourly_marine(url: str, params: dict, sample: str):
@@ -74,7 +75,14 @@ def _hourly_marine(url: str, params: dict, sample: str):
     cur = hourly.get("ocean_current_velocity") or []
     cutoff = time.strftime("%Y-%m-%dT%H:00", time.gmtime())
     start = next((i for i, t in enumerate(times) if str(t) >= cutoff), 0)
-    w_sliced = [v for v in waves[start:] if isinstance(v, (int, float))]
+    t_sliced = times[start:]
+    # Keep index alignment with times — drop-filter would invent calm hours
+    w_sliced = [
+        float(v) if isinstance(v, (int, float)) else None
+        for v in waves[start:start + len(t_sliced)]
+    ]
+    while len(w_sliced) < len(t_sliced):
+        w_sliced.append(None)
     s_val = (
         round(float(sst[start]), 1)
         if (start < len(sst) and sst[start] is not None and isinstance(sst[start], (int, float)))
@@ -85,12 +93,37 @@ def _hourly_marine(url: str, params: dict, sample: str):
         if (start < len(cur) and cur[start] is not None and isinstance(cur[start], (int, float)))
         else None
     )
-    return times[start:], w_sliced, s_val, c_val, live
+    return t_sliced, w_sliced, s_val, c_val, live
+
+
+def _hourly_wind(url: str, params: dict, sample: str):
+    """Gusts + direction in one request; null cells stay None."""
+    q = "&".join(f"{k}={v}" for k, v in params.items())
+    data, live = get_json(f"{url}?{q}", sample)
+    if not data:
+        return [], [], [], live
+    hourly = data.get("hourly") or {}
+    times = hourly.get("time") or []
+    gusts = hourly.get("wind_gusts_10m") or []
+    dirs = hourly.get("wind_direction_10m") or []
+    if len(times) != len(gusts):
+        return [], [], [], live
+    cutoff = time.strftime("%Y-%m-%dT%H:00", time.gmtime())
+    start = next((i for i, t in enumerate(times) if str(t) >= cutoff), 0)
+    t_sliced = times[start:]
+    g_sliced = [float(v) if isinstance(v, (int, float)) else None for v in gusts[start:]]
+    d_sliced = [
+        float(v) if isinstance(v, (int, float)) else None
+        for v in dirs[start:start + len(t_sliced)]
+    ]
+    while len(d_sliced) < len(t_sliced):
+        d_sliced.append(None)
+    return t_sliced, g_sliced, d_sliced, live
 
 
 def fetch_forecast_points(cfg: dict, wanted_areas: set[str] | list[str] | None = None) -> list[dict]:
     """Hourly gust + wave for configured sea areas, cached in memory for 15 minutes.
-    
+
     If wanted_areas is given, only queries and resolves those areas to save bandwidth and latency.
     """
     now = time.time()
@@ -115,23 +148,28 @@ def fetch_forecast_points(cfg: dict, wanted_areas: set[str] | list[str] | None =
             {**base, "hourly": "wave_height,sea_surface_temperature,ocean_current_velocity"},
             "openmeteo_marine.json",
         )
-        gt, gusts, lg = _hourly(
+        gt, gusts, wind_dirs, lg = _hourly_wind(
             WIND,
-            {**base, "hourly": "wind_gusts_10m", "wind_speed_unit": "kn"},
+            {**base, "hourly": "wind_gusts_10m,wind_direction_10m", "wind_speed_unit": "kn"},
             "openmeteo_wind.json",
-            "wind_gusts_10m",
         )
-        if not (lw and lg) or not gt:
+        # Wind is required for go/no-go; marine may fail — keep null-aligned waves
+        if not lg or not gt or not any(g is not None for g in gusts):
             continue
+        if not (lw and wt):
+            waves = [None] * len(gt)
+        elif len(waves) < len(gt):
+            waves = list(waves) + [None] * (len(gt) - len(waves))
         item = {
             "name": pt["name"],
             "lat": pt["lat"],
             "lon": pt["lon"],
             "times": gt,
             "gusts": gusts,
-            "waves": waves if wt else [],
-            "sea_temp_c": sea_temp,
-            "current_kn": current_kn,
+            "waves": waves,
+            "wind_dirs": wind_dirs,
+            "sea_temp_c": sea_temp if lw else None,
+            "current_kn": current_kn if lw else None,
         }
         _FORECAST_CACHE[name] = (now, item)
         out.append(item)

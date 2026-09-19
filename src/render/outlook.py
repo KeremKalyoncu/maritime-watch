@@ -87,12 +87,32 @@ def render_outlook(
         print("[outlook:error] schema validation failed: missing boat classes")
         return None
 
+    expected_names = [
+        (p.get("name") or "").strip()
+        for p in (cfg.get("openmeteo") or {}).get("points") or []
+        if (p.get("name") or "").strip()
+    ]
+    present_names = sorted({
+        a.get("name") for block in classes_out.values()
+        for a in (block.get("areas") or []) if a.get("name")
+    })
+    missing = [n for n in expected_names if n not in set(present_names)]
+    coverage = {
+        "expected": len(expected_names),
+        "present": len(present_names),
+        "missing": missing,
+    }
+    if missing:
+        print(f"[outlook] coverage present={len(present_names)}/{len(expected_names)} "
+              f"missing={', '.join(missing)}")
+
     payload: dict[str, Any] = {
         "schema_version": 1,
         "generated": now_iso(),
         "hours": hours,
         "tz_offset_hours": tz,
         "question": "today",
+        "coverage": coverage,
         "classes": classes_out,
     }
 

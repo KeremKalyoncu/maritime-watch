@@ -68,12 +68,16 @@ const T = {
       outlook_empty: "Bugün için pencere üretilemedi (tahmin yok).",
       outlook_error: "Çıkış penceresi henüz derlenmedi.",
       outlook_quality: "ölçüm eksik",
+      outlook_stale: h => `⚠ Eski tahmin (~${h}s) — güncelleme gecikmiş olabilir.`,
+      outlook_missing: "Bu cycle’da bu bölge için tahmin gelmedi.",
+      outlook_official: "Resmi",
       boat_small: "Küçük (≤8 m)",
       boat_medium: "Orta (8–15 m)",
       boat_large: "Büyük (>15 m)",
       level_ok: "Uygun",
       level_watch: "Dikkat",
       level_danger: "Çıkma",
+      level_unknown: "Ölçüm yok",
       safety_now_title: "Şimdi (anlık skor)",
     },
   },
@@ -127,12 +131,16 @@ const T = {
       outlook_empty: "No departure windows available (no forecast).",
       outlook_error: "Departure windows not ready yet.",
       outlook_quality: "measurements missing",
+      outlook_stale: h => `⚠ Forecast is ~${h}h old — update may be delayed.`,
+      outlook_missing: "No forecast for this area in this cycle.",
+      outlook_official: "Official",
       boat_small: "Small (≤8 m)",
       boat_medium: "Medium (8–15 m)",
       boat_large: "Large (>15 m)",
       level_ok: "OK",
       level_watch: "Caution",
       level_danger: "Stay in",
+      level_unknown: "No data",
       safety_now_title: "Now (spot score)",
     },
   },
@@ -359,6 +367,36 @@ function agoText(iso) {
   return U().ago(Math.max(0, (Date.now() - t) / 60000));
 }
 
+function areaMatchesWarning(area, warnArea, headline) {
+  const norm = s => (s || "").toLocaleLowerCase("tr-TR").normalize("NFD").replace(/\p{M}/gu, "");
+  const a = norm(area);
+  const w = norm(warnArea);
+  const h = norm(headline);
+  if (!a) return false;
+  if (w && (a.includes(w) || w.includes(a) || a.includes(w.split(/\s+/)[0]))) return true;
+  if (h && (h.includes(a) || a.split(/\s+/).some(p => p.length > 3 && h.includes(p)))) return true;
+  return false;
+}
+
+function officialWarningsForArea(area, limit = 2) {
+  const rows = LAST.warnings || [];
+  const out = [];
+  for (const w of rows) {
+    if (!w || typeof w !== "object") continue;
+    if (!areaMatchesWarning(area, w.area, w.headline)) continue;
+    const org = String(w.org || "").toUpperCase();
+    const srcs = Array.isArray(w.sources) ? w.sources : [];
+    const isOfficial = org.includes("MGM")
+      || srcs.some(s => String(s && s.org || "").toUpperCase().includes("MGM"))
+      || ["marine-weather", "metar"].includes(w.kind);
+    if (!isOfficial) continue;
+    const title = (w.headline || "").trim();
+    if (title) out.push(title);
+    if (out.length >= limit) break;
+  }
+  return out;
+}
+
 function renderOutlookPanel() {
   const el = document.getElementById("outlook-panel");
   if (!el) return;
@@ -387,23 +425,39 @@ function renderOutlookPanel() {
   }
 
   const boatLabels = { small: u.boat_small, medium: u.boat_medium, large: u.boat_large };
-  const levelLabels = { ok: u.level_ok, watch: u.level_watch, danger: u.level_danger };
+  const levelLabels = {
+    ok: u.level_ok, watch: u.level_watch,
+    danger: u.level_danger, unknown: u.level_unknown,
+  };
 
   const boatOpts = ["small", "medium", "large"].map(id =>
     `<option value="${id}"${id === boat ? " selected" : ""}>${esc(boatLabels[id])}</option>`).join("");
   const areaOpts = areas.map(a =>
     `<option value="${esc(a.name)}"${a.name === OUTLOOK_UI.area ? " selected" : ""}>${esc(a.name)}</option>`).join("");
 
+  let staleHtml = "";
+  const gen = data.generated ? Date.parse(data.generated) : NaN;
+  if (!isNaN(gen)) {
+    const ageH = (Date.now() - gen) / 3600000;
+    const limit = (LAST.health && LAST.health.stale_hours) || 2;
+    if (ageH > limit) {
+      staleHtml = `<div class="outlook-stale" role="status">${esc(u.outlook_stale(Math.round(ageH)))}</div>`;
+    }
+  }
+
   const area = areas.find(a => a.name === OUTLOOK_UI.area);
+  const missing = ((data.coverage && data.coverage.missing) || []);
   let body = "";
   if (!areas.length) {
     body = `<div class="outlook-status">${esc(u.outlook_empty)}</div>`;
   } else if (!area) {
-    body = `<div class="outlook-status">${esc(u.outlook_empty)}</div>`;
+    const miss = OUTLOOK_UI.area && missing.includes(OUTLOOK_UI.area)
+      ? u.outlook_missing : u.outlook_empty;
+    body = `<div class="outlook-status">${esc(miss)}</div>`;
   } else {
     const segs = (area.windows || []).map(w => {
       const lv = w.level || "ok";
-      const title = `${w.start || ""}–${w.end || ""} · ${w.gust_kn != null ? w.gust_kn + " kn" : ""} · ${w.wave_m != null ? w.wave_m + " m" : ""}`;
+      const title = `${w.start || ""}–${w.end || ""} · ${w.gust_kn != null ? w.gust_kn + " kn" : "—"} · ${w.wave_m != null ? w.wave_m + " m" : "—"}`;
       return `<div class="outlook-seg ${esc(lv)}" title="${esc(title)}">
         <span class="ol-hours">${esc(w.start)}–${esc(w.end)}</span>
         <span class="ol-level">${esc(levelLabels[lv] || lv)}</span>
@@ -415,14 +469,22 @@ function renderOutlookPanel() {
     let nowLine = "";
     const rating = (LAST.safety && LAST.safety.ratings || []).find(r => r.area === area.name);
     if (rating) {
-      const q = rating.data_quality === "unknown" ? ` · ${esc(u.outlook_quality)}` : "";
-      nowLine = `<div class="outlook-now"><span class="ol-tag" style="background:#334155">${esc(u.outlook_now)}</span>
-        ${esc(u.safety_now_title)}: <strong>${esc(rating.score)}/100</strong> (${esc(rating.status)})${q}</div>`;
+      if (rating.data_quality === "unknown" || rating.score == null) {
+        nowLine = `<div class="outlook-now"><span class="ol-tag" style="background:#334155">${esc(u.outlook_now)}</span>
+          ${esc(u.outlook_quality)}</div>`;
+      } else {
+        const q = rating.data_quality === "partial" ? ` · ${esc(u.outlook_quality)}` : "";
+        nowLine = `<div class="outlook-now"><span class="ol-tag" style="background:#334155">${esc(u.outlook_now)}</span>
+          ${esc(u.safety_now_title)}: <strong>${esc(rating.score)}/100</strong> (${esc(rating.status)})${q}</div>`;
+      }
     }
-    body = `<div class="outlook-timeline">${segs || `<div class="outlook-status">${esc(u.outlook_empty)}</div>`}</div>${rb}${nowLine}`;
+    const official = officialWarningsForArea(area.name).map(t =>
+      `<div class="outlook-official">📢 ${esc(u.outlook_official)}: ${esc(t)}</div>`).join("");
+    body = `<div class="outlook-timeline">${segs || `<div class="outlook-status">${esc(u.outlook_empty)}</div>`}</div>${rb}${official}${nowLine}`;
   }
 
   el.innerHTML = `
+    ${staleHtml}
     <div class="ol-head">
       <span class="ol-tag">${esc(u.outlook_today)}</span>
       <span class="ol-title">${esc(u.outlook_title)}</span>

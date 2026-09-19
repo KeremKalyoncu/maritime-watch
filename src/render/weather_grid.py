@@ -69,11 +69,15 @@ def guess_wind_dir(name: str) -> int:
     return 45
 
 
-def render_weather_grid(cfg: dict, out_file: str | Path | None = None) -> dict[str, Any]:
+def render_weather_grid(
+    cfg: dict,
+    out_file: str | Path | None = None,
+    points: list[dict] | None = None,
+) -> dict[str, Any]:
     """Compile weather overlay data with vector directions and 12-hour trends."""
     pts_data: list[dict] = []
     try:
-        pts_data = fetch_forecast_points(cfg)
+        pts_data = points if points is not None else fetch_forecast_points(cfg)
     except Exception as e:
         print(f"[weather_grid] forecast fetch error: {e}")
 
@@ -87,32 +91,43 @@ def render_weather_grid(cfg: dict, out_file: str | Path | None = None) -> dict[s
         lon = cp["lon"]
 
         fp = forecast_by_name.get(name)
+        data_quality = "ok"
         if fp:
-            gusts = fp.get("gusts", [])
-            waves = fp.get("waves", [])
+            gusts = fp.get("gusts") or []
+            waves = fp.get("waves") or []
+            dirs = fp.get("wind_dirs") or []
 
-            gust_kn = float(gusts[0]) if gusts else 0.0
-            wind_kn = round(gust_kn * 0.75, 1)
-            wave_m = round(float(waves[0]), 2) if waves else None
+            gust_kn = next((float(g) for g in gusts if isinstance(g, (int, float))), None)
+            wind_kn = round(gust_kn * 0.75, 1) if gust_kn is not None else None
+            wave_m = next((round(float(w), 2) for w in waves if isinstance(w, (int, float))), None)
 
-            wave_trend = [round(float(w), 2) for w in waves[:12]] if waves else []
-            wind_trend = [round(float(g), 1) for g in gusts[:12]] if gusts else []
+            wave_trend = [round(float(w), 2) for w in waves[:12] if isinstance(w, (int, float))]
+            wind_trend = [round(float(g), 1) for g in gusts[:12] if isinstance(g, (int, float))]
             sea_temp_c = fp.get("sea_temp_c")
             current_kn = fp.get("current_kn")
+            live_dir = next((float(d) for d in dirs if isinstance(d, (int, float))), None)
+            wind_dir = int(round(live_dir)) if live_dir is not None else guess_wind_dir(name)
+            if gust_kn is None and wave_m is None:
+                data_quality = "unknown"
         else:
-            # Tahmin verisi alınamadığında sahte değer üretmiyoruz
-            gust_kn = 0.0
-            wind_kn = 0.0
+            # Never invent calm seas when the forecast point is missing
+            gust_kn = None
+            wind_kn = None
             wave_m = None
             wave_trend = []
             wind_trend = []
             sea_temp_c = None
             current_kn = None
+            wind_dir = guess_wind_dir(name)
+            data_quality = "unknown"
 
-        wind_dir = guess_wind_dir(name)
-        beaufort = knots_to_beaufort(wind_kn)
-        score = calculate_safety_score(wave_m, wind_kn, gust_kn)
-        rating = score_to_status(score)
+        beaufort = knots_to_beaufort(wind_kn or 0.0) if wind_kn is not None else None
+        if data_quality == "unknown":
+            score = None
+            rating = "unknown"
+        else:
+            score = calculate_safety_score(wave_m, wind_kn or 0.0, gust_kn or 0.0)
+            rating = score_to_status(score)
 
         items.append({
             "name": name,
@@ -124,6 +139,8 @@ def render_weather_grid(cfg: dict, out_file: str | Path | None = None) -> dict[s
             "wind_dir": wind_dir,
             "beaufort": beaufort,
             "rating": rating,
+            "score": score,
+            "data_quality": data_quality,
             "sea_temp_c": sea_temp_c,
             "current_kn": current_kn,
             "trend_12h": {

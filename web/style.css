@@ -324,6 +324,7 @@ main { flex: 1; display: flex; min-height: 0; }
 .outlook-seg.ok { background: rgba(34, 197, 94, 0.12); border-color: rgba(34, 197, 94, 0.35); }
 .outlook-seg.watch { background: rgba(234, 179, 8, 0.14); border-color: rgba(234, 179, 8, 0.4); }
 .outlook-seg.danger { background: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.4); }
+.outlook-seg.unknown { background: rgba(148, 163, 184, 0.14); border-color: rgba(148, 163, 184, 0.45); color: #94a3b8; }
 .outlook-seg .ol-hours { font-weight: 700; font-variant-numeric: tabular-nums; }
 .outlook-seg .ol-level { font-size: 11px; opacity: 0.9; }
 .outlook-return {
@@ -331,6 +332,16 @@ main { flex: 1; display: flex; min-height: 0; }
   font-size: 12px;
   font-weight: 600;
   color: var(--ink);
+}
+.outlook-official {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #d97706;
+}
+.outlook-stale {
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #d97706;
 }
 .outlook-now {
   margin-top: 6px;

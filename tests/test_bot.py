@@ -145,7 +145,9 @@ def test_location_query_neredeyim(bot):
     assert "158" in resp
     assert "NM" in resp
     assert "°" in resp
-    assert "Sefer Güvenlik Skoru" in resp
+    assert "Sefer skoru" in resp
+    assert "85/100" not in resp
+    assert "veri yok" in resp.lower() or "derlenmedi" in resp.lower()
 
     # Also test via text command with coordinates
     sent.clear()
@@ -401,3 +403,47 @@ def test_keyboard_tap_runs_balikci(bot):
     }, ensure_ascii=False), encoding="utf-8")
     bot.handle(_msg(42, "🎣 Bugün"))
     assert sent and "Bugün" in sent[0]
+
+
+def test_neredeyim_never_invents_eighty_five(bot):
+    sent = []
+    bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
+    bot.handle(_msg(42, "/neredeyim 38.3245 26.3012"))
+    assert sent
+    assert "85/100" not in sent[0]
+    assert "Elverişli" not in sent[0] or "veri yok" in sent[0].lower()
+
+
+def test_balikci_shows_stale_and_official_warning(bot):
+    from pathlib import Path
+    from datetime import datetime, timezone, timedelta
+    sent = []
+    bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
+    data_dir = Path(bot.cfg["_root"]) / "web" / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    old = (datetime.now(timezone.utc) - timedelta(hours=5)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    data_dir.joinpath("outlook.json").write_text(json.dumps({
+        "schema_version": 1,
+        "generated": old,
+        "coverage": {"expected": 1, "present": 1, "missing": []},
+        "classes": {
+            "small": {"label": "küçük", "limits": {}, "areas": [{
+                "name": "Marmara Denizi",
+                "windows": [{"start": "08:00", "end": "16:00", "level": "ok",
+                             "gust_kn": 10, "wave_m": 0.4}],
+                "return_by": None, "worst": "ok",
+            }]},
+            "medium": {"label": "m", "limits": {}, "areas": []},
+            "large": {"label": "l", "limits": {}, "areas": []},
+        },
+    }, ensure_ascii=False), encoding="utf-8")
+    data_dir.joinpath("warnings.json").write_text(json.dumps([{
+        "headline": "Marmara için kuvvetli rüzgar uyarısı",
+        "area": "Marmara",
+        "org": "MGM",
+        "kind": "marine-weather",
+    }], ensure_ascii=False), encoding="utf-8")
+    bot.handle(_msg(42, "/balikci marmara"))
+    assert sent
+    assert "Eski tahmin" in sent[0]
+    assert "Resmi" in sent[0]
