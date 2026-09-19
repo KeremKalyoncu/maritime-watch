@@ -106,9 +106,12 @@ class Notifier:
             body = r.json()
             if r.ok and body.get("ok"):
                 return True
-            print(f"[telegram] {method} failed status={r.status_code} desc={body.get('description')!r}")
+            # description can echo the bot token; status + error_code are enough
+            print(f"[telegram] {method} failed status={r.status_code} "
+                  f"error_code={body.get('error_code')}")
         except Exception as e:
-            print(f"[telegram] {method} error: {e}")
+            # requests may put the request URL (with token) into the exception text
+            print(f"[telegram] {method} error: {type(e).__name__}")
         return False
 
     def _send_one(self, key: str, text: str, dry: bool, lat=None, lon=None) -> None:
