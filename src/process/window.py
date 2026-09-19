@@ -53,6 +53,49 @@ class AreaOutlook:
     def first_danger(self) -> Window | None:
         return next((w for w in self.windows if w.level == DANGER), None)
 
+    @property
+    def first_watch(self) -> Window | None:
+        return next((w for w in self.windows if w.level == WATCH), None)
+
+
+def return_by(area: AreaOutlook) -> str | None:
+    """Earliest hour the skipper should plan to be back in harbour.
+
+    Prefer the first danger window; otherwise the first watch window.
+    Calm days return None (no fabricated deadline).
+    """
+    if area.first_danger:
+        return area.first_danger.start
+    if area.first_watch:
+        return area.first_watch.start
+    return None
+
+
+def window_to_dict(w: Window) -> dict:
+    return {
+        "start": w.start,
+        "end": w.end,
+        "level": w.level,
+        "gust_kn": round(float(w.gust_kn), 1),
+        "wave_m": round(float(w.wave_m), 2),
+    }
+
+
+def area_to_public_dict(area: AreaOutlook) -> dict:
+    """Serialize AreaOutlook for outlook.json / bot cache consumers."""
+    fd = area.first_danger
+    return {
+        "name": area.name,
+        "lat": area.lat,
+        "lon": area.lon,
+        "windows": [window_to_dict(w) for w in area.windows],
+        "max_gust": round(float(area.max_gust), 1),
+        "max_wave": round(float(area.max_wave), 2),
+        "first_danger_start": fd.start if fd else None,
+        "return_by": return_by(area),
+        "worst": area.worst,
+    }
+
 
 def _mins(hhmm: str) -> int:
     h, m = hhmm.split(":")

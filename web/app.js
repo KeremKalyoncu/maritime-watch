@@ -58,6 +58,23 @@ const T = {
       offline_msg: "Çevrimdışı Mod — İnternet bağlantısı yok, son önbellek gösteriliyor.",
       chip_all: "Tümü", chip_confirmed: "🚨 Doğrulandı", chip_warning: "🌊 Hava Uyarısı",
       chip_cpa: "💥 Çatışma Riski", chip_rescue: "⚓ Kurtarma",
+      outlook_title: "Bugün çıkılır mı?",
+      outlook_today: "Bugün",
+      outlook_now: "Şimdi",
+      outlook_boat: "Tekne",
+      outlook_area: "Bölge",
+      outlook_return: "Limana dönüş: en geç",
+      outlook_loading: "Çıkış penceresi yükleniyor…",
+      outlook_empty: "Bugün için pencere üretilemedi (tahmin yok).",
+      outlook_error: "Çıkış penceresi henüz derlenmedi.",
+      outlook_quality: "ölçüm eksik",
+      boat_small: "Küçük (≤8 m)",
+      boat_medium: "Orta (8–15 m)",
+      boat_large: "Büyük (>15 m)",
+      level_ok: "Uygun",
+      level_watch: "Dikkat",
+      level_danger: "Çıkma",
+      safety_now_title: "Şimdi (anlık skor)",
     },
   },
   en: {
@@ -100,6 +117,23 @@ const T = {
       offline_msg: "Offline Mode — No network connection, showing cached data.",
       chip_all: "All", chip_confirmed: "🚨 Confirmed", chip_warning: "🌊 Warnings",
       chip_cpa: "💥 Collision Risk", chip_rescue: "⚓ Rescue",
+      outlook_title: "Can I go out today?",
+      outlook_today: "Today",
+      outlook_now: "Now",
+      outlook_boat: "Boat",
+      outlook_area: "Area",
+      outlook_return: "Be back by",
+      outlook_loading: "Loading departure windows…",
+      outlook_empty: "No departure windows available (no forecast).",
+      outlook_error: "Departure windows not ready yet.",
+      outlook_quality: "measurements missing",
+      boat_small: "Small (≤8 m)",
+      boat_medium: "Medium (8–15 m)",
+      boat_large: "Large (>15 m)",
+      level_ok: "OK",
+      level_watch: "Caution",
+      level_danger: "Stay in",
+      safety_now_title: "Now (spot score)",
     },
   },
 };
@@ -112,9 +146,10 @@ const U = () => T[LANG].ui;
 let REGION = "";           // active region filter ("" = all)
 let CHIP = "all";          // active chip filter
 let SEARCH_QUERY = "";     // active search term
+let OUTLOOK_UI = { boat: "small", area: "" };
 let LAST = {
   incidents: [], warnings: [], summary: null, health: null,
-  weather: null, straits: null, safety: null
+  weather: null, straits: null, safety: null, outlook: null
 };
 
 // Playback State
@@ -324,6 +359,88 @@ function agoText(iso) {
   return U().ago(Math.max(0, (Date.now() - t) / 60000));
 }
 
+function renderOutlookPanel() {
+  const el = document.getElementById("outlook-panel");
+  if (!el) return;
+  const u = U();
+  const data = LAST.outlook;
+
+  if (data === undefined) {
+    el.innerHTML = `<div class="outlook-status">${esc(u.outlook_loading)}</div>
+      <div class="outlook-timeline"><span class="outlook-skel"></span><span class="outlook-skel"></span><span class="outlook-skel"></span></div>`;
+    el.setAttribute("aria-busy", "true");
+    return;
+  }
+  el.setAttribute("aria-busy", "false");
+
+  if (data === null) {
+    el.innerHTML = `<div class="outlook-status">${esc(u.outlook_error)}</div>`;
+    return;
+  }
+
+  const boat = ["small", "medium", "large"].includes(OUTLOOK_UI.boat) ? OUTLOOK_UI.boat : "small";
+  const block = (data.classes && data.classes[boat]) || {};
+  const areas = block.areas || [];
+  if (!OUTLOOK_UI.area && areas.length) OUTLOOK_UI.area = areas[0].name;
+  if (OUTLOOK_UI.area && !areas.some(a => a.name === OUTLOOK_UI.area) && areas.length) {
+    OUTLOOK_UI.area = areas[0].name;
+  }
+
+  const boatLabels = { small: u.boat_small, medium: u.boat_medium, large: u.boat_large };
+  const levelLabels = { ok: u.level_ok, watch: u.level_watch, danger: u.level_danger };
+
+  const boatOpts = ["small", "medium", "large"].map(id =>
+    `<option value="${id}"${id === boat ? " selected" : ""}>${esc(boatLabels[id])}</option>`).join("");
+  const areaOpts = areas.map(a =>
+    `<option value="${esc(a.name)}"${a.name === OUTLOOK_UI.area ? " selected" : ""}>${esc(a.name)}</option>`).join("");
+
+  const area = areas.find(a => a.name === OUTLOOK_UI.area);
+  let body = "";
+  if (!areas.length) {
+    body = `<div class="outlook-status">${esc(u.outlook_empty)}</div>`;
+  } else if (!area) {
+    body = `<div class="outlook-status">${esc(u.outlook_empty)}</div>`;
+  } else {
+    const segs = (area.windows || []).map(w => {
+      const lv = w.level || "ok";
+      const title = `${w.start || ""}–${w.end || ""} · ${w.gust_kn != null ? w.gust_kn + " kn" : ""} · ${w.wave_m != null ? w.wave_m + " m" : ""}`;
+      return `<div class="outlook-seg ${esc(lv)}" title="${esc(title)}">
+        <span class="ol-hours">${esc(w.start)}–${esc(w.end)}</span>
+        <span class="ol-level">${esc(levelLabels[lv] || lv)}</span>
+      </div>`;
+    }).join("");
+    const rb = area.return_by
+      ? `<div class="outlook-return">💡 ${esc(u.outlook_return)} <strong>${esc(area.return_by)}</strong></div>`
+      : "";
+    let nowLine = "";
+    const rating = (LAST.safety && LAST.safety.ratings || []).find(r => r.area === area.name);
+    if (rating) {
+      const q = rating.data_quality === "unknown" ? ` · ${esc(u.outlook_quality)}` : "";
+      nowLine = `<div class="outlook-now"><span class="ol-tag" style="background:#334155">${esc(u.outlook_now)}</span>
+        ${esc(u.safety_now_title)}: <strong>${esc(rating.score)}/100</strong> (${esc(rating.status)})${q}</div>`;
+    }
+    body = `<div class="outlook-timeline">${segs || `<div class="outlook-status">${esc(u.outlook_empty)}</div>`}</div>${rb}${nowLine}`;
+  }
+
+  el.innerHTML = `
+    <div class="ol-head">
+      <span class="ol-tag">${esc(u.outlook_today)}</span>
+      <span class="ol-title">${esc(u.outlook_title)}</span>
+      <label>${esc(u.outlook_boat)}
+        <select id="outlook-boat" aria-label="${esc(u.outlook_boat)}">${boatOpts}</select>
+      </label>
+      <label>${esc(u.outlook_area)}
+        <select id="outlook-area" aria-label="${esc(u.outlook_area)}">${areaOpts || `<option value="">—</option>`}</select>
+      </label>
+    </div>
+    ${body}`;
+
+  const boatSel = document.getElementById("outlook-boat");
+  const areaSel = document.getElementById("outlook-area");
+  if (boatSel) boatSel.onchange = () => { OUTLOOK_UI.boat = boatSel.value; renderOutlookPanel(); };
+  if (areaSel) areaSel.onchange = () => { OUTLOOK_UI.area = areaSel.value; renderOutlookPanel(); };
+}
+
 function renderSafetyStrip(straitsData, safetyData) {
   const strip = document.getElementById("safety-strip");
   if (!strip) return;
@@ -359,14 +476,14 @@ function renderSafetyStrip(straitsData, safetyData) {
     } else if (caution.length > 0) {
       cards.push(`
         <div class="safety-card">
-          <span class="sc-title">Sefer Skoru:</span>
+          <span class="sc-title">Şimdi:</span>
           <span class="safety-badge caution">Tedbirli Seyir (${caution.length} bölge)</span>
         </div>
       `);
     } else {
       cards.push(`
         <div class="safety-card">
-          <span class="sc-title">Sefer Skoru:</span>
+          <span class="sc-title">Şimdi:</span>
           <span class="safety-badge good">🟢 Karasularımız Elverişli</span>
         </div>
       `);
@@ -649,6 +766,7 @@ function render() {
 
   addTimeline(tl);
   renderSafetyStrip(straits, safety);
+  renderOutlookPanel();
 
   const u = U();
   renderKpis(incidents.filter(matchesItem), warnings.filter(matchesItem), summary, health);
@@ -673,6 +791,7 @@ async function load() {
   LAST.straits = await getJSON("data/straits.json");
   LAST.safety = await getJSON("data/safety_index.json");
   LAST.weather = await getJSON("data/weather_overlay.json");
+  LAST.outlook = await getJSON("data/outlook.json");
 
   // Compute time bounds for playback
   const allStamps = [...LAST.incidents.map(i => i.first_seen || i.last_update), ...LAST.warnings.map(w => w.issued)]

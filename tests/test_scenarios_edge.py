@@ -75,16 +75,25 @@ def test_cpa_edge_cases():
     assert res_parallel is None
 
 
-def test_bot_balikci_text_generation():
+def test_bot_balikci_text_generation(tmp_path):
     cfg = {
         "secrets": {"telegram_token": "dummy", "telegram_chat_id": ""},
         "alert": {"telegram": {"enabled": False}},
         "openmeteo": {"points": [{"name": "Marmara Denizi"}]},
         "region": {"bbox": {"lat_min": 35.0, "lat_max": 42.5, "lon_min": 25.5, "lon_max": 44.5}},
-        "_root": ".",
+        "_root": str(tmp_path),
     }
+    data = tmp_path / "web" / "data"
+    data.mkdir(parents=True)
+    data.joinpath("outlook.json").write_text(
+        '{"schema_version":1,"classes":{"small":{"label":"küçük tekne","limits":{},'
+        '"areas":[{"name":"Marmara Denizi","windows":[{"start":"08:00","end":"16:00",'
+        '"level":"ok","gust_kn":10,"wave_m":0.4}],"return_by":null,"worst":"ok"}]},'
+        '"medium":{"label":"m","limits":{},"areas":[]},"large":{"label":"l","limits":{},"areas":[]}}}',
+        encoding="utf-8",
+    )
     bot = Bot(cfg)
     text = bot._fisherman_text(None, {})
-    assert "Balıkçı Sefer Güvenlik Raporu" in text
+    assert "Bugün" in text
     assert "Marmara Denizi" in text
-    assert "Vira Bismillah" in text
+    assert "08:00" in text

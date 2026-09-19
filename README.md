@@ -101,7 +101,7 @@ Bot, her denizcinin kendi bölgesine ve tekne sınıfına göre özelleştirilmi
        │ ⚓ /neredeyim      -> Canlı GPS ile en yakın liman & hava│
        │ 🆘 /mayday         -> VHF 16 hazır acil durum anonsu   │
        │ 🚢 /bogaz          -> Boğazlar canlı gemi & sis raporu │
-       │ 🎣 /balikci [bölge]-> Sefer emniyeti güvenlik analizi  │
+       │ 🎣 /balikci [bölge]-> Bugün saatlik çıkış penceresi     │
        │ 🚨 /kazalar        -> Güncel kaza & kurtarma bülteni   │
        │ 🌊 /durum          -> Seçili denizlerin anlık havası   │
        │ ⚙️ /bolge & /tekne -> Kişisel deniz ve tekne ayarları  │
@@ -120,7 +120,7 @@ Bot, her denizcinin kendi bölgesine ve tekne sınıfına göre özelleştirilmi
 * **`/bogaz` — Türk Boğazları Canlı Durumu:**  
   İstanbul ve Çanakkale Boğazları'ndaki anlık transit gemi sayısını, sis/görüş koşullarını, akıntı durumunu ve Kıyı Emniyeti'nin seyir kısıtlamalarını raporlar.
 * **`/balikci [bölge]` — "Bugün Denize Çıkılır mı?" Analizi:**  
-  Örnek: `/balikci marmara` veya `/balikci ege`. Seçilen bölge için önümüzdeki 18 saatin dalga ve rüzgâr kırılımlarını inceler; teknenize göre güvenli denize çıkış ve limana dönüş saatlerini listeler.
+  Örnek: `/balikci marmara` veya `/balikci ege`. Cycle’da üretilen `outlook.json` üzerinden teknenize göre **saatlik** yeşil/sarı/kırmızı pencereleri ve varsa “limana en geç HH:MM” satırını verir; anlık skor yalnızca **Şimdi** alt satırındadır.
 * **`/kazalar` — Canlı Olay ve Kurtarma Bülteni:**  
   Son 24 saat içinde Sahil Güvenlik ve Kıyı Emniyeti tarafından doğrulanmış arama-kurtarma çalışmalarını, sürüklenen tekneleri ve kazaları listeler.
 * **`/durum` — Anlık Hava Özeti:**  
@@ -196,6 +196,8 @@ Web arayüzü (`web/`), hiçbir harici JavaScript kütüphane derleme adımı (R
    Sayfa başında anlık olarak Türk Boğazları'ndan geçen gemi sayısını ve bölgelerin genel deniz güvenlik puanını (0–100) gösterir.
 5. **📱 PWA & Çevrimdışı Çalışma (Offline Mode):**  
    Service Worker (`sw.js`) sayesinde deniz ortasında internetiniz kopsa dahi uygulama açılır, son indirilen harita verisini ve acil durum rehberini çevrimdışı olarak ekranınıza getirir.
+6. **🌅 Bugün çıkılır mı? (Outlook paneli):**  
+   Harita üstünde tekne sınıfı ve bölge seçerek saatlik yeşil/sarı/kırmızı çıkış pencerelerini ve “limana en geç HH:MM” satırını görürsünüz. Anlık skor şeritte **Şimdi** olarak ayrı tutulur.
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 

@@ -164,6 +164,7 @@ outlook:
   tz_offset_hours: 3         # Türkiye, UTC+3
   hours: 18                  # how far ahead the message looks
   boat_class: small          # who the channel is written for
+  web_default_class: small   # default boat class on the map "Bugün" panel
   classes:
     small:  { label: "küçük tekne (8 m ve altı)", gust_kn: 22, wave_m: 1.25 }
     medium: { label: "orta boy tekne (8-15 m)",   gust_kn: 28, wave_m: 2.0 }

@@ -263,6 +263,100 @@ main { flex: 1; display: flex; min-height: 0; }
 }
 .safety-card:hover { background: var(--panel-2); border-color: var(--line-2); }
 .safety-card .sc-title { font-weight: 650; color: var(--ink); }
+
+/* ---------- today outlook panel ---------- */
+.outlook-panel {
+  margin: 4px 0 8px;
+  padding: 10px 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.outlook-panel .ol-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 8px;
+}
+.outlook-panel .ol-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink);
+  margin-right: 4px;
+}
+.outlook-panel .ol-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #0e7490;
+  color: #ecfeff;
+}
+.outlook-panel select {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--line-2);
+  background: var(--panel-2);
+  color: var(--ink);
+  max-width: 100%;
+}
+.outlook-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.outlook-seg {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  border: 1px solid var(--line);
+  min-width: 7.5rem;
+}
+.outlook-seg.ok { background: rgba(34, 197, 94, 0.12); border-color: rgba(34, 197, 94, 0.35); }
+.outlook-seg.watch { background: rgba(234, 179, 8, 0.14); border-color: rgba(234, 179, 8, 0.4); }
+.outlook-seg.danger { background: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.4); }
+.outlook-seg .ol-hours { font-weight: 700; font-variant-numeric: tabular-nums; }
+.outlook-seg .ol-level { font-size: 11px; opacity: 0.9; }
+.outlook-return {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.outlook-now {
+  margin-top: 6px;
+  font-size: 11px;
+  opacity: 0.85;
+  color: var(--muted, #94a3b8);
+}
+.outlook-status {
+  font-size: 12px;
+  opacity: 0.9;
+  padding: 4px 0;
+}
+.outlook-skel {
+  display: inline-block;
+  height: 36px;
+  width: 96px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--panel-2), var(--line), var(--panel-2));
+  background-size: 200% 100%;
+  opacity: 0.6;
+}
+@media (max-width: 640px) {
+  .outlook-panel .ol-head { flex-direction: column; align-items: stretch; }
+  .outlook-panel select { width: 100%; }
+}
+
 .safety-badge {
   font-size: 11px;
   font-weight: 600;

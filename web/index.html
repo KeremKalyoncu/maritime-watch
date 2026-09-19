@@ -9,7 +9,7 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#080d13">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <link rel="stylesheet" href="style.css?v=2.2">
+  <link rel="stylesheet" href="style.css?v=2.3">
 </head>
 <body>
   <div id="offline-bar" class="offline-bar" hidden>📵 <span data-i="offline_msg">Çevrimdışı Mod — İnternet bağlantısı yok, son önbellek gösteriliyor.</span></div>
@@ -32,6 +32,9 @@
 
     <!-- Live Straits Transit & Marine Safety Ticker -->
     <div id="safety-strip" class="safety-strip" role="region" aria-label="Boğaz Geçiş ve Deniz Güvenlik Şeridi"></div>
+
+    <!-- Today go/no-go hour windows (primary product answer) -->
+    <section id="outlook-panel" class="outlook-panel" role="region" aria-label="Bugün denize çıkış penceresi" aria-live="polite"></section>
 
     <!-- Instant Search & Quick Filter Chips -->
     <div class="filter-row" role="search">

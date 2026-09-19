@@ -50,6 +50,36 @@ def test_local_time_is_used_not_utc():
 def test_a_calm_day_produces_one_green_window():
     o = build("Antalya", _times(12), [9] * 12, [0.2] * 12, SMALL, hours=12, tz_offset_h=0)
     assert len(o.windows) == 1 and o.worst == OK and o.first_danger is None
+    from src.process.window import return_by
+    assert return_by(o) is None
+
+
+def test_return_by_prefers_danger_then_watch():
+    from src.process.window import WATCH, return_by
+
+    gusts = [8] * 4 + [18] * 4 + [26] * 4  # ok → watch → danger at small limits
+    o = build("Marmara", _times(12), gusts, [0.2] * 12, SMALL, hours=12, tz_offset_h=0)
+    assert o.first_danger is not None
+    assert return_by(o) == o.first_danger.start
+
+    o2 = build("Ege", _times(8), [8] * 4 + [18] * 4, [0.2] * 8, SMALL, hours=8, tz_offset_h=0)
+    assert o2.first_danger is None and any(w.level == WATCH for w in o2.windows)
+    assert return_by(o2) == o2.first_watch.start
+
+
+def test_outlook_message_includes_harbour_return_line(cfg):
+    from src.alert.telegram import Notifier
+    cfg["secrets"] = {"telegram_token": "", "telegram_chat_id": "", "aisstream_key": ""}
+    cfg["alert"]["telegram"]["digest"] = False
+    klass = cfg["outlook"]["classes"]["small"]
+    o = build("Marmara Denizi", _times(12), [8] * 6 + [26] * 6, [0.3] * 12,
+              klass, hours=12, tz_offset_h=0)
+    n = Notifier(cfg)
+    sent = []
+    n._send_one = lambda k, t, d, lat=None, lon=None: sent.append(t)
+    n.daily_outlook([o], klass, dry=True, day="10.09.2026")
+    assert "Limana dönüş" in sent[0]
+    assert "12:00" in sent[0]
 
 
 def test_empty_forecast_is_not_a_calm_forecast(  ):

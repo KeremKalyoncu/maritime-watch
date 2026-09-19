@@ -404,6 +404,10 @@ class Notifier:
                 if w.level == "ok" and w.hours < 3:
                     continue
                 body.append(cls._window_line(w, klass))
+            from ..process.window import return_by as _return_by
+            rb = _return_by(a)
+            if rb:
+                body.append(f"💡 Limana dönüş: en geç <b>{html.escape(rb)}</b>")
 
         tail = []
         if calm:
@@ -416,29 +420,58 @@ class Notifier:
         return "\n".join(head + body + tail)
 
     def outlook_text_for(self, cfg: dict, sub: dict) -> str:
-        """One subscriber's own message: their areas, their boat class."""
-        from ..ingest.openmeteo import fetch_forecast_points
-        from ..process.window import build as build_window
+        """One subscriber's own message: their areas, their boat class.
+
+        Prefer web/data/outlook.json (cycle cache) so the edge bot never
+        re-fetches Open-Meteo per command. Live fetch is only a last resort
+        when the cache is missing (local --once without a prior render).
+        """
+        from pathlib import Path
+
+        from ..process.window import AreaOutlook, Window
 
         oc = cfg.get("outlook", {})
-        klass = oc.get("classes", {}).get(sub.get("boat", "small"), {})
+        boat = sub.get("boat", "small")
+        if boat not in ("small", "medium", "large"):
+            boat = "small"
+        klass = oc.get("classes", {}).get(boat, {})
         wanted = set(sub.get("areas") or [])
-        try:
-            try:
-                pts = fetch_forecast_points(cfg, wanted_areas=wanted if wanted else None)
-            except TypeError:
-                pts = fetch_forecast_points(cfg)
-        except Exception as e:
-            print(f"[outlook] error: {e}")
-            return ""
-        pts = [p for p in pts if not wanted or p["name"] in wanted]
-        if not pts:
-            return ""
         tz = float(oc.get("tz_offset_hours", 3))
-        areas = [build_window(p["name"], p["times"], p["gusts"], p["waves"], klass,
-                              hours=int(oc.get("hours", 18)), tz_offset_h=tz,
-                              lat=p["lat"], lon=p["lon"]) for p in pts]
-        return self.outlook_text(areas, klass, tz_offset_h=tz)
+
+        cache_path = Path(cfg.get("_root", ".")) / "web" / "data" / "outlook.json"
+        areas: list = []
+        if cache_path.is_file():
+            try:
+                data = json.loads(cache_path.read_text("utf-8") or "{}")
+                block = (data.get("classes") or {}).get(boat) or {}
+                for a in block.get("areas") or []:
+                    if wanted and a.get("name") not in wanted:
+                        continue
+                    ao = AreaOutlook(
+                        name=a.get("name") or "",
+                        lat=a.get("lat"),
+                        lon=a.get("lon"),
+                        max_gust=float(a.get("max_gust") or 0),
+                        max_wave=float(a.get("max_wave") or 0),
+                    )
+                    for w in a.get("windows") or []:
+                        ao.windows.append(Window(
+                            start=str(w.get("start") or "??:??"),
+                            end=str(w.get("end") or "??:??"),
+                            level=str(w.get("level") or "ok"),
+                            gust_kn=float(w.get("gust_kn") or 0),
+                            wave_m=float(w.get("wave_m") or 0),
+                        ))
+                    if ao.name:
+                        areas.append(ao)
+                if areas:
+                    return self.outlook_text(areas, klass, tz_offset_h=tz)
+            except Exception as e:
+                print(f"[outlook:warn] cache read failed: {e}")
+
+        # Cache missing: do not call Open-Meteo from the bot hot path.
+        print("[outlook:warn] outlook.json missing — no per-command forecast fetch")
+        return ""
 
     def daily_outlook(self, areas, klass: dict, dry: bool = True, day: str = "") -> None:
         """Broadcast form, for a public channel with no per-person settings."""

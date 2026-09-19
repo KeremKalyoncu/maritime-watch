@@ -18,6 +18,7 @@ the map or the feed.
 
 from __future__ import annotations
 
+import html
 import json
 import math
 import time
@@ -42,7 +43,7 @@ Türkiye karasularında seyreden balıkçılar, denizciler ve kıyı sakinleri i
 /neredeyim — Canlı konumunuza göre en yakın liman, mesafe ve hava
 /mayday — Telsiz Kanal 16 için acil imdat çağrısı metni üretir
 /bogaz — İstanbul ve Çanakkale Boğazları canlı transit/sis durumu
-/balikci [bölge] — "Bugün denize çıkılır mı?" sefer güvenlik analizi
+/balikci [bölge] — Bugün denize çıkış saat penceresi (tekne sınıfına göre)
 /kazalar — Türkiye karasularında son onaylanan kaza ve kurtarmalar
 /durum — Takip ettiğiniz bölgeler için anlık hava bülteni
 
@@ -386,50 +387,124 @@ class Bot:
         if not target_area:
             target_area = "Marmara Denizi"
 
-        safety_file = Path(self.cfg["_root"]) / "web" / "data" / "safety_index.json"
-        if not safety_file.exists():
-            return f"ℹ️ {target_area} için balıkçı sefer raporu derleniyor, lütfen az sonra tekrar deneyin."
-        try:
-            data = json.loads(safety_file.read_text("utf-8") or "{}")
-            rating = next((r for r in data.get("ratings", []) if r.get("area") == target_area), None)
-            if not rating:
-                return f"ℹ️ {target_area} için şu an güvenlik puanı bulunamadı."
-            score = rating.get("score", 75)
-            status = rating.get("status", "good")
-            icon = "🟢" if status == "good" else ("🟡" if status == "caution" else "🔴")
-            status_tr = "Elverişli (Vira Bismillah!)" if status == "good" else ("Tedbirli Seyir (Dikkat)" if status == "caution" else "Denize Çıkmayın! (Tehlike)")
-            wave = rating.get("wave_m")
-            wave_str = f"{wave:.1f} m" if wave is not None else "—"
-            wind = rating.get("wind_kn", 0)
-            gust = rating.get("gust_kn", 0)
-            rec = rating.get("recommendation_tr", "")
+        boat = s.get("boat", "small")
+        if boat not in ("small", "medium", "large"):
+            boat = "small"
 
-            extra_lines = []
-            if rating.get("sea_temp_c") is not None:
-                extra_lines.append(f"🌡️ Deniz Suyu: <b>{rating['sea_temp_c']:.1f} °C</b>")
-            if rating.get("current_kn") is not None:
-                extra_lines.append(f"🌀 Akıntı: <b>{rating['current_kn']:.1f} kn</b>")
-            extra_str = ("\n" + " | ".join(extra_lines)) if extra_lines else ""
-
-            return (
-                f"🎣 <b>{target_area} Balıkçı Sefer Güvenlik Raporu</b>\n\n"
-                f"{icon} <b>Karar: {status_tr}</b> (Skor: {score}/100)\n\n"
-                f"🌊 Dalga Yüksekliği: <b>{wave_str}</b>\n"
-                f"💨 Rüzgar: <b>{wind:.0f} kn</b> (Hamle: <b>{gust:.0f} kn</b>)"
-                f"{extra_str}\n\n"
-                f"💡 <b>Denizci Tavsiyesi:</b>\n{rec}\n\n"
-                f"⚠️ <i>Küçük tekneler (<12m) ve amatör balıkçılar için karar destek tahminidir. Denize çıkmadan önce Sahil Güvenlik (158) ve MGM teyidi alınız.</i>"
+        root = Path(self.cfg["_root"])
+        outlook_file = root / "web" / "data" / "outlook.json"
+        today_block = ""
+        if not outlook_file.exists():
+            today_block = (
+                f"ℹ️ <b>{html.escape(target_area)}</b> — Bugünün çıkış penceresi henüz derlenmedi. "
+                f"Bir sonraki güncelleme döngüsünü bekleyin."
             )
-        except Exception as e:
-            return f"⚠️ Rapor okunamadı: {e}"
+        else:
+            try:
+                data = json.loads(outlook_file.read_text("utf-8") or "{}")
+                block = (data.get("classes") or {}).get(boat) or {}
+                label = html.escape(block.get("label") or boat)
+                areas = block.get("areas") or []
+                rating = next((a for a in areas if a.get("name") == target_area), None)
+                if not rating:
+                    today_block = f"ℹ️ {html.escape(target_area)} için bugünün penceresi bulunamadı."
+                else:
+                    level_tr = {"ok": "Uygun", "watch": "Dikkat", "danger": "Çıkma"}
+                    level_icon = {"ok": "🟢", "watch": "🟡", "danger": "🔴"}
+                    lines = [
+                        f"🎣 <b>{html.escape(target_area)} · Bugün</b>",
+                        f"<i>{label}</i>",
+                        "",
+                    ]
+                    for w in rating.get("windows") or []:
+                        lv = w.get("level") or "ok"
+                        if lv == "ok" and self._window_hours(w) < 3:
+                            continue
+                        icon = level_icon.get(lv, "⚪")
+                        start = html.escape(str(w.get("start") or "?"))
+                        end = html.escape(str(w.get("end") or "?"))
+                        gust = w.get("gust_kn")
+                        wave = w.get("wave_m")
+                        bits = []
+                        if gust is not None:
+                            bits.append(f"{gust:.0f} kn")
+                        if wave is not None:
+                            bits.append(f"{wave:.1f} m")
+                        extra = (" · " + " · ".join(bits)) if bits else ""
+                        lines.append(
+                            f"{icon} <code>{start}–{end}</code>  "
+                            f"{html.escape(level_tr.get(lv, lv))}{extra}"
+                        )
+                    rb = rating.get("return_by")
+                    if rb:
+                        lines.append("")
+                        lines.append(f"💡 Limana dönüş: en geç <b>{html.escape(str(rb))}</b>")
+                    today_block = "\n".join(lines)
+            except Exception as e:
+                print(f"[bot] outlook parse error: {e}")
+                today_block = "⚠️ Bugünün penceresi okunamadı."
+
+        now_block = ""
+        safety_file = root / "web" / "data" / "safety_index.json"
+        if safety_file.exists():
+            try:
+                data = json.loads(safety_file.read_text("utf-8") or "{}")
+                rating = next((r for r in data.get("ratings", []) if r.get("area") == target_area), None)
+                if rating:
+                    score = rating.get("score", 75)
+                    status = rating.get("status", "good")
+                    icon = "🟢" if status == "good" else ("🟡" if status == "caution" else "🔴")
+                    status_tr = (
+                        "Elverişli" if status == "good"
+                        else ("Tedbirli" if status == "caution" else "Elverişsiz")
+                    )
+                    wave = rating.get("wave_m")
+                    wave_str = f"{wave:.1f} m" if wave is not None else "—"
+                    wind = rating.get("wind_kn", 0) or 0
+                    gust = rating.get("gust_kn", 0) or 0
+                    quality = rating.get("data_quality") or "ok"
+                    qnote = " · ölçüm eksik" if quality == "unknown" else ""
+                    now_block = (
+                        f"\n\n——— <b>Şimdi</b> (anlık skor) ———\n"
+                        f"{icon} {status_tr} · <b>{score}/100</b>{qnote}\n"
+                        f"🌊 Dalga: <b>{wave_str}</b> · 💨 {wind:.0f} kn (hamle {gust:.0f} kn)"
+                    )
+            except Exception as e:
+                print(f"[bot] safety parse error: {e}")
+
+        return (
+            f"{today_block}{now_block}\n\n"
+            f"⚠️ <i>Model tahminidir. Karar senindir; 158 / MGM teyidi alın.</i>"
+        )
+
+    @staticmethod
+    def _window_hours(w: dict) -> int:
+        try:
+            a, b = str(w.get("start", "0:0")).split(":")
+            c, d = str(w.get("end", "0:0")).split(":")
+            return (int(c) * 60 + int(d) - int(a) * 60 - int(b)) // 60
+        except (TypeError, ValueError):
+            return 0
+
+    @staticmethod
+    def normalize_incidents(data) -> list:
+        if isinstance(data, list):
+            return data
+        if isinstance(data, dict):
+            items = data.get("incidents")
+            if isinstance(items, list):
+                return items
+        return []
 
     def _incidents_text(self) -> str:
         inc_file = Path(self.cfg["_root"]) / "web" / "data" / "incidents.json"
         if not inc_file.exists():
             return "ℹ️ Güncel kaza kaydı bulunamadı."
         try:
-            data = json.loads(inc_file.read_text("utf-8") or "{}")
-            items = data.get("incidents", [])
+            data = json.loads(inc_file.read_text("utf-8") or "null")
+            items = self.normalize_incidents(data)
+            wanted = {"confirmed", "probable"}
+            items = [i for i in items if (i.get("status") or "") in wanted]
             if not items:
                 return "🌊 Türkiye karasularında şu an aktif kaza veya batma ihbarı bulunmuyor."
             lines = ["🚨 <b>TÜRKİYE KARASULARINDA GÜNCEL DENİZ OLAYLARI</b>\n"]
@@ -444,14 +519,18 @@ class Bot:
                 lon = inc.get("lon")
                 coords = f"({lat:.2f}°K, {lon:.2f}°D)" if lat and lon else ""
                 summary = inc.get("summary") or ""
-                lines.append(f"• <b>{typ_tr.title()}</b> — {badge}\n  📍 {area} {coords}\n  🚢 Gemi: {v_name}")
+                lines.append(
+                    f"• <b>{html.escape(str(typ_tr).title())}</b> — {badge}\n"
+                    f"  📍 {html.escape(str(area))} {coords}\n"
+                    f"  🚢 Gemi: {html.escape(str(v_name))}"
+                )
                 if summary:
-                    lines.append(f"  ℹ️ {summary[:100]}...")
+                    lines.append(f"  ℹ️ {html.escape(str(summary)[:100])}...")
                 lines.append("")
             lines.append("📞 <i>İhbar ve Acil Yardım: 158 Sahil Güvenlik · 151 Kıyı Emniyeti</i>")
             return "\n".join(lines)
-        except Exception as e:
-            return f"⚠️ Olaylar okunamadı: {e}"
+        except Exception:
+            return "⚠️ Olaylar okunamadı."
 
     # ---- command handling ----------------------------------------------------
     def handle(self, update: dict, dry: bool = True) -> None:

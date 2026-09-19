@@ -105,3 +105,18 @@ def test_tc_cpa_08_incident_conversion_idempotency():
     assert inc.type == "collision-risk"
     assert inc.severity == "major"
     assert "cpa" in inc.sources[0].kind
+
+
+def test_cpa_dedupes_same_mmsi_and_skips_self_pair():
+    # Duplicate rows for the same MMSI must not invent a collision with itself
+    p1 = {"mmsi": 240198900, "name": "Same", "lat": 40.00, "lon": 28.00, "sog": 15.0, "cog": 0.0}
+    p1b = {"mmsi": 240198900, "name": "Same", "lat": 40.01, "lon": 28.00, "sog": 15.0, "cog": 0.0}
+    p2 = {"mmsi": 240198900, "name": "Same copy", "lat": 40.02, "lon": 28.0005, "sog": 15.0, "cog": 180.0}
+    events = detect_cpa_risks([p1, p1b, p2])
+    assert events == []
+
+    # Distinct MMSIs still detect
+    p3 = {"mmsi": 271002, "name": "Other", "lat": 40.02, "lon": 28.0005, "sog": 15.0, "cog": 180.0}
+    events2 = detect_cpa_risks([p1, p3])
+    assert len(events2) == 1
+    assert events2[0].mmsi1 != events2[0].mmsi2

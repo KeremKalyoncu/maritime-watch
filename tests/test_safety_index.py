@@ -106,3 +106,16 @@ def test_evaluate_all_areas():
     assert ratings[1].status == "danger"
     assert ratings[1].sea_temp_c == 26.5
     assert ratings[1].current_kn == 0.3
+
+
+def test_unknown_quality_never_reports_good():
+    rating = calculate_safety_rating(
+        area="Marmara Denizi",
+        wave_m=None,
+        wind_kn=4.0,
+        gust_kn=5.0,
+        sea_temp_c=None,
+    )
+    assert rating.status != "good"
+    assert rating.score <= 70
+    assert "eksik" in rating.recommendation_tr.lower() or "ölçüm" in rating.recommendation_tr.lower()

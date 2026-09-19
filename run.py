@@ -60,6 +60,7 @@ from src.process.window import build as build_outlook
 from src.render.feed import build_feed
 from src.render.health import write_health
 from src.render.mapdata import enrich_incident_tracks, write_summary
+from src.render.outlook import render_outlook
 from src.render.stats import build_stats
 from src.render.straits import render_straits_status
 from src.render.weather_grid import render_weather_grid
@@ -266,6 +267,11 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         n = _safe("bot", lambda: Bot(cfg, notifier=notifier).poll(dry=dry), 0)
         if n:
             print(f"[bot] {n} guncelleme islendi")
+    # Outlook cache before morning send / bot commands in this cycle
+    try:
+        render_outlook(cfg, web_data / "outlook.json")
+    except Exception as e:
+        print(f"[outlook:error] render error: {e}")
     try:
         send_daily_outlook(cfg, notifier, dry=dry)
     except Exception as e:

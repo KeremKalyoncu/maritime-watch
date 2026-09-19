@@ -16,11 +16,27 @@ W_GUST = 1.2    # penalty points per knot above 15 kn
 ALARM_PENALTY = 50.0  # deduction if an active official storm/gale warning exists
 
 
+def data_quality_for(
+    wave_m: float | None,
+    sea_temp_c: float | None,
+) -> str:
+    """ok | partial | unknown — missing marine fields must not look like a green light."""
+    wave_ok = wave_m is not None
+    sst_ok = sea_temp_c is not None
+    if wave_ok and sst_ok:
+        return "ok"
+    if not wave_ok and not sst_ok:
+        return "unknown"
+    return "partial"
+
+
 def calculate_safety_score(
     wave_m: float | None,
     wind_kn: float,
     gust_kn: float,
     has_storm_warning: bool = False,
+    *,
+    data_quality: str = "ok",
 ) -> int:
     """Calculate an integer safety score in [0, 100]."""
     penalty = 0.0
@@ -48,11 +64,21 @@ def calculate_safety_score(
 
     raw_score = 100.0 - penalty
     clamped = max(0, min(100, int(round(raw_score))))
+    # Blind 100/good with no marine measurements misleads skippers
+    if data_quality == "unknown":
+        clamped = min(clamped, 70)
+    elif data_quality == "partial" and wave_m is None:
+        clamped = min(clamped, 85)
     return clamped
 
 
-def score_to_status(score: int) -> str:
+def score_to_status(score: int, data_quality: str = "ok") -> str:
     """Determine status rating based on score."""
+    if data_quality == "unknown":
+        # Never advertise "good" when wave+SST are both missing
+        if score >= 45:
+            return "caution"
+        return "danger"
     if score >= 75:
         return "good"
     if score >= 45:
@@ -60,8 +86,15 @@ def score_to_status(score: int) -> str:
     return "danger"
 
 
-def get_recommendations(status: str) -> tuple[str, str]:
+def get_recommendations(status: str, data_quality: str = "ok") -> tuple[str, str]:
     """Return Turkish and English recommendation text based on status."""
+    if data_quality == "unknown":
+        return (
+            "Dalga/deniz ölçümü eksik — yalnızca rüzgâra bakmayın; MGM ve liman teyidi alın. "
+            "Saatlik çıkış penceresine (Bugün) öncelik verin.",
+            "Wave/sea measurements missing — do not rely on wind alone; confirm with official sources. "
+            "Prefer today's hour windows.",
+        )
     if status == "good":
         return (
             "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
@@ -88,14 +121,16 @@ def calculate_safety_rating(
     current_kn: float | None = None,
 ) -> MarineSafetyRating:
     """Produce a full MarineSafetyRating model for a coastal region."""
+    quality = data_quality_for(wave_m, sea_temp_c)
     score = calculate_safety_score(
         wave_m=wave_m,
         wind_kn=wind_kn,
         gust_kn=gust_kn,
         has_storm_warning=has_storm_warning,
+        data_quality=quality,
     )
-    status = score_to_status(score)
-    rec_tr, rec_en = get_recommendations(status)
+    status = score_to_status(score, data_quality=quality)
+    rec_tr, rec_en = get_recommendations(status, data_quality=quality)
 
     return MarineSafetyRating(
         area=area,
@@ -149,9 +184,17 @@ def render_safety_index(
     out_file: str | Path | None = None,
 ) -> dict[str, Any]:
     ratings = evaluate_all_areas(points, storm_areas)
+    rating_dicts = []
+    for r in ratings:
+        d = r.to_dict()
+        d["data_quality"] = data_quality_for(r.wave_m, r.sea_temp_c)
+        d["baseline_boat_class"] = "small"
+        rating_dicts.append(d)
     payload = {
+        "schema_version": 1,
         "generated": now_iso(),
-        "ratings": [r.to_dict() for r in ratings],
+        "question": "now",
+        "ratings": rating_dicts,
     }
     if out_file:
         import json

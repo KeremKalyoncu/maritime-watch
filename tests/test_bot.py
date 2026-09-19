@@ -93,28 +93,34 @@ def test_subscriber_file_is_git_ignored():
     assert "data/subscribers.json" in (root / ".gitignore").read_text("utf-8")
 
 
-def test_a_subscriber_only_gets_the_areas_they_chose(cfg, monkeypatch, tmp_path):
+def test_a_subscriber_only_gets_the_areas_they_chose(cfg, tmp_path):
     from src.alert.telegram import Notifier
+    from src.render.outlook import render_outlook
+
+    cfg = dict(cfg)
+    cfg["_root"] = str(tmp_path)
     cfg["secrets"] = {"telegram_token": "", "telegram_chat_id": "", "aisstream_key": ""}
     times = [f"2026-09-10T{h:02d}:00" for h in range(13)]
-    monkeypatch.setattr(
-        "src.ingest.openmeteo.fetch_forecast_points",
-        lambda c: [{"name": n, "lat": 41.0, "lon": 29.0, "times": times,
-                    "gusts": [26] * 12, "waves": [0.3] * 12}
-                   for n in ("Marmara Denizi", "Antalya Körfezi")])
+    pts = [{"name": n, "lat": 41.0, "lon": 29.0, "times": times,
+            "gusts": [26] * 12, "waves": [0.3] * 12}
+           for n in ("Marmara Denizi", "Antalya Körfezi")]
+    assert render_outlook(cfg, tmp_path / "web" / "data" / "outlook.json", points=pts)
     txt = Notifier(cfg).outlook_text_for(cfg, {"areas": ["Marmara Denizi"], "boat": "small"})
-    assert "MARMARA DENİZİ" in txt          # Turkish uppercase, not "DENIZI"
+    assert "MARMARA DENİZİ" in txt
     assert "Antalya" not in txt
 
 
-def test_boat_class_changes_the_verdict_for_the_same_weather(cfg, monkeypatch):
+def test_boat_class_changes_the_verdict_for_the_same_weather(cfg, tmp_path):
     from src.alert.telegram import Notifier
+    from src.render.outlook import render_outlook
+
+    cfg = dict(cfg)
+    cfg["_root"] = str(tmp_path)
     cfg["secrets"] = {"telegram_token": "", "telegram_chat_id": "", "aisstream_key": ""}
     times = [f"2026-09-10T{h:02d}:00" for h in range(13)]
-    monkeypatch.setattr(
-        "src.ingest.openmeteo.fetch_forecast_points",
-        lambda c: [{"name": "Marmara Denizi", "lat": 41.0, "lon": 29.0, "times": times,
-                    "gusts": [25] * 12, "waves": [0.4] * 12}])
+    pts = [{"name": "Marmara Denizi", "lat": 41.0, "lon": 29.0, "times": times,
+            "gusts": [25] * 12, "waves": [0.4] * 12}]
+    assert render_outlook(cfg, tmp_path / "web" / "data" / "outlook.json", points=pts)
     n = Notifier(cfg)
     assert "ÇIKMA" in n.outlook_text_for(cfg, {"areas": [], "boat": "small"})
     assert "ÇIKMA" not in n.outlook_text_for(cfg, {"areas": [], "boat": "large"})
@@ -261,28 +267,59 @@ def test_straits_command(bot):
 
 
 def test_fisherman_command(bot):
-    """Test /balikci returns Go/No-Go report."""
+    """Test /balikci returns today's hour windows, not only a score."""
     from pathlib import Path
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
 
-    safety_file = Path(bot.cfg["_root"]) / "web" / "data" / "safety_index.json"
-    safety_file.parent.mkdir(parents=True, exist_ok=True)
-    safety_file.write_text(json.dumps({
+    data_dir = Path(bot.cfg["_root"]) / "web" / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    data_dir.joinpath("outlook.json").write_text(json.dumps({
+        "schema_version": 1,
+        "generated": "2026-09-19T05:00:00Z",
+        "hours": 18,
+        "tz_offset_hours": 3,
+        "question": "today",
+        "classes": {
+            "small": {
+                "label": "küçük tekne (8 m ve altı)",
+                "limits": {"label": "küçük tekne", "gust_kn": 22, "wave_m": 1.25},
+                "areas": [{
+                    "name": "Marmara Denizi",
+                    "lat": 40.7, "lon": 28.2,
+                    "windows": [
+                        {"start": "06:00", "end": "12:00", "level": "ok", "gust_kn": 10, "wave_m": 0.4},
+                        {"start": "12:00", "end": "18:00", "level": "danger", "gust_kn": 26, "wave_m": 0.5},
+                    ],
+                    "max_gust": 26, "max_wave": 0.5,
+                    "first_danger_start": "12:00",
+                    "return_by": "12:00",
+                    "worst": "danger",
+                }],
+            },
+            "medium": {"label": "orta", "limits": {"gust_kn": 28, "wave_m": 2.0}, "areas": []},
+            "large": {"label": "büyük", "limits": {"gust_kn": 34, "wave_m": 3.0}, "areas": []},
+        },
+    }, ensure_ascii=False), encoding="utf-8")
+    data_dir.joinpath("safety_index.json").write_text(json.dumps({
         "ratings": [
-            {"area": "Marmara Denizi", "score": 88, "status": "good", "wave_m": 0.5, "wind_kn": 10, "gust_kn": 14, "recommendation_tr": "Küçük tekneler için uygundur."}
+            {"area": "Marmara Denizi", "score": 88, "status": "good", "wave_m": 0.5,
+             "wind_kn": 10, "gust_kn": 14, "recommendation_tr": "ok", "data_quality": "ok"}
         ]
     }, ensure_ascii=False), encoding="utf-8")
 
     bot.handle(_msg(42, "/balikci Marmara"))
     assert len(sent) == 1
     assert "Marmara Denizi" in sent[0]
+    assert "Bugün" in sent[0]
+    assert "12:00" in sent[0]
+    assert "Limana dönüş" in sent[0]
     assert "88/100" in sent[0]
-    assert "Vira Bismillah" in sent[0]
+    assert "Şimdi" in sent[0]
 
 
 def test_kazalar_command(bot):
-    """Test /kazalar returns maritime distress incidents."""
+    """Test /kazalar accepts wrapped {incidents: []} shape."""
     from pathlib import Path
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
@@ -291,7 +328,8 @@ def test_kazalar_command(bot):
     inc_file.parent.mkdir(parents=True, exist_ok=True)
     inc_file.write_text(json.dumps({
         "incidents": [
-            {"type": "sinking", "type_tr": "batma", "area": "Şile", "status": "confirmed", "vessel": {"name": "Koster-1"}, "summary": "Gemi battı"}
+            {"type": "sinking", "type_tr": "batma", "area": "Şile", "status": "confirmed",
+             "vessel": {"name": "Koster-1"}, "summary": "Gemi battı"}
         ]
     }, ensure_ascii=False), encoding="utf-8")
 
@@ -299,3 +337,17 @@ def test_kazalar_command(bot):
     assert len(sent) == 1
     assert "GÜNCEL DENİZ OLAYLARI" in sent[0]
     assert "Şile" in sent[0]
+
+
+def test_kazalar_accepts_top_level_array(bot):
+    from pathlib import Path
+    sent = []
+    bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
+    inc_file = Path(bot.cfg["_root"]) / "web" / "data" / "incidents.json"
+    inc_file.parent.mkdir(parents=True, exist_ok=True)
+    inc_file.write_text(json.dumps([
+        {"type": "rescue", "type_tr": "kurtarma", "area": "Bodrum", "status": "confirmed",
+         "vessel": {"name": "X"}, "summary": "SG operasyonu"}
+    ], ensure_ascii=False), encoding="utf-8")
+    bot.handle(_msg(42, "/kazalar"))
+    assert "Bodrum" in sent[0]

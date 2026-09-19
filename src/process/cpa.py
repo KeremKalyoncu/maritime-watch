@@ -105,8 +105,8 @@ def detect_cpa_risks(
     tcpa_limit_min: float = DEFAULT_TCPA_LIMIT_MIN,
 ) -> list[CpaEvent]:
     """Scan position reports and return detected high-risk close-quarter encounters."""
-    # Pre-filter underway candidates with valid positions
-    candidates: list[dict[str, Any]] = []
+    # One position per MMSI (last wins) — duplicate rows were producing self-pairs
+    by_mmsi: dict[int, dict[str, Any]] = {}
     for p in positions:
         if p.get("msg_type") == "safety":
             continue
@@ -114,8 +114,13 @@ def detect_cpa_risks(
             continue
         if not is_vessel_underway(p):
             continue
-        candidates.append(p)
+        try:
+            mmsi = int(p["mmsi"])
+        except (TypeError, ValueError):
+            continue
+        by_mmsi[mmsi] = p
 
+    candidates: list[dict[str, Any]] = list(by_mmsi.values())
     events: list[CpaEvent] = []
     n = len(candidates)
 
@@ -123,13 +128,15 @@ def detect_cpa_risks(
         p1 = candidates[i]
         for j in range(i + 1, n):
             p2 = candidates[j]
+            mmsi1 = int(p1["mmsi"])
+            mmsi2 = int(p2["mmsi"])
+            if mmsi1 == mmsi2:
+                continue
             res = calculate_cpa(p1, p2)
             if res is None:
                 continue
             cpa_nm, tcpa_min = res
             if cpa_nm < cpa_limit_nm and 0 < tcpa_min <= tcpa_limit_min:
-                mmsi1 = int(p1["mmsi"])
-                mmsi2 = int(p2["mmsi"])
                 mean_lat = (float(p1["lat"]) + float(p2["lat"])) / 2.0
                 mean_lon = (float(p1["lon"]) + float(p2["lon"])) / 2.0
 
