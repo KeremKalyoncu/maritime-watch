@@ -75,4 +75,4 @@ jobs:
       - uses: actions/upload-pages-artifact@v4
         with:
           path: web
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
