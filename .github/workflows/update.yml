@@ -26,7 +26,7 @@ jobs:
   cycle:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v6
         with:
@@ -68,7 +68,7 @@ jobs:
     if: ${{ !cancelled() && needs.cycle.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: main
       - uses: actions/configure-pages@v5
