@@ -301,22 +301,17 @@ class Bot:
             body = r.json()
             if body.get("ok"):
                 return body.get("result")
-            # description can echo the bot token; error_code is enough to debug
-            print(f"[bot] {method} reddedildi: error_code={body.get('error_code')}")
-        except Exception as e:
-            # requests may put the request URL (with token) into the exception text
-            print(f"[bot] {method} error: {type(e).__name__}")
+            # Never log response body/description: Telegram may echo the bot token.
+            print(f"[bot] {method} reddedildi")
+        except Exception:
+            # Never log exception text: requests may include the tokenized URL.
+            print(f"[bot] {method} error")
         return None
 
     def send(self, chat_id, text: str, markup: str | None = None, dry: bool = True) -> bool:
         if dry or not self.token:
-            first_line = text.splitlines()[0] if text else ""
-            try:
-                # chat_id identifies a person — never clear-text in logs
-                print(f"[bot:dry] {first_line}")
-            except UnicodeEncodeError:
-                safe_line = first_line.encode("ascii", errors="backslashreplace").decode("ascii")
-                print(f"[bot:dry] {safe_line}")
+            # No chat_id / message body in logs (chat id identifies a person; CodeQL).
+            print("[bot:dry] send skipped")
             return True
         payload = {"chat_id": chat_id, "text": text, "parse_mode": "HTML",
                    "disable_web_page_preview": "true"}
