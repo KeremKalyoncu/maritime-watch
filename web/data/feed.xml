@@ -3,20 +3,20 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Sun, 20 Sep 2026 19:51:50 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 20 Sep 2026 21:58:38 +0000</lastBuildDate>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-20-ais-92ba1c-2</guid>
+      <pubDate>Sun, 20 Sep 2026 21:54:51 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 524 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 650 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
+    </item>
     <item>
       <title>[signal] drift, Marmara Denizi</title>
       <link>https://example.github.io/maritime-watch</link>
       <guid isPermaLink="false">2026-09-20-ais-b9ec52-1</guid>
       <pubDate>Sun, 20 Sep 2026 19:48:57 +0000</pubDate>
       <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: nav-status: kumanda dışı (not under command)</description>
-    </item>
-    <item>
-      <title>[signal] distress, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-20-ais-92ba1c-1</guid>
-      <pubDate>Sun, 20 Sep 2026 19:48:57 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 524 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
     </item>
     <item>
       <title>[confirmed] rescue, Antalya Körfezi</title>
