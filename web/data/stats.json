@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-19T22:58:28Z",
-  "total_incidents": 336,
+  "generated": "2026-09-20T00:57:35Z",
+  "total_incidents": 337,
   "by_month": {
-    "2026-09": 336
+    "2026-09": 337
   },
   "by_area": {
-    "belirsiz": 299,
+    "belirsiz": 300,
     "Marmara Denizi": 13,
     "Türk karasuları civarı": 8,
     "Antalya Körfezi": 5,
@@ -16,7 +16,7 @@
     "Mersin–İskenderun Körfezi": 1
   },
   "by_type": {
-    "distress": 117,
+    "distress": 118,
     "drift": 77,
     "unknown": 57,
     "collision-risk": 44,
@@ -27,7 +27,7 @@
     "capsize": 1
   },
   "by_status": {
-    "signal": 292,
+    "signal": 293,
     "probable": 44
   },
   "incidents_with_casualties": 24,
