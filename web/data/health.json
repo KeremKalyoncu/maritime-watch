@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-20T14:43:34Z",
-  "cycle_seconds": 249.7,
+  "generated": "2026-09-20T17:45:26Z",
+  "cycle_seconds": 251.8,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
   "incidents": 21,
-  "warnings": 4,
+  "warnings": 3,
   "sources": {
     "scrape": {
       "ok": true,
@@ -14,7 +14,7 @@
     },
     "news": {
       "ok": true,
-      "items": 3,
+      "items": 1,
       "error": null
     },
     "openmeteo": {
@@ -39,7 +39,7 @@
     },
     "metar": {
       "ok": true,
-      "items": 1,
+      "items": 0,
       "error": null
     },
     "bot": {
@@ -55,11 +55,11 @@
     "shod_navtex.txt": "live",
     "news_3.xml": "live",
     "news_2.xml": "live",
-    "news_1.xml": "live",
-    "news_6.xml": "live",
-    "news_9.xml": "live",
-    "news_5.xml": "live",
     "news_4.xml": "live",
+    "news_6.xml": "live",
+    "news_5.xml": "live",
+    "news_1.xml": "live",
+    "news_9.xml": "live",
     "news_7.xml": "live",
     "news_8.xml": "live",
     "news_0.xml": "live",
