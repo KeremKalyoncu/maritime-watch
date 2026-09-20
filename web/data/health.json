@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-20T17:45:26Z",
-  "cycle_seconds": 251.8,
+  "generated": "2026-09-20T19:51:50Z",
+  "cycle_seconds": 263.4,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
@@ -14,7 +14,7 @@
     },
     "news": {
       "ok": true,
-      "items": 1,
+      "items": 0,
       "error": null
     },
     "openmeteo": {
@@ -49,18 +49,18 @@
     }
   },
   "fetch": {
-    "mgm_alarmlar.json": "live",
+    "mgm_alarmlar.json": "down",
     "sahil_guvenlik.html": "live",
     "kegm_sample.html": "live",
     "shod_navtex.txt": "live",
-    "news_3.xml": "live",
     "news_2.xml": "live",
-    "news_4.xml": "live",
+    "news_3.xml": "live",
+    "news_1.xml": "live",
     "news_6.xml": "live",
     "news_5.xml": "live",
-    "news_1.xml": "live",
-    "news_9.xml": "live",
     "news_7.xml": "live",
+    "news_9.xml": "live",
+    "news_4.xml": "live",
     "news_8.xml": "live",
     "news_0.xml": "live",
     "openmeteo_marine:Marmara Denizi": "live",

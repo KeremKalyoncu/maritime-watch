@@ -3,7 +3,21 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Sun, 20 Sep 2026 17:45:27 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 20 Sep 2026 19:51:50 +0000</lastBuildDate>
+    <item>
+      <title>[signal] drift, Marmara Denizi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-20-ais-b9ec52-1</guid>
+      <pubDate>Sun, 20 Sep 2026 19:48:57 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: nav-status: kumanda dışı (not under command)</description>
+    </item>
+    <item>
+      <title>[signal] distress, Güney Ege</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">2026-09-20-ais-92ba1c-1</guid>
+      <pubDate>Sun, 20 Sep 2026 19:48:57 +0000</pubDate>
+      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 524 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
+    </item>
     <item>
       <title>[confirmed] rescue, Antalya Körfezi</title>
       <link>https://www.trthaber.com/haber/turkiye/antalya-aciklarinda-teknede-yaralanan-kisi-tahliye-edildi-957413.html</link>
@@ -89,25 +103,11 @@
       <description>Güven: 0.35 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.04 NM (~77 m), kalan süre: 0.3 dk (Hızlar: 7.4 kn / 7.4 kn) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 381 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 433 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 568 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 705 dakika önce kesildi (6 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 814 dakika önce kesildi (7 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 533 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 534 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 840 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 841 dakika önce kesildi (4 taramada üst üste görünmedi)</description>
     </item>
     <item>
-      <title>[signal] unknown, Türk karasuları civarı</title>
-      <link>https://www.cnnturk.com/turkiye/son-dakika-kktcde-batan-gemide-bir-kisinin-daha-cesedi-bulundu-3468695</link>
-      <guid isPermaLink="false">news-13935b4da6-1</guid>
-      <pubDate>Sun, 20 Sep 2026 05:58:34 +0000</pubDate>
-      <description>Güven: 0.3 | Önem: minor | news/cnnturk.com: SON DAKİKA | Girne'deki gemi faciasında bilanço ağırlaşıyor: 15 ölü, 13 kayıp</description>
-    </item>
-    <item>
       <title>[confirmed] rescue, Antalya Körfezi</title>
       <link>https://www.sg.gov.tr/antalya-aciklarinda-4-sahis-kurtarilmistir-18-09-2026</link>
       <guid isPermaLink="false">rep-e86804d5dd-2</guid>
       <pubDate>Sun, 20 Sep 2026 05:58:34 +0000</pubDate>
       <description>Güven: 0.9 | Önem: critical | Bildirilen kişi: 4 | official/Sahil Güvenlik Komutanlığı: 19.09.2026 Antalya Açıklarında 4 Şahıs Kurtarılmıştır | news/trthaber.com: Antalya açıklarında teknede yaralanan kişi tahliye edildi</description>
-    </item>
-    <item>
-      <title>[signal] distress, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-19-ais-d9bdc8-8</guid>
-      <pubDate>Sun, 20 Sep 2026 05:58:17 +0000</pubDate>
-      <description>Güven: 0.35 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 831 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 830 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 943 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.02 NM (~44 m), kalan süre: 0.8 dk (Hızlar: 8.1 kn / 8.1 kn) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 325 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 434 dakika önce kesildi (4 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 555 dakika önce kesildi (5 taramada üst üste görünmedi) | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 858 dakika önce kesildi (6 taramada üst üste görünmedi)</description>
     </item>
     <item>
       <title>[confirmed] rescue, İstanbul Boğazı</title>
