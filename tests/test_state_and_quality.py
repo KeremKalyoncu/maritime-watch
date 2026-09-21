@@ -5,7 +5,6 @@ mislabelling the type, or inventing a "~0 deniz mili" distance."""
 import json
 import time
 
-from src.alert.telegram import Notifier
 from src.model import Incident, Source, Vessel
 from src.process.anomaly import VesselState
 from src.process.dedup import correlate
@@ -19,18 +18,6 @@ def _ago(hours):
 
 def _store(tmp_path):
     return Store(str(tmp_path / "web" / "data"), log_dir=str(tmp_path / "data"))
-
-
-# ---- state survives a fresh checkout -------------------------------------
-def test_sent_keys_are_capped(cfg, monkeypatch):
-    import src.alert.telegram as tg
-
-    monkeypatch.setattr(tg, "_SENT_CAP", 10)
-    n = Notifier(cfg)
-    for i in range(25):
-        n._remember(f"k{i:03d}")
-    assert len(n._sent) <= 10
-    assert len(json.loads(n.sent_path.read_text("utf-8"))) <= 10
 
 
 def test_vessel_state_prunes_old_and_caps(tmp_path):
@@ -63,18 +50,7 @@ def test_incident_type_is_inferred_from_wording():
     assert incident_type("Merkez Bankası faiz kararı") == "unknown"
 
 
-def test_coarse_location_avoids_zero_mile_nonsense(cfg):
-    n = Notifier(cfg)
-    inc = Incident(
-        id="c1", type="distress", status="confirmed", lat=40.98, lon=27.51, area="Marmara Denizi", coarse=True
-    )
-    inc.sources.append(
-        Source(kind="official", org="SG", detail="Tekirdağ açıklarında kurtarma", url="https://sg.gov.tr/a")
-    )
-    n.incident(inc, dry=True)
-    body = n.outbox.read_text("utf-8")
-    assert "Tekirdağ açıkları" in body
-    assert "deniz mili" not in body
+
 
 
 # ---- correlation must not fuse separate official announcements ------------
@@ -122,29 +98,7 @@ def test_ais_fix_still_merges_with_coarse_news(tmp_path):
     assert correlate(s, b).id == "a"
 
 
-def test_every_source_is_shown_so_the_count_is_traceable(cfg):
-    n = Notifier(cfg)
-    inc = Incident(
-        id="m1",
-        type="distress",
-        status="confirmed",
-        lat=38.43,
-        lon=27.14,
-        area="Güney Ege",
-        coarse=True,
-        casualties=20,
-    )
-    inc.sources.append(
-        Source(kind="official", org="SG", detail="İzmir önlerinde 2 şahıs", url="https://sg.gov.tr/a")
-    )
-    inc.sources.append(
-        Source(kind="official", org="SG", detail="İzmir açıklarında 20 göçmen", url="https://sg.gov.tr/b")
-    )
-    n.incident(inc, dry=True)
-    body = n.outbox.read_text("utf-8")
-    assert "Kaynaklar (2)" in body
-    assert "2 şahıs" in body and "20 göçmen" in body  # both quotes visible
-    assert "en yüksek sayı" in body  # the 20 is explained
+
 
 
 # ---- the committed state must stay small and git-friendly ------------------
@@ -275,14 +229,7 @@ def test_earthquakes_are_never_lifted_this_way(tmp_path):
     assert clear_passed_weather(s, set(), live_sources=True) == []
 
 
-def test_all_clear_message_names_the_area(tmp_path, cfg):
-    cfg["secrets"] = {"telegram_token": "", "telegram_chat_id": "", "aisstream_key": ""}
-    cfg["alert"]["telegram"]["digest"] = False
-    n = Notifier(cfg)
-    sent = []
-    n._send_one = lambda key, text, dry, lat=None, lon=None: sent.append(text)
-    n.weather_passed(_wx("wx-a"), dry=True)
-    assert sent and "UYARI KALKTI" in sent[0] and "Marmara Denizi" in sent[0]
+
 
 
 def test_a_source_is_never_counted_twice(tmp_path):

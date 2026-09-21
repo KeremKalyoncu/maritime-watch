@@ -1,17 +1,12 @@
 {
-  "generated": "2026-09-21T23:35:19Z",
-  "cycle_seconds": 333.0,
-  "sources_ok": 8,
-  "sources_total": 8,
+  "generated": "2026-09-21T23:29:48Z",
+  "cycle_seconds": 25.2,
+  "sources_ok": 6,
+  "sources_total": 6,
   "sources_down": [],
-  "incidents": 16,
-  "warnings": 6,
+  "incidents": 12,
+  "warnings": 3,
   "sources": {
-    "scrape": {
-      "ok": true,
-      "items": 2,
-      "error": null
-    },
     "news": {
       "ok": true,
       "items": 1,
@@ -19,7 +14,7 @@
     },
     "openmeteo": {
       "ok": true,
-      "items": 12,
+      "items": 13,
       "error": null
     },
     "quakes": {
@@ -41,11 +36,6 @@
       "ok": true,
       "items": 2,
       "error": null
-    },
-    "bot": {
-      "ok": true,
-      "items": null,
-      "error": null
     }
   },
   "fetch": {
@@ -53,16 +43,16 @@
     "sahil_guvenlik.html": "live",
     "kegm_sample.html": "live",
     "shod_navtex.txt": "live",
-    "news_2.xml": "live",
-    "news_3.xml": "live",
-    "news_1.xml": "live",
-    "news_6.xml": "live",
-    "news_5.xml": "live",
     "news_4.xml": "live",
-    "news_9.xml": "live",
-    "news_7.xml": "live",
-    "news_8.xml": "live",
     "news_0.xml": "live",
+    "news_1.xml": "live",
+    "news_2.xml": "live",
+    "news_5.xml": "live",
+    "news_3.xml": "live",
+    "news_6.xml": "live",
+    "news_7.xml": "live",
+    "news_9.xml": "live",
+    "news_8.xml": "live",
     "openmeteo_marine:Marmara Denizi": "live",
     "openmeteo_wind:Marmara Denizi": "live",
     "openmeteo_marine:İzmit Körfezi": "live",
@@ -75,8 +65,8 @@
     "openmeteo_wind:Saroz Körfezi": "live",
     "openmeteo_marine:Kuzey Ege": "live",
     "openmeteo_wind:Kuzey Ege": "live",
-    "openmeteo_marine:Güney Ege": "down",
-    "openmeteo_wind:Güney Ege": "down",
+    "openmeteo_marine:Güney Ege": "live",
+    "openmeteo_wind:Güney Ege": "live",
     "openmeteo_marine:Antalya Körfezi": "live",
     "openmeteo_wind:Antalya Körfezi": "live",
     "openmeteo_marine:Mersin Körfezi": "live",

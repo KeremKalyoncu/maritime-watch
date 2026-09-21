@@ -1,15 +1,13 @@
 {
   "schema_version": 1,
-  "generated": "2026-09-21T23:35:19Z",
+  "generated": "2026-09-21T23:29:48Z",
   "hours": 18,
   "tz_offset_hours": 3.0,
   "question": "today",
   "coverage": {
     "expected": 13,
-    "present": 12,
-    "missing": [
-      "Güney Ege"
-    ]
+    "present": 13,
+    "missing": []
   },
   "classes": {
     "small": {
@@ -363,6 +361,37 @@
           "cur_wind_dir": 81.0,
           "cur_wave_period": 2.7,
           "cur_visibility_km": 40.9,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
+        },
+        {
+          "name": "Güney Ege",
+          "lat": 37.0,
+          "lon": 27.1,
+          "windows": [
+            {
+              "start": "02:00",
+              "end": "20:00",
+              "level": "ok",
+              "gust_kn": 11.5,
+              "wave_m": 0.6,
+              "dominant_wind": "Karayel",
+              "hazard_reason": null
+            }
+          ],
+          "max_gust": 11.5,
+          "max_wave": 0.6,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok",
+          "sunset_time": "19:12",
+          "safe_cutoff": "18:27",
+          "cur_wind_name": "Karayel",
+          "cur_wind_dir": 315.0,
+          "cur_wave_period": 3.85,
+          "cur_visibility_km": 37.5,
           "steepness_hazard": false,
           "fog_hazard": false,
           "orkoz_hazard": false,
@@ -832,6 +861,37 @@
           "data_quality": "ok"
         },
         {
+          "name": "Güney Ege",
+          "lat": 37.0,
+          "lon": 27.1,
+          "windows": [
+            {
+              "start": "02:00",
+              "end": "20:00",
+              "level": "ok",
+              "gust_kn": 11.5,
+              "wave_m": 0.6,
+              "dominant_wind": "Karayel",
+              "hazard_reason": null
+            }
+          ],
+          "max_gust": 11.5,
+          "max_wave": 0.6,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok",
+          "sunset_time": "19:12",
+          "safe_cutoff": "18:27",
+          "cur_wind_name": "Karayel",
+          "cur_wind_dir": 315.0,
+          "cur_wave_period": 3.85,
+          "cur_visibility_km": 37.5,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
+        },
+        {
           "name": "Antalya Körfezi",
           "lat": 36.55,
           "lon": 30.6,
@@ -1253,6 +1313,37 @@
           "cur_wind_dir": 81.0,
           "cur_wave_period": 2.7,
           "cur_visibility_km": 40.9,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
+        },
+        {
+          "name": "Güney Ege",
+          "lat": 37.0,
+          "lon": 27.1,
+          "windows": [
+            {
+              "start": "02:00",
+              "end": "20:00",
+              "level": "ok",
+              "gust_kn": 11.5,
+              "wave_m": 0.6,
+              "dominant_wind": "Karayel",
+              "hazard_reason": null
+            }
+          ],
+          "max_gust": 11.5,
+          "max_wave": 0.6,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok",
+          "sunset_time": "19:12",
+          "safe_cutoff": "18:27",
+          "cur_wind_name": "Karayel",
+          "cur_wind_dir": 315.0,
+          "cur_wave_period": 3.85,
+          "cur_visibility_km": 37.5,
           "steepness_hazard": false,
           "fog_hazard": false,
           "orkoz_hazard": false,

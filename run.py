@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-"""Maritime Watch orchestrator.
+"""Maritime Watch Core Engine Orchestrator.
 
-py run.py --once            one cycle (dry-run alerts), then exit
-py run.py --once --serve    one cycle, then serve the map on :8000
-py run.py --loop            cycle every loop.interval_seconds
-py run.py --serve           just serve web/ (no cycle)
-py run.py --once --send     actually send Telegram alerts (needs .env)
+Pure computation, scraping, marine physics, safety analysis and web dashboard generation.
+Zero messaging dependencies. Emits data to web/data/*.json, web/feed.xml and optional
+0-latency emergency webhooks.
+
+Usage:
+  python run.py --once                   run one cycle, write data, then exit
+  python run.py --once --serve           run one cycle, then serve the web dashboard on :8000
+  python run.py --loop                   cycle every loop.interval_seconds (default 900s)
+  python run.py --serve                  just serve web/ (no cycle)
+  python run.py --alert-webhook URL      push critical emergency events to external listener
 
 flags: --no-ais  --no-scrape  --port N  --config PATH
 """
@@ -34,8 +39,6 @@ if sys.stderr and hasattr(sys.stderr, "reconfigure"):
     except Exception:
         pass
 
-from src.alert.bot import Bot
-from src.alert.telegram import Notifier
 from src.config import load_config
 from src.ingest import _net
 from src.ingest.ais_stream import capture_ais
@@ -60,7 +63,6 @@ from src.process.cpa import cpa_events_to_incidents, detect_cpa_risks
 from src.process.dedup import correlate
 from src.process.prune import clear_passed_weather, prune
 from src.process.safety_index import render_safety_index
-from src.process.window import build as build_outlook
 from src.render.feed import build_feed
 from src.render.health import write_health
 from src.render.mapdata import enrich_incident_tracks, write_summary
@@ -79,84 +81,49 @@ _TYPE_FOR = {
 }
 
 
-def send_daily_outlook(cfg: dict, notifier, *, dry: bool = True) -> None:
-    """The morning "can I go out today" message, once a day.
-
-    Sent on the first cycle at or after the configured local hour; the notifier's
-    own sent-key (outlook:<date>) keeps it to one per day even though the cron
-    fires every 15 minutes.
-    """
-    oc = cfg.get("outlook", {})
-    if not oc.get("enabled", False):
+def dispatch_emergency_webhook(
+    webhook_url: str | None,
+    token: str | None,
+    payload: dict,
+) -> None:
+    """Optionally emit an emergency incident to maritime-social or external hub with 0 latency."""
+    if not webhook_url:
         return
-    tz = float(oc.get("tz_offset_hours", 3))
-    now_local = time.gmtime(time.time() + tz * 3600)
-    if now_local.tm_hour < int(oc.get("send_hour_local", 6)):
-        return
-
-    # per-subscriber first: a Marmara fisherman should not get thirteen sea areas
-    bot = Bot(cfg, notifier=notifier)
-    subs = bot.subs.active()
-    if subs:
-        day = time.strftime("%Y-%m-%d", now_local)
-        sent = 0
-        for chat, sub in subs:
-            if sub.get("last_outlook") == day:
-                continue
-            text = notifier.outlook_text_for(cfg, sub)
-            if not text:
-                continue
-            try:
-                if bot.send(chat, text, dry=dry):
-                    sub["last_outlook"] = day
-                    sent += 1
-            except Exception as e:
-                print(f"[outlook] chat {chat} gonderim hatasi: {e}")
-        bot.subs.save()
-        print(f"[outlook] {sent}/{len(subs)} aboneye gonderildi")
-        return
-
-    klass = oc["classes"][oc.get("boat_class", "small")]
     try:
-        pts = fetch_forecast_points(cfg)
+        import requests
+
+        headers = {"Content-Type": "application/json"}
+        if token:
+            headers["X-Maritime-Token"] = token
+        resp = requests.post(webhook_url, json=payload, headers=headers, timeout=4)
+        if resp.status_code < 300:
+            print(f"[webhook:emit] event={payload.get('event_id')} sent to {webhook_url}")
+        else:
+            print(f"[webhook:warn] status {resp.status_code} from {webhook_url}")
     except Exception as e:
-        print(f"[outlook] error: {e}")
-        return
-    if not pts:
-        print("[outlook] canli tahmin yok -> mesaj gonderilmedi")
-        return
-    areas = [
-        build_outlook(
-            p["name"],
-            p["times"],
-            p["gusts"],
-            p["waves"],
-            klass,
-            hours=int(oc.get("hours", 18)),
-            tz_offset_h=tz,
-            lat=p["lat"],
-            lon=p["lon"],
-        )
-        for p in pts
-    ]
-    day = time.strftime("%d.%m.%Y", now_local)
-    print(
-        f"[outlook] {len(areas)} bolge, {sum(1 for a in areas if a.worst != 'ok')} tanesinde sinir asiliyor"
-    )
-    notifier.daily_outlook(areas, klass, dry=dry, day=day)
+        print(f"[webhook:error] {e}")
 
 
-def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool = True) -> None:
+def cycle(
+    cfg: dict,
+    *,
+    webhook_url: str | None = None,
+    do_ais: bool = True,
+    do_scrape: bool = True,
+) -> None:
     started = time.time()
     root = Path(cfg["_root"])
     web_data = root / "web" / "data"
     store = Store(str(web_data), log_dir=str(root / "data"))
-    notifier = Notifier(cfg)
     src = cfg.get("sources", {})
-    touched: set[str] = set()  # incident ids seen this cycle -> notify at end
+    touched: set[str] = set()
     health: list[dict] = []
 
-    # fixtures are never publishable in production; see src/ingest/_net.py
+    # Config override for webhook url
+    if not webhook_url:
+        webhook_url = cfg.get("alert", {}).get("webhook_url") or None
+    webhook_token = cfg.get("alert", {}).get("webhook_token") or None
+
     _net.SAMPLES_ALLOWED = bool(src.get("use_samples_when_down", False))
     _net.reset_status()
     reset_openmeteo_cache()
@@ -167,7 +134,7 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
             n = len(r) if isinstance(r, (list, tuple)) else None
             health.append({"source": label, "ok": True, "items": n, "error": None})
             return r
-        except Exception as e:  # keep one bad source from stopping the cycle
+        except Exception as e:
             print(f"[{label}] error: {e}")
             health.append({"source": label, "ok": False, "items": None, "error": str(e)[:200]})
             return default
@@ -218,32 +185,28 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
                 vessel=Vessel(mmsi=s.get("mmsi")),
             )
             inc.sources.append(
-                Source(kind="ais-safety", org="AIS", detail=f"güvenlik yayını: {s['text'][:200]}")
+                Source(kind="ais-safety", org="AIS", detail=f"ch {s.get('channel')}: {s.get('text')}")
             )
             inc = correlate(store, inc)
             touched.add(store.upsert_incident(inc).id)
 
-    wx_seen: set[str] = set()
+    forecast_pts = None
+    wx_seen = set()
     extra_warns_ran = False
-    forecast_pts: list | None = None
 
     def push_warning(w):
-        cur, how = store.upsert_warning(w)
-        if w.kind in ("marine-weather", "metar"):
-            wx_seen.add(cur.id)
-        if how == "new":
-            notifier.warning(cur, dry=dry)
-        elif how == "merged" and len(cur.orgs) >= 2:
-            notifier.warning_confirmed(cur, dry=dry)
+        if w:
+            store.upsert_warning(w)
+            if w.area:
+                wx_seen.add(w.area)
 
     if do_scrape:
-        if src.get("scrape", True):
-            incs, warns = _safe("scrape", lambda: gather_official(cfg), ([], []))
-            print(f"[scrape] {len(incs)} report(s), {len(warns)} warning(s)")
-            for c in incs:
+        if src.get("official", True):
+            off_inc, off_warn = gather_official(cfg)
+            for c in off_inc:
                 c = correlate(store, c)
                 touched.add(store.upsert_incident(c).id)
-            for w in warns:
+            for w in off_warn:
                 push_warning(w)
 
         if src.get("news", True):
@@ -254,7 +217,6 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
                 touched.add(store.upsert_incident(c).id)
 
         extra_warns = []
-        # One Open-Meteo pull for the whole cycle (warnings + outlook + weather grid)
         if src.get("openmeteo", True):
             forecast_pts = _safe("openmeteo", lambda: fetch_forecast_points(cfg), []) or []
             extra_warns += warnings_from_forecast(cfg, forecast_pts)
@@ -276,26 +238,33 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         for w in extra_warns:
             push_warning(w)
 
-    # correlation may have merged sources; re-classify, then notify with final status
     for inc in store.active_incidents():
         classify(inc)
     for iid in touched:
         inc = store.incidents.get(iid)
         if inc:
-            notifier.incident(inc, dry=dry)
+            print(f"[engine:incident] {inc.id} status={inc.status} type={inc.type} sev={inc.severity}")
+            if webhook_url and inc.severity in ("major", "critical"):
+                dispatch_emergency_webhook(
+                    webhook_url,
+                    webhook_token,
+                    {
+                        "event_id": inc.id,
+                        "priority": inc.severity,
+                        "category": inc.type,
+                        "area": inc.area or "",
+                        "lat": inc.lat,
+                        "lon": inc.lon,
+                        "title": getattr(inc, "type_tr", inc.type),
+                        "description": inc.summary or "",
+                        "created_at": inc.time,
+                    },
+                )
 
-    # a forecast that came back live and no longer lists an area means the blow
-    # is over; tell people so, instead of leaving the warning up for its full TTL
     wx_live = do_scrape and all(_net.STATUS.get(k) != "sample" for k in _net.STATUS)
     for w in clear_passed_weather(store, wx_seen, wx_live and bool(wx_seen or extra_warns_ran)):
-        notifier.weather_passed(w, dry=dry)
+        print(f"[weather:passed] {w.area}: {getattr(w, 'headline', '')}")
 
-    if cfg.get("bot", {}).get("enabled", False):
-        n = _safe("bot", lambda: Bot(cfg, notifier=notifier).poll(dry=dry), 0)
-        if n:
-            print(f"[bot] {n} guncelleme islendi")
-
-    # Reuse cycle forecast when available (second pull only if scrape skipped openmeteo)
     if forecast_pts is None:
         try:
             forecast_pts = fetch_forecast_points(cfg)
@@ -307,10 +276,6 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         render_outlook(cfg, web_data / "outlook.json", points=forecast_pts)
     except Exception as e:
         print(f"[outlook:error] render error: {e}")
-    try:
-        send_daily_outlook(cfg, notifier, dry=dry)
-    except Exception as e:
-        print(f"[outlook] error: {e}")
 
     dw, di = prune(store, cfg)
     if dw or di:
@@ -330,16 +295,14 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     )
     down = sorted(set(h["sources_down"]) | {k for k, v in fetch_status.items() if v == "down"})
     if len(down) >= 3:
-        notifier.operator(f"⚙️ {len(down)} kaynak yanıt vermiyor: {', '.join(down)}", dry=dry)
+        print(f"[health:warn] {len(down)} kaynak yanıt vermiyor: {', '.join(down)}")
     print(f"[health] {h['sources_ok']}/{h['sources_total']} kaynak OK, {h['cycle_seconds']}s")
 
-    notifier.flush(dry=dry)  # one digest message for everything this cycle
     try:
         enrich_incident_tracks(store, root / "data" / "vessels.json")
     except Exception as e:
         print(f"[tracks] enrich error: {e}")
 
-    # Render marine weather vector grid & correlate incidents
     grid_payload = None
     try:
         grid_payload = render_weather_grid(cfg, web_data / "weather_overlay.json", points=forecast_pts)
@@ -347,7 +310,7 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
             enrich_weather_context(inc, grid_payload.get("points", []))
     except Exception as e:
         print(f"[weather_grid] render error: {e}")
-    # Render Turkish Straits live transit status
+
     try:
         vessels_file = root / "data" / "vessels.json"
         vessels_dict = {}
@@ -360,7 +323,6 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     except Exception as e:
         print(f"[straits] render error: {e}")
 
-    # Render fisherman marine safety rating index
     try:
         pts = grid_payload.get("points", []) if grid_payload else []
         storm_areas = {w.area for w in store.active_warnings() if w.area}
@@ -387,43 +349,19 @@ def serve(cfg: dict, port: int = 8000) -> None:
             pass
 
 
-def run_bot_listener(cfg: dict, *, dry: bool = False) -> None:
-    """Dedicated low-latency Telegram bot worker loop."""
-    if not cfg.get("bot", {}).get("enabled", False):
-        print("[bot] config.yaml içinde bot.enabled: false, dinleyici başlatılmadı.")
-        return
-    notifier = Notifier(cfg)
-    bot = Bot(cfg, notifier=notifier)
-    mode_str = "DRY-RUN (test modu - konsola yazar)" if dry else "CANLI (gerçek Telegram yanıtı)"
-    print(f"[bot] ⚡ Anlık Telegram bot dinleyicisi devrede [{mode_str}]. Komutlar bekleniyor...")
-    while True:
-        try:
-            bot.poll(dry=dry)
-        except Exception as e:
-            print(f"[bot] polling hatası: {e}")
-        time.sleep(1.5)
-
-
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Maritime Watch: Turkiye deniz olayi izleme")
+    ap = argparse.ArgumentParser(description="Maritime Watch: Turkiye deniz analiz ve izleme motoru")
     ap.add_argument("--once", action="store_true", help="run one cycle then exit")
     ap.add_argument("--loop", action="store_true", help="run cycles forever")
-    ap.add_argument("--bot", action="store_true", help="run dedicated real-time Telegram bot listener")
     ap.add_argument("--serve", action="store_true", help="serve web/ on localhost")
     ap.add_argument("--port", type=int, default=8000)
-    ap.add_argument("--send", action="store_true", help="really send Telegram (default: dry-run)")
+    ap.add_argument("--alert-webhook", default=None, help="HTTP URL to push critical emergency incidents")
     ap.add_argument("--no-ais", action="store_true")
     ap.add_argument("--no-scrape", action="store_true")
     ap.add_argument("--config", default=None)
     args = ap.parse_args()
 
     cfg = load_config(args.config)
-    dry = not args.send
-
-    # Exclusive bot-only mode
-    if args.bot:
-        run_bot_listener(cfg, dry=dry)
-        return
 
     if args.serve and not (args.once or args.loop):
         serve(cfg, args.port)
@@ -432,14 +370,15 @@ def main() -> None:
         threading.Thread(target=serve, args=(cfg, args.port), daemon=True).start()
 
     if args.loop:
-        # Start low-latency bot thread so users get instant replies during the 15-min cycle sleep
-        if cfg.get("bot", {}).get("enabled", False):
-            threading.Thread(target=run_bot_listener, args=(cfg,), kwargs={"dry": dry}, daemon=True).start()
-
         interval = cfg["loop"]["interval_seconds"]
         while True:
             try:
-                cycle(cfg, dry=dry, do_ais=not args.no_ais, do_scrape=not args.no_scrape)
+                cycle(
+                    cfg,
+                    webhook_url=args.alert_webhook,
+                    do_ais=not args.no_ais,
+                    do_scrape=not args.no_scrape,
+                )
             except KeyboardInterrupt:
                 break
             except Exception as e:
@@ -447,7 +386,12 @@ def main() -> None:
             print(f"[loop] sleeping {interval}s\n")
             time.sleep(interval)
     else:
-        cycle(cfg, dry=dry, do_ais=not args.no_ais, do_scrape=not args.no_scrape)
+        cycle(
+            cfg,
+            webhook_url=args.alert_webhook,
+            do_ais=not args.no_ais,
+            do_scrape=not args.no_scrape,
+        )
         if args.serve:
             while True:
                 time.sleep(3600)

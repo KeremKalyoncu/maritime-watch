@@ -26,7 +26,5 @@ def load_config(path: str | None = None) -> dict:
     cfg["_root"] = str(ROOT)
     cfg["secrets"] = {
         "aisstream_key": os.getenv("AISSTREAM_KEY", "").strip(),
-        "telegram_token": os.getenv("TELEGRAM_BOT_TOKEN", "").strip(),
-        "telegram_chat_id": os.getenv("TELEGRAM_CHAT_ID", "").strip(),
     }
     return cfg

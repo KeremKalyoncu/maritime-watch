@@ -3,35 +3,7 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Mon, 21 Sep 2026 23:35:19 +0000</lastBuildDate>
-    <item>
-      <title>[signal] distress, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-21-ais-df7d42-3</guid>
-      <pubDate>Mon, 21 Sep 2026 23:31:17 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 736 dakika önce kesildi (3 taramada üst üste görünmedi) | ais-anomaly/AIS: speed-drop: seyir hızından (5.7 kn) ani duruşa geçti | ais-anomaly/AIS: speed-drop: tanker: seyir hızından (6.0 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[signal] drift, Güney Ege</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-21-ais-c4d114-1</guid>
-      <pubDate>Mon, 21 Sep 2026 23:31:17 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: speed-drop: seyir hızından (12.4 kn) ani duruşa geçti</description>
-    </item>
-    <item>
-      <title>[signal] distress, Marmara Denizi</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-21-ais-724de1-1</guid>
-      <pubDate>Mon, 21 Sep 2026 23:31:17 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 802 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
-    </item>
-    <item>
-      <title>[signal] distress, Batı Karadeniz</title>
-      <link>https://example.github.io/maritime-watch</link>
-      <guid isPermaLink="false">2026-09-21-ais-a0365c-1</guid>
-      <pubDate>Mon, 21 Sep 2026 23:31:17 +0000</pubDate>
-      <description>Güven: 0.25 | Önem: minor | ais-anomaly/AIS: ais-gap: seyir halindeyken AIS sinyali yaklaşık 801 dakika önce kesildi (3 taramada üst üste görünmedi)</description>
-    </item>
+  <lastBuildDate>Mon, 21 Sep 2026 23:29:48 +0000</lastBuildDate>
     <item>
       <title>[signal] unknown, konum belirsiz</title>
       <link>https://www.aa.com.tr/tr/gundem/kktc-basbakani-ustel-gemi-kazasinin-ardindan-cesedine-ulasilan-kisinin-kimliginin-belirlendigini-acikladi/4063599</link>

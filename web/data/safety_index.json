@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-09-21T23:35:19Z",
+  "generated": "2026-09-21T23:29:48Z",
   "question": "now",
   "ratings": [
     {
@@ -14,7 +14,7 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 23.3,
       "current_kn": 0.2,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
@@ -29,7 +29,7 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 22.9,
       "current_kn": 0.2,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
@@ -44,7 +44,7 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 23.3,
       "current_kn": 0.1,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
@@ -59,22 +59,22 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 22.3,
       "current_kn": 0.3,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
     {
       "area": "Saroz Körfezi",
-      "score": 45,
-      "status": "caution",
+      "score": 95,
+      "status": "good",
       "wave_m": 0.16,
       "wind_kn": 12.2,
       "gust_kn": 16.3,
-      "recommendation_tr": "Çırpıntılı deniz, donanımlı tekneler seyredebilir. Can yeleği takın ve hava raporunu takip edin.",
-      "recommendation_en": "Choppy seas, equipped vessels may sail. Wear lifejackets and monitor weather updates.",
+      "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
+      "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 22.5,
       "current_kn": 0.3,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
@@ -89,23 +89,23 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 23.2,
       "current_kn": 0.2,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
     {
       "area": "Güney Ege",
-      "score": 70,
-      "status": "caution",
-      "wave_m": null,
-      "wind_kn": 0.0,
-      "gust_kn": 0.0,
-      "recommendation_tr": "Dalga/deniz ölçümü eksik — yalnızca rüzgâra bakmayın; MGM ve liman teyidi alın. Saatlik çıkış penceresine (Bugün) öncelik verin.",
-      "recommendation_en": "Wave/sea measurements missing — do not rely on wind alone; confirm with official sources. Prefer today's hour windows.",
-      "sea_temp_c": null,
-      "current_kn": null,
-      "last_update": "2026-09-21T23:35:19Z",
-      "data_quality": "unknown",
+      "score": 100,
+      "status": "good",
+      "wave_m": 0.6,
+      "wind_kn": 4.5,
+      "gust_kn": 6.0,
+      "recommendation_tr": "Hava ve deniz koşulları elverişli. Küçük tekneler ve amatör balıkçılar için uygundur.",
+      "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
+      "sea_temp_c": 25.4,
+      "current_kn": 0.0,
+      "last_update": "2026-09-21T23:29:48Z",
+      "data_quality": "ok",
       "baseline_boat_class": "small"
     },
     {
@@ -119,7 +119,7 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 29.0,
       "current_kn": 0.2,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
@@ -134,7 +134,7 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 29.1,
       "current_kn": 0.2,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
@@ -149,7 +149,7 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 29.7,
       "current_kn": 0.0,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
@@ -164,7 +164,7 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 23.1,
       "current_kn": 0.1,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
@@ -179,7 +179,7 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 21.6,
       "current_kn": 0.2,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     },
@@ -194,7 +194,7 @@
       "recommendation_en": "Weather and sea conditions favorable. Suitable for small craft and artisanal fishing.",
       "sea_temp_c": 23.5,
       "current_kn": 0.2,
-      "last_update": "2026-09-21T23:35:19Z",
+      "last_update": "2026-09-21T23:29:48Z",
       "data_quality": "ok",
       "baseline_boat_class": "small"
     }

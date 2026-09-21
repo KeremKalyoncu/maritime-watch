@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-21T23:35:19Z",
+  "generated": "2026-09-21T23:29:48Z",
   "points": [
     {
       "name": "Marmara Denizi",
@@ -275,19 +275,45 @@
       "name": "Güney Ege",
       "lat": 37.0,
       "lon": 27.1,
-      "wave_m": null,
-      "wind_kn": null,
-      "gust_kn": null,
-      "wind_dir": 320,
-      "beaufort": null,
-      "rating": "unknown",
-      "score": null,
-      "data_quality": "unknown",
-      "sea_temp_c": null,
-      "current_kn": null,
+      "wave_m": 0.6,
+      "wind_kn": 4.5,
+      "gust_kn": 6.0,
+      "wind_dir": 315,
+      "beaufort": 2,
+      "rating": "good",
+      "score": 100,
+      "data_quality": "ok",
+      "sea_temp_c": 25.4,
+      "current_kn": 0.0,
       "trend_12h": {
-        "waves": [],
-        "winds": []
+        "waves": [
+          0.6,
+          0.58,
+          0.56,
+          0.56,
+          0.54,
+          0.54,
+          0.54,
+          0.54,
+          0.52,
+          0.48,
+          0.46,
+          0.44
+        ],
+        "winds": [
+          6.0,
+          6.2,
+          6.8,
+          7.8,
+          9.5,
+          9.5,
+          8.4,
+          8.2,
+          10.7,
+          8.9,
+          8.2,
+          7.8
+        ]
       }
     },
     {

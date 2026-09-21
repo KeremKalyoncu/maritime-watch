@@ -147,25 +147,15 @@ news:
                   "serinlemek için", "yüzmek için", "plajda boğul", "selfie",
                   "denize düşen cep telefon", "kayıkçılar derneği"]
 
-# Interactive bot. Each chat picks its own sea areas and boat class, and the
-# morning message is built for it. Commands are answered from getUpdates on every
-# cycle, so this really wants `run.py --loop` on a host: under cron alone a reply
-# would wait for the next scheduled run. Subscriber ids are personal data and
-# data/subscribers.json is git-ignored - it must never reach the public repo.
-bot:
-  enabled: true
-
-# Daily "can I go out today" message. This is the channel's main product: a
-# warning that only fires in a gale is useless for planning, and our old gale
-# threshold (34 kn / 2.0 m) was crossed 4 and 0 times in nine days of real data.
+# Daily "can I go out today" data product (rendered to web/data/outlook.json)
 outlook:
   enabled: true
-  send_hour_local: 6         # local time the morning message goes out
+  send_hour_local: 6         # local time the morning message is targeted
   tz_offset_hours: 3         # Türkiye, UTC+3
-  hours: 18                  # how far ahead the message looks
-  boat_class: small          # who the channel is written for
+  hours: 18                  # how far ahead the calculation looks
+  boat_class: small          # default boat class
   web_default_class: small   # default boat class on the map "Bugün" panel
-  stale_hours: 2             # bot/web "eski tahmin" banner past this age
+  stale_hours: 2             # "eski tahmin" banner past this age
   classes:
     small:  { label: "küçük tekne (8 m ve altı)", gust_kn: 22, wave_m: 1.25 }
     medium: { label: "orta boy tekne (8-15 m)",   gust_kn: 28, wave_m: 2.0 }
@@ -183,13 +173,8 @@ metar:
   visibility_m: 2000
 
 alert:
-  telegram:
-    enabled: true
-    only_status: ["confirmed", "probable"]   # incident statuses that get pushed
-    prevention: true                          # push weather / quake / navwarn / gdacs
-    send_location_pin: true                   # also send a Telegram map pin
-    digest: true                              # one combined message per cycle (SART still instant)
-    operator_alerts: false                    # internal scraper/ops notices never spam public channel
+  webhook_url: ""                             # Optional: http://localhost:8088/webhook/alert (for maritime-social)
+  webhook_token: ""                           # Optional: internal auth token
   min_severity: "major"
   stale_hours: 2                              # map shows a "data is old" banner past this
 
