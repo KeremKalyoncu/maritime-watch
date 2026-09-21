@@ -1,23 +1,23 @@
 {
-  "generated": "2026-09-21T00:06:02Z",
-  "total_incidents": 348,
+  "generated": "2026-09-21T04:30:36Z",
+  "total_incidents": 352,
   "by_month": {
-    "2026-09": 348
+    "2026-09": 352
   },
   "by_area": {
-    "belirsiz": 309,
+    "belirsiz": 312,
     "Marmara Denizi": 13,
     "Türk karasuları civarı": 8,
     "Antalya Körfezi": 6,
     "Orta Ege": 5,
     "Doğu Karadeniz": 3,
-    "İstanbul Boğazı": 2,
+    "İstanbul Boğazı": 3,
     "Güney Ege": 1,
     "Mersin–İskenderun Körfezi": 1
   },
   "by_type": {
-    "distress": 123,
-    "drift": 80,
+    "distress": 124,
+    "drift": 83,
     "unknown": 58,
     "collision-risk": 45,
     "sinking": 30,
@@ -27,7 +27,7 @@
     "capsize": 1
   },
   "by_status": {
-    "signal": 303,
+    "signal": 307,
     "probable": 45
   },
   "incidents_with_casualties": 24,

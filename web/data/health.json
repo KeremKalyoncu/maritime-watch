@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-21T00:06:02Z",
-  "cycle_seconds": 255.4,
+  "generated": "2026-09-21T04:30:36Z",
+  "cycle_seconds": 255.7,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
-  "incidents": 17,
-  "warnings": 3,
+  "incidents": 16,
+  "warnings": 5,
   "sources": {
     "scrape": {
       "ok": true,
@@ -14,7 +14,7 @@
     },
     "news": {
       "ok": true,
-      "items": 0,
+      "items": 2,
       "error": null
     },
     "openmeteo": {
@@ -24,7 +24,7 @@
     },
     "quakes": {
       "ok": true,
-      "items": 0,
+      "items": 2,
       "error": null
     },
     "gdacs": {
@@ -53,13 +53,13 @@
     "sahil_guvenlik.html": "live",
     "kegm_sample.html": "live",
     "shod_navtex.txt": "live",
-    "news_3.xml": "live",
     "news_2.xml": "live",
+    "news_3.xml": "live",
     "news_4.xml": "live",
     "news_1.xml": "live",
+    "news_5.xml": "live",
     "news_9.xml": "live",
     "news_6.xml": "live",
-    "news_5.xml": "live",
     "news_7.xml": "live",
     "news_8.xml": "live",
     "news_0.xml": "live",
@@ -81,7 +81,7 @@
     "openmeteo_wind:Antalya Körfezi": "live",
     "openmeteo_marine:Mersin Körfezi": "live",
     "openmeteo_wind:Mersin Körfezi": "live",
-    "openmeteo_marine:İskenderun Körfezi": "live",
+    "openmeteo_marine:İskenderun Körfezi": "down",
     "openmeteo_wind:İskenderun Körfezi": "live",
     "openmeteo_marine:Batı Karadeniz": "live",
     "openmeteo_wind:Batı Karadeniz": "live",

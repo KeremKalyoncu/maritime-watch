@@ -1,5 +1,31 @@
 [
   {
+    "id": "eq-afad-37.83-36.21-2026-09-21T01:02",
+    "headline": "Deprem M5.0 - Saimbeyli (Adana)",
+    "area": "Saimbeyli (Adana)",
+    "severity": "major",
+    "kind": "earthquake",
+    "onset": null,
+    "expires": null,
+    "org": "AFAD",
+    "url": "https://deprem.afad.gov.tr/",
+    "issued": "2026-09-21T01:02:01",
+    "last_update": "2026-09-21T04:30:28Z",
+    "raw": "",
+    "lat": 37.83067,
+    "lon": 36.206,
+    "value": 5.0,
+    "sources": [
+      {
+        "kind": "earthquake",
+        "detail": "Deprem M5.0 - Saimbeyli (Adana)",
+        "org": "AFAD",
+        "url": "https://deprem.afad.gov.tr/",
+        "ts": "2026-09-21T01:02:01"
+      }
+    ]
+  },
+  {
     "id": "eq-afad-37.91-27.13-2026-09-18T18:09",
     "headline": "Deprem M3.8 - Batı Türkiye",
     "area": "Batı Türkiye",
@@ -29,6 +55,32 @@
         "org": "EMSC",
         "url": "https://www.seismicportal.eu/",
         "ts": "2026-09-18T18:09:40.0Z"
+      }
+    ]
+  },
+  {
+    "id": "eq-kandilli-37.84-36.26-2026-09-21T04:02",
+    "headline": "Deprem M4.8 - TOPALLAR-SAIMBEYLI (ADANA)",
+    "area": "TOPALLAR-SAIMBEYLI (ADANA)",
+    "severity": "major",
+    "kind": "earthquake",
+    "onset": null,
+    "expires": null,
+    "org": "Kandilli Rasathanesi",
+    "url": "http://www.koeri.boun.edu.tr/",
+    "issued": "2026-09-21T04:02:00",
+    "last_update": "2026-09-21T04:30:31Z",
+    "raw": "",
+    "lat": 37.8352,
+    "lon": 36.2627,
+    "value": 4.8,
+    "sources": [
+      {
+        "kind": "earthquake",
+        "detail": "Deprem M4.8 - TOPALLAR-SAIMBEYLI (ADANA)",
+        "org": "Kandilli Rasathanesi",
+        "url": "http://www.koeri.boun.edu.tr/",
+        "ts": "2026-09-21T04:02:00"
       }
     ]
   },
@@ -68,8 +120,8 @@
     "expires": null,
     "org": "SHOD Seyir Hidrografi",
     "url": "https://www.shodb.gov.tr/navtex_duyurulari",
-    "issued": "2026-09-21T00:03:36Z",
-    "last_update": "2026-09-21T00:03:36Z",
+    "issued": "2026-09-21T04:28:09Z",
+    "last_update": "2026-09-21T04:28:09Z",
     "raw": "<!DOCTYPE html>\r\n<html lang=\"tr\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n    <meta name=\"keywords\" content=\"msb, Seyir, Hidrografi Ve Oşinografi Dairesi Başkanlığı,Hata404\">\r\n    <meta name=\"PKCS10\" content=\"198af01bbedafb50f8d5df75d776fd3ab4648d7c8171c73028a0a63b3e19419e\">\r\n    <meta name=\"description\" content=\"Seyir, Hidrografi ve Oşinografi Dairesi Başkanlığı\">\r\n    <meta name=\"copyright\"",
     "lat": null,
     "lon": null,
