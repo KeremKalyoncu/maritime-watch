@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-21T10:13:55Z",
-  "cycle_seconds": 260.0,
+  "generated": "2026-09-21T16:33:43Z",
+  "cycle_seconds": 261.0,
   "sources_ok": 8,
   "sources_total": 8,
   "sources_down": [],
-  "incidents": 18,
-  "warnings": 5,
+  "incidents": 17,
+  "warnings": 6,
   "sources": {
     "scrape": {
       "ok": true,
@@ -49,7 +49,7 @@
     }
   },
   "fetch": {
-    "mgm_alarmlar.json": "down",
+    "mgm_alarmlar.json": "live",
     "sahil_guvenlik.html": "live",
     "kegm_sample.html": "live",
     "shod_navtex.txt": "live",
@@ -58,11 +58,11 @@
     "news_4.xml": "live",
     "news_1.xml": "live",
     "news_6.xml": "live",
-    "news_7.xml": "live",
-    "news_9.xml": "live",
     "news_5.xml": "live",
-    "news_0.xml": "live",
+    "news_9.xml": "live",
+    "news_7.xml": "live",
     "news_8.xml": "live",
+    "news_0.xml": "live",
     "openmeteo_marine:Marmara Denizi": "live",
     "openmeteo_wind:Marmara Denizi": "live",
     "openmeteo_marine:İzmit Körfezi": "live",
