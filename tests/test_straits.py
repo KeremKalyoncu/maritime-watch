@@ -73,3 +73,18 @@ def test_render_straits_file_output(tmp_path):
     assert len(payload["straits"]) == 2
     assert payload["straits"][0]["id"] == "bosphorus"
     assert payload["straits"][1]["id"] == "dardanelles"
+
+
+def test_strait_orkoz_caution():
+    warn = Warning(
+        id="om-lodos-01",
+        kind="marine-weather",
+        area="İstanbul Boğazı",
+        headline="İstanbul Boğazı şiddetli lodos fırtınası bekleniyor",
+    )
+    status = evaluate_strait("bosphorus", warnings=[warn], vessels_data={})
+    assert status.status == "caution"
+    assert status.status_tr == "Tedbirli Geçiş"
+    assert status.orkoz_detected is True
+    assert "ORKOZ TEHLİKESİ" in (status.reason or "")
+

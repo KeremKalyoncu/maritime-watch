@@ -256,6 +256,17 @@ def _bearing_deg(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
          - math.sin(math.radians(lat1)) * math.cos(math.radians(lat2))
          * math.cos(math.radians(lon2 - lon1)))
     return (math.degrees(math.atan2(y, x)) + 360) % 360
+def build_phonetic_coords_tr(lat: float, lon: float) -> str:
+    """Format decimal degrees into Turkish spoken radio text for VHF Channel 16."""
+    lat_deg = int(abs(lat))
+    lat_min = int(round((abs(lat) - lat_deg) * 60))
+    lat_hemi = "KUZEY" if lat >= 0 else "GÜNEY"
+
+    lon_deg = int(abs(lon))
+    lon_min = int(round((abs(lon) - lon_deg) * 60))
+    lon_hemi = "DOĞU" if lon >= 0 else "BATI"
+
+    return f"{lat_deg} DERECE {lat_min:02d} DAKİKA {lat_hemi}, {lon_deg} DERECE {lon_min:02d} DAKİKA {lon_hemi}"
 
 
 class Bot:
@@ -454,13 +465,14 @@ class Bot:
         loc = s.get("last_location")
         if loc:
             lat, lon = loc["lat"], loc["lon"]
+            phonetic_pos = build_phonetic_coords_tr(lat, lon)
             p_info = nearest_port(lat, lon)
             if p_info:
                 p_name, dist_nm, _ = p_info
                 p_lbl = p_name if p_name.lower().endswith("limanı") or p_name.lower().endswith("liman") else f"{p_name} Limanı"
-                mevki = f"{lat:.4f}°K, {lon:.4f}°D ({p_lbl} {dist_nm:.1f} NM açığı)"
+                mevki = f"{phonetic_pos} ({p_lbl} {dist_nm:.1f} NM açığı / {lat:.4f}°K, {lon:.4f}°D)"
             else:
-                mevki = f"{lat:.4f}°K, {lon:.4f}°D"
+                mevki = f"{phonetic_pos} ({lat:.4f}°K, {lon:.4f}°D)"
         else:
             mevki = "[ENLEM, BOYLAM veya MEVKİNİZİ SÖYLEYİN (örn: Çeşme 3 mil açığı)]"
 
@@ -566,20 +578,35 @@ class Bot:
                         end = html.escape(str(w.get("end") or "?"))
                         gust = w.get("gust_kn")
                         wave = w.get("wave_m")
+                        dom_wind = w.get("dominant_wind")
+                        hazard = w.get("hazard_reason")
                         bits = []
+                        if dom_wind:
+                            bits.append(f"💨 {dom_wind}")
                         if gust is not None:
                             bits.append(f"{gust:.0f} kn")
                         if wave is not None:
                             bits.append(f"{wave:.1f} m")
                         extra = (" · " + " · ".join(bits)) if bits else ""
+                        if hazard:
+                            extra += f" ({html.escape(hazard)})"
                         lines.append(
                             f"{icon} <code>{start}–{end}</code>  "
                             f"{html.escape(level_tr.get(lv, lv))}{extra}"
                         )
                     rb = rating.get("return_by")
+                    sunset = rating.get("sunset_time")
                     if rb:
                         lines.append("")
                         lines.append(f"💡 Limana dönüş: en geç <b>{html.escape(str(rb))}</b>")
+                    if sunset:
+                        lines.append(f"🌅 Gün batımı: <b>{html.escape(str(sunset))}</b> (Alacakaranlık emniyeti)")
+                    if rating.get("steepness_hazard"):
+                        lines.append("⚠️ <b>Dik/Kısa Dalga Riski:</b> Vuruntulu çırpıntı!")
+                    if rating.get("fog_hazard"):
+                        lines.append("🌫️ <b>Görüş Kısıtı/Sis Riski:</b> Çatışma ve seyir emniyetine dikkat!")
+                    if rating.get("orkoz_hazard"):
+                        lines.append("🌪️ <b>Boğaz Orkoz Riski:</b> Güney rüzgarı akıntıyla çatışıyor!")
                     for title in _official_warnings_for_area(root, target_area):
                         lines.append(f"📢 <b>Resmi:</b> {html.escape(title)}")
                     today_block = "\n".join(lines)

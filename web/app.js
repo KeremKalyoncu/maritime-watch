@@ -79,6 +79,16 @@ const T = {
       level_danger: "Çıkma",
       level_unknown: "Ölçüm yok",
       safety_now_title: "Şimdi (anlık skor)",
+      traffic_go: "ÇIKIŞ UYGUN",
+      traffic_watch: "TEDBİRLİ ÇIKIŞ (DİKKAT)",
+      traffic_stop: "DENİZE ÇIKILMAZ (TEHLİKE)",
+      traffic_unknown: "ÖLÇÜM YETERSİZ",
+      sunset_label: "Gün batımı",
+      safe_return_label: "En geç dönüş",
+      steepness_hazard_label: "Dik Dalga / Çırpıntı",
+      fog_hazard_label: "Görüş Kısıtı / Sis",
+      orkoz_hazard_label: "Boğaz Orkoz Riski",
+      mayday_copied: "📻 Telsiz imdat çağrısı panoya kopyalandı!",
     },
   },
   en: {
@@ -142,6 +152,16 @@ const T = {
       level_danger: "Stay in",
       level_unknown: "No data",
       safety_now_title: "Now (spot score)",
+      traffic_go: "SAFE TO DEPART",
+      traffic_watch: "CAUTION REQUIRED",
+      traffic_stop: "DO NOT DEPART (DANGER)",
+      traffic_unknown: "INSUFFICIENT DATA",
+      sunset_label: "Sunset",
+      safe_return_label: "Safe return by",
+      steepness_hazard_label: "Steep Wave / Chop",
+      fog_hazard_label: "Fog / Low Visibility",
+      orkoz_hazard_label: "Strait Orkoz Hazard",
+      mayday_copied: "📻 Radio distress call copied to clipboard!",
     },
   },
 };
@@ -271,17 +291,42 @@ function showToast(msg) {
   }, 2600);
 }
 
-function copyToClipboard(text) {
+function copyToClipboard(text, customMsg) {
+  const notify = () => {
+    if (navigator.vibrate) {
+      try { navigator.vibrate([80, 40, 80]); } catch (e) {}
+    }
+    showToast(customMsg || U().share_copied);
+  };
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(() => showToast(U().share_copied)).catch(() => {});
+    navigator.clipboard.writeText(text).then(notify).catch(() => {});
   } else {
     const ta = document.createElement("textarea");
     ta.value = text;
     document.body.appendChild(ta);
     ta.select();
-    try { document.execCommand("copy"); showToast(U().share_copied); } catch (e) {}
+    try { document.execCommand("copy"); notify(); } catch (e) {}
     ta.remove();
   }
+}
+
+function formatPhoneticCoordsTr(lat, lon) {
+  const latDeg = Math.floor(Math.abs(lat));
+  const latMin = Math.round((Math.abs(lat) - latDeg) * 60);
+  const latHemi = lat >= 0 ? "KUZEY" : "GÜNEY";
+
+  const lonDeg = Math.floor(Math.abs(lon));
+  const lonMin = Math.round((Math.abs(lon) - lonDeg) * 60);
+  const lonHemi = lon >= 0 ? "DOĞU" : "BATI";
+
+  const pad = n => String(n).padStart(2, "0");
+  return `${latDeg} DERECE ${pad(latMin)} DAKİKA ${latHemi}, ${lonDeg} DERECE ${pad(lonMin)} DAKİKA ${lonHemi}`;
+}
+
+function generateMaydaySpeech(lat, lon) {
+  const phonetic = formatPhoneticCoordsTr(lat, lon);
+  const rawCoords = `${lat.toFixed(4)}°K, ${lon.toFixed(4)}°D`;
+  return `MAYDAY, MAYDAY, MAYDAY.\nBURASI [TEKNE ADINIZ].\nMEVKİMİZ: ${phonetic} (${rawCoords}).\nSU ALIYORUZ / BATIYORUZ / ALABORA OLDUK.\n[X] KİŞİYİZ, ACİL KURTARMA İSTİYORUZ.\nTAMAM.`;
 }
 
 function shareIncident(id) {
@@ -455,17 +500,72 @@ function renderOutlookPanel() {
       ? u.outlook_missing : u.outlook_empty;
     body = `<div class="outlook-status">${esc(miss)}</div>`;
   } else {
+    // Traffic Light Hero
+    const worst = area.worst || "ok";
+    const worstClass = worst === "danger" ? "danger" : (worst === "watch" ? "watch" : (worst === "ok" ? "ok" : "unknown"));
+    const worstTitle = worst === "danger" ? (u.traffic_stop || "DENİZE ÇIKILMAZ (TEHLİKE)")
+      : (worst === "watch" ? (u.traffic_watch || "TEDBİRLİ ÇIKIŞ (DİKKAT)")
+      : (worst === "ok" ? (u.traffic_go || "ÇIKIŞ UYGUN") : (u.traffic_unknown || "ÖLÇÜM YETERSİZ")));
+
+    const windName = area.cur_wind_name || "";
+    const windDir = area.cur_wind_dir != null ? area.cur_wind_dir : 0;
+    const maxGust = area.max_gust != null ? `${area.max_gust} kn` : "—";
+    const maxWave = area.max_wave != null ? `${area.max_wave} m` : "—";
+
+    let hazardBadges = "";
+    if (area.steepness_hazard) {
+      const perStr = area.cur_wave_period != null ? ` (${area.cur_wave_period}s)` : "";
+      hazardBadges += `<span class="hazard-badge steepness">⚠️ ${esc(u.steepness_hazard_label || "Dik Dalga / Çırpıntı")}${esc(perStr)}</span> `;
+    }
+    if (area.fog_hazard) {
+      const visStr = area.cur_visibility_km != null ? ` (${area.cur_visibility_km} km)` : "";
+      hazardBadges += `<span class="hazard-badge fog">🌫️ ${esc(u.fog_hazard_label || "Görüş Kısıtı / Sis")}${esc(visStr)}</span> `;
+    }
+    if (area.orkoz_hazard) {
+      hazardBadges += `<span class="hazard-badge orkoz">🌪️ ${esc(u.orkoz_hazard_label || "Boğaz Orkoz Riski")}</span> `;
+    }
+
+    const sunsetStr = area.sunset_time ? `🌅 ${esc(u.sunset_label || "Gün batımı")}: <strong>${esc(area.sunset_time)}</strong>` : "";
+    const safeCutoffStr = (area.safe_cutoff || area.return_by) ? `💡 ${esc(u.safe_return_label || "En geç dönüş")}: <strong>${esc(area.safe_cutoff || area.return_by)}</strong>` : "";
+    const astroLine = (sunsetStr || safeCutoffStr) ? `<div class="tl-metric" style="margin-top:4px;">${sunsetStr} ${sunsetStr && safeCutoffStr ? "· " : ""}${safeCutoffStr}</div>` : "";
+
+    const heroHtml = `
+      <div class="traffic-light-hero ${worstClass}">
+        <div class="tl-main">
+          <span class="tl-bulb"></span>
+          <div class="tl-text">
+            <span class="tl-status-title">${esc(worstTitle)}</span>
+            <span class="tl-status-sub">${esc(area.name)} · En yüksek hamle: ${maxGust} · Dalga: ${maxWave}</span>
+            ${astroLine}
+          </div>
+        </div>
+        <div class="tl-details">
+          ${windName ? `
+            <div class="tl-metric">
+              <svg class="compass-arrow-inline" viewBox="0 0 24 24" style="transform: rotate(${windDir}deg)" title="${windDir}°">
+                <path d="M12 2 L19 21 L12 17 L5 21 Z" fill="var(--accent, #38bdf8)" stroke="#0a101d" stroke-width="1.5" />
+              </svg>
+              <span><strong>${esc(windName)}</strong> (${windDir}°)</span>
+            </div>
+          ` : ""}
+          ${hazardBadges ? `<div class="tl-metric">${hazardBadges}</div>` : ""}
+        </div>
+      </div>
+    `;
+
     const segs = (area.windows || []).map(w => {
       const lv = w.level || "ok";
-      const title = `${w.start || ""}–${w.end || ""} · ${w.gust_kn != null ? w.gust_kn + " kn" : "—"} · ${w.wave_m != null ? w.wave_m + " m" : "—"}`;
+      const wWind = w.dominant_wind ? `💨 ${w.dominant_wind} · ` : "";
+      const title = `${w.start || ""}–${w.end || ""} · ${wWind}${w.gust_kn != null ? w.gust_kn + " kn" : "—"} · ${w.wave_m != null ? w.wave_m + " m" : "—"}${w.hazard_reason ? " · " + w.hazard_reason : ""}`;
+      const hazardSub = w.hazard_reason ? `<span style="font-size:10px;color:#f87171;margin-top:2px;">${esc(w.hazard_reason)}</span>` : "";
       return `<div class="outlook-seg ${esc(lv)}" title="${esc(title)}">
         <span class="ol-hours">${esc(w.start)}–${esc(w.end)}</span>
         <span class="ol-level">${esc(levelLabels[lv] || lv)}</span>
+        ${w.dominant_wind ? `<span style="font-size:10.5px;color:var(--muted);">${esc(w.dominant_wind)}</span>` : ""}
+        ${hazardSub}
       </div>`;
     }).join("");
-    const rb = area.return_by
-      ? `<div class="outlook-return">💡 ${esc(u.outlook_return)} <strong>${esc(area.return_by)}</strong></div>`
-      : "";
+
     let nowLine = "";
     const rating = (LAST.safety && LAST.safety.ratings || []).find(r => r.area === area.name);
     if (rating) {
@@ -480,7 +580,7 @@ function renderOutlookPanel() {
     }
     const official = officialWarningsForArea(area.name).map(t =>
       `<div class="outlook-official">📢 ${esc(u.outlook_official)}: ${esc(t)}</div>`).join("");
-    body = `<div class="outlook-timeline">${segs || `<div class="outlook-status">${esc(u.outlook_empty)}</div>`}</div>${rb}${official}${nowLine}`;
+    body = `${heroHtml}<div class="outlook-timeline">${segs || `<div class="outlook-status">${esc(u.outlook_empty)}</div>`}</div>${official}${nowLine}`;
   }
 
   el.innerHTML = `
@@ -948,9 +1048,49 @@ if (btnEmergency && emergencyModal) {
 // Copy buttons inside emergency modal
 document.querySelectorAll(".btn-copy").forEach(btn => {
   btn.addEventListener("click", () => {
-    copyToClipboard(btn.dataset.copy);
+    copyToClipboard(btn.dataset.copy, U().share_copied);
   });
 });
+
+// Live GPS Mayday button
+const btnLiveMayday = document.getElementById("btn-live-mayday");
+const btnCopyMayday = document.getElementById("btn-copy-mayday");
+const maydayPreview = document.getElementById("mayday-phonetic-preview");
+
+if (btnLiveMayday) {
+  btnLiveMayday.addEventListener("click", () => {
+    const applyPos = (lat, lon, srcName) => {
+      const speech = generateMaydaySpeech(lat, lon);
+      if (maydayPreview) {
+        maydayPreview.innerHTML = `<strong>📡 Konum Alındı (${esc(srcName)}):</strong><br><pre style="white-space:pre-wrap;margin:4px 0;font-family:inherit;">${esc(speech)}</pre>`;
+        maydayPreview.style.display = "block";
+      }
+      if (btnCopyMayday) {
+        btnCopyMayday.dataset.copy = speech;
+      }
+      copyToClipboard(speech, U().mayday_copied || "📻 Telsiz imdat çağrısı panoya kopyalandı!");
+    };
+
+    if (navigator.geolocation) {
+      showToast("📡 GPS konumu alınıyor...");
+      navigator.geolocation.getCurrentPosition(
+        pos => applyPos(pos.coords.latitude, pos.coords.longitude, "GPS"),
+        () => {
+          if (map) {
+            const c = map.getCenter();
+            applyPos(c.lat, c.lng, "Harita Merkezi");
+          } else {
+            applyPos(41.0, 29.0, "Marmara");
+          }
+        },
+        { timeout: 5000, enableHighAccuracy: true }
+      );
+    } else if (map) {
+      const c = map.getCenter();
+      applyPos(c.lat, c.lng, "Harita Merkezi");
+    }
+  });
+}
 
 // Playback Bar Logic
 const playbackBar = document.getElementById("playback-bar");

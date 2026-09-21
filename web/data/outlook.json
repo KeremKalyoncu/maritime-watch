@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-09-21T20:36:03Z",
+  "generated": "2026-09-21T19:58:32Z",
   "hours": 18,
   "tz_offset_hours": 3.0,
   "question": "today",
@@ -24,39 +24,57 @@
           "lon": 28.3,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "05:00",
               "level": "ok",
               "gust_kn": 14.4,
-              "wave_m": 0.04
+              "wave_m": 0.04,
+              "dominant_wind": "Günbatısı",
+              "hazard_reason": null
             },
             {
               "start": "05:00",
               "end": "11:00",
               "level": "watch",
               "gust_kn": 19.2,
-              "wave_m": 0.38
+              "wave_m": 0.38,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             },
             {
               "start": "11:00",
               "end": "15:00",
               "level": "ok",
               "gust_kn": 16.3,
-              "wave_m": 0.56
+              "wave_m": 0.56,
+              "dominant_wind": "Batı-Karayel",
+              "hazard_reason": null
             },
             {
               "start": "15:00",
-              "end": "17:00",
+              "end": "16:00",
               "level": "watch",
-              "gust_kn": 20.8,
-              "wave_m": 0.6
+              "gust_kn": 20.2,
+              "wave_m": 0.6,
+              "dominant_wind": "Yıldız-Poyraz",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 20.8,
+          "max_gust": 20.2,
           "max_wave": 0.6,
           "first_danger_start": null,
           "return_by": "05:00",
-          "worst": "watch"
+          "worst": "watch",
+          "sunset_time": "19:08",
+          "safe_cutoff": "18:23",
+          "cur_wind_name": "Günbatısı",
+          "cur_wind_dir": 263.0,
+          "cur_wave_period": 2.0,
+          "cur_visibility_km": 36.0,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "İzmit Körfezi",
@@ -64,18 +82,30 @@
           "lon": 29.55,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 11.5,
-              "wave_m": 0.06
+              "wave_m": 0.06,
+              "dominant_wind": "Kıble-Keşişleme",
+              "hazard_reason": null
             }
           ],
           "max_gust": 11.5,
           "max_wave": 0.06,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:03",
+          "safe_cutoff": "18:18",
+          "cur_wind_name": "Kıble-Keşişleme",
+          "cur_wind_dir": 155.0,
+          "cur_wave_period": 1.45,
+          "cur_visibility_km": 26.9,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "İstanbul Boğazı",
@@ -83,46 +113,57 @@
           "lon": 29.1,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "08:00",
               "level": "ok",
               "gust_kn": 14.4,
-              "wave_m": 0.02
+              "wave_m": 0.02,
+              "dominant_wind": "Kıble",
+              "hazard_reason": null
             },
             {
               "start": "08:00",
               "end": "11:00",
               "level": "watch",
               "gust_kn": 17.7,
-              "wave_m": 0.06
+              "wave_m": 0.06,
+              "dominant_wind": "Yıldız-Karayel",
+              "hazard_reason": null
             },
             {
               "start": "11:00",
               "end": "13:00",
               "level": "ok",
               "gust_kn": 15.2,
-              "wave_m": 0.14
+              "wave_m": 0.14,
+              "dominant_wind": "Yıldız-Karayel",
+              "hazard_reason": null
             },
             {
               "start": "13:00",
-              "end": "15:00",
+              "end": "16:00",
               "level": "watch",
               "gust_kn": 17.7,
-              "wave_m": 0.18
-            },
-            {
-              "start": "15:00",
-              "end": "17:00",
-              "level": "ok",
-              "gust_kn": 15.7,
-              "wave_m": 0.2
+              "wave_m": 0.18,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             }
           ],
           "max_gust": 17.7,
           "max_wave": 0.2,
           "first_danger_start": null,
           "return_by": "08:00",
-          "worst": "watch"
+          "worst": "watch",
+          "sunset_time": "19:05",
+          "safe_cutoff": "18:20",
+          "cur_wind_name": "Kıble",
+          "cur_wind_dir": 186.0,
+          "cur_wave_period": 2.1,
+          "cur_visibility_km": 34.2,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Çanakkale Boğazı",
@@ -130,32 +171,48 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "04:00",
               "level": "ok",
               "gust_kn": 10.5,
-              "wave_m": 0.08
+              "wave_m": 0.1,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             },
             {
               "start": "04:00",
               "end": "07:00",
               "level": "danger",
               "gust_kn": 23.5,
-              "wave_m": 0.26
+              "wave_m": 0.26,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             },
             {
               "start": "07:00",
-              "end": "17:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 15.9,
-              "wave_m": 0.4
+              "wave_m": 0.4,
+              "dominant_wind": "Yıldız-Poyraz",
+              "hazard_reason": null
             }
           ],
           "max_gust": 23.5,
           "max_wave": 0.4,
           "first_danger_start": "04:00",
           "return_by": "04:00",
-          "worst": "danger"
+          "worst": "danger",
+          "sunset_time": "19:15",
+          "safe_cutoff": "18:30",
+          "cur_wind_name": "Yıldız",
+          "cur_wind_dir": 360.0,
+          "cur_wave_period": 1.8,
+          "cur_visibility_km": 39.1,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Saroz Körfezi",
@@ -163,46 +220,66 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "03:00",
               "level": "ok",
               "gust_kn": 14.2,
-              "wave_m": 0.16
+              "wave_m": 0.16,
+              "dominant_wind": "Lodos",
+              "hazard_reason": null
             },
             {
               "start": "03:00",
               "end": "08:00",
               "level": "danger",
               "gust_kn": 30.3,
-              "wave_m": 0.42
+              "wave_m": 0.42,
+              "dominant_wind": "Yıldız-Poyraz",
+              "hazard_reason": null
             },
             {
               "start": "08:00",
               "end": "12:00",
               "level": "watch",
               "gust_kn": 20.8,
-              "wave_m": 0.44
+              "wave_m": 0.44,
+              "dominant_wind": "Gündoğusu-Poyraz",
+              "hazard_reason": null
             },
             {
               "start": "12:00",
               "end": "15:00",
               "level": "ok",
               "gust_kn": 14.0,
-              "wave_m": 0.42
+              "wave_m": 0.42,
+              "dominant_wind": "Gündoğusu-Poyraz",
+              "hazard_reason": null
             },
             {
               "start": "15:00",
-              "end": "17:00",
+              "end": "16:00",
               "level": "watch",
-              "gust_kn": 21.0,
-              "wave_m": 0.3
+              "gust_kn": 17.1,
+              "wave_m": 0.3,
+              "dominant_wind": "Yıldız-Poyraz",
+              "hazard_reason": null
             }
           ],
           "max_gust": 30.3,
           "max_wave": 0.44,
           "first_danger_start": "03:00",
           "return_by": "03:00",
-          "worst": "danger"
+          "worst": "danger",
+          "sunset_time": "19:15",
+          "safe_cutoff": "18:30",
+          "cur_wind_name": "Lodos",
+          "cur_wind_dir": 218.0,
+          "cur_wave_period": 1.7,
+          "cur_visibility_km": 26.7,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Kuzey Ege",
@@ -210,32 +287,48 @@
           "lon": 26.3,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "07:00",
               "level": "ok",
               "gust_kn": 15.0,
-              "wave_m": 0.16
+              "wave_m": 0.2,
+              "dominant_wind": "Poyraz",
+              "hazard_reason": null
             },
             {
               "start": "07:00",
               "end": "09:00",
               "level": "watch",
               "gust_kn": 21.6,
-              "wave_m": 0.12
+              "wave_m": 0.12,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             },
             {
               "start": "09:00",
-              "end": "17:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 15.9,
-              "wave_m": 0.24
+              "wave_m": 0.24,
+              "dominant_wind": "Yıldız-Poyraz",
+              "hazard_reason": null
             }
           ],
           "max_gust": 21.6,
           "max_wave": 0.24,
           "first_danger_start": null,
           "return_by": "07:00",
-          "worst": "watch"
+          "worst": "watch",
+          "sunset_time": "19:16",
+          "safe_cutoff": "18:31",
+          "cur_wind_name": "Poyraz",
+          "cur_wind_dir": 45.0,
+          "cur_wave_period": 2.6,
+          "cur_visibility_km": 40.9,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Güney Ege",
@@ -243,18 +336,30 @@
           "lon": 27.1,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 10.1,
-              "wave_m": 0.64
+              "gust_kn": 9.3,
+              "wave_m": 0.64,
+              "dominant_wind": "Karayel",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 10.1,
+          "max_gust": 9.3,
           "max_wave": 0.64,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:12",
+          "safe_cutoff": "18:27",
+          "cur_wind_name": "Karayel",
+          "cur_wind_dir": 308.0,
+          "cur_wave_period": 3.65,
+          "cur_visibility_km": 38.2,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Antalya Körfezi",
@@ -262,18 +367,30 @@
           "lon": 30.6,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 9.9,
-              "wave_m": 0.18
+              "gust_kn": 9.3,
+              "wave_m": 0.18,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 9.9,
+          "max_gust": 9.3,
           "max_wave": 0.18,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:58",
+          "safe_cutoff": "18:13",
+          "cur_wind_name": "Yıldız",
+          "cur_wind_dir": 351.0,
+          "cur_wave_period": 3.8,
+          "cur_visibility_km": 31.4,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Mersin Körfezi",
@@ -281,18 +398,30 @@
           "lon": 34.4,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 14.8,
-              "wave_m": 0.26
+              "gust_kn": 14.0,
+              "wave_m": 0.22,
+              "dominant_wind": "Batı-Karayel",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 14.8,
-          "max_wave": 0.26,
+          "max_gust": 14.0,
+          "max_wave": 0.22,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:43",
+          "safe_cutoff": "17:58",
+          "cur_wind_name": "Batı-Karayel",
+          "cur_wind_dir": 301.0,
+          "cur_wave_period": 3.65,
+          "cur_visibility_km": 37.3,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "İskenderun Körfezi",
@@ -300,25 +429,39 @@
           "lon": 35.9,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "15:00",
               "level": "ok",
               "gust_kn": 13.8,
-              "wave_m": 0.34
+              "wave_m": 0.34,
+              "dominant_wind": "Kıble-Lodos",
+              "hazard_reason": null
             },
             {
               "start": "15:00",
-              "end": "17:00",
+              "end": "16:00",
               "level": "watch",
-              "gust_kn": 19.8,
-              "wave_m": 0.42
+              "gust_kn": 17.5,
+              "wave_m": 0.38,
+              "dominant_wind": "Lodos",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 19.8,
-          "max_wave": 0.42,
+          "max_gust": 17.5,
+          "max_wave": 0.38,
           "first_danger_start": null,
           "return_by": "15:00",
-          "worst": "watch"
+          "worst": "watch",
+          "sunset_time": "18:37",
+          "safe_cutoff": "17:52",
+          "cur_wind_name": "Kıble-Lodos",
+          "cur_wind_dir": 209.0,
+          "cur_wave_period": 4.15,
+          "cur_visibility_km": 37.1,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Batı Karadeniz",
@@ -326,25 +469,39 @@
           "lon": 31.8,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "15:00",
               "level": "ok",
               "gust_kn": 13.4,
-              "wave_m": 0.2
+              "wave_m": 0.22,
+              "dominant_wind": "Kıble-Lodos",
+              "hazard_reason": null
             },
             {
               "start": "15:00",
-              "end": "17:00",
+              "end": "16:00",
               "level": "watch",
-              "gust_kn": 17.5,
-              "wave_m": 0.3
+              "gust_kn": 17.1,
+              "wave_m": 0.22,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 17.5,
-          "max_wave": 0.3,
+          "max_gust": 17.1,
+          "max_wave": 0.22,
           "first_danger_start": null,
           "return_by": "15:00",
-          "worst": "watch"
+          "worst": "watch",
+          "sunset_time": "18:54",
+          "safe_cutoff": "18:09",
+          "cur_wind_name": "Kıble-Lodos",
+          "cur_wind_dir": 203.0,
+          "cur_wave_period": 3.65,
+          "cur_visibility_km": 30.8,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Orta Karadeniz",
@@ -352,18 +509,30 @@
           "lon": 35.1,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 8.4,
-              "wave_m": 0.26
+              "wave_m": 0.22,
+              "dominant_wind": "Batı-Lodos",
+              "hazard_reason": null
             }
           ],
           "max_gust": 8.4,
-          "max_wave": 0.26,
+          "max_wave": 0.22,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:41",
+          "safe_cutoff": "17:56",
+          "cur_wind_name": "Batı-Lodos",
+          "cur_wind_dir": 247.0,
+          "cur_wave_period": 3.45,
+          "cur_visibility_km": 20.2,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Doğu Karadeniz",
@@ -371,18 +540,30 @@
           "lon": 39.7,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 15.0,
-              "wave_m": 0.2
+              "wave_m": 0.2,
+              "dominant_wind": "Gündoğusu",
+              "hazard_reason": null
             }
           ],
           "max_gust": 15.0,
           "max_wave": 0.2,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:22",
+          "safe_cutoff": "17:37",
+          "cur_wind_name": "Gündoğusu",
+          "cur_wind_dir": 101.0,
+          "cur_wave_period": 4.35,
+          "cur_visibility_km": 28.4,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         }
       ]
     },
@@ -400,18 +581,30 @@
           "lon": 28.3,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 20.8,
-              "wave_m": 0.6
+              "gust_kn": 20.2,
+              "wave_m": 0.6,
+              "dominant_wind": "Günbatısı",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 20.8,
+          "max_gust": 20.2,
           "max_wave": 0.6,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:08",
+          "safe_cutoff": "18:23",
+          "cur_wind_name": "Günbatısı",
+          "cur_wind_dir": 263.0,
+          "cur_wave_period": 2.0,
+          "cur_visibility_km": 36.0,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "İzmit Körfezi",
@@ -419,18 +612,30 @@
           "lon": 29.55,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 11.5,
-              "wave_m": 0.06
+              "wave_m": 0.06,
+              "dominant_wind": "Kıble-Keşişleme",
+              "hazard_reason": null
             }
           ],
           "max_gust": 11.5,
           "max_wave": 0.06,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:03",
+          "safe_cutoff": "18:18",
+          "cur_wind_name": "Kıble-Keşişleme",
+          "cur_wind_dir": 155.0,
+          "cur_wave_period": 1.45,
+          "cur_visibility_km": 26.9,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "İstanbul Boğazı",
@@ -438,18 +643,30 @@
           "lon": 29.1,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 17.7,
-              "wave_m": 0.2
+              "wave_m": 0.2,
+              "dominant_wind": "Kıble",
+              "hazard_reason": null
             }
           ],
           "max_gust": 17.7,
           "max_wave": 0.2,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:05",
+          "safe_cutoff": "18:20",
+          "cur_wind_name": "Kıble",
+          "cur_wind_dir": 186.0,
+          "cur_wave_period": 2.1,
+          "cur_visibility_km": 34.2,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Çanakkale Boğazı",
@@ -457,32 +674,48 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "04:00",
               "level": "ok",
               "gust_kn": 10.5,
-              "wave_m": 0.08
+              "wave_m": 0.1,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             },
             {
               "start": "04:00",
               "end": "06:00",
               "level": "watch",
               "gust_kn": 23.5,
-              "wave_m": 0.26
+              "wave_m": 0.26,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             },
             {
               "start": "06:00",
-              "end": "17:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 19.0,
-              "wave_m": 0.4
+              "wave_m": 0.4,
+              "dominant_wind": "Yıldız-Poyraz",
+              "hazard_reason": null
             }
           ],
           "max_gust": 23.5,
           "max_wave": 0.4,
           "first_danger_start": null,
           "return_by": "04:00",
-          "worst": "watch"
+          "worst": "watch",
+          "sunset_time": "19:15",
+          "safe_cutoff": "18:30",
+          "cur_wind_name": "Yıldız",
+          "cur_wind_dir": 360.0,
+          "cur_wave_period": 1.8,
+          "cur_visibility_km": 39.1,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Saroz Körfezi",
@@ -490,46 +723,57 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "03:00",
               "level": "ok",
               "gust_kn": 14.2,
-              "wave_m": 0.16
+              "wave_m": 0.16,
+              "dominant_wind": "Lodos",
+              "hazard_reason": null
             },
             {
               "start": "03:00",
               "end": "04:00",
               "level": "watch",
               "gust_kn": 27.6,
-              "wave_m": 0.16
+              "wave_m": 0.16,
+              "dominant_wind": "Yıldız-Poyraz",
+              "hazard_reason": null
             },
             {
               "start": "04:00",
               "end": "08:00",
               "level": "danger",
               "gust_kn": 30.3,
-              "wave_m": 0.4
+              "wave_m": 0.4,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             },
             {
               "start": "08:00",
               "end": "16:00",
               "level": "ok",
               "gust_kn": 20.8,
-              "wave_m": 0.44
-            },
-            {
-              "start": "16:00",
-              "end": "17:00",
-              "level": "watch",
-              "gust_kn": 21.0,
-              "wave_m": 0.28
+              "wave_m": 0.44,
+              "dominant_wind": "Gündoğusu-Poyraz",
+              "hazard_reason": null
             }
           ],
           "max_gust": 30.3,
           "max_wave": 0.44,
           "first_danger_start": "04:00",
           "return_by": "04:00",
-          "worst": "danger"
+          "worst": "danger",
+          "sunset_time": "19:15",
+          "safe_cutoff": "18:30",
+          "cur_wind_name": "Lodos",
+          "cur_wind_dir": 218.0,
+          "cur_wave_period": 1.7,
+          "cur_visibility_km": 26.7,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Kuzey Ege",
@@ -537,32 +781,48 @@
           "lon": 26.3,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "08:00",
               "level": "ok",
               "gust_kn": 20.8,
-              "wave_m": 0.16
+              "wave_m": 0.2,
+              "dominant_wind": "Poyraz",
+              "hazard_reason": null
             },
             {
               "start": "08:00",
               "end": "09:00",
               "level": "watch",
               "gust_kn": 21.6,
-              "wave_m": 0.12
+              "wave_m": 0.12,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             },
             {
               "start": "09:00",
-              "end": "17:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 15.9,
-              "wave_m": 0.24
+              "wave_m": 0.24,
+              "dominant_wind": "Yıldız-Poyraz",
+              "hazard_reason": null
             }
           ],
           "max_gust": 21.6,
           "max_wave": 0.24,
           "first_danger_start": null,
           "return_by": "08:00",
-          "worst": "watch"
+          "worst": "watch",
+          "sunset_time": "19:16",
+          "safe_cutoff": "18:31",
+          "cur_wind_name": "Poyraz",
+          "cur_wind_dir": 45.0,
+          "cur_wave_period": 2.6,
+          "cur_visibility_km": 40.9,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Güney Ege",
@@ -570,18 +830,30 @@
           "lon": 27.1,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 10.1,
-              "wave_m": 0.64
+              "gust_kn": 9.3,
+              "wave_m": 0.64,
+              "dominant_wind": "Karayel",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 10.1,
+          "max_gust": 9.3,
           "max_wave": 0.64,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:12",
+          "safe_cutoff": "18:27",
+          "cur_wind_name": "Karayel",
+          "cur_wind_dir": 308.0,
+          "cur_wave_period": 3.65,
+          "cur_visibility_km": 38.2,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Antalya Körfezi",
@@ -589,18 +861,30 @@
           "lon": 30.6,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 9.9,
-              "wave_m": 0.18
+              "gust_kn": 9.3,
+              "wave_m": 0.18,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 9.9,
+          "max_gust": 9.3,
           "max_wave": 0.18,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:58",
+          "safe_cutoff": "18:13",
+          "cur_wind_name": "Yıldız",
+          "cur_wind_dir": 351.0,
+          "cur_wave_period": 3.8,
+          "cur_visibility_km": 31.4,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Mersin Körfezi",
@@ -608,18 +892,30 @@
           "lon": 34.4,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 14.8,
-              "wave_m": 0.26
+              "gust_kn": 14.0,
+              "wave_m": 0.22,
+              "dominant_wind": "Batı-Karayel",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 14.8,
-          "max_wave": 0.26,
+          "max_gust": 14.0,
+          "max_wave": 0.22,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:43",
+          "safe_cutoff": "17:58",
+          "cur_wind_name": "Batı-Karayel",
+          "cur_wind_dir": 301.0,
+          "cur_wave_period": 3.65,
+          "cur_visibility_km": 37.3,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "İskenderun Körfezi",
@@ -627,18 +923,30 @@
           "lon": 35.9,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 19.8,
-              "wave_m": 0.42
+              "gust_kn": 17.5,
+              "wave_m": 0.38,
+              "dominant_wind": "Kıble-Lodos",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 19.8,
-          "max_wave": 0.42,
+          "max_gust": 17.5,
+          "max_wave": 0.38,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:37",
+          "safe_cutoff": "17:52",
+          "cur_wind_name": "Kıble-Lodos",
+          "cur_wind_dir": 209.0,
+          "cur_wave_period": 4.15,
+          "cur_visibility_km": 37.1,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Batı Karadeniz",
@@ -646,18 +954,30 @@
           "lon": 31.8,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 17.5,
-              "wave_m": 0.3
+              "gust_kn": 17.1,
+              "wave_m": 0.22,
+              "dominant_wind": "Kıble-Lodos",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 17.5,
-          "max_wave": 0.3,
+          "max_gust": 17.1,
+          "max_wave": 0.22,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:54",
+          "safe_cutoff": "18:09",
+          "cur_wind_name": "Kıble-Lodos",
+          "cur_wind_dir": 203.0,
+          "cur_wave_period": 3.65,
+          "cur_visibility_km": 30.8,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Orta Karadeniz",
@@ -665,18 +985,30 @@
           "lon": 35.1,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 8.4,
-              "wave_m": 0.26
+              "wave_m": 0.22,
+              "dominant_wind": "Batı-Lodos",
+              "hazard_reason": null
             }
           ],
           "max_gust": 8.4,
-          "max_wave": 0.26,
+          "max_wave": 0.22,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:41",
+          "safe_cutoff": "17:56",
+          "cur_wind_name": "Batı-Lodos",
+          "cur_wind_dir": 247.0,
+          "cur_wave_period": 3.45,
+          "cur_visibility_km": 20.2,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Doğu Karadeniz",
@@ -684,18 +1016,30 @@
           "lon": 39.7,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 15.0,
-              "wave_m": 0.2
+              "wave_m": 0.2,
+              "dominant_wind": "Gündoğusu",
+              "hazard_reason": null
             }
           ],
           "max_gust": 15.0,
           "max_wave": 0.2,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:22",
+          "safe_cutoff": "17:37",
+          "cur_wind_name": "Gündoğusu",
+          "cur_wind_dir": 101.0,
+          "cur_wave_period": 4.35,
+          "cur_visibility_km": 28.4,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         }
       ]
     },
@@ -713,18 +1057,30 @@
           "lon": 28.3,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 20.8,
-              "wave_m": 0.6
+              "gust_kn": 20.2,
+              "wave_m": 0.6,
+              "dominant_wind": "Günbatısı",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 20.8,
+          "max_gust": 20.2,
           "max_wave": 0.6,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:08",
+          "safe_cutoff": "18:23",
+          "cur_wind_name": "Günbatısı",
+          "cur_wind_dir": 263.0,
+          "cur_wave_period": 2.0,
+          "cur_visibility_km": 36.0,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "İzmit Körfezi",
@@ -732,18 +1088,30 @@
           "lon": 29.55,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 11.5,
-              "wave_m": 0.06
+              "wave_m": 0.06,
+              "dominant_wind": "Kıble-Keşişleme",
+              "hazard_reason": null
             }
           ],
           "max_gust": 11.5,
           "max_wave": 0.06,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:03",
+          "safe_cutoff": "18:18",
+          "cur_wind_name": "Kıble-Keşişleme",
+          "cur_wind_dir": 155.0,
+          "cur_wave_period": 1.45,
+          "cur_visibility_km": 26.9,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "İstanbul Boğazı",
@@ -751,18 +1119,30 @@
           "lon": 29.1,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 17.7,
-              "wave_m": 0.2
+              "wave_m": 0.2,
+              "dominant_wind": "Kıble",
+              "hazard_reason": null
             }
           ],
           "max_gust": 17.7,
           "max_wave": 0.2,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:05",
+          "safe_cutoff": "18:20",
+          "cur_wind_name": "Kıble",
+          "cur_wind_dir": 186.0,
+          "cur_wave_period": 2.1,
+          "cur_visibility_km": 34.2,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Çanakkale Boğazı",
@@ -770,18 +1150,30 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 23.5,
-              "wave_m": 0.4
+              "wave_m": 0.4,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             }
           ],
           "max_gust": 23.5,
           "max_wave": 0.4,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:15",
+          "safe_cutoff": "18:30",
+          "cur_wind_name": "Yıldız",
+          "cur_wind_dir": 360.0,
+          "cur_wave_period": 1.8,
+          "cur_visibility_km": 39.1,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Saroz Körfezi",
@@ -789,32 +1181,48 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "23:00",
+              "start": "22:00",
               "end": "03:00",
               "level": "ok",
               "gust_kn": 14.2,
-              "wave_m": 0.16
+              "wave_m": 0.16,
+              "dominant_wind": "Lodos",
+              "hazard_reason": null
             },
             {
               "start": "03:00",
               "end": "08:00",
               "level": "watch",
               "gust_kn": 30.3,
-              "wave_m": 0.42
+              "wave_m": 0.42,
+              "dominant_wind": "Yıldız-Poyraz",
+              "hazard_reason": null
             },
             {
               "start": "08:00",
-              "end": "17:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 21.0,
-              "wave_m": 0.44
+              "gust_kn": 20.8,
+              "wave_m": 0.44,
+              "dominant_wind": "Gündoğusu-Poyraz",
+              "hazard_reason": null
             }
           ],
           "max_gust": 30.3,
           "max_wave": 0.44,
           "first_danger_start": null,
           "return_by": "03:00",
-          "worst": "watch"
+          "worst": "watch",
+          "sunset_time": "19:15",
+          "safe_cutoff": "18:30",
+          "cur_wind_name": "Lodos",
+          "cur_wind_dir": 218.0,
+          "cur_wave_period": 1.7,
+          "cur_visibility_km": 26.7,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Kuzey Ege",
@@ -822,18 +1230,30 @@
           "lon": 26.3,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 21.6,
-              "wave_m": 0.24
+              "wave_m": 0.24,
+              "dominant_wind": "Poyraz",
+              "hazard_reason": null
             }
           ],
           "max_gust": 21.6,
           "max_wave": 0.24,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:16",
+          "safe_cutoff": "18:31",
+          "cur_wind_name": "Poyraz",
+          "cur_wind_dir": 45.0,
+          "cur_wave_period": 2.6,
+          "cur_visibility_km": 40.9,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Güney Ege",
@@ -841,18 +1261,30 @@
           "lon": 27.1,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 10.1,
-              "wave_m": 0.64
+              "gust_kn": 9.3,
+              "wave_m": 0.64,
+              "dominant_wind": "Karayel",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 10.1,
+          "max_gust": 9.3,
           "max_wave": 0.64,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "19:12",
+          "safe_cutoff": "18:27",
+          "cur_wind_name": "Karayel",
+          "cur_wind_dir": 308.0,
+          "cur_wave_period": 3.65,
+          "cur_visibility_km": 38.2,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Antalya Körfezi",
@@ -860,18 +1292,30 @@
           "lon": 30.6,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 9.9,
-              "wave_m": 0.18
+              "gust_kn": 9.3,
+              "wave_m": 0.18,
+              "dominant_wind": "Yıldız",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 9.9,
+          "max_gust": 9.3,
           "max_wave": 0.18,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:58",
+          "safe_cutoff": "18:13",
+          "cur_wind_name": "Yıldız",
+          "cur_wind_dir": 351.0,
+          "cur_wave_period": 3.8,
+          "cur_visibility_km": 31.4,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Mersin Körfezi",
@@ -879,18 +1323,30 @@
           "lon": 34.4,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 14.8,
-              "wave_m": 0.26
+              "gust_kn": 14.0,
+              "wave_m": 0.22,
+              "dominant_wind": "Batı-Karayel",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 14.8,
-          "max_wave": 0.26,
+          "max_gust": 14.0,
+          "max_wave": 0.22,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:43",
+          "safe_cutoff": "17:58",
+          "cur_wind_name": "Batı-Karayel",
+          "cur_wind_dir": 301.0,
+          "cur_wave_period": 3.65,
+          "cur_visibility_km": 37.3,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "İskenderun Körfezi",
@@ -898,18 +1354,30 @@
           "lon": 35.9,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 19.8,
-              "wave_m": 0.42
+              "gust_kn": 17.5,
+              "wave_m": 0.38,
+              "dominant_wind": "Kıble-Lodos",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 19.8,
-          "max_wave": 0.42,
+          "max_gust": 17.5,
+          "max_wave": 0.38,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:37",
+          "safe_cutoff": "17:52",
+          "cur_wind_name": "Kıble-Lodos",
+          "cur_wind_dir": 209.0,
+          "cur_wave_period": 4.15,
+          "cur_visibility_km": 37.1,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Batı Karadeniz",
@@ -917,18 +1385,30 @@
           "lon": 31.8,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
-              "gust_kn": 17.5,
-              "wave_m": 0.3
+              "gust_kn": 17.1,
+              "wave_m": 0.22,
+              "dominant_wind": "Kıble-Lodos",
+              "hazard_reason": null
             }
           ],
-          "max_gust": 17.5,
-          "max_wave": 0.3,
+          "max_gust": 17.1,
+          "max_wave": 0.22,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:54",
+          "safe_cutoff": "18:09",
+          "cur_wind_name": "Kıble-Lodos",
+          "cur_wind_dir": 203.0,
+          "cur_wave_period": 3.65,
+          "cur_visibility_km": 30.8,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Orta Karadeniz",
@@ -936,18 +1416,30 @@
           "lon": 35.1,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 8.4,
-              "wave_m": 0.26
+              "wave_m": 0.22,
+              "dominant_wind": "Batı-Lodos",
+              "hazard_reason": null
             }
           ],
           "max_gust": 8.4,
-          "max_wave": 0.26,
+          "max_wave": 0.22,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:41",
+          "safe_cutoff": "17:56",
+          "cur_wind_name": "Batı-Lodos",
+          "cur_wind_dir": 247.0,
+          "cur_wave_period": 3.45,
+          "cur_visibility_km": 20.2,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         },
         {
           "name": "Doğu Karadeniz",
@@ -955,18 +1447,30 @@
           "lon": 39.7,
           "windows": [
             {
-              "start": "23:00",
-              "end": "17:00",
+              "start": "22:00",
+              "end": "16:00",
               "level": "ok",
               "gust_kn": 15.0,
-              "wave_m": 0.2
+              "wave_m": 0.2,
+              "dominant_wind": "Gündoğusu",
+              "hazard_reason": null
             }
           ],
           "max_gust": 15.0,
           "max_wave": 0.2,
           "first_danger_start": null,
           "return_by": null,
-          "worst": "ok"
+          "worst": "ok",
+          "sunset_time": "18:22",
+          "safe_cutoff": "17:37",
+          "cur_wind_name": "Gündoğusu",
+          "cur_wind_dir": 101.0,
+          "cur_wave_period": 4.35,
+          "cur_visibility_km": 28.4,
+          "steepness_hazard": false,
+          "fog_hazard": false,
+          "orkoz_hazard": false,
+          "data_quality": "ok"
         }
       ]
     }

@@ -37,18 +37,19 @@ Saatlik deniz hava tahminini **tekne boyuna göre** değerlendirip zaman pencere
 ## 📑 İçindekiler
 
 1. [Proje Nedir ve Hangi Sorunu Çözer?](#proje-nedir)
-2. [Hedef Kitle: Kime Ne Sağlar?](#hedef-kitle)
-3. [Telegram Botu: Cebinizdeki Deniz Sentinel'i](#telegram-botu)
-4. [Canlı Web Haritası Özellikleri](#canli-harita)
-5. [Sistem Mimarisi ve Veri Akışı](#mimari)
-6. [Canlı Veri Kaynakları](#veri-kaynaklari)
-7. [Sahada Öğrenilenler & Güvenilirlik](#sahada-ogrenilenler)
-8. [Hukuki Tasarım (TCK 132 & KVKK)](#hukuki-tasarim)
-9. [Hızlı Başlangıç & Yerel Kurulum](#hizli-baslangic)
-10. [Dağıtım ve Çalıştırma (1.2W Edge Sunucu)](#dagitim)
-11. [Sıkça Sorulan Sorular (SSS)](#sss)
-12. [🇬🇧 English Overview & Features](#english-summary)
-13. [Lisans & Katkı](#lisans)
+2. [Deniz Fiziği ve Çok Boyutlu Emniyet Karar Motoru](#deniz-fizigi)
+3. [Hedef Kitle: Kime Ne Sağlar?](#hedef-kitle)
+4. [Telegram Botu: Cebinizdeki Deniz Sentinel'i](#telegram-botu)
+5. [Canlı Web Haritası Özellikleri](#canli-harita)
+6. [Sistem Mimarisi ve Veri Akışı](#mimari)
+7. [Canlı Veri Kaynakları](#veri-kaynaklari)
+8. [Sahada Öğrenilenler & Güvenilirlik](#sahada-ogrenilenler)
+9. [Hukuki Tasarım (TCK 132 & KVKK)](#hukuki-tasarim)
+10. [Hızlı Başlangıç & Yerel Kurulum](#hizli-baslangic)
+11. [Dağıtım ve Çalıştırma (1.2W Edge Sunucu)](#dagitim)
+12. [Sıkça Sorulan Sorular (SSS)](#sss)
+13. [🇬🇧 English Overview & Features](#english-summary)
+14. [Lisans & Katkı](#lisans)
 
 ---
 
@@ -69,6 +70,40 @@ Mevcut kaynaklar (MGM, MeteoUyarı, Windy vb.) genel hava verisi verir: *"Rüzg�
 > 🔴 **Çıkmayın:** 19:00'dan sonra fırtına (6 Bofor / 26 knot hamle).
 
 Ayrıca Türkiye karasularındaki tüm kamuya açık olayları (AIS sinyal kayıpları, çatışma riskleri, Sahil Güvenlik arama-kurtarmaları, deniz depremleri ve haberler) 7/24 tarayarak tek bir kontrol panelinde toplar.
+
+---
+
+<a id="deniz-fizigi"></a>
+
+## 🧭 Deniz Fiziği ve Çok Boyutlu Emniyet Karar Motoru
+
+Sistem yalnızca basit rüzgar eşiklerine bakmaz; Türk karasularının hidrodinamik ve coğrafi risklerini modelleyen **saf matematiksel fizik motoruna** sahiptir:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                 ÇOK BOYUTLU DENİZ GÜVENLİK KARAR MOTORU                      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 1. 16 Yönlü Türk Pusulası   -> Yıldız, Poyraz, Lodos, Karayel, Keşişleme... │
+│ 2. Dalga Dikliği Formülü    -> T < 4.5s ve H ≥ 0.7m (Vuruntulu Çırpıntı)    │
+│ 3. Sert Sis Kapısı          -> Görüş < 300m ise rüzgara bakılmaksızın DANGER│
+│ 4. Boğaz Orkoz Analizi      -> Lodos/Kıble üst akıntıyla çatışırsa CAUTION  │
+│ 5. Gökbilimsel Güvenlik     -> NOAA Deklinasyonu ile Gün Batımı - 45 dk     │
+│ 6. VHF 16 Fonetik Telsiz    -> "40 DERECE 55 DAKİKA KUZEY" Acil Çağrı       │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+1. **16 Yönlü Geleneksel Türk Denizci Pusulası**:  
+   Rüzgar açısını ($0^\circ - 360^\circ$) denizcilerimizin yüzyıllardır kullandığı geleneksel isimlerle (*Poyraz, Gündoğusu-Poyraz, Lodos, Kıble-Lodos, Karayel*) eşler.
+2. **Kısa & Dik Dalga Çırpıntı Cezası (Wave Steepness Penalty)**:  
+   Açık denizde uzun periyotlu ölü dalga ($T > 7\text{s}$) tekneyi sarsmazken; periyodu $4.5\text{ saniyenin}$ altındaki dik ve kırıcı çırpıntılar küçük tekneleri alabora edebilir. Motor, dik dalga tespit ettiğinde güvenli eşiklere **%30 tolerans cezası** uygular.
+3. **Sert Sis Kapısı (Hard Fog Gate)**:  
+   Deniz sütliman dahi olsa görüş mesafesi $300\text{ metrenin}$ altına düştüğünde karar doğrudan **🔴 DANGER (Çıkma)** seviyesine çekilir; $1000\text{ metrenin}$ altında ise **🟡 WATCH (Pus)** uyarısı verilir.
+4. **Türk Boğazları Orkoz Tespiti**:  
+   İstanbul ve Çanakkale boğazlarında güneyli rüzgarların (Lodos/Kıble) Karadeniz'den Ege'ye akan yüzey akıntısıyla çatışması durumunda otomatik olarak `orkoz_detected: true` bayrağı ve tedbirli geçiş uyarısı üretilir.
+5. **Gökbilimsel Güvenlik ve Alacakaranlık Tavanı (Sunset Ceiling)**:  
+   Küçük teknelerin akşam karanlığına ve fener kısıtlarına kalmaması için limana en geç dönüş saati (`return_by`), gün batımından 45 dakika öncesi ile sınırlandırılır.
+6. **VHF Kanal 16 Telsiz Fonetik Çağrı Desteği**:  
+   Acil durumda telsiz mandalına basıldığında okunacak mevki metni uluslararası standartta Türkçe harf ve dakika fonetiğiyle üretilir (`"40 DERECE 55 DAKİKA KUZEY, 28 DERECE 59 DAKİKA DOĞU"`).
 
 ---
 

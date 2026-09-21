@@ -75,6 +75,9 @@ def render_outlook(
                 tz_offset_h=tz,
                 lat=p.get("lat"),
                 lon=p.get("lon"),
+                wave_periods=p.get("wave_periods"),
+                wind_dirs=p.get("wind_dirs"),
+                visibilities=p.get("visibilities"),
             )
             areas.append(area_to_public_dict(area))
         classes_out[cid] = {

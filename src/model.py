@@ -122,13 +122,21 @@ class WeatherContext:
     distance_nm: float | None = None
     sea_temp_c: float | None = None
     current_kn: float | None = None
+    wind_dir_name_tr: str = ""
+    wave_period_s: float | None = None
+    visibility_km: float | None = None
+    is_steep_wave: bool = False
+    is_foggy: bool = False
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
     @staticmethod
     def from_dict(d: dict[str, Any]) -> WeatherContext:
-        return WeatherContext(**d)
+        import dataclasses
+        valid_fields = {f.name for f in dataclasses.fields(WeatherContext)}
+        filtered = {k: v for k, v in d.items() if k in valid_fields}
+        return WeatherContext(**filtered)
 
 
 @dataclass
@@ -141,13 +149,18 @@ class StraitStatus:
     active_vessels_in_transit: int = 0
     avg_speed_kn: float = 0.0
     last_update: str = field(default_factory=now_iso)
+    orkoz_detected: bool = False
+    fog_detected: bool = False
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
     @staticmethod
     def from_dict(d: dict[str, Any]) -> StraitStatus:
-        return StraitStatus(**d)
+        import dataclasses
+        valid_fields = {f.name for f in dataclasses.fields(StraitStatus)}
+        filtered = {k: v for k, v in d.items() if k in valid_fields}
+        return StraitStatus(**filtered)
 
 
 @dataclass

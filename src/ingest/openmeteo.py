@@ -67,14 +67,15 @@ def _hourly(url: str, params: dict, sample: str, field: str):
 
 
 def _hourly_marine(url: str, params: dict, sample: str):
-    """Fetch wave height, sea temp and ocean current in a single combined HTTP request."""
+    """Fetch wave height, wave period, sea temp and ocean current in a single combined HTTP request."""
     q = "&".join(f"{k}={v}" for k, v in params.items())
     data, live = get_json(f"{url}?{q}", sample)
     if not data:
-        return [], [], None, None, live
+        return [], [], [], None, None, live
     hourly = data.get("hourly") or {}
     times = hourly.get("time") or []
     waves = hourly.get("wave_height") or []
+    periods = hourly.get("wave_period") or []
     sst = hourly.get("sea_surface_temperature") or []
     cur = hourly.get("ocean_current_velocity") or []
     cutoff = time.strftime("%Y-%m-%dT%H:00", time.gmtime())
@@ -87,6 +88,12 @@ def _hourly_marine(url: str, params: dict, sample: str):
     ]
     while len(w_sliced) < len(t_sliced):
         w_sliced.append(None)
+    p_sliced = [
+        float(v) if isinstance(v, (int, float)) else None
+        for v in periods[start:start + len(t_sliced)]
+    ]
+    while len(p_sliced) < len(t_sliced):
+        p_sliced.append(None)
     s_val = (
         round(float(sst[start]), 1)
         if (start < len(sst) and sst[start] is not None and isinstance(sst[start], (int, float)))
@@ -97,21 +104,22 @@ def _hourly_marine(url: str, params: dict, sample: str):
         if (start < len(cur) and cur[start] is not None and isinstance(cur[start], (int, float)))
         else None
     )
-    return t_sliced, w_sliced, s_val, c_val, live
+    return t_sliced, w_sliced, p_sliced, s_val, c_val, live
 
 
 def _hourly_wind(url: str, params: dict, sample: str):
-    """Gusts + direction in one request; null cells stay None."""
+    """Gusts, direction and visibility in one request; null cells stay None."""
     q = "&".join(f"{k}={v}" for k, v in params.items())
     data, live = get_json(f"{url}?{q}", sample)
     if not data:
-        return [], [], [], live
+        return [], [], [], [], live
     hourly = data.get("hourly") or {}
     times = hourly.get("time") or []
     gusts = hourly.get("wind_gusts_10m") or []
     dirs = hourly.get("wind_direction_10m") or []
+    vis = hourly.get("visibility") or []
     if len(times) != len(gusts):
-        return [], [], [], live
+        return [], [], [], [], live
     cutoff = time.strftime("%Y-%m-%dT%H:00", time.gmtime())
     start = next((i for i, t in enumerate(times) if str(t) >= cutoff), 0)
     t_sliced = times[start:]
@@ -122,7 +130,13 @@ def _hourly_wind(url: str, params: dict, sample: str):
     ]
     while len(d_sliced) < len(t_sliced):
         d_sliced.append(None)
-    return t_sliced, g_sliced, d_sliced, live
+    v_sliced = [
+        float(v) if isinstance(v, (int, float)) else None
+        for v in vis[start:start + len(t_sliced)]
+    ]
+    while len(v_sliced) < len(t_sliced):
+        v_sliced.append(None)
+    return t_sliced, g_sliced, d_sliced, v_sliced, live
 
 
 def _fetch_one_point(pt: dict, *, attempts: int = 3) -> dict | None:
@@ -133,21 +147,37 @@ def _fetch_one_point(pt: dict, *, attempts: int = 3) -> dict | None:
     marine_key = f"openmeteo_marine:{name}"
 
     for attempt in range(attempts):
-        wt, waves, sea_temp, current_kn, lw = _hourly_marine(
+        res_m = _hourly_marine(
             MARINE,
-            {**base, "hourly": "wave_height,sea_surface_temperature,ocean_current_velocity"},
+            {**base, "hourly": "wave_height,wave_period,sea_surface_temperature,ocean_current_velocity"},
             marine_key,
         )
-        gt, gusts, wind_dirs, lg = _hourly_wind(
+        if len(res_m) == 6:
+            wt, waves, periods, sea_temp, current_kn, lw = res_m
+        else:
+            wt, waves, sea_temp, current_kn, lw = res_m
+            periods = [None] * len(wt)
+
+        res_w = _hourly_wind(
             WIND,
-            {**base, "hourly": "wind_gusts_10m,wind_direction_10m", "wind_speed_unit": "kn"},
+            {**base, "hourly": "wind_gusts_10m,wind_direction_10m,visibility", "wind_speed_unit": "kn"},
             wind_key,
         )
+        if len(res_w) == 5:
+            gt, gusts, wind_dirs, visibilities, lg = res_w
+        else:
+            gt, gusts, wind_dirs, lg = res_w
+            visibilities = [None] * len(gt)
+
         if lg and gt and any(g is not None for g in gusts):
             if not (lw and wt):
                 waves = [None] * len(gt)
-            elif len(waves) < len(gt):
-                waves = list(waves) + [None] * (len(gt) - len(waves))
+                periods = [None] * len(gt)
+            else:
+                if len(waves) < len(gt):
+                    waves = list(waves) + [None] * (len(gt) - len(waves))
+                if len(periods) < len(gt):
+                    periods = list(periods) + [None] * (len(gt) - len(periods))
             return {
                 "name": name,
                 "lat": pt["lat"],
@@ -155,7 +185,9 @@ def _fetch_one_point(pt: dict, *, attempts: int = 3) -> dict | None:
                 "times": gt,
                 "gusts": gusts,
                 "waves": waves,
+                "wave_periods": periods,
                 "wind_dirs": wind_dirs,
+                "visibilities": visibilities,
                 "sea_temp_c": sea_temp if lw else None,
                 "current_kn": current_kn if lw else None,
             }

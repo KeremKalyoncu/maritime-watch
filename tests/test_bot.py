@@ -448,3 +448,61 @@ def test_balikci_shows_stale_and_official_warning(bot):
     assert sent
     assert "Eski tahmin" in sent[0]
     assert "Resmi" in sent[0]
+
+
+def test_build_phonetic_coords_tr():
+    from src.alert.bot import build_phonetic_coords_tr
+    spoken = build_phonetic_coords_tr(40.9876, 28.1234)
+    assert "40 DERECE 59 DAKİKA KUZEY" in spoken
+    assert "28 DERECE 07 DAKİKA DOĞU" in spoken
+
+
+def test_mayday_generates_phonetic_speech(bot):
+    sent = []
+    bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
+    bot.subs.data["42"] = {
+        "active": True,
+        "boat": "small",
+        "areas": ["Marmara Denizi"],
+        "last_location": {"lat": 40.9, "lon": 28.9, "time": 9999999999}
+    }
+    bot.handle(_msg(42, "/mayday"))
+    assert sent
+    assert "40 DERECE 54 DAKİKA KUZEY" in sent[0]
+    assert "28 DERECE 54 DAKİKA DOĞU" in sent[0]
+    assert "VHF KANAL 16" in sent[0]
+
+
+def test_balikci_displays_wind_and_sunset(bot):
+    from pathlib import Path
+    sent = []
+    bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
+    data_dir = Path(bot.cfg["_root"]) / "web" / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    data_dir.joinpath("outlook.json").write_text(json.dumps({
+        "schema_version": 1,
+        "coverage": {"expected": 1, "present": 1, "missing": []},
+        "classes": {
+            "small": {"label": "küçük", "limits": {}, "areas": [{
+                "name": "Marmara Denizi",
+                "windows": [{"start": "08:00", "end": "16:00", "level": "watch",
+                             "gust_kn": 18, "wave_m": 1.1,
+                             "dominant_wind": "Poyraz",
+                             "hazard_reason": "Dik/Kısa Dalga Çırpıntısı (3.2s)"}],
+                "return_by": "15:15",
+                "sunset_time": "19:30",
+                "safe_cutoff": "18:45",
+                "steepness_hazard": True,
+                "worst": "watch",
+            }]},
+            "medium": {"label": "m", "limits": {}, "areas": []},
+            "large": {"label": "l", "limits": {}, "areas": []},
+        },
+    }, ensure_ascii=False), encoding="utf-8")
+    bot.handle(_msg(42, "/balikci marmara"))
+    assert sent
+    assert "Poyraz" in sent[0]
+    assert "Dik/Kısa Dalga Çırpıntısı" in sent[0]
+    assert "19:30" in sent[0]
+    assert "15:15" in sent[0]
+

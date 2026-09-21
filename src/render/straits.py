@@ -37,6 +37,8 @@ def evaluate_strait(
     # Resmi kapatma, askıya alma veya yoğun sis kontrolü
     is_suspended = False
     suspension_reason = None
+    fog_detected = False
+    orkoz_detected = False
 
     for w in warnings:
         area_low = (w.area or "").lower()
@@ -48,8 +50,11 @@ def evaluate_strait(
                 break
             if w.kind in ("fog", "metar") and ("sis" in head_low or "fog" in head_low or "görüş" in head_low):
                 is_suspended = True
+                fog_detected = True
                 suspension_reason = "Yoğun Sis (Görüş < 300m)"
                 break
+            if "lodos" in head_low or "kıble" in head_low or "orkoz" in head_low:
+                orkoz_detected = True
 
     # Boğaz koridorundaki canlı AIS gemi trafiği
     in_transit_count = 0
@@ -76,6 +81,10 @@ def evaluate_strait(
     if is_suspended:
         status = "suspended"
         status_tr = "Geçiş Askıya Alındı"
+    elif orkoz_detected:
+        status = "caution"
+        status_tr = "Tedbirli Geçiş"
+        suspension_reason = "ORKOZ TEHLİKESİ: Sert Lodos üst akıntıyla çatışıyor, dik kırıcı dalga riski."
     elif in_transit_count >= 6 and avg_speed < 2.5:
         status = "caution"
         status_tr = "Tedbirli Geçiş"
@@ -94,6 +103,8 @@ def evaluate_strait(
         active_vessels_in_transit=in_transit_count,
         avg_speed_kn=avg_speed,
         last_update=now_iso(),
+        orkoz_detected=orkoz_detected,
+        fog_detected=fog_detected,
     )
 
 
