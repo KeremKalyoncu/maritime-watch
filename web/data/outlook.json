@@ -1,15 +1,13 @@
 {
   "schema_version": 1,
-  "generated": "2026-09-20T21:58:38Z",
+  "generated": "2026-09-21T00:06:02Z",
   "hours": 18,
   "tz_offset_hours": 3.0,
   "question": "today",
   "coverage": {
     "expected": 13,
-    "present": 12,
-    "missing": [
-      "Güney Ege"
-    ]
+    "present": 13,
+    "missing": []
   },
   "classes": {
     "small": {
@@ -26,25 +24,18 @@
           "lon": 28.3,
           "windows": [
             {
-              "start": "00:00",
-              "end": "03:00",
-              "level": "watch",
-              "gust_kn": 17.9,
-              "wave_m": 0.5
-            },
-            {
               "start": "03:00",
-              "end": "18:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 15.0,
-              "wave_m": 0.46
+              "wave_m": 0.44
             }
           ],
-          "max_gust": 17.9,
-          "max_wave": 0.5,
+          "max_gust": 15.0,
+          "max_wave": 0.44,
           "first_danger_start": null,
-          "return_by": "00:00",
-          "worst": "watch"
+          "return_by": null,
+          "worst": "ok"
         },
         {
           "name": "İzmit Körfezi",
@@ -52,15 +43,15 @@
           "lon": 29.55,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 10.7,
-              "wave_m": 0.08
+              "wave_m": 0.04
             }
           ],
           "max_gust": 10.7,
-          "max_wave": 0.08,
+          "max_wave": 0.04,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -71,15 +62,15 @@
           "lon": 29.1,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 12.8,
-              "wave_m": 0.1
+              "wave_m": 0.04
             }
           ],
           "max_gust": 12.8,
-          "max_wave": 0.1,
+          "max_wave": 0.04,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -90,15 +81,15 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 11.7,
-              "wave_m": 0.16
+              "gust_kn": 12.2,
+              "wave_m": 0.18
             }
           ],
-          "max_gust": 11.7,
-          "max_wave": 0.16,
+          "max_gust": 12.2,
+          "max_wave": 0.18,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -109,15 +100,15 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 12.1,
-              "wave_m": 0.3
+              "gust_kn": 11.1,
+              "wave_m": 0.2
             }
           ],
-          "max_gust": 12.1,
-          "max_wave": 0.3,
+          "max_gust": 11.1,
+          "max_wave": 0.2,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -128,25 +119,44 @@
           "lon": 26.3,
           "windows": [
             {
-              "start": "00:00",
+              "start": "03:00",
               "end": "14:00",
               "level": "ok",
-              "gust_kn": 15.9,
-              "wave_m": 0.22
+              "gust_kn": 15.7,
+              "wave_m": 0.14
             },
             {
               "start": "14:00",
-              "end": "18:00",
+              "end": "21:00",
               "level": "watch",
               "gust_kn": 18.9,
-              "wave_m": 0.26
+              "wave_m": 0.3
             }
           ],
           "max_gust": 18.9,
-          "max_wave": 0.26,
+          "max_wave": 0.3,
           "first_danger_start": null,
           "return_by": "14:00",
           "worst": "watch"
+        },
+        {
+          "name": "Güney Ege",
+          "lat": 37.0,
+          "lon": 27.1,
+          "windows": [
+            {
+              "start": "03:00",
+              "end": "21:00",
+              "level": "ok",
+              "gust_kn": 13.2,
+              "wave_m": 0.76
+            }
+          ],
+          "max_gust": 13.2,
+          "max_wave": 0.76,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
         },
         {
           "name": "Antalya Körfezi",
@@ -154,15 +164,15 @@
           "lon": 30.6,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 11.7,
-              "wave_m": 0.2
+              "gust_kn": 12.1,
+              "wave_m": 0.26
             }
           ],
-          "max_gust": 11.7,
-          "max_wave": 0.2,
+          "max_gust": 12.1,
+          "max_wave": 0.26,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -173,15 +183,15 @@
           "lon": 34.4,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 15.4,
-              "wave_m": 0.32
+              "wave_m": 0.34
             }
           ],
           "max_gust": 15.4,
-          "max_wave": 0.32,
+          "max_wave": 0.34,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -192,15 +202,15 @@
           "lon": 35.9,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 15.0,
-              "wave_m": 0.32
+              "wave_m": 0.38
             }
           ],
           "max_gust": 15.0,
-          "max_wave": 0.32,
+          "max_wave": 0.38,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -211,15 +221,15 @@
           "lon": 31.8,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 9.7,
-              "wave_m": 0.48
+              "wave_m": 0.54
             }
           ],
           "max_gust": 9.7,
-          "max_wave": 0.48,
+          "max_wave": 0.54,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -230,15 +240,15 @@
           "lon": 35.1,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 10.5,
-              "wave_m": 0.48
+              "wave_m": 0.42
             }
           ],
           "max_gust": 10.5,
-          "max_wave": 0.48,
+          "max_wave": 0.42,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -249,15 +259,15 @@
           "lon": 39.7,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 6.8,
-              "wave_m": 0.5
+              "wave_m": 0.44
             }
           ],
           "max_gust": 6.8,
-          "max_wave": 0.5,
+          "max_wave": 0.44,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -278,15 +288,15 @@
           "lon": 28.3,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 17.9,
-              "wave_m": 0.5
+              "gust_kn": 15.0,
+              "wave_m": 0.44
             }
           ],
-          "max_gust": 17.9,
-          "max_wave": 0.5,
+          "max_gust": 15.0,
+          "max_wave": 0.44,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -297,15 +307,15 @@
           "lon": 29.55,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 10.7,
-              "wave_m": 0.08
+              "wave_m": 0.04
             }
           ],
           "max_gust": 10.7,
-          "max_wave": 0.08,
+          "max_wave": 0.04,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -316,15 +326,15 @@
           "lon": 29.1,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 12.8,
-              "wave_m": 0.1
+              "wave_m": 0.04
             }
           ],
           "max_gust": 12.8,
-          "max_wave": 0.1,
+          "max_wave": 0.04,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -335,15 +345,15 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 11.7,
-              "wave_m": 0.16
+              "gust_kn": 12.2,
+              "wave_m": 0.18
             }
           ],
-          "max_gust": 11.7,
-          "max_wave": 0.16,
+          "max_gust": 12.2,
+          "max_wave": 0.18,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -354,15 +364,15 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 12.1,
-              "wave_m": 0.3
+              "gust_kn": 11.1,
+              "wave_m": 0.2
             }
           ],
-          "max_gust": 12.1,
-          "max_wave": 0.3,
+          "max_gust": 11.1,
+          "max_wave": 0.2,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -373,15 +383,34 @@
           "lon": 26.3,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 18.9,
-              "wave_m": 0.26
+              "wave_m": 0.3
             }
           ],
           "max_gust": 18.9,
-          "max_wave": 0.26,
+          "max_wave": 0.3,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Güney Ege",
+          "lat": 37.0,
+          "lon": 27.1,
+          "windows": [
+            {
+              "start": "03:00",
+              "end": "21:00",
+              "level": "ok",
+              "gust_kn": 13.2,
+              "wave_m": 0.76
+            }
+          ],
+          "max_gust": 13.2,
+          "max_wave": 0.76,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -392,15 +421,15 @@
           "lon": 30.6,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 11.7,
-              "wave_m": 0.2
+              "gust_kn": 12.1,
+              "wave_m": 0.26
             }
           ],
-          "max_gust": 11.7,
-          "max_wave": 0.2,
+          "max_gust": 12.1,
+          "max_wave": 0.26,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -411,15 +440,15 @@
           "lon": 34.4,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 15.4,
-              "wave_m": 0.32
+              "wave_m": 0.34
             }
           ],
           "max_gust": 15.4,
-          "max_wave": 0.32,
+          "max_wave": 0.34,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -430,15 +459,15 @@
           "lon": 35.9,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 15.0,
-              "wave_m": 0.32
+              "wave_m": 0.38
             }
           ],
           "max_gust": 15.0,
-          "max_wave": 0.32,
+          "max_wave": 0.38,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -449,15 +478,15 @@
           "lon": 31.8,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 9.7,
-              "wave_m": 0.48
+              "wave_m": 0.54
             }
           ],
           "max_gust": 9.7,
-          "max_wave": 0.48,
+          "max_wave": 0.54,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -468,15 +497,15 @@
           "lon": 35.1,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 10.5,
-              "wave_m": 0.48
+              "wave_m": 0.42
             }
           ],
           "max_gust": 10.5,
-          "max_wave": 0.48,
+          "max_wave": 0.42,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -487,15 +516,15 @@
           "lon": 39.7,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 6.8,
-              "wave_m": 0.5
+              "wave_m": 0.44
             }
           ],
           "max_gust": 6.8,
-          "max_wave": 0.5,
+          "max_wave": 0.44,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -516,15 +545,15 @@
           "lon": 28.3,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 17.9,
-              "wave_m": 0.5
+              "gust_kn": 15.0,
+              "wave_m": 0.44
             }
           ],
-          "max_gust": 17.9,
-          "max_wave": 0.5,
+          "max_gust": 15.0,
+          "max_wave": 0.44,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -535,15 +564,15 @@
           "lon": 29.55,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 10.7,
-              "wave_m": 0.08
+              "wave_m": 0.04
             }
           ],
           "max_gust": 10.7,
-          "max_wave": 0.08,
+          "max_wave": 0.04,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -554,15 +583,15 @@
           "lon": 29.1,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 12.8,
-              "wave_m": 0.1
+              "wave_m": 0.04
             }
           ],
           "max_gust": 12.8,
-          "max_wave": 0.1,
+          "max_wave": 0.04,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -573,15 +602,15 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 11.7,
-              "wave_m": 0.16
+              "gust_kn": 12.2,
+              "wave_m": 0.18
             }
           ],
-          "max_gust": 11.7,
-          "max_wave": 0.16,
+          "max_gust": 12.2,
+          "max_wave": 0.18,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -592,15 +621,15 @@
           "lon": 26.4,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 12.1,
-              "wave_m": 0.3
+              "gust_kn": 11.1,
+              "wave_m": 0.2
             }
           ],
-          "max_gust": 12.1,
-          "max_wave": 0.3,
+          "max_gust": 11.1,
+          "max_wave": 0.2,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -611,15 +640,34 @@
           "lon": 26.3,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 18.9,
-              "wave_m": 0.26
+              "wave_m": 0.3
             }
           ],
           "max_gust": 18.9,
-          "max_wave": 0.26,
+          "max_wave": 0.3,
+          "first_danger_start": null,
+          "return_by": null,
+          "worst": "ok"
+        },
+        {
+          "name": "Güney Ege",
+          "lat": 37.0,
+          "lon": 27.1,
+          "windows": [
+            {
+              "start": "03:00",
+              "end": "21:00",
+              "level": "ok",
+              "gust_kn": 13.2,
+              "wave_m": 0.76
+            }
+          ],
+          "max_gust": 13.2,
+          "max_wave": 0.76,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -630,15 +678,15 @@
           "lon": 30.6,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
-              "gust_kn": 11.7,
-              "wave_m": 0.2
+              "gust_kn": 12.1,
+              "wave_m": 0.26
             }
           ],
-          "max_gust": 11.7,
-          "max_wave": 0.2,
+          "max_gust": 12.1,
+          "max_wave": 0.26,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -649,15 +697,15 @@
           "lon": 34.4,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 15.4,
-              "wave_m": 0.32
+              "wave_m": 0.34
             }
           ],
           "max_gust": 15.4,
-          "max_wave": 0.32,
+          "max_wave": 0.34,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -668,15 +716,15 @@
           "lon": 35.9,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 15.0,
-              "wave_m": 0.32
+              "wave_m": 0.38
             }
           ],
           "max_gust": 15.0,
-          "max_wave": 0.32,
+          "max_wave": 0.38,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -687,15 +735,15 @@
           "lon": 31.8,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 9.7,
-              "wave_m": 0.48
+              "wave_m": 0.54
             }
           ],
           "max_gust": 9.7,
-          "max_wave": 0.48,
+          "max_wave": 0.54,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -706,15 +754,15 @@
           "lon": 35.1,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 10.5,
-              "wave_m": 0.48
+              "wave_m": 0.42
             }
           ],
           "max_gust": 10.5,
-          "max_wave": 0.48,
+          "max_wave": 0.42,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"
@@ -725,15 +773,15 @@
           "lon": 39.7,
           "windows": [
             {
-              "start": "00:00",
-              "end": "18:00",
+              "start": "03:00",
+              "end": "21:00",
               "level": "ok",
               "gust_kn": 6.8,
-              "wave_m": 0.5
+              "wave_m": 0.44
             }
           ],
           "max_gust": 6.8,
-          "max_wave": 0.5,
+          "max_wave": 0.44,
           "first_danger_start": null,
           "return_by": null,
           "worst": "ok"

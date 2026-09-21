@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-20T21:58:38Z",
-  "total_incidents": 347,
+  "generated": "2026-09-21T00:06:02Z",
+  "total_incidents": 348,
   "by_month": {
-    "2026-09": 347
+    "2026-09": 348
   },
   "by_area": {
-    "belirsiz": 308,
+    "belirsiz": 309,
     "Marmara Denizi": 13,
     "Türk karasuları civarı": 8,
     "Antalya Körfezi": 6,
@@ -17,7 +17,7 @@
   },
   "by_type": {
     "distress": 123,
-    "drift": 79,
+    "drift": 80,
     "unknown": 58,
     "collision-risk": 45,
     "sinking": 30,
@@ -27,7 +27,7 @@
     "capsize": 1
   },
   "by_status": {
-    "signal": 302,
+    "signal": 303,
     "probable": 45
   },
   "incidents_with_casualties": 24,
@@ -43,6 +43,10 @@
     ],
     [
       "SIMI II",
+      3
+    ],
+    [
+      "THEOLOGOS P .",
       3
     ],
     [
@@ -67,10 +71,6 @@
     ],
     [
       "TIGANI",
-      2
-    ],
-    [
-      "BARILOCHE",
       2
     ]
   ],

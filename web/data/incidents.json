@@ -16,7 +16,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-17T01:45:34Z",
-    "last_update": "2026-09-20T11:05:33Z",
+    "last_update": "2026-09-21T00:03:18Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -185,6 +185,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-20T11:05:33Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 381 dakika önce kesildi (3 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-21T00:03:18Z"
       }
     ],
     "notes": [],
@@ -221,121 +228,6 @@
     "weather_context": null
   },
   {
-    "id": "2026-09-20-ais-380707",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.4498,
-    "lon": 26.892,
-    "area": "Güney Ege",
-    "vessel": {
-      "name": "DOLPHIN 08",
-      "mmsi": 352003628,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-20T00:55:04Z",
-    "last_update": "2026-09-20T11:05:33Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 367 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-20T00:55:04Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 671 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-20T05:58:17Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 978 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-20T11:05:33Z"
-      }
-    ],
-    "notes": [
-      "Bölgede 8 kn Karayel ve 0.5 m dalga kaydedildi.",
-      "Bölgede 12 kn Karayel ve 0.6 m dalga kaydedildi.",
-      "Bölgede 11 kn Karayel ve 0.6 m dalga kaydedildi.",
-      "Bölgede 10 kn Karayel ve 0.6 m dalga kaydedildi.",
-      "Bölgede 0 kn Karayel rüzgar kaydedildi."
-    ],
-    "places": [],
-    "coarse": false,
-    "track": [
-      [
-        37.2938,
-        26.1579
-      ],
-      [
-        37.2928,
-        26.1597
-      ],
-      [
-        36.4498,
-        26.892
-      ]
-    ],
-    "heading": null,
-    "vessel_type": "unknown",
-    "weather_context": {
-      "wind_kn": 0.0,
-      "gust_kn": 0.0,
-      "wave_m": null,
-      "wind_dir": 320,
-      "beaufort": 0,
-      "summary_tr": "Bölgede 0 kn Karayel rüzgar kaydedildi.",
-      "summary_en": "At site: 0 kn NW wind recorded.",
-      "station_name": "Güney Ege",
-      "distance_nm": 34.5,
-      "sea_temp_c": null,
-      "current_kn": null
-    }
-  },
-  {
-    "id": "2026-09-20-ais-3cbb6b",
-    "type": "distress",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 42.252,
-    "lon": 28.0916,
-    "area": "Batı Karadeniz",
-    "vessel": {
-      "name": "BSM BEIHAI",
-      "mmsi": 636019325,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-20T11:05:33Z",
-    "last_update": "2026-09-20T11:05:33Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 732 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-20T11:05:33Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false,
-    "track": [],
-    "heading": null,
-    "vessel_type": "unknown",
-    "weather_context": null
-  },
-  {
     "id": "2026-09-20-ais-92ba1c",
     "type": "distress",
     "status": "signal",
@@ -352,7 +244,7 @@
     },
     "casualties": null,
     "first_seen": "2026-09-20T19:48:57Z",
-    "last_update": "2026-09-20T21:54:51Z",
+    "last_update": "2026-09-21T00:03:18Z",
     "sources": [
       {
         "kind": "ais-anomaly",
@@ -367,6 +259,13 @@
         "org": "AIS",
         "url": null,
         "ts": "2026-09-20T21:54:51Z"
+      },
+      {
+        "kind": "ais-anomaly",
+        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 778 dakika önce kesildi (5 taramada üst üste görünmedi)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-21T00:03:18Z"
       }
     ],
     "notes": [],
@@ -392,54 +291,6 @@
       [
         36.6136,
         27.9554
-      ]
-    ],
-    "heading": null,
-    "vessel_type": "unknown",
-    "weather_context": null
-  },
-  {
-    "id": "2026-09-20-ais-ab528a",
-    "type": "drift",
-    "status": "signal",
-    "confidence": 0.25,
-    "severity": "minor",
-    "lat": 36.01113833333333,
-    "lon": 35.042813333333335,
-    "area": "Mersin–İskenderun Körfezi",
-    "vessel": {
-      "name": "NORTHERN VENTURE",
-      "mmsi": 477940100,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-20T11:05:33Z",
-    "last_update": "2026-09-20T11:05:33Z",
-    "sources": [
-      {
-        "kind": "ais-anomaly",
-        "detail": "nav-status: kumanda dışı (not under command)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-20T11:05:33Z"
-      }
-    ],
-    "notes": [],
-    "places": [],
-    "coarse": false,
-    "track": [
-      [
-        36.0111,
-        35.0428
-      ],
-      [
-        36.4829,
-        34.7255
-      ],
-      [
-        36.0111,
-        35.0428
       ]
     ],
     "heading": null,
@@ -510,7 +361,8 @@
     ],
     "notes": [
       "Bölgede 11 kn Poyraz ve 0.1 m dalga kaydedildi.",
-      "Bölgede 9 kn Poyraz ve 0.1 m dalga kaydedildi."
+      "Bölgede 9 kn Poyraz ve 0.1 m dalga kaydedildi.",
+      "Bölgede 5 kn Keşişleme ve 0.0 m dalga kaydedildi."
     ],
     "places": [],
     "coarse": false,
@@ -518,13 +370,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 6.4,
-      "gust_kn": 8.6,
-      "wave_m": 0.08,
-      "wind_dir": 69,
-      "beaufort": 3,
-      "summary_tr": "Bölgede 9 kn Poyraz ve 0.1 m dalga kaydedildi.",
-      "summary_en": "At site: 9 kn ENE wind and 0.1 m waves.",
+      "wind_kn": 3.8,
+      "gust_kn": 5.1,
+      "wave_m": 0.04,
+      "wind_dir": 160,
+      "beaufort": 2,
+      "summary_tr": "Bölgede 5 kn Keşişleme ve 0.0 m dalga kaydedildi.",
+      "summary_en": "At site: 5 kn SSE wind and 0.0 m waves.",
       "station_name": "İzmit Körfezi",
       "distance_nm": 19.4,
       "sea_temp_c": null,
@@ -567,53 +419,47 @@
     "weather_context": null
   },
   {
-    "id": "cpa-207822280-207829280",
-    "type": "collision-risk",
+    "id": "2026-09-21-ais-b176ca",
+    "type": "drift",
     "status": "signal",
-    "confidence": 0.1,
+    "confidence": 0.25,
     "severity": "minor",
-    "lat": 43.3541,
-    "lon": 28.4752,
-    "area": "Batı Karadeniz",
+    "lat": 37.46366666666667,
+    "lon": 25.323,
+    "area": "Orta Ege",
     "vessel": {
-      "name": "IRINA & DELTA",
-      "mmsi": 207829280,
+      "name": "THEOLOGOS P .",
+      "mmsi": 240521000,
       "type": null,
       "callsign": null
     },
     "casualties": null,
-    "first_seen": "2026-09-20T11:05:33Z",
-    "last_update": "2026-09-20T11:05:33Z",
+    "first_seen": "2026-09-21T00:03:18Z",
+    "last_update": "2026-09-21T00:03:18Z",
     "sources": [
       {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.34 NM (~629 m), kalan süre: 4.9 dk (Hızlar: 3.0 kn / 3.2 kn)",
+        "kind": "ais-anomaly",
+        "detail": "speed-drop: seyir hızından (19.2 kn) ani duruşa geçti",
         "org": "AIS",
         "url": null,
-        "ts": "2026-09-20T11:05:33Z"
+        "ts": "2026-09-21T00:03:18Z"
       }
     ],
-    "notes": [
-      "Çatışma / Yakın Geçiş Riski: CPA 0.34 NM (~629 m), kalan süre: 4.9 dk (Hızlar: 3.0 kn / 3.2 kn)"
-    ],
+    "notes": [],
     "places": [],
     "coarse": false,
     "track": [
       [
-        43.4036,
-        28.1678
+        37.4735,
+        25.2933
       ],
       [
-        43.3523,
-        28.472
+        37.4637,
+        25.323
       ],
       [
-        43.4035,
-        28.1679
-      ],
-      [
-        43.3541,
-        28.4752
+        37.4637,
+        25.323
       ]
     ],
     "heading": null,
@@ -815,7 +661,8 @@
       "Bölgede 13 kn Lodos ve 0.2 m dalga kaydedildi.",
       "Bölgede 7 kn Lodos ve 0.2 m dalga kaydedildi.",
       "Bölgede 4 kn Karayel ve 0.2 m dalga kaydedildi.",
-      "Bölgede 7 kn Karayel ve 0.3 m dalga kaydedildi."
+      "Bölgede 7 kn Karayel ve 0.3 m dalga kaydedildi.",
+      "Bölgede 8 kn Karayel ve 0.3 m dalga kaydedildi."
     ],
     "places": [],
     "coarse": false,
@@ -840,13 +687,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.9,
-      "gust_kn": 6.6,
+      "wind_kn": 5.7,
+      "gust_kn": 7.6,
       "wave_m": 0.26,
-      "wind_dir": 326,
+      "wind_dir": 341,
       "beaufort": 2,
-      "summary_tr": "Bölgede 7 kn Karayel ve 0.3 m dalga kaydedildi.",
-      "summary_en": "At site: 7 kn NW wind and 0.3 m waves.",
+      "summary_tr": "Bölgede 8 kn Karayel ve 0.3 m dalga kaydedildi.",
+      "summary_en": "At site: 8 kn NNW wind and 0.3 m waves.",
       "station_name": "Mersin Körfezi",
       "distance_nm": 13.0,
       "sea_temp_c": null,
@@ -954,7 +801,8 @@
       "Bölgede 13 kn Lodos ve 0.2 m dalga kaydedildi.",
       "Bölgede 7 kn Lodos ve 0.2 m dalga kaydedildi.",
       "Bölgede 4 kn Karayel ve 0.2 m dalga kaydedildi.",
-      "Bölgede 7 kn Karayel ve 0.3 m dalga kaydedildi."
+      "Bölgede 7 kn Karayel ve 0.3 m dalga kaydedildi.",
+      "Bölgede 8 kn Karayel ve 0.3 m dalga kaydedildi."
     ],
     "places": [
       "Mersin"
@@ -989,156 +837,15 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.9,
-      "gust_kn": 6.6,
+      "wind_kn": 5.7,
+      "gust_kn": 7.6,
       "wave_m": 0.26,
-      "wind_dir": 326,
+      "wind_dir": 341,
       "beaufort": 2,
-      "summary_tr": "Bölgede 7 kn Karayel ve 0.3 m dalga kaydedildi.",
-      "summary_en": "At site: 7 kn NW wind and 0.3 m waves.",
+      "summary_tr": "Bölgede 8 kn Karayel ve 0.3 m dalga kaydedildi.",
+      "summary_en": "At site: 8 kn NNW wind and 0.3 m waves.",
       "station_name": "Mersin Körfezi",
       "distance_nm": 18.4,
-      "sea_temp_c": null,
-      "current_kn": null
-    }
-  },
-  {
-    "id": "cpa-341623002-341623002",
-    "type": "collision-risk",
-    "status": "signal",
-    "confidence": 0.35,
-    "severity": "minor",
-    "lat": 40.8927,
-    "lon": 28.6097,
-    "area": "Marmara Denizi",
-    "vessel": {
-      "name": "ALYA BEREN & ALYA BEREN",
-      "mmsi": 341623002,
-      "type": null,
-      "callsign": null
-    },
-    "casualties": null,
-    "first_seen": "2026-09-19T09:20:30Z",
-    "last_update": "2026-09-20T11:05:33Z",
-    "sources": [
-      {
-        "kind": "ais-cpa",
-        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.04 NM (~77 m), kalan süre: 0.3 dk (Hızlar: 7.4 kn / 7.4 kn)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-19T09:20:30Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 381 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-19T15:40:53Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 433 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-19T16:33:16Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 568 dakika önce kesildi (5 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-19T18:48:12Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 705 dakika önce kesildi (6 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-19T21:05:28Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 814 dakika önce kesildi (7 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-19T22:54:23Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 533 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-20T05:58:17Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 534 dakika önce kesildi (3 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-20T05:58:17Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 840 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-20T11:05:33Z"
-      },
-      {
-        "kind": "ais-anomaly",
-        "detail": "ais-gap: seyir halindeyken AIS sinyali yaklaşık 841 dakika önce kesildi (4 taramada üst üste görünmedi)",
-        "org": "AIS",
-        "url": null,
-        "ts": "2026-09-20T11:05:33Z"
-      }
-    ],
-    "notes": [
-      "Çatışma / Yakın Geçiş Riski: CPA 0.04 NM (~77 m), kalan süre: 0.3 dk (Hızlar: 7.4 kn / 7.4 kn)",
-      "Bölgede 0 kn Poyraz rüzgar kaydedildi.",
-      "Bölgede 10 kn Poyraz ve 0.2 m dalga kaydedildi.",
-      "Bölgede 20 kn Poyraz ve 0.3 m dalga kaydedildi.",
-      "Bölgede 22 kn Poyraz ve 0.4 m dalga kaydedildi.",
-      "Bölgede 22 kn Poyraz ve 0.5 m dalga kaydedildi.",
-      "Bölgede 15 kn Poyraz ve 0.4 m dalga kaydedildi.",
-      "Bölgede 16 kn Poyraz ve 0.4 m dalga kaydedildi.",
-      "Bölgede 15 kn Poyraz ve 0.5 m dalga kaydedildi.",
-      "Bölgede 18 kn Poyraz ve 0.3 m dalga kaydedildi.",
-      "Bölgede 23 kn Poyraz ve 0.6 m dalga kaydedildi.",
-      "Bölgede 20 kn Poyraz ve 0.6 m dalga kaydedildi.",
-      "Bölgede 18 kn Poyraz ve 0.5 m dalga kaydedildi."
-    ],
-    "places": [],
-    "coarse": false,
-    "track": [
-      [
-        40.8927,
-        28.6101
-      ],
-      [
-        40.8926,
-        28.6092
-      ],
-      [
-        40.8926,
-        28.6065
-      ],
-      [
-        40.8927,
-        28.6097
-      ]
-    ],
-    "heading": null,
-    "vessel_type": "unknown",
-    "weather_context": {
-      "wind_kn": 13.4,
-      "gust_kn": 17.9,
-      "wave_m": 0.5,
-      "wind_dir": 43,
-      "beaufort": 4,
-      "summary_tr": "Bölgede 18 kn Poyraz ve 0.5 m dalga kaydedildi.",
-      "summary_en": "At site: 18 kn NE wind and 0.5 m waves.",
-      "station_name": "Marmara Denizi",
-      "distance_nm": 16.5,
       "sea_temp_c": null,
       "current_kn": null
     }
@@ -1218,7 +925,8 @@
       "Bölgede 10 kn Kıble ve 0.2 m dalga kaydedildi.",
       "Bölgede 5 kn Karayel ve 0.2 m dalga kaydedildi.",
       "Bölgede 7 kn Karayel ve 0.2 m dalga kaydedildi.",
-      "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi."
+      "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi.",
+      "Bölgede 5 kn Yıldız ve 0.3 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -1228,13 +936,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.2,
-      "gust_kn": 5.6,
-      "wave_m": 0.2,
-      "wind_dir": 351,
+      "wind_kn": 3.9,
+      "gust_kn": 5.2,
+      "wave_m": 0.26,
+      "wind_dir": 360,
       "beaufort": 2,
-      "summary_tr": "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 6 kn North wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 5 kn Yıldız ve 0.3 m dalga kaydedildi.",
+      "summary_en": "At site: 5 kn North wind and 0.3 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -1309,7 +1017,8 @@
       "Bölgede 9 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 10 kn Kıble ve 0.2 m dalga kaydedildi.",
       "Bölgede 7 kn Karayel ve 0.2 m dalga kaydedildi.",
-      "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi."
+      "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi.",
+      "Bölgede 5 kn Yıldız ve 0.3 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -1319,13 +1028,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.2,
-      "gust_kn": 5.6,
-      "wave_m": 0.2,
-      "wind_dir": 351,
+      "wind_kn": 3.9,
+      "gust_kn": 5.2,
+      "wave_m": 0.26,
+      "wind_dir": 360,
       "beaufort": 2,
-      "summary_tr": "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 6 kn North wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 5 kn Yıldız ve 0.3 m dalga kaydedildi.",
+      "summary_en": "At site: 5 kn North wind and 0.3 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -1469,7 +1178,8 @@
       "Bölgede 13 kn Lodos ve 0.2 m dalga kaydedildi.",
       "Bölgede 7 kn Lodos ve 0.2 m dalga kaydedildi.",
       "Bölgede 4 kn Karayel ve 0.2 m dalga kaydedildi.",
-      "Bölgede 7 kn Karayel ve 0.3 m dalga kaydedildi."
+      "Bölgede 7 kn Karayel ve 0.3 m dalga kaydedildi.",
+      "Bölgede 8 kn Karayel ve 0.3 m dalga kaydedildi."
     ],
     "places": [
       "Mersin"
@@ -1479,13 +1189,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.9,
-      "gust_kn": 6.6,
+      "wind_kn": 5.7,
+      "gust_kn": 7.6,
       "wave_m": 0.26,
-      "wind_dir": 326,
+      "wind_dir": 341,
       "beaufort": 2,
-      "summary_tr": "Bölgede 7 kn Karayel ve 0.3 m dalga kaydedildi.",
-      "summary_en": "At site: 7 kn NW wind and 0.3 m waves.",
+      "summary_tr": "Bölgede 8 kn Karayel ve 0.3 m dalga kaydedildi.",
+      "summary_en": "At site: 8 kn NNW wind and 0.3 m waves.",
       "station_name": "Mersin Körfezi",
       "distance_nm": 18.7,
       "sea_temp_c": null,
@@ -1548,7 +1258,8 @@
       "Bölgede 9 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 10 kn Kıble ve 0.2 m dalga kaydedildi.",
       "Bölgede 7 kn Karayel ve 0.2 m dalga kaydedildi.",
-      "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi."
+      "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi.",
+      "Bölgede 5 kn Yıldız ve 0.3 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -1558,13 +1269,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.2,
-      "gust_kn": 5.6,
-      "wave_m": 0.2,
-      "wind_dir": 351,
+      "wind_kn": 3.9,
+      "gust_kn": 5.2,
+      "wave_m": 0.26,
+      "wind_dir": 360,
       "beaufort": 2,
-      "summary_tr": "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 6 kn North wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 5 kn Yıldız ve 0.3 m dalga kaydedildi.",
+      "summary_en": "At site: 5 kn North wind and 0.3 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -1617,7 +1328,8 @@
       "Bölgede 9 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 10 kn Kıble ve 0.2 m dalga kaydedildi.",
       "Bölgede 7 kn Karayel ve 0.2 m dalga kaydedildi.",
-      "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi."
+      "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi.",
+      "Bölgede 5 kn Yıldız ve 0.3 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -1627,13 +1339,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 4.2,
-      "gust_kn": 5.6,
-      "wave_m": 0.2,
-      "wind_dir": 351,
+      "wind_kn": 3.9,
+      "gust_kn": 5.2,
+      "wave_m": 0.26,
+      "wind_dir": 360,
       "beaufort": 2,
-      "summary_tr": "Bölgede 6 kn Yıldız ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 6 kn North wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 5 kn Yıldız ve 0.3 m dalga kaydedildi.",
+      "summary_en": "At site: 5 kn North wind and 0.3 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -1678,7 +1390,8 @@
       "Bölgede 23 kn Poyraz ve 0.2 m dalga kaydedildi.",
       "Bölgede 15 kn Poyraz ve 0.2 m dalga kaydedildi.",
       "Bölgede 10 kn Poyraz ve 0.2 m dalga kaydedildi.",
-      "Bölgede 7 kn Poyraz ve 0.1 m dalga kaydedildi."
+      "Bölgede 7 kn Poyraz ve 0.1 m dalga kaydedildi.",
+      "Bölgede 5 kn Poyraz ve 0.0 m dalga kaydedildi."
     ],
     "places": [
       "Istanbul"
@@ -1688,13 +1401,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 5.6,
-      "gust_kn": 7.4,
-      "wave_m": 0.1,
-      "wind_dir": 59,
+      "wind_kn": 3.7,
+      "gust_kn": 4.9,
+      "wave_m": 0.04,
+      "wind_dir": 54,
       "beaufort": 2,
-      "summary_tr": "Bölgede 7 kn Poyraz ve 0.1 m dalga kaydedildi.",
-      "summary_en": "At site: 7 kn ENE wind and 0.1 m waves.",
+      "summary_tr": "Bölgede 5 kn Poyraz ve 0.0 m dalga kaydedildi.",
+      "summary_en": "At site: 5 kn NE wind and 0.0 m waves.",
       "station_name": "İstanbul Boğazı",
       "distance_nm": 9.8,
       "sea_temp_c": null,
