@@ -56,17 +56,20 @@ def fetch_metar(cfg: dict) -> list[Warning]:
         warn_kind = "fog" if is_fog else "metar"
         severity = "major" if (gust_kn >= m["wind_gust_kn"] + 10 or bad_wx or is_fog) else "minor"
 
-        out.append(Warning(
-            id=f"mt-{row.get('icaoId') or name}",
-            headline=f"{name}: {', '.join(bits)}",
-            area=name,
-            kind=warn_kind,
-            severity=severity,
-            org="aviationweather.gov",
-            url="https://aviationweather.gov/",
-            issued=(row.get("reportTime") or now_iso()),
-            lat=_flt(row.get("lat")), lon=_flt(row.get("lon")),
-        ))
+        out.append(
+            Warning(
+                id=f"mt-{row.get('icaoId') or name}",
+                headline=f"{name}: {', '.join(bits)}",
+                area=name,
+                kind=warn_kind,
+                severity=severity,
+                org="aviationweather.gov",
+                url="https://aviationweather.gov/",
+                issued=(row.get("reportTime") or now_iso()),
+                lat=_flt(row.get("lat")),
+                lon=_flt(row.get("lon")),
+            )
+        )
     return out[:12]
 
 

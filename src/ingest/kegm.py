@@ -1,5 +1,4 @@
-"""Scraper for Kıyı Emniyeti Genel Müdürlüğü (KEGM) rescue operations and incidents.
-"""
+"""Scraper for Kıyı Emniyeti Genel Müdürlüğü (KEGM) rescue operations and incidents."""
 
 from __future__ import annotations
 
@@ -20,8 +19,18 @@ _fetch = get_text
 KEGM_DEFAULT_URL = "https://www.kiyiemniyeti.gov.tr/kurtarma_operasyonlari"
 KEGM_BASE_URL = "https://www.kiyiemniyeti.gov.tr"
 KEGM_KEYWORDS = [
-    "kurtar", "yedekle", "karaya", "su alan", "yangın", "sürüklen",
-    "çatışma", "tahliye", "arıza", "yardım", "mahsur", "kaza",
+    "kurtar",
+    "yedekle",
+    "karaya",
+    "su alan",
+    "yangın",
+    "sürüklen",
+    "çatışma",
+    "tahliye",
+    "arıza",
+    "yardım",
+    "mahsur",
+    "kaza",
 ]
 
 
@@ -71,12 +80,14 @@ def scrape_kegm(cfg: dict | None = None) -> list[Incident]:
             coarse=not ex.precise,
             vessel=Vessel(name=ex.vessel) if ex.vessel else Vessel(),
         )
-        inc.sources.append(Source(
-            kind="official",
-            org="Kıyı Emniyeti Genel Müdürlüğü",
-            detail=redact(title, keep=(ex.vessel,)),
-            url=href,
-        ))
+        inc.sources.append(
+            Source(
+                kind="official",
+                org="Kıyı Emniyeti Genel Müdürlüğü",
+                detail=redact(title, keep=(ex.vessel,)),
+                url=href,
+            )
+        )
         out.append(inc)
 
     return out[:15]

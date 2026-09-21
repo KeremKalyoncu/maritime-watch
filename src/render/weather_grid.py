@@ -43,22 +43,22 @@ def knots_to_beaufort(kn: float) -> int:
 
 # Default seasonal dominant wind directions in degrees for Turkish waters
 DOMINANT_WIND_DIRS = {
-    "Marmara": 45,       # Poyraz (NE)
-    "İstanbul": 40,      # Poyraz (NE)
-    "Çanakkale": 35,     # Poyraz (NE)
-    "Saroz": 30,         # Poyraz (NNE)
-    "İzmir": 340,        # Etesian (NNW)
-    "Kuzey Ege": 350,    # Etesian (N)
-    "Güney Ege": 320,    # Meltemi (NW)
-    "Bodrum": 315,       # Karayel / Meltemi (NW)
-    "Antalya": 220,      # Lodos / Deniz meltemi (SW)
-    "Kaş": 240,          # Lodos (WSW)
-    "Mersin": 180,       # Kıble (S)
-    "İskenderun": 190,   # Kıble (S)
-    "Zonguldak": 0,      # Yıldız (N)
-    "Sinop": 15,         # Yıldız-Poyraz (NNE)
-    "Trabzon": 350,      # Karayel (NNW)
-    "Hopa": 330,         # Karayel (NNW)
+    "Marmara": 45,  # Poyraz (NE)
+    "İstanbul": 40,  # Poyraz (NE)
+    "Çanakkale": 35,  # Poyraz (NE)
+    "Saroz": 30,  # Poyraz (NNE)
+    "İzmir": 340,  # Etesian (NNW)
+    "Kuzey Ege": 350,  # Etesian (N)
+    "Güney Ege": 320,  # Meltemi (NW)
+    "Bodrum": 315,  # Karayel / Meltemi (NW)
+    "Antalya": 220,  # Lodos / Deniz meltemi (SW)
+    "Kaş": 240,  # Lodos (WSW)
+    "Mersin": 180,  # Kıble (S)
+    "İskenderun": 190,  # Kıble (S)
+    "Zonguldak": 0,  # Yıldız (N)
+    "Sinop": 15,  # Yıldız-Poyraz (NNE)
+    "Trabzon": 350,  # Karayel (NNW)
+    "Hopa": 330,  # Karayel (NNW)
 }
 
 
@@ -129,25 +129,27 @@ def render_weather_grid(
             score = calculate_safety_score(wave_m, wind_kn or 0.0, gust_kn or 0.0)
             rating = score_to_status(score)
 
-        items.append({
-            "name": name,
-            "lat": lat,
-            "lon": lon,
-            "wave_m": wave_m,
-            "wind_kn": wind_kn,
-            "gust_kn": gust_kn,
-            "wind_dir": wind_dir,
-            "beaufort": beaufort,
-            "rating": rating,
-            "score": score,
-            "data_quality": data_quality,
-            "sea_temp_c": sea_temp_c,
-            "current_kn": current_kn,
-            "trend_12h": {
-                "waves": wave_trend,
-                "winds": wind_trend,
-            },
-        })
+        items.append(
+            {
+                "name": name,
+                "lat": lat,
+                "lon": lon,
+                "wave_m": wave_m,
+                "wind_kn": wind_kn,
+                "gust_kn": gust_kn,
+                "wind_dir": wind_dir,
+                "beaufort": beaufort,
+                "rating": rating,
+                "score": score,
+                "data_quality": data_quality,
+                "sea_temp_c": sea_temp_c,
+                "current_kn": current_kn,
+                "trend_12h": {
+                    "waves": wave_trend,
+                    "winds": wind_trend,
+                },
+            }
+        )
 
     payload = {
         "generated": now_iso(),

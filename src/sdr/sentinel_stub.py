@@ -20,11 +20,20 @@ import time
 from pathlib import Path
 
 KEYWORDS = [
-    r"mayday", r"pan[ -]?pan", r"imdat", r"batıyor", r"su alıyor", r"alabora",
-    r"denize düş", r"yaralı", r"kurtar", r"yardım", r"mahsur",
+    r"mayday",
+    r"pan[ -]?pan",
+    r"imdat",
+    r"batıyor",
+    r"su alıyor",
+    r"alabora",
+    r"denize düş",
+    r"yaralı",
+    r"kurtar",
+    r"yardım",
+    r"mahsur",
 ]
 HITS = Path(__file__).resolve().parents[2] / "data" / "sdr_hits.jsonl"
-WHISPER_BIN = "whisper-cli"          # or an absolute path to whisper.cpp build
+WHISPER_BIN = "whisper-cli"  # or an absolute path to whisper.cpp build
 WHISPER_MODEL = "models/ggml-small.bin"
 
 
@@ -35,7 +44,10 @@ def transcribe(wav: str) -> str:
     try:
         r = subprocess.run(
             [WHISPER_BIN, "-m", WHISPER_MODEL, "-f", wav, "-l", "tr", "-nt", "--no-timestamps"],
-            capture_output=True, text=True, timeout=120, check=True,
+            capture_output=True,
+            text=True,
+            timeout=120,
+            check=True,
         )
         return r.stdout.strip()
     except Exception as e:
@@ -57,12 +69,18 @@ def main() -> None:
         return
     HITS.parent.mkdir(parents=True, exist_ok=True)
     with HITS.open("a", encoding="utf-8") as f:
-        f.write(json.dumps({
-            "freq": freq,
-            "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            "keyword": re.sub(r"[^a-zçğıöşü ]", "", kw),
-            "confidence": 0.15,
-        }, ensure_ascii=False) + "\n")
+        f.write(
+            json.dumps(
+                {
+                    "freq": freq,
+                    "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    "keyword": re.sub(r"[^a-zçğıöşü ]", "", kw),
+                    "confidence": 0.15,
+                },
+                ensure_ascii=False,
+            )
+            + "\n"
+        )
     print(f"[sdr] hit on /{kw}/ at {freq}: metadata written, transcript discarded")
 
 

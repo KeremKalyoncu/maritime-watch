@@ -14,14 +14,18 @@ STRAIT_ZONES = {
     "bosphorus": {
         "id": "bosphorus",
         "name": "İstanbul Boğazı",
-        "lat_min": 41.00, "lat_max": 41.25,
-        "lon_min": 28.98, "lon_max": 29.15,
+        "lat_min": 41.00,
+        "lat_max": 41.25,
+        "lon_min": 28.98,
+        "lon_max": 29.15,
     },
     "dardanelles": {
         "id": "dardanelles",
         "name": "Çanakkale Boğazı",
-        "lat_min": 40.05, "lat_max": 40.40,
-        "lon_min": 26.15, "lon_max": 26.70,
+        "lat_min": 40.05,
+        "lat_max": 40.40,
+        "lon_min": 26.15,
+        "lon_max": 26.70,
     },
 }
 

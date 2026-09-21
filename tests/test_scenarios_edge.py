@@ -63,8 +63,8 @@ def test_cpa_edge_cases():
     assert is_vessel_underway(underway)
 
     # 2. Birbirinden uzaklaşan gemiler (TCPA <= 0) çatışma riski oluşturmaz
-    p1 = {"lat": 41.00, "lon": 29.00, "sog": 10.0, "cog": 0.0}     # Kuzeye gidiyor
-    p2 = {"lat": 40.95, "lon": 29.00, "sog": 10.0, "cog": 180.0}   # Güneye gidiyor (uzaklaşıyorlar)
+    p1 = {"lat": 41.00, "lon": 29.00, "sog": 10.0, "cog": 0.0}  # Kuzeye gidiyor
+    p2 = {"lat": 40.95, "lon": 29.00, "sog": 10.0, "cog": 180.0}  # Güneye gidiyor (uzaklaşıyorlar)
     res = calculate_cpa(p1, p2)
     assert res is None
 

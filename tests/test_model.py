@@ -14,8 +14,14 @@ from src.model import (
 
 
 def test_incident_roundtrip():
-    inc = Incident(id="x", type="drift", lat=41.0, lon=29.0,
-                   vessel=Vessel(name="A", mmsi=1), sources=[Source(kind="ais-anomaly", detail="d")])
+    inc = Incident(
+        id="x",
+        type="drift",
+        lat=41.0,
+        lon=29.0,
+        vessel=Vessel(name="A", mmsi=1),
+        sources=[Source(kind="ais-anomaly", detail="d")],
+    )
     again = Incident.from_dict(inc.to_dict())
     assert again.vessel.mmsi == 1
     assert again.sources[0].kind == "ais-anomaly"
@@ -120,8 +126,13 @@ def test_tc_mod_05_incident_missing_and_new_fields():
 
     # Incident with weather context and heading
     wc = WeatherContext(
-        wind_kn=15.0, gust_kn=20.0, wave_m=0.8, wind_dir=180, beaufort=4,
-        summary_tr="15 kn Lodos", summary_en="15 kn S breeze"
+        wind_kn=15.0,
+        gust_kn=20.0,
+        wave_m=0.8,
+        wind_dir=180,
+        beaufort=4,
+        summary_tr="15 kn Lodos",
+        summary_en="15 kn S breeze",
     )
     inc = Incident(
         id="cpa-test",

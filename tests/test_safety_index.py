@@ -93,8 +93,22 @@ def test_tc_saf_06_edge_cases_and_extremes():
 
 def test_evaluate_all_areas():
     points = [
-        {"name": "İstanbul Boğazı", "wave_m": 0.5, "wind_kn": 12.0, "gust_kn": 16.0, "sea_temp_c": 23.2, "current_kn": 0.8},
-        {"name": "Antalya Körfezi", "wave_m": 2.5, "wind_kn": 30.0, "gust_kn": 40.0, "sea_temp_c": 26.5, "current_kn": 0.3},
+        {
+            "name": "İstanbul Boğazı",
+            "wave_m": 0.5,
+            "wind_kn": 12.0,
+            "gust_kn": 16.0,
+            "sea_temp_c": 23.2,
+            "current_kn": 0.8,
+        },
+        {
+            "name": "Antalya Körfezi",
+            "wave_m": 2.5,
+            "wind_kn": 30.0,
+            "gust_kn": 40.0,
+            "sea_temp_c": 26.5,
+            "current_kn": 0.3,
+        },
     ]
     ratings = evaluate_all_areas(points, storm_areas={"Antalya Körfezi"})
     assert len(ratings) == 2

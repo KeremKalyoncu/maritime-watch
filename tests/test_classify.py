@@ -73,11 +73,27 @@ def test_ais_sart_is_probable():
 
 
 def test_nearest_port():
-    name, nm, direction = nearest_port(41.02, 28.30)   # off Silivri
+    name, nm, direction = nearest_port(41.02, 28.30)  # off Silivri
     assert name in ("Silivri", "İstanbul", "Tekirdağ")
     assert nm < 40
-    assert direction in ("K", "KKD", "KD", "DKD", "D", "DGD", "GD", "GGD",
-                         "G", "GGB", "GB", "BGB", "B", "BKB", "KB", "KKB")
+    assert direction in (
+        "K",
+        "KKD",
+        "KD",
+        "DKD",
+        "D",
+        "DGD",
+        "GD",
+        "GGD",
+        "G",
+        "GGB",
+        "GB",
+        "BGB",
+        "B",
+        "BKB",
+        "KB",
+        "KKB",
+    )
 
 
 def test_nearest_port_none_for_missing_coords():

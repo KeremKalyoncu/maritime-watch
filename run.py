@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Maritime Watch orchestrator.
 
-  py run.py --once            one cycle (dry-run alerts), then exit
-  py run.py --once --serve    one cycle, then serve the map on :8000
-  py run.py --loop            cycle every loop.interval_seconds
-  py run.py --serve           just serve web/ (no cycle)
-  py run.py --once --send     actually send Telegram alerts (needs .env)
+py run.py --once            one cycle (dry-run alerts), then exit
+py run.py --once --serve    one cycle, then serve the map on :8000
+py run.py --loop            cycle every loop.interval_seconds
+py run.py --serve           just serve web/ (no cycle)
+py run.py --once --send     actually send Telegram alerts (needs .env)
 
-  flags: --no-ais  --no-scrape  --port N  --config PATH
+flags: --no-ais  --no-scrape  --port N  --config PATH
 """
 
 from __future__ import annotations
@@ -125,11 +125,24 @@ def send_daily_outlook(cfg: dict, notifier, *, dry: bool = True) -> None:
     if not pts:
         print("[outlook] canli tahmin yok -> mesaj gonderilmedi")
         return
-    areas = [build_outlook(p["name"], p["times"], p["gusts"], p["waves"], klass,
-                           hours=int(oc.get("hours", 18)), tz_offset_h=tz,
-                           lat=p["lat"], lon=p["lon"]) for p in pts]
+    areas = [
+        build_outlook(
+            p["name"],
+            p["times"],
+            p["gusts"],
+            p["waves"],
+            klass,
+            hours=int(oc.get("hours", 18)),
+            tz_offset_h=tz,
+            lat=p["lat"],
+            lon=p["lon"],
+        )
+        for p in pts
+    ]
     day = time.strftime("%d.%m.%Y", now_local)
-    print(f"[outlook] {len(areas)} bolge, {sum(1 for a in areas if a.worst != 'ok')} tanesinde sinir asiliyor")
+    print(
+        f"[outlook] {len(areas)} bolge, {sum(1 for a in areas if a.worst != 'ok')} tanesinde sinir asiliyor"
+    )
     notifier.daily_outlook(areas, klass, dry=dry, day=day)
 
 
@@ -140,7 +153,7 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     store = Store(str(web_data), log_dir=str(root / "data"))
     notifier = Notifier(cfg)
     src = cfg.get("sources", {})
-    touched: set[str] = set()          # incident ids seen this cycle -> notify at end
+    touched: set[str] = set()  # incident ids seen this cycle -> notify at end
     health: list[dict] = []
 
     # fixtures are never publishable in production; see src/ingest/_net.py
@@ -169,17 +182,18 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         seen_now = {str(p["mmsi"]) for p in positions if p.get("mmsi") is not None}
         vs.update(positions)
         anomalies = detect(vs, positions, cfg, seen_now)
-        forgotten = vs.prune(cfg['ais'].get('vessel_ttl_hours', 12))
+        forgotten = vs.prune(cfg["ais"].get("vessel_ttl_hours", 12))
         vs.save()
         if forgotten:
-            print(f'[ais] {forgotten} vessel(s) aged out of the track store')
+            print(f"[ais] {forgotten} vessel(s) aged out of the track store")
         print(f"[anomaly] {len(anomalies)} flag(s)")
         for an in anomalies:
             kind = "ais-sart" if an.kind == "ais-sart" else "ais-anomaly"
             inc = Incident(
                 id=make_id("ais", an.lat, an.lon),
                 type=_TYPE_FOR.get(an.kind, "unknown"),
-                lat=an.lat, lon=an.lon,
+                lat=an.lat,
+                lon=an.lon,
                 vessel=Vessel(name=an.name or None, mmsi=an.mmsi),
             )
             inc.sources.append(Source(kind=kind, org="AIS", detail=f"{an.kind}: {an.detail}"))
@@ -196,11 +210,16 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
         for s in safety:
             if not s.get("text"):
                 continue
-            inc = Incident(id=make_id("aissafe", s.get("lat"), s.get("lon")),
-                           type="distress", lat=s.get("lat"), lon=s.get("lon"),
-                           vessel=Vessel(mmsi=s.get("mmsi")))
-            inc.sources.append(Source(kind="ais-safety", org="AIS",
-                                      detail=f"güvenlik yayını: {s['text'][:200]}"))
+            inc = Incident(
+                id=make_id("aissafe", s.get("lat"), s.get("lon")),
+                type="distress",
+                lat=s.get("lat"),
+                lon=s.get("lon"),
+                vessel=Vessel(mmsi=s.get("mmsi")),
+            )
+            inc.sources.append(
+                Source(kind="ais-safety", org="AIS", detail=f"güvenlik yayını: {s['text'][:200]}")
+            )
             inc = correlate(store, inc)
             touched.add(store.upsert_incident(inc).id)
 
@@ -301,15 +320,20 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     dead = sorted(k for k, v in fetch_status.items() if v != "live")
     if dead:
         print(f"[fetch] canli olmayan kaynak: {', '.join(dead)}")
-    h = write_health(str(web_data), health, started,
-                     len(store.active_incidents()), len(store.active_warnings()),
-                     fetch_status=fetch_status)
+    h = write_health(
+        str(web_data),
+        health,
+        started,
+        len(store.active_incidents()),
+        len(store.active_warnings()),
+        fetch_status=fetch_status,
+    )
     down = sorted(set(h["sources_down"]) | {k for k, v in fetch_status.items() if v == "down"})
     if len(down) >= 3:
         notifier.operator(f"⚙️ {len(down)} kaynak yanıt vermiyor: {', '.join(down)}", dry=dry)
     print(f"[health] {h['sources_ok']}/{h['sources_total']} kaynak OK, {h['cycle_seconds']}s")
 
-    notifier.flush(dry=dry)     # one digest message for everything this cycle
+    notifier.flush(dry=dry)  # one digest message for everything this cycle
     try:
         enrich_incident_tracks(store, root / "data" / "vessels.json")
     except Exception as e:
@@ -318,8 +342,7 @@ def cycle(cfg: dict, *, dry: bool = True, do_ais: bool = True, do_scrape: bool =
     # Render marine weather vector grid & correlate incidents
     grid_payload = None
     try:
-        grid_payload = render_weather_grid(
-            cfg, web_data / "weather_overlay.json", points=forecast_pts)
+        grid_payload = render_weather_grid(cfg, web_data / "weather_overlay.json", points=forecast_pts)
         for inc in store.active_incidents():
             enrich_weather_context(inc, grid_payload.get("points", []))
     except Exception as e:

@@ -93,8 +93,12 @@ def _keyboard_command(text: str) -> str | None:
         if _norm(label) == low:
             return cmd
     synonyms = {
-        "bugun": "balikci", "bugün": "balikci",
-        "menu": "yardim", "menü": "yardim", "yardim": "yardim", "yardım": "yardim",
+        "bugun": "balikci",
+        "bugün": "balikci",
+        "menu": "yardim",
+        "menü": "yardim",
+        "yardim": "yardim",
+        "yardım": "yardim",
     }
     return synonyms.get(low)
 
@@ -115,20 +119,28 @@ class Subscribers:
                 pass
 
     def get(self, chat_id) -> dict:
-        return self.data.setdefault(str(chat_id), {
-            "areas": [], "boat": "small", "active": True, "since": _now(),
-        })
+        return self.data.setdefault(
+            str(chat_id),
+            {
+                "areas": [],
+                "boat": "small",
+                "active": True,
+                "since": _now(),
+            },
+        )
 
     def active(self) -> list[tuple[str, dict]]:
         return [(c, s) for c, s in sorted(self.data.items()) if s.get("active", True)]
 
     def save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        rows = [json.dumps(k) + ":" + json.dumps(v, ensure_ascii=False, sort_keys=True)
-                for k, v in sorted(self.data.items())]
+        rows = [
+            json.dumps(k) + ":" + json.dumps(v, ensure_ascii=False, sort_keys=True)
+            for k, v in sorted(self.data.items())
+        ]
         self.path.write_text(
-            '{"offset":' + str(self.offset) + ',"chats":{' + ",\n".join(rows) + "}}",
-            encoding="utf-8")
+            '{"offset":' + str(self.offset) + ',"chats":{' + ",\n".join(rows) + "}}", encoding="utf-8"
+        )
 
         # Keep data/bot_subscribers.json synchronized with regional subscriptions
         bot_sub_path = self.path.parent / "bot_subscribers.json"
@@ -143,9 +155,7 @@ class Subscribers:
             "regions": reg_map,
             **reg_map,
         }
-        bot_sub_path.write_text(
-            json.dumps(bot_sub_data, ensure_ascii=False, indent=2),
-            encoding="utf-8")
+        bot_sub_path.write_text(json.dumps(bot_sub_data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def _now() -> str:
@@ -153,29 +163,35 @@ def _now() -> str:
 
 
 def _keyboard(rows: list[list[str]]) -> str:
-    return json.dumps({"inline_keyboard": [
-        [{"text": t, "callback_data": d} for t, d in row] for row in rows]})
+    return json.dumps(
+        {"inline_keyboard": [[{"text": t, "callback_data": d} for t, d in row] for row in rows]}
+    )
 
 
 def _reply_keyboard() -> str:
     """Bottom menu — resize + persistent so it stays after restart."""
-    return json.dumps({
-        "keyboard": [[{"text": cell[0]} for cell in row] for row in MAIN_KEYBOARD_ROWS],
-        "resize_keyboard": True,
-        "is_persistent": True,
-        "input_field_placeholder": "Komut seç veya yaz…",
-    }, ensure_ascii=False)
+    return json.dumps(
+        {
+            "keyboard": [[{"text": cell[0]} for cell in row] for row in MAIN_KEYBOARD_ROWS],
+            "resize_keyboard": True,
+            "is_persistent": True,
+            "input_field_placeholder": "Komut seç veya yaz…",
+        },
+        ensure_ascii=False,
+    )
 
 
 def _inline_home_menu() -> str:
     """Quick actions under /yardim (works even if reply keyboard hidden)."""
-    return _keyboard([
-        [("🎣 Bugün", "menu:balikci"), ("🌊 Durum", "menu:durum")],
-        [("🚢 Boğaz", "menu:bogaz"), ("🚨 Kazalar", "menu:kazalar")],
-        [("📍 Neredeyim", "menu:neredeyim"), ("🆘 Mayday", "menu:mayday")],
-        [("⚙️ Bölge", "menu:bolge"), ("⛵ Tekne", "menu:tekne")],
-        [("📋 Ayarlar", "menu:ayarlar")],
-    ])
+    return _keyboard(
+        [
+            [("🎣 Bugün", "menu:balikci"), ("🌊 Durum", "menu:durum")],
+            [("🚢 Boğaz", "menu:bogaz"), ("🚨 Kazalar", "menu:kazalar")],
+            [("📍 Neredeyim", "menu:neredeyim"), ("🆘 Mayday", "menu:mayday")],
+            [("⚙️ Bölge", "menu:bolge"), ("⛵ Tekne", "menu:tekne")],
+            [("📋 Ayarlar", "menu:ayarlar")],
+        ]
+    )
 
 
 def _outlook_stale_hours(cfg: dict) -> float:
@@ -192,6 +208,7 @@ def _outlook_age_hours(generated: str | None) -> float | None:
         # Accept …Z or +00:00
         raw = str(generated).strip().replace("Z", "+00:00")
         from datetime import datetime
+
         dt = datetime.fromisoformat(raw)
         return max(0.0, (time.time() - dt.timestamp()) / 3600.0)
     except (TypeError, ValueError):
@@ -252,10 +269,12 @@ def _official_warnings_for_area(root: Path, area: str, limit: int = 2) -> list[s
 
 def _bearing_deg(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     y = math.sin(math.radians(lon2 - lon1)) * math.cos(math.radians(lat2))
-    x = (math.cos(math.radians(lat1)) * math.sin(math.radians(lat2))
-         - math.sin(math.radians(lat1)) * math.cos(math.radians(lat2))
-         * math.cos(math.radians(lon2 - lon1)))
+    x = math.cos(math.radians(lat1)) * math.sin(math.radians(lat2)) - math.sin(math.radians(lat1)) * math.cos(
+        math.radians(lat2)
+    ) * math.cos(math.radians(lon2 - lon1))
     return (math.degrees(math.atan2(y, x)) + 360) % 360
+
+
 def build_phonetic_coords_tr(lat: float, lon: float) -> str:
     """Format decimal degrees into Turkish spoken radio text for VHF Channel 16."""
     lat_deg = int(abs(lat))
@@ -266,7 +285,9 @@ def build_phonetic_coords_tr(lat: float, lon: float) -> str:
     lon_min = int(round((abs(lon) - lon_deg) * 60))
     lon_hemi = "DOĞU" if lon >= 0 else "BATI"
 
-    return f"{lat_deg} DERECE {lat_min:02d} DAKİKA {lat_hemi}, {lon_deg} DERECE {lon_min:02d} DAKİKA {lon_hemi}"
+    return (
+        f"{lat_deg} DERECE {lat_min:02d} DAKİKA {lat_hemi}, {lon_deg} DERECE {lon_min:02d} DAKİKA {lon_hemi}"
+    )
 
 
 class Bot:
@@ -307,8 +328,7 @@ class Bot:
         if not self.token:
             return None
         try:
-            r = self.session.post(BASE.format(token=self.token, method=method),
-                                  data=payload, timeout=timeout)
+            r = self.session.post(BASE.format(token=self.token, method=method), data=payload, timeout=timeout)
             body = r.json()
             if body.get("ok"):
                 return body.get("result")
@@ -324,8 +344,7 @@ class Bot:
             # No chat_id / message body in logs (chat id identifies a person; CodeQL).
             print("[bot:dry] send skipped")
             return True
-        payload = {"chat_id": chat_id, "text": text, "parse_mode": "HTML",
-                   "disable_web_page_preview": "true"}
+        payload = {"chat_id": chat_id, "text": text, "parse_mode": "HTML", "disable_web_page_preview": "true"}
         if markup:
             payload["reply_markup"] = markup
         return self._api("sendMessage", payload) is not None
@@ -365,26 +384,32 @@ class Bot:
         return _keyboard(rows)
 
     def _boat_markup(self, chosen: str) -> str:
-        rows = [[(("✅ " if k == chosen else "") + v.get("label", k), f"boat:{k}")]
-                for k, v in self.classes.items()]
+        rows = [
+            [(("✅ " if k == chosen else "") + v.get("label", k), f"boat:{k}")]
+            for k, v in self.classes.items()
+        ]
         return _keyboard(rows)
 
     def _settings_text(self, s: dict) -> str:
         areas = ", ".join(s.get("areas") or []) or "tüm bölgeler"
         klass = self.classes.get(s.get("boat", "small"), {}).get("label", s.get("boat"))
         state = "açık" if s.get("active", True) else "kapalı"
-        return (f"⚙️ <b>Ayarların</b>\n\n"
-                f"🌊 Bölgeler: <b>{areas}</b>\n"
-                f"⛵ Tekne: <b>{klass}</b>\n"
-                f"🔔 Bildirim: <b>{state}</b>\n\n"
-                f"Değiştirmek için /bolge veya /tekne.")
+        return (
+            f"⚙️ <b>Ayarların</b>\n\n"
+            f"🌊 Bölgeler: <b>{areas}</b>\n"
+            f"⛵ Tekne: <b>{klass}</b>\n"
+            f"🔔 Bildirim: <b>{state}</b>\n\n"
+            f"Değiştirmek için /bolge veya /tekne."
+        )
 
     def _handle_location(self, chat, lat: float, lon: float, dry: bool = True) -> None:
         try:
             lat = float(lat)
             lon = float(lon)
         except (ValueError, TypeError):
-            self.send(chat, "❌ Geçersiz koordinat formatı. Örnek: <code>/neredeyim 38.3245 26.3012</code>", dry=dry)
+            self.send(
+                chat, "❌ Geçersiz koordinat formatı. Örnek: <code>/neredeyim 38.3245 26.3012</code>", dry=dry
+            )
             return
 
         if not (-90.0 <= lat <= 90.0 and -180.0 <= lon <= 180.0):
@@ -398,7 +423,11 @@ class Bot:
             p_name, dist_nm, _ = port_info
             pla, plo = PORTS.get(p_name, (lat, lon))
             b_deg = _bearing_deg(lat, lon, pla, plo)
-            port_label = p_name if p_name.lower().endswith("limanı") or p_name.lower().endswith("liman") else f"{p_name} Limanı"
+            port_label = (
+                p_name
+                if p_name.lower().endswith("limanı") or p_name.lower().endswith("liman")
+                else f"{p_name} Limanı"
+            )
             port_line = f"⚓ <b>En Yakın Liman:</b> {port_label} ({dist_nm:.1f} NM, {b_deg:03.0f}°)"
 
         # Area & closest forecast point
@@ -438,14 +467,18 @@ class Bot:
                 safety_line = "🌊 <b>Sefer skoru:</b> veri yok (ölçüm eksik / henüz derlenmedi)"
             else:
                 icon = "🟢" if status == "good" else ("🟡" if status == "caution" else "🔴")
-                status_tr = "Elverişli" if status == "good" else (
-                    "Tedbirli Seyir" if status == "caution" else "Denize Çıkmayın")
+                status_tr = (
+                    "Elverişli"
+                    if status == "good"
+                    else ("Tedbirli Seyir" if status == "caution" else "Denize Çıkmayın")
+                )
                 safety_line = f"🌊 <b>Sefer Güvenlik Skoru:</b> {icon} {score}/100 ({status_tr})"
                 st = rating_info.get("sea_temp_c")
                 ck = rating_info.get("current_kn")
                 if st is not None:
                     safety_line += f"\n🌡️ <b>Deniz Suyu:</b> {st:.1f}°C" + (
-                        f" | <b>Akıntı:</b> {ck:.1f} kn" if ck is not None else "")
+                        f" | <b>Akıntı:</b> {ck:.1f} kn" if ck is not None else ""
+                    )
         else:
             safety_line = "🌊 <b>Sefer skoru:</b> veri yok (henüz derlenmedi)"
 
@@ -469,7 +502,11 @@ class Bot:
             p_info = nearest_port(lat, lon)
             if p_info:
                 p_name, dist_nm, _ = p_info
-                p_lbl = p_name if p_name.lower().endswith("limanı") or p_name.lower().endswith("liman") else f"{p_name} Limanı"
+                p_lbl = (
+                    p_name
+                    if p_name.lower().endswith("limanı") or p_name.lower().endswith("liman")
+                    else f"{p_name} Limanı"
+                )
                 mevki = f"{phonetic_pos} ({p_lbl} {dist_nm:.1f} NM açığı / {lat:.4f}°K, {lon:.4f}°D)"
             else:
                 mevki = f"{phonetic_pos} ({lat:.4f}°K, {lon:.4f}°D)"
@@ -479,12 +516,12 @@ class Bot:
         return (
             "🆘 <b>VHF KANAL 16 ACİL İMDAT ÇAĞRISI (MAYDAY)</b>\n\n"
             "<i>Telsizin mandalına basarak 3 kez, tane tane ve anlaşılır bir ses tonuyla okuyun:</i>\n\n"
-            "<b>\"MAYDAY, MAYDAY, MAYDAY\n"
+            '<b>"MAYDAY, MAYDAY, MAYDAY\n'
             "BURASI [TEKNE ADINIZ / ÇAĞRI İŞARETİNİZ]\n"
             f"MEVKİMİZ: {mevki}\n"
             "DURUM: [SU ALIYORUZ / BATIYORUZ / ALABORA OLDUK / YANGIN VAR]\n"
             "TEKNEDE [X] KİŞİYİZ, ACİL KURTARMA TALEP EDİYORUZ.\n"
-            "TAMAM.\"</b>\n\n"
+            'TAMAM."</b>\n\n'
             "📞 <b>TELEFON İLE ACİL YARDIM HATLARI:</b>\n"
             "• <b>158</b> Sahil Güvenlik (7/24 Kesintisiz)\n"
             "• <b>151</b> Kıyı Emniyeti (Tahlisiye & Römorkör)\n"
@@ -552,17 +589,20 @@ class Bot:
                     if target_area in missing:
                         miss_note = " (bu cycle’da tahmin gelmedi)"
                     today_block = (
-                        f"{stale}ℹ️ {html.escape(target_area)} için bugünün penceresi "
-                        f"bulunamadı{miss_note}."
+                        f"{stale}ℹ️ {html.escape(target_area)} için bugünün penceresi bulunamadı{miss_note}."
                     )
                 else:
                     level_tr = {
-                        "ok": "Uygun", "watch": "Dikkat",
-                        "danger": "Çıkma", "unknown": "Ölçüm yok",
+                        "ok": "Uygun",
+                        "watch": "Dikkat",
+                        "danger": "Çıkma",
+                        "unknown": "Ölçüm yok",
                     }
                     level_icon = {
-                        "ok": "🟢", "watch": "🟡",
-                        "danger": "🔴", "unknown": "⚪",
+                        "ok": "🟢",
+                        "watch": "🟡",
+                        "danger": "🔴",
+                        "unknown": "⚪",
                     }
                     lines = [
                         f"{stale}🎣 <b>{html.escape(target_area)} · Bugün</b>",
@@ -591,8 +631,7 @@ class Bot:
                         if hazard:
                             extra += f" ({html.escape(hazard)})"
                         lines.append(
-                            f"{icon} <code>{start}–{end}</code>  "
-                            f"{html.escape(level_tr.get(lv, lv))}{extra}"
+                            f"{icon} <code>{start}–{end}</code>  {html.escape(level_tr.get(lv, lv))}{extra}"
                         )
                     rb = rating.get("return_by")
                     sunset = rating.get("sunset_time")
@@ -600,7 +639,9 @@ class Bot:
                         lines.append("")
                         lines.append(f"💡 Limana dönüş: en geç <b>{html.escape(str(rb))}</b>")
                     if sunset:
-                        lines.append(f"🌅 Gün batımı: <b>{html.escape(str(sunset))}</b> (Alacakaranlık emniyeti)")
+                        lines.append(
+                            f"🌅 Gün batımı: <b>{html.escape(str(sunset))}</b> (Alacakaranlık emniyeti)"
+                        )
                     if rating.get("steepness_hazard"):
                         lines.append("⚠️ <b>Dik/Kısa Dalga Riski:</b> Vuruntulu çırpıntı!")
                     if rating.get("fog_hazard"):
@@ -625,14 +666,12 @@ class Bot:
                     status = rating.get("status") or ""
                     quality = rating.get("data_quality") or "ok"
                     if score is None or quality == "unknown" or status == "unknown":
-                        now_block = (
-                            "\n\n——— <b>Şimdi</b> (anlık skor) ———\n"
-                            "⚪ Veri yok / ölçüm eksik"
-                        )
+                        now_block = "\n\n——— <b>Şimdi</b> (anlık skor) ———\n⚪ Veri yok / ölçüm eksik"
                     else:
                         icon = "🟢" if status == "good" else ("🟡" if status == "caution" else "🔴")
                         status_tr = (
-                            "Elverişli" if status == "good"
+                            "Elverişli"
+                            if status == "good"
                             else ("Tedbirli" if status == "caution" else "Elverişsiz")
                         )
                         wave = rating.get("wave_m")
@@ -655,8 +694,7 @@ class Bot:
                 print(f"[bot] safety parse error: {e}")
 
         return (
-            f"{today_block}{now_block}\n\n"
-            f"⚠️ <i>Model tahminidir. Karar senindir; 158 / MGM teyidi alın.</i>"
+            f"{today_block}{now_block}\n\n⚠️ <i>Model tahminidir. Karar senindir; 158 / MGM teyidi alın.</i>"
         )
 
     @staticmethod
@@ -695,7 +733,11 @@ class Bot:
                 typ_tr = inc.get("type_tr") or typ
                 area = inc.get("area") or "Türkiye Karasuları"
                 status = inc.get("status", "signal")
-                badge = "🚨 Doğrulandı" if status == "confirmed" else ("🟡 Olası" if status == "probable" else "Sinyal")
+                badge = (
+                    "🚨 Doğrulandı"
+                    if status == "confirmed"
+                    else ("🟡 Olası" if status == "probable" else "Sinyal")
+                )
                 v_name = (inc.get("vessel") or {}).get("name") or "Deniz Aracı"
                 lat = inc.get("lat")
                 lon = inc.get("lon")
@@ -764,12 +806,20 @@ class Bot:
             # Re-attach bottom keyboard if user hid it
             self.send(chat, "⌨️ Alt menü yenilendi.", markup=_reply_keyboard(), dry=dry)
         elif cmd in ("bolge", "bölge", "bolgeler"):
-            self.send(chat, "🌊 <b>Hangi denizleri takip ediyorsun?</b>\nSeçtikçe değişir; "
-                            "hiçbiri seçili değilse hepsini gönderirim.",
-                      self._area_markup(s.get("areas", [])), dry=dry)
+            self.send(
+                chat,
+                "🌊 <b>Hangi denizleri takip ediyorsun?</b>\nSeçtikçe değişir; "
+                "hiçbiri seçili değilse hepsini gönderirim.",
+                self._area_markup(s.get("areas", [])),
+                dry=dry,
+            )
         elif cmd in ("tekne", "boat"):
-            self.send(chat, "⛵ <b>Tekne boyun?</b>\nUyarı eşikleri buna göre değişir.",
-                      self._boat_markup(s.get("boat", "small")), dry=dry)
+            self.send(
+                chat,
+                "⛵ <b>Tekne boyun?</b>\nUyarı eşikleri buna göre değişir.",
+                self._boat_markup(s.get("boat", "small")),
+                dry=dry,
+            )
         elif cmd in ("ayarlar", "ayar"):
             self.send(chat, self._settings_text(s), dry=dry)
         elif cmd in ("durum", "simdi", "şimdi"):
@@ -791,9 +841,17 @@ class Bot:
                     lon_val = float(parts[2].replace(",", "."))
                     self._handle_location(chat, lat_val, lon_val, dry=dry)
                 except ValueError:
-                    self.send(chat, "❌ Geçersiz koordinat formatı. Örnek: <code>/neredeyim 38.3245 26.3012</code>", dry=dry)
+                    self.send(
+                        chat,
+                        "❌ Geçersiz koordinat formatı. Örnek: <code>/neredeyim 38.3245 26.3012</code>",
+                        dry=dry,
+                    )
             else:
-                self.send(chat, "📍 Konumunuzu öğrenmek için lütfen Telegram'dan konumunuzu paylaşın veya koordinat girin.\nÖrnek: <code>/neredeyim 38.3245 26.3012</code>", dry=dry)
+                self.send(
+                    chat,
+                    "📍 Konumunuzu öğrenmek için lütfen Telegram'dan konumunuzu paylaşın veya koordinat girin.\nÖrnek: <code>/neredeyim 38.3245 26.3012</code>",
+                    dry=dry,
+                )
         elif cmd in ("mayday", "acil", "imdat", "sos"):
             self.send(chat, self._mayday_text(s), dry=dry)
         elif cmd in ("bogaz", "boğaz", "bogazlar", "boğazlar", "straits"):
@@ -808,14 +866,22 @@ class Bot:
             parts = text.split(None, 1)
             if len(parts) < 2:
                 areas_list = ", ".join(self.areas)
-                self.send(chat, f"ℹ️ Lütfen abone olmak istediğiniz bölgeyi belirtin.\nÖrnek: <code>/abone Marmara Denizi</code>\n\nGeçerli bölgeler:\n{areas_list}\n\nİptal için: /abone iptal", dry=dry)
+                self.send(
+                    chat,
+                    f"ℹ️ Lütfen abone olmak istediğiniz bölgeyi belirtin.\nÖrnek: <code>/abone Marmara Denizi</code>\n\nGeçerli bölgeler:\n{areas_list}\n\nİptal için: /abone iptal",
+                    dry=dry,
+                )
             else:
                 sub_arg = parts[1].strip()
                 norm_arg = _norm(sub_arg)
                 if norm_arg in ("iptal", "cancel", "kapat", "stop", "cikis"):
                     s["areas"] = []
                     s["active"] = False
-                    self.send(chat, "🔕 Aboneliğiniz iptal edildi. Tekrar açmak için: /start veya /abone [bölge]", dry=dry)
+                    self.send(
+                        chat,
+                        "🔕 Aboneliğiniz iptal edildi. Tekrar açmak için: /start veya /abone [bölge]",
+                        dry=dry,
+                    )
                 else:
                     matched = self._match_area(sub_arg)
                     if matched:
@@ -824,12 +890,20 @@ class Bot:
                             s["areas"] = []
                         if matched not in s["areas"]:
                             s["areas"].append(matched)
-                        self.send(chat, f"✅ <b>{matched}</b> bölgesine başarıyla abone oldunuz.\n\nAboneliği iptal etmek için: /abone iptal", dry=dry)
+                        self.send(
+                            chat,
+                            f"✅ <b>{matched}</b> bölgesine başarıyla abone oldunuz.\n\nAboneliği iptal etmek için: /abone iptal",
+                            dry=dry,
+                        )
                     else:
                         areas_list = ", ".join(self.areas)
-                        self.send(chat, f'❌ Geçersiz bölge adı: "{sub_arg}"\n\n'
-                                        f"Lütfen geçerli bir bölge adı girin: {areas_list}\n\n"
-                                        f"Aboneliği sonlandırmak için: /abone iptal", dry=dry)
+                        self.send(
+                            chat,
+                            f'❌ Geçersiz bölge adı: "{sub_arg}"\n\n'
+                            f"Lütfen geçerli bir bölge adı girin: {areas_list}\n\n"
+                            f"Aboneliği sonlandırmak için: /abone iptal",
+                            dry=dry,
+                        )
         elif cmd in ("dur", "stop", "kapat"):
             s["active"] = False
             self.send(chat, "🔕 Bildirimler kapatıldı. Tekrar açmak için /start.", dry=dry)
@@ -858,9 +932,14 @@ class Bot:
                 s["areas"] = cur
                 note = a
             if key != "done":
-                self._api("editMessageReplyMarkup", {
-                    "chat_id": chat, "message_id": (cb.get("message") or {}).get("message_id"),
-                    "reply_markup": self._area_markup(s.get("areas", []))}) if not dry else None
+                self._api(
+                    "editMessageReplyMarkup",
+                    {
+                        "chat_id": chat,
+                        "message_id": (cb.get("message") or {}).get("message_id"),
+                        "reply_markup": self._area_markup(s.get("areas", [])),
+                    },
+                ) if not dry else None
             else:
                 self.send(chat, self._settings_text(s), dry=dry)
         elif data.startswith("boat:"):
@@ -881,15 +960,22 @@ class Bot:
             elif action == "kazalar":
                 self.send(chat, self._incidents_text(), dry=dry)
             elif action == "neredeyim":
-                self.send(chat, "📍 Konumunu Telegram’dan paylaş veya yaz:\n<code>/neredeyim 40.98 28.85</code>", dry=dry)
+                self.send(
+                    chat,
+                    "📍 Konumunu Telegram’dan paylaş veya yaz:\n<code>/neredeyim 40.98 28.85</code>",
+                    dry=dry,
+                )
             elif action == "mayday":
                 self.send(chat, self._mayday_text(s), dry=dry)
             elif action == "bolge":
-                self.send(chat, "🌊 <b>Hangi denizleri takip ediyorsun?</b>",
-                          self._area_markup(s.get("areas", [])), dry=dry)
+                self.send(
+                    chat,
+                    "🌊 <b>Hangi denizleri takip ediyorsun?</b>",
+                    self._area_markup(s.get("areas", [])),
+                    dry=dry,
+                )
             elif action == "tekne":
-                self.send(chat, "⛵ <b>Tekne boyun?</b>",
-                          self._boat_markup(s.get("boat", "small")), dry=dry)
+                self.send(chat, "⛵ <b>Tekne boyun?</b>", self._boat_markup(s.get("boat", "small")), dry=dry)
             elif action == "ayarlar":
                 self.send(chat, self._settings_text(s), dry=dry)
         if not dry:
@@ -917,9 +1003,11 @@ class Bot:
                 self._commands_registered = True
             except Exception:
                 pass
-        res = self._api("getUpdates", {"offset": self.subs.offset + 1,
-                                       "limit": limit, "timeout": timeout},
-                        timeout=timeout + 10)
+        res = self._api(
+            "getUpdates",
+            {"offset": self.subs.offset + 1, "limit": limit, "timeout": timeout},
+            timeout=timeout + 10,
+        )
         if not res:
             return 0
         for up in res:

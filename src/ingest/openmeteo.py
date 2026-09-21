@@ -83,14 +83,12 @@ def _hourly_marine(url: str, params: dict, sample: str):
     t_sliced = times[start:]
     # Keep index alignment with times — drop-filter would invent calm hours
     w_sliced = [
-        float(v) if isinstance(v, (int, float)) else None
-        for v in waves[start:start + len(t_sliced)]
+        float(v) if isinstance(v, (int, float)) else None for v in waves[start : start + len(t_sliced)]
     ]
     while len(w_sliced) < len(t_sliced):
         w_sliced.append(None)
     p_sliced = [
-        float(v) if isinstance(v, (int, float)) else None
-        for v in periods[start:start + len(t_sliced)]
+        float(v) if isinstance(v, (int, float)) else None for v in periods[start : start + len(t_sliced)]
     ]
     while len(p_sliced) < len(t_sliced):
         p_sliced.append(None)
@@ -125,15 +123,11 @@ def _hourly_wind(url: str, params: dict, sample: str):
     t_sliced = times[start:]
     g_sliced = [float(v) if isinstance(v, (int, float)) else None for v in gusts[start:]]
     d_sliced = [
-        float(v) if isinstance(v, (int, float)) else None
-        for v in dirs[start:start + len(t_sliced)]
+        float(v) if isinstance(v, (int, float)) else None for v in dirs[start : start + len(t_sliced)]
     ]
     while len(d_sliced) < len(t_sliced):
         d_sliced.append(None)
-    v_sliced = [
-        float(v) if isinstance(v, (int, float)) else None
-        for v in vis[start:start + len(t_sliced)]
-    ]
+    v_sliced = [float(v) if isinstance(v, (int, float)) else None for v in vis[start : start + len(t_sliced)]]
     while len(v_sliced) < len(t_sliced):
         v_sliced.append(None)
     return t_sliced, g_sliced, d_sliced, v_sliced, live
@@ -276,18 +270,21 @@ def warnings_from_forecast(cfg: dict, points: list[dict]) -> list[Warning]:
             if max_gust:
                 bits.append(f"rüzgar hamlesi ~{max_gust:.0f} kn")
             strong = max_wave >= om["wave_m"] + 1.0 or max_gust >= om["wind_gust_kn"] + 10
-            out.append(Warning(
-                id=f"om-{name.lower().replace(' ', '')[:24]}",
-                headline=f"{name}: {', '.join(bits)} (önümüzdeki {hours} saat)",
-                area=name,
-                kind="marine-weather",
-                severity="major" if strong else "minor",
-                org="Open-Meteo",
-                url="https://open-meteo.com/en/docs/marine-weather-api",
-                issued=now_iso(),
-                value=round(max_wave, 1) or None,
-                lat=lat, lon=lon,
-            ))
+            out.append(
+                Warning(
+                    id=f"om-{name.lower().replace(' ', '')[:24]}",
+                    headline=f"{name}: {', '.join(bits)} (önümüzdeki {hours} saat)",
+                    area=name,
+                    kind="marine-weather",
+                    severity="major" if strong else "minor",
+                    org="Open-Meteo",
+                    url="https://open-meteo.com/en/docs/marine-weather-api",
+                    issued=now_iso(),
+                    value=round(max_wave, 1) or None,
+                    lat=lat,
+                    lon=lon,
+                )
+            )
     return out
 
 

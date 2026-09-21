@@ -1,5 +1,4 @@
-"""Parser for SHOD (Seyir, Hidrografi ve Oşinografi Dairesi) NAVTEX navigational warnings.
-"""
+"""Parser for SHOD (Seyir, Hidrografi ve Oşinografi Dairesi) NAVTEX navigational warnings."""
 
 from __future__ import annotations
 
@@ -67,7 +66,14 @@ def scrape_shod(cfg: dict | None = None) -> list[Warning]:
         # Extract area if explicitly named
         low = _norm(text)
         area = ""
-        for sea in ("marmara denizi", "ege denizi", "akdeniz", "karadeniz", "istanbul boğazı", "çanakkale boğazı"):
+        for sea in (
+            "marmara denizi",
+            "ege denizi",
+            "akdeniz",
+            "karadeniz",
+            "istanbul boğazı",
+            "çanakkale boğazı",
+        ):
             if sea in low:
                 area = sea.title().replace("Denizi", "Denizi").replace("Boğazı", "Boğazı")
                 break
@@ -89,7 +95,13 @@ def scrape_shod(cfg: dict | None = None) -> list[Warning]:
         lines = [line.strip() for line in text.splitlines() if line.strip()]
         title_line = ""
         for line in lines:
-            if "ATIŞ" in line or "EĞİTİM" in line or "ARAŞTIRMA" in line or "KABLO" in line or "SEYİR" in line:
+            if (
+                "ATIŞ" in line
+                or "EĞİTİM" in line
+                or "ARAŞTIRMA" in line
+                or "KABLO" in line
+                or "SEYİR" in line
+            ):
                 title_line = line
                 break
         if not title_line and lines:

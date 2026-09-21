@@ -33,6 +33,7 @@ def _bbox(lat: float, lon: float, b: dict) -> bool:
 def _mk(lat: float, lon: float, mag: float, place: str, ts: str) -> Warning:
     # Match quakes.py place naming logic and ID convention
     from .quakes import place_tr
+
     area_name = place_tr(place)
     return Warning(
         id=f"eq-kandilli-{round(lat, 2)}-{round(lon, 2)}-{str(ts)[:16]}",
@@ -51,7 +52,9 @@ def _mk(lat: float, lon: float, mag: float, place: str, ts: str) -> Warning:
 
 def fetch_kandilli(cfg: dict) -> list[Warning]:
     q = cfg.get("quakes", {})
-    bbox = cfg.get("region", {}).get("bbox", {"lat_min": 35.0, "lat_max": 43.5, "lon_min": 25.0, "lon_max": 42.5})
+    bbox = cfg.get("region", {}).get(
+        "bbox", {"lat_min": 35.0, "lat_max": 43.5, "lon_min": 25.0, "lon_max": 42.5}
+    )
     min_mag = float(q.get("min_mag", 3.8))
     hours_back = float(q.get("hours_back", 24))
     cutoff_ts = time.time() - hours_back * 3600

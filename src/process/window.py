@@ -38,9 +38,9 @@ def _max_opt(a: float | None, b: float | None) -> float | None:
 
 @dataclass
 class Window:
-    start: str                  # "HH:MM"
-    end: str                    # "HH:MM" (exclusive)
-    level: str                  # ok | watch | danger | unknown
+    start: str  # "HH:MM"
+    end: str  # "HH:MM" (exclusive)
+    level: str  # ok | watch | danger | unknown
     gust_kn: float | None = None
     wave_m: float | None = None
     dominant_wind: str = ""
@@ -319,7 +319,7 @@ def _merge_slivers(ws: list[Window], min_hours: int = 2) -> list[Window]:
     for w in ws[1:]:
         prev = kept[-1]
         if w.hours < min_hours and _RANK[w.level] < _RANK[prev.level]:
-            prev.end = w.end          # swallow the short lull into the rougher block
+            prev.end = w.end  # swallow the short lull into the rougher block
             continue
         if w.level == prev.level:
             prev.end = w.end

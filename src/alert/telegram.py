@@ -34,8 +34,13 @@ _WARN_KIND_TR = {
     "eonet": "AFET UYARISI",
 }
 _WARN_EMOJI = {
-    "marine-weather": "🌊", "metar": "🌬️", "nav-warning": "⚓", "navtex": "⚓",
-    "earthquake": "🌍", "gdacs": "🛑", "eonet": "🛑",
+    "marine-weather": "🌊",
+    "metar": "🌬️",
+    "nav-warning": "⚓",
+    "navtex": "⚓",
+    "earthquake": "🌍",
+    "gdacs": "🛑",
+    "eonet": "🛑",
 }
 _TR_UPPER = str.maketrans("iı", "İI")
 
@@ -118,10 +123,15 @@ class Notifier:
             print("[telegram:dry] send skipped")
             self._remember(key)
             return
-        if self._post("sendMessage", {
-            "chat_id": self.chat, "text": text, "parse_mode": "HTML",
-            "disable_web_page_preview": "true",
-        }):
+        if self._post(
+            "sendMessage",
+            {
+                "chat_id": self.chat,
+                "text": text,
+                "parse_mode": "HTML",
+                "disable_web_page_preview": "true",
+            },
+        ):
             print(f"[telegram] sent key={key}")
             self._remember(key)
             if self.pin and lat is not None and lon is not None:
@@ -165,8 +175,11 @@ class Notifier:
 
         keys = [k for k, *_ in q]
         with self.outbox.open("a", encoding="utf-8") as f:
-            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')}  [DIGEST {len(q)} items]\n"
-                    + f"\n\n{'=' * 60}\n\n".join(chunks) + f"\n{'-' * 60}\n")
+            f.write(
+                f"{time.strftime('%Y-%m-%d %H:%M:%S')}  [DIGEST {len(q)} items]\n"
+                + f"\n\n{'=' * 60}\n\n".join(chunks)
+                + f"\n{'-' * 60}\n"
+            )
         if dry or not self.token or not self.chat:
             print(f"[telegram:dry] digest: {len(q)} bildirim, {len(chunks)} mesaj")
             for k in keys:
@@ -174,8 +187,10 @@ class Notifier:
             return
         sent_any = False
         for c in chunks:
-            if self._post("sendMessage", {"chat_id": self.chat, "text": c,
-                                          "parse_mode": "HTML", "disable_web_page_preview": "true"}):
+            if self._post(
+                "sendMessage",
+                {"chat_id": self.chat, "text": c, "parse_mode": "HTML", "disable_web_page_preview": "true"},
+            ):
                 sent_any = True
         if sent_any:
             print(f"[telegram] digest sent ({len(q)} items)")
@@ -193,8 +208,10 @@ class Notifier:
         if coarse or np[1] < 2:
             where = f"{html.escape(np[0])} açıkları"
             return f"📍 Yer: {where}" + (f" ({html.escape(area)})" if area else "")
-        return (f"📍 Yer: {html.escape(area or '')} — en yakın kıyı: "
-                f"{html.escape(np[0])} (~{np[1]:.0f} deniz mili)")
+        return (
+            f"📍 Yer: {html.escape(area or '')} — en yakın kıyı: "
+            f"{html.escape(np[0])} (~{np[1]:.0f} deniz mili)"
+        )
 
     def _maplink(self, lat, lon) -> str:
         base = f"🗺️ Haritada gör: https://www.google.com/maps?q={lat:.5f},{lon:.5f}"
@@ -224,9 +241,10 @@ class Notifier:
             lines.append(f"Ne oldu: {html.escape(type_tr(inc.type))}")
         else:
             first = next((x.detail for x in inc.sources if x.detail and x.kind in ("official", "news")), "")
-            lines.append(f"Ne oldu: {html.escape(first[:140])}" if first
-                         else "Ne oldu: kaynaklar ayrıntı vermiyor")
-        lines.append(self._where(inc.lat, inc.lon, inc.area, getattr(inc, 'coarse', False)))
+            lines.append(
+                f"Ne oldu: {html.escape(first[:140])}" if first else "Ne oldu: kaynaklar ayrıntı vermiyor"
+            )
+        lines.append(self._where(inc.lat, inc.lon, inc.area, getattr(inc, "coarse", False)))
         if inc.vessel.name:
             lines.append(f"⛴️ Tekne: {html.escape(inc.vessel.name)}")
         told = [s for s in inc.sources if s.detail and s.kind in ("official", "news")]
@@ -248,8 +266,10 @@ class Notifier:
         if not told:
             first = inc.sources[0] if inc.sources else None
             if first:
-                lines.append(f"Kaynak: {html.escape(first.org or first.kind)}"
-                             + (f" — {html.escape(first.detail[:180])}" if first.detail else ""))
+                lines.append(
+                    f"Kaynak: {html.escape(first.org or first.kind)}"
+                    + (f" — {html.escape(first.detail[:180])}" if first.detail else "")
+                )
 
         if inc.lat is not None and inc.lon is not None:
             lines.append(self._maplink(inc.lat, inc.lon))
@@ -257,8 +277,14 @@ class Notifier:
         lines.append("")
         lines.append("<i>Bu otomatik bir derlemedir; resmi açıklamayı esas alın.</i>")
         lines.append("<b>Acil durumda: 158 Sahil Güvenlik  ·  112  ·  VHF Kanal 16</b>")
-        self._emit(f"inc:{inc.id}:{inc.status}:{len(inc.sources)}", "\n".join(lines), dry,
-                   inc.lat, inc.lon, urgent=is_sart)
+        self._emit(
+            f"inc:{inc.id}:{inc.status}:{len(inc.sources)}",
+            "\n".join(lines),
+            dry,
+            inc.lat,
+            inc.lon,
+            urgent=is_sart,
+        )
 
     # ---- warning -------------------------------------------------------------
     def _weather_body(self, w) -> list[str]:
@@ -302,8 +328,10 @@ class Notifier:
 
         lines.append("")
         if w.kind in ("marine-weather", "metar"):
-            lines.append("<b>Küçük tekneyle denize çıkmayın.</b> Çıkmadan önce liman "
-                         "başkanlığından / MGM'den teyit alın.")
+            lines.append(
+                "<b>Küçük tekneyle denize çıkmayın.</b> Çıkmadan önce liman "
+                "başkanlığından / MGM'den teyit alın."
+            )
         elif w.kind == "earthquake":
             lines.append(self._quake_note(w))
         else:
@@ -316,34 +344,55 @@ class Notifier:
     @staticmethod
     def _quake_note(w) -> str:
         from ..process.classify import nearest_port
+
         at_sea = any(s in (w.area or "").lower() for s in Notifier._SEA_NAMED)
         if at_sea:
-            return ("<i>Merkez üssü denizde. Deniz seviyesinde ani değişim olabilir; "
-                    "kıyıya ve sığ sulara yanaşmayın.</i>")
+            return (
+                "<i>Merkez üssü denizde. Deniz seviyesinde ani değişim olabilir; "
+                "kıyıya ve sığ sulara yanaşmayın.</i>"
+            )
         np = None if w.lat is None or w.lon is None else nearest_port(w.lat, w.lon)
         if np is None:
             return "<i>Resmi açıklamaları takip edin.</i>"
-        return (f"<i>En yakın liman {html.escape(np[0])}, yaklaşık {np[1] * 1.852:.0f} km. "
-                "Limanda bağlı teknelerde ve halatlarda sarsıntı etkisi olabilir.</i>")
+        return (
+            f"<i>En yakın liman {html.escape(np[0])}, yaklaşık {np[1] * 1.852:.0f} km. "
+            "Limanda bağlı teknelerde ve halatlarda sarsıntı etkisi olabilir.</i>"
+        )
 
     def weather_passed(self, w, dry: bool = True) -> None:
         """Sona eren fırtına veya hava uyarısını duyurur."""
         if not self.enabled or not self.prevention:
             return
         where = html.escape(w.area or "bölge")
-        lines = [f"✅ <b>UYARI KALKTI — {where}</b>", "",
-                 "Son tahminde bu bölgede uyarı eşiği aşılmıyor.",
-                 f"Kaynak: {html.escape(', '.join(w.orgs) or w.org)}", "",
-                 "<i>Yine de denize çıkmadan önce liman başkanlığından teyit alın; "
-                 "hava kısa sürede değişebilir.</i>"]
+        lines = [
+            f"✅ <b>UYARI KALKTI — {where}</b>",
+            "",
+            "Son tahminde bu bölgede uyarı eşiği aşılmıyor.",
+            f"Kaynak: {html.escape(', '.join(w.orgs) or w.org)}",
+            "",
+            "<i>Yine de denize çıkmadan önce liman başkanlığından teyit alın; "
+            "hava kısa sürede değişebilir.</i>",
+        ]
         self._emit(f"wxend:{w.id}", "\n".join(lines), dry, w.lat, w.lon)
 
     # ---- daily outlook ------------------------------------------------------
     _MARK = {"ok": "🟢", "watch": "🟡", "danger": "🔴"}
     _VERDICT = {"ok": "uygun", "watch": "dikkatli ol", "danger": "ÇIKMA"}
     _DAYS = ("Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar")
-    _MONTHS = ("Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz",
-               "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık")
+    _MONTHS = (
+        "Ocak",
+        "Şubat",
+        "Mart",
+        "Nisan",
+        "Mayıs",
+        "Haziran",
+        "Temmuz",
+        "Ağustos",
+        "Eylül",
+        "Ekim",
+        "Kasım",
+        "Aralık",
+    )
 
     @classmethod
     def _long_date(cls, tz_offset_h: float = 3.0) -> str:
@@ -364,8 +413,7 @@ class Notifier:
         verdict = cls._VERDICT[w.level]
         if w.level == "danger":
             verdict = "<b>" + verdict + "</b>"
-        return (f"{cls._MARK[w.level]} <code>{w.start}–{w.end}</code>  "
-                f"{verdict} · {' · '.join(bits)}")
+        return f"{cls._MARK[w.level]} <code>{w.start}–{w.end}</code>  {verdict} · {' · '.join(bits)}"
 
     @classmethod
     def outlook_text(cls, areas, klass: dict, tz_offset_h: float = 3.0) -> str:
@@ -379,9 +427,11 @@ class Notifier:
         calm = [a for a in areas if a.worst == "ok"]
         label = klass.get("label", "tekne")
 
-        head = [f"🌅 <b>BUGÜN DENİZ</b> · {cls._long_date(tz_offset_h)}",
-                f"<i>{html.escape(label)} · sınır {klass.get('gust_kn')} kn / "
-                f"{str(klass.get('wave_m', 2)).replace('.', ',')} m</i>"]
+        head = [
+            f"🌅 <b>BUGÜN DENİZ</b> · {cls._long_date(tz_offset_h)}",
+            f"<i>{html.escape(label)} · sınır {klass.get('gust_kn')} kn / "
+            f"{str(klass.get('wave_m', 2)).replace('.', ',')} m</i>",
+        ]
 
         shuts = [a for a in areas if a.first_danger]
         if not areas:
@@ -394,9 +444,11 @@ class Notifier:
         elif shuts:
             first = min(shuts, key=lambda a: a.first_danger.start)
             head.append("")
-            head.append(f"⚠️ <b>{len(shuts)} bölge bugün kapanıyor.</b> "
-                        f"En erken {html.escape(first.name)}: "
-                        f"<b>{first.first_danger.start}</b>")
+            head.append(
+                f"⚠️ <b>{len(shuts)} bölge bugün kapanıyor.</b> "
+                f"En erken {html.escape(first.name)}: "
+                f"<b>{first.first_danger.start}</b>"
+            )
 
         body = []
         for a in rough:
@@ -407,18 +459,21 @@ class Notifier:
                     continue
                 body.append(cls._window_line(w, klass))
             from ..process.window import return_by as _return_by
+
             rb = _return_by(a)
             if rb:
                 body.append(f"💡 Limana dönüş: en geç <b>{html.escape(rb)}</b>")
 
         tail = []
         if calm:
-            tail += ["", "🟢 <b>Sınırın altında:</b> " +
-                     html.escape(", ".join(a.name for a in calm))]
-        tail += ["", "———",
-                 "<i>Model tahminidir, ölçüm değildir. Karar senindir; çıkmadan önce "
-                 "liman başkanlığından ve MGM'den teyit al.</i>",
-                 "<b>Acil: 158 Sahil Güvenlik · 112</b>"]
+            tail += ["", "🟢 <b>Sınırın altında:</b> " + html.escape(", ".join(a.name for a in calm))]
+        tail += [
+            "",
+            "———",
+            "<i>Model tahminidir, ölçüm değildir. Karar senindir; çıkmadan önce "
+            "liman başkanlığından ve MGM'den teyit al.</i>",
+            "<b>Acil: 158 Sahil Güvenlik · 112</b>",
+        ]
         return "\n".join(head + body + tail)
 
     def outlook_text_for(self, cfg: dict, sub: dict) -> str:
@@ -457,13 +512,15 @@ class Notifier:
                         max_wave=float(a.get("max_wave") or 0),
                     )
                     for w in a.get("windows") or []:
-                        ao.windows.append(Window(
-                            start=str(w.get("start") or "??:??"),
-                            end=str(w.get("end") or "??:??"),
-                            level=str(w.get("level") or "ok"),
-                            gust_kn=float(w.get("gust_kn") or 0),
-                            wave_m=float(w.get("wave_m") or 0),
-                        ))
+                        ao.windows.append(
+                            Window(
+                                start=str(w.get("start") or "??:??"),
+                                end=str(w.get("end") or "??:??"),
+                                level=str(w.get("level") or "ok"),
+                                gust_kn=float(w.get("gust_kn") or 0),
+                                wave_m=float(w.get("wave_m") or 0),
+                            )
+                        )
                     if ao.name:
                         areas.append(ao)
                 if areas:

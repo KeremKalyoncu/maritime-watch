@@ -40,9 +40,7 @@ def render_outlook(
         print("[outlook:warn] no live forecast points — skip write")
         return None
 
-    if points is None and any(
-        _net.STATUS.get(k) == "sample" for k in _net.STATUS if "openmeteo" in k
-    ):
+    if points is None and any(_net.STATUS.get(k) == "sample" for k in _net.STATUS if "openmeteo" in k):
         print("[outlook:warn] refusing sample-backed outlook")
         return None
 
@@ -95,10 +93,9 @@ def render_outlook(
         for p in (cfg.get("openmeteo") or {}).get("points") or []
         if (p.get("name") or "").strip()
     ]
-    present_names = sorted({
-        a.get("name") for block in classes_out.values()
-        for a in (block.get("areas") or []) if a.get("name")
-    })
+    present_names = sorted(
+        {a.get("name") for block in classes_out.values() for a in (block.get("areas") or []) if a.get("name")}
+    )
     missing = [n for n in expected_names if n not in set(present_names)]
     coverage = {
         "expected": len(expected_names),
@@ -106,8 +103,10 @@ def render_outlook(
         "missing": missing,
     }
     if missing:
-        print(f"[outlook] coverage present={len(present_names)}/{len(expected_names)} "
-              f"missing={', '.join(missing)}")
+        print(
+            f"[outlook] coverage present={len(present_names)}/{len(expected_names)} "
+            f"missing={', '.join(missing)}"
+        )
 
     payload: dict[str, Any] = {
         "schema_version": 1,

@@ -20,16 +20,18 @@ def _msg(chat, text):
 
 
 def _cb(chat, data, mid=7):
-    return {"update_id": 2, "callback_query": {"id": "q", "data": data,
-                                               "message": {"chat": {"id": chat}, "message_id": mid}}}
+    return {
+        "update_id": 2,
+        "callback_query": {"id": "q", "data": data, "message": {"chat": {"id": chat}, "message_id": mid}},
+    }
 
 
 def test_start_creates_a_subscriber_with_safe_defaults(bot):
     bot.handle(_msg(42, "/start"))
     s = bot.subs.data["42"]
     assert s["active"] is True
-    assert s["areas"] == []            # empty means every area
-    assert s["boat"] == "small"        # the audience the channel claims to serve
+    assert s["areas"] == []  # empty means every area
+    assert s["boat"] == "small"  # the audience the channel claims to serve
 
 
 def test_area_toggle_is_a_toggle(bot):
@@ -53,7 +55,7 @@ def test_boat_class_must_be_one_we_know(bot):
     bot.handle(_cb(42, "boat:large"))
     assert bot.subs.data["42"]["boat"] == "large"
     bot.handle(_cb(42, "boat:submarine"))
-    assert bot.subs.data["42"]["boat"] == "large"      # unchanged
+    assert bot.subs.data["42"]["boat"] == "large"  # unchanged
 
 
 def test_stop_keeps_the_settings_but_stops_the_messages(bot):
@@ -61,7 +63,7 @@ def test_stop_keeps_the_settings_but_stops_the_messages(bot):
     bot.handle(_cb(42, "area:0"))
     bot.handle(_msg(42, "/dur"))
     assert bot.subs.data["42"]["active"] is False
-    assert bot.subs.data["42"]["areas"]                # remembered for /start
+    assert bot.subs.data["42"]["areas"]  # remembered for /start
     assert bot.subs.active() == []
 
 
@@ -90,6 +92,7 @@ def test_offset_survives_a_restart_so_commands_do_not_replay(bot):
 def test_subscriber_file_is_git_ignored():
     """Chat ids identify people and this repo is public."""
     from pathlib import Path
+
     root = Path(__file__).resolve().parent.parent
     assert "data/subscribers.json" in (root / ".gitignore").read_text("utf-8")
 
@@ -102,9 +105,10 @@ def test_a_subscriber_only_gets_the_areas_they_chose(cfg, tmp_path):
     cfg["_root"] = str(tmp_path)
     cfg["secrets"] = {"telegram_token": "", "telegram_chat_id": "", "aisstream_key": ""}
     times = [f"2026-09-10T{h:02d}:00" for h in range(13)]
-    pts = [{"name": n, "lat": 41.0, "lon": 29.0, "times": times,
-            "gusts": [26] * 12, "waves": [0.3] * 12}
-           for n in ("Marmara Denizi", "Antalya Körfezi")]
+    pts = [
+        {"name": n, "lat": 41.0, "lon": 29.0, "times": times, "gusts": [26] * 12, "waves": [0.3] * 12}
+        for n in ("Marmara Denizi", "Antalya Körfezi")
+    ]
     assert render_outlook(cfg, tmp_path / "web" / "data" / "outlook.json", points=pts)
     txt = Notifier(cfg).outlook_text_for(cfg, {"areas": ["Marmara Denizi"], "boat": "small"})
     assert "MARMARA DENİZİ" in txt
@@ -119,8 +123,16 @@ def test_boat_class_changes_the_verdict_for_the_same_weather(cfg, tmp_path):
     cfg["_root"] = str(tmp_path)
     cfg["secrets"] = {"telegram_token": "", "telegram_chat_id": "", "aisstream_key": ""}
     times = [f"2026-09-10T{h:02d}:00" for h in range(13)]
-    pts = [{"name": "Marmara Denizi", "lat": 41.0, "lon": 29.0, "times": times,
-            "gusts": [25] * 12, "waves": [0.4] * 12}]
+    pts = [
+        {
+            "name": "Marmara Denizi",
+            "lat": 41.0,
+            "lon": 29.0,
+            "times": times,
+            "gusts": [25] * 12,
+            "waves": [0.4] * 12,
+        }
+    ]
     assert render_outlook(cfg, tmp_path / "web" / "data" / "outlook.json", points=pts)
     n = Notifier(cfg)
     assert "ÇIKMA" in n.outlook_text_for(cfg, {"areas": [], "boat": "small"})
@@ -134,10 +146,7 @@ def test_location_query_neredeyim(bot):
 
     loc_msg = {
         "update_id": 10,
-        "message": {
-            "chat": {"id": 99},
-            "location": {"latitude": 38.3245, "longitude": 26.3012}
-        }
+        "message": {"chat": {"id": 99}, "location": {"latitude": 38.3245, "longitude": 26.3012}},
     }
     bot.handle(loc_msg)
     assert len(sent) == 1
@@ -209,6 +218,7 @@ def test_subscribe_invalid_region_rejected(bot):
 def test_expired_location_rejected(bot):
     """TC-BOT-05: Zaman Aşımına Uğramış Konum Paylaşımı."""
     import time
+
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
 
@@ -218,8 +228,8 @@ def test_expired_location_rejected(bot):
         "message": {
             "chat": {"id": 99},
             "date": old_time,
-            "location": {"latitude": 38.3245, "longitude": 26.3012}
-        }
+            "location": {"latitude": 38.3245, "longitude": 26.3012},
+        },
     }
     bot.handle(loc_msg)
     assert len(sent) == 1
@@ -250,17 +260,38 @@ def test_mayday_command_with_and_without_location(bot):
 def test_straits_command(bot):
     """Test /bogaz returns Turkish Straits status."""
     from pathlib import Path
+
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
 
     straits_file = Path(bot.cfg["_root"]) / "web" / "data" / "straits.json"
     straits_file.parent.mkdir(parents=True, exist_ok=True)
-    straits_file.write_text(json.dumps({
-        "straits": [
-            {"name": "İstanbul Boğazı", "status": "suspended", "status_tr": "Askıya Alındı", "reason": "Yoğun Sis", "active_vessels_in_transit": 2, "avg_speed_kn": 1.5},
-            {"name": "Çanakkale Boğazı", "status": "open", "status_tr": "Açık", "reason": None, "active_vessels_in_transit": 12, "avg_speed_kn": 9.2}
-        ]
-    }, ensure_ascii=False), encoding="utf-8")
+    straits_file.write_text(
+        json.dumps(
+            {
+                "straits": [
+                    {
+                        "name": "İstanbul Boğazı",
+                        "status": "suspended",
+                        "status_tr": "Askıya Alındı",
+                        "reason": "Yoğun Sis",
+                        "active_vessels_in_transit": 2,
+                        "avg_speed_kn": 1.5,
+                    },
+                    {
+                        "name": "Çanakkale Boğazı",
+                        "status": "open",
+                        "status_tr": "Açık",
+                        "reason": None,
+                        "active_vessels_in_transit": 12,
+                        "avg_speed_kn": 9.2,
+                    },
+                ]
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
 
     bot.handle(_msg(42, "/bogaz"))
     assert len(sent) == 1
@@ -272,44 +303,81 @@ def test_straits_command(bot):
 def test_fisherman_command(bot):
     """Test /balikci returns today's hour windows, not only a score."""
     from pathlib import Path
+
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
 
     data_dir = Path(bot.cfg["_root"]) / "web" / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
-    data_dir.joinpath("outlook.json").write_text(json.dumps({
-        "schema_version": 1,
-        "generated": "2026-09-19T05:00:00Z",
-        "hours": 18,
-        "tz_offset_hours": 3,
-        "question": "today",
-        "classes": {
-            "small": {
-                "label": "küçük tekne (8 m ve altı)",
-                "limits": {"label": "küçük tekne", "gust_kn": 22, "wave_m": 1.25},
-                "areas": [{
-                    "name": "Marmara Denizi",
-                    "lat": 40.7, "lon": 28.2,
-                    "windows": [
-                        {"start": "06:00", "end": "12:00", "level": "ok", "gust_kn": 10, "wave_m": 0.4},
-                        {"start": "12:00", "end": "18:00", "level": "danger", "gust_kn": 26, "wave_m": 0.5},
-                    ],
-                    "max_gust": 26, "max_wave": 0.5,
-                    "first_danger_start": "12:00",
-                    "return_by": "12:00",
-                    "worst": "danger",
-                }],
+    data_dir.joinpath("outlook.json").write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "generated": "2026-09-19T05:00:00Z",
+                "hours": 18,
+                "tz_offset_hours": 3,
+                "question": "today",
+                "classes": {
+                    "small": {
+                        "label": "küçük tekne (8 m ve altı)",
+                        "limits": {"label": "küçük tekne", "gust_kn": 22, "wave_m": 1.25},
+                        "areas": [
+                            {
+                                "name": "Marmara Denizi",
+                                "lat": 40.7,
+                                "lon": 28.2,
+                                "windows": [
+                                    {
+                                        "start": "06:00",
+                                        "end": "12:00",
+                                        "level": "ok",
+                                        "gust_kn": 10,
+                                        "wave_m": 0.4,
+                                    },
+                                    {
+                                        "start": "12:00",
+                                        "end": "18:00",
+                                        "level": "danger",
+                                        "gust_kn": 26,
+                                        "wave_m": 0.5,
+                                    },
+                                ],
+                                "max_gust": 26,
+                                "max_wave": 0.5,
+                                "first_danger_start": "12:00",
+                                "return_by": "12:00",
+                                "worst": "danger",
+                            }
+                        ],
+                    },
+                    "medium": {"label": "orta", "limits": {"gust_kn": 28, "wave_m": 2.0}, "areas": []},
+                    "large": {"label": "büyük", "limits": {"gust_kn": 34, "wave_m": 3.0}, "areas": []},
+                },
             },
-            "medium": {"label": "orta", "limits": {"gust_kn": 28, "wave_m": 2.0}, "areas": []},
-            "large": {"label": "büyük", "limits": {"gust_kn": 34, "wave_m": 3.0}, "areas": []},
-        },
-    }, ensure_ascii=False), encoding="utf-8")
-    data_dir.joinpath("safety_index.json").write_text(json.dumps({
-        "ratings": [
-            {"area": "Marmara Denizi", "score": 88, "status": "good", "wave_m": 0.5,
-             "wind_kn": 10, "gust_kn": 14, "recommendation_tr": "ok", "data_quality": "ok"}
-        ]
-    }, ensure_ascii=False), encoding="utf-8")
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    data_dir.joinpath("safety_index.json").write_text(
+        json.dumps(
+            {
+                "ratings": [
+                    {
+                        "area": "Marmara Denizi",
+                        "score": 88,
+                        "status": "good",
+                        "wave_m": 0.5,
+                        "wind_kn": 10,
+                        "gust_kn": 14,
+                        "recommendation_tr": "ok",
+                        "data_quality": "ok",
+                    }
+                ]
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
 
     bot.handle(_msg(42, "/balikci Marmara"))
     assert len(sent) == 1
@@ -324,17 +392,30 @@ def test_fisherman_command(bot):
 def test_kazalar_command(bot):
     """Test /kazalar accepts wrapped {incidents: []} shape."""
     from pathlib import Path
+
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
 
     inc_file = Path(bot.cfg["_root"]) / "web" / "data" / "incidents.json"
     inc_file.parent.mkdir(parents=True, exist_ok=True)
-    inc_file.write_text(json.dumps({
-        "incidents": [
-            {"type": "sinking", "type_tr": "batma", "area": "Şile", "status": "confirmed",
-             "vessel": {"name": "Koster-1"}, "summary": "Gemi battı"}
-        ]
-    }, ensure_ascii=False), encoding="utf-8")
+    inc_file.write_text(
+        json.dumps(
+            {
+                "incidents": [
+                    {
+                        "type": "sinking",
+                        "type_tr": "batma",
+                        "area": "Şile",
+                        "status": "confirmed",
+                        "vessel": {"name": "Koster-1"},
+                        "summary": "Gemi battı",
+                    }
+                ]
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
 
     bot.handle(_msg(42, "/kazalar"))
     assert len(sent) == 1
@@ -344,20 +425,34 @@ def test_kazalar_command(bot):
 
 def test_kazalar_accepts_top_level_array(bot):
     from pathlib import Path
+
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
     inc_file = Path(bot.cfg["_root"]) / "web" / "data" / "incidents.json"
     inc_file.parent.mkdir(parents=True, exist_ok=True)
-    inc_file.write_text(json.dumps([
-        {"type": "rescue", "type_tr": "kurtarma", "area": "Bodrum", "status": "confirmed",
-         "vessel": {"name": "X"}, "summary": "SG operasyonu"}
-    ], ensure_ascii=False), encoding="utf-8")
+    inc_file.write_text(
+        json.dumps(
+            [
+                {
+                    "type": "rescue",
+                    "type_tr": "kurtarma",
+                    "area": "Bodrum",
+                    "status": "confirmed",
+                    "vessel": {"name": "X"},
+                    "summary": "SG operasyonu",
+                }
+            ],
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
     bot.handle(_msg(42, "/kazalar"))
     assert "Bodrum" in sent[0]
 
 
 def test_reply_keyboard_maps_bugun_to_balikci():
     from src.alert.bot import _inline_home_menu, _keyboard_command, _reply_keyboard
+
     assert _keyboard_command("🎣 Bugün") == "balikci"
     assert _keyboard_command("🌊 Durum") == "durum"
     assert _keyboard_command("🚢 Boğaz") == "bogaz"
@@ -365,8 +460,7 @@ def test_reply_keyboard_maps_bugun_to_balikci():
     assert kb["resize_keyboard"] is True
     assert any(btn["text"] == "🎣 Bugün" for row in kb["keyboard"] for btn in row)
     inline = json.loads(_inline_home_menu())
-    assert any(b.get("callback_data") == "menu:balikci"
-               for row in inline["inline_keyboard"] for b in row)
+    assert any(b.get("callback_data") == "menu:balikci" for row in inline["inline_keyboard"] for b in row)
 
 
 def test_start_attaches_menus(bot):
@@ -386,22 +480,44 @@ def test_start_attaches_menus(bot):
 
 def test_keyboard_tap_runs_balikci(bot):
     from pathlib import Path
+
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
     data_dir = Path(bot.cfg["_root"]) / "web" / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
-    data_dir.joinpath("outlook.json").write_text(json.dumps({
-        "schema_version": 1, "classes": {
-            "small": {"label": "küçük", "limits": {}, "areas": [{
-                "name": "Marmara Denizi",
-                "windows": [{"start": "08:00", "end": "16:00", "level": "ok",
-                             "gust_kn": 10, "wave_m": 0.4}],
-                "return_by": None, "worst": "ok",
-            }]},
-            "medium": {"label": "m", "limits": {}, "areas": []},
-            "large": {"label": "l", "limits": {}, "areas": []},
-        },
-    }, ensure_ascii=False), encoding="utf-8")
+    data_dir.joinpath("outlook.json").write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "classes": {
+                    "small": {
+                        "label": "küçük",
+                        "limits": {},
+                        "areas": [
+                            {
+                                "name": "Marmara Denizi",
+                                "windows": [
+                                    {
+                                        "start": "08:00",
+                                        "end": "16:00",
+                                        "level": "ok",
+                                        "gust_kn": 10,
+                                        "wave_m": 0.4,
+                                    }
+                                ],
+                                "return_by": None,
+                                "worst": "ok",
+                            }
+                        ],
+                    },
+                    "medium": {"label": "m", "limits": {}, "areas": []},
+                    "large": {"label": "l", "limits": {}, "areas": []},
+                },
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
     bot.handle(_msg(42, "🎣 Bugün"))
     assert sent and "Bugün" in sent[0]
 
@@ -418,32 +534,61 @@ def test_neredeyim_never_invents_eighty_five(bot):
 def test_balikci_shows_stale_and_official_warning(bot):
     from datetime import datetime, timedelta
     from pathlib import Path
+
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
     data_dir = Path(bot.cfg["_root"]) / "web" / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
     old = (datetime.now(UTC) - timedelta(hours=5)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    data_dir.joinpath("outlook.json").write_text(json.dumps({
-        "schema_version": 1,
-        "generated": old,
-        "coverage": {"expected": 1, "present": 1, "missing": []},
-        "classes": {
-            "small": {"label": "küçük", "limits": {}, "areas": [{
-                "name": "Marmara Denizi",
-                "windows": [{"start": "08:00", "end": "16:00", "level": "ok",
-                             "gust_kn": 10, "wave_m": 0.4}],
-                "return_by": None, "worst": "ok",
-            }]},
-            "medium": {"label": "m", "limits": {}, "areas": []},
-            "large": {"label": "l", "limits": {}, "areas": []},
-        },
-    }, ensure_ascii=False), encoding="utf-8")
-    data_dir.joinpath("warnings.json").write_text(json.dumps([{
-        "headline": "Marmara için kuvvetli rüzgar uyarısı",
-        "area": "Marmara",
-        "org": "MGM",
-        "kind": "marine-weather",
-    }], ensure_ascii=False), encoding="utf-8")
+    data_dir.joinpath("outlook.json").write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "generated": old,
+                "coverage": {"expected": 1, "present": 1, "missing": []},
+                "classes": {
+                    "small": {
+                        "label": "küçük",
+                        "limits": {},
+                        "areas": [
+                            {
+                                "name": "Marmara Denizi",
+                                "windows": [
+                                    {
+                                        "start": "08:00",
+                                        "end": "16:00",
+                                        "level": "ok",
+                                        "gust_kn": 10,
+                                        "wave_m": 0.4,
+                                    }
+                                ],
+                                "return_by": None,
+                                "worst": "ok",
+                            }
+                        ],
+                    },
+                    "medium": {"label": "m", "limits": {}, "areas": []},
+                    "large": {"label": "l", "limits": {}, "areas": []},
+                },
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    data_dir.joinpath("warnings.json").write_text(
+        json.dumps(
+            [
+                {
+                    "headline": "Marmara için kuvvetli rüzgar uyarısı",
+                    "area": "Marmara",
+                    "org": "MGM",
+                    "kind": "marine-weather",
+                }
+            ],
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
     bot.handle(_msg(42, "/balikci marmara"))
     assert sent
     assert "Eski tahmin" in sent[0]
@@ -452,6 +597,7 @@ def test_balikci_shows_stale_and_official_warning(bot):
 
 def test_build_phonetic_coords_tr():
     from src.alert.bot import build_phonetic_coords_tr
+
     spoken = build_phonetic_coords_tr(40.9876, 28.1234)
     assert "40 DERECE 59 DAKİKA KUZEY" in spoken
     assert "28 DERECE 07 DAKİKA DOĞU" in spoken
@@ -464,7 +610,7 @@ def test_mayday_generates_phonetic_speech(bot):
         "active": True,
         "boat": "small",
         "areas": ["Marmara Denizi"],
-        "last_location": {"lat": 40.9, "lon": 28.9, "time": 9999999999}
+        "last_location": {"lat": 40.9, "lon": 28.9, "time": 9999999999},
     }
     bot.handle(_msg(42, "/mayday"))
     assert sent
@@ -475,34 +621,53 @@ def test_mayday_generates_phonetic_speech(bot):
 
 def test_balikci_displays_wind_and_sunset(bot):
     from pathlib import Path
+
     sent = []
     bot.send = lambda chat, text, markup=None, dry=True: sent.append(text)
     data_dir = Path(bot.cfg["_root"]) / "web" / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
-    data_dir.joinpath("outlook.json").write_text(json.dumps({
-        "schema_version": 1,
-        "coverage": {"expected": 1, "present": 1, "missing": []},
-        "classes": {
-            "small": {"label": "küçük", "limits": {}, "areas": [{
-                "name": "Marmara Denizi",
-                "windows": [{"start": "08:00", "end": "16:00", "level": "watch",
-                             "gust_kn": 18, "wave_m": 1.1,
-                             "dominant_wind": "Poyraz",
-                             "hazard_reason": "Dik/Kısa Dalga Çırpıntısı (3.2s)"}],
-                "return_by": "15:15",
-                "sunset_time": "19:30",
-                "safe_cutoff": "18:45",
-                "steepness_hazard": True,
-                "worst": "watch",
-            }]},
-            "medium": {"label": "m", "limits": {}, "areas": []},
-            "large": {"label": "l", "limits": {}, "areas": []},
-        },
-    }, ensure_ascii=False), encoding="utf-8")
+    data_dir.joinpath("outlook.json").write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "coverage": {"expected": 1, "present": 1, "missing": []},
+                "classes": {
+                    "small": {
+                        "label": "küçük",
+                        "limits": {},
+                        "areas": [
+                            {
+                                "name": "Marmara Denizi",
+                                "windows": [
+                                    {
+                                        "start": "08:00",
+                                        "end": "16:00",
+                                        "level": "watch",
+                                        "gust_kn": 18,
+                                        "wave_m": 1.1,
+                                        "dominant_wind": "Poyraz",
+                                        "hazard_reason": "Dik/Kısa Dalga Çırpıntısı (3.2s)",
+                                    }
+                                ],
+                                "return_by": "15:15",
+                                "sunset_time": "19:30",
+                                "safe_cutoff": "18:45",
+                                "steepness_hazard": True,
+                                "worst": "watch",
+                            }
+                        ],
+                    },
+                    "medium": {"label": "m", "limits": {}, "areas": []},
+                    "large": {"label": "l", "limits": {}, "areas": []},
+                },
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
     bot.handle(_msg(42, "/balikci marmara"))
     assert sent
     assert "Poyraz" in sent[0]
     assert "Dik/Kısa Dalga Çırpıntısı" in sent[0]
     assert "19:30" in sent[0]
     assert "15:15" in sent[0]
-

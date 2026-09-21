@@ -13,35 +13,49 @@ from typing import Any
 
 # 16 geleneksel Türk denizci pusula yönü (0° / 360° Yıldız = Kuzey)
 COMPASS_POINTS_TR = [
-    "Yıldız",              # 0°    N
-    "Yıldız-Poyraz",       # 22.5° NNE
-    "Poyraz",              # 45°   NE
-    "Gündoğusu-Poyraz",    # 67.5° ENE
-    "Gündoğusu",           # 90°   E
-    "Gündoğusu-Keşişleme", # 112.5° ESE
-    "Keşişleme",           # 135°  SE
-    "Kıble-Keşişleme",     # 157.5° SSE
-    "Kıble",               # 180°  S
-    "Kıble-Lodos",         # 202.5° SSW
-    "Lodos",               # 225°  SW
-    "Batı-Lodos",          # 247.5° WSW
-    "Günbatısı",           # 270°  W
-    "Batı-Karayel",        # 292.5° WNW
-    "Karayel",             # 315°  NW
-    "Yıldız-Karayel",      # 337.5° NNW
+    "Yıldız",  # 0°    N
+    "Yıldız-Poyraz",  # 22.5° NNE
+    "Poyraz",  # 45°   NE
+    "Gündoğusu-Poyraz",  # 67.5° ENE
+    "Gündoğusu",  # 90°   E
+    "Gündoğusu-Keşişleme",  # 112.5° ESE
+    "Keşişleme",  # 135°  SE
+    "Kıble-Keşişleme",  # 157.5° SSE
+    "Kıble",  # 180°  S
+    "Kıble-Lodos",  # 202.5° SSW
+    "Lodos",  # 225°  SW
+    "Batı-Lodos",  # 247.5° WSW
+    "Günbatısı",  # 270°  W
+    "Batı-Karayel",  # 292.5° WNW
+    "Karayel",  # 315°  NW
+    "Yıldız-Karayel",  # 337.5° NNW
 ]
 
 COMPASS_POINTS_EN = [
-    "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
-    "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW",
+    "N",
+    "NNE",
+    "NE",
+    "ENE",
+    "E",
+    "ESE",
+    "SE",
+    "SSE",
+    "S",
+    "SSW",
+    "SW",
+    "WSW",
+    "W",
+    "WNW",
+    "NW",
+    "NNW",
 ]
 
 
 class WindSector(str, Enum):
-    NORTHERN = "northern"    # Karayel, Yıldız, Poyraz
-    EASTERN = "eastern"      # Gündoğusu, Keşişleme
+    NORTHERN = "northern"  # Karayel, Yıldız, Poyraz
+    EASTERN = "eastern"  # Gündoğusu, Keşişleme
     SOUTHERLY = "southerly"  # Kıble, Lodos (Marmara ve Ege'de en tehlikeli)
-    WESTERN = "western"      # Günbatısı
+    WESTERN = "western"  # Günbatısı
 
 
 def degree_to_compass_tr(deg: float | None) -> str:
@@ -118,7 +132,7 @@ def analyze_wave_steepness(
     ):
         return WaveSteepness(is_steep=False, steepness_ratio=0.0, wavelength_m=0.0, reason=None)
 
-    wavelength = 1.56 * (period_s ** 2)
+    wavelength = 1.56 * (period_s**2)
     ratio = height_m / wavelength if wavelength > 0 else 0.0
 
     is_steep = (ratio >= 0.065) or (period_s < 4.5 and height_m >= 0.7)

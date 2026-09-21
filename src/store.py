@@ -10,7 +10,7 @@ from pathlib import Path
 from .model import Incident, Warning, now_iso
 from .process.dedup import same_hazard
 
-EVENT_LOG_MAX = 20000        # committed between CI runs, so keep it capped
+EVENT_LOG_MAX = 20000  # committed between CI runs, so keep it capped
 
 
 class Store:
@@ -39,7 +39,9 @@ class Store:
 
     def _event(self, kind: str, payload: dict) -> None:
         with self.events_path.open("a", encoding="utf-8") as f:
-            f.write(json.dumps({"ts": now_iso(), "kind": kind, "payload": payload}, ensure_ascii=False) + "\n")
+            f.write(
+                json.dumps({"ts": now_iso(), "kind": kind, "payload": payload}, ensure_ascii=False) + "\n"
+            )
 
     def trim_events(self, max_lines: int = EVENT_LOG_MAX) -> int:
         """The event log is committed between CI runs, so cap it. Stats read the
@@ -82,6 +84,7 @@ class Store:
     def upsert_warning(self, w: Warning) -> tuple[Warning, str]:
         """Returns (warning, how) where how is 'new', 'merged' or 'dup'."""
         with self._lock:
+
             def _refresh(cur: Warning) -> None:
                 # Aynı kaynak güncellendi: canlı veriyi yenile
                 cur.headline = w.headline
@@ -129,12 +132,18 @@ class Store:
     def save(self) -> None:
         with self._lock:
             self.incidents_path.write_text(
-                json.dumps([i.to_dict() for i in sorted(self.incidents.values(), key=lambda x: x.id)],
-                           ensure_ascii=False, indent=2),
+                json.dumps(
+                    [i.to_dict() for i in sorted(self.incidents.values(), key=lambda x: x.id)],
+                    ensure_ascii=False,
+                    indent=2,
+                ),
                 encoding="utf-8",
             )
             self.warnings_path.write_text(
-                json.dumps([w.to_dict() for w in sorted(self.warnings.values(), key=lambda x: x.id)],
-                           ensure_ascii=False, indent=2),
+                json.dumps(
+                    [w.to_dict() for w in sorted(self.warnings.values(), key=lambda x: x.id)],
+                    ensure_ascii=False,
+                    indent=2,
+                ),
                 encoding="utf-8",
             )

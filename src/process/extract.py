@@ -18,14 +18,16 @@ _VW = r"(?:gemi|tekne|şile[pb]|yat|kotra|feribot|römorkör|tanker|balıkçı\s
 
 # "ALSU gemisi" / "Alsu isimli tekne" / 'Alsu' gemisi / “Alsu” gemi
 _VESSEL_RE = [
-    re.compile(r"[«\"'“]([A-Za-zÇĞİÖŞÜçğıöşü][\wÇĞİÖŞÜçğıöşü .-]{1,28}?)[»\"'”]\s*(?:isimli\s+|adlı\s+)?" + _VW,
-               re.IGNORECASE),
+    re.compile(
+        r"[«\"'“]([A-Za-zÇĞİÖŞÜçğıöşü][\wÇĞİÖŞÜçğıöşü .-]{1,28}?)[»\"'”]\s*(?:isimli\s+|adlı\s+)?" + _VW,
+        re.IGNORECASE,
+    ),
     re.compile(r"\b([A-ZÇĞİÖŞÜ][A-Za-z0-9ÇĞİÖŞÜçğıöşü .-]{2,26}?)\s+(?:isimli|adlı)\s+" + _VW),
     re.compile(r"\b([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜ0-9]{1,}(?:[ .-][A-ZÇĞİÖŞÜ0-9]{1,}){0,3})\s+" + _VW),
 ]
 
 _CAS_RE = re.compile(
-    r"(\d{1,3})\s*(?:[a-zçğıöşü]+\s+){0,2}?"          # optional adjectives ("20 düzensiz göçmen")
+    r"(\d{1,3})\s*(?:[a-zçğıöşü]+\s+){0,2}?"  # optional adjectives ("20 düzensiz göçmen")
     r"(?:kişi|şahıs|can|mürettebat|göçmen|çocuk|yolcu|denizci|balıkçı|tayfa|personel)"
     r"(?:[^.]{0,40}?(kayıp|yaralı|öl|hayat|mahsur|kurtar|aran|tahliye))?",
     re.IGNORECASE,
@@ -44,18 +46,18 @@ _TR_BBOX = (34.0, 44.0, 24.0, 43.0)  # lat_min, lat_max, lon_min, lon_max
 
 # incident type inferred from the wording, most specific first
 _TYPE_RULES = [
-    ("collision",     r"çarpış|çatış|çarptı"),
-    ("grounding",     r"karaya otur|karaya vur|sığlığa"),
-    ("capsize",       r"alabora|ters dön|yan yattı|devril"),
-    ("sinking",       r"batt[ıi]|batan|batık|bat[ıi]yor|su ald[ıi]|su al[ıi]yor"),
-    ("fire",          r"yangın|alev|yandı"),
+    ("collision", r"çarpış|çatış|çarptı"),
+    ("grounding", r"karaya otur|karaya vur|sığlığa"),
+    ("capsize", r"alabora|ters dön|yan yattı|devril"),
+    ("sinking", r"batt[ıi]|batan|batık|bat[ıi]yor|su ald[ıi]|su al[ıi]yor"),
+    ("fire", r"yangın|alev|yandı"),
     ("man-overboard", r"denize düş|adam düş|denize atla"),
-    ("drift",         r"sürüklen|makine arıza|kumanda dışı|motor arıza"),
-    ("distress",      r"imdat|mayday|tehlike çağrısı|yardım çağrısı"),
+    ("drift", r"sürüklen|makine arıza|kumanda dışı|motor arıza"),
+    ("distress", r"imdat|mayday|tehlike çağrısı|yardım çağrısı"),
     # a completed rescue is not a distress call; the channel used to announce
     # "2 sahis kurtarilmistir" as "tehlike cagrisi"
-    ("rescue",        r"kurtarıld|kurtarılmış|kurtarıl(dı|mak)|sağ salim|karaya çıkarıl"),
-    ("distress",      r"kurtarma|mahsur|tahliye|arama kurtarma|kayb?ol"),
+    ("rescue", r"kurtarıld|kurtarılmış|kurtarıl(dı|mak)|sağ salim|karaya çıkarıl"),
+    ("distress", r"kurtarma|mahsur|tahliye|arama kurtarma|kayb?ol"),
 ]
 
 
@@ -77,7 +79,7 @@ class Extracted:
     casualties: int | None = None
     places: list[str] = field(default_factory=list)
     itype: str = "unknown"
-    precise: bool = False        # True when real coordinates were parsed, not a city name
+    precise: bool = False  # True when real coordinates were parsed, not a city name
 
 
 def _in_tr(lat, lon) -> bool:
@@ -107,8 +109,23 @@ def coordinates(text: str):
 
 
 def vessel_name(text: str):
-    stop = {"SAHİL", "SAHIL", "GÜVENLİK", "GUVENLIK", "KURTARMA", "ARAMA", "DENİZ",
-            "DENIZ", "SON", "DAKİKA", "DAKIKA", "HABERİ", "HABERI", "TÜRK", "TURK"}
+    stop = {
+        "SAHİL",
+        "SAHIL",
+        "GÜVENLİK",
+        "GUVENLIK",
+        "KURTARMA",
+        "ARAMA",
+        "DENİZ",
+        "DENIZ",
+        "SON",
+        "DAKİKA",
+        "DAKIKA",
+        "HABERİ",
+        "HABERI",
+        "TÜRK",
+        "TURK",
+    }
     for rx in _VESSEL_RE:
         for m in rx.finditer(text):
             name = " ".join(m.group(1).split()).strip(" .,-")
@@ -124,7 +141,7 @@ def casualties(text: str):
         n = int(m.group(1))
         if n > 500:
             continue
-        ctx = (m.group(2) or "")
+        ctx = m.group(2) or ""
         if best is None or (any(k in ctx.lower() for k in _CAS_KEEP) and n <= (best or n)):
             best = n
     return best

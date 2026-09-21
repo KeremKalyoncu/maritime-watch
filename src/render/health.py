@@ -7,9 +7,14 @@ import time
 from pathlib import Path
 
 
-def write_health(out_dir: str, records: list[dict], started: float,
-                 incidents: int, warnings: int,
-                 fetch_status: dict | None = None) -> dict:
+def write_health(
+    out_dir: str,
+    records: list[dict],
+    started: float,
+    incidents: int,
+    warnings: int,
+    fetch_status: dict | None = None,
+) -> dict:
     ok = sum(1 for r in records if r["ok"])
     down = [r["source"] for r in records if not r["ok"]]
     health = {

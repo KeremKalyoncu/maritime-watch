@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+
 from src.process.astronomy import calculate_sun_times
 
 

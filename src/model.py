@@ -50,9 +50,9 @@ class IncidentType(str, Enum):
 
 
 class Status(str, Enum):
-    SIGNAL = "signal"            # tek zayif kaynak (sadece ais anomalisi)
-    PROBABLE = "probable"        # kuvvetli ihtimal (birden cok kaynak)
-    CONFIRMED = "confirmed"      # resmi kurum onayi
+    SIGNAL = "signal"  # tek zayif kaynak (sadece ais anomalisi)
+    PROBABLE = "probable"  # kuvvetli ihtimal (birden cok kaynak)
+    CONFIRMED = "confirmed"  # resmi kurum onayi
     RESOLVED = "resolved"
     FALSE_POSITIVE = "false-positive"
 
@@ -66,11 +66,17 @@ class Severity(str, Enum):
 
 # Telegram ve harita icin Turkce karsiliklar
 TYPE_TR = {
-    "grounding": "karaya oturma", "collision": "çatışma (çarpışma)",
+    "grounding": "karaya oturma",
+    "collision": "çatışma (çarpışma)",
     "collision-risk": "çatışma riski (yakın geçiş)",
-    "drift": "sürüklenme", "distress": "tehlike çağrısı", "capsize": "alabora",
-    "fire": "yangın", "sinking": "batma", "man-overboard": "denize adam düştü",
-    "rescue": "kurtarma operasyonu", "unknown": "belirsiz",
+    "drift": "sürüklenme",
+    "distress": "tehlike çağrısı",
+    "capsize": "alabora",
+    "fire": "yangın",
+    "sinking": "batma",
+    "man-overboard": "denize adam düştü",
+    "rescue": "kurtarma operasyonu",
+    "unknown": "belirsiz",
 }
 STATUS_TR = {
     "signal": "zayıf sinyal — teyit bekliyor",
@@ -91,7 +97,7 @@ def status_tr(s: str) -> str:
 
 @dataclass
 class Source:
-    kind: str                       # ais-anomaly | official | news | dsc | sdr | navtex
+    kind: str  # ais-anomaly | official | news | dsc | sdr | navtex
     detail: str = ""
     org: str | None = None
     url: str | None = None
@@ -114,8 +120,8 @@ class WeatherContext:
     wind_kn: float
     gust_kn: float
     wave_m: float | None
-    wind_dir: int               # 0-360 degrees
-    beaufort: int               # 0-12
+    wind_dir: int  # 0-360 degrees
+    beaufort: int  # 0-12
     summary_tr: str
     summary_en: str
     station_name: str | None = None
@@ -134,6 +140,7 @@ class WeatherContext:
     @staticmethod
     def from_dict(d: dict[str, Any]) -> WeatherContext:
         import dataclasses
+
         valid_fields = {f.name for f in dataclasses.fields(WeatherContext)}
         filtered = {k: v for k, v in d.items() if k in valid_fields}
         return WeatherContext(**filtered)
@@ -141,11 +148,11 @@ class WeatherContext:
 
 @dataclass
 class StraitStatus:
-    id: str                     # "bosphorus" | "dardanelles"
-    name: str                   # "İstanbul Boğazı" | "Çanakkale Boğazı"
-    status: str                 # "open" | "caution" | "suspended"
-    status_tr: str              # "Trafik Normal" | "Tedbirli Geçiş" | "Geçiş Askıya Alındı"
-    reason: str | None = None   # "Yoğun Sis (Görüş < 300m)"
+    id: str  # "bosphorus" | "dardanelles"
+    name: str  # "İstanbul Boğazı" | "Çanakkale Boğazı"
+    status: str  # "open" | "caution" | "suspended"
+    status_tr: str  # "Trafik Normal" | "Tedbirli Geçiş" | "Geçiş Askıya Alındı"
+    reason: str | None = None  # "Yoğun Sis (Görüş < 300m)"
     active_vessels_in_transit: int = 0
     avg_speed_kn: float = 0.0
     last_update: str = field(default_factory=now_iso)
@@ -158,6 +165,7 @@ class StraitStatus:
     @staticmethod
     def from_dict(d: dict[str, Any]) -> StraitStatus:
         import dataclasses
+
         valid_fields = {f.name for f in dataclasses.fields(StraitStatus)}
         filtered = {k: v for k, v in d.items() if k in valid_fields}
         return StraitStatus(**filtered)
@@ -165,9 +173,9 @@ class StraitStatus:
 
 @dataclass
 class MarineSafetyRating:
-    area: str                   # "Marmara Denizi", "Saroz Körfezi", vb.
-    score: int                  # 0 - 100
-    status: str                 # "good" (>=75) | "caution" (45-74) | "danger" (<45)
+    area: str  # "Marmara Denizi", "Saroz Körfezi", vb.
+    score: int  # 0 - 100
+    status: str  # "good" (>=75) | "caution" (45-74) | "danger" (<45)
     wave_m: float | None
     wind_kn: float
     gust_kn: float
@@ -189,8 +197,8 @@ class MarineSafetyRating:
 class CpaEvent:
     mmsi1: int
     mmsi2: int
-    cpa_nm: float               # Closest Point of Approach in nautical miles (< 0.35 NM)
-    tcpa_min: float             # Time to CPA in minutes (0 < TCPA <= 12 min)
+    cpa_nm: float  # Closest Point of Approach in nautical miles (< 0.35 NM)
+    tcpa_min: float  # Time to CPA in minutes (0 < TCPA <= 12 min)
     lat: float
     lon: float
     sog1_kn: float
@@ -223,8 +231,8 @@ class Incident:
     last_update: str = field(default_factory=now_iso)
     sources: list[Source] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
-    places: list[str] = field(default_factory=list)   # coastal names extracted from text
-    coarse: bool = False                             # position is a city centre, not a fix
+    places: list[str] = field(default_factory=list)  # coastal names extracted from text
+    coarse: bool = False  # position is a city centre, not a fix
     track: list[list[float]] = field(default_factory=list)  # [[lat, lon], ...] coordinates history
     heading: float | None = None
     vessel_type: str = "unknown"
@@ -264,7 +272,7 @@ class Warning:
     headline: str
     area: str = ""
     severity: str = Severity.MINOR.value
-    kind: str = "marine-weather"    # marine-weather | metar | earthquake | gdacs | eonet | nav-warning | navtex
+    kind: str = "marine-weather"  # marine-weather | metar | earthquake | gdacs | eonet | nav-warning | navtex
     onset: str | None = None
     expires: str | None = None
     org: str = ""
@@ -272,15 +280,16 @@ class Warning:
     issued: str = field(default_factory=now_iso)
     last_update: str = field(default_factory=now_iso)
     raw: str = ""
-    lat: float | None = None     # centroid / epicentre, for the map
+    lat: float | None = None  # centroid / epicentre, for the map
     lon: float | None = None
-    value: float | None = None   # magnitude or wave height, used to match duplicates
+    value: float | None = None  # magnitude or wave height, used to match duplicates
     sources: list[Source] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         if not self.sources and self.org:
-            self.sources.append(Source(kind=self.kind, org=self.org,
-                                       detail=self.headline[:200], url=self.url, ts=self.issued))
+            self.sources.append(
+                Source(kind=self.kind, org=self.org, detail=self.headline[:200], url=self.url, ts=self.issued)
+            )
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

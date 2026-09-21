@@ -39,7 +39,7 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
     static: dict = {}
     deadline = time.time() + seconds
 
-    async with websockets.connect(url, ping_interval=30, close_timeout=10, max_size=2 ** 20) as ws:
+    async with websockets.connect(url, ping_interval=30, close_timeout=10, max_size=2**20) as ws:
         await ws.send(json.dumps(sub))
         while time.time() < deadline:
             try:
@@ -64,28 +64,32 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
                 }
             elif mtype == "PositionReport":
                 d = msg.get("Message", {}).get("PositionReport", {})
-                positions.append({
-                    "mmsi": mmsi,
-                    "lat": d.get("Latitude"),
-                    "lon": d.get("Longitude"),
-                    "sog": d.get("Sog"),
-                    "cog": d.get("Cog"),
-                    "true_heading": d.get("TrueHeading"),
-                    "nav_status": d.get("NavigationalStatus"),
-                    "ts": meta.get("time_utc") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                    "name": (meta.get("ShipName") or "").strip(),
-                })
+                positions.append(
+                    {
+                        "mmsi": mmsi,
+                        "lat": d.get("Latitude"),
+                        "lon": d.get("Longitude"),
+                        "sog": d.get("Sog"),
+                        "cog": d.get("Cog"),
+                        "true_heading": d.get("TrueHeading"),
+                        "nav_status": d.get("NavigationalStatus"),
+                        "ts": meta.get("time_utc") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                        "name": (meta.get("ShipName") or "").strip(),
+                    }
+                )
             elif mtype == "SafetyBroadcastMessage":
                 d = msg.get("Message", {}).get("SafetyBroadcastMessage", {})
-                positions.append({
-                    "msg_type": "safety",
-                    "mmsi": mmsi,
-                    "lat": meta.get("latitude"),
-                    "lon": meta.get("longitude"),
-                    "text": (d.get("Text") or "").strip(),
-                    "ts": meta.get("time_utc") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                    "name": (meta.get("ShipName") or "").strip(),
-                })
+                positions.append(
+                    {
+                        "msg_type": "safety",
+                        "mmsi": mmsi,
+                        "lat": meta.get("latitude"),
+                        "lon": meta.get("longitude"),
+                        "text": (d.get("Text") or "").strip(),
+                        "ts": meta.get("time_utc") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                        "name": (meta.get("ShipName") or "").strip(),
+                    }
+                )
 
     for p in positions:
         s = static.get(p["mmsi"])

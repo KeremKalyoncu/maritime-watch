@@ -54,10 +54,7 @@ def test_strait_fog_suspension():
 
 def test_strait_traffic_jam_caution():
     # 6 veya daha fazla gemi 2.5 kn altında ilerliyorsa tedbirli geçiş
-    vessels = {
-        str(i): {"track": [{"lat": 41.05 + (i * 0.02), "lon": 29.04, "sog": 1.8}]}
-        for i in range(6)
-    }
+    vessels = {str(i): {"track": [{"lat": 41.05 + (i * 0.02), "lon": 29.04, "sog": 1.8}]} for i in range(6)}
     status = evaluate_strait("bosphorus", warnings=[], vessels_data=vessels)
     assert status.status == "caution"
     assert status.status_tr == "Tedbirli Geçiş"
@@ -87,4 +84,3 @@ def test_strait_orkoz_caution():
     assert status.status_tr == "Tedbirli Geçiş"
     assert status.orkoz_detected is True
     assert "ORKOZ TEHLİKESİ" in (status.reason or "")
-

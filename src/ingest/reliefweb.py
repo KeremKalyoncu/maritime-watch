@@ -10,8 +10,10 @@ from ..model import Warning, now_iso, stable_hash
 from ._net import get_json
 
 # minimal query; we filter for Turkey on the name client-side
-API = ("https://api.reliefweb.int/v1/disasters?appname=maritime-watch"
-       "&limit=25&profile=list&sort[]=date.created:desc")
+API = (
+    "https://api.reliefweb.int/v1/disasters?appname=maritime-watch"
+    "&limit=25&profile=list&sort[]=date.created:desc"
+)
 _TR = ("turkiye", "türkiye", "turkey")
 
 
@@ -26,14 +28,16 @@ def fetch_reliefweb(cfg: dict) -> list[Warning]:
         if (f.get("status") or "current") not in ("current", "alert", "ongoing"):
             continue
         created = (f.get("date") or {}).get("created") or now_iso()
-        out.append(Warning(
-            id=f"rw-{row.get('id') or stable_hash(name)}",
-            headline=f"ReliefWeb: {name[:220]}",
-            area=cfg["region"]["name"],
-            kind="gdacs",
-            severity="minor",
-            org="ReliefWeb",
-            url=(row.get("href") or "https://reliefweb.int/"),
-            issued=created,
-        ))
+        out.append(
+            Warning(
+                id=f"rw-{row.get('id') or stable_hash(name)}",
+                headline=f"ReliefWeb: {name[:220]}",
+                area=cfg["region"]["name"],
+                kind="gdacs",
+                severity="minor",
+                org="ReliefWeb",
+                url=(row.get("href") or "https://reliefweb.int/"),
+                issued=created,
+            )
+        )
     return out[:10]

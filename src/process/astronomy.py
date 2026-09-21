@@ -15,13 +15,13 @@ from typing import Any
 
 @dataclass(frozen=True)
 class SunCycle:
-    sunrise_time: str           # "06:42" (HH:MM local)
-    sunset_time: str            # "18:14" (HH:MM local)
-    safe_return_cutoff: str     # Gün batımından 45 dk öncesi: "17:29" (HH:MM local)
-    daylight_hours: float       # Toplam gün ışığı saati (örn: 11.53)
-    sunrise_minutes: int        # Günün dakikası (0-1440)
-    sunset_minutes: int         # Günün dakikası (0-1440)
-    cutoff_minutes: int         # Günün dakikası (0-1440)
+    sunrise_time: str  # "06:42" (HH:MM local)
+    sunset_time: str  # "18:14" (HH:MM local)
+    safe_return_cutoff: str  # Gün batımından 45 dk öncesi: "17:29" (HH:MM local)
+    daylight_hours: float  # Toplam gün ışığı saati (örn: 11.53)
+    sunrise_minutes: int  # Günün dakikası (0-1440)
+    sunset_minutes: int  # Günün dakikası (0-1440)
+    cutoff_minutes: int  # Günün dakikası (0-1440)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -55,7 +55,7 @@ def calculate_sun_times(
     """
     # Parse date
     if date is None:
-        target_date = datetime.datetime.now(datetime.timezone.utc).date()
+        target_date = datetime.datetime.now(datetime.UTC).date()
     elif isinstance(date, str):
         target_date = datetime.date.fromisoformat(date.split("T")[0])
     else:

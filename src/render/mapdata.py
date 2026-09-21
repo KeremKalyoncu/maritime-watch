@@ -64,4 +64,3 @@ def enrich_incident_tracks(store, vessels_data_or_path: str | Path | dict | None
             inc.track = coords
             enriched += 1
     return enriched
-

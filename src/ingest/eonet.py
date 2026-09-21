@@ -11,8 +11,11 @@ from ._net import get_json
 API = "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&days=7"
 
 _CAT_TR = {
-    "severeStorms": "şiddetli fırtına", "wildfires": "orman yangını",
-    "floods": "sel", "volcanoes": "volkan", "seaLakeIce": "deniz buzu",
+    "severeStorms": "şiddetli fırtına",
+    "wildfires": "orman yangını",
+    "floods": "sel",
+    "volcanoes": "volkan",
+    "seaLakeIce": "deniz buzu",
 }
 
 
@@ -38,15 +41,18 @@ def fetch_eonet(cfg: dict) -> list[Warning]:
         cats = [c.get("id") for c in ev.get("categories", [])]
         cat_tr = next((_CAT_TR[c] for c in cats if c in _CAT_TR), "doğa olayı")
         title = ev.get("title") or cat_tr
-        out.append(Warning(
-            id=f"eo-{ev.get('id') or stable_hash(title)}",
-            headline=f"NASA EONET: {cat_tr} - {title[:200]}",
-            area=cfg["region"]["name"],
-            kind="eonet",
-            severity="minor",
-            org="NASA EONET",
-            url=ev.get("link") or "https://eonet.gsfc.nasa.gov/",
-            issued=(geoms[-1].get("date") or now_iso()),
-            lat=lat, lon=lon,
-        ))
+        out.append(
+            Warning(
+                id=f"eo-{ev.get('id') or stable_hash(title)}",
+                headline=f"NASA EONET: {cat_tr} - {title[:200]}",
+                area=cfg["region"]["name"],
+                kind="eonet",
+                severity="minor",
+                org="NASA EONET",
+                url=ev.get("link") or "https://eonet.gsfc.nasa.gov/",
+                issued=(geoms[-1].get("date") or now_iso()),
+                lat=lat,
+                lon=lon,
+            )
+        )
     return out[:15]

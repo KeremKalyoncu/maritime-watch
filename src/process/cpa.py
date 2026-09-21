@@ -20,10 +20,10 @@ from src.model import (
 )
 
 # Standard maritime thresholds
-DEFAULT_CPA_LIMIT_NM = 0.35      # ~650 meters
-DEFAULT_TCPA_LIMIT_MIN = 12.0     # 12 minutes
-MIN_UNDERWAY_SPEED_KN = 3.0       # Ignore slow-drifting / maneuvering craft
-MAX_COARSE_DISTANCE_NM = 3.0      # Coarse pre-filter to avoid O(N^2) load
+DEFAULT_CPA_LIMIT_NM = 0.35  # ~650 meters
+DEFAULT_TCPA_LIMIT_MIN = 12.0  # 12 minutes
+MIN_UNDERWAY_SPEED_KN = 3.0  # Ignore slow-drifting / maneuvering craft
+MAX_COARSE_DISTANCE_NM = 3.0  # Coarse pre-filter to avoid O(N^2) load
 
 
 def calculate_cpa(p1: dict[str, Any], p2: dict[str, Any]) -> tuple[float, float] | None:
@@ -45,8 +45,8 @@ def calculate_cpa(p1: dict[str, Any], p2: dict[str, Any]) -> tuple[float, float]
 
     # Cartesian coordinate difference in Nautical Miles
     mean_lat_rad = math.radians((lat1 + lat2) / 2.0)
-    dy = (lat2 - lat1) * 60.0                                 # North-South distance in NM
-    dx = (lon2 - lon1) * 60.0 * math.cos(mean_lat_rad)        # East-West distance in NM
+    dy = (lat2 - lat1) * 60.0  # North-South distance in NM
+    dx = (lon2 - lon1) * 60.0 * math.cos(mean_lat_rad)  # East-West distance in NM
 
     d0 = math.sqrt(dx * dx + dy * dy)
     if d0 > MAX_COARSE_DISTANCE_NM or d0 < 0.001:
@@ -183,12 +183,14 @@ def cpa_events_to_incidents(events: list[CpaEvent]) -> list[Incident]:
             vessel=Vessel(name=name_pair, mmsi=ev.mmsi1),
             notes=[detail_msg],
         )
-        inc.add_source(Source(
-            kind="ais-cpa",
-            org="AIS",
-            detail=detail_msg,
-            ts=ev.ts,
-        ))
+        inc.add_source(
+            Source(
+                kind="ais-cpa",
+                org="AIS",
+                detail=detail_msg,
+                ts=ev.ts,
+            )
+        )
         incidents.append(inc)
 
     return incidents

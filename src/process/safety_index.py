@@ -10,9 +10,9 @@ from typing import Any
 
 from src.model import MarineSafetyRating, now_iso
 
-W_WAVE = 25.0   # penalty points per meter above 0.6m
-W_WIND = 1.5    # penalty points per knot above 10 kn
-W_GUST = 1.2    # penalty points per knot above 15 kn
+W_WAVE = 25.0  # penalty points per meter above 0.6m
+W_WIND = 1.5  # penalty points per knot above 10 kn
+W_GUST = 1.2  # penalty points per knot above 15 kn
 ALARM_PENALTY = 50.0  # deduction if an active official storm/gale warning exists
 
 
@@ -161,9 +161,7 @@ def evaluate_all_areas(
         wind_raw = pt.get("wind_kn")
         gust_raw = pt.get("gust_kn")
         # Missing forecast must not become wind=0 → green score
-        if pt.get("data_quality") == "unknown" or (
-            wind_raw is None and gust_raw is None and wave is None
-        ):
+        if pt.get("data_quality") == "unknown" or (wind_raw is None and gust_raw is None and wave is None):
             wind = 0.0
             gust = 0.0
             force_unknown = True
@@ -211,6 +209,7 @@ def render_safety_index(
     if out_file:
         import json
         from pathlib import Path
+
         out_path = Path(out_file)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")

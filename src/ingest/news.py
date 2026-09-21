@@ -83,9 +83,9 @@ def fetch_news(cfg: dict) -> list[Incident]:
             if not (_match(low, tokens, mari) and _match(low, tokens, inci)):
                 continue
             if drop_aftermath(low, after):
-                continue          # funerals, arrests and hearings warn nobody
+                continue  # funerals, arrests and hearings warn nobody
             if drop_aftermath(low, never):
-                continue          # a diving accident off a jetty is not a sea incident
+                continue  # a diving accident off a jetty is not a sea incident
             if not _recent(pub, nc["hours_back"]):
                 continue
             key = low[:80]
@@ -95,14 +95,19 @@ def fetch_news(cfg: dict) -> list[Incident]:
 
             ex = extract(title)
             inc = Incident(
-                id="news-" + stable_hash(key, 10),   # content, not date: see official.py
-                type=ex.itype, lat=ex.lat, lon=ex.lon, area=ex.area,
-                casualties=ex.casualties, places=ex.places,
+                id="news-" + stable_hash(key, 10),  # content, not date: see official.py
+                type=ex.itype,
+                lat=ex.lat,
+                lon=ex.lon,
+                area=ex.area,
+                casualties=ex.casualties,
+                places=ex.places,
                 coarse=not ex.precise,
                 vessel=Vessel(name=ex.vessel) if ex.vessel else Vessel(),
             )
-            inc.sources.append(Source(kind="news", org=_host(feed),
-                                      detail=redact(title, keep=(ex.vessel,)), url=link))
+            inc.sources.append(
+                Source(kind="news", org=_host(feed), detail=redact(title, keep=(ex.vessel,)), url=link)
+            )
             out.append(inc)
     return out[:20]
 

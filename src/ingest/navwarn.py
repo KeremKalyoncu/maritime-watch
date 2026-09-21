@@ -11,8 +11,7 @@ from ..model import Warning, now_iso, stable_hash
 from ..process.classify import area_centroid
 from ._net import get_json
 
-API = ("https://msi.nga.mil/api/publications/navigational-warnings"
-       "?status=active&output=json")
+API = "https://msi.nga.mil/api/publications/navigational-warnings?status=active&output=json"
 
 
 def fetch_navwarnings(cfg: dict) -> list[Warning]:
@@ -36,27 +35,34 @@ def fetch_navwarnings(cfg: dict) -> list[Warning]:
         year = w.get("msgYear") or w.get("year") or ""
         first = text.split(".")[0][:200] if text else "seyir uyarısı"
         clat, clon = area_centroid(_area_guess(blob))
-        out.append(Warning(
-            id=f"nw-{year}-{num}" if num else f"nw-{stable_hash(text)}",
-            headline=f"NAVAREA {area or 'III'} {num}/{year}: {first}",
-            area=_area_guess(blob),
-            kind="nav-warning",
-            severity="minor",
-            org="NGA MSI (NAVAREA III)",
-            url="https://msi.nga.mil/NavWarnings",
-            issued=(w.get("issueDate") or now_iso()),
-            raw=text[:800],
-            lat=clat, lon=clon,
-        ))
+        out.append(
+            Warning(
+                id=f"nw-{year}-{num}" if num else f"nw-{stable_hash(text)}",
+                headline=f"NAVAREA {area or 'III'} {num}/{year}: {first}",
+                area=_area_guess(blob),
+                kind="nav-warning",
+                severity="minor",
+                org="NGA MSI (NAVAREA III)",
+                url="https://msi.nga.mil/NavWarnings",
+                issued=(w.get("issueDate") or now_iso()),
+                raw=text[:800],
+                lat=clat,
+                lon=clon,
+            )
+        )
     return out[:25]
 
 
 def _area_guess(blob: str) -> str:
     for key, name in (
-        ("marmara", "Marmara Denizi"), ("bosphorus", "İstanbul Boğazı"),
-        ("bosporus", "İstanbul Boğazı"), ("dardanelles", "Çanakkale Boğazı"),
-        ("aegean", "Ege Denizi"), ("black sea", "Karadeniz"),
-        ("iskenderun", "İskenderun Körfezi"), ("mersin", "Mersin Körfezi"),
+        ("marmara", "Marmara Denizi"),
+        ("bosphorus", "İstanbul Boğazı"),
+        ("bosporus", "İstanbul Boğazı"),
+        ("dardanelles", "Çanakkale Boğazı"),
+        ("aegean", "Ege Denizi"),
+        ("black sea", "Karadeniz"),
+        ("iskenderun", "İskenderun Körfezi"),
+        ("mersin", "Mersin Körfezi"),
         ("antalya", "Antalya Körfezi"),
     ):
         if key in blob:

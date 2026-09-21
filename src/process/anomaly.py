@@ -27,7 +27,7 @@ class Anomaly:
     detail: str
     lat: float
     lon: float
-    severity: str          # minor | major | critical
+    severity: str  # minor | major | critical
     name: str = ""
 
 
@@ -63,13 +63,18 @@ def _near_bbox_edge(lat, lon, bbox, margin_deg: float = 0.35) -> bool:
     # Kapsama alanının dışına çıkan gemiler kayıp sayılmaz
     if not bbox or lat is None or lon is None:
         return False
-    return (lat - bbox["lat_min"] < margin_deg or bbox["lat_max"] - lat < margin_deg
-            or lon - bbox["lon_min"] < margin_deg or bbox["lon_max"] - lon < margin_deg)
+    return (
+        lat - bbox["lat_min"] < margin_deg
+        or bbox["lat_max"] - lat < margin_deg
+        or lon - bbox["lon_min"] < margin_deg
+        or bbox["lon_max"] - lon < margin_deg
+    )
 
 
 def _near_port(lat, lon, nm: float = 6.0) -> bool:
     # Limana yanaşıp cihaz kapatan gemiler anomali sayılmaz
     from .classify import nearest_port
+
     np = nearest_port(lat, lon)
     return np is not None and np[1] <= nm
 
@@ -99,12 +104,17 @@ class VesselState:
                 v["name"] = p["name"]
             if p.get("type_code") is not None:
                 v["type_code"] = p["type_code"]
-            v["track"].append({
-                "lat": _round(p["lat"]), "lon": _round(p["lon"]),
-                "sog": _round(p.get("sog"), 1), "cog": _round(p.get("cog"), 1),
-                "nav": p.get("nav_status"), "ts": _iso(p.get("ts")),
-            })
-            v["track"] = v["track"][-self.history:]
+            v["track"].append(
+                {
+                    "lat": _round(p["lat"]),
+                    "lon": _round(p["lon"]),
+                    "sog": _round(p.get("sog"), 1),
+                    "cog": _round(p.get("cog"), 1),
+                    "nav": p.get("nav_status"),
+                    "ts": _iso(p.get("ts")),
+                }
+            )
+            v["track"] = v["track"][-self.history :]
             v["last_seen"] = _iso(p.get("ts"))
 
     def prune(self, ttl_hours: float = 12.0, max_vessels: int = 4000) -> int:
@@ -117,8 +127,9 @@ class VesselState:
             if ts is not None and (now - ts) / 3600.0 > ttl_hours:
                 del self.data[key]
         if len(self.data) > max_vessels:
-            ranked = sorted(self.data.items(),
-                            key=lambda kv: _parse_ts(kv[1].get("last_seen")) or 0, reverse=True)
+            ranked = sorted(
+                self.data.items(), key=lambda kv: _parse_ts(kv[1].get("last_seen")) or 0, reverse=True
+            )
             self.data = dict(ranked[:max_vessels])
         return before - len(self.data)
 
@@ -126,8 +137,10 @@ class VesselState:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         # sorted + one line per vessel: this file is committed every cycle, and a
         # single unsorted line makes git rewrite all 170 KB each time
-        rows = [json.dumps(k) + ":" + json.dumps(v, ensure_ascii=False, sort_keys=True)
-                for k, v in sorted(self.data.items())]
+        rows = [
+            json.dumps(k) + ":" + json.dumps(v, ensure_ascii=False, sort_keys=True)
+            for k, v in sorted(self.data.items())
+        ]
         self.path.write_text("{" + ",\n".join(rows) + "}", encoding="utf-8")
 
 
@@ -146,18 +159,28 @@ def _gap_anomalies(cand, tracked: int, a: dict) -> list[Anomaly]:
 
     share = a.get("gap_max_share", 0.25)
     if tracked and len(cand) > max(max_cluster, tracked * share):
-        print(f"[anomaly] {len(cand)}/{tracked} takip edilen gemi ayni anda sustu "
-              f"-> AIS beslemesi kesintisi, ais-gap uyarilari atlandi")
+        print(
+            f"[anomaly] {len(cand)}/{tracked} takip edilen gemi ayni anda sustu "
+            f"-> AIS beslemesi kesintisi, ais-gap uyarilari atlandi"
+        )
         return []
 
     out = []
     for mmsi, v, gap_min, lat, lon in cand:
         if buckets[int(gap_min // 10)] > max_cluster:
             continue
-        out.append(Anomaly(mmsi, "ais-gap",
-                           f"seyir halindeyken AIS sinyali yaklaşık {gap_min:.0f} dakika önce "
-                           f"kesildi ({v['misses']} taramada üst üste görünmedi)",
-                           lat, lon, "major", v.get("name", "")))
+        out.append(
+            Anomaly(
+                mmsi,
+                "ais-gap",
+                f"seyir halindeyken AIS sinyali yaklaşık {gap_min:.0f} dakika önce "
+                f"kesildi ({v['misses']} taramada üst üste görünmedi)",
+                lat,
+                lon,
+                "major",
+                v.get("name", ""),
+            )
+        )
     return out
 
 
@@ -176,11 +199,20 @@ def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[s
     # AIS distress transmitters (SART / MOB / EPIRB-AIS): the MMSI itself is the alert
     for key, p in latest.items():
         if key.startswith(prefixes) and p.get("lat") is not None:
-            kind = {"970": "AIS-SART", "972": "MOB (denize adam düştü)",
-                    "974": "EPIRB-AIS"}.get(key[:3], "AIS tehlike vericisi")
-            out.append(Anomaly(int(key), "ais-sart", f"{kind} sinyali alındı",
-                               p["lat"], p["lon"], "critical",
-                               p.get("name") or state.data.get(key, {}).get("name", "")))
+            kind = {"970": "AIS-SART", "972": "MOB (denize adam düştü)", "974": "EPIRB-AIS"}.get(
+                key[:3], "AIS tehlike vericisi"
+            )
+            out.append(
+                Anomaly(
+                    int(key),
+                    "ais-sart",
+                    f"{kind} sinyali alındı",
+                    p["lat"],
+                    p["lon"],
+                    "critical",
+                    p.get("name") or state.data.get(key, {}).get("name", ""),
+                )
+            )
 
     # rules driven by the current position plus the stored track
     for key, p in latest.items():
@@ -192,8 +224,17 @@ def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[s
         cat = ship_category(p.get("type_code", vstate.get("type_code")))
 
         if nav in NAV_STATUS:
-            out.append(Anomaly(int(key), "nav-status", NAV_STATUS[nav], p["lat"], p["lon"],
-                               "critical" if nav == 6 else "major", name))
+            out.append(
+                Anomaly(
+                    int(key),
+                    "nav-status",
+                    NAV_STATUS[nav],
+                    p["lat"],
+                    p["lon"],
+                    "critical" if nav == 6 else "major",
+                    name,
+                )
+            )
 
         sogs = [t["sog"] for t in track if t.get("sog") is not None]
         if prof["speed_drop"] and len(sogs) >= 3:
@@ -204,20 +245,35 @@ def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[s
                 label = SHIP_CAT_TR.get(cat, "")
                 sev = "major" if not prof["sensitive"] else "critical"
                 detail = f"{label + ' ' if label and label != 'bilinmiyor' else ''}".strip()
-                detail = (f"{detail}: " if detail else "") + \
-                         f"seyir hızından ({max(sogs[:-1]):.1f} kn) ani duruşa geçti"
+                detail = (
+                    f"{detail}: " if detail else ""
+                ) + f"seyir hızından ({max(sogs[:-1]):.1f} kn) ani duruşa geçti"
                 out.append(Anomaly(int(key), "speed-drop", detail, p["lat"], p["lon"], sev, name))
 
         # Rota sapması: Sıradan manevralar hariç tutulup ani U dönüşü kontrol edilir
         if a.get("course_spike_enabled", False):
             cogs = [t["cog"] for t in track if t.get("cog") is not None][-3:]
-            if (len(cogs) >= 2 and prof["sensitive"]
-                    and any((s or 0) > a["moving_speed_kn"] for s in sogs[-3:])):
-                d = max(min(abs(cogs[i] - cogs[i - 1]) % 360, 360 - abs(cogs[i] - cogs[i - 1]) % 360)
-                        for i in range(1, len(cogs)))
+            if (
+                len(cogs) >= 2
+                and prof["sensitive"]
+                and any((s or 0) > a["moving_speed_kn"] for s in sogs[-3:])
+            ):
+                d = max(
+                    min(abs(cogs[i] - cogs[i - 1]) % 360, 360 - abs(cogs[i] - cogs[i - 1]) % 360)
+                    for i in range(1, len(cogs))
+                )
                 if d >= a.get("course_reversal_deg", 120):
-                    out.append(Anomaly(int(key), "course-spike", f"ani rota değişimi (~{d:.0f}°)",
-                                       p["lat"], p["lon"], "minor", name))
+                    out.append(
+                        Anomaly(
+                            int(key),
+                            "course-spike",
+                            f"ani rota değişimi (~{d:.0f}°)",
+                            p["lat"],
+                            p["lon"],
+                            "minor",
+                            name,
+                        )
+                    )
 
     # ais-gap: we sample ~90 s out of every cron interval, so a vessel simply not
     # transmitting during this burst is NOT missing. Absence only means something

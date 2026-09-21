@@ -46,7 +46,7 @@ def _collapse_dup(t: str) -> str:
     for k in range(0, min(n // 2 + 1, 8)):
         rest = w[k:]
         m = len(rest)
-        if m >= 4 and m % 2 == 0 and rest[: m // 2] == rest[m // 2:]:
+        if m >= 4 and m % 2 == 0 and rest[: m // 2] == rest[m // 2 :]:
             return " ".join(w[:k] + rest[: m // 2])
     return t
 
@@ -54,8 +54,11 @@ def _collapse_dup(t: str) -> str:
 def scrape_mgm_marine(cfg: dict) -> list[Warning]:
     """MGM marine forecast regions. The JSON schema is undocumented and changes."""
     url = "https://servis.mgm.gov.tr/web/denizler/tahmin/bolgeler"
-    raw, _live = _fetch(url, "mgm_marine.json",
-                        headers={"Origin": "https://www.mgm.gov.tr", "Referer": "https://www.mgm.gov.tr/"})
+    raw, _live = _fetch(
+        url,
+        "mgm_marine.json",
+        headers={"Origin": "https://www.mgm.gov.tr", "Referer": "https://www.mgm.gov.tr/"},
+    )
     out: list[Warning] = []
     if not raw:
         return out
@@ -75,22 +78,26 @@ def scrape_mgm_marine(cfg: dict) -> list[Warning]:
             continue
         # treat force 6+ Bft, or a gale keyword, as a real warning
         forces = [int(n) for n in re.findall(r"\b(\d{1,2})\b", wind)]
-        strong = (any(f >= 6 for f in forces)
-                  or any(w in text.lower() for w in ("fırtına", "kuvvetli", "storm", "gale")))
+        strong = any(f >= 6 for f in forces) or any(
+            w in text.lower() for w in ("fırtına", "kuvvetli", "storm", "gale")
+        )
         if not (warn or strong):
             continue
         clat, clon = area_centroid(name)
-        out.append(Warning(
-            id="wx-mgm-" + re.sub(r"\W+", "", name).lower()[:24],
-            headline=f"{name}: {text or 'denizcilik uyarısı'}",
-            area=name,
-            kind="marine-weather",
-            severity="major" if strong else "minor",
-            org="Meteoroloji Genel Müdürlüğü",
-            url="https://www.mgm.gov.tr/denizcilik/deniz-hava-tahmini.aspx",
-            raw=json.dumps(row, ensure_ascii=False)[:500],
-            lat=clat, lon=clon,
-        ))
+        out.append(
+            Warning(
+                id="wx-mgm-" + re.sub(r"\W+", "", name).lower()[:24],
+                headline=f"{name}: {text or 'denizcilik uyarısı'}",
+                area=name,
+                kind="marine-weather",
+                severity="major" if strong else "minor",
+                org="Meteoroloji Genel Müdürlüğü",
+                url="https://www.mgm.gov.tr/denizcilik/deniz-hava-tahmini.aspx",
+                raw=json.dumps(row, ensure_ascii=False)[:500],
+                lat=clat,
+                lon=clon,
+            )
+        )
     return out
 
 
@@ -100,15 +107,34 @@ def scrape_mgm_marine(cfg: dict) -> list[Warning]:
 MGM_ALARMS = "https://servis.mgm.gov.tr/web/alarmlar"
 
 # the alarm list covers the whole country, including purely inland hazards
-_SEA_WORDS = ("deniz", "firtina", "fırtına", "ruzgar", "rüzgar", "poyraz", "lodos",
-              "dalga", "kiyi", "kıyı", "marmara", "ege", "akdeniz", "karadeniz",
-              "bogaz", "boğaz", "denizcilik")
+_SEA_WORDS = (
+    "deniz",
+    "firtina",
+    "fırtına",
+    "ruzgar",
+    "rüzgar",
+    "poyraz",
+    "lodos",
+    "dalga",
+    "kiyi",
+    "kıyı",
+    "marmara",
+    "ege",
+    "akdeniz",
+    "karadeniz",
+    "bogaz",
+    "boğaz",
+    "denizcilik",
+)
 
 
 def scrape_mgm_alarms(cfg: dict) -> list[Warning]:
     """Active MGM meteorological alarms, filtered to the ones a mariner cares about."""
-    raw, _live = _fetch(MGM_ALARMS, "mgm_alarmlar.json",
-                        headers={"Origin": "https://www.mgm.gov.tr", "Referer": "https://www.mgm.gov.tr/"})
+    raw, _live = _fetch(
+        MGM_ALARMS,
+        "mgm_alarmlar.json",
+        headers={"Origin": "https://www.mgm.gov.tr", "Referer": "https://www.mgm.gov.tr/"},
+    )
     out: list[Warning] = []
     if not raw:
         return out
@@ -134,25 +160,34 @@ def scrape_mgm_alarms(cfg: dict) -> list[Warning]:
         # ihbarTipi 2 is a report rather than a warning; the detail page uses a
         # different suffix for those, which is also how the MGM site links them
         rapor = tip in (2, "2")
-        url = (f"https://www.mgm.gov.tr/tahmin/uyari-goster.aspx?sN={seri}"
-               f"{'e' if tip in (2, 5, 7, '2', '5', '7') else 'y'}") if seri else               "https://www.mgm.gov.tr/genel/meteorolojik-uyari.aspx"
+        url = (
+            (
+                f"https://www.mgm.gov.tr/tahmin/uyari-goster.aspx?sN={seri}"
+                f"{'e' if tip in (2, 5, 7, '2', '5', '7') else 'y'}"
+            )
+            if seri
+            else "https://www.mgm.gov.tr/genel/meteorolojik-uyari.aspx"
+        )
         sev = "minor" if rapor else ("critical" if "kırmızı" in low or "kirmizi" in low else "major")
         area = next((a for a in ("Marmara", "Ege", "Akdeniz", "Karadeniz") if _norm(a) in low), "")
         clat, clon = area_centroid(area) if area else (None, None)
         if clat is None:
-            ex = extract(title)          # fall back to the province named in the title
+            ex = extract(title)  # fall back to the province named in the title
             clat, clon, area = ex.lat, ex.lon, area or ex.area
-        out.append(Warning(
-            id="wx-mgma-" + (seri or hashlib.sha1(title.encode("utf-8")).hexdigest()[:8]),
-            headline=title,
-            area=area,
-            kind="marine-weather",
-            severity=sev,
-            org="Meteoroloji Genel Müdürlüğü",
-            url=url,
-            raw=json.dumps(row, ensure_ascii=False)[:500],
-            lat=clat, lon=clon,
-        ))
+        out.append(
+            Warning(
+                id="wx-mgma-" + (seri or hashlib.sha1(title.encode("utf-8")).hexdigest()[:8]),
+                headline=title,
+                area=area,
+                kind="marine-weather",
+                severity=sev,
+                org="Meteoroloji Genel Müdürlüğü",
+                url=url,
+                raw=json.dumps(row, ensure_ascii=False)[:500],
+                lat=clat,
+                lon=clon,
+            )
+        )
     return out
 
 
@@ -191,25 +226,36 @@ def _scrape_links(cfg: dict, url: str, sample: str, org: str, base: str) -> list
         # day, so one rescue was landing as three separate incidents
         inc = Incident(
             id="rep-" + hashlib.sha1(norm.encode("utf-8")).hexdigest()[:10],
-            type=ex.itype, lat=ex.lat, lon=ex.lon, area=ex.area,
-            casualties=ex.casualties, places=ex.places,
+            type=ex.itype,
+            lat=ex.lat,
+            lon=ex.lon,
+            area=ex.area,
+            casualties=ex.casualties,
+            places=ex.places,
             coarse=not ex.precise,
             vessel=Vessel(name=ex.vessel) if ex.vessel else Vessel(),
         )
-        inc.sources.append(Source(kind="official", org=org,
-                                  detail=redact(title, keep=(ex.vessel,)), url=href))
+        inc.sources.append(
+            Source(kind="official", org=org, detail=redact(title, keep=(ex.vessel,)), url=href)
+        )
         out.append(inc)
     return out[:15]
 
 
 def scrape_sahil_guvenlik(cfg: dict) -> list[Incident]:
-    return _scrape_links(cfg, "https://www.sg.gov.tr/haberler", "sahil_guvenlik.html",
-                         "Sahil Güvenlik Komutanlığı", "https://www.sg.gov.tr")
+    return _scrape_links(
+        cfg,
+        "https://www.sg.gov.tr/haberler",
+        "sahil_guvenlik.html",
+        "Sahil Güvenlik Komutanlığı",
+        "https://www.sg.gov.tr",
+    )
 
 
 def scrape_afad(cfg: dict) -> list[Incident]:
-    return _scrape_links(cfg, "https://www.afad.gov.tr/basin-aciklamalari", "afad.html",
-                         "AFAD", "https://www.afad.gov.tr")
+    return _scrape_links(
+        cfg, "https://www.afad.gov.tr/basin-aciklamalari", "afad.html", "AFAD", "https://www.afad.gov.tr"
+    )
 
 
 def gather_official(cfg: dict) -> tuple[list[Incident], list[Warning]]:

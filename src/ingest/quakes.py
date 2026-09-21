@@ -17,18 +17,26 @@ AFAD = "https://deprem.afad.gov.tr/apiv2/event/filter"
 USGS = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson"
 EMSC = "https://www.seismicportal.eu/fdsnws/event/1/query"
 
-COASTAL_NM = 40          # anything further inland is a land quake for our readers
+COASTAL_NM = 40  # anything further inland is a land quake for our readers
 
 # USGS and EMSC name regions in English; the channel is read in Turkish
 _PLACE_TR = {
-    "aegean sea": "Ege Denizi", "sea of marmara": "Marmara Denizi",
-    "black sea": "Karadeniz", "eastern mediterranean sea": "Doğu Akdeniz",
-    "mediterranean sea": "Akdeniz", "crete": "Girit",
-    "western turkey": "Batı Türkiye", "central turkey": "Orta Türkiye",
-    "eastern turkey": "Doğu Türkiye", "southern turkey": "Güney Türkiye",
+    "aegean sea": "Ege Denizi",
+    "sea of marmara": "Marmara Denizi",
+    "black sea": "Karadeniz",
+    "eastern mediterranean sea": "Doğu Akdeniz",
+    "mediterranean sea": "Akdeniz",
+    "crete": "Girit",
+    "western turkey": "Batı Türkiye",
+    "central turkey": "Orta Türkiye",
+    "eastern turkey": "Doğu Türkiye",
+    "southern turkey": "Güney Türkiye",
     "turkey-syria border region": "Türkiye-Suriye sınırı",
-    "greece": "Yunanistan", "dodecanese islands": "Onikiadalar",
-    "cyprus region": "Kıbrıs", "bulgaria": "Bulgaristan", "turkey": "Türkiye",
+    "greece": "Yunanistan",
+    "dodecanese islands": "Onikiadalar",
+    "cyprus region": "Kıbrıs",
+    "bulgaria": "Bulgaristan",
+    "turkey": "Türkiye",
 }
 
 
@@ -42,9 +50,11 @@ def place_tr(place: str) -> str:
     for en in sorted(_PLACE_TR, key=len, reverse=True):
         i = low.find(en)
         if i >= 0:
-            out = out[:i] + _PLACE_TR[en] + out[i + len(en):]
+            out = out[:i] + _PLACE_TR[en] + out[i + len(en) :]
             low = out.lower()
     return out
+
+
 _SEA_WORDS = ("deniz", "körfez", "açık", "boğaz", "ada", "sea", "gulf", "aegean", "marmara")
 
 
@@ -63,10 +73,15 @@ def _mk(lat, lon, mag, place, ts, org, url) -> Warning:
     return Warning(
         id=f"eq-{org.lower()}-{round(lat, 2)}-{round(lon, 2)}-{str(ts)[:16]}",
         headline=f"Deprem M{mag:.1f} - {place_tr(place)}",
-        area=place_tr(place), kind="earthquake",
+        area=place_tr(place),
+        kind="earthquake",
         severity="major" if mag >= 4.5 else "minor",
-        org=org, url=url, issued=str(ts), value=round(mag, 1),
-        lat=lat, lon=lon,
+        org=org,
+        url=url,
+        issued=str(ts),
+        value=round(mag, 1),
+        lat=lat,
+        lon=lon,
     )
 
 
@@ -74,8 +89,10 @@ def _afad(cfg) -> list[Warning]:
     q, bbox = cfg["quakes"], cfg["region"]["bbox"]
     start = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time() - q["hours_back"] * 3600))
     end = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
-    url = (f"{AFAD}?start={start.replace(' ', '%20')}&end={end.replace(' ', '%20')}"
-           f"&orderby=timedesc&minmag={q['min_mag']}")
+    url = (
+        f"{AFAD}?start={start.replace(' ', '%20')}&end={end.replace(' ', '%20')}"
+        f"&orderby=timedesc&minmag={q['min_mag']}"
+    )
     data, _l = get_json(url, "afad_quakes.json")
     out = []
     for ev in data or []:
@@ -85,8 +102,9 @@ def _afad(cfg) -> list[Warning]:
             continue
         place = ev.get("location") or "bilinmeyen konum"
         if mag >= q["min_mag"] and _bbox(lat, lon, bbox) and _coastal(lat, lon, place):
-            out.append(_mk(lat, lon, mag, place, ev.get("date") or now_iso(),
-                           "AFAD", "https://deprem.afad.gov.tr/"))
+            out.append(
+                _mk(lat, lon, mag, place, ev.get("date") or now_iso(), "AFAD", "https://deprem.afad.gov.tr/")
+            )
     return out
 
 
@@ -111,9 +129,11 @@ def _usgs(cfg) -> list[Warning]:
 def _emsc(cfg) -> list[Warning]:
     q, bbox = cfg["quakes"], cfg["region"]["bbox"]
     start = time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime(time.time() - q["hours_back"] * 3600))
-    url = (f"{EMSC}?format=json&limit=80&minmag={q['min_mag']}&start={start}"
-           f"&minlat={bbox['lat_min']}&maxlat={bbox['lat_max']}"
-           f"&minlon={bbox['lon_min']}&maxlon={bbox['lon_max']}")
+    url = (
+        f"{EMSC}?format=json&limit=80&minmag={q['min_mag']}&start={start}"
+        f"&minlat={bbox['lat_min']}&maxlat={bbox['lat_max']}"
+        f"&minlon={bbox['lon_min']}&maxlon={bbox['lon_max']}"
+    )
     data, _l = get_json(url, "emsc_quakes.json")
     out = []
     for f in (data or {}).get("features", []):
@@ -125,8 +145,9 @@ def _emsc(cfg) -> list[Warning]:
             continue
         place = p.get("flynn_region") or "unknown"
         if mag >= q["min_mag"] and _bbox(lat, lon, bbox) and _coastal(lat, lon, place):
-            out.append(_mk(lat, lon, mag, place, p.get("time") or now_iso(),
-                           "EMSC", "https://www.seismicportal.eu/"))
+            out.append(
+                _mk(lat, lon, mag, place, p.get("time") or now_iso(), "EMSC", "https://www.seismicportal.eu/")
+            )
     return out
 
 

@@ -24,8 +24,13 @@ _RESOLVED_RE = re.compile(
 
 # how long a warning stays "active" after its last update, by kind (hours)
 _WARN_TTL_H = {
-    "marine-weather": 18, "metar": 18, "earthquake": 48,
-    "nav-warning": 72, "navtex": 72, "gdacs": 72, "eonet": 72,
+    "marine-weather": 18,
+    "metar": 18,
+    "earthquake": 48,
+    "nav-warning": 72,
+    "navtex": 72,
+    "gdacs": 72,
+    "eonet": 72,
 }
 # no update for this long -> signal deleted, probable/confirmed marked resolved
 _INC_RESOLVE_H = {"signal": 12, "probable": 36, "confirmed": 72}
@@ -75,8 +80,7 @@ def backfill(store) -> int:
         from_ais = any(s.kind.startswith("ais") for s in inc.sources)
         if not from_ais and ex.itype != "unknown" and inc.type != ex.itype:
             inc.type, n = ex.itype, n + 1
-        for attr, val in (("area", ex.area),
-                          ("lat", ex.lat), ("lon", ex.lon), ("casualties", ex.casualties)):
+        for attr, val in (("area", ex.area), ("lat", ex.lat), ("lon", ex.lon), ("casualties", ex.casualties)):
             cur = getattr(inc, attr)
             if val and not cur:
                 setattr(inc, attr, val)
@@ -102,7 +106,7 @@ def drop_stored_aftermath(store, cfg: dict | None) -> int:
     for iid, inc in list(store.incidents.items()):
         srcs = [s for s in inc.sources if s.kind == "news"]
         if not srcs or len(srcs) != len(inc.sources):
-            continue                       # an official source keeps it alive
+            continue  # an official source keeps it alive
         if all(drop_aftermath(s.detail.translate(_TR_LOWER).lower(), words) for s in srcs):
             del store.incidents[iid]
             n += 1
@@ -165,20 +169,24 @@ def unmerge_legacy_reports(store) -> int:
     import hashlib
 
     from ..ingest.official import _norm as _onorm
+
     n = 0
     for iid, inc in store.incidents.items():
         if not iid.startswith("rep-"):
             continue
-        want = iid[len("rep-"):]
+        want = iid[len("rep-") :]
         official = [s for s in inc.sources if s.kind == "official"]
         if len(official) < 2:
             continue
-        keep = [s for s in official
-                if hashlib.sha1(_onorm(s.detail or "").encode("utf-8")).hexdigest().startswith(want)]
+        keep = [
+            s
+            for s in official
+            if hashlib.sha1(_onorm(s.detail or "").encode("utf-8")).hexdigest().startswith(want)
+        ]
         if not keep or len(keep) == len(official):
             continue
         inc.sources = keep + [s for s in inc.sources if s.kind != "official"]
-        inc.casualties = None          # recomputed by backfill from what is left
+        inc.casualties = None  # recomputed by backfill from what is left
         inc.type = "unknown"
         inc.vessel.name = None
         n += len(official) - len(keep)

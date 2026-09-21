@@ -27,8 +27,7 @@ _CFG = load_config()
 
 LABELS = json.loads((Path(__file__).parent / "labels.json").read_text("utf-8"))
 CFG_ANOM = {
-    "anomaly": {"moving_speed_kn": 3.0, "stopped_speed_kn": 0.5, "gap_minutes": 45,
-                "course_change_deg": 60},
+    "anomaly": {"moving_speed_kn": 3.0, "stopped_speed_kn": 0.5, "gap_minutes": 45, "course_change_deg": 60},
     "ais": {"distress_mmsi_prefixes": ["970", "972", "974"]},
 }
 
@@ -43,6 +42,7 @@ def _prf(tp, fp, fn):
 # --------------------------------------------------------------- news filter
 def eval_news():
     import re
+
     mari = [_norm(w) for w in _CFG["news"]["maritime_words"]]
     inci = [_norm(w) for w in _CFG["news"]["incident_words"]]
     tp = fp = fn = tn = 0
@@ -96,12 +96,31 @@ def eval_anomaly():
         vs = VesselState(d + "/v.json", 20)
         mmsi = c.get("mmsi", 111)
         for sog, cog, _ in c["track"]:
-            vs.update([{"mmsi": mmsi, "lat": 41.0, "lon": 29.0, "sog": sog, "cog": cog,
-                        "nav_status": 0, "type_code": c.get("type_code")}])
+            vs.update(
+                [
+                    {
+                        "mmsi": mmsi,
+                        "lat": 41.0,
+                        "lon": 29.0,
+                        "sog": sog,
+                        "cog": cog,
+                        "nav_status": 0,
+                        "type_code": c.get("type_code"),
+                    }
+                ]
+            )
         lt = c["latest"]
-        pos = [{"mmsi": mmsi, "lat": 41.0, "lon": 29.0, "sog": lt["sog"],
-                "cog": c["track"][-1][1], "nav_status": lt["nav_status"],
-                "type_code": c.get("type_code")}]
+        pos = [
+            {
+                "mmsi": mmsi,
+                "lat": 41.0,
+                "lon": 29.0,
+                "sog": lt["sog"],
+                "cog": c["track"][-1][1],
+                "nav_status": lt["nav_status"],
+                "type_code": c.get("type_code"),
+            }
+        ]
         vs.update(pos)
         got = {a.kind for a in detect(vs, pos, CFG_ANOM, {str(mmsi)})}
         exp = set(c["expect"])
@@ -115,11 +134,14 @@ def eval_anomaly():
 
 def main(out_dir=None):
     sections = [eval_news(), eval_extract(), eval_anomaly()]
-    lines = ["# Eval report", "",
-             f"_generated {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())} · "
-             f"`py eval/run_eval.py`_", "",
-             "| Bileşen | Precision | Recall | F1 | TP | FP | FN |",
-             "| :-- | --: | --: | --: | --: | --: | --: |"]
+    lines = [
+        "# Eval report",
+        "",
+        f"_generated {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())} · `py eval/run_eval.py`_",
+        "",
+        "| Bileşen | Precision | Recall | F1 | TP | FP | FN |",
+        "| :-- | --: | --: | --: | --: | --: | --: |",
+    ]
     worst_f1 = 1.0
     for name, (p, r, f), (tp, fp, fn, _tn), _m in sections:
         lines.append(f"| {name} | {p:.2f} | {r:.2f} | {f:.2f} | {tp} | {fp} | {fn} |")

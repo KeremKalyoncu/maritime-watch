@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import math
 from src.process.marine_physics import (
     analyze_wave_steepness,
     degree_to_compass_en,

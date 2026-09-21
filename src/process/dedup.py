@@ -22,10 +22,13 @@ def dist_nm(a_lat, a_lon, b_lat, b_lon) -> float:
 
 _TR_LOWER = str.maketrans("İIŞĞÜÖÇ", "iışğüöç")
 _BUCKET = {
-    "marine-weather": "weather", "metar": "weather",
+    "marine-weather": "weather",
+    "metar": "weather",
     "earthquake": "quake",
-    "gdacs": "disaster", "eonet": "disaster",
-    "nav-warning": "navwarn", "navtex": "navwarn",
+    "gdacs": "disaster",
+    "eonet": "disaster",
+    "nav-warning": "navwarn",
+    "navtex": "navwarn",
 }
 
 
@@ -61,7 +64,7 @@ def same_hazard(a: Warning, b: Warning) -> bool:
     gap = _minutes_apart(a.issued, b.issued)
 
     if ba == "quake":
-        mag_ok = (a.value is None or b.value is None or abs(a.value - b.value) <= 0.7)
+        mag_ok = a.value is None or b.value is None or abs(a.value - b.value) <= 0.7
         return d <= 35 and gap <= 5 and mag_ok
     if ba == "weather":
         return (same_area or d <= 45) and gap <= 12 * 60

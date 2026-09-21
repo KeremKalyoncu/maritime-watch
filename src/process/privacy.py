@@ -34,17 +34,67 @@ _SUFFIX = r"['’\u2019](?:n?[ıiuü]n|n?[ae]|[dt][ae]n?|y?[ıiuü])\b"
 _VICTIM_CONTEXT = re.compile(
     r"(?:hayatını kaybeden|yaşamını yitiren|vefat eden|ölen|boğulan|kaybolan|"
     r"cansız bedeni bulunan|kayıp)\s+"
-    r"([A-ZÇĞİÖŞÜ][a-zçğıöşü]{2,}(?:\s+[A-ZÇĞİÖŞÜ][a-zçğıöşü]{2,})?)")
+    r"([A-ZÇĞİÖŞÜ][a-zçğıöşü]{2,}(?:\s+[A-ZÇĞİÖŞÜ][a-zçğıöşü]{2,})?)"
+)
 
 # "Ad Soyad'ın", and "Ad Soyad" standing right before a kinship word
 _NAMED_POSSESSIVE = re.compile(
-    r"\b([A-ZÇĞİÖŞÜ][a-zçğıöşü]{2,})\s+([A-ZÇĞİÖŞÜ][a-zçğıöşü]{2,})(?=" + _SUFFIX + r")")
+    r"\b([A-ZÇĞİÖŞÜ][a-zçğıöşü]{2,})\s+([A-ZÇĞİÖŞÜ][a-zçğıöşü]{2,})(?=" + _SUFFIX + r")"
+)
 _NAMED_KIN = re.compile(
     r"\b([A-ZÇĞİÖŞÜ][a-zçğıöşü]{2,})\s+([A-ZÇĞİÖŞÜ][a-zçğıöşü]{2,})"
-    r"(?=\s+(?:eşi|eşinin|babası|annesi|oğlu|kızı|kardeşi|ailesi|yakını|yakınları))")
+    r"(?=\s+(?:eşi|eşinin|babası|annesi|oğlu|kızı|kardeşi|ailesi|yakını|yakınları))"
+)
 
 # capitalised words that are geography or maritime vocabulary, never a person
-_NOT_A_PERSON = set(PLACE_HINTS) | {_norm(w) for w in ["Denizi", "Deniz", "Boğazı", "Boğaz", "Körfezi", "Körfez", "Adası", "Ada", "Adaları", "Limanı", "Liman", "İskelesi", "Burnu", "Koyu", "Açıkları", "Açıklarında", "Önlerinde", "Sahil", "Güvenlik", "Komutanlığı", "Bakanlığı", "Valiliği", "Belediyesi", "Başkanlığı", "Müdürlüğü", "Kurumu", "Gemisi", "Gemileri", "Gemi", "Teknesi", "Tekne", "Feribotu", "Vapuru", "Kaptanı", "Mürettebat", "Türkiye", "Kıbrıs", "Yunanistan", "Bulgaristan", "Romanya", "Ukrayna", "Rusya", "Gürcistan"]}
+_NOT_A_PERSON = set(PLACE_HINTS) | {
+    _norm(w)
+    for w in [
+        "Denizi",
+        "Deniz",
+        "Boğazı",
+        "Boğaz",
+        "Körfezi",
+        "Körfez",
+        "Adası",
+        "Ada",
+        "Adaları",
+        "Limanı",
+        "Liman",
+        "İskelesi",
+        "Burnu",
+        "Koyu",
+        "Açıkları",
+        "Açıklarında",
+        "Önlerinde",
+        "Sahil",
+        "Güvenlik",
+        "Komutanlığı",
+        "Bakanlığı",
+        "Valiliği",
+        "Belediyesi",
+        "Başkanlığı",
+        "Müdürlüğü",
+        "Kurumu",
+        "Gemisi",
+        "Gemileri",
+        "Gemi",
+        "Teknesi",
+        "Tekne",
+        "Feribotu",
+        "Vapuru",
+        "Kaptanı",
+        "Mürettebat",
+        "Türkiye",
+        "Kıbrıs",
+        "Yunanistan",
+        "Bulgaristan",
+        "Romanya",
+        "Ukrayna",
+        "Rusya",
+        "Gürcistan",
+    ]
+}
 
 REDACTED = "[isim]"
 
@@ -68,7 +118,7 @@ def redact(text: str, keep: tuple[str, ...] = ()) -> str:
 
     def sub1(m: re.Match) -> str:
         parts = m.group(1).split()
-        head = m.group(0)[:m.start(1) - m.start(0)]
+        head = m.group(0)[: m.start(1) - m.start(0)]
         if len(parts) == 2 and not _is_person(parts[0], parts[1], keep_norm):
             return m.group(0)
         if len(parts) == 1 and (_norm(parts[0]) in _NOT_A_PERSON or _norm(parts[0]) in keep_norm):

@@ -13,8 +13,14 @@ from ._net import get_text
 
 RSS = "https://www.gdacs.org/xml/rss.xml"
 
-_TYPE_TR = {"TC": "tropik fırtına", "FL": "sel", "EQ": "deprem",
-            "WF": "orman yangını", "DR": "kuraklık", "VO": "volkan"}
+_TYPE_TR = {
+    "TC": "tropik fırtına",
+    "FL": "sel",
+    "EQ": "deprem",
+    "WF": "orman yangını",
+    "DR": "kuraklık",
+    "VO": "volkan",
+}
 
 
 def _local(tag: str) -> str:
@@ -53,15 +59,18 @@ def fetch_gdacs(cfg: dict) -> list[Warning]:
             continue
 
         title = f.get("title") or _TYPE_TR.get(etype, etype)
-        out.append(Warning(
-            id=f"gd-{f.get('guid') or stable_hash(title)}",
-            headline=f"GDACS {level}: {_TYPE_TR.get(etype, etype)} - {title[:200]}",
-            area=f.get("country") or cfg["region"]["name"],
-            kind="gdacs",
-            severity="major" if level == "Red" else "minor",
-            org="GDACS",
-            url=f.get("link") or "https://www.gdacs.org/",
-            issued=f.get("pubDate") or now_iso(),
-            lat=lat, lon=lon,
-        ))
+        out.append(
+            Warning(
+                id=f"gd-{f.get('guid') or stable_hash(title)}",
+                headline=f"GDACS {level}: {_TYPE_TR.get(etype, etype)} - {title[:200]}",
+                area=f.get("country") or cfg["region"]["name"],
+                kind="gdacs",
+                severity="major" if level == "Red" else "minor",
+                org="GDACS",
+                url=f.get("link") or "https://www.gdacs.org/",
+                issued=f.get("pubDate") or now_iso(),
+                lat=lat,
+                lon=lon,
+            )
+        )
     return out[:15]

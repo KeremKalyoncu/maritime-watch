@@ -1,17 +1,13 @@
 from __future__ import annotations
 
-import pytest
 from src.process.window import (
     DANGER,
     OK,
-    UNKNOWN,
     WATCH,
-    Window,
     area_to_public_dict,
     build,
     level_for,
     return_by,
-    window_to_dict,
 )
 
 SMALL = {"gust_kn": 22, "wave_m": 1.25}
@@ -75,7 +71,7 @@ def test_build_with_marine_physics_metadata():
     times = ["2026-09-21T06:00", "2026-09-21T07:00", "2026-09-21T08:00"]
     gusts = [15.0, 18.0, 12.0]
     waves = [1.1, 1.2, 0.9]
-    periods = [3.4, 3.2, 3.5]       # Steep waves
+    periods = [3.4, 3.2, 3.5]  # Steep waves
     wind_dirs = [225.0, 220.0, 230.0]  # Lodos
     visibilities = [800.0, 750.0, 1200.0]  # Fog / mist
 

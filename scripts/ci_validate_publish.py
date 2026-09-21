@@ -99,8 +99,7 @@ def validate_safety(data: object | None) -> list[str]:
         # unknown quality must not look like a confident green 100
         if q == "unknown" and isinstance(score, (int, float)) and score >= 95:
             raise SystemExit(
-                f"[validate] safety_index: unknown quality with score={score} "
-                f"area={r.get('area')!r}"
+                f"[validate] safety_index: unknown quality with score={score} area={r.get('area')!r}"
             )
     _scan_forbidden("safety_index.json", data)
     notes.append(f"safety ratings={len(ratings)}")
@@ -119,9 +118,7 @@ def validate_health(data: object | None) -> list[str]:
     if isinstance(status, dict):
         samples = [k for k, v in status.items() if v == "sample"]
         if samples:
-            raise SystemExit(
-                f"[validate] health.json: sample-backed sources would publish: {samples}"
-            )
+            raise SystemExit(f"[validate] health.json: sample-backed sources would publish: {samples}")
     notes.append("health ok")
     return notes
 

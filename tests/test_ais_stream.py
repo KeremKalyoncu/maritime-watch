@@ -22,41 +22,55 @@ def test_ais_offline_sample_fallback():
 
 def test_ais_capture_corrupt_json_and_merge():
     # WebSocket üzerinden bozuk JSON geldiğinde döngünün çökmemesini ve static veri birleştirmesini test eder
-    msg_static = json.dumps({
-        "MessageType": "ShipStaticData",
-        "MetaData": {"MMSI": 271000111, "ShipName": "ISTANBUL FERIBOT", "time_utc": "2026-09-18T14:00:00Z"},
-        "Message": {
-            "ShipStaticData": {
-                "Name": "ISTANBUL FERIBOT",
-                "Type": 60,
-                "CallSign": "TC9988",
-            }
-        },
-    })
+    msg_static = json.dumps(
+        {
+            "MessageType": "ShipStaticData",
+            "MetaData": {
+                "MMSI": 271000111,
+                "ShipName": "ISTANBUL FERIBOT",
+                "time_utc": "2026-09-18T14:00:00Z",
+            },
+            "Message": {
+                "ShipStaticData": {
+                    "Name": "ISTANBUL FERIBOT",
+                    "Type": 60,
+                    "CallSign": "TC9988",
+                }
+            },
+        }
+    )
     msg_bad = "{corrupt-invalid-json-content"
-    msg_pos = json.dumps({
-        "MessageType": "PositionReport",
-        "MetaData": {"MMSI": 271000111, "ShipName": "ISTANBUL FERIBOT", "time_utc": "2026-09-18T14:00:05Z"},
-        "Message": {
-            "PositionReport": {
-                "Latitude": 41.02,
-                "Longitude": 28.98,
-                "Sog": 12.5,
-                "Cog": 180.0,
-                "TrueHeading": 181,
-                "NavigationalStatus": 0,
-            }
-        },
-    })
-    msg_safety = json.dumps({
-        "MessageType": "SafetyBroadcastMessage",
-        "MetaData": {"MMSI": 271000222, "latitude": 40.95, "longitude": 28.85, "ShipName": "RESCUE_01"},
-        "Message": {
-            "SafetyBroadcastMessage": {
-                "Text": "SECURITE SECURITE BUOY ADRIFT",
-            }
-        },
-    })
+    msg_pos = json.dumps(
+        {
+            "MessageType": "PositionReport",
+            "MetaData": {
+                "MMSI": 271000111,
+                "ShipName": "ISTANBUL FERIBOT",
+                "time_utc": "2026-09-18T14:00:05Z",
+            },
+            "Message": {
+                "PositionReport": {
+                    "Latitude": 41.02,
+                    "Longitude": 28.98,
+                    "Sog": 12.5,
+                    "Cog": 180.0,
+                    "TrueHeading": 181,
+                    "NavigationalStatus": 0,
+                }
+            },
+        }
+    )
+    msg_safety = json.dumps(
+        {
+            "MessageType": "SafetyBroadcastMessage",
+            "MetaData": {"MMSI": 271000222, "latitude": 40.95, "longitude": 28.85, "ShipName": "RESCUE_01"},
+            "Message": {
+                "SafetyBroadcastMessage": {
+                    "Text": "SECURITE SECURITE BUOY ADRIFT",
+                }
+            },
+        }
+    )
 
     class FakeWS:
         def __init__(self):

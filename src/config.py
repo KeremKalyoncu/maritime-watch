@@ -10,8 +10,10 @@ import yaml
 try:
     from dotenv import load_dotenv
 except ImportError:  # dotenv is optional
+
     def load_dotenv(*_a, **_k):  # type: ignore
         return False
+
 
 ROOT = Path(__file__).resolve().parent.parent
 

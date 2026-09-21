@@ -11,6 +11,7 @@ from src.ingest.official import _collapse_dup, _norm
 def _no_network(monkeypatch):
     def boom(*_a, **_k):
         raise requests.RequestException("no network in tests")
+
     monkeypatch.setattr(_net, "SAMPLES_ALLOWED", True)
     monkeypatch.setattr(_net.requests, "get", boom)
 
@@ -45,7 +46,7 @@ def test_sg_and_afad_parse_samples(all_scrapers):
 
     mudanya = next(i for i in incs if any("Mudanya" in s.detail for s in i.sources))
     assert mudanya.casualties == 4
-    assert mudanya.lat is not None            # geocoded from the place name
+    assert mudanya.lat is not None  # geocoded from the place name
     assert all(s.kind == "official" for i in incs for s in i.sources)
 
 
@@ -76,9 +77,9 @@ def test_scraped_ids_are_stable_across_calls(all_scrapers):
 def test_mgm_alarms_keep_marine_and_drop_inland(cfg):
     ws = official.scrape_mgm_alarms(cfg)
     heads = " | ".join(w.headline for w in ws)
-    assert "Marmara" in heads                       # storm warning kept
-    assert "Antalya" in heads                       # coastal, geocoded by province
-    assert "Konya" not in heads and "Erzurum" not in heads      # inland dropped
+    assert "Marmara" in heads  # storm warning kept
+    assert "Antalya" in heads  # coastal, geocoded by province
+    assert "Konya" not in heads and "Erzurum" not in heads  # inland dropped
     assert all(w.org == "Meteoroloji Genel Müdürlüğü" for w in ws)
     assert all(w.url.startswith("https://www.mgm.gov.tr/") for w in ws)
     rapor = next(w for w in ws if "RAPOR" in w.headline)
@@ -96,6 +97,7 @@ def test_ids_do_not_carry_todays_date(cfg, monkeypatch):
     """An announcement stays on the Coast Guard page for days. When the id
     embedded the fetch date, one rescue landed as three incidents on the map."""
     import time as _t
+
     seen = []
     for day in ("2026-09-03", "2026-09-04", "2026-09-05"):
         monkeypatch.setattr(_t, "strftime", lambda f, *a, d=day: d + "T09:00:00Z")

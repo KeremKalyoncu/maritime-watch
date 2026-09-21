@@ -41,8 +41,9 @@ ALL_SOURCES = [
 def dead_network(monkeypatch):
     def boom(*_a, **_k):
         raise requests.RequestException("every source is down")
+
     monkeypatch.setattr(_net.requests, "get", boom)
-    monkeypatch.setattr(_net, "SAMPLES_ALLOWED", False)   # production setting
+    monkeypatch.setattr(_net, "SAMPLES_ALLOWED", False)  # production setting
     monkeypatch.setattr(openmeteo.time, "sleep", lambda *_a, **_k: None)
     openmeteo.reset_cache()
     _net.reset_status()
@@ -62,8 +63,10 @@ def test_fetch_status_marks_dead_sources(cfg, dead_network):
 
 def test_samples_still_usable_when_explicitly_enabled(cfg, monkeypatch):
     """Tests and offline demos may still parse fixtures - the switch is opt-in."""
+
     def boom(*_a, **_k):
         raise requests.RequestException("offline")
+
     monkeypatch.setattr(_net.requests, "get", boom)
     monkeypatch.setattr(_net, "SAMPLES_ALLOWED", True)
     _net.reset_status()
@@ -75,6 +78,7 @@ def test_samples_still_usable_when_explicitly_enabled(cfg, monkeypatch):
 def test_missing_sample_never_crashes(monkeypatch):
     def boom(*_a, **_k):
         raise requests.RequestException("offline")
+
     monkeypatch.setattr(_net.requests, "get", boom)
     monkeypatch.setattr(_net, "SAMPLES_ALLOWED", True)
     _net.reset_status()

@@ -27,7 +27,7 @@ _BOXES = [
     ("Doğu Karadeniz", 40.90, 42.60, 37.50, 42.20),
 ]
 
-_polys: list[tuple[str, list]] = []          # (name, list-of-rings)  ring = [(lon,lat),...]
+_polys: list[tuple[str, list]] = []  # (name, list-of-rings)  ring = [(lon,lat),...]
 _centroids: dict[str, tuple[float, float]] = {}
 
 

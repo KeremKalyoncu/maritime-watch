@@ -8,10 +8,15 @@ and how sensitive it is.
 from __future__ import annotations
 
 CATEGORY_TR = {
-    "fishing": "balıkçı teknesi", "pleasure": "gezi teknesi / yelkenli",
-    "passenger": "yolcu gemisi / feribot", "cargo": "kuru yük gemisi",
-    "tanker": "tanker", "tug": "römorkör / hizmet", "sar": "arama kurtarma",
-    "other": "diğer", "unknown": "bilinmiyor",
+    "fishing": "balıkçı teknesi",
+    "pleasure": "gezi teknesi / yelkenli",
+    "passenger": "yolcu gemisi / feribot",
+    "cargo": "kuru yük gemisi",
+    "tanker": "tanker",
+    "tug": "römorkör / hizmet",
+    "sar": "arama kurtarma",
+    "other": "diğer",
+    "unknown": "bilinmiyor",
 }
 
 
@@ -40,15 +45,15 @@ def category(type_code) -> str:
 # speed_drop: does an unexplained stop count as an anomaly for this category?
 # sensitive: flag it earlier (lower "was under way" bar) and as a stronger signal
 _PROFILE = {
-    "fishing":   {"speed_drop": False, "sensitive": False},
-    "pleasure":  {"speed_drop": False, "sensitive": False},
-    "sar":       {"speed_drop": False, "sensitive": False},
-    "tug":       {"speed_drop": False, "sensitive": False},
-    "passenger": {"speed_drop": True,  "sensitive": False},
-    "cargo":     {"speed_drop": True,  "sensitive": True},
-    "tanker":    {"speed_drop": True,  "sensitive": True},
-    "other":     {"speed_drop": True,  "sensitive": False},
-    "unknown":   {"speed_drop": True,  "sensitive": False},
+    "fishing": {"speed_drop": False, "sensitive": False},
+    "pleasure": {"speed_drop": False, "sensitive": False},
+    "sar": {"speed_drop": False, "sensitive": False},
+    "tug": {"speed_drop": False, "sensitive": False},
+    "passenger": {"speed_drop": True, "sensitive": False},
+    "cargo": {"speed_drop": True, "sensitive": True},
+    "tanker": {"speed_drop": True, "sensitive": True},
+    "other": {"speed_drop": True, "sensitive": False},
+    "unknown": {"speed_drop": True, "sensitive": False},
 }
 
 

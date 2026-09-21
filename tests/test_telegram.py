@@ -17,21 +17,29 @@ def _body(n):
 
 def test_incident_message_is_plain_turkish(cfg):
     n = _notifier(cfg)
-    inc = Incident(id="2026-09-04-x", type="distress", status="confirmed",
-                   lat=40.90, lon=28.20, area="Marmara Denizi", casualties=2,
-                   vessel=Vessel(name="EGE 5", mmsi=271000001))
-    inc.sources.append(Source(kind="official", org="Sahil Güvenlik", detail="tekne battı",
-                              url="https://sg.gov.tr/x"))
+    inc = Incident(
+        id="2026-09-04-x",
+        type="distress",
+        status="confirmed",
+        lat=40.90,
+        lon=28.20,
+        area="Marmara Denizi",
+        casualties=2,
+        vessel=Vessel(name="EGE 5", mmsi=271000001),
+    )
+    inc.sources.append(
+        Source(kind="official", org="Sahil Güvenlik", detail="tekne battı", url="https://sg.gov.tr/x")
+    )
     n.incident(inc, dry=True)
     body = _body(n)
 
     # plain-language content
     assert "DENİZDE OLAY — DOĞRULANDI" in body
-    assert "tehlike çağrısı" in body            # type translated
+    assert "tehlike çağrısı" in body  # type translated
     assert "doğrulandı (resmi kaynak)" in body  # status translated
     assert "EGE 5" in body
     assert "2 kişi bildirildi" in body
-    assert "deniz mili" in body                 # nearest-port line in plain words
+    assert "deniz mili" in body  # nearest-port line in plain words
     assert "google.com/maps?q=40.9" in body
     assert "158 Sahil Güvenlik" in body
 
@@ -58,27 +66,42 @@ def test_probable_incident_sends_with_soft_wording(cfg):
     n.incident(inc, dry=True)
     log = n.outbox.read_text("utf-8")
     assert "henüz doğrulanmadı" in log
-    assert "sürüklenme" in log                 # type_tr("drift")
+    assert "sürüklenme" in log  # type_tr("drift")
 
 
 def test_weather_warning_has_beaufort(cfg):
     n = _notifier(cfg)
-    w = Warning(id="w1", headline="Marmara Denizi: dalga ~2.6 m, rüzgar hamlesi ~41 kn (36 saat)",
-                area="Marmara Denizi", kind="marine-weather", severity="major",
-                org="Open-Meteo", value=2.6, lat=40.7, lon=28.3)
+    w = Warning(
+        id="w1",
+        headline="Marmara Denizi: dalga ~2.6 m, rüzgar hamlesi ~41 kn (36 saat)",
+        area="Marmara Denizi",
+        kind="marine-weather",
+        severity="major",
+        org="Open-Meteo",
+        value=2.6,
+        lat=40.7,
+        lon=28.3,
+    )
     n.warning(w, dry=True)
     log = n.outbox.read_text("utf-8")
     assert "DENİZ HAVA UYARISI" in log
     assert "2,6 metre" in log
     assert "Bofor" in log
     assert "Küçük tekneyle denize çıkmayın" in log
-    assert "kn" not in log or "knot" in log     # raw "kn" abbreviation not shown bare
+    assert "kn" not in log or "knot" in log  # raw "kn" abbreviation not shown bare
 
 
 def test_multi_source_confirmation_message(cfg):
     n = _notifier(cfg)
-    w = Warning(id="eq1", headline="Deprem M4.2 - Marmara", kind="earthquake",
-                org="AFAD", value=4.2, lat=40.9, lon=28.2)
+    w = Warning(
+        id="eq1",
+        headline="Deprem M4.2 - Marmara",
+        kind="earthquake",
+        org="AFAD",
+        value=4.2,
+        lat=40.9,
+        lon=28.2,
+    )
     w.add_source(Source(kind="earthquake", org="USGS", detail="M4.1"))
     w.add_source(Source(kind="earthquake", org="EMSC", detail="M4.3"))
     n.warning_confirmed(w, dry=True)
@@ -97,10 +120,17 @@ def test_digest_batches_into_one_message(cfg):
     cfg["alert"]["telegram"]["digest"] = True
     n = _notifier(cfg)
     for i in range(3):
-        w = Warning(id=f"w{i}", headline=f"uyari {i}", kind="marine-weather",
-                    org="Open-Meteo", area="Marmara", lat=40.7, lon=28.3)
+        w = Warning(
+            id=f"w{i}",
+            headline=f"uyari {i}",
+            kind="marine-weather",
+            org="Open-Meteo",
+            area="Marmara",
+            lat=40.7,
+            lon=28.3,
+        )
         n.warning(w, dry=True)
-    assert n._sent == set()          # nothing sent yet, all queued
+    assert n._sent == set()  # nothing sent yet, all queued
     assert len(n._queue) == 3
     n.flush(dry=True)
     assert len(n._queue) == 0
@@ -113,5 +143,5 @@ def test_digest_sart_bypasses_queue(cfg):
     inc = Incident(id="s9", type="distress", status="signal", lat=41.0, lon=29.0)
     inc.sources.append(Source(kind="ais-sart", org="AIS", detail="SART"))
     n.incident(inc, dry=True)
-    assert "inc:s9:signal:1" in "".join(n._sent)   # sent immediately, not queued
+    assert "inc:s9:signal:1" in "".join(n._sent)  # sent immediately, not queued
     assert n._queue == []

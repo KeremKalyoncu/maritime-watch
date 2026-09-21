@@ -24,7 +24,7 @@ from ..model import fix_mojibake
 
 UA = {"User-Agent": "maritime-watch/1.0 (open-source maritime safety aggregator)"}
 SAMPLES = Path(__file__).parent / "samples"
-TIMEOUT = 20        # denizhaber.com.tr her donguyu 10 s'de zaman asimina ugratiyordu
+TIMEOUT = 20  # denizhaber.com.tr her donguyu 10 s'de zaman asimina ugratiyordu
 
 # True in tests and offline demos, False in production (set by run.py from config).
 # The default is the safe one: a module imported outside run.py must not be able
@@ -39,8 +39,9 @@ def reset_status() -> None:
     STATUS.clear()
 
 
-def get_text(url: str, sample_name: str, headers: dict | None = None,
-             timeout: int = TIMEOUT) -> tuple[str, bool]:
+def get_text(
+    url: str, sample_name: str, headers: dict | None = None, timeout: int = TIMEOUT
+) -> tuple[str, bool]:
     """Returns (text, is_live). Never returns sample text when SAMPLES_ALLOWED is off."""
     try:
         r = requests.get(url, headers={**UA, **(headers or {})}, timeout=timeout)
@@ -64,8 +65,7 @@ def get_text(url: str, sample_name: str, headers: dict | None = None,
         return "", False
 
 
-def get_json(url: str, sample_name: str, headers: dict | None = None,
-             timeout: int = TIMEOUT):
+def get_json(url: str, sample_name: str, headers: dict | None = None, timeout: int = TIMEOUT):
     raw, live = get_text(url, sample_name, headers, timeout)
     if not raw:
         return None, live
@@ -83,6 +83,7 @@ def fetch_parallel(tasks: list[tuple], max_workers: int = 6) -> list[tuple[str, 
     Each task is a tuple: (url, sample_name, [headers], [timeout]).
     Returns list of (text, is_live) in the same order as tasks.
     """
+
     def _worker(t):
         url = t[0]
         sample_name = t[1]
