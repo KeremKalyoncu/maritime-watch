@@ -366,8 +366,13 @@ def main() -> None:
     ap.add_argument("--alert-token", default=None, help="Auth token for emergency webhook")
     ap.add_argument("--no-ais", action="store_true")
     ap.add_argument("--no-scrape", action="store_true")
+    ap.add_argument("--send", action="store_true", help="Deprecated: Telegram alerts moved to maritime-social")
+    ap.add_argument("--bot", action="store_true", help="Deprecated: Telegram bot moved to maritime-social")
     ap.add_argument("--config", default=None)
     args = ap.parse_args()
+
+    if args.send or args.bot:
+        print("[compat] Note: --send / --bot flags are deprecated; messaging moved to maritime-social.")
 
     cfg = load_config(args.config)
     webhook_url = args.alert_webhook or cfg.get("alert", {}).get("webhook_url", "")

@@ -39,11 +39,7 @@ jobs:
       - name: Run one cycle
         env:
           AISSTREAM_KEY: ${{ secrets.AISSTREAM_KEY }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          if [ -n "$TELEGRAM_BOT_TOKEN" ]; then SEND=--send; else SEND=; fi
-          python run.py --once $SEND
+        run: python run.py --once
 
       - name: Validate publish artifacts
         run: python scripts/ci_validate_publish.py

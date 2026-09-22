@@ -55,7 +55,7 @@ def calculate_sun_times(
     """
     # Parse date
     if date is None:
-        target_date = datetime.datetime.now(datetime.timezone.utc).date()
+        target_date = datetime.datetime.now(datetime.UTC).date()
     elif isinstance(date, str):
         target_date = datetime.date.fromisoformat(date.split("T")[0])
     else:
