@@ -10,6 +10,7 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
+from .shallow_banks import evaluate_grounding_risk
 from .shiptype import CATEGORY_TR as SHIP_CAT_TR
 from .shiptype import category as ship_category
 from .shiptype import profile as ship_profile
@@ -104,6 +105,18 @@ class VesselState:
                 v["name"] = p["name"]
             if p.get("type_code") is not None:
                 v["type_code"] = p["type_code"]
+            if p.get("callsign"):
+                v["callsign"] = p["callsign"]
+            if p.get("draught") is not None:
+                v["draught"] = p["draught"]
+            if p.get("length") is not None:
+                v["length"] = p["length"]
+            if p.get("width") is not None:
+                v["width"] = p["width"]
+            if p.get("destination"):
+                v["destination"] = p["destination"]
+            if p.get("eta"):
+                v["eta"] = p["eta"]
             v["track"].append(
                 {
                     "lat": _round(p["lat"]),
@@ -111,6 +124,7 @@ class VesselState:
                     "sog": _round(p.get("sog"), 1),
                     "cog": _round(p.get("cog"), 1),
                     "nav": p.get("nav_status"),
+                    "rot": p.get("rot"),
                     "ts": _iso(p.get("ts")),
                 }
             )
@@ -274,6 +288,41 @@ def detect(state: VesselState, positions: list[dict], cfg: dict, seen_now: set[s
                             name,
                         )
                     )
+
+        # rot-spike: extreme Rate of Turn while underway (rudder failure / emergency swerve)
+        rot_val = p.get("rot")
+        curr_sog = float(p.get("sog") or 0.0)
+        if rot_val is not None and curr_sog >= 5.0 and nav not in (1, 5) and abs(rot_val) >= 20.0:
+            direction = "sancak (sağ)" if rot_val > 0 else "iskele (sol)"
+            out.append(
+                Anomaly(
+                    int(key),
+                    "rot-spike",
+                    f"seyir hızında ({curr_sog:.1f} kn) ani ve aşırı dönüş: {abs(rot_val):.1f}°/dk {direction}",
+                    p["lat"],
+                    p["lon"],
+                    "critical" if abs(rot_val) >= 30.0 else "major",
+                    name,
+                )
+            )
+
+        # grounding-risk: deep-draft vessel encroaching on charted shallow bank
+        draught_val = p.get("draught") or vstate.get("draught")
+        if draught_val is not None and p.get("lat") is not None and p.get("lon") is not None:
+            gr = evaluate_grounding_risk(p["lat"], p["lon"], draught_val, curr_sog)
+            if gr:
+                out.append(
+                    Anomaly(
+                        int(key),
+                        "grounding-risk",
+                        f"Sığlık Yaklaşımı: {gr['bank_name']} (Derinlik: {gr['bank_depth_m']}m, Draft: {gr['vessel_draught_m']}m, "
+                        f"Mesafe: {gr['distance_m']}m, Klerans: {gr['under_keel_clearance_m']}m)",
+                        p["lat"],
+                        p["lon"],
+                        "critical" if gr["under_keel_clearance_m"] < 0 else "major",
+                        name,
+                    )
+                )
 
     # ais-gap: we sample ~90 s out of every cron interval, so a vessel simply not
     # transmitting during this burst is NOT missing. Absence only means something

@@ -63,6 +63,7 @@ from src.process.cpa import cpa_events_to_incidents, detect_cpa_risks
 from src.process.dedup import correlate
 from src.process.prune import clear_passed_weather, prune
 from src.process.safety_index import render_safety_index
+from src.process.shiptype import hazard_category, is_large_vessel
 from src.render.feed import build_feed
 from src.render.health import write_health
 from src.render.mapdata import enrich_incident_tracks, write_summary
@@ -78,6 +79,8 @@ _TYPE_FOR = {
     "ais-gap": "distress",
     "course-spike": "unknown",
     "ais-sart": "distress",
+    "rot-spike": "rot-spike",
+    "grounding-risk": "grounding-risk",
 }
 
 
@@ -158,12 +161,26 @@ def cycle(
         print(f"[anomaly] {len(anomalies)} flag(s)")
         for an in anomalies:
             kind = "ais-sart" if an.kind == "ais-sart" else "ais-anomaly"
+            vstate = vs.data.get(str(an.mmsi), {})
+            vessel_obj = Vessel(
+                name=an.name or vstate.get("name") or None,
+                mmsi=an.mmsi,
+                type=str(vstate.get("type_code")) if vstate.get("type_code") is not None else None,
+                callsign=vstate.get("callsign"),
+                draught=vstate.get("draught"),
+                length=vstate.get("length"),
+                width=vstate.get("width"),
+                destination=vstate.get("destination"),
+                eta=vstate.get("eta"),
+                cargo_hazard=hazard_category(vstate.get("type_code"), an.name),
+                is_large_vessel=is_large_vessel(vstate.get("length")),
+            )
             inc = Incident(
                 id=make_id("ais", an.lat, an.lon),
                 type=_TYPE_FOR.get(an.kind, "unknown"),
                 lat=an.lat,
                 lon=an.lon,
-                vessel=Vessel(name=an.name or None, mmsi=an.mmsi),
+                vessel=vessel_obj,
             )
             inc.sources.append(Source(kind=kind, org="AIS", detail=f"{an.kind}: {an.detail}"))
             inc = correlate(store, inc)

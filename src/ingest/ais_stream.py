@@ -57,13 +57,60 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
 
             if mtype == "ShipStaticData":
                 d = msg.get("Message", {}).get("ShipStaticData", {})
+                dim = d.get("Dimension", {})
+                length = None
+                width = None
+                if isinstance(dim, dict):
+                    a = dim.get("A", 0) or 0
+                    b = dim.get("B", 0) or 0
+                    c = dim.get("C", 0) or 0
+                    d_dim = dim.get("D", 0) or 0
+                    if (a + b) > 0:
+                        length = float(a + b)
+                    if (c + d_dim) > 0:
+                        width = float(c + d_dim)
+
+                draught = d.get("MaximumStaticDraught")
+                if draught is not None:
+                    try:
+                        draught = round(float(draught), 2)
+                    except (TypeError, ValueError):
+                        draught = None
+
+                dest = (d.get("Destination") or "").strip() or None
+
+                eta_obj = d.get("Eta")
+                eta_str = None
+                if isinstance(eta_obj, dict):
+                    mo = eta_obj.get("Month")
+                    dy = eta_obj.get("Day")
+                    hr = eta_obj.get("Hour")
+                    mn = eta_obj.get("Minute")
+                    if mo and dy:
+                        eta_str = f"{int(mo):02d}-{int(dy):02d} {int(hr or 0):02d}:{int(mn or 0):02d}"
+
                 static[mmsi] = {
                     "name": (d.get("Name") or "").strip(),
                     "type_code": d.get("Type"),
                     "callsign": (d.get("CallSign") or "").strip(),
+                    "draught": draught,
+                    "length": length,
+                    "width": width,
+                    "destination": dest,
+                    "eta": eta_str,
                 }
             elif mtype == "PositionReport":
                 d = msg.get("Message", {}).get("PositionReport", {})
+                raw_rot = d.get("RateOfTurn")
+                rot = None
+                if raw_rot is not None and raw_rot != -128:
+                    try:
+                        raw_f = float(raw_rot)
+                        sign = 1.0 if raw_f >= 0 else -1.0
+                        rot = round(4.733 * sign * ((abs(raw_f) / 127.0) ** 2), 1)
+                    except (TypeError, ValueError):
+                        rot = None
+
                 positions.append(
                     {
                         "mmsi": mmsi,
@@ -73,6 +120,7 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
                         "cog": d.get("Cog"),
                         "true_heading": d.get("TrueHeading"),
                         "nav_status": d.get("NavigationalStatus"),
+                        "rot": rot,
                         "ts": meta.get("time_utc") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                         "name": (meta.get("ShipName") or "").strip(),
                     }
@@ -97,6 +145,17 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
             p["name"] = p["name"] or s["name"]
             p["type_code"] = s["type_code"]
             p["callsign"] = s["callsign"]
+            p["draught"] = s.get("draught")
+            p["length"] = s.get("length")
+            p["width"] = s.get("width")
+            p["destination"] = s.get("destination")
+            p["eta"] = s.get("eta")
+        p.setdefault("draught", None)
+        p.setdefault("length", None)
+        p.setdefault("width", None)
+        p.setdefault("destination", None)
+        p.setdefault("eta", None)
+        p.setdefault("rot", None)
     return positions
 
 

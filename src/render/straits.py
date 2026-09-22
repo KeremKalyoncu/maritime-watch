@@ -9,6 +9,11 @@ from pathlib import Path
 from typing import Any
 
 from src.model import StraitStatus, now_iso
+from src.process.shiptype import (
+    DEEP_DRAFT_THRESHOLD_M,
+    is_dangerous_cargo,
+    is_large_vessel,
+)
 
 STRAIT_ZONES = {
     "bosphorus": {
@@ -60,8 +65,11 @@ def evaluate_strait(
             if "lodos" in head_low or "kıble" in head_low or "orkoz" in head_low:
                 orkoz_detected = True
 
-    # Boğaz koridorundaki canlı AIS gemi trafiği
+    # Boğaz koridorundaki canlı AIS gemi trafiği ve risk analizi
     in_transit_count = 0
+    deep_draft_count = 0
+    large_vessel_count = 0
+    hazmat_tanker_count = 0
     speeds: list[float] = []
 
     if vessels_data:
@@ -79,8 +87,32 @@ def evaluate_strait(
                     in_transit_count += 1
                     speeds.append(sog)
 
+                    # Derin draft kontrolü (>= 10.0m)
+                    draught = v.get("draught")
+                    if draught is not None:
+                        try:
+                            if float(draught) >= DEEP_DRAFT_THRESHOLD_M:
+                                deep_draft_count += 1
+                        except (TypeError, ValueError):
+                            pass
+
+                    # Büyük boy gemi kontrolü (LOA >= 200m)
+                    length = v.get("length")
+                    if is_large_vessel(length):
+                        large_vessel_count += 1
+
+                    # Tehlikeli yük kontrolü (LNG, Ham Petrol, Kimyasal)
+                    type_code = v.get("type_code")
+                    name_v = v.get("name", "")
+                    if is_dangerous_cargo(type_code, name_v):
+                        hazmat_tanker_count += 1
+
     # Boğaz geçişindeki gemilerin ortalama hızı (gemi yoksa 0.0 kn)
     avg_speed = round(sum(speeds) / len(speeds), 1) if speeds else 0.0
+
+    high_risk_transit = (large_vessel_count > 0 or hazmat_tanker_count > 0) and (
+        orkoz_detected or fog_detected or (in_transit_count >= 5 and avg_speed < 3.5)
+    )
 
     if is_suspended:
         status = "suspended"
@@ -89,6 +121,10 @@ def evaluate_strait(
         status = "caution"
         status_tr = "Tedbirli Geçiş"
         suspension_reason = "ORKOZ TEHLİKESİ: Sert Lodos üst akıntıyla çatışıyor, dik kırıcı dalga riski."
+    elif high_risk_transit:
+        status = "caution"
+        status_tr = "Tedbirli Geçiş"
+        suspension_reason = f"YÜKSEK RİSKLİ TRANSİT: {large_vessel_count} büyük boy / {hazmat_tanker_count} tehlikeli tanker dar kanalda"
     elif in_transit_count >= 6 and avg_speed < 2.5:
         status = "caution"
         status_tr = "Tedbirli Geçiş"
@@ -109,6 +145,10 @@ def evaluate_strait(
         last_update=now_iso(),
         orkoz_detected=orkoz_detected,
         fog_detected=fog_detected,
+        deep_draft_count=deep_draft_count,
+        large_vessel_count=large_vessel_count,
+        hazmat_tanker_count=hazmat_tanker_count,
+        high_risk_transit=high_risk_transit,
     )
 
 

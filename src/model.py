@@ -37,6 +37,8 @@ def now_iso() -> str:
 
 class IncidentType(str, Enum):
     GROUNDING = "grounding"
+    GROUNDING_RISK = "grounding-risk"
+    ROT_SPIKE = "rot-spike"
     COLLISION = "collision"
     COLLISION_RISK = "collision-risk"
     DRIFT = "drift"
@@ -67,6 +69,8 @@ class Severity(str, Enum):
 # Telegram ve harita icin Turkce karsiliklar
 TYPE_TR = {
     "grounding": "karaya oturma",
+    "grounding-risk": "karaya oturma riski (sığlık yaklaşımı)",
+    "rot-spike": "kritik cayro dönüşü (dümen kilitlenmesi şüphesi)",
     "collision": "çatışma (çarpışma)",
     "collision-risk": "çatışma riski (yakın geçiş)",
     "drift": "sürüklenme",
@@ -113,6 +117,25 @@ class Vessel:
     mmsi: int | None = None
     type: str | None = None
     callsign: str | None = None
+    draught: float | None = None
+    length: float | None = None
+    width: float | None = None
+    destination: str | None = None
+    eta: str | None = None
+    rot: float | None = None
+    cargo_hazard: str | None = None
+    is_large_vessel: bool = False
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+    @staticmethod
+    def from_dict(d: dict[str, Any]) -> Vessel:
+        import dataclasses
+
+        valid_fields = {f.name for f in dataclasses.fields(Vessel)}
+        filtered = {k: v for k, v in d.items() if k in valid_fields}
+        return Vessel(**filtered)
 
 
 @dataclass
@@ -158,6 +181,10 @@ class StraitStatus:
     last_update: str = field(default_factory=now_iso)
     orkoz_detected: bool = False
     fog_detected: bool = False
+    deep_draft_count: int = 0
+    large_vessel_count: int = 0
+    hazmat_tanker_count: int = 0
+    high_risk_transit: bool = False
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
