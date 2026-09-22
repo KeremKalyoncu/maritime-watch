@@ -20,6 +20,8 @@ web/data/weather_overlay.json
 web/data/straits.json
 web/data/safety_index.json
 web/data/outlook.json
+web/data/incidents.geojson
+web/data/vessels.geojson
 
 # chat ids identify people; this file stays on the host
 data/subscribers.json

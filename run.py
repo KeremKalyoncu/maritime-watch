@@ -63,8 +63,10 @@ from src.process.cpa import cpa_events_to_incidents, detect_cpa_risks
 from src.process.dedup import correlate
 from src.process.prune import clear_passed_weather, prune
 from src.process.safety_index import render_safety_index
+from src.process.sar_drift import enrich_sar_drift
 from src.process.shiptype import hazard_category, is_large_vessel
 from src.render.feed import build_feed
+from src.render.geojson import build_geojson
 from src.render.health import write_health
 from src.render.mapdata import enrich_incident_tracks, write_summary
 from src.render.outlook import render_outlook
@@ -84,6 +86,46 @@ _TYPE_FOR = {
 }
 
 
+def _is_safe_webhook_url(url: str) -> bool:
+    """Validate webhook URL against SSRF attacks on cloud metadata and sensitive internal networks."""
+    if not url or not isinstance(url, str):
+        return False
+    try:
+        import ipaddress
+        from urllib.parse import urlsplit
+
+        parsed = urlsplit(url)
+        if parsed.scheme not in ("http", "https"):
+            return False
+
+        hostname = parsed.hostname
+        if not hostname:
+            return False
+
+        blocked_hostnames = {
+            "metadata.google.internal",
+            "metadata",
+            "instance-data",
+        }
+        if hostname.lower() in blocked_hostnames or hostname.lower().endswith(".internal"):
+            return False
+
+        try:
+            ip = ipaddress.ip_address(hostname)
+            # Block link-local (169.254.0.0/16, fe80::/10) including AWS/GCP metadata
+            if ip.is_link_local or ip.is_multicast or ip.is_reserved:
+                return False
+            # Explicit cloud metadata / unspecified IPs
+            if str(ip) in ("0.0.0.0", "169.254.169.254", "169.254.170.2", "100.100.100.200"):
+                return False
+        except ValueError:
+            pass
+
+        return True
+    except Exception:
+        return False
+
+
 def dispatch_emergency_webhook(
     webhook_url: str | None,
     token: str | None,
@@ -91,6 +133,9 @@ def dispatch_emergency_webhook(
 ) -> None:
     """Optionally emit an emergency incident to maritime-social or external hub with 0 latency."""
     if not webhook_url:
+        return
+    if not _is_safe_webhook_url(webhook_url):
+        print(f"[webhook:security] Refusing unsafe webhook URL: {webhook_url}")
         return
     try:
         import requests
@@ -330,8 +375,10 @@ def cycle(
     grid_payload = None
     try:
         grid_payload = render_weather_grid(cfg, web_data / "weather_overlay.json", points=forecast_pts)
+        pts_list = grid_payload.get("points", []) if grid_payload else []
         for inc in store.active_incidents():
-            enrich_weather_context(inc, grid_payload.get("points", []))
+            enrich_weather_context(inc, pts_list)
+            enrich_sar_drift(inc, pts_list)
     except Exception as e:
         print(f"[weather_grid] render error: {e}")
 
@@ -357,6 +404,7 @@ def cycle(
     store.trim_events()
     store.save()
     build_feed(store, str(web_data))
+    build_geojson(store, str(web_data), vessels_data=vessels_dict)
     write_summary(store, str(web_data), stale_hours=cfg.get("alert", {}).get("stale_hours", 2))
     build_stats(str(root / "data" / "events.jsonl"), str(web_data))
     print(f"[done] incidents={len(store.active_incidents())} warnings={len(store.active_warnings())}")

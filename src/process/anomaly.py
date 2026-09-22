@@ -80,6 +80,47 @@ def _near_port(lat, lon, nm: float = 6.0) -> bool:
     return np is not None and np[1] <= nm
 
 
+def is_valid_coord(lat, lon) -> bool:
+    """Check if lat/lon are within valid geographic bounds and not null island (0, 0)."""
+    try:
+        flat, flon = float(lat), float(lon)
+        if not (-90.0 <= flat <= 90.0 and -180.0 <= flon <= 180.0):
+            return False
+        return not (abs(flat) < 0.0001 and abs(flon) < 0.0001)
+    except (TypeError, ValueError):
+        return False
+
+
+def is_valid_kinematics(prev_pt: dict, new_pt: dict, max_speed_kn: float = 80.0) -> bool:
+    """Detect impossible speed spikes (> 80 kn) caused by RF corruption or GPS spoofing."""
+    import math
+
+    try:
+        lat1, lon1 = float(prev_pt["lat"]), float(prev_pt["lon"])
+        lat2, lon2 = float(new_pt["lat"]), float(new_pt["lon"])
+        ts1 = _parse_ts(prev_pt.get("ts"))
+        ts2 = _parse_ts(new_pt.get("ts"))
+        if ts1 is None or ts2 is None:
+            return True
+        dt_s = ts2 - ts1
+        if dt_s <= 0:
+            return True
+        dt_hours = dt_s / 3600.0
+        if dt_hours > 3.0:
+            return True
+
+        mean_lat_rad = math.radians((lat1 + lat2) / 2.0)
+        dy = (lat2 - lat1) * 60.0
+        dx = (lon2 - lon1) * 60.0 * math.cos(mean_lat_rad)
+        dist_nm = math.sqrt(dx * dx + dy * dy)
+        speed_kn = dist_nm / dt_hours
+        if speed_kn > max_speed_kn:
+            return False
+    except Exception:
+        pass
+    return True
+
+
 class VesselState:
     """Gemilerin konum geçmişini JSON formatında saklar."""
 
@@ -99,8 +140,23 @@ class VesselState:
                 continue
             if p.get("mmsi") is None or p.get("lat") is None or p.get("lon") is None:
                 continue
+            if not is_valid_coord(p.get("lat"), p.get("lon")):
+                continue
+
             key = str(p["mmsi"])
             v = self.data.setdefault(key, {"track": [], "name": ""})
+
+            # Check kinematic sanity against previous track point (anti-teleportation)
+            if v["track"]:
+                prev = v["track"][-1]
+                new_candidate = {
+                    "lat": p["lat"],
+                    "lon": p["lon"],
+                    "ts": p.get("ts"),
+                }
+                if not is_valid_kinematics(prev, new_candidate):
+                    continue
+
             if p.get("name"):
                 v["name"] = p["name"]
             if p.get("type_code") is not None:

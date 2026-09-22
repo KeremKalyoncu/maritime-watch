@@ -264,6 +264,7 @@ class Incident:
     heading: float | None = None
     vessel_type: str = "unknown"
     weather_context: WeatherContext | None = None
+    sar_drift: dict[str, Any] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -275,6 +276,7 @@ class Incident:
         d.setdefault("track", [])
         d.setdefault("heading", None)
         d.setdefault("vessel_type", "unknown")
+        d.setdefault("sar_drift", None)
         d["vessel"] = Vessel(**(d.get("vessel") or {}))
         d["sources"] = [Source(**s) for s in d.get("sources", [])]
         wc = d.get("weather_context")

@@ -258,7 +258,14 @@ if (MAP_OK) {
   }
 }
 
-const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const esc = s => String(s == null ? "" : s).replace(/[&<>'"`]/g, c => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+  "`": "&#96;",
+}[c]));
 const fmtTime = iso => { if (!iso) return ""; const d = new Date(iso); return isNaN(d) ? iso : d.toLocaleString(LANG === "en" ? "en-GB" : "tr-TR", { dateStyle: "short", timeStyle: "short" }); };
 const radiusFor = sev => ({ critical: 11, major: 9, minor: 7, info: 6 }[sev] || 7);
 
@@ -372,7 +379,7 @@ function incidentPopup(i) {
     ${u.firstseen}: ${fmtTime(i.first_seen)} · ${u.lastupd}: ${fmtTime(i.last_update)}</div>
     ${wxCtx}
     <ul style="margin:6px 0 0 16px;padding:0">${srcs}</ul>
-    <button type="button" class="btn-share" onclick="shareIncident('${esc(i.id)}')">📋 ${esc(u.share_btn)}</button>`;
+    <button type="button" class="btn-share" data-incident-id="${esc(encodeURIComponent(i.id))}" onclick="shareIncident(decodeURIComponent(this.dataset.incidentId))">📋 ${esc(u.share_btn)}</button>`;
 }
 
 function warningPopup(w) {
@@ -615,7 +622,7 @@ function renderSafetyStrip(straitsData, safetyData) {
     const badgeClass = isSusp ? "suspended" : (st.status === "caution" ? "caution" : "good");
     const meta = isSusp ? `⚠ ${st.reason || ""}` : `${st.active_vessels_in_transit} transit gemi · ${st.avg_speed_kn} kn`;
     cards.push(`
-      <div class="safety-card" onclick="focusStrait('${st.id}')">
+      <div class="safety-card" data-strait-id="${esc(encodeURIComponent(st.id))}" onclick="focusStrait(decodeURIComponent(this.dataset.straitId))">
         <span class="sc-title">${esc(st.name)}:</span>
         <span class="safety-badge ${badgeClass}">${esc(st.status_tr)}</span>
         <span class="sc-meta">${esc(meta)}</span>

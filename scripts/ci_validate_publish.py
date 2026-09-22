@@ -133,12 +133,27 @@ def validate_warnings(data: object | None) -> list[str]:
     raise SystemExit("[validate] warnings.json: unexpected shape")
 
 
+def validate_geojson(filename: str) -> list[str]:
+    data = _load(filename)
+    if data is None:
+        return [f"{filename} missing (soft)"]
+    if not isinstance(data, dict):
+        raise SystemExit(f"[validate] {filename}: expected GeoJSON FeatureCollection object")
+    if data.get("type") != "FeatureCollection":
+        raise SystemExit(f"[validate] {filename}: type must be FeatureCollection")
+    if not isinstance(data.get("features"), list):
+        raise SystemExit(f"[validate] {filename}: features must be a list")
+    return [f"{filename} ok (features={len(data['features'])})"]
+
+
 def main() -> int:
     notes: list[str] = []
     notes += validate_outlook(_load("outlook.json"))
     notes += validate_safety(_load("safety_index.json"))
     notes += validate_health(_load("health.json"))
     notes += validate_warnings(_load("warnings.json"))
+    notes += validate_geojson("incidents.geojson")
+    notes += validate_geojson("vessels.geojson")
     for n in notes:
         print(f"[validate] {n}")
     print("[validate] publish artifacts OK")
