@@ -33,7 +33,13 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
     sub = {
         "APIKey": key,
         "BoundingBoxes": [[[bbox["lat_min"], bbox["lon_min"]], [bbox["lat_max"], bbox["lon_max"]]]],
-        "FilterMessageTypes": ["PositionReport", "ShipStaticData", "SafetyBroadcastMessage"],
+        "FilterMessageTypes": [
+            "PositionReport",
+            "ShipStaticData",
+            "SafetyBroadcastMessage",
+            "StandardClassBPositionReport",
+            "ExtendedClassBPositionReport",
+        ],
     }
     positions: list[dict] = []
     static: dict = {}
@@ -99,8 +105,9 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
                     "destination": dest,
                     "eta": eta_str,
                 }
-            elif mtype == "PositionReport":
-                d = msg.get("Message", {}).get("PositionReport", {})
+            elif mtype in ("PositionReport", "StandardClassBPositionReport", "ExtendedClassBPositionReport"):
+                d = msg.get("Message", {}).get(mtype, {})
+                mmsi = mmsi or d.get("UserID")
                 raw_rot = d.get("RateOfTurn")
                 rot = None
                 if raw_rot is not None and raw_rot != -128:
