@@ -108,6 +108,7 @@ def cycle(
     cfg: dict,
     *,
     webhook_url: str | None = None,
+    webhook_token: str | None = None,
     do_ais: bool = True,
     do_scrape: bool = True,
 ) -> None:
@@ -119,10 +120,11 @@ def cycle(
     touched: set[str] = set()
     health: list[dict] = []
 
-    # Config override for webhook url
+    # Config override for webhook url and token
     if not webhook_url:
         webhook_url = cfg.get("alert", {}).get("webhook_url") or None
-    webhook_token = cfg.get("alert", {}).get("webhook_token") or None
+    if not webhook_token:
+        webhook_token = cfg.get("alert", {}).get("webhook_token") or None
 
     _net.SAMPLES_ALLOWED = bool(src.get("use_samples_when_down", False))
     _net.reset_status()
@@ -361,12 +363,15 @@ def main() -> None:
     ap.add_argument("--serve", action="store_true", help="serve web/ on localhost")
     ap.add_argument("--port", type=int, default=8000)
     ap.add_argument("--alert-webhook", default=None, help="HTTP URL to push critical emergency incidents")
+    ap.add_argument("--alert-token", default=None, help="Auth token for emergency webhook")
     ap.add_argument("--no-ais", action="store_true")
     ap.add_argument("--no-scrape", action="store_true")
     ap.add_argument("--config", default=None)
     args = ap.parse_args()
 
     cfg = load_config(args.config)
+    webhook_url = args.alert_webhook or cfg.get("alert", {}).get("webhook_url", "")
+    webhook_token = args.alert_token or cfg.get("alert", {}).get("webhook_token", "")
 
     if args.serve and not (args.once or args.loop):
         serve(cfg, args.port)
@@ -380,7 +385,8 @@ def main() -> None:
             try:
                 cycle(
                     cfg,
-                    webhook_url=args.alert_webhook,
+                    webhook_url=webhook_url,
+                    webhook_token=webhook_token,
                     do_ais=not args.no_ais,
                     do_scrape=not args.no_scrape,
                 )
@@ -393,7 +399,8 @@ def main() -> None:
     else:
         cycle(
             cfg,
-            webhook_url=args.alert_webhook,
+            webhook_url=webhook_url,
+            webhook_token=webhook_token,
             do_ais=not args.no_ais,
             do_scrape=not args.no_scrape,
         )
