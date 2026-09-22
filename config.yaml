@@ -174,7 +174,7 @@ metar:
 
 alert:
   webhook_url: ""                             # Optional: http://localhost:8088/webhook/alert (for maritime-social)
-  webhook_token: ""                           # Optional: internal auth token
+  webhook_token: "maritime_emergency_secret_key_2026"   # Default internal auth token matching maritime-social
   min_severity: "major"
   stale_hours: 2                              # map shows a "data is old" banner past this
 
