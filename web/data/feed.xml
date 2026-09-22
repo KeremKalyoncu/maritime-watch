@@ -3,7 +3,14 @@
   <title>Maritime Watch: Turkiye deniz olaylari</title>
   <link>https://example.github.io/maritime-watch</link>
   <description>AIS anomalileri + resmi açıklamalar füzyonu. Doğrulanmamış sinyaller etiketlidir.</description>
-  <lastBuildDate>Tue, 22 Sep 2026 08:29:37 +0000</lastBuildDate>
+  <lastBuildDate>Tue, 22 Sep 2026 11:50:10 +0000</lastBuildDate>
+    <item>
+      <title>[signal] collision-risk, Mersin–İskenderun Körfezi</title>
+      <link>https://example.github.io/maritime-watch</link>
+      <guid isPermaLink="false">cpa-271001022-271044683-3</guid>
+      <pubDate>Tue, 22 Sep 2026 11:45:29 +0000</pubDate>
+      <description>Güven: 0.1 | Önem: minor | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.02 NM (~35 m), kalan süre: 0.3 dk (Hızlar: 4.5 kn / 4.8 kn) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.02 NM (~37 m), kalan süre: 2.5 dk (Hızlar: 4.5 kn / 4.9 kn) | ais-cpa/AIS: Çatışma / Yakın Geçiş Riski: CPA 0.02 NM (~38 m), kalan süre: 1.2 dk (Hızlar: 4.8 kn / 4.9 kn)</description>
+    </item>
     <item>
       <title>[signal] drift, Gökova Körfezi</title>
       <link>https://example.github.io/maritime-watch</link>

@@ -12,7 +12,15 @@
       "name": "KARTEPE",
       "mmsi": 271002451,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": null,
     "first_seen": "2026-09-22T08:25:30Z",
@@ -31,10 +39,6 @@
     "coarse": false,
     "track": [
       [
-        37.0245,
-        27.4377
-      ],
-      [
         36.5364,
         27.885
       ],
@@ -49,11 +53,57 @@
       [
         36.8427,
         28.286
+      ],
+      [
+        36.8427,
+        28.286
       ]
     ],
     "heading": null,
     "vessel_type": "unknown",
-    "weather_context": null
+    "weather_context": null,
+    "sar_drift": {
+      "initial_position": {
+        "lat": 36.84268333333333,
+        "lon": 28.286045
+      },
+      "target_type": "drift",
+      "wind_kn": 10.0,
+      "wind_dir": 0.0,
+      "current_kn": 0.0,
+      "projections": [
+        {
+          "hours": 1.0,
+          "lat": 36.83768,
+          "lon": 28.28605,
+          "drift_speed_kn": 0.3,
+          "drift_bearing_deg": 180.0,
+          "drift_distance_nm": 0.3,
+          "search_radius_nm": 0.59,
+          "target_type": "drift"
+        },
+        {
+          "hours": 3.0,
+          "lat": 36.82768,
+          "lon": 28.28605,
+          "drift_speed_kn": 0.3,
+          "drift_bearing_deg": 180.0,
+          "drift_distance_nm": 0.9,
+          "search_radius_nm": 0.77,
+          "target_type": "drift"
+        },
+        {
+          "hours": 6.0,
+          "lat": 36.81268,
+          "lon": 28.28605,
+          "drift_speed_kn": 0.3,
+          "drift_bearing_deg": 180.0,
+          "drift_distance_nm": 1.8,
+          "search_radius_nm": 1.04,
+          "target_type": "drift"
+        }
+      ]
+    }
   },
   {
     "id": "2026-09-22-ais-3828a2",
@@ -68,7 +118,15 @@
       "name": "MILOU",
       "mmsi": 309832000,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": null,
     "first_seen": "2026-09-22T08:25:30Z",
@@ -109,7 +167,152 @@
     ],
     "heading": null,
     "vessel_type": "unknown",
-    "weather_context": null
+    "weather_context": null,
+    "sar_drift": {
+      "initial_position": {
+        "lat": 43.19283333333333,
+        "lon": 27.8983
+      },
+      "target_type": "drift",
+      "wind_kn": 10.0,
+      "wind_dir": 0.0,
+      "current_kn": 0.0,
+      "projections": [
+        {
+          "hours": 1.0,
+          "lat": 43.18783,
+          "lon": 27.8983,
+          "drift_speed_kn": 0.3,
+          "drift_bearing_deg": 180.0,
+          "drift_distance_nm": 0.3,
+          "search_radius_nm": 0.59,
+          "target_type": "drift"
+        },
+        {
+          "hours": 3.0,
+          "lat": 43.17783,
+          "lon": 27.8983,
+          "drift_speed_kn": 0.3,
+          "drift_bearing_deg": 180.0,
+          "drift_distance_nm": 0.9,
+          "search_radius_nm": 0.77,
+          "target_type": "drift"
+        },
+        {
+          "hours": 6.0,
+          "lat": 43.16283,
+          "lon": 27.8983,
+          "drift_speed_kn": 0.3,
+          "drift_bearing_deg": 180.0,
+          "drift_distance_nm": 1.8,
+          "search_radius_nm": 1.04,
+          "target_type": "drift"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cpa-271001022-271044683",
+    "type": "collision-risk",
+    "status": "signal",
+    "confidence": 0.1,
+    "severity": "minor",
+    "lat": 36.7913,
+    "lon": 34.6423,
+    "area": "Mersin–İskenderun Körfezi",
+    "vessel": {
+      "name": "TURKELI & KURTARMA 4",
+      "mmsi": 271044683,
+      "type": null,
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
+    },
+    "casualties": null,
+    "first_seen": "2026-09-22T11:45:29Z",
+    "last_update": "2026-09-22T11:45:29Z",
+    "sources": [
+      {
+        "kind": "ais-cpa",
+        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.02 NM (~35 m), kalan süre: 0.3 dk (Hızlar: 4.5 kn / 4.8 kn)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-22T11:45:29Z"
+      },
+      {
+        "kind": "ais-cpa",
+        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.02 NM (~37 m), kalan süre: 2.5 dk (Hızlar: 4.5 kn / 4.9 kn)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-22T11:45:29Z"
+      },
+      {
+        "kind": "ais-cpa",
+        "detail": "Çatışma / Yakın Geçiş Riski: CPA 0.02 NM (~38 m), kalan süre: 1.2 dk (Hızlar: 4.8 kn / 4.9 kn)",
+        "org": "AIS",
+        "url": null,
+        "ts": "2026-09-22T11:45:29Z"
+      }
+    ],
+    "notes": [
+      "Çatışma / Yakın Geçiş Riski: CPA 0.02 NM (~35 m), kalan süre: 0.3 dk (Hızlar: 4.5 kn / 4.8 kn)",
+      "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi."
+    ],
+    "places": [],
+    "coarse": false,
+    "track": [
+      [
+        36.7682,
+        34.7368
+      ],
+      [
+        36.7682,
+        34.7368
+      ],
+      [
+        36.7865,
+        34.6391
+      ],
+      [
+        36.8037,
+        34.6549
+      ],
+      [
+        36.7912,
+        34.6421
+      ],
+      [
+        36.7913,
+        34.6423
+      ]
+    ],
+    "heading": null,
+    "vessel_type": "unknown",
+    "weather_context": {
+      "wind_kn": 9.1,
+      "gust_kn": 12.1,
+      "wave_m": 0.2,
+      "wind_dir": 171,
+      "beaufort": 3,
+      "summary_tr": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 12 kn South wind and 0.2 m waves.",
+      "station_name": "Mersin Körfezi",
+      "distance_nm": 18.6,
+      "sea_temp_c": null,
+      "current_kn": null,
+      "wind_dir_name_tr": "",
+      "wave_period_s": null,
+      "visibility_km": null,
+      "is_steep_wave": false,
+      "is_foggy": false
+    },
+    "sar_drift": null
   },
   {
     "id": "cpa-271044683-271044683",
@@ -124,7 +327,15 @@
       "name": "TURKELI & TURKELI",
       "mmsi": 271044683,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": 4,
     "first_seen": "2026-09-17T22:53:40Z",
@@ -220,17 +431,14 @@
       "Bölgede 5 kn Karayel ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Karayel ve 0.2 m dalga kaydedildi.",
       "otomatik kapandı: ~76 saat güncelleme yok",
-      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
+      "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Mersin"
     ],
     "coarse": false,
     "track": [
-      [
-        36.8034,
-        34.6553
-      ],
       [
         36.7682,
         34.7368
@@ -248,6 +456,10 @@
         34.6549
       ],
       [
+        36.7912,
+        34.6421
+      ],
+      [
         36.7758,
         34.6572
       ]
@@ -255,13 +467,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 8.5,
-      "gust_kn": 11.3,
+      "wind_kn": 9.1,
+      "gust_kn": 12.1,
       "wave_m": 0.2,
-      "wind_dir": 121,
+      "wind_dir": 171,
       "beaufort": 3,
-      "summary_tr": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 11 kn ESE wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 12 kn South wind and 0.2 m waves.",
       "station_name": "Mersin Körfezi",
       "distance_nm": 18.4,
       "sea_temp_c": null,
@@ -271,7 +483,8 @@
       "visibility_km": null,
       "is_steep_wave": false,
       "is_foggy": false
-    }
+    },
+    "sar_drift": null
   },
   {
     "id": "news-a9f0c1e1aa",
@@ -286,7 +499,15 @@
       "name": null,
       "mmsi": null,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": 4,
     "first_seen": "2026-09-20T14:41:05Z",
@@ -317,7 +538,8 @@
       "Bölgede 9 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 10 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.2 m dalga kaydedildi.",
-      "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi."
+      "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi.",
+      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -327,13 +549,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 6.4,
-      "gust_kn": 8.6,
+      "wind_kn": 8.3,
+      "gust_kn": 11.1,
       "wave_m": 0.16,
-      "wind_dir": 106,
+      "wind_dir": 157,
       "beaufort": 3,
-      "summary_tr": "Bölgede 9 kn Keşişleme ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 9 kn ESE wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 11 kn SSE wind and 0.2 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -343,7 +565,8 @@
       "visibility_km": null,
       "is_steep_wave": false,
       "is_foggy": false
-    }
+    },
+    "sar_drift": null
   },
   {
     "id": "news-d3feb1cf8c",
@@ -358,7 +581,15 @@
       "name": null,
       "mmsi": null,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": 1,
     "first_seen": "2026-09-15T10:22:58Z",
@@ -418,7 +649,8 @@
       "Bölgede 4 kn Karayel ve 0.2 m dalga kaydedildi.",
       "Bölgede 10 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.2 m dalga kaydedildi.",
-      "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi."
+      "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi.",
+      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -428,13 +660,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 6.4,
-      "gust_kn": 8.6,
+      "wind_kn": 8.3,
+      "gust_kn": 11.1,
       "wave_m": 0.16,
-      "wind_dir": 106,
+      "wind_dir": 157,
       "beaufort": 3,
-      "summary_tr": "Bölgede 9 kn Keşişleme ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 9 kn ESE wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 11 kn SSE wind and 0.2 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -444,7 +676,8 @@
       "visibility_km": null,
       "is_steep_wave": false,
       "is_foggy": false
-    }
+    },
+    "sar_drift": null
   },
   {
     "id": "news-d78556fc93",
@@ -459,7 +692,15 @@
       "name": null,
       "mmsi": null,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": 1,
     "first_seen": "2026-09-21T04:28:12Z",
@@ -493,7 +734,8 @@
       "Bölgede 7 kn Gündoğusu ve 0.0 m dalga kaydedildi.",
       "Bölgede 4 kn Kıble ve 0.0 m dalga kaydedildi.",
       "Bölgede 6 kn Lodos ve 0.0 m dalga kaydedildi.",
-      "Bölgede 16 kn Karayel ve 0.1 m dalga kaydedildi."
+      "Bölgede 16 kn Karayel ve 0.1 m dalga kaydedildi.",
+      "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi."
     ],
     "places": [
       "Istanbul",
@@ -505,13 +747,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 12.2,
-      "gust_kn": 16.3,
-      "wave_m": 0.08,
-      "wind_dir": 332,
+      "wind_kn": 15.3,
+      "gust_kn": 20.4,
+      "wave_m": 0.1,
+      "wind_dir": 1,
       "beaufort": 4,
-      "summary_tr": "Bölgede 16 kn Karayel ve 0.1 m dalga kaydedildi.",
-      "summary_en": "At site: 16 kn NNW wind and 0.1 m waves.",
+      "summary_tr": "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi.",
+      "summary_en": "At site: 20 kn North wind and 0.1 m waves.",
       "station_name": "İstanbul Boğazı",
       "distance_nm": 9.8,
       "sea_temp_c": null,
@@ -521,6 +763,48 @@
       "visibility_km": null,
       "is_steep_wave": false,
       "is_foggy": false
+    },
+    "sar_drift": {
+      "initial_position": {
+        "lat": 41.02,
+        "lon": 28.97
+      },
+      "target_type": "drift",
+      "wind_kn": 15.3,
+      "wind_dir": 1.0,
+      "current_kn": 0.0,
+      "projections": [
+        {
+          "hours": 1.0,
+          "lat": 41.01235,
+          "lon": 28.96982,
+          "drift_speed_kn": 0.46,
+          "drift_bearing_deg": 181.0,
+          "drift_distance_nm": 0.46,
+          "search_radius_nm": 0.64,
+          "target_type": "drift"
+        },
+        {
+          "hours": 3.0,
+          "lat": 40.99705,
+          "lon": 28.96947,
+          "drift_speed_kn": 0.46,
+          "drift_bearing_deg": 181.0,
+          "drift_distance_nm": 1.38,
+          "search_radius_nm": 0.91,
+          "target_type": "drift"
+        },
+        {
+          "hours": 6.0,
+          "lat": 40.97411,
+          "lon": 28.96894,
+          "drift_speed_kn": 0.46,
+          "drift_bearing_deg": 181.0,
+          "drift_distance_nm": 2.75,
+          "search_radius_nm": 1.33,
+          "target_type": "drift"
+        }
+      ]
     }
   },
   {
@@ -536,7 +820,15 @@
       "name": null,
       "mmsi": null,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": 4,
     "first_seen": "2026-09-17T17:04:10Z",
@@ -560,7 +852,8 @@
     "track": [],
     "heading": null,
     "vessel_type": "unknown",
-    "weather_context": null
+    "weather_context": null,
+    "sar_drift": null
   },
   {
     "id": "rep-75afb3392f",
@@ -575,7 +868,15 @@
       "name": null,
       "mmsi": null,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": 2,
     "first_seen": "2026-09-16T18:15:05Z",
@@ -623,7 +924,8 @@
       "Bölgede 4 kn Karayel ve 0.2 m dalga kaydedildi.",
       "Bölgede 10 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.2 m dalga kaydedildi.",
-      "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi."
+      "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi.",
+      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -633,13 +935,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 6.4,
-      "gust_kn": 8.6,
+      "wind_kn": 8.3,
+      "gust_kn": 11.1,
       "wave_m": 0.16,
-      "wind_dir": 106,
+      "wind_dir": 157,
       "beaufort": 3,
-      "summary_tr": "Bölgede 9 kn Keşişleme ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 9 kn ESE wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 11 kn SSE wind and 0.2 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -649,7 +951,8 @@
       "visibility_km": null,
       "is_steep_wave": false,
       "is_foggy": false
-    }
+    },
+    "sar_drift": null
   },
   {
     "id": "rep-a91564eb9d",
@@ -664,7 +967,15 @@
       "name": null,
       "mmsi": null,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": 1,
     "first_seen": "2026-09-21T16:30:54Z",
@@ -686,7 +997,8 @@
     "track": [],
     "heading": null,
     "vessel_type": "unknown",
-    "weather_context": null
+    "weather_context": null,
+    "sar_drift": null
   },
   {
     "id": "rep-e86804d5dd",
@@ -701,7 +1013,15 @@
       "name": null,
       "mmsi": null,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": 4,
     "first_seen": "2026-09-19T14:02:00Z",
@@ -739,7 +1059,8 @@
       "Bölgede 4 kn Karayel ve 0.2 m dalga kaydedildi.",
       "Bölgede 10 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.2 m dalga kaydedildi.",
-      "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi."
+      "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi.",
+      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -749,13 +1070,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 6.4,
-      "gust_kn": 8.6,
+      "wind_kn": 8.3,
+      "gust_kn": 11.1,
       "wave_m": 0.16,
-      "wind_dir": 106,
+      "wind_dir": 157,
       "beaufort": 3,
-      "summary_tr": "Bölgede 9 kn Keşişleme ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 9 kn ESE wind and 0.2 m waves.",
+      "summary_tr": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 11 kn SSE wind and 0.2 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -765,7 +1086,8 @@
       "visibility_km": null,
       "is_steep_wave": false,
       "is_foggy": false
-    }
+    },
+    "sar_drift": null
   },
   {
     "id": "rep-ebb30e60b0",
@@ -780,7 +1102,15 @@
       "name": null,
       "mmsi": null,
       "type": null,
-      "callsign": null
+      "callsign": null,
+      "draught": null,
+      "length": null,
+      "width": null,
+      "destination": null,
+      "eta": null,
+      "rot": null,
+      "cargo_hazard": null,
+      "is_large_vessel": false
     },
     "casualties": 1,
     "first_seen": "2026-09-19T14:02:00Z",
@@ -812,7 +1142,8 @@
       "Bölgede 7 kn Gündoğusu ve 0.0 m dalga kaydedildi.",
       "Bölgede 4 kn Kıble ve 0.0 m dalga kaydedildi.",
       "Bölgede 6 kn Lodos ve 0.0 m dalga kaydedildi.",
-      "Bölgede 16 kn Karayel ve 0.1 m dalga kaydedildi."
+      "Bölgede 16 kn Karayel ve 0.1 m dalga kaydedildi.",
+      "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi."
     ],
     "places": [
       "Istanbul"
@@ -822,13 +1153,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 12.2,
-      "gust_kn": 16.3,
-      "wave_m": 0.08,
-      "wind_dir": 332,
+      "wind_kn": 15.3,
+      "gust_kn": 20.4,
+      "wave_m": 0.1,
+      "wind_dir": 1,
       "beaufort": 4,
-      "summary_tr": "Bölgede 16 kn Karayel ve 0.1 m dalga kaydedildi.",
-      "summary_en": "At site: 16 kn NNW wind and 0.1 m waves.",
+      "summary_tr": "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi.",
+      "summary_en": "At site: 20 kn North wind and 0.1 m waves.",
       "station_name": "İstanbul Boğazı",
       "distance_nm": 9.8,
       "sea_temp_c": null,
@@ -838,6 +1169,7 @@
       "visibility_km": null,
       "is_steep_wave": false,
       "is_foggy": false
-    }
+    },
+    "sar_drift": null
   }
 ]

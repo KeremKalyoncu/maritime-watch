@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-22T08:29:37Z",
+  "generated": "2026-09-22T11:50:10Z",
   "straits": [
     {
       "id": "bosphorus",
@@ -9,9 +9,13 @@
       "reason": null,
       "active_vessels_in_transit": 0,
       "avg_speed_kn": 0.0,
-      "last_update": "2026-09-22T08:29:37Z",
+      "last_update": "2026-09-22T11:50:10Z",
       "orkoz_detected": false,
-      "fog_detected": false
+      "fog_detected": false,
+      "deep_draft_count": 0,
+      "large_vessel_count": 0,
+      "hazmat_tanker_count": 0,
+      "high_risk_transit": false
     },
     {
       "id": "dardanelles",
@@ -21,9 +25,13 @@
       "reason": null,
       "active_vessels_in_transit": 0,
       "avg_speed_kn": 0.0,
-      "last_update": "2026-09-22T08:29:37Z",
+      "last_update": "2026-09-22T11:50:10Z",
       "orkoz_detected": false,
-      "fog_detected": false
+      "fog_detected": false,
+      "deep_draft_count": 0,
+      "large_vessel_count": 0,
+      "hazmat_tanker_count": 0,
+      "high_risk_transit": false
     }
   ]
 }

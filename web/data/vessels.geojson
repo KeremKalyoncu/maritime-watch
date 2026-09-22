@@ -1,0 +1,3575 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "mmsi-207038000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9208,
+          43.1948
+        ]
+      },
+      "properties": {
+        "mmsi": 207038000,
+        "name": "AKADEMIK",
+        "type_code": 99,
+        "category": "other",
+        "sog": 0,
+        "cog": 360,
+        "nav_status": 0,
+        "rot": null,
+        "draught": 4.5,
+        "length": 55.0,
+        "width": 10.0,
+        "destination": "VARNA",
+        "eta": "08-28 10:30",
+        "last_seen": "2026-09-22T11:44:55Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-207822380",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.8987,
+          43.1921
+        ]
+      },
+      "properties": {
+        "mmsi": 207822380,
+        "name": "TULENOVO 2",
+        "type_code": 0,
+        "category": "other",
+        "sog": 0,
+        "cog": 293.3,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:40Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-207823230",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9035,
+          43.1854
+        ]
+      },
+      "properties": {
+        "mmsi": 207823230,
+        "name": "DANCHOVOTO GEORGI",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 15.2,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:17Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-207827320",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9036,
+          43.1855
+        ]
+      },
+      "properties": {
+        "mmsi": 207827320,
+        "name": "HARASIMOV MLADSHI",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 344.5,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:12Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-207827490",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.8931,
+          43.197
+        ]
+      },
+      "properties": {
+        "mmsi": 207827490,
+        "name": "SKY MAN",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 170.9,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:57Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-207828660",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.3537,
+          43.3623
+        ]
+      },
+      "properties": {
+        "mmsi": 207828660,
+        "name": "DARINA",
+        "type_code": null,
+        "category": "other",
+        "sog": 6.2,
+        "cog": 286.6,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:20Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-207829750",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9353,
+          42.9869
+        ]
+      },
+      "properties": {
+        "mmsi": 207829750,
+        "name": "SVETA ANNA-1",
+        "type_code": null,
+        "category": "other",
+        "sog": 3.6,
+        "cog": 138.5,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:57Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-207829890",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.3246,
+          43.3925
+        ]
+      },
+      "properties": {
+        "mmsi": 207829890,
+        "name": "",
+        "type_code": null,
+        "category": "other",
+        "sog": 6.2,
+        "cog": 73.6,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:26Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-207835220",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.3423,
+          43.3806
+        ]
+      },
+      "properties": {
+        "mmsi": 207835220,
+        "name": "NEPTUN-70",
+        "type_code": null,
+        "category": "other",
+        "sog": 2.6,
+        "cog": 268.7,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:16Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-207838560",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9378,
+          43.1798
+        ]
+      },
+      "properties": {
+        "mmsi": 207838560,
+        "name": "ARABELA",
+        "type_code": null,
+        "category": "other",
+        "sog": 5.7,
+        "cog": 299,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:53Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-209546000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.8628,
+          36.5798
+        ]
+      },
+      "properties": {
+        "mmsi": 209546000,
+        "name": "ANKA",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 360,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-210312000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9018,
+          43.1938
+        ]
+      },
+      "properties": {
+        "mmsi": 210312000,
+        "name": "WEC MAJORELLE",
+        "type_code": 70,
+        "category": "cargo",
+        "sog": 0,
+        "cog": 174.3,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:31Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-210719000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9282,
+          36.4881
+        ]
+      },
+      "properties": {
+        "mmsi": 210719000,
+        "name": "PATRIS",
+        "type_code": null,
+        "category": "other",
+        "sog": 15.9,
+        "cog": 92,
+        "nav_status": 0,
+        "rot": -0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-213032000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.6446,
+          41.6527
+        ]
+      },
+      "properties": {
+        "mmsi": 213032000,
+        "name": "AISI",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-213788000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.6487,
+          41.6496
+        ]
+      },
+      "properties": {
+        "mmsi": 213788000,
+        "name": "CHERNOMORETS-9",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 12.2,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:53Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-213981000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.6441,
+          41.6518
+        ]
+      },
+      "properties": {
+        "mmsi": 213981000,
+        "name": "TAMARA 1",
+        "type_code": 52,
+        "category": "tug",
+        "sog": 0,
+        "cog": 286.5,
+        "nav_status": 13,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:23:57Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-215723000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.7235,
+          36.7162
+        ]
+      },
+      "properties": {
+        "mmsi": 215723000,
+        "name": "INFINITY",
+        "type_code": null,
+        "category": "other",
+        "sog": 11,
+        "cog": 285,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:09Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-232044578",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4249,
+          37.0235
+        ]
+      },
+      "properties": {
+        "mmsi": 232044578,
+        "name": "HERITAGEOFLONDON",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.2,
+        "cog": 182.7,
+        "nav_status": 1,
+        "rot": -0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:59Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-232046606",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.2666,
+          36.8452
+        ]
+      },
+      "properties": {
+        "mmsi": 232046606,
+        "name": "OV",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.3,
+        "cog": 360,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:22Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-232050358",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4241,
+          37.0336
+        ]
+      },
+      "properties": {
+        "mmsi": 232050358,
+        "name": "S/Y SIDDHARTHA",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 360,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:00Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-232059168",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.1076,
+          36.4165
+        ]
+      },
+      "properties": {
+        "mmsi": 232059168,
+        "name": "COZY",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 36.9,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:56Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-232062272",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.425,
+          37.0334
+        ]
+      },
+      "properties": {
+        "mmsi": 232062272,
+        "name": "SHIFA",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 201.1,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:18Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-239775900",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.5681,
+          36.5176
+        ]
+      },
+      "properties": {
+        "mmsi": 239775900,
+        "name": "SAONISOS",
+        "type_code": null,
+        "category": "other",
+        "sog": 15.3,
+        "cog": 55.8,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:47Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-240109700",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9662,
+          36.5607
+        ]
+      },
+      "properties": {
+        "mmsi": 240109700,
+        "name": "SEBECO",
+        "type_code": null,
+        "category": "other",
+        "sog": 16.9,
+        "cog": 309.5,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:56Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-240192000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.1367,
+          36.4808
+        ]
+      },
+      "properties": {
+        "mmsi": 240192000,
+        "name": "PANAGIA SKIADENI",
+        "type_code": null,
+        "category": "other",
+        "sog": 14.8,
+        "cog": 114.1,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-240517500",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.34,
+          37.3685
+        ]
+      },
+      "properties": {
+        "mmsi": 240517500,
+        "name": "OKTANA",
+        "type_code": null,
+        "category": "other",
+        "sog": 7,
+        "cog": 303.5,
+        "nav_status": 9,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:54Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-241575000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9501,
+          43.0755
+        ]
+      },
+      "properties": {
+        "mmsi": 241575000,
+        "name": "SEAVEN VOYAGER",
+        "type_code": null,
+        "category": "other",
+        "sog": 5.6,
+        "cog": 340,
+        "nav_status": 0,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:53Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-241886000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.234,
+          36.4072
+        ]
+      },
+      "properties": {
+        "mmsi": 241886000,
+        "name": "CAPTAIN DIMITRIS V",
+        "type_code": 52,
+        "category": "tug",
+        "sog": 0,
+        "cog": 234.4,
+        "nav_status": 8,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:44Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-244790234",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6219,
+          36.7316
+        ]
+      },
+      "properties": {
+        "mmsi": 244790234,
+        "name": "CLAIRE",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 311.6,
+        "nav_status": 1,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:03Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-244860000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.3074,
+          43.1278
+        ]
+      },
+      "properties": {
+        "mmsi": 244860000,
+        "name": "VALERIE",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.4,
+        "cog": 316.9,
+        "nav_status": 5,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:43:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-247439600",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9975,
+          43.1977
+        ]
+      },
+      "properties": {
+        "mmsi": 247439600,
+        "name": "EVER COZY",
+        "type_code": null,
+        "category": "other",
+        "sog": 10.3,
+        "cog": 252,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:23:56Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-248569000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.7435,
+          36.5367
+        ]
+      },
+      "properties": {
+        "mmsi": 248569000,
+        "name": "CLEAR EYES",
+        "type_code": null,
+        "category": "other",
+        "sog": 11.7,
+        "cog": 113.6,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:02Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-255915952",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6398,
+          36.797
+        ]
+      },
+      "properties": {
+        "mmsi": 255915952,
+        "name": "JPO VENUS",
+        "type_code": 74,
+        "category": "cargo",
+        "sog": 0,
+        "cog": 77.5,
+        "nav_status": 0,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:59Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-255916032",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.5064,
+          43.0318
+        ]
+      },
+      "properties": {
+        "mmsi": 255916032,
+        "name": "HARUKA",
+        "type_code": null,
+        "category": "other",
+        "sog": 1.5,
+        "cog": 214.3,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:01Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-256004850",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4244,
+          37.0331
+        ]
+      },
+      "properties": {
+        "mmsi": 256004850,
+        "name": "CONSTRUCTOR 1",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 360,
+        "nav_status": 15,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:20Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-256188000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.8746,
+          36.5995
+        ]
+      },
+      "properties": {
+        "mmsi": 256188000,
+        "name": "TATIANA 1",
+        "type_code": 94,
+        "category": "other",
+        "sog": 0,
+        "cog": 243.6,
+        "nav_status": 0,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:17Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-269110080",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.613,
+          36.6545
+        ]
+      },
+      "properties": {
+        "mmsi": 269110080,
+        "name": "",
+        "type_code": null,
+        "category": "other",
+        "sog": 4.4,
+        "cog": 270.4,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:26Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271000677",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7208,
+          36.7151
+        ]
+      },
+      "properties": {
+        "mmsi": 271000677,
+        "name": "VENTO DI MELTEMI",
+        "type_code": 72,
+        "category": "cargo",
+        "sog": 102.3,
+        "cog": 360,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:06Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271001022",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6424,
+          36.7914
+        ]
+      },
+      "properties": {
+        "mmsi": 271001022,
+        "name": "KURTARMA 4",
+        "type_code": null,
+        "category": "other",
+        "sog": 4.8,
+        "cog": 232.5,
+        "nav_status": 0,
+        "rot": -4.7,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:17Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271001255",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4272,
+          37.036
+        ]
+      },
+      "properties": {
+        "mmsi": 271001255,
+        "name": "SUNWORLDX",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 271.3,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:25Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271002446",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4381,
+          37.0247
+        ]
+      },
+      "properties": {
+        "mmsi": 271002446,
+        "name": "AKCAKOCA",
+        "type_code": 60,
+        "category": "passenger",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:28Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271002451",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.286,
+          36.8427
+        ]
+      },
+      "properties": {
+        "mmsi": 271002451,
+        "name": "KARTEPE",
+        "type_code": 60,
+        "category": "passenger",
+        "sog": 0,
+        "cog": 222.4,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:16Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271002726",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0391,
+          36.4984
+        ]
+      },
+      "properties": {
+        "mmsi": 271002726,
+        "name": "M\\T T.GONUL",
+        "type_code": null,
+        "category": "other",
+        "sog": 8.7,
+        "cog": 74,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:23:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271005006",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.2856,
+          36.8422
+        ]
+      },
+      "properties": {
+        "mmsi": 271005006,
+        "name": "MARMARIS EXPRESS",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 8.3,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:46Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271019019",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6593,
+          36.8035
+        ]
+      },
+      "properties": {
+        "mmsi": 271019019,
+        "name": "MERSIN KOOP-1",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:17Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271040654",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4284,
+          37.0356
+        ]
+      },
+      "properties": {
+        "mmsi": 271040654,
+        "name": "FERAYE",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:43:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271040657",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4248,
+          37.0359
+        ]
+      },
+      "properties": {
+        "mmsi": 271040657,
+        "name": "GEMIBASI",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:55Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271041145",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4268,
+          37.036
+        ]
+      },
+      "properties": {
+        "mmsi": 271041145,
+        "name": "OSMAN KURT",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 360,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:24Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271041322",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4251,
+          37.0359
+        ]
+      },
+      "properties": {
+        "mmsi": 271041322,
+        "name": "SAMARKAND",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:04Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271041436",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.429,
+          37.035
+        ]
+      },
+      "properties": {
+        "mmsi": 271041436,
+        "name": "BILGIN-1",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 274.7,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:05Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271041488",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4249,
+          37.0359
+        ]
+      },
+      "properties": {
+        "mmsi": 271041488,
+        "name": "BURC-U ZAFER",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:08Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271041566",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4375,
+          37.0288
+        ]
+      },
+      "properties": {
+        "mmsi": 271041566,
+        "name": "ELARA 1",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 356.9,
+        "nav_status": 15,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:29Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271041670",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4387,
+          37.029
+        ]
+      },
+      "properties": {
+        "mmsi": 271041670,
+        "name": "SIRENA 2",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.5,
+        "cog": 108,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:02Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271041870",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4266,
+          37.0357
+        ]
+      },
+      "properties": {
+        "mmsi": 271041870,
+        "name": "AMETIST A",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 360,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:26Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271042085",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4245,
+          37.036
+        ]
+      },
+      "properties": {
+        "mmsi": 271042085,
+        "name": "REMO",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:21Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271042245",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4295,
+          37.034
+        ]
+      },
+      "properties": {
+        "mmsi": 271042245,
+        "name": "ALI UGUR X",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 293.1,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:15Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271043459",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0453,
+          36.6875
+        ]
+      },
+      "properties": {
+        "mmsi": 271043459,
+        "name": "ADMIRAL",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": 15,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:15Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271044036",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9636,
+          43.131
+        ]
+      },
+      "properties": {
+        "mmsi": 271044036,
+        "name": "SARE IMAMOGLU",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 315.9,
+        "nav_status": 1,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:31Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271044492",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0435,
+          36.691
+        ]
+      },
+      "properties": {
+        "mmsi": 271044492,
+        "name": "",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:02Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271044493",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.636,
+          36.7919
+        ]
+      },
+      "properties": {
+        "mmsi": 271044493,
+        "name": "MIP- 3",
+        "type_code": 52,
+        "category": "tug",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:35Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271044614",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.6755,
+          40.9647
+        ]
+      },
+      "properties": {
+        "mmsi": 271044614,
+        "name": "EGE10",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 132.3,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:02Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271044683",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6421,
+          36.7912
+        ]
+      },
+      "properties": {
+        "mmsi": 271044683,
+        "name": "TURKELI",
+        "type_code": 52,
+        "category": "tug",
+        "sog": 4.5,
+        "cog": 218.1,
+        "nav_status": 0,
+        "rot": -4.7,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:20Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271044945",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4263,
+          37.0311
+        ]
+      },
+      "properties": {
+        "mmsi": 271044945,
+        "name": "PICCOLO",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 141.7,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:37Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271046153",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4236,
+          37.0356
+        ]
+      },
+      "properties": {
+        "mmsi": 271046153,
+        "name": "ARIES",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 360,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:55Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271046339",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4281,
+          37.0326
+        ]
+      },
+      "properties": {
+        "mmsi": 271046339,
+        "name": "QUEEN OF SALMAKIS",
+        "type_code": 37,
+        "category": "pleasure",
+        "sog": 0,
+        "cog": 360,
+        "nav_status": 0,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:54Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271046474",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.6819,
+          40.9633
+        ]
+      },
+      "properties": {
+        "mmsi": 271046474,
+        "name": "ALTUG 6",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 98.3,
+        "nav_status": 8,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:16Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271046575",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0414,
+          36.676
+        ]
+      },
+      "properties": {
+        "mmsi": 271046575,
+        "name": "NAUTILUS",
+        "type_code": null,
+        "category": "other",
+        "sog": 3.7,
+        "cog": 310,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:23Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271047046",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6573,
+          36.8026
+        ]
+      },
+      "properties": {
+        "mmsi": 271047046,
+        "name": "T.ELINOR",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 56.4,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:33Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271047822",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.3552,
+          42.8697
+        ]
+      },
+      "properties": {
+        "mmsi": 271047822,
+        "name": "KANUNI",
+        "type_code": null,
+        "category": "other",
+        "sog": 102.3,
+        "cog": 360,
+        "nav_status": 3,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:41Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271048773",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.2739,
+          36.7169
+        ]
+      },
+      "properties": {
+        "mmsi": 271048773,
+        "name": "",
+        "type_code": null,
+        "category": "other",
+        "sog": 5.2,
+        "cog": 265.4,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:05Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271049091",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6417,
+          36.7915
+        ]
+      },
+      "properties": {
+        "mmsi": 271049091,
+        "name": "KILAVUZ 9",
+        "type_code": null,
+        "category": "other",
+        "sog": 4.9,
+        "cog": 214,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:07Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271049994",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.7582,
+          40.9483
+        ]
+      },
+      "properties": {
+        "mmsi": 271049994,
+        "name": "CAN KA",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 3,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:17Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271050408",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.6307,
+          43.0617
+        ]
+      },
+      "properties": {
+        "mmsi": 271050408,
+        "name": "ABDULHAMID HAN",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 266.2,
+        "nav_status": 3,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:55Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271050583",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.6296,
+          43.0486
+        ]
+      },
+      "properties": {
+        "mmsi": 271050583,
+        "name": "MURUVVET ILHAN",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 177.8,
+        "nav_status": 3,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:51Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271051927",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4275,
+          37.0359
+        ]
+      },
+      "properties": {
+        "mmsi": 271051927,
+        "name": "MOTTO DELUXE",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:23Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271052110",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.7575,
+          40.9642
+        ]
+      },
+      "properties": {
+        "mmsi": 271052110,
+        "name": "MED CESME",
+        "type_code": null,
+        "category": "other",
+        "sog": 5.6,
+        "cog": 147.7,
+        "nav_status": 1,
+        "rot": 4.7,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:55Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271052669",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4283,
+          37.0336
+        ]
+      },
+      "properties": {
+        "mmsi": 271052669,
+        "name": "LIMAN KONTROL BOTU 4",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:55Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271052906",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0616,
+          36.6614
+        ]
+      },
+      "properties": {
+        "mmsi": 271052906,
+        "name": "DE LOVE",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 360,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:36Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271052912",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.6818,
+          40.963
+        ]
+      },
+      "properties": {
+        "mmsi": 271052912,
+        "name": "",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 191,
+        "nav_status": 15,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:09Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271054238",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.3517,
+          42.8656
+        ]
+      },
+      "properties": {
+        "mmsi": 271054238,
+        "name": "POLATKAN",
+        "type_code": 25,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 16.7,
+        "nav_status": 3,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:02Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271054288",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.206,
+          35.7867
+        ]
+      },
+      "properties": {
+        "mmsi": 271054288,
+        "name": "MED ANTALYA",
+        "type_code": null,
+        "category": "other",
+        "sog": 11.4,
+        "cog": 88.6,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:51Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271055044",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.651,
+          36.7583
+        ]
+      },
+      "properties": {
+        "mmsi": 271055044,
+        "name": "SAMPIYON MELEKLER",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 142.9,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:49Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-271073146",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6278,
+          36.7901
+        ]
+      },
+      "properties": {
+        "mmsi": 271073146,
+        "name": "ISMAIL BABA 3",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 52.4,
+        "nav_status": null,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:26Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-273250710",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.2019,
+          36.4874
+        ]
+      },
+      "properties": {
+        "mmsi": 273250710,
+        "name": "MIKHAIL YURYEV",
+        "type_code": null,
+        "category": "other",
+        "sog": 6.8,
+        "cog": 78.8,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:23:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-309832000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.8983,
+          43.1928
+        ]
+      },
+      "properties": {
+        "mmsi": 309832000,
+        "name": "MILOU",
+        "type_code": 80,
+        "category": "tanker",
+        "sog": 0,
+        "cog": 350,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:15Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-311001723",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9018,
+          43.19
+        ]
+      },
+      "properties": {
+        "mmsi": 311001723,
+        "name": "COAST BUSTER",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": 5,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:55Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-312558000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.2917,
+          43.1543
+        ]
+      },
+      "properties": {
+        "mmsi": 312558000,
+        "name": "NS THOR",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.7,
+        "cog": 310.2,
+        "nav_status": 1,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:57Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-314001173",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.3215,
+          43.1048
+        ]
+      },
+      "properties": {
+        "mmsi": 314001173,
+        "name": "PANAREA MM1",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 331,
+        "nav_status": 1,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:17Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-314267000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4504,
+          37.0148
+        ]
+      },
+      "properties": {
+        "mmsi": 314267000,
+        "name": "SERENITY",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 360,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:45Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-314512000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6487,
+          36.8004
+        ]
+      },
+      "properties": {
+        "mmsi": 314512000,
+        "name": "MONA ELE",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 4.7,
+        "nav_status": 5,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:43:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-314519000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9922,
+          43.204
+        ]
+      },
+      "properties": {
+        "mmsi": 314519000,
+        "name": "LUNARA",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 304,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:09Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-319099800",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.2254,
+          36.7007
+        ]
+      },
+      "properties": {
+        "mmsi": 319099800,
+        "name": "WILDCAT",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 232.5,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:14Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-319182700",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.1321,
+          36.5833
+        ]
+      },
+      "properties": {
+        "mmsi": 319182700,
+        "name": "NJOY",
+        "type_code": null,
+        "category": "other",
+        "sog": 15,
+        "cog": 237.4,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:17Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-319242700",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.3267,
+          37.4507
+        ]
+      },
+      "properties": {
+        "mmsi": 319242700,
+        "name": "ACE",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 158.8,
+        "nav_status": 5,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:55Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-319299300",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.2957,
+          36.7328
+        ]
+      },
+      "properties": {
+        "mmsi": 319299300,
+        "name": "PAOLITA",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 349.3,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:26Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-325152200",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4506,
+          37.0135
+        ]
+      },
+      "properties": {
+        "mmsi": 325152200,
+        "name": "PACIFIC PEARL",
+        "type_code": 37,
+        "category": "pleasure",
+        "sog": 0,
+        "cog": 202.6,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:49Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-352001564",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.6744,
+          40.9613
+        ]
+      },
+      "properties": {
+        "mmsi": 352001564,
+        "name": "MEDKON SAMSUN",
+        "type_code": 79,
+        "category": "cargo",
+        "sog": 0,
+        "cog": 14.4,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:53Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-352001672",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.5904,
+          40.754
+        ]
+      },
+      "properties": {
+        "mmsi": 352001672,
+        "name": "MT CENTAR",
+        "type_code": null,
+        "category": "other",
+        "sog": 6.1,
+        "cog": 321.9,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:30Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-352001897",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.5497,
+          40.8773
+        ]
+      },
+      "properties": {
+        "mmsi": 352001897,
+        "name": "PLANEO",
+        "type_code": null,
+        "category": "other",
+        "sog": 7,
+        "cog": 263.4,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:57Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-352003670",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7209,
+          36.7281
+        ]
+      },
+      "properties": {
+        "mmsi": 352003670,
+        "name": "ESENTEPE",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 353.4,
+        "nav_status": 1,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:38Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-352754000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0457,
+          36.6683
+        ]
+      },
+      "properties": {
+        "mmsi": 352754000,
+        "name": "TATIANA",
+        "type_code": null,
+        "category": "other",
+        "sog": 8.7,
+        "cog": 168.3,
+        "nav_status": 15,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:41Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-355691000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6381,
+          36.7098
+        ]
+      },
+      "properties": {
+        "mmsi": 355691000,
+        "name": "QUEEN B II",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 99.1,
+        "nav_status": 1,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:01Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-371503000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.7681,
+          43.1936
+        ]
+      },
+      "properties": {
+        "mmsi": 371503000,
+        "name": "HIKMET KARABEKIR",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 282.2,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:16Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-371827000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.1784,
+          43.3863
+        ]
+      },
+      "properties": {
+        "mmsi": 371827000,
+        "name": "CELAL SAHIN",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 324.4,
+        "nav_status": 1,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:07Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-477940100",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6503,
+          36.8022
+        ]
+      },
+      "properties": {
+        "mmsi": 477940100,
+        "name": "NORTHERN VENTURE",
+        "type_code": 70,
+        "category": "cargo",
+        "sog": 0,
+        "cog": 315,
+        "nav_status": 5,
+        "rot": 0.0,
+        "draught": 7.1,
+        "length": 200.0,
+        "width": 32.0,
+        "destination": "TR MER",
+        "eta": "09-21 21:49",
+        "last_seen": "2026-09-22T11:44:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-511100115",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4385,
+          37.0253
+        ]
+      },
+      "properties": {
+        "mmsi": 511100115,
+        "name": "SEA STAR RHODES",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 66,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:53Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-511101443",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.4264,
+          37.0321
+        ]
+      },
+      "properties": {
+        "mmsi": 511101443,
+        "name": "SEA STAR KOS",
+        "type_code": 60,
+        "category": "passenger",
+        "sog": 0,
+        "cog": 199.8,
+        "nav_status": 9,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:05Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-518999195",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.3111,
+          36.8182
+        ]
+      },
+      "properties": {
+        "mmsi": 518999195,
+        "name": "QUEST R",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 271.6,
+        "nav_status": 0,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:19Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538003560",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9612,
+          43.1169
+        ]
+      },
+      "properties": {
+        "mmsi": 538003560,
+        "name": "XINHAITONG18",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 45.9,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:04Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538006143",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.4383,
+          35.8507
+        ]
+      },
+      "properties": {
+        "mmsi": 538006143,
+        "name": "ASTRO GRUMIUM",
+        "type_code": null,
+        "category": "other",
+        "sog": 10.7,
+        "cog": 88,
+        "nav_status": 0,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:09Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538006469",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6421,
+          36.7471
+        ]
+      },
+      "properties": {
+        "mmsi": 538006469,
+        "name": "FEDERAL CHURCHILL",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 77.4,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:44Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538008100",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6303,
+          36.7177
+        ]
+      },
+      "properties": {
+        "mmsi": 538008100,
+        "name": "DIAMANTI",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 195.4,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:07Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538008151",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9009,
+          43.1938
+        ]
+      },
+      "properties": {
+        "mmsi": 538008151,
+        "name": "PONENTE",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:30Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538009928",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6557,
+          36.8034
+        ]
+      },
+      "properties": {
+        "mmsi": 538009928,
+        "name": "ECO ENCHANTED",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 358.6,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:17Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538010265",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.6184,
+          40.9509
+        ]
+      },
+      "properties": {
+        "mmsi": 538010265,
+        "name": "ARGENTINIAN",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 178.7,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:24Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538010387",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6461,
+          36.714
+        ]
+      },
+      "properties": {
+        "mmsi": 538010387,
+        "name": "NINA PETRAKIS",
+        "type_code": 70,
+        "category": "cargo",
+        "sog": 0,
+        "cog": 33.3,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:58Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538071406",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.3119,
+          37.3932
+        ]
+      },
+      "properties": {
+        "mmsi": 538071406,
+        "name": "ALL ABOUT U2",
+        "type_code": null,
+        "category": "other",
+        "sog": 12.7,
+        "cog": 126.4,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:12Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538072273",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.7854,
+          36.6645
+        ]
+      },
+      "properties": {
+        "mmsi": 538072273,
+        "name": "ONE ZERO",
+        "type_code": null,
+        "category": "other",
+        "sog": 11.4,
+        "cog": 263.7,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:41Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-538072342",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0503,
+          36.6735
+        ]
+      },
+      "properties": {
+        "mmsi": 538072342,
+        "name": "ONE FORCE",
+        "type_code": 36,
+        "category": "pleasure",
+        "sog": 0,
+        "cog": 360,
+        "nav_status": 0,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:24Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-566730000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.6312,
+          36.5702
+        ]
+      },
+      "properties": {
+        "mmsi": 566730000,
+        "name": "WAN HAI 513",
+        "type_code": null,
+        "category": "other",
+        "sog": 14.4,
+        "cog": 135.3,
+        "nav_status": 0,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:27Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-613091160",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.6557,
+          41.6471
+        ]
+      },
+      "properties": {
+        "mmsi": 613091160,
+        "name": "LIDER PRESTIJ",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 347,
+        "nav_status": 5,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:19Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-630001184",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.1131,
+          36.6433
+        ]
+      },
+      "properties": {
+        "mmsi": 630001184,
+        "name": "SEA STAR MYKONOS",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.2,
+        "cog": 78.7,
+        "nav_status": 0,
+        "rot": 0.2,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:16Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-636017869",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9277,
+          43.1853
+        ]
+      },
+      "properties": {
+        "mmsi": 636017869,
+        "name": "UMD HERCULES",
+        "type_code": null,
+        "category": "other",
+        "sog": 7.9,
+        "cog": 263.6,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:26Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-636019665",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.662,
+          41.6776
+        ]
+      },
+      "properties": {
+        "mmsi": 636019665,
+        "name": "KC MERMAID",
+        "type_code": 70,
+        "category": "cargo",
+        "sog": 0,
+        "cog": 224.2,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:01Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-636021246",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6405,
+          36.7995
+        ]
+      },
+      "properties": {
+        "mmsi": 636021246,
+        "name": "MSC PAMIRA III",
+        "type_code": 70,
+        "category": "cargo",
+        "sog": 0,
+        "cog": 65.4,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:04Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-636022520",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.612,
+          40.88
+        ]
+      },
+      "properties": {
+        "mmsi": 636022520,
+        "name": "CAPE MAYA",
+        "type_code": null,
+        "category": "other",
+        "sog": 12.9,
+        "cog": 257.1,
+        "nav_status": 0,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:23:59Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-636022682",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.2064,
+          42.9599
+        ]
+      },
+      "properties": {
+        "mmsi": 636022682,
+        "name": "POSEIDON GAS",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 196.5,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:24:35Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-636025135",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6494,
+          36.7998
+        ]
+      },
+      "properties": {
+        "mmsi": 636025135,
+        "name": "VOLANTE",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 324,
+        "nav_status": 5,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:45:01Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-636025890",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6231,
+          36.7107
+        ]
+      },
+      "properties": {
+        "mmsi": 636025890,
+        "name": "ANDROS SUN",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 127.1,
+        "nav_status": 1,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T08:25:00Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-636026490",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9365,
+          43.0742
+        ]
+      },
+      "properties": {
+        "mmsi": 636026490,
+        "name": "ALDAN",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 305.2,
+        "nav_status": 1,
+        "rot": 0.0,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:43:59Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-677023500",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6487,
+          36.7996
+        ]
+      },
+      "properties": {
+        "mmsi": 677023500,
+        "name": "GRACE A",
+        "type_code": null,
+        "category": "other",
+        "sog": 0.1,
+        "cog": 360,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:18Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mmsi-677041700",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.9537,
+          43.1491
+        ]
+      },
+      "properties": {
+        "mmsi": 677041700,
+        "name": "ARMONY",
+        "type_code": null,
+        "category": "other",
+        "sog": 0,
+        "cog": 0,
+        "nav_status": 5,
+        "rot": null,
+        "draught": null,
+        "length": null,
+        "width": null,
+        "destination": null,
+        "eta": null,
+        "last_seen": "2026-09-22T11:44:14Z"
+      }
+    }
+  ]
+}

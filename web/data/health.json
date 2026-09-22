@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-22T08:29:37Z",
-  "cycle_seconds": 337.2,
+  "generated": "2026-09-22T11:50:10Z",
+  "cycle_seconds": 372.7,
   "sources_ok": 6,
   "sources_total": 6,
   "sources_down": [],
-  "incidents": 11,
+  "incidents": 12,
   "warnings": 3,
   "sources": {
     "news": {
@@ -34,7 +34,7 @@
     },
     "metar": {
       "ok": true,
-      "items": 1,
+      "items": 0,
       "error": null
     }
   },
@@ -46,12 +46,12 @@
     "news_3.xml": "live",
     "news_2.xml": "live",
     "news_4.xml": "live",
-    "news_1.xml": "live",
     "news_5.xml": "live",
+    "news_1.xml": "live",
     "news_9.xml": "live",
+    "news_8.xml": "live",
     "news_6.xml": "live",
     "news_7.xml": "live",
-    "news_8.xml": "live",
     "news_0.xml": "live",
     "openmeteo_marine:Marmara Denizi": "live",
     "openmeteo_wind:Marmara Denizi": "live",
@@ -65,7 +65,7 @@
     "openmeteo_wind:Saroz Körfezi": "live",
     "openmeteo_marine:Kuzey Ege": "live",
     "openmeteo_wind:Kuzey Ege": "live",
-    "openmeteo_marine:Güney Ege": "live",
+    "openmeteo_marine:Güney Ege": "down",
     "openmeteo_wind:Güney Ege": "live",
     "openmeteo_marine:Antalya Körfezi": "live",
     "openmeteo_wind:Antalya Körfezi": "live",

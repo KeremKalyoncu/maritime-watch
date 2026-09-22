@@ -1,0 +1,697 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "2026-09-22-ais-3584e3",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.28605,
+          36.84268
+        ]
+      },
+      "properties": {
+        "id": "2026-09-22-ais-3584e3",
+        "type": "drift",
+        "type_tr": "sürüklenme",
+        "status": "signal",
+        "status_tr": "zayıf sinyal — teyit bekliyor",
+        "severity": "minor",
+        "confidence": 0.25,
+        "area": "Gökova Körfezi",
+        "first_seen": "2026-09-22T08:25:30Z",
+        "last_update": "2026-09-22T08:25:30Z",
+        "vessel_name": "KARTEPE",
+        "vessel_mmsi": 271002451,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": null,
+        "has_track": true,
+        "sources_count": 1,
+        "sar_drift": {
+          "initial_position": {
+            "lat": 36.84268333333333,
+            "lon": 28.286045
+          },
+          "target_type": "drift",
+          "wind_kn": 10.0,
+          "wind_dir": 0.0,
+          "current_kn": 0.0,
+          "projections": [
+            {
+              "hours": 1.0,
+              "lat": 36.83768,
+              "lon": 28.28605,
+              "drift_speed_kn": 0.3,
+              "drift_bearing_deg": 180.0,
+              "drift_distance_nm": 0.3,
+              "search_radius_nm": 0.59,
+              "target_type": "drift"
+            },
+            {
+              "hours": 3.0,
+              "lat": 36.82768,
+              "lon": 28.28605,
+              "drift_speed_kn": 0.3,
+              "drift_bearing_deg": 180.0,
+              "drift_distance_nm": 0.9,
+              "search_radius_nm": 0.77,
+              "target_type": "drift"
+            },
+            {
+              "hours": 6.0,
+              "lat": 36.81268,
+              "lon": 28.28605,
+              "drift_speed_kn": 0.3,
+              "drift_bearing_deg": 180.0,
+              "drift_distance_nm": 1.8,
+              "search_radius_nm": 1.04,
+              "target_type": "drift"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "2026-09-22-ais-3584e3-track",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.885,
+            36.5364
+          ],
+          [
+            28.2861,
+            36.8427
+          ],
+          [
+            28.2861,
+            36.8427
+          ],
+          [
+            28.286,
+            36.8427
+          ],
+          [
+            28.286,
+            36.8427
+          ]
+        ]
+      },
+      "properties": {
+        "parent_incident_id": "2026-09-22-ais-3584e3",
+        "type": "incident_track",
+        "vessel_name": "KARTEPE"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "2026-09-22-ais-3828a2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.8983,
+          43.19283
+        ]
+      },
+      "properties": {
+        "id": "2026-09-22-ais-3828a2",
+        "type": "drift",
+        "type_tr": "sürüklenme",
+        "status": "signal",
+        "status_tr": "zayıf sinyal — teyit bekliyor",
+        "severity": "minor",
+        "confidence": 0.25,
+        "area": "Batı Karadeniz",
+        "first_seen": "2026-09-22T08:25:30Z",
+        "last_update": "2026-09-22T08:25:30Z",
+        "vessel_name": "MILOU",
+        "vessel_mmsi": 309832000,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": null,
+        "has_track": true,
+        "sources_count": 1,
+        "sar_drift": {
+          "initial_position": {
+            "lat": 43.19283333333333,
+            "lon": 27.8983
+          },
+          "target_type": "drift",
+          "wind_kn": 10.0,
+          "wind_dir": 0.0,
+          "current_kn": 0.0,
+          "projections": [
+            {
+              "hours": 1.0,
+              "lat": 43.18783,
+              "lon": 27.8983,
+              "drift_speed_kn": 0.3,
+              "drift_bearing_deg": 180.0,
+              "drift_distance_nm": 0.3,
+              "search_radius_nm": 0.59,
+              "target_type": "drift"
+            },
+            {
+              "hours": 3.0,
+              "lat": 43.17783,
+              "lon": 27.8983,
+              "drift_speed_kn": 0.3,
+              "drift_bearing_deg": 180.0,
+              "drift_distance_nm": 0.9,
+              "search_radius_nm": 0.77,
+              "target_type": "drift"
+            },
+            {
+              "hours": 6.0,
+              "lat": 43.16283,
+              "lon": 27.8983,
+              "drift_speed_kn": 0.3,
+              "drift_bearing_deg": 180.0,
+              "drift_distance_nm": 1.8,
+              "search_radius_nm": 1.04,
+              "target_type": "drift"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "2026-09-22-ais-3828a2-track",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.0231,
+            43.1521
+          ],
+          [
+            27.8983,
+            43.1928
+          ],
+          [
+            27.8983,
+            43.1928
+          ],
+          [
+            27.8983,
+            43.1928
+          ],
+          [
+            27.8983,
+            43.1928
+          ]
+        ]
+      },
+      "properties": {
+        "parent_incident_id": "2026-09-22-ais-3828a2",
+        "type": "incident_track",
+        "vessel_name": "MILOU"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cpa-271044683-271044683",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6572,
+          36.7758
+        ]
+      },
+      "properties": {
+        "id": "cpa-271044683-271044683",
+        "type": "collision-risk",
+        "type_tr": "çatışma riski (yakın geçiş)",
+        "status": "resolved",
+        "status_tr": "kapandı",
+        "severity": "critical",
+        "confidence": 0.95,
+        "area": "Mersin–İskenderun Körfezi",
+        "first_seen": "2026-09-17T22:53:40Z",
+        "last_update": "2026-09-19T04:56:39Z",
+        "vessel_name": "TURKELI & TURKELI",
+        "vessel_mmsi": 271044683,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": 4,
+        "has_track": true,
+        "sources_count": 8,
+        "weather": {
+          "wind_kn": 9.1,
+          "gust_kn": 12.1,
+          "wave_m": 0.2,
+          "beaufort": 3,
+          "summary": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cpa-271044683-271044683-track",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.7368,
+            36.7682
+          ],
+          [
+            34.7368,
+            36.7682
+          ],
+          [
+            34.6391,
+            36.7865
+          ],
+          [
+            34.6549,
+            36.8037
+          ],
+          [
+            34.6421,
+            36.7912
+          ],
+          [
+            34.6572,
+            36.7758
+          ]
+        ]
+      },
+      "properties": {
+        "parent_incident_id": "cpa-271044683-271044683",
+        "type": "incident_track",
+        "vessel_name": "TURKELI & TURKELI"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "news-a9f0c1e1aa",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.7,
+          36.88
+        ]
+      },
+      "properties": {
+        "id": "news-a9f0c1e1aa",
+        "type": "rescue",
+        "type_tr": "kurtarma operasyonu",
+        "status": "confirmed",
+        "status_tr": "doğrulandı (resmi kaynak)",
+        "severity": "critical",
+        "confidence": 0.9,
+        "area": "Antalya Körfezi",
+        "first_seen": "2026-09-20T14:41:05Z",
+        "last_update": "2026-09-20T17:42:58Z",
+        "vessel_name": null,
+        "vessel_mmsi": null,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": 4,
+        "has_track": false,
+        "sources_count": 2,
+        "weather": {
+          "wind_kn": 8.3,
+          "gust_kn": 11.1,
+          "wave_m": 0.16,
+          "beaufort": 3,
+          "summary": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "news-d3feb1cf8c",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.7,
+          36.88
+        ]
+      },
+      "properties": {
+        "id": "news-d3feb1cf8c",
+        "type": "collision",
+        "type_tr": "çatışma (çarpışma)",
+        "status": "resolved",
+        "status_tr": "kapandı",
+        "severity": "critical",
+        "confidence": 0.9,
+        "area": "Antalya Körfezi",
+        "first_seen": "2026-09-15T10:22:58Z",
+        "last_update": "2026-09-15T15:06:49Z",
+        "vessel_name": null,
+        "vessel_mmsi": null,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": 1,
+        "has_track": false,
+        "sources_count": 2,
+        "weather": {
+          "wind_kn": 8.3,
+          "gust_kn": 11.1,
+          "wave_m": 0.16,
+          "beaufort": 3,
+          "summary": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "news-d78556fc93",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.97,
+          41.02
+        ]
+      },
+      "properties": {
+        "id": "news-d78556fc93",
+        "type": "drift",
+        "type_tr": "sürüklenme",
+        "status": "confirmed",
+        "status_tr": "doğrulandı (resmi kaynak)",
+        "severity": "critical",
+        "confidence": 0.9,
+        "area": "İstanbul Boğazı",
+        "first_seen": "2026-09-21T04:28:12Z",
+        "last_update": "2026-09-21T10:11:24Z",
+        "vessel_name": null,
+        "vessel_mmsi": null,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": 1,
+        "has_track": false,
+        "sources_count": 3,
+        "weather": {
+          "wind_kn": 15.3,
+          "gust_kn": 20.4,
+          "wave_m": 0.1,
+          "beaufort": 4,
+          "summary": "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi."
+        },
+        "sar_drift": {
+          "initial_position": {
+            "lat": 41.02,
+            "lon": 28.97
+          },
+          "target_type": "drift",
+          "wind_kn": 15.3,
+          "wind_dir": 1.0,
+          "current_kn": 0.0,
+          "projections": [
+            {
+              "hours": 1.0,
+              "lat": 41.01235,
+              "lon": 28.96982,
+              "drift_speed_kn": 0.46,
+              "drift_bearing_deg": 181.0,
+              "drift_distance_nm": 0.46,
+              "search_radius_nm": 0.64,
+              "target_type": "drift"
+            },
+            {
+              "hours": 3.0,
+              "lat": 40.99705,
+              "lon": 28.96947,
+              "drift_speed_kn": 0.46,
+              "drift_bearing_deg": 181.0,
+              "drift_distance_nm": 1.38,
+              "search_radius_nm": 0.91,
+              "target_type": "drift"
+            },
+            {
+              "hours": 6.0,
+              "lat": 40.97411,
+              "lon": 28.96894,
+              "drift_speed_kn": 0.46,
+              "drift_bearing_deg": 181.0,
+              "drift_distance_nm": 2.75,
+              "search_radius_nm": 1.33,
+              "target_type": "drift"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rep-38985e23cb",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.26,
+          37.86
+        ]
+      },
+      "properties": {
+        "id": "rep-38985e23cb",
+        "type": "rescue",
+        "type_tr": "kurtarma operasyonu",
+        "status": "resolved",
+        "status_tr": "kapandı",
+        "severity": "critical",
+        "confidence": 0.6,
+        "area": "Orta Ege",
+        "first_seen": "2026-09-17T17:04:10Z",
+        "last_update": "2026-09-17T17:04:10Z",
+        "vessel_name": null,
+        "vessel_mmsi": null,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": 4,
+        "has_track": false,
+        "sources_count": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rep-75afb3392f",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.7,
+          36.88
+        ]
+      },
+      "properties": {
+        "id": "rep-75afb3392f",
+        "type": "rescue",
+        "type_tr": "kurtarma operasyonu",
+        "status": "resolved",
+        "status_tr": "kapandı",
+        "severity": "critical",
+        "confidence": 0.6,
+        "area": "Antalya Körfezi",
+        "first_seen": "2026-09-16T18:15:05Z",
+        "last_update": "2026-09-16T18:15:05Z",
+        "vessel_name": null,
+        "vessel_mmsi": null,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": 2,
+        "has_track": false,
+        "sources_count": 1,
+        "weather": {
+          "wind_kn": 8.3,
+          "gust_kn": 11.1,
+          "wave_m": 0.16,
+          "beaufort": 3,
+          "summary": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rep-a91564eb9d",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.87,
+          41.0
+        ]
+      },
+      "properties": {
+        "id": "rep-a91564eb9d",
+        "type": "rescue",
+        "type_tr": "kurtarma operasyonu",
+        "status": "confirmed",
+        "status_tr": "doğrulandı (resmi kaynak)",
+        "severity": "critical",
+        "confidence": 0.6,
+        "area": "Doğu Karadeniz",
+        "first_seen": "2026-09-21T16:30:54Z",
+        "last_update": "2026-09-21T16:30:54Z",
+        "vessel_name": null,
+        "vessel_mmsi": null,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": 1,
+        "has_track": false,
+        "sources_count": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rep-e86804d5dd",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.7,
+          36.88
+        ]
+      },
+      "properties": {
+        "id": "rep-e86804d5dd",
+        "type": "rescue",
+        "type_tr": "kurtarma operasyonu",
+        "status": "confirmed",
+        "status_tr": "doğrulandı (resmi kaynak)",
+        "severity": "critical",
+        "confidence": 0.9,
+        "area": "Antalya Körfezi",
+        "first_seen": "2026-09-19T14:02:00Z",
+        "last_update": "2026-09-20T05:58:34Z",
+        "vessel_name": null,
+        "vessel_mmsi": null,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": 4,
+        "has_track": false,
+        "sources_count": 2,
+        "weather": {
+          "wind_kn": 8.3,
+          "gust_kn": 11.1,
+          "wave_m": 0.16,
+          "beaufort": 3,
+          "summary": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rep-ebb30e60b0",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.97,
+          41.02
+        ]
+      },
+      "properties": {
+        "id": "rep-ebb30e60b0",
+        "type": "rescue",
+        "type_tr": "kurtarma operasyonu",
+        "status": "confirmed",
+        "status_tr": "doğrulandı (resmi kaynak)",
+        "severity": "critical",
+        "confidence": 0.6,
+        "area": "İstanbul Boğazı",
+        "first_seen": "2026-09-19T14:02:00Z",
+        "last_update": "2026-09-19T14:02:00Z",
+        "vessel_name": null,
+        "vessel_mmsi": null,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": 1,
+        "has_track": false,
+        "sources_count": 1,
+        "weather": {
+          "wind_kn": 15.3,
+          "gust_kn": 20.4,
+          "wave_m": 0.1,
+          "beaufort": 4,
+          "summary": "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cpa-271001022-271044683",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6423,
+          36.7913
+        ]
+      },
+      "properties": {
+        "id": "cpa-271001022-271044683",
+        "type": "collision-risk",
+        "type_tr": "çatışma riski (yakın geçiş)",
+        "status": "signal",
+        "status_tr": "zayıf sinyal — teyit bekliyor",
+        "severity": "minor",
+        "confidence": 0.1,
+        "area": "Mersin–İskenderun Körfezi",
+        "first_seen": "2026-09-22T11:45:29Z",
+        "last_update": "2026-09-22T11:45:29Z",
+        "vessel_name": "TURKELI & KURTARMA 4",
+        "vessel_mmsi": 271044683,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": null,
+        "has_track": true,
+        "sources_count": 3,
+        "weather": {
+          "wind_kn": 9.1,
+          "gust_kn": 12.1,
+          "wave_m": 0.2,
+          "beaufort": 3,
+          "summary": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cpa-271001022-271044683-track",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.7368,
+            36.7682
+          ],
+          [
+            34.7368,
+            36.7682
+          ],
+          [
+            34.6391,
+            36.7865
+          ],
+          [
+            34.6549,
+            36.8037
+          ],
+          [
+            34.6421,
+            36.7912
+          ],
+          [
+            34.6423,
+            36.7913
+          ]
+        ]
+      },
+      "properties": {
+        "parent_incident_id": "cpa-271001022-271044683",
+        "type": "incident_track",
+        "vessel_name": "TURKELI & KURTARMA 4"
+      }
+    }
+  ]
+}
