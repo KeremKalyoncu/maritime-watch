@@ -245,6 +245,11 @@ def cycle(
         if inc:
             print(f"[engine:incident] {inc.id} status={inc.status} type={inc.type} sev={inc.severity}")
             if webhook_url and inc.severity in ("major", "critical"):
+                desc = (
+                    getattr(inc, "summary", "")
+                    or (inc.notes[0] if getattr(inc, "notes", None) else "")
+                    or (inc.sources[0].detail if getattr(inc, "sources", None) and inc.sources else "")
+                )
                 dispatch_emergency_webhook(
                     webhook_url,
                     webhook_token,
@@ -256,8 +261,8 @@ def cycle(
                         "lat": inc.lat,
                         "lon": inc.lon,
                         "title": getattr(inc, "type_tr", inc.type),
-                        "description": inc.summary or "",
-                        "created_at": inc.time,
+                        "description": desc,
+                        "created_at": getattr(inc, "last_update", "") or getattr(inc, "first_seen", ""),
                     },
                 )
 
