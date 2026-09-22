@@ -86,10 +86,6 @@
         "type": "LineString",
         "coordinates": [
           [
-            27.885,
-            36.5364
-          ],
-          [
             28.2861,
             36.8427
           ],
@@ -103,6 +99,10 @@
           ],
           [
             28.286,
+            36.8427
+          ],
+          [
+            28.2861,
             36.8427
           ]
         ]
@@ -221,6 +221,81 @@
     },
     {
       "type": "Feature",
+      "id": "cpa-271001022-271044683",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6423,
+          36.7913
+        ]
+      },
+      "properties": {
+        "id": "cpa-271001022-271044683",
+        "type": "collision-risk",
+        "type_tr": "çatışma riski (yakın geçiş)",
+        "status": "signal",
+        "status_tr": "zayıf sinyal — teyit bekliyor",
+        "severity": "minor",
+        "confidence": 0.1,
+        "area": "Mersin–İskenderun Körfezi",
+        "first_seen": "2026-09-22T11:45:29Z",
+        "last_update": "2026-09-22T11:45:29Z",
+        "vessel_name": "TURKELI & KURTARMA 4",
+        "vessel_mmsi": 271044683,
+        "vessel_type": "unknown",
+        "heading": null,
+        "casualties": null,
+        "has_track": true,
+        "sources_count": 3,
+        "weather": {
+          "wind_kn": 9.1,
+          "gust_kn": 12.2,
+          "wave_m": 0.24,
+          "beaufort": 3,
+          "summary": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cpa-271001022-271044683-track",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.7368,
+            36.7682
+          ],
+          [
+            34.6391,
+            36.7865
+          ],
+          [
+            34.6549,
+            36.8037
+          ],
+          [
+            34.6421,
+            36.7912
+          ],
+          [
+            34.6552,
+            36.8035
+          ],
+          [
+            34.6423,
+            36.7913
+          ]
+        ]
+      },
+      "properties": {
+        "parent_incident_id": "cpa-271001022-271044683",
+        "type": "incident_track",
+        "vessel_name": "TURKELI & KURTARMA 4"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "cpa-271044683-271044683",
       "geometry": {
         "type": "Point",
@@ -249,8 +324,8 @@
         "sources_count": 8,
         "weather": {
           "wind_kn": 9.1,
-          "gust_kn": 12.1,
-          "wave_m": 0.2,
+          "gust_kn": 12.2,
+          "wave_m": 0.24,
           "beaufort": 3,
           "summary": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi."
         }
@@ -267,10 +342,6 @@
             36.7682
           ],
           [
-            34.7368,
-            36.7682
-          ],
-          [
             34.6391,
             36.7865
           ],
@@ -281,6 +352,10 @@
           [
             34.6421,
             36.7912
+          ],
+          [
+            34.6552,
+            36.8035
           ],
           [
             34.6572,
@@ -323,11 +398,11 @@
         "has_track": false,
         "sources_count": 2,
         "weather": {
-          "wind_kn": 8.3,
-          "gust_kn": 11.1,
-          "wave_m": 0.16,
-          "beaufort": 3,
-          "summary": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+          "wind_kn": 10.1,
+          "gust_kn": 13.4,
+          "wave_m": 0.14,
+          "beaufort": 4,
+          "summary": "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi."
         }
       }
     },
@@ -360,11 +435,11 @@
         "has_track": false,
         "sources_count": 2,
         "weather": {
-          "wind_kn": 8.3,
-          "gust_kn": 11.1,
-          "wave_m": 0.16,
-          "beaufort": 3,
-          "summary": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+          "wind_kn": 10.1,
+          "gust_kn": 13.4,
+          "wave_m": 0.14,
+          "beaufort": 4,
+          "summary": "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi."
         }
       }
     },
@@ -397,11 +472,11 @@
         "has_track": false,
         "sources_count": 3,
         "weather": {
-          "wind_kn": 15.3,
-          "gust_kn": 20.4,
-          "wave_m": 0.1,
+          "wind_kn": 15.8,
+          "gust_kn": 21.0,
+          "wave_m": 0.2,
           "beaufort": 4,
-          "summary": "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi."
+          "summary": "Bölgede 21 kn Yıldız ve 0.2 m dalga kaydedildi."
         },
         "sar_drift": {
           "initial_position": {
@@ -409,38 +484,38 @@
             "lon": 28.97
           },
           "target_type": "drift",
-          "wind_kn": 15.3,
-          "wind_dir": 1.0,
+          "wind_kn": 15.8,
+          "wind_dir": 8.0,
           "current_kn": 0.0,
           "projections": [
             {
               "hours": 1.0,
-              "lat": 41.01235,
-              "lon": 28.96982,
-              "drift_speed_kn": 0.46,
-              "drift_bearing_deg": 181.0,
-              "drift_distance_nm": 0.46,
+              "lat": 41.01218,
+              "lon": 28.96854,
+              "drift_speed_kn": 0.47,
+              "drift_bearing_deg": 188.0,
+              "drift_distance_nm": 0.47,
               "search_radius_nm": 0.64,
               "target_type": "drift"
             },
             {
               "hours": 3.0,
-              "lat": 40.99705,
-              "lon": 28.96947,
-              "drift_speed_kn": 0.46,
-              "drift_bearing_deg": 181.0,
-              "drift_distance_nm": 1.38,
-              "search_radius_nm": 0.91,
+              "lat": 40.99653,
+              "lon": 28.96563,
+              "drift_speed_kn": 0.47,
+              "drift_bearing_deg": 188.0,
+              "drift_distance_nm": 1.42,
+              "search_radius_nm": 0.93,
               "target_type": "drift"
             },
             {
               "hours": 6.0,
-              "lat": 40.97411,
-              "lon": 28.96894,
-              "drift_speed_kn": 0.46,
-              "drift_bearing_deg": 181.0,
-              "drift_distance_nm": 2.75,
-              "search_radius_nm": 1.33,
+              "lat": 40.97306,
+              "lon": 28.96126,
+              "drift_speed_kn": 0.47,
+              "drift_bearing_deg": 188.0,
+              "drift_distance_nm": 2.84,
+              "search_radius_nm": 1.35,
               "target_type": "drift"
             }
           ]
@@ -506,11 +581,11 @@
         "has_track": false,
         "sources_count": 1,
         "weather": {
-          "wind_kn": 8.3,
-          "gust_kn": 11.1,
-          "wave_m": 0.16,
-          "beaufort": 3,
-          "summary": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+          "wind_kn": 10.1,
+          "gust_kn": 13.4,
+          "wave_m": 0.14,
+          "beaufort": 4,
+          "summary": "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi."
         }
       }
     },
@@ -573,11 +648,11 @@
         "has_track": false,
         "sources_count": 2,
         "weather": {
-          "wind_kn": 8.3,
-          "gust_kn": 11.1,
-          "wave_m": 0.16,
-          "beaufort": 3,
-          "summary": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+          "wind_kn": 10.1,
+          "gust_kn": 13.4,
+          "wave_m": 0.14,
+          "beaufort": 4,
+          "summary": "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi."
         }
       }
     },
@@ -610,87 +685,12 @@
         "has_track": false,
         "sources_count": 1,
         "weather": {
-          "wind_kn": 15.3,
-          "gust_kn": 20.4,
-          "wave_m": 0.1,
-          "beaufort": 4,
-          "summary": "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi."
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "cpa-271001022-271044683",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          34.6423,
-          36.7913
-        ]
-      },
-      "properties": {
-        "id": "cpa-271001022-271044683",
-        "type": "collision-risk",
-        "type_tr": "çatışma riski (yakın geçiş)",
-        "status": "signal",
-        "status_tr": "zayıf sinyal — teyit bekliyor",
-        "severity": "minor",
-        "confidence": 0.1,
-        "area": "Mersin–İskenderun Körfezi",
-        "first_seen": "2026-09-22T11:45:29Z",
-        "last_update": "2026-09-22T11:45:29Z",
-        "vessel_name": "TURKELI & KURTARMA 4",
-        "vessel_mmsi": 271044683,
-        "vessel_type": "unknown",
-        "heading": null,
-        "casualties": null,
-        "has_track": true,
-        "sources_count": 3,
-        "weather": {
-          "wind_kn": 9.1,
-          "gust_kn": 12.1,
+          "wind_kn": 15.8,
+          "gust_kn": 21.0,
           "wave_m": 0.2,
-          "beaufort": 3,
-          "summary": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi."
+          "beaufort": 4,
+          "summary": "Bölgede 21 kn Yıldız ve 0.2 m dalga kaydedildi."
         }
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "cpa-271001022-271044683-track",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            34.7368,
-            36.7682
-          ],
-          [
-            34.7368,
-            36.7682
-          ],
-          [
-            34.6391,
-            36.7865
-          ],
-          [
-            34.6549,
-            36.8037
-          ],
-          [
-            34.6421,
-            36.7912
-          ],
-          [
-            34.6423,
-            36.7913
-          ]
-        ]
-      },
-      "properties": {
-        "parent_incident_id": "cpa-271001022-271044683",
-        "type": "incident_track",
-        "vessel_name": "TURKELI & KURTARMA 4"
       }
     }
   ]

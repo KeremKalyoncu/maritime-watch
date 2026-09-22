@@ -39,10 +39,6 @@
     "coarse": false,
     "track": [
       [
-        36.5364,
-        27.885
-      ],
-      [
         36.8427,
         28.2861
       ],
@@ -57,6 +53,10 @@
       [
         36.8427,
         28.286
+      ],
+      [
+        36.8427,
+        28.2861
       ]
     ],
     "heading": null,
@@ -272,10 +272,6 @@
         34.7368
       ],
       [
-        36.7682,
-        34.7368
-      ],
-      [
         36.7865,
         34.6391
       ],
@@ -288,6 +284,10 @@
         34.6421
       ],
       [
+        36.8035,
+        34.6552
+      ],
+      [
         36.7913,
         34.6423
       ]
@@ -296,9 +296,9 @@
     "vessel_type": "unknown",
     "weather_context": {
       "wind_kn": 9.1,
-      "gust_kn": 12.1,
-      "wave_m": 0.2,
-      "wind_dir": 171,
+      "gust_kn": 12.2,
+      "wave_m": 0.24,
+      "wind_dir": 180,
       "beaufort": 3,
       "summary_tr": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi.",
       "summary_en": "At site: 12 kn South wind and 0.2 m waves.",
@@ -444,10 +444,6 @@
         34.7368
       ],
       [
-        36.7682,
-        34.7368
-      ],
-      [
         36.7865,
         34.6391
       ],
@@ -460,6 +456,10 @@
         34.6421
       ],
       [
+        36.8035,
+        34.6552
+      ],
+      [
         36.7758,
         34.6572
       ]
@@ -468,9 +468,9 @@
     "vessel_type": "unknown",
     "weather_context": {
       "wind_kn": 9.1,
-      "gust_kn": 12.1,
-      "wave_m": 0.2,
-      "wind_dir": 171,
+      "gust_kn": 12.2,
+      "wave_m": 0.24,
+      "wind_dir": 180,
       "beaufort": 3,
       "summary_tr": "Bölgede 12 kn Kıble ve 0.2 m dalga kaydedildi.",
       "summary_en": "At site: 12 kn South wind and 0.2 m waves.",
@@ -539,7 +539,8 @@
       "Bölgede 10 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi.",
-      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
+      "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -549,13 +550,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 8.3,
-      "gust_kn": 11.1,
-      "wave_m": 0.16,
-      "wind_dir": 157,
-      "beaufort": 3,
-      "summary_tr": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 11 kn SSE wind and 0.2 m waves.",
+      "wind_kn": 10.1,
+      "gust_kn": 13.4,
+      "wave_m": 0.14,
+      "wind_dir": 167,
+      "beaufort": 4,
+      "summary_tr": "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi.",
+      "summary_en": "At site: 13 kn SSE wind and 0.1 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -650,7 +651,8 @@
       "Bölgede 10 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi.",
-      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
+      "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -660,13 +662,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 8.3,
-      "gust_kn": 11.1,
-      "wave_m": 0.16,
-      "wind_dir": 157,
-      "beaufort": 3,
-      "summary_tr": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 11 kn SSE wind and 0.2 m waves.",
+      "wind_kn": 10.1,
+      "gust_kn": 13.4,
+      "wave_m": 0.14,
+      "wind_dir": 167,
+      "beaufort": 4,
+      "summary_tr": "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi.",
+      "summary_en": "At site: 13 kn SSE wind and 0.1 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -735,7 +737,8 @@
       "Bölgede 4 kn Kıble ve 0.0 m dalga kaydedildi.",
       "Bölgede 6 kn Lodos ve 0.0 m dalga kaydedildi.",
       "Bölgede 16 kn Karayel ve 0.1 m dalga kaydedildi.",
-      "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi."
+      "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi.",
+      "Bölgede 21 kn Yıldız ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Istanbul",
@@ -747,13 +750,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 15.3,
-      "gust_kn": 20.4,
-      "wave_m": 0.1,
-      "wind_dir": 1,
+      "wind_kn": 15.8,
+      "gust_kn": 21.0,
+      "wave_m": 0.2,
+      "wind_dir": 8,
       "beaufort": 4,
-      "summary_tr": "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi.",
-      "summary_en": "At site: 20 kn North wind and 0.1 m waves.",
+      "summary_tr": "Bölgede 21 kn Yıldız ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 21 kn North wind and 0.2 m waves.",
       "station_name": "İstanbul Boğazı",
       "distance_nm": 9.8,
       "sea_temp_c": null,
@@ -770,38 +773,38 @@
         "lon": 28.97
       },
       "target_type": "drift",
-      "wind_kn": 15.3,
-      "wind_dir": 1.0,
+      "wind_kn": 15.8,
+      "wind_dir": 8.0,
       "current_kn": 0.0,
       "projections": [
         {
           "hours": 1.0,
-          "lat": 41.01235,
-          "lon": 28.96982,
-          "drift_speed_kn": 0.46,
-          "drift_bearing_deg": 181.0,
-          "drift_distance_nm": 0.46,
+          "lat": 41.01218,
+          "lon": 28.96854,
+          "drift_speed_kn": 0.47,
+          "drift_bearing_deg": 188.0,
+          "drift_distance_nm": 0.47,
           "search_radius_nm": 0.64,
           "target_type": "drift"
         },
         {
           "hours": 3.0,
-          "lat": 40.99705,
-          "lon": 28.96947,
-          "drift_speed_kn": 0.46,
-          "drift_bearing_deg": 181.0,
-          "drift_distance_nm": 1.38,
-          "search_radius_nm": 0.91,
+          "lat": 40.99653,
+          "lon": 28.96563,
+          "drift_speed_kn": 0.47,
+          "drift_bearing_deg": 188.0,
+          "drift_distance_nm": 1.42,
+          "search_radius_nm": 0.93,
           "target_type": "drift"
         },
         {
           "hours": 6.0,
-          "lat": 40.97411,
-          "lon": 28.96894,
-          "drift_speed_kn": 0.46,
-          "drift_bearing_deg": 181.0,
-          "drift_distance_nm": 2.75,
-          "search_radius_nm": 1.33,
+          "lat": 40.97306,
+          "lon": 28.96126,
+          "drift_speed_kn": 0.47,
+          "drift_bearing_deg": 188.0,
+          "drift_distance_nm": 2.84,
+          "search_radius_nm": 1.35,
           "target_type": "drift"
         }
       ]
@@ -925,7 +928,8 @@
       "Bölgede 10 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi.",
-      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
+      "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -935,13 +939,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 8.3,
-      "gust_kn": 11.1,
-      "wave_m": 0.16,
-      "wind_dir": 157,
-      "beaufort": 3,
-      "summary_tr": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 11 kn SSE wind and 0.2 m waves.",
+      "wind_kn": 10.1,
+      "gust_kn": 13.4,
+      "wave_m": 0.14,
+      "wind_dir": 167,
+      "beaufort": 4,
+      "summary_tr": "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi.",
+      "summary_en": "At site: 13 kn SSE wind and 0.1 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -1060,7 +1064,8 @@
       "Bölgede 10 kn Keşişleme ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.2 m dalga kaydedildi.",
       "Bölgede 8 kn Yıldız ve 0.1 m dalga kaydedildi.",
-      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi."
+      "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
+      "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi."
     ],
     "places": [
       "Antalya"
@@ -1070,13 +1075,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 8.3,
-      "gust_kn": 11.1,
-      "wave_m": 0.16,
-      "wind_dir": 157,
-      "beaufort": 3,
-      "summary_tr": "Bölgede 11 kn Keşişleme ve 0.2 m dalga kaydedildi.",
-      "summary_en": "At site: 11 kn SSE wind and 0.2 m waves.",
+      "wind_kn": 10.1,
+      "gust_kn": 13.4,
+      "wave_m": 0.14,
+      "wind_dir": 167,
+      "beaufort": 4,
+      "summary_tr": "Bölgede 13 kn Keşişleme ve 0.1 m dalga kaydedildi.",
+      "summary_en": "At site: 13 kn SSE wind and 0.1 m waves.",
       "station_name": "Antalya Körfezi",
       "distance_nm": 20.4,
       "sea_temp_c": null,
@@ -1143,7 +1148,8 @@
       "Bölgede 4 kn Kıble ve 0.0 m dalga kaydedildi.",
       "Bölgede 6 kn Lodos ve 0.0 m dalga kaydedildi.",
       "Bölgede 16 kn Karayel ve 0.1 m dalga kaydedildi.",
-      "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi."
+      "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi.",
+      "Bölgede 21 kn Yıldız ve 0.2 m dalga kaydedildi."
     ],
     "places": [
       "Istanbul"
@@ -1153,13 +1159,13 @@
     "heading": null,
     "vessel_type": "unknown",
     "weather_context": {
-      "wind_kn": 15.3,
-      "gust_kn": 20.4,
-      "wave_m": 0.1,
-      "wind_dir": 1,
+      "wind_kn": 15.8,
+      "gust_kn": 21.0,
+      "wave_m": 0.2,
+      "wind_dir": 8,
       "beaufort": 4,
-      "summary_tr": "Bölgede 20 kn Yıldız ve 0.1 m dalga kaydedildi.",
-      "summary_en": "At site: 20 kn North wind and 0.1 m waves.",
+      "summary_tr": "Bölgede 21 kn Yıldız ve 0.2 m dalga kaydedildi.",
+      "summary_en": "At site: 21 kn North wind and 0.2 m waves.",
       "station_name": "İstanbul Boğazı",
       "distance_nm": 9.8,
       "sea_temp_c": null,
