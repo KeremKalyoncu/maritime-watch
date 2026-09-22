@@ -1,20 +1,22 @@
 name: update-and-publish
 
-# Free "no server" deployment: run the cycle on a schedule, commit the refreshed
-# web/data/*, and publish web/ to GitHub Pages. Latency is the cron granularity
-# (~15 min). For near-real-time or the SDR/DSC modules you need an always-on host.
+# Modern zero-commit GitHub Pages deployment:
+# 1. Run the cycle on schedule or via immediate repository_dispatch webhook.
+# 2. Persist engine track state (data/vessels.json, events.jsonl) via GitHub Actions Cache.
+# 3. Publish web/ directly to GitHub Pages CDN via Artifact Deployment.
+# 4. Zero commits on main, zero repo bloat, zero push race conflicts.
 
 on:
   schedule:
     # Staggered non-peak minutes (7, 22, 37, 52) to avoid GitHub's top-of-hour runner congestion
     - cron: "7,22,37,52 * * * *"
-  # Allows zero-delay triggers via external free pingers (Cron-Job.org, Cloudflare Workers, etc.)
+  # Allows zero-delay triggers via external free pingers (Cron-Job.org, Cloudflare Workers, Note 4, etc.)
   repository_dispatch:
     types: [maritime_tick, ping, emergency]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -26,13 +28,21 @@ jobs:
   cycle:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: requirements.txt
+
+      - name: Restore engine state cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: maritime-state-${{ github.run_id }}
+          restore-keys: |
+            maritime-state-
 
       - run: pip install -r requirements.txt
 
@@ -44,31 +54,29 @@ jobs:
       - name: Validate publish artifacts
         run: python scripts/ci_validate_publish.py
 
-      - name: Commit refreshed data
-        run: |
-          git config user.name  "maritime-watch-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add -f web/data/incidents.json web/data/warnings.json web/data/feed.xml web/data/summary.json web/data/health.json web/data/stats.json
-          git add -f web/data/weather_overlay.json web/data/straits.json web/data/safety_index.json web/data/outlook.json web/data/incidents.geojson web/data/vessels.geojson
-          git add -f data/vessels.json data/events.jsonl data/sent.json
-          git commit -m "data: cycle $(date -u +%FT%TZ)" || { echo "no changes"; exit 0; }
-          for i in 1 2 3 4 5; do
-            # keep this run's freshly generated data on any web/data conflict
-            git pull --rebase -X theirs origin main && git push && exit 0
-            echo "push race, retry $i"; sleep $((RANDOM % 8 + 3))
-          done
-          echo "push still failing after retries"; exit 1
+      - name: Save engine state cache
+        uses: actions/cache/save@v4
+        if: success()
+        with:
+          path: data
+          key: maritime-state-${{ github.run_id }}
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
 
   pages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     needs: cycle
     if: ${{ !cancelled() && needs.cycle.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-        with:
-          ref: main
-      - uses: actions/configure-pages@v6
-      - uses: actions/upload-pages-artifact@v5
-        with:
-          path: web
-      - uses: actions/deploy-pages@v5
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
