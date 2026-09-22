@@ -24,7 +24,8 @@ const T = {
       "collision-risk": "çatışma riski (yakın geçiş)", drift: "sürüklenme",
       distress: "tehlike çağrısı", capsize: "alabora", fire: "yangın",
       sinking: "batma", "man-overboard": "denize adam düştü",
-      rescue: "kurtarma operasyonu", unknown: "belirsiz"
+      rescue: "kurtarma operasyonu", "rot-spike": "cayro / dümen anomalisi",
+      "grounding-risk": "karaya oturma riski", unknown: "belirsiz"
     },
     status: {
       signal: "zayıf sinyal (doğrulanmadı)", probable: "kuvvetli ihtimal",
@@ -620,53 +621,39 @@ function renderSafetyStrip(straitsData, safetyData) {
   (straitsData ? straitsData.straits || [] : []).forEach(st => {
     const isSusp = st.status === "suspended";
     const badgeClass = isSusp ? "suspended" : (st.status === "caution" ? "caution" : "good");
-    const meta = isSusp ? `⚠ ${st.reason || ""}` : `${st.active_vessels_in_transit} transit gemi · ${st.avg_speed_kn} kn`;
+    const icon = badgeClass === "good" ? "🟢" : (badgeClass === "caution" ? "🟡" : "🔴");
+    const shortName = st.id === "bosphorus" ? "İstanbul" : (st.id === "dardanelles" ? "Çanakkale" : st.name);
     cards.push(`
-      <div class="safety-card" data-strait-id="${esc(encodeURIComponent(st.id))}" onclick="focusStrait(decodeURIComponent(this.dataset.straitId))">
-        <span class="sc-title">${esc(st.name)}:</span>
-        <span class="safety-badge ${badgeClass}">${esc(st.status_tr)}</span>
-        <span class="sc-meta">${esc(meta)}</span>
+      <div class="safety-card" data-strait-id="${esc(encodeURIComponent(st.id))}" onclick="focusStrait(decodeURIComponent(this.dataset.straitId))" title="${esc(st.name)}: ${st.active_vessels_in_transit} transit gemi · ${st.avg_speed_kn} kn">
+        <span class="sc-title">${esc(shortName)}:</span>
+        <span class="safety-badge ${badgeClass}">${icon} ${esc(st.status_tr)}</span>
       </div>
     `);
   });
 
-  // 2. Coastal Safety Lowest Rating
+  // 2. Coastal Safety
   if (safetyData && safetyData.ratings && safetyData.ratings.length) {
     const danger = safetyData.ratings.filter(r => r.status === "danger");
     const caution = safetyData.ratings.filter(r => r.status === "caution");
     if (danger.length > 0) {
       cards.push(`
-        <div class="safety-card" onclick="filterChip('warning')">
-          <span class="sc-title">⚠️ Balıkçı Güvenlik Uyarısı:</span>
-          <span class="safety-badge danger">${danger.length} Bölgede Fırtına</span>
-          <span class="sc-meta">${esc(danger.map(d => d.area).slice(0, 2).join(", "))}</span>
+        <div class="safety-card" onclick="filterChip('warning')" title="${esc(danger.map(d => d.area).join(', '))}">
+          <span class="sc-title">Deniz:</span>
+          <span class="safety-badge danger">🔴 Fırtına (${danger.length} bölge)</span>
         </div>
       `);
     } else if (caution.length > 0) {
       cards.push(`
         <div class="safety-card">
-          <span class="sc-title">Şimdi:</span>
-          <span class="safety-badge caution">Tedbirli Seyir (${caution.length} bölge)</span>
+          <span class="sc-title">Deniz:</span>
+          <span class="safety-badge caution">🟡 Tedbirli (${caution.length} bölge)</span>
         </div>
       `);
     } else {
       cards.push(`
         <div class="safety-card">
-          <span class="sc-title">Şimdi:</span>
-          <span class="safety-badge good">🟢 Karasularımız Elverişli</span>
-        </div>
-      `);
-    }
-
-    // 3. Sea Surface Temperature Card
-    const temps = safetyData.ratings.map(r => r.sea_temp_c).filter(t => t != null && typeof t === "number");
-    if (temps.length > 0) {
-      const avgTemp = (temps.reduce((a, b) => a + b, 0) / temps.length).toFixed(1);
-      cards.push(`
-        <div class="safety-card">
-          <span class="sc-title">🌡️ Deniz Suyu:</span>
-          <span class="safety-badge" style="background:#0284c7;color:#fff">${avgTemp} °C</span>
-          <span class="sc-meta">Marmara Ort.</span>
+          <span class="sc-title">Deniz:</span>
+          <span class="safety-badge good">🟢 Elverişli</span>
         </div>
       `);
     }
@@ -685,22 +672,18 @@ function focusStrait(id) {
 }
 
 function renderKpis(incidents, warnings, summary, health) {
-  const u = U();
+  const kpisEl = document.getElementById("kpis");
+  if (!kpisEl) return;
   const open = incidents.filter(i => i.status !== "resolved" && i.status !== "false-positive");
-  const confirmed = open.filter(i => i.status === "confirmed");
-  const ok = health ? health.sources_ok : null;
-  const total = health ? health.sources_total : null;
-  const degraded = ok !== null && total ? ok < total : false;
-  const cells = [
-    { v: open.length, l: u.k_open, c: "" },
-    { v: confirmed.length, l: u.k_confirmed, c: confirmed.length ? "is-confirmed" : "" },
-    { v: warnings.length, l: u.k_warn, c: warnings.length ? "is-warning" : "" },
-    { v: ok === null ? "—" : ok + "/" + total, l: u.k_src, c: degraded ? "is-degraded" : "is-ok" },
-    { v: summary ? (agoText(summary.generated) || "—") : "—", l: u.k_upd, c: "" },
-  ];
-  document.getElementById("kpis").innerHTML = cells.map(c =>
-    `<div class="kpi ${c.c}"><div class="k-val">${esc(String(c.v))}</div><div class="k-lab">${esc(c.l)}</div></div>`
-  ).join("");
+  const srcCount = health ? `${health.sources_ok}/${health.sources_total}` : "Canlı";
+  const updTime = summary ? (agoText(summary.generated) || "güncel") : "güncel";
+
+  kpisEl.innerHTML = `
+    <span class="kpi-item">🚨 <strong>${open.length}</strong> Açık Olay</span>
+    <span class="kpi-item" style="color:#38bdf8">🌊 <strong>${warnings.length}</strong> Uyarı</span>
+    <span class="kpi-item" style="color:#34d399">🛰️ <strong>${srcCount}</strong> Kaynak</span>
+    <span class="kpi-item" style="color:var(--faint)">🕒 ${updTime}</span>
+  `;
 }
 
 function matchesItem(it) {
@@ -739,6 +722,8 @@ function matchesItem(it) {
 function addTimeline(items) {
   const ol = document.getElementById("timeline");
   ol.innerHTML = "";
+  const countEl = document.getElementById("side-count");
+  if (countEl) countEl.textContent = `${items.length} kayıt`;
   items.forEach(it => {
     const li = document.createElement("li");
     li.className = it._kind === "warning" ? "warning" : it.status;
@@ -902,8 +887,9 @@ async function getJSON(path) {
 }
 
 function applyI18n() {
-  document.documentElement.lang = LANG;
-  document.getElementById("lang").textContent = LANG === "en" ? "TR" : "EN";
+  document.documentElement.lang = "tr";
+  const langEl = document.getElementById("lang");
+  if (langEl) langEl.textContent = LANG === "en" ? "TR" : "EN";
   document.querySelectorAll("[data-i]").forEach(el => {
     const v = U()[el.dataset.i];
     if (typeof v === "string") el.innerHTML = v;
@@ -939,7 +925,10 @@ function render() {
 
   const u = U();
   renderKpis(incidents.filter(matchesItem), warnings.filter(matchesItem), summary, health);
-  document.getElementById("sys").textContent = u.sys(health);
+  const sysEl = document.getElementById("sys");
+  if (sysEl) {
+    sysEl.textContent = health ? `${health.sources_ok}/${health.sources_total} Kaynak Aktif (${health.cycle_seconds}s)` : "Sistem Aktif";
+  }
 
   const stale = document.getElementById("stale");
   const genMs = summary && Date.parse(summary.generated);
@@ -991,12 +980,15 @@ function focusHash() {
 // ---------------- UI Event Handlers ----------------
 
 // Lang toggle
-document.getElementById("lang").addEventListener("click", () => {
-  LANG = LANG === "en" ? "tr" : "en";
-  try { localStorage.setItem("mw-lang", LANG); } catch (e) {}
-  applyI18n();
-  render();
-});
+const langBtn = document.getElementById("lang");
+if (langBtn) {
+  langBtn.addEventListener("click", () => {
+    LANG = LANG === "en" ? "tr" : "en";
+    try { localStorage.setItem("mw-lang", LANG); } catch (e) {}
+    applyI18n();
+    render();
+  });
+}
 
 // Region selector
 document.getElementById("region").addEventListener("change", e => {
@@ -1049,8 +1041,29 @@ if (btnEmergency && emergencyModal) {
   btnEmergency.addEventListener("click", () => { emergencyModal.hidden = false; });
   if (modalClose) modalClose.addEventListener("click", () => { emergencyModal.hidden = true; });
   if (modalBackdrop) modalBackdrop.addEventListener("click", () => { emergencyModal.hidden = true; });
-  window.addEventListener("keydown", e => { if (e.key === "Escape") emergencyModal.hidden = true; });
 }
+
+// Outlook Modal
+const outlookModal = document.getElementById("outlook-modal");
+const btnOpenOutlook = document.getElementById("btn-open-outlook");
+const outlookClose = document.getElementById("outlook-close");
+const outlookBackdrop = document.getElementById("outlook-backdrop");
+
+if (btnOpenOutlook && outlookModal) {
+  btnOpenOutlook.addEventListener("click", () => {
+    outlookModal.hidden = false;
+    renderOutlookPanel();
+  });
+  if (outlookClose) outlookClose.addEventListener("click", () => { outlookModal.hidden = true; });
+  if (outlookBackdrop) outlookBackdrop.addEventListener("click", () => { outlookModal.hidden = true; });
+}
+
+window.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    if (emergencyModal) emergencyModal.hidden = true;
+    if (outlookModal) outlookModal.hidden = true;
+  }
+});
 
 // Copy buttons inside emergency modal
 document.querySelectorAll(".btn-copy").forEach(btn => {

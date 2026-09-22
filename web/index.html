@@ -3,64 +3,73 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maritime Watch — Türkiye Deniz Olayları ve Canlı Durum</title>
-  <meta name="description" content="Türkiye karasuları için deniz kazası erken-uyarı, canlı deniz hava durumu, Türk Boğazları geçiş durumu ve şeffaflık aracı.">
+  <title>Maritime Watch — Türkiye Karasuları Canlı Deniz Durumu</title>
+  <meta name="description" content="Türkiye karasuları için canlı deniz kazası takibi, AIS anomalileri, Türk Boğazları geçiş durumu ve seyir güvenliği platformu.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#080d13">
+  <meta name="theme-color" content="#070c14">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <link rel="stylesheet" href="style.css?v=2.3">
+  <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 <body>
-  <div id="offline-bar" class="offline-bar" hidden>📵 <span data-i="offline_msg">Çevrimdışı Mod — İnternet bağlantısı yok, son önbellek gösteriliyor.</span></div>
+  <div id="offline-bar" class="offline-bar" hidden>📵 Çevrimdışı Mod — İnternet bağlantısı yok, son önbellek gösteriliyor.</div>
 
-  <header>
+  <!-- Ultra-Clean, Single-Deck Primary Navigation -->
+  <header class="app-header">
     <div class="topbar">
       <div class="brand">
-        <img src="logo.png" alt="Maritime Watch Logo" width="34" height="34" style="border-radius: 8px; vertical-align: middle; margin-right: 8px; box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);">
-        <h1>Maritime&nbsp;Watch</h1>
-        <span class="live" data-i="live">canlı</span>
+        <img src="logo.png" alt="Maritime Watch Logo" width="28" height="28" class="brand-logo">
+        <h1 class="brand-title">Maritime&nbsp;Watch</h1>
+        <span class="live-pill"><span class="dot-pulse"></span>CANLI</span>
       </div>
-      <div class="ctrl">
-        <button type="button" class="btn btn-playback" id="btn-toggle-playback" title="Zaman Makinesi" aria-label="Zaman Makinesini Aç veya Kapat">▶ <span data-i="playback_btn">Zaman Makinesi</span></button>
-        <button type="button" class="btn btn-emergency" id="btn-emergency" title="Acil Durum Frekans Rehberi" aria-label="Deniz Acil Durum ve VHF Frekans Rehberi">🆘 <span data-i="emergency_btn">Acil Rehber</span></button>
-        <select id="region" title="Bölge" aria-label="Bölge Seçimi"></select>
-        <a class="btn" href="stats.html" data-i="stats" aria-label="İstatistik Sayfasına Git">İstatistik</a>
-        <button id="lang" type="button" aria-label="Dili Değiştir (TR/EN)">EN</button>
-      </div>
+
+      <!-- Live Straits Transit & Sea Conditions Ticker -->
+      <div id="safety-strip" class="safety-strip" role="region" aria-label="Boğaz Geçiş ve Seyir Durumu"></div>
+
+      <!-- Action Navigation Buttons -->
+      <nav class="top-nav" aria-label="Ana Menü">
+        <button type="button" class="btn btn-outlook" id="btn-open-outlook" title="Bugün denize çıkış hava penceresi ve rüzgar/dalga analizi">
+          <span>🌊</span> Seyir Durumu
+        </button>
+        <button type="button" class="btn btn-emergency" id="btn-emergency" title="Deniz acil durum telefonları ve VHF telsiz frekans rehberi">
+          <span>🆘</span> Acil Rehber
+        </button>
+        <button type="button" class="btn btn-playback" id="btn-toggle-playback" title="Olay geçmişi zaman makinesini aç veya kapat">
+          <span>▶</span> Geçmiş
+        </button>
+        <a class="btn btn-stats" href="stats.html" title="Tarihsel kaza ve operasyon istatistikleri">
+          <span>📊</span> İstatistik
+        </a>
+      </nav>
     </div>
-
-    <!-- Live Straits Transit & Marine Safety Ticker -->
-    <div id="safety-strip" class="safety-strip" role="region" aria-label="Boğaz Geçiş ve Deniz Güvenlik Şeridi"></div>
-
-    <!-- Today go/no-go hour windows (primary product answer) -->
-    <section id="outlook-panel" class="outlook-panel" role="region" aria-label="Bugün denize çıkış penceresi" aria-live="polite"></section>
-
-    <!-- Instant Search & Quick Filter Chips -->
-    <div class="filter-row" role="search">
-      <div class="search-box">
-        <span class="search-ico" aria-hidden="true">🔍</span>
-        <input type="search" id="search-input" placeholder="Olay, gemi, liman veya sebep ara..." autocomplete="off" aria-label="Olay, gemi, liman veya sebep ara">
-      </div>
-      <div class="chip-bar" id="chips" role="group" aria-label="Olay Filtreleri">
-        <button type="button" class="chip is-active" data-chip="all" data-i="chip_all" aria-label="Tüm olayları göster">Tümü</button>
-        <button type="button" class="chip" data-chip="confirmed" data-i="chip_confirmed" aria-label="Doğrulanmış olayları filtrele">🚨 Doğrulandı</button>
-        <button type="button" class="chip" data-chip="warning" data-i="chip_warning" aria-label="Hava ve fırtına uyarılarını filtrele">🌊 Hava Uyarısı</button>
-        <button type="button" class="chip" data-chip="collision-risk" data-i="chip_cpa" aria-label="Çatışma riski taşıyan gemileri filtrele">💥 Çatışma Riski</button>
-        <button type="button" class="chip" data-chip="rescue" data-i="chip_rescue" aria-label="Kurtarma operasyonlarını filtrele">⚓ Kurtarma</button>
-      </div>
-    </div>
-
-    <div class="kpis" id="kpis" role="region" aria-label="Canlı İstatistik Göstergeleri"></div>
-    <div id="stale" hidden role="alert"></div>
   </header>
 
+  <!-- Fullscreen Map + Incident Drawer Layout -->
   <main>
     <div class="map-wrapper">
-      <div id="map" role="application" aria-label="Türkiye Deniz Olayları ve Canlı Durum Haritası"></div>
-      
-      <!-- Time-Lapse Playback Scrubber Bar -->
-      <div id="playback-bar" class="playback-bar" role="toolbar" aria-label="Zaman Makinesi Oynatıcı Çubuğu" hidden>
+      <div id="map" role="application" aria-label="Türkiye Karasuları Canlı Durum Haritası"></div>
+
+      <!-- Floating Map Search & Filters HUD (Top-Left Glass Card) -->
+      <div class="map-floating-hud" role="search">
+        <div class="search-box">
+          <span class="search-ico" aria-hidden="true">🔍</span>
+          <input type="search" id="search-input" placeholder="Olay, gemi, liman veya sebep ara..." autocomplete="off" aria-label="Olay, gemi veya bölge ara">
+        </div>
+        <div class="chip-bar" id="chips" role="group" aria-label="Olay Filtreleri">
+          <button type="button" class="chip is-active" data-chip="all">Tümü</button>
+          <button type="button" class="chip" data-chip="confirmed">🚨 Doğrulandı</button>
+          <button type="button" class="chip" data-chip="warning">🌊 Hava Uyarısı</button>
+          <button type="button" class="chip" data-chip="collision-risk">💥 Çatışma</button>
+          <button type="button" class="chip" data-chip="rescue">⚓ Kurtarma</button>
+        </div>
+      </div>
+
+      <!-- Floating Status Metrics (Bottom-Left Pill) -->
+      <div id="kpis" class="kpis-floating" role="region" aria-label="Canlı Veri Göstergeleri"></div>
+      <div id="stale" class="stale-floating" hidden role="alert"></div>
+
+      <!-- Time-Lapse Playback Scrubber Bar (Bottom Center) -->
+      <div id="playback-bar" class="playback-bar" role="toolbar" aria-label="Zaman Makinesi Çubuğu" hidden>
         <button type="button" id="play-btn" class="play-btn" title="Oynat / Duraklat" aria-label="Oynat veya Duraklat">▶</button>
         <span id="play-label" class="play-label">Zaman Makinesi</span>
         <input type="range" id="play-range" min="0" max="100" value="100" title="Zaman Çizelgesi" aria-label="Zaman Çizelgesi Konumu">
@@ -74,21 +83,46 @@
       </div>
     </div>
 
+    <!-- Scannable Incident Sidebar Drawer -->
     <aside id="side" role="complementary" aria-label="Olay Zaman Çizelgesi">
-      <div class="legend" aria-label="Harita Lejantı">
-        <span><i class="dot s-confirmed" aria-hidden="true"></i><b data-i="l-confirmed">doğrulandı</b></span>
-        <span><i class="dot s-probable" aria-hidden="true"></i><b data-i="l-probable">olası</b></span>
-        <span><i class="dot s-signal" aria-hidden="true"></i><b data-i="l-signal">sinyal (doğrulanmadı)</b></span>
-        <span><i class="dot s-resolved" aria-hidden="true"></i><b data-i="l-resolved">kapandı</b></span>
-        <span><i class="dot s-warning" aria-hidden="true"></i><b data-i="l-warning">hava uyarısı</b></span>
+      <div class="side-head">
+        <div class="side-title-row">
+          <h2>Zaman Çizelgesi</h2>
+          <span id="side-count" class="side-count"></span>
+        </div>
+        <select id="region" class="region-select" title="Bölge Filtresi" aria-label="Bölge Filtresi">
+          <option value="">Tüm Bölgeler</option>
+        </select>
       </div>
-      <h2 data-i="timeline">Zaman çizelgesi</h2>
-      <ol id="timeline"></ol>
+
+      <div class="legend" aria-label="Harita Lejantı">
+        <span><i class="dot s-confirmed"></i><b>doğrulandı</b></span>
+        <span><i class="dot s-probable"></i><b>olası</b></span>
+        <span><i class="dot s-signal"></i><b>sinyal</b></span>
+        <span><i class="dot s-resolved"></i><b>kapandı</b></span>
+        <span><i class="dot s-warning"></i><b>uyarı</b></span>
+      </div>
+
+      <ol id="timeline" class="timeline-list"></ol>
       <div class="empty" id="empty" hidden></div>
     </aside>
   </main>
 
-  <!-- Emergency Modal Guide -->
+  <!-- Focused Modal: Denize Çıkış Durumu (Outlook) -->
+  <div id="outlook-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="outlook-modal-title" hidden>
+    <div class="modal-backdrop" id="outlook-backdrop"></div>
+    <div class="modal-card modal-large">
+      <div class="modal-head">
+        <h3 id="outlook-modal-title">🌊 Günlük Seyir Durumu & Denize Çıkış Analizi</h3>
+        <button type="button" class="modal-close" id="outlook-close" aria-label="Pencereyi Kapat">&times;</button>
+      </div>
+      <div class="modal-body">
+        <section id="outlook-panel" class="outlook-panel" aria-live="polite"></section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Focused Modal: Deniz Acil Durum & VHF Rehberi -->
   <div id="emergency-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="em-modal-title" hidden>
     <div class="modal-backdrop" id="modal-backdrop"></div>
     <div class="modal-card">
@@ -138,20 +172,23 @@
     </div>
   </div>
 
-  <!-- Floating Toast Notifications Container -->
+  <!-- Toast Notification Hub -->
   <div id="toast-container" class="toast-container" role="status" aria-live="polite"></div>
 
-  <div class="disclaimer-seal">
-    ⚖️ <strong>Yasal Sorumluluk Reddi:</strong> Bu sistem meteorolojik tahmin modelleri ile çalışan durumsal farkındalık aracıdır; resmi seyir uyarısı yerine geçmez. Denize çıkış ve seyir emniyeti kararı münhasıran gemi/tekne kaptanının şahsi sorumluluğundadır. T.C. Ulaştırma ve Altyapı Bakanlığı, Sahil Güvenlik (158) ve MGM bültenleri esastır.
-  </div>
-
-  <footer>
-    <span>Açık kaynak · <a href="https://github.com/KeremKalyoncu/maritime-watch" id="repo-link">GitHub</a>
-      · <a href="data/incidents.geojson" target="_blank" rel="noopener" title="RFC 7946 Standart GeoJSON Olay Akışı">GeoJSON (Olaylar)</a>
-      · <a href="data/vessels.geojson" target="_blank" rel="noopener" title="RFC 7946 Standart GeoJSON Gemi Akışı">GeoJSON (Gemiler)</a>
-      · <span id="sys">—</span></span>
-    <span data-i="sources">Kaynaklar: aisstream.io · Open-Meteo · KEGM · SHOD · Sahil Güvenlik · MGM · AFAD/USGS/EMSC · GDACS · haber RSS · OpenSeaMap</span>
-    <span data-i="disclaimer">Bu bir kurtarma servisi değildir. Acil durumda <strong>158</strong> (Sahil Güvenlik) / <strong>112</strong>.</span>
+  <!-- Minimalist High-Credibility Footer -->
+  <footer class="app-footer">
+    <div class="footer-left">
+      <span>Açık Kaynak · <a href="https://github.com/KeremKalyoncu/maritime-watch" target="_blank" rel="noopener">GitHub</a></span>
+      <span class="sep">·</span>
+      <a href="data/incidents.geojson" target="_blank" rel="noopener" title="RFC 7946 Standart GeoJSON Olay Akışı">GeoJSON (Olaylar)</a>
+      <span class="sep">·</span>
+      <a href="data/vessels.geojson" target="_blank" rel="noopener" title="RFC 7946 Standart GeoJSON Gemi Akışı">GeoJSON (Gemiler)</a>
+      <span class="sep">·</span>
+      <span id="sys" class="sys-health">—</span>
+    </div>
+    <div class="footer-right">
+      <span class="disclaimer">Acil yardım için <strong>158</strong> (Sahil Güvenlik) / <strong>112</strong></span>
+    </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -160,6 +197,6 @@
       document.write('<scr' + 'ipt src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></scr' + 'ipt>');
     }
   </script>
-  <script src="app.js?v=2.2"></script>
+  <script src="app.js?v=3.0"></script>
 </body>
 </html>
