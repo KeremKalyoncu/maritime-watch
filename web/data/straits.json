@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-21T23:29:48Z",
+  "generated": "2026-09-22T08:29:37Z",
   "straits": [
     {
       "id": "bosphorus",
@@ -7,9 +7,9 @@
       "status": "open",
       "status_tr": "Trafik Normal",
       "reason": null,
-      "active_vessels_in_transit": 1,
-      "avg_speed_kn": 10.2,
-      "last_update": "2026-09-21T23:29:48Z",
+      "active_vessels_in_transit": 0,
+      "avg_speed_kn": 0.0,
+      "last_update": "2026-09-22T08:29:37Z",
       "orkoz_detected": false,
       "fog_detected": false
     },
@@ -21,7 +21,7 @@
       "reason": null,
       "active_vessels_in_transit": 0,
       "avg_speed_kn": 0.0,
-      "last_update": "2026-09-21T23:29:48Z",
+      "last_update": "2026-09-22T08:29:37Z",
       "orkoz_detected": false,
       "fog_detected": false
     }
