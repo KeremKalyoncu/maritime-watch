@@ -51,9 +51,8 @@ main() {
     chmod 600 .env
   fi
 
-  tmux new-session -d -s engine -c "$ROOT" "python run.py --loop --alert-webhook $WEBHOOK_URL"
-  sleep 2
-  tmux capture-pane -t engine -p -S -8 || true
+  # Same launcher ~/.bashrc uses: respawn loop, and starts social too if it is down.
+  MARITIME_WEBHOOK_URL="$WEBHOOK_URL" bash "$ROOT/scripts/note4_autostart.sh"
   echo "[note4] engine loop started in tmux session 'engine' (webhook -> $WEBHOOK_URL)"
 }
 
