@@ -21,6 +21,7 @@ import argparse
 import functools
 import http.server
 import json
+import os
 import socketserver
 import sys
 import threading
@@ -56,7 +57,7 @@ from src.ingest.openmeteo import (  # noqa: F401 — fetch_marine_warnings: test
 from src.ingest.openmeteo import reset_cache as reset_openmeteo_cache
 from src.ingest.quakes import fetch_quakes
 from src.ingest.reliefweb import fetch_reliefweb
-from src.model import Incident, Source, Vessel, make_id
+from src.model import Incident, Source, Vessel, make_id, type_tr
 from src.process.anomaly import VesselState, detect
 from src.process.classify import classify, enrich_weather_context
 from src.process.cpa import cpa_events_to_incidents, detect_cpa_risks
@@ -324,7 +325,9 @@ def cycle(
                         "area": inc.area or "",
                         "lat": inc.lat,
                         "lon": inc.lon,
-                        "title": getattr(inc, "type_tr", inc.type),
+                        # Incident has no type_tr attribute: the old getattr always fell
+                        # back to the English code, so the channel read "capsize"
+                        "title": type_tr(inc.type).capitalize(),
                         "description": desc,
                         "created_at": getattr(inc, "last_update", "") or getattr(inc, "first_seen", ""),
                     },
@@ -410,6 +413,26 @@ def cycle(
     print(f"[done] incidents={len(store.active_incidents())} warnings={len(store.active_warnings())}")
 
 
+def power_backoff_reason(cfg: dict, battery: Path = Path("/sys/class/power_supply/battery")) -> str | None:
+    """On the Note 4 edge host: why the loop should slow down, or None.
+
+    A hot or nearly flat 2014 phone keeps the bot alive longer if the engine
+    backs off. Anywhere without a battery sysfs (laptop, CI) this is a no-op."""
+    lcfg = cfg.get("loop", {})
+    try:
+        temp = float((battery / "temp").read_text().strip())
+        temp_c = temp / 10.0 if temp > 100 else temp
+        if temp_c >= float(lcfg.get("hot_temp_c", 45.0)):
+            return f"battery {temp_c:.1f}°C"
+        status = (battery / "status").read_text().strip().upper()
+        pct = int((battery / "capacity").read_text().strip())
+        if status == "DISCHARGING" and pct <= int(lcfg.get("low_battery_pct", 15)):
+            return f"battery {pct}% and discharging"
+    except (OSError, ValueError):
+        pass
+    return None
+
+
 def serve(cfg: dict, port: int = 8000) -> None:
     web = Path(cfg["_root"]) / "web"
     handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(web))
@@ -441,7 +464,13 @@ def main() -> None:
 
     cfg = load_config(args.config)
     webhook_url = args.alert_webhook or cfg.get("alert", {}).get("webhook_url", "")
-    webhook_token = args.alert_token or cfg.get("alert", {}).get("webhook_token", "")
+    # INTERNAL_WEBHOOK_TOKEN from .env keeps the secret out of the process list
+    # (a --alert-token argument is readable by every app on the phone via ps).
+    webhook_token = (
+        args.alert_token
+        or os.getenv("INTERNAL_WEBHOOK_TOKEN", "").strip()
+        or cfg.get("alert", {}).get("webhook_token", "")
+    )
 
     if args.serve and not (args.once or args.loop):
         serve(cfg, args.port)
@@ -464,8 +493,13 @@ def main() -> None:
                 break
             except Exception as e:
                 print(f"[cycle] error: {e}")
-            print(f"[loop] sleeping {interval}s\n")
-            time.sleep(interval)
+            wait = interval
+            reason = power_backoff_reason(cfg)
+            if reason:
+                wait = interval * int(cfg["loop"].get("backoff_factor", 3))
+                print(f"[loop] {reason} -> cycles slowed down")
+            print(f"[loop] sleeping {wait}s\n")
+            time.sleep(wait)
     else:
         cycle(
             cfg,

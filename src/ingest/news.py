@@ -69,6 +69,7 @@ def fetch_news(cfg: dict) -> list[Incident]:
     inci = [_norm(w) for w in nc["incident_words"]]
     after = [_norm(w) for w in nc.get("aftermath_words", [])]
     never = [_norm(w) for w in nc.get("exclude_words", [])]
+    foreign = [_norm(w) for w in nc.get("foreign_words", [])]
     out: list[Incident] = []
     seen: set[str] = set()
 
@@ -94,6 +95,8 @@ def fetch_news(cfg: dict) -> list[Incident]:
             seen.add(key)
 
             ex = extract(title)
+            if drop_aftermath(low, foreign) and not (ex.places or ex.area):
+                continue  # a ferry lost off Indonesia is news, not a warning for our coast
             inc = Incident(
                 id="news-" + stable_hash(key, 10),  # content, not date: see official.py
                 type=ex.itype,

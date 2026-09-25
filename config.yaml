@@ -146,6 +146,15 @@ news:
   exclude_words: ["balıklama", "sığ suya", "sığ su", "havuzda", "havuza",
                   "serinlemek için", "yüzmek için", "plajda boğul", "selfie",
                   "denize düşen cep telefon", "kayıkçılar derneği"]
+  # far-away countries: "Endonezya'da feribot alabora" went out as a critical alert.
+  # Dropped only when the headline names no Turkish place / sea area. Greece, Cyprus,
+  # Georgia, Syria, Russia stay out of this list: their coasts are inside the watch box.
+  foreign_words: ["endonezya", "filipin", "hindistan", "bangladeş", "pakistan", "sri lanka",
+                  "çin", "japonya", "kore", "vietnam", "tayland", "malezya", "myanmar",
+                  "nijerya", "kongo", "senegal", "moritanya", "somali", "cibuti", "yemen",
+                  "tunus", "libya", "cezayir", "fas", "mısır", "italya", "ispanya", "malta",
+                  "fransa", "ingiltere", "abd", "amerika", "meksika", "brezilya", "kanada",
+                  "avustralya", "yeni zelanda", "haiti", "küba", "kanarya", "lampedusa"]
 
 # Daily "can I go out today" data product (rendered to web/data/outlook.json)
 outlook:
@@ -180,3 +189,8 @@ alert:
 
 loop:
   interval_seconds: 900
+  # Note 4 edge host: wait interval x backoff_factor when the battery is hot or
+  # nearly flat (no-op where /sys/class/power_supply/battery does not exist)
+  hot_temp_c: 45.0
+  low_battery_pct: 15
+  backoff_factor: 3

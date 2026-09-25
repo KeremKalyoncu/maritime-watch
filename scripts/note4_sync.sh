@@ -35,11 +35,18 @@ rm -f "$STATE"
 
 python -m pip install -q -r requirements.txt
 
-ENGINE="python run.py --loop --alert-webhook $WEBHOOK_URL"
+# Hand the token over through .env, never on the command line: argv shows up in ps.
 if [ -n "$TOKEN" ]; then
-  ENGINE="$ENGINE --alert-token $TOKEN"
+  touch .env
+  if grep -q '^INTERNAL_WEBHOOK_TOKEN=' .env; then
+    sed -i "s|^INTERNAL_WEBHOOK_TOKEN=.*|INTERNAL_WEBHOOK_TOKEN=$TOKEN|" .env
+  else
+    printf '\nINTERNAL_WEBHOOK_TOKEN=%s\n' "$TOKEN" >> .env
+  fi
+  chmod 600 .env
 fi
-tmux new-session -d -s engine -c "$ROOT" "$ENGINE"
+
+tmux new-session -d -s engine -c "$ROOT" "python run.py --loop --alert-webhook $WEBHOOK_URL"
 sleep 2
 tmux capture-pane -t engine -p -S -8 || true
 echo "[note4] engine loop started in tmux session 'engine' (webhook -> $WEBHOOK_URL)"
