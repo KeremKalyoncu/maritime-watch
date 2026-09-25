@@ -11,7 +11,7 @@ main() {
   local social_dir="${HOME}/maritime-social"
   local engine_dir="${HOME}/maritime-watch"
   local webhook="${MARITIME_WEBHOOK_URL:-http://127.0.0.1:8088/webhook/alert}"
-  local respawn='echo "[autostart] $(date +%H:%M:%S) exited ($?), restarting in 60s"; sleep 60'
+  local respawn='rc=$?; echo "[autostart] $(date +%H:%M:%S) exited ($rc), restarting in 60s"; sleep 60'
 
   if [ -d "$social_dir" ] && ! tmux has-session -t social 2>/dev/null; then
     tmux new-session -d -s social -c "$social_dir" \
