@@ -33,7 +33,7 @@ def test_openmeteo_null_sst_and_current_graceful():
         }
     }
 
-    def fake_get_json(url, sample):
+    def fake_get_json(url, sample, **_kw):
         if "marine" in url:
             return dummy_marine_null, True
         return dummy_wind, True

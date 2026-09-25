@@ -403,7 +403,7 @@ python run.py --loop --send
 | Dağıtım Yolu | Donanım / Altyapı | Maliyet | Gecikme | Kullanım Amacı |
 | :--- | :--- | :---: | :---: | :--- |
 | **Eski Akıllı Telefon (Edge Micro-Node)** | **Samsung Galaxy Note 4 (Android / Termux)** | **~$0.10/ay (1.2W)** | **< 1 sn (Gerçek Zamanlı)** | **Mükemmel Ev Sunucusu:** Çekmecede duran eski Android telefonu headless bir Linux micro-server'a dönüştürür; Long Polling ile Telegram botunu 7/24 sıfır gecikmeyle çalıştırır. |
-| **GitHub Actions + Pages** | **Bulut Runner (Ubuntu)** | **$0** | ~15 dk | **Sıfır Sunucu Otomasyonu:** Her 15 dakikada bir veri kazıyıcılarını çalıştırır, harita katmanlarını derler ve GitHub Pages'e basar. |
+| **GitHub Actions + Pages** | **Bulut Runner (Ubuntu)** | **$0** | ~15 dk (dış tetikleyiciyle) · 2–5 saat (yalnız cron) | **Sıfır Sunucu Otomasyonu:** Veri kazıyıcılarını çalıştırır, harita katmanlarını derler ve GitHub Pages'e basar. GitHub `schedule` işlerini yoğunlukta erteler; 15 dk için [`repository_dispatch` tetikleyicisi](scripts/setup_fast_updates.md) kurun. |
 | **Bulut VPS (Hetzner / DigitalOcean)** | **1 vCPU / 1GB RAM VPS** | ~€3.5/ay | Gerçek Zamanlı | Profesyonel kurumsal dağıtım veya yüksek aboneli bot trafiği için. |
 
 ### 📱 Eski Telefonu 1.2W Linux Edge Server'a Dönüştürme (Termux)
@@ -414,15 +414,17 @@ Bu proje için pahalı bir bulut sunucusu kiralamak yerine, 2014 model bir **Sam
 3. **Long Polling Optimizasyonu:** Telegram botu 1.5 saniyelik agresif HTTP yoklaması yerine **20 saniyelik HTTP Keep-Alive Long Polling** mimarisine geçirildi. Bu sayede saatlik 2.400 TLS bağlantısı ~140'a indirilerek telefonun pil tüketimi -118 mA'dan **-45 mA seviyesine (%62 tasarruf)** çekildi. Masada prizden çektiği toplam güç sadece **1.2 Watt**'tır (2026 EPDK tarifesiyle ayda ~3.5 TL).
 4. **Otomatik Başlangıç:** `~/.bashrc` içerisine eklenen tmux servis denetleyicisi ile telefon yeniden başlasa bile bot arka planda ayağa kalkar.
 
-**Edge host operasyon (özet):** Ağır hava/AIS cycle **GitHub Actions**’ta kalır; telefonda bot çoğunlukla `web/data/*.json` okur (komut başına Open-Meteo yok). Kod güncellemesi:
+**Edge host operasyon (özet):** Motor telefonda `run.py --loop` ile 15 dakikada bir döner (~100 sn/döngü) ve `web/data/*.json` dosyalarını yerel diske yazar. Aynı telefondaki `maritime-social` bu dosyaları diskten okur; major/critical olaylar `http://127.0.0.1:8088/webhook/alert` üzerinden anında gider. GitHub Actions yalnızca herkese açık haritayı (Pages) günceller. Motor Python 3.8 ile uyumludur (CI'da `edge-py38` işi bunu korur).
+
+Önce `maritime-social`'ı başlatın (webhook dinleyicisi hazır olsun), sonra motoru:
 
 ```bash
-bash ~/maritime-watch/scripts/note4_sync.sh
-# veya elle:
-cd ~/maritime-watch && git fetch origin && git reset --hard origin/main
-pkill -f "python run.py --bot" 2>/dev/null; tmux kill-session -t bot 2>/dev/null
-tmux new-session -d -s bot -c ~/maritime-watch "python run.py --bot --send"
+bash ~/maritime-social/scripts/note4_social_run.sh
+bash ~/maritime-watch/scripts/note4_sync.sh   # git sync + pip install + tmux 'engine' oturumu
+tmux attach -t engine                          # log izlemek için (Ctrl-b d ile çık)
 ```
+
+`note4_sync.sh` webhook token'ını `INTERNAL_WEBHOOK_TOKEN` ortam değişkeninden veya `~/maritime-social/.env`'den okur; `data/` ve `web/data/` durumunu `git reset` sırasında korur.
 
 `.env` ve `data/subscribers.json` yalnızca telefonda kalır; asla commit etmeyin. Ayrıntılı güvenlik: [SECURITY.md](SECURITY.md).
 

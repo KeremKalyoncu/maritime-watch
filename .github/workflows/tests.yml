@@ -41,10 +41,19 @@ jobs:
       - run: python -m pytest -q
       - run: python eval/run_eval.py
 
+  # The Note 4 edge host runs the engine loop on Termux Python 3.8; keep it working.
+  edge-py38:
+    runs-on: ubuntu-latest
+    container: python:3.8-slim
+    steps:
+      - uses: actions/checkout@v7
+      - run: pip install -r requirements.txt pytest
+      - run: python -m pytest -q
+
   # Single required status check for branch protection (matrix jobs stay informative)
   ci:
     name: ci
-    needs: [lint, pytest]
+    needs: [lint, pytest, edge-py38]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -52,3 +61,4 @@ jobs:
         run: |
           test "${{ needs.lint.result }}" = "success"
           test "${{ needs.pytest.result }}" = "success"
+          test "${{ needs.edge-py38.result }}" = "success"

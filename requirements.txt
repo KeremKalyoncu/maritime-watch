@@ -1,6 +1,10 @@
 # Maritime Watch — core runtime deps (stdlib does the rest)
-requests>=2.34.2
+# The Note 4 edge host is stuck on Termux Python 3.8; those lines give it the
+# newest releases that still ship for 3.8. CI and laptops keep the current floors.
+requests>=2.34.2; python_version >= "3.9"
+requests>=2.32.4; python_version < "3.9"
 beautifulsoup4>=4.15.0
 websockets>=12.0
 PyYAML>=6.0.3
-python-dotenv>=1.2.3
+python-dotenv>=1.2.3; python_version >= "3.9"
+python-dotenv>=1.0.1; python_version < "3.9"

@@ -55,7 +55,8 @@ def calculate_sun_times(
     """
     # Parse date
     if date is None:
-        target_date = datetime.datetime.now(datetime.UTC).date()
+        # timezone.utc, not datetime.UTC (3.11+): the Note 4 edge host runs Python 3.8
+        target_date = datetime.datetime.now(datetime.timezone.utc).date()  # noqa: UP017
     elif isinstance(date, str):
         target_date = datetime.date.fromisoformat(date.split("T")[0])
     else:

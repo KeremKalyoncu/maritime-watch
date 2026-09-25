@@ -12,6 +12,7 @@ outlook) rate-limited Open-Meteo and dropped Marmara / Karadeniz from
 from __future__ import annotations
 
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 from ..model import Warning, now_iso
 from ._net import get_json
@@ -21,6 +22,13 @@ WIND = "https://api.open-meteo.com/v1/forecast"
 
 _FORECAST_CACHE: dict[str, tuple[float, dict]] = {}
 CACHE_TTL_SEC: float = 900.0  # 15 minutes TTL
+
+# Open-Meteo answers in < 1 s when healthy. From GitHub runners a stuck request
+# used to sit out the shared 20 s timeout 12 times a cycle (~4 of the 6 minutes);
+# fail fast and let the retry pass pick it up instead.
+TIMEOUT_SEC = 8
+# A few points in flight at once; still far below Open-Meteo's free-tier limit.
+MAX_WORKERS = 4
 
 
 def reset_cache() -> None:
@@ -36,7 +44,7 @@ def _series(url: str, params: dict, sample: str, field: str):
     starting the next evening fell outside it.
     """
     q = "&".join(f"{k}={v}" for k, v in params.items())
-    data, live = get_json(f"{url}?{q}", sample)
+    data, live = get_json(f"{url}?{q}", sample, timeout=TIMEOUT_SEC)
     if not data:
         return [], live
     hourly = data.get("hourly") or {}
@@ -53,7 +61,7 @@ def _hourly(url: str, params: dict, sample: str, field: str):
     """Like _series but keeps the timestamps: the daily outlook needs to say
     *when*, not just how much. Null API cells stay None (never coerced to 0)."""
     q = "&".join(f"{k}={v}" for k, v in params.items())
-    data, live = get_json(f"{url}?{q}", sample)
+    data, live = get_json(f"{url}?{q}", sample, timeout=TIMEOUT_SEC)
     if not data:
         return [], [], live
     hourly = data.get("hourly") or {}
@@ -69,7 +77,7 @@ def _hourly(url: str, params: dict, sample: str, field: str):
 def _hourly_marine(url: str, params: dict, sample: str):
     """Fetch wave height, wave period, sea temp and ocean current in a single combined HTTP request."""
     q = "&".join(f"{k}={v}" for k, v in params.items())
-    data, live = get_json(f"{url}?{q}", sample)
+    data, live = get_json(f"{url}?{q}", sample, timeout=TIMEOUT_SEC)
     if not data:
         return [], [], [], None, None, live
     hourly = data.get("hourly") or {}
@@ -108,7 +116,7 @@ def _hourly_marine(url: str, params: dict, sample: str):
 def _hourly_wind(url: str, params: dict, sample: str):
     """Gusts, direction and visibility in one request; null cells stay None."""
     q = "&".join(f"{k}={v}" for k, v in params.items())
-    data, live = get_json(f"{url}?{q}", sample)
+    data, live = get_json(f"{url}?{q}", sample, timeout=TIMEOUT_SEC)
     if not data:
         return [], [], [], [], live
     hourly = data.get("hourly") or {}
@@ -140,23 +148,28 @@ def _fetch_one_point(pt: dict, *, attempts: int = 3) -> dict | None:
     wind_key = f"openmeteo_wind:{name}"
     marine_key = f"openmeteo_marine:{name}"
 
+    res_m = res_w = None
     for attempt in range(attempts):
-        res_m = _hourly_marine(
-            MARINE,
-            {**base, "hourly": "wave_height,wave_period,sea_surface_temperature,ocean_current_velocity"},
-            marine_key,
-        )
+        # Only re-request the leg that failed: re-pulling a good marine answer
+        # doubled the timeouts when just the wind endpoint was stuck.
+        if res_m is None or not (res_m[-1] and res_m[0]):
+            res_m = _hourly_marine(
+                MARINE,
+                {**base, "hourly": "wave_height,wave_period,sea_surface_temperature,ocean_current_velocity"},
+                marine_key,
+            )
         if len(res_m) == 6:
             wt, waves, periods, sea_temp, current_kn, lw = res_m
         else:
             wt, waves, sea_temp, current_kn, lw = res_m
             periods = [None] * len(wt)
 
-        res_w = _hourly_wind(
-            WIND,
-            {**base, "hourly": "wind_gusts_10m,wind_direction_10m,visibility", "wind_speed_unit": "kn"},
-            wind_key,
-        )
+        if res_w is None or not (res_w[-1] and res_w[0] and any(g is not None for g in res_w[1])):
+            res_w = _hourly_wind(
+                WIND,
+                {**base, "hourly": "wind_gusts_10m,wind_direction_10m,visibility", "wind_speed_unit": "kn"},
+                wind_key,
+            )
         if len(res_w) == 5:
             gt, gusts, wind_dirs, visibilities, lg = res_w
         else:
@@ -212,20 +225,24 @@ def fetch_forecast_points(cfg: dict, wanted_areas: set[str] | list[str] | None =
         return None
 
     missing: list[dict] = []
-    for i, pt in enumerate(points):
-        name = pt["name"]
-        hit = _cached(name)
+    to_fetch: list[dict] = []
+    for pt in points:
+        hit = _cached(pt["name"])
         if hit:
             out.append(hit)
-            continue
-        item = _fetch_one_point(pt)
-        if item:
-            _FORECAST_CACHE[name] = (time.time(), item)
-            out.append(item)
         else:
-            missing.append(pt)
-        if i + 1 < len(points) and not hit:
-            time.sleep(0.15)
+            to_fetch.append(pt)
+
+    if to_fetch:
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
+            fetched = list(ex.map(_fetch_one_point, to_fetch))
+        for i, pt in enumerate(to_fetch):
+            item = fetched[i]
+            if item:
+                _FORECAST_CACHE[pt["name"]] = (time.time(), item)
+                out.append(item)
+            else:
+                missing.append(pt)
 
     if missing:
         time.sleep(0.5)
