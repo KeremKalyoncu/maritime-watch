@@ -424,7 +424,15 @@ bash ~/maritime-watch/scripts/note4_sync.sh   # git sync + pip install + tmux 'e
 tmux attach -t engine                          # log izlemek için (Ctrl-b d ile çık)
 ```
 
-`note4_sync.sh` webhook token'ını `INTERNAL_WEBHOOK_TOKEN` ortam değişkeninden veya `~/maritime-social/.env`'den okur; `data/` ve `web/data/` durumunu `git reset` sırasında korur.
+`note4_sync.sh` webhook token'ını `INTERNAL_WEBHOOK_TOKEN` ortam değişkeninden veya `~/maritime-social/.env`'den okur, motorun `.env`'ine yazar (komut satırında görünmez); `data/` ve `web/data/` durumunu `git reset` sırasında korur.
+
+Her iki servis de ölürse 60 sn içinde kendini yeniden başlatan bir döngüde çalışır. Termux açıldığında eksik olanı başlatmak için `~/.bashrc`'ye:
+
+```bash
+bash ~/maritime-watch/scripts/note4_autostart.sh >/dev/null 2>&1
+```
+
+Telefon yeniden başladığında Termux'u elle açmadan kalkması için F-Droid'den **Termux:Boot** kurup `~/.termux/boot/` içine aynı satırı (önünde `termux-wake-lock`) koyun.
 
 `.env` ve `data/subscribers.json` yalnızca telefonda kalır; asla commit etmeyin. Ayrıntılı güvenlik: [SECURITY.md](SECURITY.md).
 
