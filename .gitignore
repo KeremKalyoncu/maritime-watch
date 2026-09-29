@@ -26,3 +26,7 @@ web/data/vessels.geojson
 # chat ids identify people; this file stays on the host
 data/subscribers.json
 data/bot_subscribers.json
+
+# env backups (.env.bak-*) carry real tokens; this repo is public
+.env.*
+!.env.example
