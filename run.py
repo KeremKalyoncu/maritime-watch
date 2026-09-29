@@ -79,7 +79,9 @@ from src.store import Store
 _TYPE_FOR = {
     "nav-status": "drift",
     "speed-drop": "drift",
-    "ais-gap": "distress",
+    # A ship that stops reporting is usually out of coverage or switched off, not
+    # sending a distress call; labelling it "tehlike çağrısı" misled the map (R17).
+    "ais-gap": "signal-lost",
     "course-spike": "unknown",
     "ais-sart": "distress",
     "rot-spike": "rot-spike",
@@ -321,6 +323,8 @@ def cycle(
                     {
                         "event_id": inc.id,
                         "priority": inc.severity,
+                        # maritime-social posts to Instagram only when this is "confirmed"
+                        "status": inc.status,
                         "category": inc.type,
                         "area": inc.area or "",
                         "lat": inc.lat,

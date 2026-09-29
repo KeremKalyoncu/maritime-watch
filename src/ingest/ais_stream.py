@@ -1,8 +1,9 @@
 """AIS ingest from aisstream.io.
 
 One short capture per cycle: connect, read positions for `capture_seconds`, close,
-return a list of position dicts. Without an API key (or without `websockets`, or on
-any error) it falls back to the bundled sample so the rest still runs offline.
+return a list of position dicts. Without an API key, without `websockets`, on any
+error or on an empty capture it returns nothing in production; the bundled sample
+is used only when `_net.SAMPLES_ALLOWED` is on (tests / offline demos).
 
 aisstream.io sends decoded JSON already, so no NMEA parsing here. Nav-status codes
 are ITU-R M.1371 (2 = not under command, 6 = aground).
@@ -14,6 +15,8 @@ import asyncio
 import json
 import time
 from pathlib import Path
+
+from . import _net
 
 try:
     import websockets
@@ -166,18 +169,31 @@ async def _capture(key: str, bbox: dict, url: str, seconds: int) -> list[dict]:
     return positions
 
 
+def _fallback(reason: str) -> list[dict]:
+    """No live AIS. The bundled sample is a fixture, not data: it may only stand in
+    when samples are explicitly allowed (tests, offline demos). In production an
+    outage must yield nothing, or five made-up ships land on the public map and in
+    the persistent track store (same rule as _net.SAMPLES_ALLOWED)."""
+    if _net.SAMPLES_ALLOWED:
+        print(f"[ais] {reason} -> using bundled sample (NOT publishable)")
+        return _load_sample()
+    print(f"[ais] {reason} -> no AIS this cycle")
+    return []
+
+
 def capture_ais(cfg: dict) -> list[dict]:
     key = cfg["secrets"]["aisstream_key"]
     ais = cfg["ais"]
-    if not ais.get("enabled", True) or not key or websockets is None:
-        if not key:
-            print("[ais] no AISSTREAM_KEY -> using bundled sample")
-        elif websockets is None:
-            print("[ais] 'websockets' not installed -> using bundled sample")
-        return _load_sample()
+    if not ais.get("enabled", True):
+        return []
+    if not key:
+        return _fallback("no AISSTREAM_KEY")
+    if websockets is None:
+        return _fallback("'websockets' not installed")
     try:
         out = asyncio.run(_capture(key, cfg["region"]["bbox"], ais["ws_url"], ais["capture_seconds"]))
-        return out or _load_sample()
     except Exception as e:
-        print(f"[ais] capture failed ({e}) -> using bundled sample")
-        return _load_sample()
+        return _fallback(f"capture failed ({type(e).__name__})")
+    if not out:
+        return _fallback("stream returned no positions")
+    return out

@@ -7,17 +7,42 @@ from unittest.mock import patch
 from src.ingest.ais_stream import _capture, capture_ais
 
 
-def test_ais_offline_sample_fallback():
-    # API anahtarı boş olduğunda sistem çökmeden yerel örneği döner
-    cfg = {
-        "secrets": {"aisstream_key": ""},
+def _cfg(key=""):
+    return {
+        "secrets": {"aisstream_key": key},
         "ais": {"enabled": True, "ws_url": "wss://stream.aisstream.io/v0/stream", "capture_seconds": 1},
         "region": {"bbox": {"lat_min": 40.0, "lat_max": 41.5, "lon_min": 26.0, "lon_max": 30.0}},
     }
-    sample = capture_ais(cfg)
-    assert isinstance(sample, list)
-    assert len(sample) > 0
+
+
+def test_ais_offline_sample_only_when_samples_allowed(monkeypatch):
+    # Test / offline demo: anahtar yokken örnek veri kullanılabilir
+    from src.ingest import _net
+
+    monkeypatch.setattr(_net, "SAMPLES_ALLOWED", True)
+    sample = capture_ais(_cfg())
+    assert isinstance(sample, list) and len(sample) > 0
     assert any("mmsi" in item for item in sample)
+
+
+def test_ais_outage_in_production_returns_nothing(monkeypatch):
+    # Üretim: örnek (sahte) gemiler haritaya ve iz geçmişine asla girmez (R3)
+    from src.ingest import _net
+
+    monkeypatch.setattr(_net, "SAMPLES_ALLOWED", False)
+    assert capture_ais(_cfg()) == []  # anahtar yok
+
+    def boom(*a, **k):
+        raise OSError("connection refused")
+
+    with patch("src.ingest.ais_stream._capture", side_effect=boom):
+        assert capture_ais(_cfg("fake-key")) == []  # bağlantı hatası
+
+    async def empty(*a, **k):
+        return []
+
+    with patch("src.ingest.ais_stream._capture", side_effect=empty):
+        assert capture_ais(_cfg("fake-key")) == []  # boş yakalama
 
 
 def test_ais_capture_corrupt_json_and_merge():

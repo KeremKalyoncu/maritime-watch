@@ -22,7 +22,7 @@ const T = {
     type: {
       grounding: "karaya oturma", collision: "çatışma (çarpışma)",
       "collision-risk": "çatışma riski (yakın geçiş)", drift: "sürüklenme",
-      distress: "tehlike çağrısı", capsize: "alabora", fire: "yangın",
+      distress: "tehlike çağrısı", "signal-lost": "AIS sinyali kesildi", capsize: "alabora", fire: "yangın",
       sinking: "batma", "man-overboard": "denize adam düştü",
       rescue: "kurtarma operasyonu", "rot-spike": "cayro / dümen anomalisi",
       "grounding-risk": "karaya oturma riski", unknown: "belirsiz"
@@ -96,7 +96,7 @@ const T = {
     type: {
       grounding: "grounding", collision: "collision",
       "collision-risk": "collision risk (close quarter)", drift: "drift",
-      distress: "distress call", capsize: "capsize", fire: "fire",
+      distress: "distress call", "signal-lost": "AIS signal lost", capsize: "capsize", fire: "fire",
       sinking: "sinking", "man-overboard": "man overboard",
       rescue: "rescue completed", unknown: "unknown"
     },
@@ -409,7 +409,7 @@ function weatherPointPopup(p) {
 }
 
 const ICON = {
-  grounding: "⛰️", collision: "💥", "collision-risk": "⚠️", drift: "🧭", distress: "🆘",
+  grounding: "⛰️", collision: "💥", "collision-risk": "⚠️", drift: "🧭", distress: "🆘", "signal-lost": "📡",
   capsize: "🔃", fire: "🔥", sinking: "⬇️", "man-overboard": "🏊", rescue: "✅",
   unknown: "❓", warning: "🌊",
 };

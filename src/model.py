@@ -42,7 +42,8 @@ class IncidentType(str, Enum):
     COLLISION = "collision"
     COLLISION_RISK = "collision-risk"
     DRIFT = "drift"
-    DISTRESS = "distress"
+    DISTRESS = "distress"  # SART/MOB/EPIRB, AIS safety message, official/news distress
+    SIGNAL_LOST = "signal-lost"  # AIS went quiet: a coverage gap is not a distress call
     CAPSIZE = "capsize"
     FIRE = "fire"
     SINKING = "sinking"
@@ -75,6 +76,7 @@ TYPE_TR = {
     "collision-risk": "çatışma riski (yakın geçiş)",
     "drift": "sürüklenme",
     "distress": "tehlike çağrısı",
+    "signal-lost": "AIS sinyali kesildi",
     "capsize": "alabora",
     "fire": "yangın",
     "sinking": "batma",
