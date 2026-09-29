@@ -413,6 +413,25 @@ def cycle(
     print(f"[done] incidents={len(store.active_incidents())} warnings={len(store.active_warnings())}")
 
 
+def heartbeat_ping(fail: bool = False, url: str | None = None) -> bool:
+    """Tell an external dead-man switch (healthchecks.io) the loop is alive.
+
+    The phone's own watchdogs die with the phone, so only an outside service can
+    notice it is gone. HEALTHCHECK_ENGINE_URL comes from .env; it is a secret
+    (anyone holding it can fake "alive"), so it is never printed."""
+    url = (url if url is not None else os.getenv("HEALTHCHECK_ENGINE_URL", "")).strip()
+    if not url.startswith("https://"):
+        return False
+    try:
+        import requests
+
+        requests.get(url.rstrip("/") + ("/fail" if fail else ""), timeout=5)
+        return True
+    except Exception as e:
+        print(f"[heartbeat] ping failed ({type(e).__name__})")
+        return False
+
+
 def power_backoff_reason(cfg: dict, battery: Path = Path("/sys/class/power_supply/battery")) -> str | None:
     """On the Note 4 edge host: why the loop should slow down, or None.
 
@@ -489,10 +508,12 @@ def main() -> None:
                     do_ais=not args.no_ais,
                     do_scrape=not args.no_scrape,
                 )
+                heartbeat_ping()
             except KeyboardInterrupt:
                 break
             except Exception as e:
                 print(f"[cycle] error: {e}")
+                heartbeat_ping(fail=True)
             wait = interval
             reason = power_backoff_reason(cfg)
             if reason:
