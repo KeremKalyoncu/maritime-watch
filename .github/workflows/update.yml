@@ -37,7 +37,7 @@ jobs:
           cache-dependency-path: requirements.txt
 
       - name: Restore engine state cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: data
           key: maritime-state-${{ github.run_id }}
@@ -55,7 +55,7 @@ jobs:
         run: python scripts/ci_validate_publish.py
 
       - name: Save engine state cache
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         if: success()
         with:
           path: data
