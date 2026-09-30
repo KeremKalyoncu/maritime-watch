@@ -25,7 +25,9 @@ main() {
   # Stop the old engine first so it does not write state while we sync.
   tmux kill-session -t engine 2>/dev/null || true
   tmux kill-session -t bot 2>/dev/null || true          # pre-split "run.py --bot --send" session
-  pkill -f "python run.py --loop" 2>/dev/null || true
+  # ^-anchored: the tmux server's argv can contain "python run.py --loop" (it keeps
+  # the command that first started it); matching it killed the social session too.
+  pkill -f "^python run.py --loop" 2>/dev/null || true
   sleep 1
 
   # Track store and incident state live in data/ and web/data/; a hard reset would
