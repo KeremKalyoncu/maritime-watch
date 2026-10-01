@@ -180,6 +180,8 @@ def cycle(
         laps.append(f"{name}={now - lap_t[0]:.1f}s")
         lap_t[0] = now
 
+    _lap("load")  # Store(): reads data/events.jsonl
+
     # Config override for webhook url and token
     if not webhook_url:
         webhook_url = cfg.get("alert", {}).get("webhook_url") or None
@@ -203,6 +205,7 @@ def cycle(
 
     if do_ais:
         records = capture_ais(cfg)
+        _lap("ais_capture")
         positions = [r for r in records if r.get("msg_type") != "safety"]
         safety = [r for r in records if r.get("msg_type") == "safety"]
         print(f"[ais] {len(positions)} position(s), {len(safety)} safety msg(s)")
@@ -265,7 +268,7 @@ def cycle(
             )
             inc = correlate(store, inc)
             touched.add(store.upsert_incident(inc).id)
-        _lap("ais")
+        _lap("ais_process")
 
     forecast_pts = None
     wx_seen = set()
