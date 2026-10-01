@@ -62,6 +62,11 @@ class Store:
                 self.incidents[inc.id] = inc
                 self._event("incident_new", inc.to_dict())
                 return inc
+            if cur is inc:
+                # correlate() already merged into the stored object and handed it back.
+                # Re-adding its sources to itself changes nothing but is quadratic
+                # (~600 sources x 50 incidents = ~150 s per cycle on the Note 4).
+                return cur
 
             changed = False
             for s in inc.sources:

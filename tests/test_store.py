@@ -21,6 +21,22 @@ def test_upsert_new_then_merge_sources(tmp_path):
     assert len(s.incidents["a"].sources) == 2
 
 
+def test_upsert_of_the_stored_object_itself_is_a_cheap_no_op(tmp_path, monkeypatch):
+    # correlate() merges into the stored incident and hands that same object back;
+    # re-adding its ~600 sources to itself one by one cost the Note 4 ~150 s per cycle.
+    s = _store(tmp_path)
+    inc = Incident(id="a", lat=41.0, lon=29.0)
+    inc.sources += [Source(kind="ais-anomaly", detail=f"d{i}") for i in range(500)]
+    s.upsert_incident(inc)
+    log_before = s.events_path.read_text("utf-8")
+
+    calls = []
+    monkeypatch.setattr(Incident, "add_source", lambda self, src: calls.append(1) or False)
+    assert s.upsert_incident(s.incidents["a"]) is s.incidents["a"]
+    assert calls == [] and len(s.incidents["a"].sources) == 500
+    assert s.events_path.read_text("utf-8") == log_before  # same result as before: no event
+
+
 def test_warning_same_id_refreshes_not_duplicates(tmp_path):
     s = _store(tmp_path)
     assert (
