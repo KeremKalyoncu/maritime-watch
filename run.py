@@ -170,6 +170,15 @@ def cycle(
     src = cfg.get("sources", {})
     touched: set[str] = set()
     health: list[dict] = []
+    # Per-stage seconds for the [timing] line: on the Note 4 a cycle drifted from ~130 s
+    # to 200-390 s and the single [health] total could not say where.
+    laps: list[str] = []
+    lap_t = [started]
+
+    def _lap(name: str) -> None:
+        now = time.time()
+        laps.append(f"{name}={now - lap_t[0]:.1f}s")
+        lap_t[0] = now
 
     # Config override for webhook url and token
     if not webhook_url:
@@ -256,6 +265,7 @@ def cycle(
             )
             inc = correlate(store, inc)
             touched.add(store.upsert_incident(inc).id)
+        _lap("ais")
 
     forecast_pts = None
     wx_seen = set()
@@ -275,6 +285,7 @@ def cycle(
                 touched.add(store.upsert_incident(c).id)
             for w in off_warn:
                 push_warning(w)
+            _lap("official")
 
         if src.get("news", True):
             news = _safe("news", lambda: fetch_news(cfg), [])
@@ -282,12 +293,14 @@ def cycle(
             for c in news:
                 c = correlate(store, c)
                 touched.add(store.upsert_incident(c).id)
+            _lap("news")
 
         extra_warns = []
         if src.get("openmeteo", True):
             forecast_pts = _safe("openmeteo", lambda: fetch_forecast_points(cfg), []) or []
             extra_warns += warnings_from_forecast(cfg, forecast_pts)
             print(f"[openmeteo] forecast points={len(forecast_pts)}")
+            _lap("openmeteo")
         if src.get("quakes", True):
             extra_warns += _safe("quakes", lambda: fetch_quakes(cfg), [])
         if src.get("navwarn", True):
@@ -304,6 +317,7 @@ def cycle(
         print(f"[extra] {len(extra_warns)} warning(s)")
         for w in extra_warns:
             push_warning(w)
+        _lap("extra")
 
     for inc in store.active_incidents():
         classify(inc)
@@ -340,6 +354,7 @@ def cycle(
     wx_live = do_scrape and all(_net.STATUS.get(k) != "sample" for k in _net.STATUS)
     for w in clear_passed_weather(store, wx_seen, wx_live and bool(wx_seen or extra_warns_ran)):
         print(f"[weather:passed] {w.area}: {getattr(w, 'headline', '')}")
+    _lap("process")
 
     if forecast_pts is None:
         try:
@@ -352,6 +367,7 @@ def cycle(
         render_outlook(cfg, web_data / "outlook.json", points=forecast_pts)
     except Exception as e:
         print(f"[outlook:error] render error: {e}")
+    _lap("outlook")
 
     dw, di = prune(store, cfg)
     if dw or di:
@@ -374,10 +390,12 @@ def cycle(
         print(f"[health:warn] {len(down)} kaynak yanıt vermiyor: {', '.join(down)}")
     print(f"[health] {h['sources_ok']}/{h['sources_total']} kaynak OK, {h['cycle_seconds']}s")
 
+    _lap("health")
     try:
         enrich_incident_tracks(store, root / "data" / "vessels.json")
     except Exception as e:
         print(f"[tracks] enrich error: {e}")
+    _lap("tracks")
 
     grid_payload = None
     try:
@@ -388,6 +406,7 @@ def cycle(
             enrich_sar_drift(inc, pts_list)
     except Exception as e:
         print(f"[weather_grid] render error: {e}")
+    _lap("grid")
 
     try:
         vessels_file = root / "data" / "vessels.json"
@@ -407,14 +426,18 @@ def cycle(
         render_safety_index(pts, storm_areas=storm_areas, out_file=web_data / "safety_index.json")
     except Exception as e:
         print(f"[safety_index] render error: {e}")
+    _lap("straits+safety")
 
     store.trim_events()
     store.save()
+    _lap("save")
     build_feed(store, str(web_data))
     build_geojson(store, str(web_data), vessels_data=vessels_dict)
     write_summary(store, str(web_data), stale_hours=cfg.get("alert", {}).get("stale_hours", 2))
     build_stats(str(root / "data" / "events.jsonl"), str(web_data))
+    _lap("render")
     print(f"[done] incidents={len(store.active_incidents())} warnings={len(store.active_warnings())}")
+    print(f"[timing] {' '.join(laps)} total={time.time() - started:.1f}s")
 
 
 def heartbeat_ping(fail: bool = False, url: str | None = None) -> bool:
