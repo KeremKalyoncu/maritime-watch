@@ -36,6 +36,7 @@ def build_incidents_geojson(store) -> dict[str, Any]:
             "vessel_type": inc.vessel_type,
             "heading": inc.heading,
             "casualties": inc.casualties,
+            "rescued": inc.rescued,
             "has_track": bool(inc.track and len(inc.track) > 1),
             "sources_count": len(inc.sources),
         }

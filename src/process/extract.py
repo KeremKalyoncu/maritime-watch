@@ -1,5 +1,5 @@
 """Pull structured facts out of Turkish incident text (news headlines, official
-statements): vessel name, coordinates, casualty counts, place names.
+statements): vessel name, coordinates, casualty and rescued counts, place names.
 
 Rules + a gazetteer, no ML dependency. Conservative: it would rather return
 nothing than a wrong guess.
@@ -26,13 +26,42 @@ _VESSEL_RE = [
     re.compile(r"\b([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜ0-9]{1,}(?:[ .-][A-ZÇĞİÖŞÜ0-9]{1,}){0,3})\s+" + _VW),
 ]
 
-_CAS_RE = re.compile(
-    r"(\d{1,3})\s*(?:[a-zçğıöşü]+\s+){0,2}?"  # optional adjectives ("20 düzensiz göçmen")
-    r"(?:kişi|şahıs|can|mürettebat|göçmen|çocuk|yolcu|denizci|balıkçı|tayfa|personel)"
-    r"(?:[^.]{0,40}?(kayıp|yaralı|öl|hayat|mahsur|kurtar|aran|tahliye))?",
+# What happened to a counted group of people is read from the first such word
+# after the count (the first, so "2 kişi kayıp, tekne kurtarıldı" stays missing).
+# Harmed / missing / still at risk -> casualties:
+_HARM_KW = (
+    r"kayıp|kayb"  # kayıp, kayboldu, hayatını kaybetti, can kaybı
+    r"|yaral"  # yaralı, yaralandı
+    r"|öl(?!ç)"  # öldü, ölü, ölüm (not ölçüm)
+    r"|boğul"  # boğuldu
+    r"|ces[ae][dt]"  # ceset, cesedi
+    r"|mahsur"  # mahsur kaldı
+    r"|aran"  # aranıyor, aranan
+    r"|arama\s+çalışma"  # "10 denizciyi arama çalışmaları" (not "arama kurtarma")
+    r"|kurtarılama"  # kurtarılamadı: could not be saved (tried before the rescue words)
+)
+# ... rescued / evacuated -> rescued. Only a completed rescue: "kurtarma" alone is
+# the operation ("arama kurtarma botu"), not an outcome, so it says nothing.
+_RESCUE_KW = r"kurtar(?:ıl|d|mış)|tahliye\s+e(?:dil|tt|tmiş)"
+_OUTCOME_RE = re.compile(r"\b(?:(?P<harm>" + _HARM_KW + r")|(?P<rescue>" + _RESCUE_KW + r"))", re.IGNORECASE)
+_REACH = 40  # how far after the count the outcome word may start (as before the split)
+# with no word after the count, one right before it: "Kayıp 10 denizci nerede?"
+_PRE_KW = r"kayıp|kaybolan|aranan|mahsur\s+kalan"
+
+_PEOPLE_RE = re.compile(
+    r"(?:\b(?P<pre>" + _PRE_KW + r")\s+)?"
+    # not the tail of a longer number ("1.500", "2026")
+    r"(?<![\d.,])(?P<n>\d{1,3})\s*(?:[a-zçğıöşü]+\s+){0,2}?"  # optional adjectives ("20 düzensiz göçmen")
+    r"(?:kişi|şahıs|can|mürettebat|göçmen|çocuk|yolcu|denizci|balıkçı(?!\s+tekne)|tayfa|personel)"
+    r"(?!l[iı]k)"  # "5 kişilik tekne" is a capacity, not people
+    # Coast Guard style "18 Düzensiz Göçmen (Beraberinde 1 Çocuk) Kurtarılmıştır"
+    r"(?P<aside>\s*\([^()]{0,40}\))?"
+    # what follows, up to a full stop or the next number, so a word belongs to the
+    # nearest count before it ("2 kişi kurtarıldı, 1 balıkçı kayıp"). A lookahead,
+    # so a "kayıp" in it can still prefix the next count.
+    r"(?=(?P<ctx>[^.\d]{0,60}))",
     re.IGNORECASE,
 )
-_CAS_KEEP = ("kayıp", "yaralı", "öl", "hayat", "mahsur", "aran")
 
 # 40°55'K 28°10'D   |   40 55 12 N 28 10 30 E   |   40.912 N, 28.241 E   |   40.91, 28.24
 _DMS_RE = re.compile(
@@ -76,7 +105,8 @@ class Extracted:
     lat: float | None = None
     lon: float | None = None
     area: str = ""
-    casualties: int | None = None
+    casualties: int | None = None  # harmed / missing / at risk
+    rescued: int | None = None  # rescued / evacuated
     places: list[str] = field(default_factory=list)
     itype: str = "unknown"
     precise: bool = False  # True when real coordinates were parsed, not a city name
@@ -135,16 +165,44 @@ def vessel_name(text: str):
     return None
 
 
-def casualties(text: str):
-    best = None
-    for m in _CAS_RE.finditer(text):
-        n = int(m.group(1))
+def _outcome(m):
+    """The first outcome word (harm or rescue) after a people count, or None."""
+    aside = _OUTCOME_RE.search(m.group("aside") or "")
+    if aside and aside.group("harm"):
+        return aside  # "(2'si ölü)" must not be skipped over into a rescue
+    word = _OUTCOME_RE.search(m.group("ctx"))
+    return word if word is not None and word.start() <= _REACH else None
+
+
+def people_counts(text: str):
+    """(casualties, rescued) named in text, each None when the text gives no count.
+
+    A count with neither kind of word after it, nor "kayıp"/"aranan" right
+    before it ("teknedeki 4 kişi", "23 göçmen yakalandı") goes to neither: it may
+    be a crew that is fine, the passengers, or the people later rescued, and
+    calling it casualties would turn a routine report critical.
+    Several counts of one kind -> the largest: outlets repeat the same figure and
+    backfill reads all sources of an incident together, so adding double counts.
+    """
+    harmed = rescued = None
+    for m in _PEOPLE_RE.finditer(text):
+        n = int(m.group("n"))
         if n > 500:
             continue
-        ctx = m.group(2) or ""
-        if best is None or (any(k in ctx.lower() for k in _CAS_KEEP) and n <= (best or n)):
-            best = n
-    return best
+        word = _outcome(m)
+        if word is not None and word.group("rescue"):
+            rescued = max(n, rescued or 0)
+        elif word is not None or m.group("pre"):
+            harmed = max(n, harmed or 0)
+    return harmed, rescued
+
+
+def misread_rescue(stored_casualties, text_casualties, text_rescued) -> bool:
+    """True when a casualty count stored before `rescued` existed is really the
+    rescue count: the extractor used to take the first count in a headline, so
+    "34 Düzensiz Göçmen Kurtarılmıştır" was kept as 34 casualties (critical).
+    Only an exact match with what the same text now reads as rescued counts."""
+    return stored_casualties is not None and text_rescued == stored_casualties != text_casualties
 
 
 def places(text: str):
@@ -159,7 +217,7 @@ def places(text: str):
 def extract(text: str) -> Extracted:
     e = Extracted()
     e.vessel = vessel_name(text)
-    e.casualties = casualties(text)
+    e.casualties, e.rescued = people_counts(text)
     lat, lon = coordinates(text)
     pl = places(text)
     e.places = [p[0] for p in pl]

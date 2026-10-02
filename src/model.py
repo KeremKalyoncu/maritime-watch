@@ -255,7 +255,11 @@ class Incident:
     lon: float | None = None
     area: str = ""
     vessel: Vessel = field(default_factory=Vessel)
+    # people harmed, missing or still at risk (dead, injured, missing, stranded,
+    # searched for) - drives severity "critical". None = the text did not say.
     casualties: int | None = None
+    # people reported rescued or evacuated; never counted as casualties
+    rescued: int | None = None
     first_seen: str = field(default_factory=now_iso)
     last_update: str = field(default_factory=now_iso)
     sources: list[Source] = field(default_factory=list)
@@ -279,6 +283,7 @@ class Incident:
         d.setdefault("heading", None)
         d.setdefault("vessel_type", "unknown")
         d.setdefault("sar_drift", None)
+        d.setdefault("rescued", None)  # stored before rescued was split from casualties
         d["vessel"] = Vessel(**(d.get("vessel") or {}))
         d["sources"] = [Source(**s) for s in d.get("sources", [])]
         wc = d.get("weather_context")

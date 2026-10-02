@@ -76,6 +76,7 @@ def scrape_kegm(cfg: dict | None = None) -> list[Incident]:
             lon=ex.lon,
             area=ex.area,
             casualties=ex.casualties,
+            rescued=ex.rescued,
             places=ex.places,
             coarse=not ex.precise,
             vessel=Vessel(name=ex.vessel) if ex.vessel else Vessel(),

@@ -24,9 +24,11 @@
     { "text": "Silivri açıklarındaki gemi kazasında ALSU gemisinin 1. ve 3. kaptanı tutuklandı", "vessel": "ALSU" },
     { "text": "\"Tuğberk İmamoğlu\" gemisi kayıplar arasında", "vessel": "Tuğberk İmamoğlu" },
     { "text": "KAPTAN NECDET isimli balıkçı teknesi Karadeniz'de battı", "vessel": "KAPTAN NECDET" },
-    { "text": "Marmara Denizi 40°55'K 28°10'D mevkiinde kuru yük gemisi su alıyor, 12 mürettebat tahliye edildi", "coords": true, "casualties": 12 },
+    { "text": "Marmara Denizi 40°55'K 28°10'D mevkiinde kuru yük gemisi su alıyor, 12 mürettebat tahliye edildi", "coords": true, "casualties": null, "rescued": 12 },
     { "text": "Zonguldak açıklarında balıkçı teknesinin alabora olması sonucu 2 kişi kayıp", "casualties": 2 },
-    { "text": "Çeşme açıklarında 20 düzensiz göçmen kurtarıldı", "casualties": 20 },
+    { "text": "Çeşme açıklarında 20 düzensiz göçmen kurtarıldı", "casualties": null, "rescued": 20 },
+    { "text": "01.10.2026 İzmir Açıklarında 34 Düzensiz Göçmen Kurtarılmıştır", "casualties": null, "rescued": 34 },
+    { "text": "Datça açıklarında tekne battı: 2 kişi kurtarıldı, 1 balıkçı kayıp", "casualties": 1, "rescued": 2 },
     { "text": "Merkez Bankası faiz kararını açıkladı", "vessel": null, "casualties": null }
   ],
 

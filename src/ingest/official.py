@@ -231,6 +231,7 @@ def _scrape_links(cfg: dict, url: str, sample: str, org: str, base: str) -> list
             lon=ex.lon,
             area=ex.area,
             casualties=ex.casualties,
+            rescued=ex.rescued,
             places=ex.places,
             coarse=not ex.precise,
             vessel=Vessel(name=ex.vessel) if ex.vessel else Vessel(),

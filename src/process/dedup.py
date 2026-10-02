@@ -124,6 +124,8 @@ def correlate(store, candidate: Incident, radius_nm: float = 8.0) -> Incident:
             inc.vessel.name = candidate.vessel.name
         if candidate.casualties is not None:
             inc.casualties = max(candidate.casualties, inc.casualties or 0)
+        if candidate.rescued is not None:
+            inc.rescued = max(candidate.rescued, inc.rescued or 0)
         if candidate.type != "unknown" and inc.type == "unknown":
             inc.type = candidate.type
         if candidate.lat is not None and inc.lat is None:

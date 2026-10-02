@@ -53,8 +53,9 @@
       const g = document.getElementById("grid");
       g.innerHTML = [
         kpiCard("Toplam olay", s.total_incidents),
-        kpiCard("Bildirilen kişi (toplam)", s.casualties_reported_total),
-        kpiCard("Kişili olay sayısı", s.incidents_with_casualties),
+        kpiCard("Kayıp/yaralı kişi (toplam)", s.casualties_reported_total),
+        kpiCard("Kayıp/yaralı olan olay sayısı", s.incidents_with_casualties),
+        kpiCard("Kurtarılan kişi (toplam)", s.rescued_reported_total == null ? "—" : s.rescued_reported_total),
         kpiCard("Medyan çözülme süresi (saat)", s.median_resolution_hours == null ? "—" : s.median_resolution_hours),
         barCard("Aylara göre", s.by_month),
         barCard("Bölgeye göre", s.by_area),

@@ -45,7 +45,10 @@ def test_sg_and_afad_parse_samples(all_scrapers):
     assert "Zonguldak" in titles
 
     mudanya = next(i for i in incs if any("Mudanya" in s.detail for s in i.sources))
-    assert mudanya.casualties == 4
+    # "içindeki 4 kişi kurtarıldı": the 4 were rescued. This used to assert
+    # casualties == 4, which is what made every Coast Guard rescue "critical".
+    assert mudanya.rescued == 4
+    assert mudanya.casualties is None
     assert mudanya.lat is not None  # geocoded from the place name
     assert all(s.kind == "official" for i in incs for s in i.sources)
 

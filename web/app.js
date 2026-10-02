@@ -46,7 +46,7 @@ const T = {
       ago: m => m < 1 ? "az önce" : m < 60 ? `${Math.round(m)} dk önce`
         : m < 1440 ? `${Math.round(m / 60)} sa önce` : `${Math.round(m / 1440)} gün önce`,
       firstseen: "İlk görülme", lastupd: "Güncelleme", unloc: "konum belirsiz",
-      people: "kişi bildirildi", confirmedby: "bağımsız kaynak doğruluyor",
+      people: "kişi kayıp/yaralı", rescued: "kişi kurtarıldı", confirmedby: "bağımsız kaynak doğruluyor",
       track_pts: n => `📍 ${n} nokta rota geçmişi`,
       stale: h => `⚠ Veri ~${h} saat eski — otomatik güncelleme gecikmiş olabilir. Acil durum için 158 / 112.`,
       sys: h => h ? `sistem: ${h.sources_ok}/${h.sources_total} kaynak · ${h.cycle_seconds}s` : "",
@@ -119,7 +119,7 @@ const T = {
       ago: m => m < 1 ? "just now" : m < 60 ? `${Math.round(m)} min ago`
         : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`,
       firstseen: "First seen", lastupd: "Updated", unloc: "location unknown",
-      people: "people reported", confirmedby: "independent sources confirm",
+      people: "missing/injured", rescued: "rescued", confirmedby: "independent sources confirm",
       track_pts: n => `📍 ${n} pts track history`,
       stale: h => `⚠ Data is ~${h}h old — update may be delayed. Emergency: 158 / 112.`,
       sys: h => h ? `system: ${h.sources_ok}/${h.sources_total} sources · ${h.cycle_seconds}s` : "",
@@ -375,7 +375,7 @@ function incidentPopup(i) {
   const wxCtx = i.weather_context ? `<div class="popup-meta" style="color:#38bdf8;margin-top:3px">🌬️ ${esc(i.weather_context.summary_tr)}</div>` : "";
 
   return `<div class="popup-title">${esc(trType(i.type))} — ${esc(trStatus(i.status))}</div>${unv}${trackInfo}
-    <div class="popup-meta">${esc(i.area || u.unloc)}${i.casualties ? " · " + i.casualties + " " + u.people : ""}<br>
+    <div class="popup-meta">${esc(i.area || u.unloc)}${i.casualties ? " · " + i.casualties + " " + u.people : ""}${i.rescued ? " · " + i.rescued + " " + u.rescued : ""}<br>
     ${vessel}${u.src}: ${esc(orgsOf(i).join(", "))}<br>
     ${u.firstseen}: ${fmtTime(i.first_seen)} · ${u.lastupd}: ${fmtTime(i.last_update)}</div>
     ${wxCtx}

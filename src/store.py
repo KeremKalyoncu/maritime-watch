@@ -77,6 +77,8 @@ class Store:
                 cur.lon, changed = inc.lon, True
             if inc.casualties is not None and inc.casualties != cur.casualties:
                 cur.casualties, changed = inc.casualties, True
+            if inc.rescued is not None and inc.rescued != cur.rescued:
+                cur.rescued, changed = inc.rescued, True
             if inc.type != "unknown" and cur.type == "unknown":
                 cur.type, changed = inc.type, True
             if inc.vessel.mmsi and not cur.vessel.mmsi:

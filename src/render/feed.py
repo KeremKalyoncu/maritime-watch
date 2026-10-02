@@ -23,7 +23,9 @@ def build_feed(store, out_dir: str, site: str = SITE) -> None:
         title = f"[{inc.status}] {inc.type}, {inc.area or 'konum belirsiz'}"
         desc = [f"Güven: {inc.confidence}", f"Önem: {inc.severity}"]
         if inc.casualties:
-            desc.append(f"Bildirilen kişi: {inc.casualties}")
+            desc.append(f"Kayıp/yaralı: {inc.casualties}")
+        if inc.rescued:
+            desc.append(f"Kurtarılan: {inc.rescued}")
         for s in inc.sources:
             desc.append(f"{s.kind}/{s.org or ''}: {s.detail}".strip())
         link = next((s.url for s in inc.sources if s.url), site)

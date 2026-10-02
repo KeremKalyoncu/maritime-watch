@@ -10,8 +10,9 @@ import re
 import time
 
 from ..model import fix_mojibake
+from .classify import classify
 from .dedup import _epoch
-from .extract import extract
+from .extract import extract, misread_rescue
 from .privacy import drop_aftermath, redact
 
 # phrases that mean the situation is over (not just "rescued", which is also how
@@ -80,7 +81,20 @@ def backfill(store) -> int:
         from_ais = any(s.kind.startswith("ais") for s in inc.sources)
         if not from_ais and ex.itype != "unknown" and inc.type != ex.itype:
             inc.type, n = ex.itype, n + 1
-        for attr, val in (("area", ex.area), ("lat", ex.lat), ("lon", ex.lon), ("casualties", ex.casualties)):
+        # a record from before the split keeps its rescue count as casualties and
+        # stays "critical" until it ages out: move the count, then re-rate it now
+        # so this cycle's output is not left half-corrected
+        if inc.rescued is None and misread_rescue(inc.casualties, ex.casualties, ex.rescued):
+            inc.casualties, inc.rescued, n = ex.casualties, ex.rescued, n + 1
+            classify(inc)
+        fields = (
+            ("area", ex.area),
+            ("lat", ex.lat),
+            ("lon", ex.lon),
+            ("casualties", ex.casualties),
+            ("rescued", ex.rescued),
+        )
+        for attr, val in fields:
             cur = getattr(inc, attr)
             if val and not cur:
                 setattr(inc, attr, val)
@@ -186,7 +200,7 @@ def unmerge_legacy_reports(store) -> int:
         if not keep or len(keep) == len(official):
             continue
         inc.sources = keep + [s for s in inc.sources if s.kind != "official"]
-        inc.casualties = None  # recomputed by backfill from what is left
+        inc.casualties = inc.rescued = None  # recomputed by backfill from what is left
         inc.type = "unknown"
         inc.vessel.name = None
         n += len(official) - len(keep)

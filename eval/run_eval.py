@@ -75,6 +75,8 @@ def eval_extract():
             checks.append((e.vessel == c["vessel"], f"vessel={e.vessel!r} exp={c['vessel']!r}"))
         if "casualties" in c:
             checks.append((e.casualties == c["casualties"], f"cas={e.casualties} exp={c['casualties']}"))
+        if "rescued" in c:
+            checks.append((e.rescued == c["rescued"], f"rescued={e.rescued} exp={c['rescued']}"))
         if c.get("coords"):
             checks.append((e.lat is not None, f"coords={e.lat},{e.lon}"))
         for good, msg in checks:

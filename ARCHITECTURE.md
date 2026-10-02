@@ -15,7 +15,7 @@ flowchart TD
     end
 
     AIS --> ANOM[anomaly.py<br/>ship-type aware rules<br/>persistent tracks]
-    NEWS --> EX[extract.py<br/>vessel · coords · casualties · places]
+    NEWS --> EX[extract.py<br/>vessel · coords · casualties / rescued · places]
     SG --> EX
     ANOM --> COR[dedup.py · correlate<br/>same MMSI / vessel name / place / proximity + time]
     EX --> COR
@@ -104,9 +104,9 @@ src/
   process/
     anomaly.py         nav-status / speed-drop / course-spike / ais-gap / ais-sart
     shiptype.py        AIS type code -> category -> anomaly tuning
-    extract.py         Turkish text -> vessel / coords / casualties / places
+    extract.py         Turkish text -> vessel / coords / casualties (harmed, missing) + rescued / places
     dedup.py           correlate() incidents ; same_hazard() warnings
-    classify.py        status / confidence / severity ; nearest_port
+    classify.py        status / confidence / severity (critical = casualties > 0, rescued alone is not) ; nearest_port
     prune.py           TTL expiry + auto-resolve + seed drop
   render/
     feed.py mapdata.py health.py stats.py outlook.py

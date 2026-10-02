@@ -247,6 +247,8 @@ def classify(inc) -> model.Incident:
     if not inc.area:
         inc.area = area_of(inc.lat, inc.lon)
 
+    # casualties = people harmed, missing or at risk; people already rescued
+    # (inc.rescued) do not make it critical - a confirmed rescue stays major
     if inc.casualties and inc.casualties > 0:
         inc.severity = "critical"
     elif status in ("confirmed", "probable"):
