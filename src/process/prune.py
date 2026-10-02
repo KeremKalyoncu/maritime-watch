@@ -83,8 +83,9 @@ def backfill(store) -> int:
             inc.type, n = ex.itype, n + 1
         # a record from before the split keeps its rescue count as casualties and
         # stays "critical" until it ages out: move the count, then re-rate it now
-        # so this cycle's output is not left half-corrected
-        if inc.rescued is None and misread_rescue(inc.casualties, ex.casualties, ex.rescued):
+        # so this cycle's output is not left half-corrected. Not only when rescued is
+        # empty: a notice still on the SG page is re-ingested first and sets rescued.
+        if misread_rescue(inc.casualties, ex.casualties, ex.rescued):
             inc.casualties, inc.rescued, n = ex.casualties, ex.rescued, n + 1
             classify(inc)
         fields = (

@@ -172,6 +172,25 @@ def test_backfill_moves_a_rescue_count_misread_as_casualties(tmp_path):
     assert got.severity == "major"
 
 
+def test_backfill_fixes_a_legacy_rescue_after_the_notice_is_scraped_again(tmp_path):
+    """Live order: the SG page still lists the notice, so ingest re-reads it and sets
+    rescued=34 before backfill runs. The stored casualties=34 must still be moved
+    (on the phone the two İzmir rescues stayed critical with casualties=rescued=34)."""
+    s = _store(tmp_path)
+    legacy = _official(SG_RESCUE, "rep-legacy")
+    legacy.casualties, legacy.rescued = 34, None
+    s.upsert_incident(legacy)
+
+    again = correlate(s, _official(SG_RESCUE, "rep-legacy"))
+    s.upsert_incident(again)
+    assert (s.incidents["rep-legacy"].casualties, s.incidents["rep-legacy"].rescued) == (34, 34)
+
+    backfill(s)
+    got = classify(s.incidents["rep-legacy"])
+    assert (got.casualties, got.rescued) == (None, 34)
+    assert got.severity == "major"
+
+
 def test_backfill_leaves_a_real_casualty_count_alone(tmp_path):
     s = _store(tmp_path)
     inc = _official("Tekne battı: 2 kişi kurtarıldı, 1 balıkçı kayıp", "rep-real")
