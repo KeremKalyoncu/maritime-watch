@@ -75,6 +75,7 @@ from src.render.stats import build_stats
 from src.render.straits import render_straits_status
 from src.render.weather_grid import render_weather_grid
 from src.store import Store
+from src.webhook_state import WebhookState
 
 _TYPE_FOR = {
     "nav-status": "drift",
@@ -133,13 +134,16 @@ def dispatch_emergency_webhook(
     webhook_url: str | None,
     token: str | None,
     payload: dict,
-) -> None:
-    """Optionally emit an emergency incident to maritime-social or external hub with 0 latency."""
+) -> bool:
+    """Optionally emit an emergency incident to maritime-social or external hub with 0 latency.
+
+    True only when the listener answered 2xx: the caller remembers an incident as sent
+    on that alone, so one that hit a down listener goes out again next cycle."""
     if not webhook_url:
-        return
+        return False
     if not _is_safe_webhook_url(webhook_url):
         print(f"[webhook:security] Refusing unsafe webhook URL: {webhook_url}")
-        return
+        return False
     try:
         import requests
 
@@ -149,10 +153,69 @@ def dispatch_emergency_webhook(
         resp = requests.post(webhook_url, json=payload, headers=headers, timeout=4)
         if resp.status_code < 300:
             print(f"[webhook:emit] event={payload.get('event_id')} sent to {webhook_url}")
-        else:
-            print(f"[webhook:warn] status {resp.status_code} from {webhook_url}")
+            return True
+        print(f"[webhook:warn] status {resp.status_code} from {webhook_url}")
     except Exception as e:
         print(f"[webhook:error] {e}")
+    return False
+
+
+def _alert_payload(inc: Incident) -> dict:
+    desc = (
+        getattr(inc, "summary", "")
+        or (inc.notes[0] if getattr(inc, "notes", None) else "")
+        or (inc.sources[0].detail if getattr(inc, "sources", None) and inc.sources else "")
+    )
+    return {
+        "event_id": inc.id,
+        "priority": inc.severity,
+        # maritime-social posts to Instagram only when this is "confirmed"
+        "status": inc.status,
+        "category": inc.type,
+        "area": inc.area or "",
+        "lat": inc.lat,
+        "lon": inc.lon,
+        # Incident has no type_tr attribute: the old getattr always fell
+        # back to the English code, so the channel read "capsize"
+        "title": type_tr(inc.type).capitalize(),
+        "description": desc,
+        "created_at": getattr(inc, "last_update", "") or getattr(inc, "first_seen", ""),
+    }
+
+
+def emit_alerts(
+    incidents: dict[str, Incident],
+    touched: set[str],
+    webhook_url: str | None,
+    webhook_token: str | None,
+    state_path: Path,
+) -> int:
+    """Log every touched incident; webhook the major/critical ones that are new or whose
+    status/severity/type changed since they were last sent. Returns how many went out.
+
+    "touched" also holds incidents that were only seen again (the same official notice
+    is scraped every cycle), so without the state file each one was re-POSTed every
+    15 minutes. With no webhook (GitHub Actions) the state file is never read or written."""
+    state = WebhookState(state_path) if webhook_url else None
+    sent = unchanged = 0
+    for iid in touched:
+        inc = incidents.get(iid)
+        if not inc:
+            continue
+        print(f"[engine:incident] {inc.id} status={inc.status} type={inc.type} sev={inc.severity}")
+        if state is None or inc.severity not in ("major", "critical"):
+            continue
+        if not state.is_new_or_changed(inc):
+            unchanged += 1
+            continue
+        if dispatch_emergency_webhook(webhook_url, webhook_token, _alert_payload(inc)):
+            state.record(inc)
+            sent += 1
+    if state is not None:
+        if unchanged:
+            print(f"[webhook] {unchanged} incident(s) unchanged since last sent, not re-sent")
+        state.save(incidents)
+    return sent
 
 
 def cycle(
@@ -324,35 +387,7 @@ def cycle(
 
     for inc in store.active_incidents():
         classify(inc)
-    for iid in touched:
-        inc = store.incidents.get(iid)
-        if inc:
-            print(f"[engine:incident] {inc.id} status={inc.status} type={inc.type} sev={inc.severity}")
-            if webhook_url and inc.severity in ("major", "critical"):
-                desc = (
-                    getattr(inc, "summary", "")
-                    or (inc.notes[0] if getattr(inc, "notes", None) else "")
-                    or (inc.sources[0].detail if getattr(inc, "sources", None) and inc.sources else "")
-                )
-                dispatch_emergency_webhook(
-                    webhook_url,
-                    webhook_token,
-                    {
-                        "event_id": inc.id,
-                        "priority": inc.severity,
-                        # maritime-social posts to Instagram only when this is "confirmed"
-                        "status": inc.status,
-                        "category": inc.type,
-                        "area": inc.area or "",
-                        "lat": inc.lat,
-                        "lon": inc.lon,
-                        # Incident has no type_tr attribute: the old getattr always fell
-                        # back to the English code, so the channel read "capsize"
-                        "title": type_tr(inc.type).capitalize(),
-                        "description": desc,
-                        "created_at": getattr(inc, "last_update", "") or getattr(inc, "first_seen", ""),
-                    },
-                )
+    emit_alerts(store.incidents, touched, webhook_url, webhook_token, root / "data" / "webhook_state.json")
 
     wx_live = do_scrape and all(_net.STATUS.get(k) != "sample" for k in _net.STATUS)
     for w in clear_passed_weather(store, wx_seen, wx_live and bool(wx_seen or extra_warns_ran)):

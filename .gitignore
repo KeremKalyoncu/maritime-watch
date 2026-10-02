@@ -23,6 +23,10 @@ web/data/outlook.json
 web/data/incidents.geojson
 web/data/vessels.geojson
 
+# what the emergency webhook already sent (and its .tmp while writing); only the
+# phone runs with a webhook, and note4_sync keeps data/ across its git reset
+data/webhook_state.json*
+
 # chat ids identify people; this file stays on the host
 data/subscribers.json
 data/bot_subscribers.json
