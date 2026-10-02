@@ -40,6 +40,7 @@ if sys.stderr and hasattr(sys.stderr, "reconfigure"):
     except Exception:
         pass
 
+from src import health_history
 from src.config import load_config
 from src.ingest import _net
 from src.ingest.ais_stream import capture_ais
@@ -233,6 +234,7 @@ def cycle(
     src = cfg.get("sources", {})
     touched: set[str] = set()
     health: list[dict] = []
+    ais_count: int | None = None  # positions this capture; None when AIS is off
     # Per-stage seconds for the [timing] line: on the Note 4 a cycle drifted from ~130 s
     # to 200-390 s and the single [health] total could not say where.
     laps: list[str] = []
@@ -272,6 +274,7 @@ def cycle(
         positions = [r for r in records if r.get("msg_type") != "safety"]
         safety = [r for r in records if r.get("msg_type") == "safety"]
         print(f"[ais] {len(positions)} position(s), {len(safety)} safety msg(s)")
+        ais_count = len(positions)
 
         vs = VesselState(str(root / "data" / "vessels.json"), cfg["ais"]["vessel_history"])
         seen_now = {str(p["mmsi"]) for p in positions if p.get("mmsi") is not None}
@@ -400,6 +403,8 @@ def cycle(
         except Exception as e:
             print(f"[forecast] fetch error: {e}")
             forecast_pts = None
+    # areas with no forecast after the retry: health used to say "6/6 kaynak OK" anyway
+    om_missing = health_history.forecast_missing(cfg, forecast_pts)
 
     try:
         render_outlook(cfg, web_data / "outlook.json", points=forecast_pts)
@@ -422,11 +427,18 @@ def cycle(
         len(store.active_incidents()),
         len(store.active_warnings()),
         fetch_status=fetch_status,
+        forecast_missing=om_missing,
     )
     down = sorted(set(h["sources_down"]) | {k for k, v in fetch_status.items() if v == "down"})
     if len(down) >= 3:
         print(f"[health:warn] {len(down)} kaynak yanıt vermiyor: {', '.join(down)}")
-    print(f"[health] {h['sources_ok']}/{h['sources_total']} kaynak OK, {h['cycle_seconds']}s")
+    live = sum(1 for v in fetch_status.values() if v == "live")
+    n_pts = len((cfg.get("openmeteo") or {}).get("points") or [])
+    om = f", Open-Meteo {n_pts - len(om_missing)}/{n_pts} bölge (eksik: {', '.join(om_missing)})" if om_missing else ""
+    print(
+        f"[health] {h['sources_ok']}/{h['sources_total']} kaynak OK, "
+        f"{live}/{len(fetch_status)} bağlantı canlı{om}, {h['cycle_seconds']}s"
+    )
 
     _lap("health")
     try:
@@ -475,7 +487,24 @@ def cycle(
     build_stats(str(root / "data" / "events.jsonl"), str(web_data))
     _lap("render")
     print(f"[done] incidents={len(store.active_incidents())} warnings={len(store.active_warnings())}")
-    print(f"[timing] {' '.join(laps)} total={time.time() - started:.1f}s")
+    total = time.time() - started
+    print(f"[timing] {' '.join(laps)} total={total:.1f}s")
+    try:
+        health_history.append(
+            root / "data" / "health_history.jsonl",
+            health_history.entry(
+                started=started,
+                seconds=total,
+                fetch_status=fetch_status,
+                sources_down=h["sources_down"],
+                om_missing=om_missing,
+                ais_positions=ais_count,
+                vessels=len(vessels_dict) if do_ais else None,
+                power=power_backoff_reason(cfg),
+            ),
+        )
+    except Exception as e:  # bookkeeping must never stop a cycle
+        print(f"[health_history] write error: {e}")
 
 
 def heartbeat_ping(fail: bool = False, url: str | None = None) -> bool:

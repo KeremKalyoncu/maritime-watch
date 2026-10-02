@@ -14,6 +14,7 @@ def write_health(
     incidents: int,
     warnings: int,
     fetch_status: dict | None = None,
+    forecast_missing: list[str] | None = None,
 ) -> dict:
     ok = sum(1 for r in records if r["ok"])
     down = [r["source"] for r in records if not r["ok"]]
@@ -28,6 +29,8 @@ def write_health(
         "sources": {r["source"]: {k: v for k, v in r.items() if k != "source"} for r in records},
         # per-endpoint: "live" | "sample" (dev only) | "down"
         "fetch": fetch_status or {},
+        # Open-Meteo areas with no forecast after the retry (the module itself is "ok")
+        "forecast_missing": forecast_missing or [],
     }
     (Path(out_dir) / "health.json").write_text(
         json.dumps(health, ensure_ascii=False, indent=2), encoding="utf-8"
