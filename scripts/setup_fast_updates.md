@@ -1,3 +1,7 @@
+> **Güncel yöntem (2026-10-03):** Telefon  sırasında yarım saatte bir `workflow_dispatch` gönderir (`src/pages_dispatch.py`).
+> Token: fine-grained, **yalnız bu repo**, yetki **Actions: Read and write** (kod değiştiremez); telefona `scripts/github_token_ekle.sh` ile girilir.
+> Aşağıdaki classic PAT (`repo` + `workflow`) yolu tüm depolara yazma yetkisi verir; önerilmez.
+
 # ⚡ GitHub Actions Gecikmelerini Sıfırlama ve 7/24 Canlı Denizcilik Bildirimi
 
 Bu doküman, GitHub Actions'ın standart zamanlanmış görevlerindeki (`schedule.cron`) **1 ila 3 saatlik kuyruk gecikmesini** tamamen ortadan kaldırarak; Türkiye karasularındaki gemi batma, alabora, acil durum ve hava uyarılarının **dakikalar veya saniyeler içinde** kullanıcılara ve Telegram botuna iletilmesini sağlayan **sıfır maliyetli (Zero-Ops / 100% Free)** çözümleri açıklar.
