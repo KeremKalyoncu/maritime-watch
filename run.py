@@ -59,6 +59,7 @@ from src.ingest.openmeteo import reset_cache as reset_openmeteo_cache
 from src.ingest.quakes import fetch_quakes
 from src.ingest.reliefweb import fetch_reliefweb
 from src.model import Incident, Source, Vessel, make_id, type_tr
+from src.pages_dispatch import PagesDispatch
 from src.process.anomaly import VesselState, detect
 from src.process.classify import classify, enrich_weather_context
 from src.process.cpa import cpa_events_to_incidents, detect_cpa_risks
@@ -226,6 +227,7 @@ def cycle(
     webhook_token: str | None = None,
     do_ais: bool = True,
     do_scrape: bool = True,
+    pages: PagesDispatch | None = None,
 ) -> None:
     started = time.time()
     root = Path(cfg["_root"])
@@ -489,6 +491,14 @@ def cycle(
     print(f"[done] incidents={len(store.active_incidents())} warnings={len(store.active_warnings())}")
     total = time.time() - started
     print(f"[timing] {' '.join(laps)} total={total:.1f}s")
+    # the phone's loop only (K26): GitHub's own cron runs the public map 2-7 h late
+    pages_outcome = None
+    if pages is not None:
+        try:
+            pages_outcome = pages.maybe_dispatch()
+        except Exception as e:  # never let the map request cost the cycle
+            print(f"[pages] error: {type(e).__name__}")
+            pages_outcome = "error"
     try:
         health_history.append(
             root / "data" / "health_history.jsonl",
@@ -501,6 +511,7 @@ def cycle(
                 ais_positions=ais_count,
                 vessels=len(vessels_dict) if do_ais else None,
                 power=power_backoff_reason(cfg),
+                pages=pages_outcome,
             ),
         )
     except Exception as e:  # bookkeeping must never stop a cycle
@@ -593,6 +604,11 @@ def main() -> None:
 
     if args.loop:
         interval = cfg["loop"]["interval_seconds"]
+        pages = PagesDispatch(cfg)
+        if pages.enabled and pages.token:
+            print(f"[pages] public map rebuild requested at most every {pages.every_s // 60} min")
+        else:
+            print("[pages] no GITHUB_DISPATCH_TOKEN: the public map waits for GitHub's cron")
         while True:
             try:
                 cycle(
@@ -601,6 +617,7 @@ def main() -> None:
                     webhook_token=webhook_token,
                     do_ais=not args.no_ais,
                     do_scrape=not args.no_scrape,
+                    pages=pages,
                 )
                 heartbeat_ping()
             except KeyboardInterrupt:

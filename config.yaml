@@ -187,6 +187,16 @@ alert:
   min_severity: "major"
   stale_hours: 2                              # map shows a "data is old" banner past this
 
+publish:
+  # --loop only (the phone): ask GitHub to rebuild the public map now (src/pages_dispatch.py,
+  # K26). Needs GITHUB_DISPATCH_TOKEN in .env: fine-grained, this repo only, Actions: write.
+  dispatch:
+    enabled: true
+    repo: "KeremKalyoncu/maritime-watch"
+    workflow: "update.yml"
+    ref: "main"
+    every_minutes: 30
+
 loop:
   interval_seconds: 900
   # Note 4 edge host: wait interval x backoff_factor when the battery is hot or

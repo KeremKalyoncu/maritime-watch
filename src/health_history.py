@@ -15,6 +15,8 @@ Fields (absent = nothing to report):
   ais      AIS positions received in this cycle's capture (None: AIS off)
   vessels  vessels in the track store
   power    why the loop is slowing down (hot / low battery), else absent
+  pages    public map rebuild request this cycle: ok | refused | http_<code> | error
+           (absent: not due, no token, or not the phone's loop)
 """
 
 from __future__ import annotations
@@ -43,6 +45,7 @@ def entry(
     ais_positions: int | None,
     vessels: int | None,
     power: str | None = None,
+    pages: str | None = None,
 ) -> dict:
     e: dict = {
         "t": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(started)),
@@ -51,7 +54,8 @@ def entry(
         "vessels": vessels,
     }
     down = sorted(k for k, v in fetch_status.items() if v != "live")
-    for key, val in (("down", down), ("failed", sorted(sources_down)), ("om_miss", om_missing), ("power", power)):
+    extra = (("down", down), ("failed", sorted(sources_down)), ("om_miss", om_missing), ("power", power), ("pages", pages))
+    for key, val in extra:
         if val:
             e[key] = val
     return e
