@@ -13,7 +13,7 @@ from ..model import fix_mojibake
 from .classify import classify
 from .dedup import _epoch
 from .extract import extract, misread_rescue
-from .privacy import drop_aftermath, redact
+from .privacy import redact
 
 # phrases that mean the situation is over (not just "rescued", which is also how
 # an incident is first reported)
@@ -110,22 +110,31 @@ def backfill(store) -> int:
 _TR_LOWER = str.maketrans("İIŞĞÜÖÇ", "iışğüöç")
 
 
-def drop_stored_aftermath(store, cfg: dict | None) -> int:
-    """The aftermath filter runs at ingest, but the store is committed and carried
-    forward, so funeral and courtroom items taken in earlier keep sitting on the
-    map. Re-apply the same test to what is already there."""
-    words = [w.translate(_TR_LOWER).lower() for w in (cfg or {}).get("news", {}).get("aftermath_words", [])]
-    if not words:
+def refilter_stored_news(store, cfg: dict | None) -> int:
+    """The news gate runs at ingest, but the store is carried forward, so items taken
+    in under an older rule keep sitting on the map and in the feed. Re-apply the whole
+    gate (news.headline_passes) to the stored headlines: one that fails it now leaves its
+    incident, and an incident left with no source is dropped. Other sources keep an
+    incident alive: the İzmir rescue keeps its Coast Guard notice and loses the
+    stabbing headline merged into it (06.10, K27). Returns the incidents dropped."""
+    nc = (cfg or {}).get("news")
+    if not nc:
         return 0
+    from ..ingest.news import headline_passes  # ingest builds on process, not the reverse
+
     n = 0
     for iid, inc in list(store.incidents.items()):
-        srcs = [s for s in inc.sources if s.kind == "news"]
-        if not srcs or len(srcs) != len(inc.sources):
-            continue  # an official source keeps it alive
-        if all(drop_aftermath(s.detail.translate(_TR_LOWER).lower(), words) for s in srcs):
+        bad = [s for s in inc.sources if s.kind == "news" and not headline_passes(s.detail or "", nc)]
+        if not bad:
+            continue
+        inc.sources = [s for s in inc.sources if s not in bad]
+        if not inc.sources:
             del store.incidents[iid]
             n += 1
     return n
+
+
+drop_stored_aftermath = refilter_stored_news  # the old name: it began with the aftermath words
 
 
 # weather kinds whose absence from a live feed means the hazard is over
@@ -213,7 +222,7 @@ def prune(store, cfg: dict | None = None) -> tuple[int, int]:
     unmerge_legacy_reports(store)
     dedupe_sources(store)
     backfill(store)
-    dropped_aftermath = drop_stored_aftermath(store, cfg)
+    dropped_aftermath = refilter_stored_news(store, cfg)
     real_inc = any("seed" not in i for i in store.incidents)
     real_w = any("seed" not in w for w in store.warnings)
     dropped_w = dropped_i = 0

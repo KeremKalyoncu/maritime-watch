@@ -221,11 +221,18 @@ def _norm(s: str) -> str:
 
 
 _APOSTROPHES = str.maketrans("\u2019\u2018`\u00b4", "'" * 4)
-# "boğaz" is the strait only as a bare word or with an apostrophe suffix ("Boğaz'da",
-# "Boğazı'nda", "İstanbul Boğazı"). Without the apostrophe the suffixed forms are a
-# person's throat: "boğazından bıçakla yaralandı" (İzmir, 05.10) went out as a sea
-# emergency because "boğaz" matched as a substring.
-_STRAIT_RE = re.compile(r"(?<![a-zçğıöşü])boğaz(?:ı?'|ı(?![a-zçğıöşü])|(?![a-zçğıöşü]))")
+# "boğaz" is the strait in "İstanbul/Çanakkale Boğazı", with an apostrophe ("Boğaz'da",
+# "Boğazı'nda") or in the plain case forms (boğaz, boğazda, boğazdan, boğaza, boğazın,
+# boğazdaki). The possessive forms are a person's throat: "boğazından bıçakla yaralandı"
+# (İzmir, 05.10) went out as a sea emergency because "boğaz" matched as a substring;
+# a bare "boğazı" without the strait's name is "boğazı kesildi".
+_STRAIT_RE = re.compile(
+    r"(?<![a-zçğıöşü])(?:"
+    r"(?:istanbul|çanakkale) boğazı"
+    r"|boğazı?'"
+    r"|boğaz(?:da|dan|daki|a|ın)?(?![a-zçğıöşü])"
+    r")"
+)
 
 
 def mentions_strait(text: str) -> bool:

@@ -90,3 +90,33 @@ def test_an_official_notice_names_the_event_and_writes_the_alert(tmp_path):
     assert got.id == "ais-1" and got.type == "rescue"  # not "AIS sinyali kesildi"
     payload = run._alert_payload(got)
     assert payload["description"] == SG_MUGLA and payload["category"] == "rescue"
+
+
+def test_plain_strait_forms_count_and_a_bare_throat_does_not():
+    for text in ("Boğazda gemi arızalandı", "Boğazdan geçen tanker", "Boğaza giren gemi", "Boğazdaki sis"):
+        assert mentions_strait(text), text
+    for text in ("adamın boğazı kesildi", "boğazına bıçak dayadı"):
+        assert not mentions_strait(text), text
+
+
+def test_stored_headlines_are_refiltered_with_todays_rules(cfg, tmp_path):
+    """06.10 on the phone: the stabbing headline sat inside the İzmir rescue and the
+    KKTC body-recovery stories sat on the map, taken in before the rules existed."""
+    from src.process.prune import refilter_stored_news
+
+    s = _store(tmp_path)
+    izmir = _official("01.10.2026 İzmir Açıklarında 34 Düzensiz Göçmen Kurtarılmıştır", "news-67f26e0963",
+                      38.43, 27.14, "Izmir")
+    izmir.sources.insert(0, Source(kind="news", org="hurriyet", detail=STABBING.replace("'", "’")))
+    s.upsert_incident(izmir)
+    kktc = Incident(id="news-4eb7e3744b", type="sinking", casualties=2)
+    kktc.sources.append(Source(kind="news", org="aa.com.tr", detail=KKTC))
+    s.upsert_incident(kktc)
+    good = Incident(id="news-ok", type="drift")
+    good.sources.append(Source(kind="news", org="trt", detail="İstanbul Boğazı'nda makine arızası yapan gemi sürüklendi"))
+    s.upsert_incident(good)
+
+    assert refilter_stored_news(s, cfg) == 1  # KKTC dropped
+    assert set(s.incidents) == {"news-67f26e0963", "news-ok"}
+    assert [x.kind for x in s.incidents["news-67f26e0963"].sources] == ["official"]
+    assert run._alert_payload(s.incidents["news-67f26e0963"])["description"].startswith("01.10.2026 İzmir")

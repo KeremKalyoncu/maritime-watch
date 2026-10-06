@@ -68,13 +68,29 @@ def _recent(pubdate: str, hours_back: int) -> bool:
     return True
 
 
+def headline_passes(title: str, nc: dict) -> bool:
+    """The keyword gate of fetch_news: one maritime and one incident word, no aftermath,
+    shore-side or crime words, and a far-away country only with a Turkish place in it.
+    prune re-applies it to what is stored, so a rule added later also clears the
+    headlines taken in before it (K27)."""
+    low = _norm(title)
+    tokens = re.findall(r"[a-zçğıöşü]+", low)
+    words = {k: [_norm(w) for w in nc.get(k, [])] for k in
+             ("maritime_words", "incident_words", "aftermath_words", "exclude_words", "foreign_words")}
+    if not (_match(low, tokens, words["maritime_words"]) and _match(low, tokens, words["incident_words"])):
+        return False
+    if drop_aftermath(low, words["aftermath_words"]):
+        return False  # funerals, arrests and hearings warn nobody
+    if drop_aftermath(low, words["exclude_words"]):
+        return False  # a diving accident off a jetty is not a sea incident
+    if drop_aftermath(low, words["foreign_words"]):
+        ex = extract(title)
+        return bool(ex.places or ex.area)  # a ferry lost off Indonesia is news, not a warning
+    return True
+
+
 def fetch_news(cfg: dict) -> list[Incident]:
     nc = cfg["news"]
-    mari = [_norm(w) for w in nc["maritime_words"]]
-    inci = [_norm(w) for w in nc["incident_words"]]
-    after = [_norm(w) for w in nc.get("aftermath_words", [])]
-    never = [_norm(w) for w in nc.get("exclude_words", [])]
-    foreign = [_norm(w) for w in nc.get("foreign_words", [])]
     out: list[Incident] = []
     seen: set[str] = set()
 
@@ -85,13 +101,8 @@ def fetch_news(cfg: dict) -> list[Incident]:
             continue
         for title, link, pub in _parse_rss(raw)[: nc["max_items_per_feed"]]:
             low = _norm(title)
-            tokens = re.findall(r"[a-zçğıöşü]+", low)
-            if not (_match(low, tokens, mari) and _match(low, tokens, inci)):
+            if not headline_passes(title, nc):
                 continue
-            if drop_aftermath(low, after):
-                continue  # funerals, arrests and hearings warn nobody
-            if drop_aftermath(low, never):
-                continue  # a diving accident off a jetty is not a sea incident
             if not _recent(pub, nc["hours_back"]):
                 continue
             key = low[:80]
@@ -100,8 +111,6 @@ def fetch_news(cfg: dict) -> list[Incident]:
             seen.add(key)
 
             ex = extract(title)
-            if drop_aftermath(low, foreign) and not (ex.places or ex.area):
-                continue  # a ferry lost off Indonesia is news, not a warning for our coast
             inc = Incident(
                 id="news-" + stable_hash(key, 10),  # content, not date: see official.py
                 type=ex.itype,
