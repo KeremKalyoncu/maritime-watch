@@ -25,6 +25,15 @@ main() {
       "sleep 15; while :; do python run.py --loop --alert-webhook $webhook; $respawn; done"
     echo "[autostart] engine started"
   fi
+
+  # sshd had no respawn loop: on 06.10 it was gone for hours while both services kept
+  # running, and nobody could log in until someone opened Termux on the phone. Check
+  # every 5 minutes; a pgrep is the whole cost.
+  if ! tmux has-session -t sshd-guard 2>/dev/null; then
+    tmux new-session -d -s sshd-guard \
+      "while :; do pgrep -x sshd >/dev/null || sshd; sleep 300; done"
+    echo "[autostart] sshd guard started"
+  fi
 }
 
 main "$@"
