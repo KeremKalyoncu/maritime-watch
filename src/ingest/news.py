@@ -13,6 +13,7 @@ import time
 from xml.etree import ElementTree as ET
 
 from ..model import Incident, Source, Vessel, stable_hash
+from ..process.classify import mentions_strait
 from ..process.extract import extract
 from ..process.privacy import drop_aftermath, redact
 from ._net import fetch_parallel
@@ -28,6 +29,10 @@ def _match(text_low: str, tokens: list[str], keywords: list[str]) -> bool:
     """A keyword matches if it is a phrase found in the text, an exact token, or
     (for words of 4+ letters) a token prefix so Turkish suffixes still match."""
     for kw in keywords:
+        if kw == "boğaz":  # the strait, not a throat (classify.mentions_strait)
+            if mentions_strait(text_low):
+                return True
+            continue
         if " " in kw:
             if kw in text_low:
                 return True

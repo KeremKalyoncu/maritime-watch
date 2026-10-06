@@ -80,6 +80,10 @@ def _official_urls(inc: Incident) -> set:
     return {s.url for s in inc.sources if s.kind == "official" and s.url}
 
 
+def _has_official(inc: Incident) -> bool:
+    return any(s.kind == "official" for s in inc.sources)
+
+
 def _same_event(inc: Incident, cand: Incident, radius_nm: float) -> bool:
     """One real event, seen by different sources? Strong identity (same MMSI or
     vessel name) always wins. Otherwise proximity, but city-name geocodes are
@@ -104,6 +108,12 @@ def _same_event(inc: Incident, cand: Incident, radius_nm: float) -> bool:
     if a_urls and b_urls and not (a_urls & b_urls):
         return False
 
+    # a city name alone must not hand an official badge to a story nobody could type:
+    # "İzmir'de evde şüpheli ölüm…" (type unknown) was merged into the Coast Guard's
+    # İzmir rescue on 05.10 and went out as "confirmed". Two headlines may still merge.
+    for typed, other in ((inc, cand), (cand, inc)):
+        if _has_official(typed) and not _has_official(other) and other.type == "unknown":
+            return False
     shared_place = bool(set(inc.places) & set(cand.places))
     return shared_place and _minutes_apart(inc.first_seen, cand.first_seen) <= 24 * 60
 
@@ -126,7 +136,11 @@ def correlate(store, candidate: Incident, radius_nm: float = 8.0) -> Incident:
             inc.casualties = max(candidate.casualties, inc.casualties or 0)
         if candidate.rescued is not None:
             inc.rescued = max(candidate.rescued, inc.rescued or 0)
-        if candidate.type != "unknown" and inc.type == "unknown":
+        # an official notice says what happened; it overrides an AIS anomaly's or a
+        # headline's guess (an AIS gap merged with a rescue read "AIS sinyali kesildi
+        # — doğrulandı", 04.10)
+        official = any(s.kind == "official" for s in candidate.sources)
+        if candidate.type != "unknown" and (inc.type == "unknown" or official):
             inc.type = candidate.type
         if candidate.lat is not None and inc.lat is None:
             inc.lat, inc.lon, inc.area = candidate.lat, candidate.lon, candidate.area

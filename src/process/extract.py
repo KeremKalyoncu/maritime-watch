@@ -11,7 +11,7 @@ import re
 from dataclasses import dataclass, field
 
 from ..geo import area_of
-from .classify import PLACE_HINTS, _norm
+from .classify import PLACE_HINTS, _norm, names_place
 
 # vessel-type word + any Turkish case suffix (gemisi, gemisinin, teknesiyle, ...)
 _VW = r"(?:gemi|tekne|şile[pb]|yat|kotra|feribot|römorkör|tanker|balıkçı\s+teknesi|sürat\s+teknesi)\w*"
@@ -209,7 +209,7 @@ def places(text: str):
     low = _norm(text)
     hits = []
     for name, (lat, lon) in PLACE_HINTS.items():
-        if _norm(name) in low and name.title() not in hits:
+        if names_place(low, name) and name.title() not in hits:
             hits.append((name.title(), lat, lon))
     return hits
 

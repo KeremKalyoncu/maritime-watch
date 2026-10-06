@@ -163,10 +163,15 @@ def dispatch_emergency_webhook(
 
 
 def _alert_payload(inc: Incident) -> dict:
+    # the official notice first: a merged headline or AIS note under a "confirmed"
+    # badge read as if the Coast Guard had said it (05.10)
+    sources = getattr(inc, "sources", None) or []
+    official = next((s.detail for s in sources if s.kind == "official" and s.detail), "")
     desc = (
-        getattr(inc, "summary", "")
+        official
+        or getattr(inc, "summary", "")
         or (inc.notes[0] if getattr(inc, "notes", None) else "")
-        or (inc.sources[0].detail if getattr(inc, "sources", None) and inc.sources else "")
+        or (sources[0].detail if sources else "")
     )
     return {
         "event_id": inc.id,

@@ -9,6 +9,7 @@ Status ladder:
 from __future__ import annotations
 
 import math
+import re
 
 from .. import model
 from ..geo import area_centroid, area_of  # noqa: F401  polygon-based, re-exported here
@@ -219,11 +220,30 @@ def _norm(s: str) -> str:
     return s.translate(_TR_LOWER).lower()
 
 
+_APOSTROPHES = str.maketrans("\u2019\u2018`\u00b4", "'" * 4)
+# "boğaz" is the strait only as a bare word or with an apostrophe suffix ("Boğaz'da",
+# "Boğazı'nda", "İstanbul Boğazı"). Without the apostrophe the suffixed forms are a
+# person's throat: "boğazından bıçakla yaralandı" (İzmir, 05.10) went out as a sea
+# emergency because "boğaz" matched as a substring.
+_STRAIT_RE = re.compile(r"(?<![a-zçğıöşü])boğaz(?:ı?'|ı(?![a-zçğıöşü])|(?![a-zçğıöşü]))")
+
+
+def mentions_strait(text: str) -> bool:
+    return bool(_STRAIT_RE.search(_norm(text).translate(_APOSTROPHES)))
+
+
+def names_place(low: str, name: str) -> bool:
+    """`name` (a PLACE_HINTS key) occurs in the lowered text; "boğaz" only as the strait."""
+    if name == "boğaz":
+        return mentions_strait(low)
+    return _norm(name) in low
+
+
 def place_hint(text: str):
     """Return (lat, lon, area) for the first known coastal place named in text."""
     low = _norm(text)
     for name, (lat, lon) in PLACE_HINTS.items():
-        if _norm(name) in low:
+        if names_place(low, name):
             return lat, lon, area_of(lat, lon) or name.title()
     return None, None, ""
 
